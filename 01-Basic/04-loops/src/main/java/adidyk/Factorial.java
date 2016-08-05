@@ -15,8 +15,7 @@ public class Factorial {
 		if (n < 0) {
 			flagValidFactorial = false;
 			System.out.println("Can`t create factorial.");
-		}
-		else {
+		} else {
 			flagValidFactorial = true;
 		}
 		return flagValidFactorial;
@@ -25,8 +24,7 @@ public class Factorial {
 	public void calculate() {
 		if (n == 0) {
 			this.factorial = 1;
-		}
-		else {
+		} else {
 			for (int i = 1; i < n + 1; i++) {
 				this.factorial = this.factorial * i;
 			}	
