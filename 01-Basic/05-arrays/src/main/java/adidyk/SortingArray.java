@@ -7,7 +7,7 @@ public class SortingArray {
 	int []bubble;
 	
 	//Constructor
-	public Sorting(int []bubble) {
+	public SortingArray(int []bubble) {
 		this.bubble = bubble;
 	}
 	
@@ -17,10 +17,10 @@ public class SortingArray {
 		while (flag) {
 			for (int j = bubble.length - 1; j > 0; j--) {
 				for (int i = 0; i < j; i++) {
-					if (this.bubble(i) > this.bubble(i + 1)) {
-						min = this.bubble(i + 1);
-						this.bubble(i + 1) = this.bubble(i);
-						this.bubble(i) = min;
+					if (this.bubble[i] > this.bubble[i + 1]) {
+						min = this.bubble[i + 1];
+						this.bubble[i + 1] = this.bubble[i];
+						this.bubble[i] = min;
 					}	
 					else {
 						flag = false;
