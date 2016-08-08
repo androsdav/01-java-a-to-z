@@ -1,18 +1,17 @@
 package adidyk;
 
-import java.util.ArrayList;
-
 public class Factorial {
-	int n;	
-	int factorial = 1;
+	int numberN;	
+	
 	//Constructor
-	public Factorial(int n) {
-		this.n = n;
+	public Factorial(int numberN) {
+		this.numberN = numberN;
 	}
+	
 	// method validFactorial - inspection valid factorial
 	public boolean validFactorial() {
 		boolean flagValidFactorial = false;
-		if (n < 0) {
+		if (this.numberN < 0) {
 			flagValidFactorial = false;
 			System.out.println("Can`t create factorial.");
 		} else {
@@ -20,18 +19,17 @@ public class Factorial {
 		}
 		return flagValidFactorial;
 	}
-	// method Calculate - calculate function on the interval x1 to x2, with a step
-	public void calculate() {
-		if (n == 0) {
-			this.factorial = 1;
+	
+	// method calculate - calculate factorial
+	public int calculate() {
+		int factorial = 1;
+		if (this.numberN == 0) {
+			factorial = 1;
 		} else {
-			for (int i = 1; i < n + 1; i++) {
-				this.factorial = this.factorial * i;
+		for (int i = 2; i < this.numberN + 1; ++i) {
+			factorial *= i;
 			}	
-		} 
- 	}
- 	// method getFactorial - getting factorial value n 
- 	public int getFactorial() {
- 		return this.factorial;
+		}
+		return factorial;
  	}
 }

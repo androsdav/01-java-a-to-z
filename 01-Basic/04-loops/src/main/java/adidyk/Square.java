@@ -3,32 +3,30 @@ package adidyk;
 import java.util.ArrayList;
 
 public class Square {
-	double a;
-	double b;
-	double c;
-	double x1;
-	double x2;
-	ArrayList y;
-	
+	float paramA;
+	float paramB;
+	float paramC;
+	float startX1;
+	float finishX2;
+		
 	//Constructor 
-	public Square(double a, double b, double c, double x1, double x2, ArrayList y) {
-		this.a = a;
-		this.b = b;
-		this.c = c;
-		this.x1 = x1;
-		this.x2 = x2;
-		this.y = y;
+	public Square(float paramA, float paramB, float paramC, float startX1, float finishX2) {
+		this.paramA = paramA;
+		this.paramB = paramB;
+		this.paramC = paramC;
+		this.startX1 = startX1;
+		this.finishX2 = finishX2;
 	}
 
-	// calculate function on the interval x1 to x2, with a step
-	public double calculate(double i) {
-		return (this.a * i * i + this.b * i + this.c);
+	// calculate function on the point rootX
+	public float calculate(float rootX) {
+		return (this.paramA * rootX * rootX + this.paramB * rootX + this.paramC);
 	}
-	
-	public ArrayList getYfuncArray(double step) {
-		for (double i = this.x1; i < this.x2; i = i+step) {
-			this.y.add(calculate(i));
+	// calculate function on the interval x1 to x2, with a step
+	public ArrayList<Float> getYfuncArray(float step, ArrayList<Float> functionY) {
+		for (float i = this.startX1; i < this.finishX2; i = i + step) {
+			functionY.add(calculate(i));
 		}
-		return this.y;
+		return functionY;
 	}
 }
