@@ -3,24 +3,24 @@ package adidyk;
 import java.util.ArrayList;
 
 public class Sorting {
-	int min = 0;
-	ArrayList<Integer> bubble;
+	int []bubble;
 	
 	//Constructor
-	public Sorting(ArrayList<Integer> bubble) {
+	public Sorting(int []bubble) {
 		this.bubble = bubble;
 	}
 	
 	// Method babbleSort - sorting babble Array
-	public ArrayList babbleSort() {
+	public int [] babbleSorting() {
 		boolean flag = true;
+		int min;
 		while (flag) {
-			for (int j = bubble.size() - 1; j > 0; j--) {
+			for (int j = bubble.length - 1; j > 0; j--) {
 				for (int i = 0; i < j; i++) {
-					if (this.bubble.get(i) > this.bubble.get(i + 1)) {
-						min = this.bubble.get(i + 1);
-						this.bubble.set(i + 1, this.bubble.get(i));
-						this.bubble.set(i, min);
+					if (this.bubble[i] > this.bubble[i + 1]) {
+						min = this.bubble[i + 1];
+						this.bubble[i + 1] = this.bubble[i];
+						this.bubble[i] = min;
 					}	
 					else {
 						flag = false;
