@@ -10,21 +10,23 @@ public class SquareTest {
 	
 	@Test
 	public void calculateTest() {
-		ArrayList yFunc = new ArrayList();
-		Square square = new Square(1, 0, 0, 0, 3, yFunc);		
-		double y = square.calculate(5);
-		assertThat(y, is(25d));
+		Square square = new Square(1, 0, 0, 0, 3);		
+		float functionY = square.calculate(5);
+		assertThat(functionY, is(25f));
 	}
 	
 	@Test
 	public void getYfuncArrayTest() {
-		ArrayList yTest = new ArrayList();
-		yTest.add(0.0);
-		yTest.add(1.0);
-		yTest.add(4.0);
-		ArrayList yFunc = new ArrayList();
-		Square square = new Square(1, 0, 0, 0, 3, yFunc);		
-		yFunc = square.getYfuncArray(1);
+		ArrayList<Float> yTest = new ArrayList<Float>();
+		float funcY1 = 0;
+		float funcY2 = 1;
+		float funcY3 = 4;
+		yTest.add(funcY1);
+		yTest.add(funcY2);
+		yTest.add(funcY3);
+		ArrayList<Float> yFunc = new ArrayList<Float>();
+		Square square = new Square(1, 0, 0, 0, 3);		
+		yFunc = square.getYfuncArray(1, yFunc);
 		assertThat(yFunc, is(yTest));
 	}
 }

@@ -3,7 +3,6 @@ package adidyk;
 import org.junit.Test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
-import java.util.ArrayList;
 
 public class FactorialTest {
 
@@ -17,8 +16,7 @@ public class FactorialTest {
 	@Test
 	public void calculaleTest() {
 		final Factorial factorial = new Factorial(4);
-		factorial.calculate();
-		final int resultFactorial = factorial.getFactorial();
+		final int resultFactorial = factorial.calculate();
 		assertThat(resultFactorial, is(24));
 	}
 }
