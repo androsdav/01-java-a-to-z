@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 public class SquareTest {
 
-	
 	@Test
 	public void calculateTest() {
 		Square square = new Square(1, 0, 0, 0, 3);		
