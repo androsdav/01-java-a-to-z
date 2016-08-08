@@ -1,7 +1,5 @@
 package adidyk;
 
-import java.util.ArrayList;
-
 public class Sorting {
 	int []bubble;
 	
