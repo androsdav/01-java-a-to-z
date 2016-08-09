@@ -1,31 +1,21 @@
 package adidyk;
 
 public class Rotate {
-	
-	
-	//Constructor
-	//public Rotate(int [][]squareArray) {
-	//	this.squareArray = squareArray;
-	//}
-	
-	// Method babbleSort - sorting babble Array
-	public int [][] rotateQuadroArray(int [][]squareArray) {
+	// method rotate - Rotate Array tern right
+	public int [][] rotate(int [][]args) {
 		int temp;
-		int length1 = squareArray.length;  
-		for (int  i = 0; i < length1; i++) {
-			for (int j = 0; j < length1; j++) {
-				temp = squareArray[i][j];
-				squareArray[i][j] = squareArray[length1 - j][i];
-				squareArray[length1 - j][i] = squareArray[length1 - i][length1 - j];
-				squareArray[length1 - i][length1 - j] = squareArray[j][length1 - i];
-				squareArray[j][length1 - i] = temp;
-			
-			//	squareArray[i][j] = squareArray[j][length - i];
-			//	squareArray[j][length - i] = squareArray[length - i][length - j];
-			//	squareArray[length - i][length - j] = squareArray[length - j][i];
-			//	squareArray[length - j][i] = squareArray[i][j];
+		int step = 0; 
+		int length = args.length - 1;  
+		for (int  i = 0; i < length - i; i++) {
+			for (int j = step; j < length - step; j++) {
+				temp = args[i][j];
+				args[i][j] = args[length - j][i];
+				args[length - j][i] = args[length - i][length - j];
+				args[length - i][length - j] = args[j][length - i];
+				args[j][length - i] = temp;
 			}
+			step = step + 1;
 		}
-		return squareArray; 
+		return args; 
 	}
 }
