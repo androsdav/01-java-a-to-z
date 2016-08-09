@@ -25,7 +25,7 @@ public class SquareTest {
 		yTest.add(funcY3);
 		ArrayList<Float> yFunc = new ArrayList<Float>();
 		Square square = new Square(1, 0, 0);		
-		yFunc = square.range(1, 0, 3, yFunc);
+		yFunc = square.range(1, 0, 3);
 		assertThat(yFunc, is(yTest));
 	}
 }
