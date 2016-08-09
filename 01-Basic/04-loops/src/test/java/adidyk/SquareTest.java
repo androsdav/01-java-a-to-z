@@ -9,13 +9,13 @@ public class SquareTest {
 
 	@Test
 	public void calculateTest() {
-		Square square = new Square(1, 0, 0, 0, 3);		
+		Square square = new Square(1, 0, 0);		
 		float functionY = square.calculate(5);
 		assertThat(functionY, is(25f));
 	}
 	
 	@Test
-	public void getYfuncArrayTest() {
+	public void rangeTest() {
 		ArrayList<Float> yTest = new ArrayList<Float>();
 		float funcY1 = 0;
 		float funcY2 = 1;
@@ -24,8 +24,8 @@ public class SquareTest {
 		yTest.add(funcY2);
 		yTest.add(funcY3);
 		ArrayList<Float> yFunc = new ArrayList<Float>();
-		Square square = new Square(1, 0, 0, 0, 3);		
-		yFunc = square.getYfuncArray(1, yFunc);
+		Square square = new Square(1, 0, 0);		
+		yFunc = square.range(1, 0, 3, yFunc);
 		assertThat(yFunc, is(yTest));
 	}
 }
