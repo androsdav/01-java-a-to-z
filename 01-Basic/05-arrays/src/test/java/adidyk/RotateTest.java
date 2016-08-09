@@ -7,25 +7,24 @@ import static org.junit.Assert.*;
 public class RotateTest {
 
 	@Test
-	public void rotateQuadroArrayTest() {
+	public void rotate() {
 		// Expected ArrayList
-		int [][]rotateExpected = {
-			{1, 7, 4, 0},
-			{2, 8, 0, 1},
-			{3, 0, 5, 2},
-			{0, 9, 6, 3},
+		int [][]argsExpected = {
+			{1, 2, 3, 4},
+			{1, 2, 3, 4},
+			{1, 2, 3, 4},
+			{1, 2, 3, 4}
 		};
 		// Actual ArrayList	
-		int [][]rotateActual = {
-			{0, 1, 2, 3},
-			{4, 0, 5, 6},
-			{7, 8, 0, 9},
-			{1, 2, 3, 0},
+		int [][]argsActual = {
+			{4, 4, 4, 4},
+			{3, 3, 3, 3},
+			{2, 2, 2, 2},
+			{1, 1, 1, 1}
 		};
 		// Testing rotate quadro Array 				
 		final Rotate rota = new Rotate();
-		rotateActual = rota.rotateQuadroArray(rotateActual);
-		//assertThat(rotateActual, is(rotateExpected));
-		assertArrayEquals(rotateActual, rotateExpected);
+		argsActual = rota.rotate(argsActual);
+		assertThat(argsActual, is(argsExpected));
 	}
 }
