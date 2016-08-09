@@ -19,7 +19,8 @@ public class Square {
 		return (this.paramA * rootX * rootX + this.paramB * rootX + this.paramC);
 	}
 	// calculate function on the interval x1 to x2, with a step
-	public ArrayList<Float> range(float step, float startX1, float finishX2, ArrayList<Float> functionY) {
+	public ArrayList<Float> range(float step, float startX1, float finishX2) {
+		ArrayList<Float> functionY = new ArrayList<Float>();
 		for (float i = startX1; i < finishX2; i = i + step) {
 			functionY.add(calculate(i));
 		}
