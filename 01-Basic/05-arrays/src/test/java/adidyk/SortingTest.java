@@ -16,5 +16,5 @@ public class SortingTest {
 		final Sorting sort = new Sorting(bubbleActual);
 		bubbleActual = sort.babbleSorting();
 		assertThat(bubbleActual, is(bubbleExpected));
-	}
+	} proverka
 }
