@@ -2,13 +2,13 @@ package adidyk;
 
 public class Dublicate {
 	private String []args;
-		
+	
 	// Constructor
 	public Dublicate(String []args) {
 		this.args = args;
 	}
 	
-	// method searchDubl - searching dublicate in String Array and
+	// method searchDublArray - searching dublicate in String Array and
 	// return length new Array don`t have dublicate
 	public int searchDublArray() {
 		int unitDubl = 0;
@@ -36,7 +36,4 @@ public class Dublicate {
 		}
 		return argsNew;
 	}
-}
-
-
-                                                                 
+}                                                           
