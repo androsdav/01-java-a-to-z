@@ -30,4 +30,4 @@ public class DublicateTest {
 		String []argsNewActual = this.dubl.createNewArray();
 		assertThat(argsNewActual, is(this.argsNewExpected));
 	}
-} 
+}
