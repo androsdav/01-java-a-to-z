@@ -28,11 +28,10 @@ public class Dublicate {
 	String []argsNew = new String[searchDublArray()];
 		int j = 0;
 		for (int i = 0; i < this.args.length; i++) {
-			if (this.args[i].equals("----")) {
-			} else {
+			if (!this.args[i].equals("----")) {
 				argsNew[j] = this.args[i];
 				j = j + 1;
-			}		
+			} 
 		}
 		return argsNew;
 	}
