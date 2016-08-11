@@ -3,23 +3,31 @@ package adidyk;
 import org.junit.Test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
-//import java.util.ArrayList;
 
 public class DublicateTest {
+	// Expected New String List
+	final String []argsNewExpected = {
+		"horse", "pig", "fox", "dog", "cat", "elephant", "mouse", "wolf"
+	};
+	// Expected String List
+	final String []argsExpected = {
+		"horse", "----", "pig", "----", "fox", "----", "----", "dog", "----", "cat", "elephant", "mouse", "wolf"
+	};
+	// Actual String List	
+	final String []argsActual = {
+		"horse", "dog", "pig", "elephant", "fox", "cat", "dog", "dog", "wolf", "cat", "elephant", "mouse", "wolf"
+	}; 				
+	final Dublicate dubl = new Dublicate(argsActual);
 
 	@Test
-	public void searcDubl() {
-		// Expected ArrayList
-		String []argsExpected = {"horse", "false", "pig", "false", "false", "false", "dog", "cat", "elephant", "mouse"};
-		// Actual ArrayList	
-		String []argsActual = {"horse", "dog", "pig", "elephant", "cat", "dog", "dog", "cat", "elephant", "mouse"};
-		// Testing sort babble 				
-		final Dublicate dubl = new Dublicate(argsActual);
-		argsActual = dubl.searchDubl();
-		assertThat(argsActual, is(argsExpected));
-		
-		int size = dubl.getSize();
-		assertThat(size, is(5));
-		
+	public void searchDublArrayTest() {
+		int size = this.dubl.searchDublArray();
+		assertThat(size, is(8));
+	}
+	
+	@Test
+	public void createNewArrayTest() {				
+		String []argsNewActual = this.dubl.createNewArray();
+		assertThat(argsNewActual, is(this.argsNewExpected));
 	}
 } 
