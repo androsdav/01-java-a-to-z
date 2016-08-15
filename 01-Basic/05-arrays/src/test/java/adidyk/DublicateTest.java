@@ -21,8 +21,6 @@ public class DublicateTest {
 
 	@Test
 	public void searchDublArrayTest() {
-		//String []argsNewActual = dubl.searchDublArray();
-		//assertThat(argsNewActual, is(this.argsExpected));
 		int size = this.dubl.searchDublArray();
 		assertThat(size, is(8));
 	}
