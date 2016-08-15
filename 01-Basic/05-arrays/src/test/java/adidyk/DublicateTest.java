@@ -11,7 +11,7 @@ public class DublicateTest {
 	};
 	// Expected String List
 	final String []argsExpected = {
-		"horse", "----", "pig", "----", "fox", "----", "----", "dog", "----", "cat", "elephant", "mouse", "wolf"
+		"horse", "pig", "fox", "dog", "cat", "elephant", "mouse", "wolf", "null", "null", "null", "null", "null"
 	};
 	// Actual String List	
 	final String []argsActual = {
@@ -21,6 +21,8 @@ public class DublicateTest {
 
 	@Test
 	public void searchDublArrayTest() {
+		//String []argsNewActual = dubl.searchDublArray();
+		//assertThat(argsNewActual, is(this.argsExpected));
 		int size = this.dubl.searchDublArray();
 		assertThat(size, is(8));
 	}
