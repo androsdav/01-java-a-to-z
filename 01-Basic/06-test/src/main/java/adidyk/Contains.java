@@ -43,4 +43,4 @@ public class Contains {
 		System.arraycopy(this.args, 0, argsNew, 0, argsNew.length);
 		return argsNew;
 	}
-}           */                                                
+}           */
