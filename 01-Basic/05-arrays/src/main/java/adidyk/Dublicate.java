@@ -13,7 +13,6 @@ public class Dublicate {
 	public int searchDublArray() {
 		int shift = 0;
 		int length = this.args.length - 1;
-		//Object o = null;
 		for (int i = 0; i < length - shift; i++) {	
 			for (int j = i + 1; j < this.args.length - shift; j++) {
 				if (this.args[i].equals(this.args[j])) {
