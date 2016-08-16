@@ -10,9 +10,9 @@ public class DublicateTest {
 		"horse", "pig", "fox", "dog", "cat", "elephant", "mouse", "wolf"
 	};
 	// Expected String List
-	//final String []argsExpected = {
-	//	"horse", "pig", "fox", "dog", "cat", "elephant", "mouse", "wolf", null, null, null, null, null
-	//};
+	final String []argsExpected = {
+		"horse", "pig", "fox", "dog", "cat", "elephant", "mouse", "wolf", null, null, null, null, null
+	};
 	// Actual String List	
 	final String []argsActual = {
 		"horse", "dog", "pig", "elephant", "fox", "cat", "dog", "dog", "wolf", "cat", "elephant", "mouse", "wolf"
