@@ -13,5 +13,6 @@
                   <module>03-conditional</module>
                   <module>04-loops</module>
                   <module>05-arrays</module>
+		  <module>06-test</module>	
          </modules>
 </project>
