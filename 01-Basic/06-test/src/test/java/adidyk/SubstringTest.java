@@ -17,7 +17,7 @@ public class SubstringTest {
 		'h', 'e', ' ', 'd', 'o', 'o', 'r', ',', ' ', 'b', 'u', 't', ' ', 'y',
 		'o', 'u', ' ', 'm', 'u', 's', 't', ' ', 'e', 'n', 't', 'e', 'r', ' ',
 		'b', 'y', ' ', 'y', 'o', 'u', 'r', 's', 'e', 'l', 'f', '.'};
-	// Array char split of subdtring
+	// Array char split of substring
 	char []subExpected = {'o', 'p', 'e', 'n'};
 	
 	@Test
