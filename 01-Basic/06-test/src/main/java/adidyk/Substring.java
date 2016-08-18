@@ -14,6 +14,8 @@ public class Substring {
 				for (int j = 0; j < subArray.length; j++) {
 					if (subArray[j] == originArray[i + j]) {
 						sumSub = sumSub + 1;
+					} else {
+						j = subArray.length - 1;
 					}
 				}
 				if (sumSub == subArray.length) {
