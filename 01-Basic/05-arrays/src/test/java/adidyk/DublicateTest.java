@@ -14,7 +14,7 @@ public class DublicateTest {
 		"horse", "pig", "fox", "dog", "cat", "elephant", "mouse", "wolf", null, null, null, null, null
 	};
 	// Actual String List	
-	final String []argsActual = {
+	String []argsActual = {
 		"horse", "dog", "pig", "elephant", "fox", "cat", "dog", "dog", "wolf", "cat", "elephant", "mouse", "wolf"
 	}; 				
 	final Dublicate dubl = new Dublicate(argsActual);
@@ -27,7 +27,8 @@ public class DublicateTest {
 	
 	@Test
 	public void createNewArrayTest() {				
-		String []argsNewActual = this.dubl.createNewArray();
-		assertThat(argsNewActual, is(this.argsNewExpected));
+		//String []argsNewActual = this.dubl.createNewArray();
+		argsActual = this.dubl.createNewArray();	
+		assertThat(argsActual, is(this.argsNewExpected));
 	}
 }
