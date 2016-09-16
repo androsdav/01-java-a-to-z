@@ -10,31 +10,23 @@ public class TrackerTest {
 
     @Test
     public void addItemTest() {
-      //  Item[] itemActual = new Item[1];
-      //  itemActual[0].setName("bag");
-      //  itemActual[0].setDescription("It doesn't work");
-      //  itemActual[0].setCreate(300);
-
-
-        Item item = new Item("bg", "It doesn't work", 1);
-        Item itemActual = new Item("bag", "It doesn't work", 300);
-
+        Item item = new Item("task", "description", 1);
         Tracker track = new Tracker();
-        Item result = track.addItem(item);
-        assertThat(result, is(itemActual));
+        assertThat(track.addItem(item), is(item));
+    }
 
-
-/*        Item[] itemActual = new Item[1];
-        itemActual[0].setName("bag");
-        itemActual[0].setDescription("It doesn't work");
-        itemActual[0].setCreate(300);
-
-        Item item = new Item("bag", "It doesn't work", 300);
-        Tracker tracker = new Tracker();
-        tracker.addItem(item);
-
-        Item[] result = tracker.getItem();
-        assertThat(result, is(itemActual));*/
-
+    @Test
+    public void getItemTest() {
+        Item item1 = new Item("task1", "description1", 1);
+        Item item2 = new Item("task2", "description2", 2);
+        Item item3 = new Item("task3", "description3", 3);
+        Item item4 = new Item("task4", "description1", 4);
+        Item[] items = {item1, item2, item3, item4};
+        Tracker track = new Tracker();
+        track.addItem(item1);
+        track.addItem(item2);
+        track.addItem(item3);
+        track.addItem(item4);
+        assertThat(items, is(track.getAllItem()));
     }
 }
