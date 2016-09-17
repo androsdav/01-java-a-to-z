@@ -1,8 +1,7 @@
 package com.adidyk.start;
-
 import com.adidyk.models.Item;
-import org.junit.Test;
 
+import org.junit.Test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -16,7 +15,7 @@ public class TrackerTest {
     }
 
     @Test
-    public void getItemTest() {
+    public void getAllItemTest() {
         Item item1 = new Item("task1", "description1", 1);
         Item item2 = new Item("task2", "description2", 2);
         Item item3 = new Item("task3", "description3", 3);
