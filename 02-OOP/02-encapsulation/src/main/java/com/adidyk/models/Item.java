@@ -5,6 +5,7 @@ public class Item {
     public String name;
     public String description;
     public long create;
+    private String id;
 
     public Item(String name, String description, long create) {
         this.name = name;
@@ -23,6 +24,10 @@ public class Item {
         public void setCreate(long create) {
            this.create = create;
         }
+        
+        public void setId(String id) {
+        	this.id = id;
+        }
 
         public String getName() {
             return this.name;
@@ -34,5 +39,9 @@ public class Item {
 
         public long getCreate() {
             return this.create;
+        }
+        
+        public String getId() {
+        	return this.id;
         }
 }
