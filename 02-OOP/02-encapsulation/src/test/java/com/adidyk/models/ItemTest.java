@@ -28,6 +28,13 @@ public class ItemTest {
         long result = this.item.getCreate();
         assertThat(result, is(200l));
     }
+    
+    @Test
+    public void setIdTest() {
+    	this.item.setId("1050");
+    	String result = this.item.getId();
+    	assertThat(result, is("1050"));
+    }
 
     @Test
     public void getNameTest() {
@@ -46,4 +53,5 @@ public class ItemTest {
         long result = this.item.getCreate();
         assertThat(result, is(100l));
     }
+    
 }
