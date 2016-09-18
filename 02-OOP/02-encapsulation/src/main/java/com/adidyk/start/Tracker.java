@@ -4,16 +4,14 @@ import java.util.*;
 
 public class Tracker {
 
-    public Item[] item = new Item[1];
-    public int position = 0;
-    public static final Random RN = new Random();
-
+    private Item[] item = new Item[1];
+    private int position = 0;
+    private static final Random RN = new Random();
+    
     public static void main(String[] arg) {
-        //Item item = new Item("Andrey", "proverka text", 01);
-        //System.out.println(item.getName() +" " +item.getDescription() +" " +item.getCreate());
         System.out.println("Hello world");
     }
-
+    // addItem - add new Item
     public Item addItem(Item item) {
         if (this.position == this.item.length)
         {
@@ -25,14 +23,14 @@ public class Tracker {
         this.item[this.position++] = item;
         return item;
     }
-
+    // getAllItem - return all Item
     public Item[] getAllItem() {
         Item[] result = new Item[this.position];
         System.arraycopy(this.item, 0, result, 0, this.position);
         return result;
     }
-    
-    public Item searchItemById(String id) {
+    // searchItemById - search Item by id
+    protected Item searchItemById(String id) {
     	Item result = null;
 		for (Item item : this.item) {
 			if (item != null && item.getId().equals(id)) {
@@ -42,9 +40,39 @@ public class Tracker {
 		}
     	return result;
     }
-    
-    public String generateId() {
-    	return String.valueOf(System.currentTimeMillis() + RN.nextInt());
+    // searchItemByName - search Item by name
+    protected Item searchItemByName(String name) {
+    	Item result = null;
+    	for (Item item : this.item) {
+    		if (item != null && item.getName().equals(name)) {
+    			result = item;
+    		}
+    	}
+    	return result;
+    }
+    // searchItemByDescription - search Item by description
+    protected Item searchItemByDescription(String description) {
+    	Item result = null;
+    	for (Item item : this.item) {
+    		if (item != null && item.getDescription().equals(description)) {
+    			result = item;
+    		}
+    	}
+    	return result;
+    }
+    // searchItemByCreate - search Item by create
+    protected Item searchItemByCreate(long create) {
+    	Item result = null;
+    	for (Item item : this.item) {
+    		if (item != null && item.getCreate() == create) {
+    			result = item;
+    		}
+    	}
+    	return result;
+    }
+    // generateId - gererate id
+    String generateId() {
+    	return String.valueOf(System.currentTimeMillis() + this.RN.nextInt());
     }
     
 }
