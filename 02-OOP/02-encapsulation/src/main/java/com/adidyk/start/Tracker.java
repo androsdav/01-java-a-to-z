@@ -31,7 +31,7 @@ public class Tracker {
     }
     // searchItemById - search Item by id
     protected Item searchItemById(String id) {
-    	Item result = null;
+       	Item result = null;
 		for (Item item : this.item) {
 			if (item != null && item.getId().equals(id)) {
 				result = item;
@@ -46,6 +46,7 @@ public class Tracker {
     	for (Item item : this.item) {
     		if (item != null && item.getName().equals(name)) {
     			result = item;
+    			break;
     		}
     	}
     	return result;
@@ -56,6 +57,7 @@ public class Tracker {
     	for (Item item : this.item) {
     		if (item != null && item.getDescription().equals(description)) {
     			result = item;
+    			break;
     		}
     	}
     	return result;
@@ -66,9 +68,23 @@ public class Tracker {
     	for (Item item : this.item) {
     		if (item != null && item.getCreate() == create) {
     			result = item;
+    			break;
     		}
     	}
     	return result;
+    }
+    // deleteItem - delete Item by id
+    protected void deleteItemId(String id) {
+    	for (int i = 0; i < this.position; i++) {
+    		if (this.item[i].getId().equals(id)) {
+    			for (int j = i; j < this.position - 1; j++) {
+    				this.item[j] = this.item[j + 1];
+    			}
+    			this.item[this.position - 1] = null;
+    			this.position = this.position - 1;
+    			break;
+    		}
+    	}
     }
     // generateId - gererate id
     String generateId() {
