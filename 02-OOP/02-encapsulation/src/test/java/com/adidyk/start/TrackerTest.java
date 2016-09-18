@@ -88,5 +88,22 @@ public class TrackerTest {
     	Item result = track.searchItemByCreate(item3.getCreate());
     	assertThat(item3, is(result));
     }
+           
+    @Test
+    public void deleteItemIdTest() {
+    	Item item1 = new Item("task1", "description1", 1);
+    	Item item2 = new Item("task2", "description2", 2);
+    	Item item3 = new Item("task3", "description3", 3);
+    	Item item4 = new Item("task4", "description4", 4);
+    	Item[] items = {item1, item2, item4};
+    	Tracker track = new Tracker();
+    	track.addItem(item1);
+    	track.addItem(item2);
+    	track.addItem(item3);
+    	track.addItem(item4);
+    	track.deleteItemId(item3.getId());
+    	Item[] result = track.getAllItem();
+    	assertThat(items, is(result));
+    }
 
 }
