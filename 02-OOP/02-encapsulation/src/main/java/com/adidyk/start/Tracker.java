@@ -41,27 +41,40 @@ public class Tracker {
     	return result;
     }
     // searchItemByName - search Item by name
-    protected Item searchItemByName(String name) {
-    	Item result = null;
-    	for (Item item : this.item) {
-    		if (item != null && item.getName().equals(name)) {
-    			result = item;
-    			break;
-    		}
-    	}
-    	return result;
-    }
+    protected Item[] searchItemByName(String name) {
+		int length = 0;
+		for (Item item : this.item) {
+			if (item != null && item.getName().equals(name)) {
+				length++;
+			}
+		}
+		Item[] result = new Item[length];
+		int index = 0;
+		for (Item item : this.item) {
+			if (item != null && item.getName().equals(name)) {
+				result[index++] = item;
+			}
+		}
+		return result;
+	}
     // searchItemByDescription - search Item by description
-    protected Item searchItemByDescription(String description) {
-    	Item result = null;
-    	for (Item item : this.item) {
-    		if (item != null && item.getDescription().equals(description)) {
-    			result = item;
-    			break;
-    		}
-    	}
-    	return result;
-    }
+    protected Item[] searchItemByDescription(String description) {
+		int length = 0;
+		for (Item item : this.item) {
+			if (item != null && item.getDescription().equals(description)) {
+				length++;
+			}
+		}
+		Item[] result = new Item[length];
+		int index = 0;
+		for (Item item : this.item) {
+			if (item != null && item.getDescription().equals(description)) {
+				result[index++] = item;
+			}
+		}
+		return result;
+	}
+
     // searchItemByCreate - search Item by create
     protected Item searchItemByCreate(long create) {
     	Item result = null;
