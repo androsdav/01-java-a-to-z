@@ -7,11 +7,14 @@ public class Tracker {
     private Item[] item = new Item[1];
     private int position = 0;
     private static final Random RN = new Random();
+	private Item[] itemSearch;
+	private Item itemComm;
     
     public static void main(String[] arg) {
         System.out.println("Hello world");
     }
-    // addItem - add new Item
+
+	// addItem - add new Item
     public Item addItem(Item item) {
         if (this.position == this.item.length)
         {
@@ -23,12 +26,14 @@ public class Tracker {
         this.item[this.position++] = item;
         return item;
     }
+
     // getAllItem - return all Item
     public Item[] getAllItem() {
         Item[] result = new Item[this.position];
         System.arraycopy(this.item, 0, result, 0, this.position);
         return result;
     }
+
     // searchItemById - search Item by id
     protected Item searchItemById(String id) {
        	Item result = null;
@@ -38,8 +43,10 @@ public class Tracker {
 				break; 
 			}
 		}
+		this.itemComm = result;
     	return result;
     }
+
     // searchItemByName - search Item by name
     protected Item[] searchItemByName(String name) {
 		int length = 0;
@@ -55,8 +62,10 @@ public class Tracker {
 				result[index++] = item;
 			}
 		}
+		this.itemSearch = result;
 		return result;
 	}
+
     // searchItemByDescription - search Item by description
     protected Item[] searchItemByDescription(String description) {
 		int length = 0;
@@ -72,6 +81,7 @@ public class Tracker {
 				result[index++] = item;
 			}
 		}
+		this.itemSearch = result;
 		return result;
 	}
 
@@ -86,8 +96,9 @@ public class Tracker {
     	}
     	return result;
     }
+
     // deleteItem - delete Item by id
-    protected void deleteItemId(String id) {
+    protected void deleteItemById(String id) {
     	for (int i = 0; i < this.position; i++) {
     		if (this.item[i].getId().equals(id)) {
     			for (int j = i; j < this.position - 1; j++) {
@@ -99,7 +110,28 @@ public class Tracker {
     		}
     	}
     }
-    // generateId - gererate id
+
+	// renameItemByName - rename all Item by name
+	protected void renameItemByName(String name) {
+		for (Item item : this.itemSearch) {
+			item.setName(name);
+		}
+	}
+
+	// renameItemByDescription - rename all Item by description
+	protected void renameItemByDescription(String description) {
+		for (Item item : this.itemSearch) {
+			item.setDescription(description);
+		}
+	}
+
+    //protected
+	protected void addCommentById(String comment) {
+		this.itemComm.addComment(comment);
+	}
+
+
+	// generateId - gererate id
     String generateId() {
     	return String.valueOf(System.currentTimeMillis() + this.RN.nextInt());
     }
