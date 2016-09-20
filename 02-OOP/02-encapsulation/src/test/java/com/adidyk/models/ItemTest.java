@@ -53,5 +53,26 @@ public class ItemTest {
         long result = this.item.getCreate();
         assertThat(result, is(100l));
     }
+
+    @Test
+    public void addCommentTest() {
+        String result = this.item.addComment("comment");
+        assertThat(result, is("comment"));
+    }
+
+    @Test
+    public void getAllCommentTest() {
+        String comment1 = "comment1";
+        String comment2 = "comment2";
+        String comment3 = "comment3";
+        String comment4 = "comment4";
+        item.addComment(comment1);
+        item.addComment(comment2);
+        item.addComment(comment3);
+        item.addComment(comment4);
+        String[] comments = {comment1, comment2, comment3, comment4};
+        String[] result = item.getAllComment();
+        assertThat(result, is(comments));
+    }
     
 }
