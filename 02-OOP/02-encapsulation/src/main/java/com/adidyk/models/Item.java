@@ -2,11 +2,11 @@ package com.adidyk.models;
 
 public class Item {
 
-    public String name;
-    public String description;
-    public long create;
+    private String name;
+    private String description;
+    private long create;
     private String id;
-    public String[] comment =new String[1];
+    private String[] comment = new String[1];
     private int position = 0;
 
     public Item(String name, String description, long create) {
@@ -57,7 +57,7 @@ public class Item {
         this.comment[this.position++] = comment;
         return comment;
     }
-
+    
     public String[] getAllComment() {
         String[] result = new String[this.position];
         System.arraycopy(this.comment, 0, result, 0, this.position);
