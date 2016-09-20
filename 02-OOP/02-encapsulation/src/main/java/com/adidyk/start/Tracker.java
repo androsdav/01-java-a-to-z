@@ -10,12 +10,8 @@ public class Tracker {
 	private Item[] itemSearch;
 	private Item itemComm;
     
-    public static void main(String[] arg) {
-        System.out.println("Hello world");
-    }
-
-	// addItem - add new Item
-    public Item addItem(Item item) {
+    // addItem - add new Item
+    protected Item addItem(Item item) {
         if (this.position == this.item.length)
         {
             Item[] itemTemp = new Item[2 * this.item.length];
@@ -28,7 +24,7 @@ public class Tracker {
     }
 
     // getAllItem - return all Item
-    public Item[] getAllItem() {
+    protected Item[] getAllItem() {
         Item[] result = new Item[this.position];
         System.arraycopy(this.item, 0, result, 0, this.position);
         return result;
@@ -66,7 +62,7 @@ public class Tracker {
 		return result;
 	}
 
-    // searchItemByDescription - search Item by description
+    // searchItemByDescription - search all Item by description
     protected Item[] searchItemByDescription(String description) {
 		int length = 0;
 		for (Item item : this.item) {
@@ -111,14 +107,14 @@ public class Tracker {
     	}
     }
 
-	// renameItemByName - rename all Item by name
+	// renameItemByName - rename all Item by name by this.itemSearch
 	protected void renameItemByName(String name) {
 		for (Item item : this.itemSearch) {
 			item.setName(name);
 		}
 	}
 
-	// renameItemByDescription - rename all Item by description
+	// renameItemByDescription - rename all Item by description by this.itemSearch
 	protected void renameItemByDescription(String description) {
 		for (Item item : this.itemSearch) {
 			item.setDescription(description);
@@ -129,7 +125,6 @@ public class Tracker {
 	protected void addCommentById(String comment) {
 		this.itemComm.addComment(comment);
 	}
-
 
 	// generateId - gererate id
     String generateId() {
