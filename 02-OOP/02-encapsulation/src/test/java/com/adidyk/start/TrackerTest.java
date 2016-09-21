@@ -7,12 +7,12 @@ import static org.junit.Assert.assertThat;
 
 public class TrackerTest {
 
-    @Test
-    public void addItemTest() {
-        Item item = new Item("task", "description", 1);
-        Tracker track = new Tracker();
-        assertThat(track.addItem(item), is(item));
-    }
+	@Test
+	public void addItemTest() {
+		Item item = new Item("task", "description", 1);
+		Tracker track = new Tracker();
+		assertThat(track.addItem(item), is(item));
+	}
 
 	@Test
 	public void getAllItemTest() {
