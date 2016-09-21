@@ -121,7 +121,12 @@ public class Tracker {
 		}
 	}
 
-    //protected
+	// upadteItemById - update name, description, create by find id
+	protected void updateItemById(Item item) {
+		this.itemComm = item;
+	}
+
+    // addCommentById - add comment by id
 	protected void addCommentById(String comment) {
 		this.itemComm.addComment(comment);
 	}
