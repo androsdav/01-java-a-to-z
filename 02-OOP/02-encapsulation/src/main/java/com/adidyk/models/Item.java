@@ -6,7 +6,7 @@ public class Item {
     private String description;
     private long create;
     private String id;
-    private String[] comment = new String[1];
+    private String[] comment = new String[10];
     private int position = 0;
 
     public Item(String name, String description, long create) {
