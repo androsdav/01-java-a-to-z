@@ -7,10 +7,8 @@ public class Tracker {
 	private Item[] item = new Item[10];
 	private int position = 0;
 	private static final Random RN = new Random();
-	//private Item[] itemSearch;
-	//private Item itemComm;
 
-	// addItem - add new Item
+	// addItem - add new item in []item
 	protected Item addItem(Item item) {
 		if (this.position == this.item.length) 	{
 			Item[] itemTemp = new Item[2 * this.item.length];
@@ -22,14 +20,14 @@ public class Tracker {
 		return item;
 	}
 
-	// getAllItem - return all Item
+	// getAllItem - return all []item
 	protected Item[] getAllItem() {
 		Item[] result = new Item[this.position];
 		System.arraycopy(this.item, 0, result, 0, this.position);
 		return result;
 	}
 
-	// searchItemById - search Item by id
+	// searchItemById - search item by id in []item
 	protected Item searchItemById(String id) {
 		Item result = null;
 		for (Item item : this.item) {
@@ -38,11 +36,10 @@ public class Tracker {
 				break;
 			}
 		}
-		//this.itemComm = result;
 		return result;
 	}
 
-	// searchItemByName - search Item by name
+	// searchItemByName - search all item by name in []item
 	protected Item[] searchItemByName(String name) {
 		int length = 0;
 		for (Item item : this.item) {
@@ -57,11 +54,10 @@ public class Tracker {
 			result[index++] = item;
 			}
 		}
-		//this.itemSearch = result;
 		return result;
 	}
 
-	// searchItemByDescription - search all Item by description
+	// searchItemByDescription - search all item by description in []item
 	protected Item[] searchItemByDescription(String description) {
 		int length = 0;
 		for (Item item : this.item) {
@@ -76,11 +72,10 @@ public class Tracker {
 				result[index++] = item;
 			}
 		}
-		//this.itemSearch = result;
 		return result;
 	}
 
-	// searchItemByCreate - search Item by create
+	// searchItemByCreate - search item by create in []item
 	protected Item searchItemByCreate(long create) {
 		Item result = null;
 		for (Item item : this.item) {
@@ -92,7 +87,7 @@ public class Tracker {
 		return result;
 	}
 
-	// deleteItem - delete Item by id
+	// deleteItem - delete item by id in []item
 	protected void deleteItemById(String id) {
 		for (int i = 0; i < this.position; i++) {
 			if (this.item[i].getId().equals(id)) {
@@ -106,20 +101,6 @@ public class Tracker {
 		}
 	}
 
-	/*// renameItemByName - rename all Item by name by this.itemSearch
-	protected void renameItemByName(String name) {
-		for (Item item : this.itemSearch) {
-			item.setName(name);
-		}
-	}
-
-	// renameItemByDescription - rename all Item by description by this.itemSearch
-	protected void renameItemByDescription(String description) {
-		for (Item item : this.itemSearch) {
-			item.setDescription(description);
-		}
-	}*/
-
 	// updateItemById - update name, description, create in item by id
 	protected void updateItemById(Item item) {
 		for (int i = 0; i < this.position; i++) {
@@ -130,7 +111,7 @@ public class Tracker {
 		}
 	}
 
-	// addCommentById - add comment by id
+	// addCommentById - add comment in item by id
 	protected void addCommentById(String id, String comment) {
 		for (int i = 0; i < this.position; i++) {
 			if (this.item[i].getId().equals(id)) {
@@ -139,7 +120,7 @@ public class Tracker {
 		}
 	}
 
-	// generateId - gererate id
+	// generateId - gererate id for item
 	String generateId() {
 		return String.valueOf(System.currentTimeMillis() + this.RN.nextInt());
 	}
