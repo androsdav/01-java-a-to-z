@@ -4,11 +4,11 @@ import java.util.*;
 
 public class Tracker {
 
-	private Item[] item = new Item[1];
+	private Item[] item = new Item[10];
 	private int position = 0;
 	private static final Random RN = new Random();
-	private Item[] itemSearch;
-	private Item itemComm;
+	//private Item[] itemSearch;
+	//private Item itemComm;
 
 	// addItem - add new Item
 	protected Item addItem(Item item) {
@@ -38,7 +38,7 @@ public class Tracker {
 				break;
 			}
 		}
-		this.itemComm = result;
+		//this.itemComm = result;
 		return result;
 	}
 
@@ -57,7 +57,7 @@ public class Tracker {
 			result[index++] = item;
 			}
 		}
-		this.itemSearch = result;
+		//this.itemSearch = result;
 		return result;
 	}
 
@@ -76,7 +76,7 @@ public class Tracker {
 				result[index++] = item;
 			}
 		}
-		this.itemSearch = result;
+		//this.itemSearch = result;
 		return result;
 	}
 
@@ -106,7 +106,7 @@ public class Tracker {
 		}
 	}
 
-	// renameItemByName - rename all Item by name by this.itemSearch
+	/*// renameItemByName - rename all Item by name by this.itemSearch
 	protected void renameItemByName(String name) {
 		for (Item item : this.itemSearch) {
 			item.setName(name);
@@ -118,16 +118,25 @@ public class Tracker {
 		for (Item item : this.itemSearch) {
 			item.setDescription(description);
 		}
-	}
+	}*/
 
 	// updateItemById - update name, description, create in item by id
 	protected void updateItemById(Item item) {
-		this.itemComm = item;
+		for (int i = 0; i < this.position; i++) {
+			if (this.item[i].getId().equals(item.getId())) {
+				this.item[i] = item;
+				break;
+			}
+		}
 	}
 
 	// addCommentById - add comment by id
-	protected void addCommentById(String comment) {
-		this.itemComm.addComment(comment);
+	protected void addCommentById(String id, String comment) {
+		for (int i = 0; i < this.position; i++) {
+			if (this.item[i].getId().equals(id)) {
+				this.item[i].addComment(comment);
+			}
+		}
 	}
 
 	// generateId - gererate id
