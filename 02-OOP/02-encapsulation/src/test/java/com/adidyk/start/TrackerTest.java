@@ -105,7 +105,7 @@ public class TrackerTest {
 		track.addItem(item2);
 		track.addItem(item3);
 		track.addItem(item4);
-		track.deleteItemById(item3.getId());
+		track.removeItemById(item3.getId());
 		Item[] result = track.getAllItem();
 		assertThat(result, is(items));
 	}
