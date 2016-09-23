@@ -146,7 +146,7 @@ public class StartUi {
         Item[] items = this.track.getAllItem();
         String id1 = items[1].getId();
         String id2 = items[4].getId();
-        System.out.println(" -> Update by [id]: " +id1 +" and " +" [id]: " +id2);
+        System.out.println(" -> Add comments by [id]: " +id1 +" and " +" [id]: " +id2);
         track.addCommentById(id1, "comment1");
         track.addCommentById(id1, "comment2");
         track.addCommentById(id1, "comment3");
