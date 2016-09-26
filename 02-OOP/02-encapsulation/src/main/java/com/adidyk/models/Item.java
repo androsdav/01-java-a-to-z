@@ -7,7 +7,6 @@ public class Item {
     private long create;
     private String id;
     private Comment[] comment = new Comment[10];
-    private int position = 0;
 
     public Item(String name, String description, long create) {
         this.name = name;
@@ -48,7 +47,7 @@ public class Item {
     }
 
     public Comment addComment(Comment comment) {
-        for (int index = 0; index == this.comment.length; index++) {
+        for (int index = 0; index < this.comment.length; index++) {
             if (this.comment[index] == null) {
                 this.comment[index] = comment;
                 break;
