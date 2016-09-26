@@ -6,7 +6,7 @@ public class Item {
     private String description;
     private long create;
     private String id;
-    private String[] comment = new String[10];
+    private Comment[] comment = new Comment[10];
     private int position = 0;
 
     public Item(String name, String description, long create) {
@@ -47,20 +47,18 @@ public class Item {
         return this.name;
     }
 
-    public String addComment(String comment) {
-        if (this.position == this.comment.length) {
-            String[] commentTemp = new String[2 * this.comment.length];
-            System.arraycopy(this.comment, 0, commentTemp, 0, this.comment.length);
-            this.comment = commentTemp;
+    public Comment addComment(Comment comment) {
+        for (int index = 0; index == this.comment.length; index++) {
+            if (this.comment[index] == null) {
+                this.comment[index] = comment;
+                break;
+            }
         }
-        this.comment[this.position++] = comment;
         return comment;
     }
 
-    public String[] getAllComment() {
-        String[] result = new String[this.position];
-        System.arraycopy(this.comment, 0, result, 0, this.position);
-        return result;
+    public Comment[] getAllComment() {
+        return this.comment;
     }
 
 }
