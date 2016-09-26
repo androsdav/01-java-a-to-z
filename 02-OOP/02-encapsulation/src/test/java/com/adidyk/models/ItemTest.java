@@ -56,23 +56,30 @@ public class ItemTest {
 
     @Test
     public void addCommentTest() {
-        String result = this.item.addComment("comment");
-        assertThat(result, is("comment"));
-    }
-
-    @Test
-    public void getAllCommentTest() {
-        String comment1 = "comment1";
-        String comment2 = "comment2";
-        String comment3 = "comment3";
-        String comment4 = "comment4";
+        Item item = new Item("name1", "description1", 100);
+        Comment comment1 = new Comment("comment1");
+        Comment comment2 = new Comment("comment2");
+        Comment comment3 = new Comment("comment3");
+        Comment comment4 = new Comment("comment4");
         item.addComment(comment1);
         item.addComment(comment2);
         item.addComment(comment3);
         item.addComment(comment4);
-        String[] comments = {comment1, comment2, comment3, comment4};
-        String[] result = item.getAllComment();
+        Comment[] comments = {comment1, comment2, comment3, comment4};
+        Comment[] comment = item.getAllComment();
+        int length = 0;
+        for (Comment comm : comment) {
+                if (comm != null) {
+                    length++;
+                }
+            }
+        Comment[] result = new Comment[length];
+        int index = 0;
+        for (Comment comm : comment){
+            if (comm != null) {
+                result[index++] = comm;
+            }
+        }
         assertThat(result, is(comments));
     }
-    
 }
