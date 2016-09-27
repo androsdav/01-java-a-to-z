@@ -11,40 +11,37 @@ public class StartUi {
     // Main
     public static void main(String[] arg) {
         System.out.println();
-        System.out.println(" ------------------------ Show all methods of class Tracker ------------------------");
+        System.out.println(" -------------------- Show all methods of class Tracker --------------------");
         StartUi start = new StartUi();
         start.addItemTest();
-        start.searchItemByIdTest();
-        // start.searchItemByNameTest();
-        // start.searchItemByDescriptionTest();
-        // start.searchItemByCreateTest();
-        start.removeItemByIdTest();
-        start.updateItemByIdTest();
-        //start.addCommentByIdTest();
-        System.out.println(" -----------------------------------------------------------------------------------");
+      // start.searchItemByIdTest();
+      // start.removeItemByIdTest();
+      // start.updateItemByIdTest();
+        System.out.println(" ---------------------------------------------------------------------------");
     }
 
     // Testing method addItem
     private void addItemTest() {
         System.out.println();
         System.out.println(" 1) Testing method addItem:");
-        System.out.println(" -----------------------------------------------------------------------------------");
-        this.track.addItem(new Item("task1", "description1", this.date.getTime()));
-        this.track.addItem(new Item("task2", "description1", this.date.getTime()));
-        this.track.addItem(new Item("task3", "description3", this.date.getTime()));
-        this.track.addItem(new Item("task1", "description1", this.date.getTime()));
-        this.track.addItem(new Item("task4", "description4", this.date.getTime()));
-        this.track.addItem(new Item("task2", "description1", this.date.getTime()));
-        this.track.addItem(new Item("task2", "description5", this.date.getTime()));
+        System.out.println(" ---------------------------------------------------------------------------");
+        this.track.addItem(new Item("task1", "desc1", this.date.getTime()));
+        this.track.addItem(new Item("task2", "desc2", this.date.getTime()));
+        this.track.addItem(new Item("task4", "desc3", this.date.getTime()));
+        this.track.addItem(new Item("task5", "desc4", this.date.getTime()));
+        this.track.addItem(new Item("task6", "desc5", this.date.getTime()));
+        this.track.addItem(new Item("task7", "desc6", this.date.getTime()));
         Item[] result = this.track.getAllItem();
         for (Item item : result) {
-            System.out.println(" - [name]: " +item.getName() +" [desc]:  " + item.getDescription() +" [create]: " +item.getCreate() +" [id]: " +item.getId());
+            if (item != null) {
+                System.out.println(item.toString(item));
+            }
         }
-        System.out.println(" -----------------------------------------------------------------------------------");
+        System.out.println(" ---------------------------------------------------------------------------");
     }
 
     // Testing method searchItemById
-    private void searchItemByIdTest() {
+  /*  private void searchItemByIdTest() {
         System.out.println();
         System.out.println(" 2) Testing method searchItemById:");
         System.out.println(" -----------------------------------------------------------------------------------");
@@ -57,55 +54,8 @@ public class StartUi {
         System.out.println(" -----------------------------------------------------------------------------------");
     }
 
-    // Testing method searchItemByName
-    /*private void searchItemByNameTest() {
-        System.out.println();
-        System.out.println(" 3) Testing method searchItemByName:");
-        System.out.println(" -----------------------------------------------------------------------------------");
-        Item[] items = this.track.getAllItem();
-        String name = items[1].getName();
-        System.out.println(" -> Search by [name]: " +name);
-        //System.out.println();
-        Item[] result = track.searchItemByName(name);
-        for (Item item : result) {
-            System.out.println(" - [name]: " +item.getName() +" [desc]:  " + item.getDescription() +" [create]: " +item.getCreate() +" [id]: " +item.getId());
-        }
-        System.out.println(" -----------------------------------------------------------------------------------");
-
-    }*/
-
-    //Testing method searchItemByDescription
-   /* private void searchItemByDescriptionTest() {
-        System.out.println();
-        System.out.println(" 4) Testing method searchItemByDescription:");
-        System.out.println(" -----------------------------------------------------------------------------------");
-        Item[] items = this.track.getAllItem();
-        String description = items[0].getDescription();
-        System.out.println( "-> Search by [desc]: " +description);
-        //System.out.println();
-        Item[] result = track.searchItemByDescription(description);
-        for (Item item : result) {
-            System.out.println(" - [name]: " +item.getName() +" [desc]:  " + item.getDescription() +" [create]: " +item.getCreate() +" [id]: " +item.getId());
-        }
-        System.out.println(" -----------------------------------------------------------------------------------");
-    }*/
-
-    // Testing method searchItemByDescription
-    /*private void searchItemByCreateTest() {
-        System.out.println();
-        System.out.println(" 5) Testing method searchItemByCreate:");
-        System.out.println(" -----------------------------------------------------------------------------------");
-        Item[] items = this.track.getAllItem();
-        long create = items[0].getCreate();
-        System.out.println(" -> Search by [create]: " +create);
-        //System.out.println();
-        Item result = track.searchItemByCreate(create);
-        System.out.println(" - [name]: " +result.getName() +" [desc]:  " + result.getDescription() +" [create]: " +result.getCreate() +" [id]: " +result.getId());
-        System.out.println(" -----------------------------------------------------------------------------------");
-    }*/
-
     // Testing method removeItemById
-    private void removeItemByIdTest() {
+  /*  private void removeItemByIdTest() {
         System.out.println();
         System.out.println(" 6) Testing method removeItemById:");
         System.out.println(" -----------------------------------------------------------------------------------");
@@ -122,7 +72,7 @@ public class StartUi {
     }
 
     // Testing method updateItemById
-    private void updateItemByIdTest() {
+  /*  private void updateItemByIdTest() {
         System.out.println();
         System.out.println(" 7) Testing method updateItemById:");
         System.out.println(" -----------------------------------------------------------------------------------");

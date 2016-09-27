@@ -1,11 +1,11 @@
 package com.adidyk.start;
-import com.adidyk.models.Comment;
-import com.adidyk.models.Item;
+
+import com.adidyk.models.*;
 import java.util.*;
 
 public class Tracker {
 
-	private Item[] item = new Item[10];
+	private Item[] item = new Item[1];
 	private static final Random RN = new Random();
 
 	// addItem - add new item in []item
@@ -16,7 +16,17 @@ public class Tracker {
 				this.item[index] = item;
 				break;
 			}
-
+		}
+		int length = 0;
+		for	(int index = 0; index < this.item.length; index++) {
+			if(this.item[index] != null) {
+				length++;
+			}
+		}
+		if (length == this.item.length) {
+			Item[] itemTemp = new Item[2 * this.item.length];
+			System.arraycopy(this.item, 0, itemTemp, 0, this.item.length);
+			this.item = itemTemp;
 		}
 		return item;
 	}
