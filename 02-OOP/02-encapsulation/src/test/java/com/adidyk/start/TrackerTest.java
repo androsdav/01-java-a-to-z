@@ -21,7 +21,7 @@ public class TrackerTest {
 		Item item2 = new Item("task2", "description2", 2);
 		Item item3 = new Item("task3", "description3", 3);
 		Item item4 = new Item("task4", "description4", 4);
-		Item[] items = {item1, item2, item3, item4};
+		Item[] items = {item1, item2, item3, item4, null, null, null, null, null, null};
 		Tracker track = new Tracker();
 		track.addItem(item1);
 		track.addItem(item2);
@@ -45,61 +45,14 @@ public class TrackerTest {
 		Item result = track.searchItemById(item3.getId());
 		assertThat(result, is(item3));
 	}
-    
-	/*@Test
-	public void searchItemByNameTest() {
-		Item item1 = new Item("task", "description1", 1);
-		Item item2 = new Item("task2", "description2", 2);
-		Item item3 = new Item("task3", "description3", 3);
-		Item item4 = new Item("task", "description4", 4);
-		Item[] items = {item1, item4};
-		Tracker track = new Tracker();
-		track.addItem(item1);
-		track.addItem(item2);
-		track.addItem(item3);
-		track.addItem(item4);
-		Item[] result = track.searchItemByName(item1.getName());
-		assertThat(result, is(items));
-	}*/
-    
-	/*@Test
-	public void searchItemByDescriptionTest() {
-		Item item1 = new Item("task1", "description", 1);
-		Item item2 = new Item("task2", "description1", 2);
-		Item item3 = new Item("task3", "description", 3);
-		Item item4 = new Item("task4", "description", 4);
-		Tracker track = new Tracker();
-		Item[] items = {item1, item3, item4};
-		track.addItem(item1);
-		track.addItem(item2);
-		track.addItem(item3);
-		track.addItem(item4);
-		Item[] result = track.searchItemByDescription(item4.getDescription());
-		assertThat(result, is(items));
-	}*/
-     
-	/*@Test
-	public void searchItemByCreateTest() {
-		Item item1 = new Item("task1", "description1", 1);
-		Item item2 = new Item("task2", "description2", 2);
-		Item item3 = new Item("task3", "description3", 3);
-		Item item4 = new Item("task4", "description4", 4);
-		Tracker track = new Tracker();
-		track.addItem(item1);
-		track.addItem(item2);
-		track.addItem(item3);
-		track.addItem(item4);
-		Item result = track.searchItemByCreate(item3.getCreate());
-		assertThat(result, is(item3));
-	}*/
-           
+
 	@Test
 	public void deleteItemByIdTest() {
 		Item item1 = new Item("task1", "description1", 1);
 		Item item2 = new Item("task2", "description2", 2);
 		Item item3 = new Item("task3", "description3", 3);
 		Item item4 = new Item("task4", "description4", 4);
-		Item[] items = {item1, item2, item4};
+		Item[] items = {item1, item2, null, item4, null, null, null, null, null, null};
 		Tracker track = new Tracker();
 		track.addItem(item1);
 		track.addItem(item2);
@@ -122,7 +75,7 @@ public class TrackerTest {
 		item3.setName("task1");
 		item3.setDescription("description1");
 		item3.setCreate(2);
-		Item[] items = {item1, item2, item3};
+		Item[] items = {item1, item2, item3, null, null, null, null, null, null, null,};
 		track.updateItemById(item3);
 		Item[] result = track.getAllItem();
 		assertThat(result, is(items));
@@ -140,6 +93,7 @@ public class TrackerTest {
 		track.addItem(item2);
 		track.addItem(item3);
 		track.addItem(item4);
+
 		track.addCommentById(item3.getId(), "comment1");
 		track.addCommentById(item3.getId(), "comment2");
 		track.addCommentById(item3.getId(), "comment3");
