@@ -15,12 +15,12 @@ public class StartUi {
         StartUi start = new StartUi();
         start.addItemTest();
         start.searchItemByIdTest();
-        //start.searchItemByNameTest();
-        //start.searchItemByDescriptionTest();
-        //start.searchItemByCreateTest();
+        // start.searchItemByNameTest();
+        // start.searchItemByDescriptionTest();
+        // start.searchItemByCreateTest();
         start.removeItemByIdTest();
         start.updateItemByIdTest();
-        start.addCommentByIdTest();
+        //start.addCommentByIdTest();
         System.out.println(" -----------------------------------------------------------------------------------");
     }
 
@@ -75,7 +75,7 @@ public class StartUi {
     }*/
 
     //Testing method searchItemByDescription
-    /*private void searchItemByDescriptionTest() {
+   /* private void searchItemByDescriptionTest() {
         System.out.println();
         System.out.println(" 4) Testing method searchItemByDescription:");
         System.out.println(" -----------------------------------------------------------------------------------");
@@ -139,7 +139,7 @@ public class StartUi {
     }
 
     // Testing method addCommentById
-    private void addCommentByIdTest() {
+   /* private void addCommentByIdTest() {
         System.out.println();
         System.out.println(" 8) Testing method addCommentById:");
         System.out.println("-----------------------------------------------------------------------------------");
@@ -164,6 +164,6 @@ public class StartUi {
                 }
             }
         }
-    }
+    }*/
 
 }
