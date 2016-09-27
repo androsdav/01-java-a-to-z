@@ -6,7 +6,7 @@ public class Item {
     private String description;
     private long create;
     private String id;
-    private Comment[] comment = new Comment[10];
+    private Comment[] comment = new Comment[1];
 
     public Item(String name, String description, long create) {
         this.name = name;
@@ -53,6 +53,17 @@ public class Item {
                 break;
             }
         }
+        int length = 0;
+        for (int index = 0; index < this.comment.length; index++) {
+            if(this.comment[index] != null) {
+                length++;
+            }
+        }
+        if (length == this.comment.length) {
+            Comment[] commentTemp = new Comment[2 * this.comment.length];
+            System.arraycopy(this.comment, 0, commentTemp, 0, this.comment.length);
+            this.comment = commentTemp;
+        }
         return comment;
     }
 
@@ -60,4 +71,13 @@ public class Item {
         return this.comment;
     }
 
+    public String toString(Item item) {
+
+       // LocalDateTime date = new ofEpochSecond();
+        //LocalDateTime dateFromBase = LocalDateTime.ofEpochSecond(2000, 0, ZoneOffset.UTC);
+//        LocalDateTime date = LocaleData
+     //   long create = item.getCreate();
+      //  Date date = new Date();
+        return (" - [name]: " + item.getName() + " [desc]:  " + item.getDescription() + " [create]: " + item.getCreate() + " [id]: " + item.getId());
+    }
 }
