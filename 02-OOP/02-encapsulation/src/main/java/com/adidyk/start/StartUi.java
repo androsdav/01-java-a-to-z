@@ -15,9 +15,9 @@ public class StartUi {
         StartUi start = new StartUi();
         start.addItemTest();
         start.searchItemByIdTest();
-        start.searchItemByNameTest();
-        start.searchItemByDescriptionTest();
-        start.searchItemByCreateTest();
+        //start.searchItemByNameTest();
+        //start.searchItemByDescriptionTest();
+        //start.searchItemByCreateTest();
         start.removeItemByIdTest();
         start.updateItemByIdTest();
         start.addCommentByIdTest();
@@ -58,7 +58,7 @@ public class StartUi {
     }
 
     // Testing method searchItemByName
-    private void searchItemByNameTest() {
+    /*private void searchItemByNameTest() {
         System.out.println();
         System.out.println(" 3) Testing method searchItemByName:");
         System.out.println(" -----------------------------------------------------------------------------------");
@@ -72,10 +72,10 @@ public class StartUi {
         }
         System.out.println(" -----------------------------------------------------------------------------------");
 
-    }
+    }*/
 
     //Testing method searchItemByDescription
-    private void searchItemByDescriptionTest() {
+    /*private void searchItemByDescriptionTest() {
         System.out.println();
         System.out.println(" 4) Testing method searchItemByDescription:");
         System.out.println(" -----------------------------------------------------------------------------------");
@@ -88,10 +88,10 @@ public class StartUi {
             System.out.println(" - [name]: " +item.getName() +" [desc]:  " + item.getDescription() +" [create]: " +item.getCreate() +" [id]: " +item.getId());
         }
         System.out.println(" -----------------------------------------------------------------------------------");
-    }
+    }*/
 
     // Testing method searchItemByDescription
-    private void searchItemByCreateTest() {
+    /*private void searchItemByCreateTest() {
         System.out.println();
         System.out.println(" 5) Testing method searchItemByCreate:");
         System.out.println(" -----------------------------------------------------------------------------------");
@@ -102,7 +102,7 @@ public class StartUi {
         Item result = track.searchItemByCreate(create);
         System.out.println(" - [name]: " +result.getName() +" [desc]:  " + result.getDescription() +" [create]: " +result.getCreate() +" [id]: " +result.getId());
         System.out.println(" -----------------------------------------------------------------------------------");
-    }
+    }*/
 
     // Testing method removeItemById
     private void removeItemByIdTest() {

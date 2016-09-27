@@ -40,7 +40,7 @@ public class Tracker {
 	}
 
 	// searchItemByName - search all item by name in []item
-	protected Item[] searchItemByName(String name) {
+	/*protected Item[] searchItemByName(String name) {
 		int length = 0;
 		for (Item item : this.item) {
 			if (item != null && item.getName().equals(name)) {
@@ -55,10 +55,10 @@ public class Tracker {
 			}
 		}
 		return result;
-	}
+	}*/
 
 	// searchItemByDescription - search all item by description in []item
-	protected Item[] searchItemByDescription(String description) {
+	/*protected Item[] searchItemByDescription(String description) {
 		int length = 0;
 		for (Item item : this.item) {
 			if (item != null && item.getDescription().equals(description)) {
@@ -73,10 +73,10 @@ public class Tracker {
 			}
 		}
 		return result;
-	}
+	}*/
 
 	// searchItemByCreate - search item by create in []item
-	protected Item searchItemByCreate(long create) {
+	/*protected Item searchItemByCreate(long create) {
 		Item result = null;
 		for (Item item : this.item) {
 			if (item != null && item.getCreate() == create) {
@@ -85,7 +85,7 @@ public class Tracker {
 			}
 		}
 		return result;
-	}
+	}*/
 
 	// deleteItem - delete item by id in []item
 	protected void removeItemById(String id) {
