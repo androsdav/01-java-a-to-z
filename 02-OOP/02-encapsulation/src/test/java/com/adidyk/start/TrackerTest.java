@@ -1,7 +1,7 @@
 package com.adidyk.start;
-import com.adidyk.models.Item;
-import org.junit.Test;
 
+import com.adidyk.models.*;
+import org.junit.Test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -21,13 +21,13 @@ public class TrackerTest {
 		Item item2 = new Item("task2", "description2", 2);
 		Item item3 = new Item("task3", "description3", 3);
 		Item item4 = new Item("task4", "description4", 4);
-		Item[] items = {item1, item2, item3, item4, null, null, null, null, null, null};
+		Item[] items = {item1, item2, item3, item4};
 		Tracker track = new Tracker();
 		track.addItem(item1);
 		track.addItem(item2);
 		track.addItem(item3);
 		track.addItem(item4);
-		Item[] result = track.getAllItem();
+		Item[] result = this.getAllItemWithoutNull(track.getAllItem());
 		assertThat(result, is(items));
 	}
     
@@ -52,14 +52,14 @@ public class TrackerTest {
 		Item item2 = new Item("task2", "description2", 2);
 		Item item3 = new Item("task3", "description3", 3);
 		Item item4 = new Item("task4", "description4", 4);
-		Item[] items = {item1, item2, null, item4, null, null, null, null, null, null};
+		Item[] items = {item1, item2, item4};
 		Tracker track = new Tracker();
 		track.addItem(item1);
 		track.addItem(item2);
 		track.addItem(item3);
 		track.addItem(item4);
 		track.removeItemById(item3.getId());
-		Item[] result = track.getAllItem();
+		Item[] result = this.getAllItemWithoutNull(track.getAllItem());
 		assertThat(result, is(items));
 	}
 
@@ -75,9 +75,9 @@ public class TrackerTest {
 		item3.setName("task1");
 		item3.setDescription("description1");
 		item3.setCreate(2);
-		Item[] items = {item1, item2, item3, null, null, null, null, null, null, null,};
+		Item[] items = {item1, item2, item3};
 		track.updateItemById(item3);
-		Item[] result = track.getAllItem();
+		Item[] result = this.getAllItemWithoutNull(track.getAllItem());
 		assertThat(result, is(items));
 	}
 
@@ -87,18 +87,40 @@ public class TrackerTest {
 		Item item2 = new Item("task", "description", 2);
 		Item item3 = new Item("task", "description", 3);
 		Item item4 = new Item("task", "description", 4);
+		Comment comment1 = new Comment("comment1");
+		Comment comment2 = new Comment("comment2");
+		Comment comment3 = new Comment("comment3");
+		Comment comment4 = new Comment("comment4");
 		Item[] items = {item1, item2, item3, item4};
 		Tracker track = new Tracker();
 		track.addItem(item1);
 		track.addItem(item2);
 		track.addItem(item3);
 		track.addItem(item4);
-
-		track.addCommentById(item3.getId(), "comment1");
-		track.addCommentById(item3.getId(), "comment2");
-		track.addCommentById(item3.getId(), "comment3");
-		Item[] result = track.getAllItem();
+		track.addCommentById(item1.getId(), comment1);
+		track.addCommentById(item1.getId(), comment2);
+		track.addCommentById(item1.getId(), comment3);
+		track.addCommentById(item4.getId(), comment4);
+		Item[] result = this.getAllItemWithoutNull(track.getAllItem());
 		assertThat(result, is(items));
+
+	}
+	// getAllItemWithoutNull - method return all []item without null
+	public Item[] getAllItemWithoutNull(Item[] resultAll) {
+		int length = 0;
+		for (Item item : resultAll) {
+			if (item != null) {
+				length++;
+			}
+		}
+		Item[] resultWithoutNull = new Item[length];
+		int index = 0;
+		for (Item item : resultAll) {
+			if (item != null) {
+				resultWithoutNull[index++] = item;
+			}
+		}
+		return resultWithoutNull;
 	}
 
 }
