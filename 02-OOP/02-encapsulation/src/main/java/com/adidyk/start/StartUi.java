@@ -49,7 +49,6 @@ public class StartUi {
         Item[] items = this.track.getAllItem();
         String id = items[1].getId();
         System.out.println(" -> Search by [id]: " +id);
-       // System.out.println();
         Item item = this.track.searchItemById(id);
         System.out.println(item.toString(item));
         System.out.println(" ---------------------------------------------------------------------------");
@@ -102,18 +101,14 @@ public class StartUi {
         Item[] items = this.track.getAllItem();
         String id1 = items[0].getId();
         String id2 = items[1].getId();
-        Comment comment1 = new Comment("comm1");
-        Comment comment2 = new Comment("comm2");
-        Comment comment3 = new Comment("comm3");
-        Comment comment4 = new Comment("comm4");
         System.out.println(" -> Add comments by [id]: " +id1 +" and " +" [id]: " +id2);
-        track.addCommentById(id1, comment1);
-        track.addCommentById(id1, comment2);
-        track.addCommentById(id1, comment3);
-        track.addCommentById(id1, comment4);
-        track.addCommentById(id2, comment3);
-        track.addCommentById(id2, comment2);
-        track.addCommentById(id2, comment4);
+        track.addCommentById(id1, new Comment("comm1"));
+        track.addCommentById(id1, new Comment("comm2"));
+        track.addCommentById(id1, new Comment("comm3"));
+        track.addCommentById(id1, new Comment("comm4"));
+        track.addCommentById(id2, new Comment("comm3"));
+        track.addCommentById(id2, new Comment("comm2"));
+        track.addCommentById(id2, new Comment("comm4"));
         for (Item item : track.getAllItem()) {
             if (item != null) {
                 System.out.println(item.toString(item));
