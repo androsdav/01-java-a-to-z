@@ -34,11 +34,6 @@ public class StartUi {
 
     }
 
-    public void proverka() {
-        ConsoleInput pov = new ConsoleInput();
-        pov.addItemDefault();
-    }
-
     // Testing method addItem
     private void addItemTest() {
         System.out.println();
@@ -141,7 +136,6 @@ public class StartUi {
     }
 
     public class ConsoleInput {
-
         private void addItemDefault() {
             track.addItem(new Item("task0", "desc0", date.getTime()));
             track.addItem(new Item("task1", "desc1", date.getTime()));
