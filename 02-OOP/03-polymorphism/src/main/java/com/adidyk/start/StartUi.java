@@ -6,19 +6,37 @@ import java.util.*;
 
 public class StartUi {
 
-    Tracker track = new Tracker();
-    Date date = new Date();
+    Tracker track;
+    Date date;
+    Scanner scanner;
+    boolean flagExit;
+    ConsoleInput input;
+
+    // Constructor
+    public StartUi() {
+        initialization();
+        this.input.addItemDefault();
+        this.input.workItem();
+    }
 
     // Main
     public static void main(String[] arg) {
-        System.out.println();
-        System.out.println(" -------------------- Show all methods of class Tracker --------------------");
         StartUi start = new StartUi();
-        start.addItemTest();
-        start.searchItemByIdTest();
-        start.removeItemByIdTest();
-        start.updateItemByIdTest();
-        start.addCommentByIdTest();
+    }
+
+    // initialization
+    public void initialization() {
+        this.track = new Tracker();
+        this.date = new Date();
+        this.scanner = new Scanner(System.in);
+        this.input = new ConsoleInput();
+        this.flagExit = true;
+
+    }
+
+    public void proverka() {
+        ConsoleInput pov = new ConsoleInput();
+        pov.addItemDefault();
     }
 
     // Testing method addItem
@@ -62,8 +80,7 @@ public class StartUi {
         Item[] items = this.track.getAllItem();
         String id = items[3].getId();
         System.out.println(" -> Remove by [id]: " +id);
-        //System.out.println();
-        track.removeItemById(id);
+        this.track.removeItemById(id);
         Item[] result = this.track.getAllItem();
         for (Item item : result) {
             if (item != null) {
@@ -83,7 +100,7 @@ public class StartUi {
         System.out.println(" -> Update by [id]: " +id);
         Item itemUpdate = new Item("task9", "desc9", this.date.getTime());
         itemUpdate.setId(id);
-        track.updateItemById(itemUpdate);
+        this.track.updateItemById(itemUpdate);
         Item[] result = track.getAllItem();
         for (Item item : result) {
             if (item != null) {
@@ -102,14 +119,15 @@ public class StartUi {
         String id1 = items[0].getId();
         String id2 = items[1].getId();
         System.out.println(" -> Add comments by [id]: " +id1 +" and " +" [id]: " +id2);
-        track.addCommentById(id1, new Comment("comm1"));
-        track.addCommentById(id1, new Comment("comm2"));
-        track.addCommentById(id1, new Comment("comm3"));
-        track.addCommentById(id1, new Comment("comm4"));
-        track.addCommentById(id2, new Comment("comm3"));
-        track.addCommentById(id2, new Comment("comm2"));
-        track.addCommentById(id2, new Comment("comm4"));
-        for (Item item : track.getAllItem()) {
+        this.track.addCommentById(id1, new Comment("comm1"));
+        this.track.addCommentById(id1, new Comment("comm2"));
+        this.track.addCommentById(id1, new Comment("comm3"));
+        this.track.addCommentById(id1, new Comment("comm4"));
+        this.track.addCommentById(id2, new Comment("comm3"));
+        this.track.addCommentById(id2, new Comment("comm2"));
+        this.track.addCommentById(id2, new Comment("comm4"));
+        Item[] result = track.getAllItem();
+        for (Item item : result) {
             if (item != null) {
                 System.out.println(item.toString(item));
                 for (Comment comm : item.getAllComment()) {
@@ -120,6 +138,77 @@ public class StartUi {
             }
         }
         System.out.println(" ---------------------------------------------------------------------------");
+    }
+
+    public class ConsoleInput {
+
+        private void addItemDefault() {
+            track.addItem(new Item("task0", "desc0", date.getTime()));
+            track.addItem(new Item("task1", "desc1", date.getTime()));
+            track.addItem(new Item("task2", "desc2", date.getTime()));
+            track.addItem(new Item("task3", "desc3", date.getTime()));
+        }
+
+        public void workItem() {
+            while (flagExit) {
+                showMenu();
+                keyMenu();
+            }
+            scanner.close();
+        }
+
+        public void showMenu() {
+            System.out.println("");
+            System.out.println("-------- Select move Clinic v 1.00  --------");
+            System.out.println("1. Show all Item.");
+            System.out.println("2. Add new Item.");
+            System.out.println("3. Search Item by id.");
+            System.out.println("4. Remove Item by id.");
+            System.out.println("5. Update Item by id.");
+            System.out.println("6. Add comment by id.");
+            System.out.println("7. Exit.");
+            System.out.println("--------------------------------------------");
+        }
+
+        // Method - keyMenu. Switch menu select move.
+        public void keyMenu() {
+            switch (scanner.nextLine()) {
+                case "1":
+                    showAllItem();
+                    break;
+               /* case "2":
+                    addNewClient();
+                    break;
+                case "3":
+                    searchClient();
+                    break;
+                case "4":
+                    renameClient();
+                    break;
+                case "5":
+                    deleteClient();
+                    break;*/
+                case "6":
+                    flagExit = false;
+                    break;
+                default:
+                    System.out.println("Error input. Repeat please.");
+                    break;
+            }
+        }
+
+        public void showAllItem() {
+            Item[] result = track.getAllItem();
+            for (Item item : result) {
+                if (item != null) {
+                    System.out.println(item.toString(item));
+                }
+
+            }
+        }
+
+
+
     }
 
 }

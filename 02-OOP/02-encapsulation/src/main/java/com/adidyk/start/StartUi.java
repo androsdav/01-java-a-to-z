@@ -62,8 +62,7 @@ public class StartUi {
         Item[] items = this.track.getAllItem();
         String id = items[3].getId();
         System.out.println(" -> Remove by [id]: " +id);
-        //System.out.println();
-        track.removeItemById(id);
+        this.track.removeItemById(id);
         Item[] result = this.track.getAllItem();
         for (Item item : result) {
             if (item != null) {
@@ -83,8 +82,8 @@ public class StartUi {
         System.out.println(" -> Update by [id]: " +id);
         Item itemUpdate = new Item("task9", "desc9", this.date.getTime());
         itemUpdate.setId(id);
-        track.updateItemById(itemUpdate);
-        Item[] result = track.getAllItem();
+        this.track.updateItemById(itemUpdate);
+        Item[] result = this.track.getAllItem();
         for (Item item : result) {
             if (item != null) {
                 System.out.println(item.toString(item));
@@ -102,14 +101,15 @@ public class StartUi {
         String id1 = items[0].getId();
         String id2 = items[1].getId();
         System.out.println(" -> Add comments by [id]: " +id1 +" and " +" [id]: " +id2);
-        track.addCommentById(id1, new Comment("comm1"));
-        track.addCommentById(id1, new Comment("comm2"));
-        track.addCommentById(id1, new Comment("comm3"));
-        track.addCommentById(id1, new Comment("comm4"));
-        track.addCommentById(id2, new Comment("comm3"));
-        track.addCommentById(id2, new Comment("comm2"));
-        track.addCommentById(id2, new Comment("comm4"));
-        for (Item item : track.getAllItem()) {
+        this.track.addCommentById(id1, new Comment("comm1"));
+        this.track.addCommentById(id1, new Comment("comm2"));
+        this.track.addCommentById(id1, new Comment("comm3"));
+        this.track.addCommentById(id1, new Comment("comm4"));
+        this.track.addCommentById(id2, new Comment("comm3"));
+        this.track.addCommentById(id2, new Comment("comm2"));
+        this.track.addCommentById(id2, new Comment("comm4"));
+        Item[] result = this.track.getAllItem();
+        for (Item item : result) {
             if (item != null) {
                 System.out.println(item.toString(item));
                 for (Comment comm : item.getAllComment()) {
