@@ -6,15 +6,14 @@ import java.util.*;
 
 public class StartUi {
 
-    Tracker track;
-    Date date;
-    Scanner scanner;
-    boolean flagExit;
-    ConsoleInput input;
+    Tracker track = new Tracker();
+    Date date = new Date();
+    Scanner scanner = new Scanner(System.in);
+    ConsoleInput input = new ConsoleInput();
 
     // Constructor
     public StartUi() {
-        initialization();
+      //  initialization();
         this.input.addItemDefault();
         this.input.workItem();
     }
@@ -25,14 +24,14 @@ public class StartUi {
     }
 
     // initialization
-    public void initialization() {
-        this.track = new Tracker();
-        this.date = new Date();
-        this.scanner = new Scanner(System.in);
-        this.input = new ConsoleInput();
-        this.flagExit = true;
+   // public void initialization() {
+//        this.track = new Tracker();
+//        this.date = new Date();
+//        this.scanner = new Scanner(System.in);
+//        this.input = new ConsoleInput();
+        //this.flagExit = true;
 
-    }
+    //}
 
     // Testing method addItem
     private void addItemTest() {
@@ -136,6 +135,10 @@ public class StartUi {
     }
 
     public class ConsoleInput {
+
+        private boolean flagExit = true;
+
+        // addItemDefault - add item default by Constructor
         private void addItemDefault() {
             track.addItem(new Item("task0", "desc0", date.getTime()));
             track.addItem(new Item("task1", "desc1", date.getTime()));
@@ -143,54 +146,47 @@ public class StartUi {
             track.addItem(new Item("task3", "desc3", date.getTime()));
         }
 
+        // workItem - work item
         public void workItem() {
-            while (flagExit) {
+            while (this.flagExit) {
                 showMenu();
                 keyMenu();
             }
             scanner.close();
         }
 
+        // showMenu - shoe manual menu
         public void showMenu() {
             System.out.println("");
             System.out.println("-------- Select move Clinic v 1.00  --------");
             System.out.println("1. Show all Item.");
             System.out.println("2. Add new Item.");
-            System.out.println("3. Search Item by id.");
-            System.out.println("4. Remove Item by id.");
-            System.out.println("5. Update Item by id.");
-            System.out.println("6. Add comment by id.");
+            //System.out.println("3. Search Item by id.");
+            //System.out.println("4. Remove Item by id.");
+            //System.out.println("5. Update Item by id.");
+            //System.out.println("6. Add comment by id.");
             System.out.println("7. Exit.");
             System.out.println("--------------------------------------------");
         }
 
-        // Method - keyMenu. Switch menu select move.
+        // keyMenu - select action manual
         public void keyMenu() {
-            switch (scanner.nextLine()) {
-                case "1":
+            if (flagExit) {
+                String scan = scanner.nextLine();
+                if (scan.equals("1")) {
                     showAllItem();
-                    break;
-               /* case "2":
-                    addNewClient();
-                    break;
-                case "3":
-                    searchClient();
-                    break;
-                case "4":
-                    renameClient();
-                    break;
-                case "5":
-                    deleteClient();
-                    break;*/
-                case "6":
+                }
+                else if (scan.equals("2")) {
+                    addNewItem();
+                }
+                else if (scan.equals("3")) {
                     flagExit = false;
-                    break;
-                default:
-                    System.out.println("Error input. Repeat please.");
-                    break;
+                }
             }
+
         }
 
+        // showAllItem - show all item
         public void showAllItem() {
             Item[] result = track.getAllItem();
             for (Item item : result) {
@@ -199,6 +195,17 @@ public class StartUi {
                 }
 
             }
+        }
+
+        // addNewItem - add new item
+        public void addNewItem() {
+            System.out.println("Input name item");
+            String name = scanner.nextLine();
+            System.out.println("Input description");
+            String description = scanner.nextLine();
+            //Date date1 = new Date();
+            long create = new Date().getTime();
+            track.addItem(new Item(name, description, create));
         }
 
 
