@@ -161,7 +161,7 @@ public class StartUi {
             System.out.println("-------- Select move Clinic v 1.00  --------");
             System.out.println("1. Show all Item.");
             System.out.println("2. Add new Item.");
-            //System.out.println("3. Search Item by id.");
+            System.out.println("3. Search Item by id.");
             //System.out.println("4. Remove Item by id.");
             //System.out.println("5. Update Item by id.");
             //System.out.println("6. Add comment by id.");
@@ -171,7 +171,7 @@ public class StartUi {
 
         // keyMenu - select action manual
         public void keyMenu() {
-            if (flagExit) {
+            if (this.flagExit) {
                 String scan = scanner.nextLine();
                 if (scan.equals("1")) {
                     showAllItem();
@@ -180,7 +180,10 @@ public class StartUi {
                     addNewItem();
                 }
                 else if (scan.equals("3")) {
-                    flagExit = false;
+                    findItemById();
+                }
+                else if (scan.equals("4")) {
+                    this.flagExit = false;
                 }
             }
 
@@ -207,6 +210,15 @@ public class StartUi {
             long create = new Date().getTime();
             track.addItem(new Item(name, description, create));
         }
+
+        public void findItemById() {
+            System.out.println("Input id");
+            String id =scanner.nextLine();
+            Item item = track.searchItemById(id);
+            System.out.println(item.toString(item));
+        }
+
+
 
 
 
