@@ -10,17 +10,70 @@ public class StartUi {
     Date date = new Date();
     Scanner scanner = new Scanner(System.in);
     ConsoleInput input = new ConsoleInput();
+    boolean flagWork = true;
+    StartUi start;
 
     // Constructor
-    public StartUi() {
-      //  initialization();
-        this.input.addItemDefault();
-        this.input.workItem();
+      public StartUi() {
+          //initialization();
+          //  this.input.addItemDefault();
+          //  this.input.workItem();
+          //  start.workMainItem();
+          //}
+          workMainItem();
+      }
+   // public void initialization() {
+    //    this.start = new StartUi();
+   // }
+
+              // Main
+    public static void main(String[] arg) {
+        StartUi start11 = new StartUi();
+        System.out.println("Hello world");
+        //workMainItem();
+        //start.workMainItem();
     }
 
-    // Main
-    public static void main(String[] arg) {
-        StartUi start = new StartUi();
+    // workItem - work item
+    public void workMainItem() {
+        while (this.flagWork) {
+            showMainMenu();
+            keyMainMenu();
+        }
+        scanner.close();
+    }
+
+    // showMenu - shoe manual menu
+    public void showMainMenu() {
+        System.out.println("");
+        System.out.println(" Tracker ver.1.0 ");
+        System.out.println(" ---------------------------------------------------------------------------");
+        System.out.println(" 1. Testing all method class Tracker.");
+        System.out.println(" 2. Manual use Tracker.");
+        System.out.println(" 3. Exit.");
+        System.out.println(" ---------------------------------------------------------------------------");
+    }
+
+    // keyMenu - select action manual
+    public void keyMainMenu() {
+        if (this.flagWork) {
+            String scan = scanner.nextLine();
+            if (scan.equals("1")) {
+                addItemTest();
+                searchItemByIdTest();
+                removeItemByIdTest();
+                updateItemByIdTest();
+                addCommentByIdTest();
+            }
+            else if (scan.equals("2")) {
+                input.addItemDefault();
+                input.workItem();
+            }
+            else if (scan.equals("3")) {
+                this.flagWork = false;
+            }
+        }
+
     }
 
     // initialization
@@ -140,10 +193,10 @@ public class StartUi {
 
         // addItemDefault - add item default by Constructor
         private void addItemDefault() {
-            track.addItem(new Item("task0", "desc0", date.getTime()));
-            track.addItem(new Item("task1", "desc1", date.getTime()));
-            track.addItem(new Item("task2", "desc2", date.getTime()));
-            track.addItem(new Item("task3", "desc3", date.getTime()));
+            track.addItem(new Item("task0", "desc0", new Date().getTime()));
+            track.addItem(new Item("task1", "desc1", new Date().getTime()));
+            track.addItem(new Item("task2", "desc2", new Date().getTime()));
+            track.addItem(new Item("task3", "desc3", new Date().getTime()));
         }
 
         // workItem - work item
@@ -158,6 +211,7 @@ public class StartUi {
         // showMenu - shoe manual menu
         public void showMenu() {
             System.out.println("");
+            System.out.println(" Tracker ver.1.0 ");
             System.out.println(" ---------------------------------------------------------------------------");
             System.out.println(" 1. Show all item.");
             System.out.println(" 2. Add new item.");
@@ -224,6 +278,7 @@ public class StartUi {
             long create = new Date().getTime();
             track.addItem(new Item(name, description, create));
         }
+
         // findItemById - find item by id, key = "3"
         public void searchItemById() {
             System.out.println("Input id");
