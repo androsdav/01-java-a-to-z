@@ -162,9 +162,9 @@ public class StartUi {
             System.out.println("1. Show all Item.");
             System.out.println("2. Add new Item.");
             System.out.println("3. Search Item by id.");
-            //System.out.println("4. Remove Item by id.");
-            //System.out.println("5. Update Item by id.");
-            //System.out.println("6. Add comment by id.");
+            System.out.println("4. Remove Item by id.");
+            System.out.println("5. Update Item by id.");
+            System.out.println("6. Add comment by id.");
             System.out.println("7. Exit.");
             System.out.println("--------------------------------------------");
         }
@@ -177,31 +177,45 @@ public class StartUi {
                     showAllItem();
                 }
                 else if (scan.equals("2")) {
-                    addNewItem();
+                    addItem();
                 }
                 else if (scan.equals("3")) {
-                    findItemById();
+                    searchItemById();
                 }
                 else if (scan.equals("4")) {
+                    removeItemById();
+                }
+                else if (scan.equals("5")) {
+                    updateItemById();
+                }
+                else if (scan.equals("6")) {
+                    addCommentById();
+                }
+                else if (scan.equals("7")) {
                     this.flagExit = false;
                 }
             }
 
         }
 
-        // showAllItem - show all item
+        // showAllItem - show all item, key = "1"
         public void showAllItem() {
             Item[] result = track.getAllItem();
             for (Item item : result) {
                 if (item != null) {
                     System.out.println(item.toString(item));
-                }
 
+                    for (Comment comm : item.getAllComment()) {
+                        if (comm != null) {
+                            System.out.println("   - [comm]: " + comm.getComment());
+                        }
+                    }
+                }
             }
         }
 
-        // addNewItem - add new item
-        public void addNewItem() {
+        // addNewItem - add new item, key = "2"
+        public void addItem() {
             System.out.println("Input name item");
             String name = scanner.nextLine();
             System.out.println("Input description");
@@ -210,13 +224,46 @@ public class StartUi {
             long create = new Date().getTime();
             track.addItem(new Item(name, description, create));
         }
-
-        public void findItemById() {
+        // findItemById - find item by id, key = "3"
+        public void searchItemById() {
             System.out.println("Input id");
-            String id =scanner.nextLine();
+            String id = scanner.nextLine();
             Item item = track.searchItemById(id);
             System.out.println(item.toString(item));
         }
+
+        // deleteItemById - delete item by id, key = "4"
+        public void removeItemById() {
+            System.out.println("Input id");
+            String id = scanner.nextLine();
+            track.removeItemById(id);
+        }
+
+        // updateItemById - update item by id, key = "5"
+        public void updateItemById() {
+            System.out.println("Input id");
+            String id = scanner.nextLine();
+
+            System.out.println("Input name item");
+            String name = scanner.nextLine();
+            System.out.println("Input description");
+            String description = scanner.nextLine();
+            long create = new Date().getTime();
+            Item item = new Item(name, description, create);
+            item.setId(id);
+            track.addItem(item);
+        }
+
+        // addCommentById - add comment by id, key = "6"
+        public void addCommentById() {
+            System.out.println("Input id");
+            String id = scanner.nextLine();
+            System.out.println("Input comment");
+            //String comment = scanner.nextLine();
+            Comment comment = new Comment(scanner.nextLine());
+            track.addCommentById(id, comment);
+        }
+
 
 
 

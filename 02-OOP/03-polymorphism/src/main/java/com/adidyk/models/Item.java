@@ -2,7 +2,6 @@ package com.adidyk.models;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class Item {
 
@@ -77,6 +76,6 @@ public class Item {
 
     public String toString(Item item) {
         DateFormat dateFormat1 = new SimpleDateFormat("dd.MM.yy HH:mm");
-        return (" - [name]: " + item.getName() + " [desc]:  " + item.getDescription() + " [create]: " + dateFormat1.format(new Date(item.getCreate())) + " [id]: " + item.getId());
+        return (" - [name]: " + item.getName() + " [desc]:  " + item.getDescription() + " [create]: " + dateFormat1.format(item.getCreate()) + " [id]: " + item.getId());
     }
 }
