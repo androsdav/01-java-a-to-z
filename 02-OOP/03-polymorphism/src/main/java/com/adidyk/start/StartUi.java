@@ -158,15 +158,15 @@ public class StartUi {
         // showMenu - shoe manual menu
         public void showMenu() {
             System.out.println("");
-            System.out.println("-------- Select move Clinic v 1.00  --------");
-            System.out.println("1. Show all Item.");
-            System.out.println("2. Add new Item.");
-            System.out.println("3. Search Item by id.");
-            System.out.println("4. Remove Item by id.");
-            System.out.println("5. Update Item by id.");
-            System.out.println("6. Add comment by id.");
-            System.out.println("7. Exit.");
-            System.out.println("--------------------------------------------");
+            System.out.println(" ---------------------------------------------------------------------------");
+            System.out.println(" 1. Show all item.");
+            System.out.println(" 2. Add new item.");
+            System.out.println(" 3. Search item by id.");
+            System.out.println(" 4. Remove item by id.");
+            System.out.println(" 5. Update item by id.");
+            System.out.println(" 6. Add comment by id.");
+            System.out.println(" 7. Exit.");
+            System.out.println(" ---------------------------------------------------------------------------");
         }
 
         // keyMenu - select action manual
@@ -251,7 +251,7 @@ public class StartUi {
             long create = new Date().getTime();
             Item item = new Item(name, description, create);
             item.setId(id);
-            track.addItem(item);
+            track.updateItemById(item);
         }
 
         // addCommentById - add comment by id, key = "6"
