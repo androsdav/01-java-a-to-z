@@ -6,213 +6,47 @@ import java.util.*;
 
 public class StartUi {
 
-    Tracker track = new Tracker();
-    Date date = new Date();
-    Scanner scanner = new Scanner(System.in);
-    ConsoleInput input = new ConsoleInput();
-    boolean flagWork = true;
-    StartUi start;
+    private Tracker track = new Tracker();
+    private Scanner scanner = new Scanner(System.in);
+    private ConsoleInput input = new ConsoleInput();
+    private boolean flagExit = true;
 
-    // Constructor
-      public StartUi() {
-          //initialization();
-          //  this.input.addItemDefault();
-          //  this.input.workItem();
-          //  start.workMainItem();
-          //}
-          workMainItem();
-      }
-   // public void initialization() {
-    //    this.start = new StartUi();
-   // }
-
-              // Main
+    // Main
     public static void main(String[] arg) {
-        StartUi start11 = new StartUi();
-        System.out.println("Hello world");
-        //workMainItem();
-        //start.workMainItem();
+        StartUi start = new StartUi();
+        System.out.println();
+        System.out.println(" ---------------------------------------------------------------------------");
+        System.out.println("                          << Tracker ver. 1.0 >> ");
+        System.out.println("                     it provides to work with program ");
+        System.out.println("                         for accounting of statement");
+        System.out.println(" ---------------------------------------------------------------------------");
+        start.workItem();
     }
 
     // workItem - work item
-    public void workMainItem() {
-        while (this.flagWork) {
-            showMainMenu();
-            keyMainMenu();
+    private void workItem() {
+        input.addItemDefault();
+        while (this.flagExit) {
+            input.showMenu();
+            input.keyMenu();
         }
         scanner.close();
     }
 
-    // showMenu - shoe manual menu
-    public void showMainMenu() {
-        System.out.println("");
-        System.out.println(" Tracker ver.1.0 ");
-        System.out.println(" ---------------------------------------------------------------------------");
-        System.out.println(" 1. Testing all method class Tracker.");
-        System.out.println(" 2. Manual use Tracker.");
-        System.out.println(" 3. Exit.");
-        System.out.println(" ---------------------------------------------------------------------------");
-    }
+    // class ConsoleInput
+    private class ConsoleInput {
 
-    // keyMenu - select action manual
-    public void keyMainMenu() {
-        if (this.flagWork) {
-            String scan = scanner.nextLine();
-            if (scan.equals("1")) {
-                addItemTest();
-                searchItemByIdTest();
-                removeItemByIdTest();
-                updateItemByIdTest();
-                addCommentByIdTest();
-            }
-            else if (scan.equals("2")) {
-                input.addItemDefault();
-                input.workItem();
-            }
-            else if (scan.equals("3")) {
-                this.flagWork = false;
-            }
-        }
-
-    }
-
-    // initialization
-   // public void initialization() {
-//        this.track = new Tracker();
-//        this.date = new Date();
-//        this.scanner = new Scanner(System.in);
-//        this.input = new ConsoleInput();
-        //this.flagExit = true;
-
-    //}
-
-    // Testing method addItem
-    private void addItemTest() {
-        System.out.println();
-        System.out.println(" 1) Testing method addItem:");
-        System.out.println(" ---------------------------------------------------------------------------");
-        this.track.addItem(new Item("task0", "desc0", this.date.getTime()));
-        this.track.addItem(new Item("task1", "desc1", this.date.getTime()));
-        this.track.addItem(new Item("task2", "desc2", this.date.getTime()));
-        this.track.addItem(new Item("task3", "desc3", this.date.getTime()));
-        this.track.addItem(new Item("task4", "desc4", this.date.getTime()));
-        this.track.addItem(new Item("task5", "desc5", this.date.getTime()));
-        Item[] result = this.track.getAllItem();
-        for (Item item : result) {
-            if (item != null) {
-                System.out.println(item.toString(item));
-            }
-        }
-        System.out.println(" ---------------------------------------------------------------------------");
-    }
-
-    // Testing method searchItemById
-    private void searchItemByIdTest() {
-        System.out.println();
-        System.out.println(" 2) Testing method searchItemById:");
-        System.out.println(" ---------------------------------------------------------------------------");
-        Item[] items = this.track.getAllItem();
-        String id = items[1].getId();
-        System.out.println(" -> Search by [id]: " +id);
-        Item item = this.track.searchItemById(id);
-        System.out.println(item.toString(item));
-        System.out.println(" ---------------------------------------------------------------------------");
-    }
-
-    // Testing method removeItemById
-    private void removeItemByIdTest() {
-        System.out.println();
-        System.out.println(" 3) Testing method removeItemById:");
-        System.out.println(" ---------------------------------------------------------------------------");
-        Item[] items = this.track.getAllItem();
-        String id = items[3].getId();
-        System.out.println(" -> Remove by [id]: " +id);
-        this.track.removeItemById(id);
-        Item[] result = this.track.getAllItem();
-        for (Item item : result) {
-            if (item != null) {
-                System.out.println(item.toString(item));
-            }
-        }
-        System.out.println(" ---------------------------------------------------------------------------");
-    }
-
-    // Testing method updateItemById
-    private void updateItemByIdTest() {
-        System.out.println();
-        System.out.println(" 4) Testing method updateItemById:");
-        System.out.println(" ---------------------------------------------------------------------------");
-        Item[] items = this.track.getAllItem();
-        String id = items[1].getId();
-        System.out.println(" -> Update by [id]: " +id);
-        Item itemUpdate = new Item("task9", "desc9", this.date.getTime());
-        itemUpdate.setId(id);
-        this.track.updateItemById(itemUpdate);
-        Item[] result = track.getAllItem();
-        for (Item item : result) {
-            if (item != null) {
-                System.out.println(item.toString(item));
-            }
-        }
-        System.out.println(" ---------------------------------------------------------------------------");
-    }
-
-    // Testing method addCommentById
-    private void addCommentByIdTest() {
-        System.out.println();
-        System.out.println(" 5) Testing method addCommentById:");
-        System.out.println(" ---------------------------------------------------------------------------");
-        Item[] items = this.track.getAllItem();
-        String id1 = items[0].getId();
-        String id2 = items[1].getId();
-        System.out.println(" -> Add comments by [id]: " +id1 +" and " +" [id]: " +id2);
-        this.track.addCommentById(id1, new Comment("comm1"));
-        this.track.addCommentById(id1, new Comment("comm2"));
-        this.track.addCommentById(id1, new Comment("comm3"));
-        this.track.addCommentById(id1, new Comment("comm4"));
-        this.track.addCommentById(id2, new Comment("comm3"));
-        this.track.addCommentById(id2, new Comment("comm2"));
-        this.track.addCommentById(id2, new Comment("comm4"));
-        Item[] result = track.getAllItem();
-        for (Item item : result) {
-            if (item != null) {
-                System.out.println(item.toString(item));
-                for (Comment comm : item.getAllComment()) {
-                    if (comm != null) {
-                        System.out.println("   - [comm]: " + comm.getComment());
-                    }
-                }
-            }
-        }
-        System.out.println(" ---------------------------------------------------------------------------");
-    }
-
-    public class ConsoleInput {
-
-        private boolean flagExit = true;
-
-        // addItemDefault - add item default by Constructor
         private void addItemDefault() {
             track.addItem(new Item("task0", "desc0", new Date().getTime()));
             track.addItem(new Item("task1", "desc1", new Date().getTime()));
             track.addItem(new Item("task2", "desc2", new Date().getTime()));
             track.addItem(new Item("task3", "desc3", new Date().getTime()));
-        }
+    }
 
-        // workItem - work item
-        public void workItem() {
-            while (this.flagExit) {
-                showMenu();
-                keyMenu();
-            }
-            scanner.close();
-        }
-
-        // showMenu - shoe manual menu
-        public void showMenu() {
+        // showMenu - show all menu item
+        private void showMenu() {
             System.out.println("");
-            System.out.println(" Tracker ver.1.0 ");
-            System.out.println(" ---------------------------------------------------------------------------");
+            System.out.println(" ------------------------------Tracker Menu --------------------------------");
             System.out.println(" 1. Show all item.");
             System.out.println(" 2. Add new item.");
             System.out.println(" 3. Search item by id.");
@@ -223,9 +57,9 @@ public class StartUi {
             System.out.println(" ---------------------------------------------------------------------------");
         }
 
-        // keyMenu - select action manual
-        public void keyMenu() {
-            if (this.flagExit) {
+        // keyMenu - select action menu item
+        private void keyMenu() {
+            if (flagExit) {
                 String scan = scanner.nextLine();
                 if (scan.equals("1")) {
                     showAllItem();
@@ -246,19 +80,21 @@ public class StartUi {
                     addCommentById();
                 }
                 else if (scan.equals("7")) {
-                    this.flagExit = false;
+                    flagExit = false;
+                }
+                else {
+                    System.out.println(" Isn`t a valid symbol. Repeat please again.");
                 }
             }
 
         }
 
-        // showAllItem - show all item, key = "1"
-        public void showAllItem() {
+        // showAllItem - show all item, key = " 1 "
+        private void showAllItem() {
             Item[] result = track.getAllItem();
             for (Item item : result) {
                 if (item != null) {
                     System.out.println(item.toString(item));
-
                     for (Comment comm : item.getAllComment()) {
                         if (comm != null) {
                             System.out.println("   - [comm]: " + comm.getComment());
@@ -268,34 +104,37 @@ public class StartUi {
             }
         }
 
-        // addNewItem - add new item, key = "2"
-        public void addItem() {
-            System.out.println("Input name item");
+        // addNewItem - add new item, key = " 2 "
+        private void addItem() {
+            System.out.print(" Input name item: ");
             String name = scanner.nextLine();
-            System.out.println("Input description");
+            System.out.print(" Input description item: ");
             String description = scanner.nextLine();
-            //Date date1 = new Date();
             long create = new Date().getTime();
             track.addItem(new Item(name, description, create));
         }
 
-        // findItemById - find item by id, key = "3"
-        public void searchItemById() {
-            System.out.println("Input id");
+        // findItemById - find item by id, key = " 3 "
+        private void searchItemById() {
+            System.out.print(" Input id: ");
             String id = scanner.nextLine();
             Item item = track.searchItemById(id);
-            System.out.println(item.toString(item));
+            if (item != null) {
+                System.out.println(item.toString(item));
+            } else {
+                System.out.println(" No result by id");
+            }
         }
 
-        // deleteItemById - delete item by id, key = "4"
-        public void removeItemById() {
+        // deleteItemById - delete item by id, key = " 4 "
+        private void removeItemById() {
             System.out.println("Input id");
             String id = scanner.nextLine();
             track.removeItemById(id);
         }
 
-        // updateItemById - update item by id, key = "5"
-        public void updateItemById() {
+        // updateItemById - update item by id, key = " 5 "
+        private void updateItemById() {
             System.out.println("Input id");
             String id = scanner.nextLine();
 
@@ -309,8 +148,8 @@ public class StartUi {
             track.updateItemById(item);
         }
 
-        // addCommentById - add comment by id, key = "6"
-        public void addCommentById() {
+        // addCommentById - add comment by id, key = " 6 "
+        private void addCommentById() {
             System.out.println("Input id");
             String id = scanner.nextLine();
             System.out.println("Input comment");
@@ -318,11 +157,6 @@ public class StartUi {
             Comment comment = new Comment(scanner.nextLine());
             track.addCommentById(id, comment);
         }
-
-
-
-
-
 
     }
 
