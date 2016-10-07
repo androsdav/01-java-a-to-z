@@ -50,10 +50,12 @@ public class StartUi {
             System.out.println(" 1. Show all item.");
             System.out.println(" 2. Add new item.");
             System.out.println(" 3. Search item by id.");
-            System.out.println(" 4. Remove item by id.");
-            System.out.println(" 5. Update item by id.");
-            System.out.println(" 6. Add comment by id.");
-            System.out.println(" 7. Exit.");
+            System.out.println(" 4. Search item by name.");
+            System.out.println(" 5. Search item by description.");
+            System.out.println(" 6. Remove item by id.");
+            System.out.println(" 7. Update item by id.");
+            System.out.println(" 8. Add comment by id.");
+            System.out.println(" 9. Exit.");
             System.out.println(" ---------------------------------------------------------------------------");
         }
 
@@ -71,15 +73,21 @@ public class StartUi {
                     searchItemById();
                 }
                 else if (scan.equals("4")) {
-                    removeItemById();
+                    searchItemByName();
                 }
                 else if (scan.equals("5")) {
-                    updateItemById();
+                    searchItemByDescription();
                 }
                 else if (scan.equals("6")) {
-                    addCommentById();
+                    removeItemById();
                 }
                 else if (scan.equals("7")) {
+                    updateItemById();
+                }
+                else if (scan.equals("8")) {
+                    addCommentById();
+                }
+                else if (scan.equals("9")) {
                     flagExit = false;
                 }
                 else {
@@ -121,39 +129,83 @@ public class StartUi {
             Item item = track.searchItemById(id);
             if (item != null) {
                 System.out.println(item.toString(item));
+                for (Comment comm : item.getAllComment()) {
+                    if (comm != null) {
+                        System.out.println("   - [comm]: " + comm.getComment());
+                    }
+                }
             } else {
                 System.out.println(" No result by id");
             }
         }
 
-        // deleteItemById - delete item by id, key = " 4 "
+        // searchItemByName - find item by name, key = " 4 "
+        private void searchItemByName() {
+            System.out.print(" Input name: ");
+            String name = scanner.nextLine();
+            Item[] result = track.getAllItem();
+            for (Item item : result) {
+                if (item != null && item.getName().equals(name)) {
+                    System.out.println(item.toString(item));
+                    for (Comment comm : item.getAllComment()) {
+                        if (comm != null) {
+                            System.out.println("   - [comm]: " + comm.getComment());
+                        }
+                    }
+                }
+            }
+        }
+
+        // searchItemByName - find item by name, key = " 5 "
+        private void searchItemByDescription() {
+            System.out.print(" Input description: ");
+            String desc = scanner.nextLine();
+            Item[] result = track.getAllItem();
+            for (Item item : result) {
+                if (item != null && item.getDescription().equals(desc)) {
+                    System.out.println(item.toString(item));
+                    for (Comment comm : item.getAllComment()) {
+                        if (comm != null) {
+                            System.out.println("   - [comm]: " + comm.getComment());
+                        }
+                    }
+                }
+            }
+        }
+
+        // deleteItemById - delete item by id, key = " 6 "
         private void removeItemById() {
-            System.out.println("Input id");
+            System.out.print(" Input id: ");
             String id = scanner.nextLine();
             track.removeItemById(id);
         }
 
-        // updateItemById - update item by id, key = " 5 "
+        // updateItemById - update item by id, key = " 7 "
         private void updateItemById() {
-            System.out.println("Input id");
+            System.out.print(" Input id: ");
             String id = scanner.nextLine();
-
-            System.out.println("Input name item");
+            System.out.print(" Input new name item: ");
             String name = scanner.nextLine();
-            System.out.println("Input description");
+            System.out.print(" Input new description: ");
             String description = scanner.nextLine();
             long create = new Date().getTime();
             Item item = new Item(name, description, create);
             item.setId(id);
+            Item result = track.searchItemById(id);
             track.updateItemById(item);
+            Comment[] comment = result.getAllComment();
+            for (Comment comm : comment) {
+                if (comm != null) {
+                    track.addCommentById(id, comm);
+                }
+            }
         }
 
-        // addCommentById - add comment by id, key = " 6 "
+        // addCommentById - add comment by id, key = " 8 "
         private void addCommentById() {
-            System.out.println("Input id");
+            System.out.print(" Input id: ");
             String id = scanner.nextLine();
-            System.out.println("Input comment");
-            //String comment = scanner.nextLine();
+            System.out.print(" Input comment: ");
             Comment comment = new Comment(scanner.nextLine());
             track.addCommentById(id, comment);
         }

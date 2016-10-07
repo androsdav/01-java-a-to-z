@@ -76,6 +76,6 @@ public class Item {
 
     public String toString(Item item) {
         DateFormat dateFormat1 = new SimpleDateFormat("dd.MM.yy HH:mm");
-        return (" - [name]: " + item.getName() + " [desc]:  " + item.getDescription() + " [create]: " + dateFormat1.format(item.getCreate()) + " [id]: " + item.getId());
+        return (" - [name]: " + item.getName() + " [desc]: " + item.getDescription() + " [create]: " + dateFormat1.format(item.getCreate()) + " [id]: " + item.getId());
     }
 }
