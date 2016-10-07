@@ -77,7 +77,7 @@ public class Tracker {
 			}
 	}
 
-	// generateId - gererate id for item
+	// generateId - generate id for item
 	String generateId() {
 		return String.valueOf(System.currentTimeMillis() + this.RN.nextInt());
 	}
