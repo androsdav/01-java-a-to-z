@@ -10,7 +10,7 @@ public class Item {
     private long create;
     private String id;
     private Comment[] comment = new Comment[1];
-    DateFormat dateFormat1 = new SimpleDateFormat("dd.MM.yy HH:mm");
+    private DateFormat dateFormat1 = new SimpleDateFormat("dd.MM.yy HH:mm");
 
 
     public Item(String name, String description, long create) {
@@ -78,7 +78,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return (" - [name]: " + getName() + " [desc]: " + getDescription() + " [create]: " + dateFormat1.format(getCreate()) + " [id]: " + getId());
+        return (" - [name]: " + getName() + " [desc]: " + getDescription() + " [create]: " + this.dateFormat1.format(getCreate()) + " [id]: " + getId());
     }
 
     @Override

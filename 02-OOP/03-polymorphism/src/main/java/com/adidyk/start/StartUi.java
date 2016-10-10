@@ -63,35 +63,37 @@ public class StartUi {
         private void keyMenu() {
             if (flagExit) {
                 String scan = scanner.nextLine();
-                if (scan.equals("1")) {
-                    showAllItem();
-                }
-                else if (scan.equals("2")) {
-                    addItem();
-                }
-                else if (scan.equals("3")) {
-                    searchItemById();
-                }
-                else if (scan.equals("4")) {
-                    searchItemByName();
-                }
-                else if (scan.equals("5")) {
-                    searchItemByDescription();
-                }
-                else if (scan.equals("6")) {
-                    removeItemById();
-                }
-                else if (scan.equals("7")) {
-                    updateItemById();
-                }
-                else if (scan.equals("8")) {
-                    addCommentById();
-                }
-                else if (scan.equals("9")) {
-                    flagExit = false;
-                }
-                else {
-                    System.out.println(" Isn`t a valid symbol. Repeat please again.");
+                switch (scan) {
+                    case "1":
+                        showAllItem();
+                        break;
+                    case "2":
+                        addItem();
+                        break;
+                    case "3":
+                        searchItemById();
+                        break;
+                    case "4":
+                        searchItemByName();
+                        break;
+                    case "5":
+                        searchItemByDescription();
+                        break;
+                    case "6":
+                        removeItemById();
+                        break;
+                    case "7":
+                        updateItemById();
+                        break;
+                    case "8":
+                        addCommentById();
+                        break;
+                    case "9":
+                        flagExit = false;
+                        break;
+                    default:
+                        System.out.println(" Isn`t a valid symbol. Repeat please again.");
+                        break;
                 }
             }
 
@@ -102,7 +104,7 @@ public class StartUi {
             Item[] result = track.getAllItem();
             for (Item item : result) {
                 if (item != null) {
-                    System.out.println(item.toString(item));
+                    System.out.println(item.toString());
                     for (Comment comm : item.getAllComment()) {
                         if (comm != null) {
                             System.out.println("   - [comm]: " + comm.getComment());
@@ -128,7 +130,7 @@ public class StartUi {
             String id = scanner.nextLine();
             Item item = track.searchItemById(id);
             if (item != null) {
-                System.out.println(item.toString(item));
+                System.out.println(item.toString());
                 for (Comment comm : item.getAllComment()) {
                     if (comm != null) {
                         System.out.println("   - [comm]: " + comm.getComment());
@@ -146,7 +148,7 @@ public class StartUi {
             Item[] result = track.getAllItem();
             for (Item item : result) {
                 if (item != null && item.getName().equals(name)) {
-                    System.out.println(item.toString(item));
+                    System.out.println(item.toString());
                     for (Comment comm : item.getAllComment()) {
                         if (comm != null) {
                             System.out.println("   - [comm]: " + comm.getComment());
@@ -163,7 +165,7 @@ public class StartUi {
             Item[] result = track.getAllItem();
             for (Item item : result) {
                 if (item != null && item.getDescription().equals(desc)) {
-                    System.out.println(item.toString(item));
+                    System.out.println(item.toString());
                     for (Comment comm : item.getAllComment()) {
                         if (comm != null) {
                             System.out.println("   - [comm]: " + comm.getComment());
