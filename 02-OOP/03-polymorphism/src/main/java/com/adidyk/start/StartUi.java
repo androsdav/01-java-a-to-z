@@ -158,18 +158,21 @@ public class StartUi {
             }
         }
 
-        // searchItemByName - find item by name, key = " 5 "
+        // searchItemByName - find item by sub description, key = " 5 "
         private void searchItemByDescription() {
+            boolean sub = false;
             System.out.print(" Input description: ");
             String desc = scanner.nextLine();
             Item[] result = track.getAllItem();
+
             for (Item item : result) {
-                if (item != null && item.getDescription().equals(desc)) {
+                if (item != null && item.getDescription().contains(desc)) {
                     System.out.println(item.toString());
                     for (Comment comm : item.getAllComment()) {
                         if (comm != null) {
                             System.out.println("   - [comm]: " + comm.getComment());
                         }
+
                     }
                 }
             }
