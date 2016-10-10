@@ -78,4 +78,28 @@ public class Item {
         DateFormat dateFormat1 = new SimpleDateFormat("dd.MM.yy HH:mm");
         return (" - [name]: " + item.getName() + " [desc]: " + item.getDescription() + " [create]: " + dateFormat1.format(item.getCreate()) + " [id]: " + item.getId());
     }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Item item = (Item) o;
+
+        if (create != item.create) return false;
+        if (!name.equals(item.name)) return false;
+        if (!description.equals(item.description)) return false;
+        return id.equals(item.id);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + description.hashCode();
+        result = 31 * result + (int) (create ^ (create >>> 32));
+        result = 31 * result + id.hashCode();
+        return result;
+    }
 }
