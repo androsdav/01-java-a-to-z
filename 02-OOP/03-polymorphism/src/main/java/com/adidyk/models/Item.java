@@ -10,6 +10,8 @@ public class Item {
     private long create;
     private String id;
     private Comment[] comment = new Comment[1];
+    DateFormat dateFormat1 = new SimpleDateFormat("dd.MM.yy HH:mm");
+
 
     public Item(String name, String description, long create) {
         this.name = name;
@@ -74,11 +76,10 @@ public class Item {
         return this.comment;
     }
 
-    public String toString(Item item) {
-        DateFormat dateFormat1 = new SimpleDateFormat("dd.MM.yy HH:mm");
-        return (" - [name]: " + item.getName() + " [desc]: " + item.getDescription() + " [create]: " + dateFormat1.format(item.getCreate()) + " [id]: " + item.getId());
+    @Override
+    public String toString() {
+        return (" - [name]: " + getName() + " [desc]: " + getDescription() + " [create]: " + dateFormat1.format(getCreate()) + " [id]: " + getId());
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -103,3 +104,5 @@ public class Item {
         return result;
     }
 }
+
+
