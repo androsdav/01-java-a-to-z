@@ -9,5 +9,6 @@
          <packaging>pom</packaging>
          <modules>
                   <module>02-encapsulation</module>
+                  <module>03-polymorphism</module>
          </modules>
 </project>
