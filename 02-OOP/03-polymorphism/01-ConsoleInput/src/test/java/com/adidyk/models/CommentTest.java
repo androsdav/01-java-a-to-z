@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 public class CommentTest{
 
-    Comment comment = new Comment("comment1");
+    private Comment comment = new Comment("comment1");
 
     @Test
     public void setCommentTest() {
