@@ -160,7 +160,6 @@ public class StartUi {
 
         // searchItemByName - find item by sub description, key = " 5 "
         private void searchItemByDescription() {
-            boolean sub = false;
             System.out.print(" Input description: ");
             String desc = scanner.nextLine();
             Item[] result = track.getAllItem();
