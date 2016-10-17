@@ -1,5 +1,6 @@
 package com.adidyk.start;
 
 public interface Input {
-    String read();
+
+    String ask(String question);
 }
