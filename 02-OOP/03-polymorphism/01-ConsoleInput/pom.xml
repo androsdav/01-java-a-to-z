@@ -3,8 +3,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>02-OOP.03-polymorphism</groupId>
-    <artifactId>03-polymorphism</artifactId>
+    <groupId>02-OOP.03-polymorphism.01-ConsoleInput</groupId>
+    <artifactId>01-ConsoleInput</artifactId>
     <version>1.0</version>
     <dependencies>
         <dependency>
@@ -14,8 +14,8 @@
         </dependency>
     </dependencies>
     <parent>
-        <groupId>com.adidyk.02-OOP</groupId>
-        <artifactId>02-OOP</artifactId>
+        <groupId>com.adidyk.02-OOP.03-polymorphism</groupId>
+        <artifactId>03-polymorphism</artifactId>
         <version>1.0</version>
     </parent>
 
