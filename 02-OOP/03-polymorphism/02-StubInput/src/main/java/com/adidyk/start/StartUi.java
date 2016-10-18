@@ -6,6 +6,40 @@ import java.util.*;
 
 public class StartUi {
 
+    private Input input;
+
+    public StartUi(Input input) {
+        this.input = input;
+
+    }
+
+    public void init(){
+     //   ConsoleInput input = new ConsoleInput();
+        //String name = this.input.ask("Input name item:");
+        //String desc = this.input.ask("Input desc item:");
+        //Tracker track = new Tracker();
+        //track.addItem(new Item(name, desc, new Date().getTime()));
+        //for (Item item : track.getAllItem()) {
+        //    if (item != null) {
+        //        System.out.println(item.toString());
+        //    }
+       // }
+
+        String[] answers ={"test0","test1", "test2"};
+        //StubInput stub = new StubInput(answers);
+        String test = this.input.ask("Provarka rabotu hz");
+        System.out.println("Output:    "  +test);
+    }
+
+
+    public static void main(String[] args) {
+       //StartUi start = new StartUi();
+       //start.init();
+        Input input = new StubInput(new String[] {"create stub task"});
+        new StartUi(input).init();
+    }
+}
+    /*
     private Tracker track = new Tracker();
     private Scanner scanner = new Scanner(System.in);
     private ConsoleInput input = new ConsoleInput();
@@ -160,7 +194,6 @@ public class StartUi {
 
         // searchItemByName - find item by sub description, key = " 5 "
         private void searchItemByDescription() {
-            boolean sub = false;
             System.out.print(" Input description: ");
             String desc = scanner.nextLine();
             Item[] result = track.getAllItem();
@@ -216,5 +249,4 @@ public class StartUi {
         }
 
     }
-
-}
+*/
