@@ -8,7 +8,6 @@ public class ConsoleInput implements Input {
         Scanner scanner = new Scanner(System.in);
         System.out.print(question);
         return scanner.nextLine();
-
     }
 
 }
