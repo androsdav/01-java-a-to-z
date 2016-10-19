@@ -61,7 +61,7 @@ public class Tracker {
 	// updateItemById - update name, description, create in item by id
 	protected void updateItemById(Item item) {
 		for (int index = 0; index < this.item.length; index++) {
-			if (this.item[index].getId().equals(item.getId())) {
+			if (this.item[index] != null && this.item[index].getId().equals(item.getId())) {
 				this.item[index] = item;
 				break;
 			}

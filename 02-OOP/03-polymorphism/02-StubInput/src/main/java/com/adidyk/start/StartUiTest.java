@@ -2,31 +2,39 @@ package com.adidyk.start;
 
 import com.adidyk.models.Comment;
 import com.adidyk.models.Item;
+
 import java.util.Date;
 
-public class StartUi {
+public class StartUiTest{
 
     private Input input;
     private Tracker track;
     private boolean flagExit;
 
-    private StartUi(Input input) {
+    private StartUiTest(Input input) {
         this.input = input;
         this.track = new Tracker();
         this.flagExit = true;
     }
 
-    // init - initialization and start method workItem
     private void init() {
         descriptionItem();
         addItemDefault();
         workItem();
     }
 
-    // main - just main :)
     public static void main(String[] args) {
-        Input input = new ConsoleInput();
-        new StartUi(input).init();
+        Input input = new StubInput(new String[] {
+                "1",                                // 1. Show all item.               (showAllItem)
+                "2", "task0", "desc2", "1",         // 2. Add new item.                (addItem and showAllItem)
+                "3", "9999",                        // 3. Search item by id.           (searchItemById and showAllItem)
+                "4", "task0",                       // 4. Search item by name.         (searchItemByName)
+                "5", "desc2",                       // 5. Search item by description.  (searchItemByDescription)
+                "6", "8888", "1",                   // 6. Remove item by id.           (removeItemById)
+                "7", "9999", "task6", "desc6", "1", // 7. Update item by id.           (updateItemById)
+                "8", "9999", "comm1", "1",          // 8. Add comment by id.           (addCommentById)
+                "9"});                              // 9. Exit.
+        new StartUiTest(input).init();
     }
 
     // description - static description for program Tracker
@@ -39,17 +47,18 @@ public class StartUi {
         System.out.println(" ---------------------------------------------------------------------------");
     }
 
-    // addItemDefault - add item in item[] dy default
+    // addItemDefault - add item in item[] by default and set id default
     private void addItemDefault() {
         this.track.addItem(new Item("task0", "desc0", new Date().getTime()));
         this.track.addItem(new Item("task1", "desc1", new Date().getTime()));
         this.track.addItem(new Item("task2", "desc2", new Date().getTime()));
         this.track.addItem(new Item("task3", "desc3", new Date().getTime()));
+        this.track.getAllItem()[2].setId("8888");
+        this.track.getAllItem()[3].setId("9999");
     }
 
-    // workItem - work item
     private void workItem() {
-        while (this.flagExit) {
+        while(this.flagExit) {
             showMenu();
             keyMenu();
         }
@@ -82,7 +91,7 @@ public class StartUi {
                 case "2":
                     addItem();
                     break;
-                case "3":
+               case "3":
                     searchItemById();
                     break;
                 case "4":
@@ -112,7 +121,7 @@ public class StartUi {
 
     // showAllItem - show all item, key = " 1 "
     private void showAllItem() {
-        Item[] result = this.track.getAllItem();
+        Item[] result = track.getAllItem();
         for (Item item : result) {
             if (item != null) {
                 System.out.println(item.toString());
@@ -127,15 +136,15 @@ public class StartUi {
 
     // addItem - add new item, key = " 2 "
     private void addItem() {
-        String name = this.input.ask(" Input name item: ");
-        String description = this.input.ask(" Input name description: ");
+        String name = input.ask(" Input name item: ");
+        String description = input.ask(" Input name description: ");
         long create = new Date().getTime();
-        this.track.addItem(new Item(name, description, create));
+        track.addItem(new Item(name, description, create));
     }
-
     // searchItemById - search item by id, key = " 3 "
     private void searchItemById() {
         String id = input.ask(" Input id: ");
+        //this.track.getAllItem()[3].setId(id); // new line
         Item item = track.searchItemById(id);
         if (item != null) {
             System.out.println(item.toString());
@@ -214,6 +223,3 @@ public class StartUi {
     }
 
 }
-
-
-
