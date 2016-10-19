@@ -176,7 +176,6 @@ public class StartUi {
                     if (comm != null) {
                         System.out.println("   - [comm]: " + comm.getComment());
                     }
-
                 }
             }
         }

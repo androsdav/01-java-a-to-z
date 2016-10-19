@@ -2,7 +2,6 @@ package com.adidyk.start;
 
 import com.adidyk.models.Comment;
 import com.adidyk.models.Item;
-
 import java.util.Date;
 
 public class StartUiTest{
@@ -30,9 +29,9 @@ public class StartUiTest{
                 "3", "9999",                        // 3. Search item by id.           (searchItemById and showAllItem)
                 "4", "task0",                       // 4. Search item by name.         (searchItemByName)
                 "5", "desc2",                       // 5. Search item by description.  (searchItemByDescription)
-                "6", "8888", "1",                   // 6. Remove item by id.           (removeItemById)
-                "7", "9999", "task6", "desc6", "1", // 7. Update item by id.           (updateItemById)
-                "8", "9999", "comm1", "1",          // 8. Add comment by id.           (addCommentById)
+                "6", "8888", "1",                   // 6. Remove item by id.           (removeItemById and showAllItem)
+                "7", "9999", "task6", "desc6", "1", // 7. Update item by id.           (updateItemById and showAllItem)
+                "8", "9999", "comm1", "1",          // 8. Add comment by id.           (addCommentById and showAllItem)
                 "9"});                              // 9. Exit.
         new StartUiTest(input).init();
     }
@@ -141,6 +140,7 @@ public class StartUiTest{
         long create = new Date().getTime();
         track.addItem(new Item(name, description, create));
     }
+
     // searchItemById - search item by id, key = " 3 "
     private void searchItemById() {
         String id = input.ask(" Input id: ");

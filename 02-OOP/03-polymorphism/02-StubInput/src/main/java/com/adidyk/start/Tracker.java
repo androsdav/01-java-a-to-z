@@ -51,7 +51,7 @@ public class Tracker {
 	// deleteItem - delete item by id in []item
 	protected void removeItemById(String id) {
 		for (int index = 0; index < this.item.length; index++ ) {
-			if (this.item[index].getId().equals(id)) {
+			if (this.item[index] != null && this.item[index].getId().equals(id)) {
 				this.item[index] = null;
 				break;
 			}
