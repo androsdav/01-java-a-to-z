@@ -6,8 +6,8 @@ import java.util.*;
 
 public class StartUi {
 
-    Tracker track = new Tracker();
-    Date date = new Date();
+    private Tracker track = new Tracker();
+    private Date date = new Date();
 
     // Main
     public static void main(String[] arg) {
