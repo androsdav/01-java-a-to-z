@@ -63,7 +63,7 @@ public class StartUi {
         // keyMenu - select action menu item
         private void keyMenu() {
             if (flagExit) {
-                System.out.println(" Choose key: ");
+                System.out.print(" Choose key: ");
                 String scan = scanner.nextLine();
                 switch (scan) {
                     case "1":
@@ -161,7 +161,6 @@ public class StartUi {
 
         // searchItemByName - find item by sub description, key = " 5 "
         private void searchItemByDescription() {
-            boolean sub = false;
             System.out.print(" Input description: ");
             String desc = scanner.nextLine();
             Item[] result = track.getAllItem();
