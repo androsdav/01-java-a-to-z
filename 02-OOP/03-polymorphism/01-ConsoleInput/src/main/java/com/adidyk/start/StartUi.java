@@ -11,7 +11,7 @@ public class StartUi {
     private ConsoleInput input = new ConsoleInput();
     private boolean flagExit = true;
 
-    // Main
+    // main - just main
     public static void main(String[] arg) {
         StartUi start = new StartUi();
         System.out.println();
@@ -36,6 +36,7 @@ public class StartUi {
     // class ConsoleInput
     private class ConsoleInput {
 
+        // addItemDefault - add item default
         private void addItemDefault() {
             track.addItem(new Item("task0", "desc0", new Date().getTime()));
             track.addItem(new Item("task1", "desc1", new Date().getTime()));
@@ -62,6 +63,7 @@ public class StartUi {
         // keyMenu - select action menu item
         private void keyMenu() {
             if (flagExit) {
+                System.out.println(" Choose key: ");
                 String scan = scanner.nextLine();
                 switch (scan) {
                     case "1":
@@ -96,7 +98,6 @@ public class StartUi {
                         break;
                 }
             }
-
         }
 
         // showAllItem - show all item, key = " 1 "
@@ -164,7 +165,6 @@ public class StartUi {
             System.out.print(" Input description: ");
             String desc = scanner.nextLine();
             Item[] result = track.getAllItem();
-
             for (Item item : result) {
                 if (item != null && item.getDescription().contains(desc)) {
                     System.out.println(item.toString());
@@ -172,7 +172,6 @@ public class StartUi {
                         if (comm != null) {
                             System.out.println("   - [comm]: " + comm.getComment());
                         }
-
                     }
                 }
             }
