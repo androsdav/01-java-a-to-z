@@ -1,9 +1,5 @@
 package com.adidyk.start;
 
-import com.adidyk.models.Comment;
-import com.adidyk.models.Item;
-import java.util.Date;
-
 public class StartUi {
 
     private Input input;
@@ -18,9 +14,9 @@ public class StartUi {
 
     // init - initialization and start method workItem
     private void init() {
-        descriptionItem();
-        addItemDefault();
-        workItem();
+//        descriptionItem();
+//        addItemDefault();
+//        workItem();
     }
 
     // main - just main :)
@@ -29,7 +25,8 @@ public class StartUi {
         new StartUi(input).init();
     }
 
-    // description - static description for program Tracker
+}
+  /*  // description - static description for program Tracker
     private void descriptionItem() {
         System.out.println();
         System.out.println(" ---------------------------------------------------------------------------");
@@ -212,7 +209,7 @@ public class StartUi {
         track.addCommentById(id, comment);
     }
 
-}
+}*/
 
 
 
