@@ -17,7 +17,7 @@ public class StartUiTest{
     }
 
     private void init() {
-        descriptionItem();
+        descriptionTracker();
         addItemDefault();
         workItem();
     }
@@ -37,7 +37,7 @@ public class StartUiTest{
     }
 
     // description - static description for program Tracker
-    private void descriptionItem() {
+    private void descriptionTracker() {
         System.out.println();
         System.out.println(" ---------------------------------------------------------------------------");
         System.out.println("                          << Tracker ver. 1.0 >> ");
