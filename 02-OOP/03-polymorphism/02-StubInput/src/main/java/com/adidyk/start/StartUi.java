@@ -73,8 +73,8 @@ public class StartUi {
 
     // keyMenu - select action menu item
     private void keyMenu() {
-        if (flagExit) {
-            String key = input.ask(" Choose key: ");
+        if (this.flagExit) {
+            String key = this.input.ask(" Choose key: ");
             switch (key) {
                 case "1":
                     showAllItem();
@@ -101,7 +101,7 @@ public class StartUi {
                     addCommentById();
                     break;
                 case "9":
-                    flagExit = false;
+                    this.flagExit = false;
                     break;
                 default:
                     System.out.println(" Isn`t a valid symbol. Repeat please again.");
@@ -135,8 +135,8 @@ public class StartUi {
 
     // searchItemById - search item by id, key = " 3 "
     private void searchItemById() {
-        String id = input.ask(" Input id: ");
-        Item item = track.searchItemById(id);
+        String id = this.input.ask(" Input id: ");
+        Item item = this.track.searchItemById(id);
         if (item != null) {
             System.out.println(item.toString());
             for (Comment comm : item.getAllComment()) {
@@ -151,8 +151,8 @@ public class StartUi {
 
     // searchItemByName - find item by name, key = " 4 "
     private void searchItemByName() {
-        String name = input.ask(" Input name: ");
-        Item[] result = track.getAllItem();
+        String name = this.input.ask(" Input name: ");
+        Item[] result = this.track.getAllItem();
         for (Item item : result) {
             if (item != null && item.getName().equals(name)) {
                 System.out.println(item.toString());
@@ -167,8 +167,8 @@ public class StartUi {
 
     // searchItemByDescription - find item by sub description, key = " 5 "
     private void searchItemByDescription() {
-        String desc = input.ask(" Input description: ");
-        Item[] result = track.getAllItem();
+        String desc = this.input.ask(" Input description: ");
+        Item[] result = this.track.getAllItem();
         for (Item item : result) {
             if (item != null && item.getDescription().contains(desc)) {
                 System.out.println(item.toString());
@@ -183,33 +183,33 @@ public class StartUi {
 
     // deleteItemById - delete item by id, key = " 6 "
     private void removeItemById() {
-        String id = input.ask(" Input id: ");
-        track.removeItemById(id);
+        String id = this.input.ask(" Input id: ");
+        this.track.removeItemById(id);
     }
 
     // updateItemById - update item by id, key = " 7 "
     private void updateItemById() {
-        String id = input.ask(" Input id: ");
-        String name = input.ask(" Input new name item: ");
-        String description = input.ask(" Input new description: ");
+        String id = this.input.ask(" Input id: ");
+        String name = this.input.ask(" Input new name item: ");
+        String description = this.input.ask(" Input new description: ");
         long create = new Date().getTime();
         Item item = new Item(name, description, create);
         item.setId(id);
-        Item result = track.searchItemById(id);
-        track.updateItemById(item);
+        Item result = this.track.searchItemById(id);
+        this.track.updateItemById(item);
         Comment[] comment = result.getAllComment();
         for (Comment comm : comment) {
             if (comm != null) {
-                track.addCommentById(id, comm);
+                this.track.addCommentById(id, comm);
             }
         }
     }
 
     // addCommentById - add comment by id, key = " 8 "
     private void addCommentById() {
-        String id = input.ask(" Input id: ");
-        Comment comment = new Comment(input.ask(" Input comment: "));
-        track.addCommentById(id, comment);
+        String id = this.input.ask(" Input id: ");
+        Comment comment = new Comment(this.input.ask(" Input comment: "));
+        this.track.addCommentById(id, comment);
     }
 
 }
