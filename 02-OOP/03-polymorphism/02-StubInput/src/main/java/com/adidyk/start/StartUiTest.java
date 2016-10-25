@@ -68,14 +68,14 @@ public class StartUiTest{
         System.out.println("");
         System.out.println(" ------------------------------Tracker Menu --------------------------------");
         System.out.println(" 1. Show all item.");
-        System.out.println(" 2. Add new item.");
-        System.out.println(" 3. Search item by id.");
-        System.out.println(" 4. Search item by name.");
-        System.out.println(" 5. Search item by description.");
-        System.out.println(" 6. Remove item by id.");
-        System.out.println(" 7. Update item by id.");
-        System.out.println(" 8. Add comment by id.");
-        System.out.println(" 9. Exit.");
+        System.out.println(" 2. Add new item. ");
+        System.out.println(" 3. Search item by id. ");
+        System.out.println(" 4. Search item by name. ");
+        System.out.println(" 5. Search item by description. ");
+        System.out.println(" 6. Remove item by id. ");
+        System.out.println(" 7. Update item by id. ");
+        System.out.println(" 8. Add comment by id. ");
+        System.out.println(" 9. Exit. ");
         System.out.println(" ---------------------------------------------------------------------------");
     }
 
