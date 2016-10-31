@@ -25,7 +25,7 @@ public class MenuTracker {
             return 0;
         }
 
-        public void execute(Input input, Tracker tracker) {
+        public void execute(Input input, Tracker track) {
             String name = input.ask(" Input name: ");
             String desc = input.ask(" Input desc: ");
             track.addItem(new Item(name, desc,  new Date().getTime()));
