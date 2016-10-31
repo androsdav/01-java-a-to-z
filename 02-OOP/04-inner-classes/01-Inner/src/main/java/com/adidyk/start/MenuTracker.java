@@ -15,11 +15,23 @@ public class MenuTracker {
         this.track = track;
     }
 
-    public void init() {
-
+    public void fillAction() {
+        this.actions[0] = new AddItem();
     }
 
-    private class addItem implements UserAction {
+    public void select(int key) {
+        this.actions[key].execute(this.input, this.track);
+    }
+
+    public void show() {
+        for (UserAction action: this.actions) {
+            if (action != null) {
+                System.out.println(action.info());
+            }
+        }
+    }
+
+    private class AddItem implements UserAction {
 
         public int key() {
             return 0;
@@ -36,6 +48,8 @@ public class MenuTracker {
         }
 
     }
+
+
 
 
 }
