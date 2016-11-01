@@ -21,6 +21,7 @@ public class MenuTracker {
         this.actions[1] = new ShowAllItem();
         this.actions[2] = new SearchItemById();
         this.actions[3] = new SearchItemByName();
+        this.actions[4] = new SearchItemByDescription();
 //        System.out.println(this.actions[0]);
     }
 
@@ -134,6 +135,32 @@ public class MenuTracker {
         }
     }
 
+    // class SearchItemByDescription, key = 4
+    private class SearchItemByDescription implements UserAction {
+        // key = 4
+        public int key() {
+            return 4;
+        }
+        // execute - search item by description, key = 4
+        public void execute(Input input, Tracker track) {
+            String desc = input.ask(" Input description: ");
+            //Item[] result = track.getAllItem();
+            for (Item item : track.getAllItem()) {
+                if (item != null && item.getDescription().contains(desc)) {
+                    System.out.println(item.toString());
+                    for (Comment comm : item.getAllComment()) {
+                        if (comm != null) {
+                            System.out.println("   - [comm]: " + comm.getComment());
+                        }
+                    }
+                }
+            }
+        }
+        // info - menu item " Search item by description."
+        public String info() {
+            return String.format(" %s%s%s", this.key(), ".", " Search item by name.");
+        }
+    }
 
 
 
