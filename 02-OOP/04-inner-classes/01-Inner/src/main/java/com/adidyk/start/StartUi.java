@@ -8,18 +8,17 @@ public class StartUi {
 
     private StartUi(Input input) {
         this.input = input;
-       // this.track = new Tracker();
+        this.track = new Tracker();
        // this.flagExit = true;
     }
 
     // init - initialization and start method workItem
     private void init() {
-        Tracker track = new Tracker();
-        MenuTracker menu = new MenuTracker(this.input, track);
+        MenuTracker menu = new MenuTracker(this.input, this.track);
         menu.fillAction();
         do {
             menu.show();
-            int key = Integer.valueOf(input.ask("Select :"));
+            int key = Integer.valueOf(input.ask(" Choose key:"));
             menu.select(key);
         } while(! "y".equals(this.input.ask("Exit ? y")));
 //        descriptionItem();
