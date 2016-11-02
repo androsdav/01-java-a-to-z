@@ -4,12 +4,12 @@ public class StartUi {
 
     private Input input;
     private Tracker track;
-    private boolean flagExit;
+    //private boolean flagExit;
 
     private StartUi(Input input) {
         this.input = input;
         this.track = new Tracker();
-        this.flagExit = true;
+      //  this.flagExit = true;
     }
 
     // init - initialization and start method workItem
@@ -17,12 +17,13 @@ public class StartUi {
         MenuTracker menu = new MenuTracker(this.input, this.track);
         menu.fillAction();
 
-        int key;
-        do {
+        //int key;
+        while(true) {
             menu.show();
-            key = Integer.valueOf(input.ask(" Choose key: "));
+            int key = Integer.valueOf(input.ask(" Choose key: "));
             menu.select(key);
-        } while (key != 9);
+            if (key == 9) break;
+        } //while (key != 9);
         // menu.show();
         // int key = Integer.valueOf(input.ask(" Choose key: "));
         // menu.select(key);
