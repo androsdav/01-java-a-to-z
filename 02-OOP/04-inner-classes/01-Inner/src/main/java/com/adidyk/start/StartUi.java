@@ -9,22 +9,33 @@ public class StartUi {
     private StartUi(Input input) {
         this.input = input;
         this.track = new Tracker();
-       // this.flagExit = true;
+        this.flagExit = true;
     }
 
     // init - initialization and start method workItem
     private void init() {
         MenuTracker menu = new MenuTracker(this.input, this.track);
         menu.fillAction();
+
+        int key;
         do {
             menu.show();
-            int key = Integer.valueOf(input.ask(" Choose key:"));
+            key = Integer.valueOf(input.ask(" Choose key: "));
             menu.select(key);
-        } while(! "y".equals(this.input.ask("Exit ? y")));
+        } while (key != 9);
+        // menu.show();
+        // int key = Integer.valueOf(input.ask(" Choose key: "));
+        // menu.select(key);
+    }
+    //    do {
+    //        menu.show();
+    //        int key = Integer.valueOf(input.ask(" Choose key:"));
+    //        menu.select(key);
+    //    } while(! "y".equals(this.input.ask("Exit ? y")));
 //        descriptionItem();
 //        addItemDefault();
 //        workItem();
-    }
+
 
     // main - just main :)
     public static void main(String[] args) {

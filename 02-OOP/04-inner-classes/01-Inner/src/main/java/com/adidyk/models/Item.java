@@ -59,8 +59,8 @@ public class Item {
             }
         }
         int length = 0;
-        for (int index = 0; index < this.comment.length; index++) {
-            if(this.comment[index] != null) {
+        for (Comment comm : this.comment) {
+            if (comm != null) {
                 length++;
             }
         }

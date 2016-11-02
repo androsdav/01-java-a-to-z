@@ -25,13 +25,15 @@ public class MenuTracker {
         this.actions[5] = new RemoveItemById();
         this.actions[6] = new UpdateItemById();
         this.actions[7] = new AddCommentById();
+        this.actions[8] = new Exit();
     }
 
     public void select(int key) {
-        this.actions[key].execute(this.input, this.track);
+        this.actions[key - 1].execute(this.input, this.track);
     }
 
     public void show() {
+        System.out.println("");
         System.out.println(" ------------------------------Tracker Menu --------------------------------");
         for (UserAction action: this.actions) {
             if (action != null) {
@@ -45,7 +47,7 @@ public class MenuTracker {
     private class AddItem implements UserAction {
         // key = 0
         public int key() {
-            return 0;
+            return 1;
         }
         // execute - add new item, key = 0
         public void execute(Input input, Tracker track) {
@@ -63,7 +65,7 @@ public class MenuTracker {
     private class ShowAllItem implements UserAction {
         // key = 1
         public int key() {
-            return 1;
+            return 2;
         }
         // execute - show all item, key = 1
         public void execute(Input input, Tracker track) {
@@ -88,9 +90,9 @@ public class MenuTracker {
     private class SearchItemById implements UserAction {
         // key = 2
         public int key() {
-            return 2;
+            return 3;
         }
-        // execute - search item by id, key = 3
+        // execute - search item by id, key = 2
         public void execute(Input input, Tracker track) {
             String id = input.ask(" Input id: ");
             Item item = track.searchItemById(id);
@@ -115,7 +117,7 @@ public class MenuTracker {
     private class SearchItemByName implements UserAction {
         // key = 3
         public int key() {
-            return 3;
+            return 4;
         }
         // execute - search item by name, key = 3
         public void execute(Input input, Tracker track) {
@@ -141,7 +143,7 @@ public class MenuTracker {
     private class SearchItemByDescription implements UserAction {
         // key = 4
         public int key() {
-            return 4;
+            return 5;
         }
         // execute - search item by description, key = 4
         public void execute(Input input, Tracker track) {
@@ -168,7 +170,7 @@ public class MenuTracker {
     private class RemoveItemById implements UserAction {
         // key = 5
         public int key() {
-            return 5;
+            return 6;
         }
         // execute - remove item by id, key = 5
         public void execute(Input input, Tracker track) {
@@ -185,7 +187,7 @@ public class MenuTracker {
     private class UpdateItemById implements UserAction {
         // key = 6
         public int key() {
-            return 6;
+            return 7;
         }
         // execute - update item by id, key = 6
         public void execute(Input input, Tracker track) {
@@ -214,7 +216,7 @@ public class MenuTracker {
     private class AddCommentById implements UserAction {
         // key = 7
         public int key() {
-            return 7;
+            return 8;
         }
         // execute - add comment by id, key = 7
         public void execute(Input input, Tracker track) {
@@ -225,6 +227,21 @@ public class MenuTracker {
         // info - menu item " Add comment by id."
         public String info() {
             return String.format(" %s%s%s", this.key(), ".", " Add comment by id.");
+        }
+    }
+
+    // class AddCommentById, key = 8
+    private class Exit implements UserAction {
+        // key = 7
+        public int key() {
+            return 9;
+        }
+        // execute - add comment by id, key = 7
+        public void execute(Input input, Tracker track) {
+        }
+        // info - menu item " Add comment by id."
+        public String info() {
+            return String.format(" %s%s%s", this.key(), ".", " Exit.");
         }
     }
 
