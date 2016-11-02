@@ -22,7 +22,7 @@ public class MenuTracker {
         this.actions[2] = new SearchItemById();
         this.actions[3] = new SearchItemByName();
         this.actions[4] = new SearchItemByDescription();
-//        System.out.println(this.actions[0]);
+        this.actions[5] = new RemoveItemById();
     }
 
     public void select(int key) {
@@ -161,7 +161,22 @@ public class MenuTracker {
             return String.format(" %s%s%s", this.key(), ".", " Search item by name.");
         }
     }
-
+    // class RemoveItemById, key = 5
+    private class RemoveItemById implements UserAction {
+        // key = 5
+        public int key() {
+            return 5;
+        }
+        // execute - remove item by id, key = 5
+        public void execute(Input input, Tracker track) {
+            String id = input.ask(" Input id: ");
+            track.removeItemById(id);
+        }
+        // info - menu item " Remove item by id."
+        public String info() {
+            return String.format(" %s%s%s", this.key(), ".", " Remove item by id.");
+        }
+    }
 
 
 }
