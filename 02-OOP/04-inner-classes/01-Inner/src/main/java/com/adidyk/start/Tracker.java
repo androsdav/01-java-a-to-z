@@ -18,8 +18,8 @@ public class Tracker {
 			}
 		}
 		int length = 0;
-		for	(int index = 0; index < this.item.length; index++) {
-			if(this.item[index] != null) {
+		for (Item anItem : this.item) {
+			if (anItem != null) {
 				length++;
 			}
 		}
@@ -70,16 +70,16 @@ public class Tracker {
 
 	// addCommentById - add comment in item by id
 	protected void addCommentById(String id, Comment comment) {
-		for (int index = 0; index < this.item.length; index++)
-			if (this.item[index] != null && this.item[index].getId().equals(id)) {
-				this.item[index].addComment(comment);
+		for (Item item : this.item)
+			if (item != null && item.getId().equals(id)) {
+				item.addComment(comment);
 				break;
 			}
 	}
 
 	// generateId - generate id for item
-	String generateId() {
-		return String.valueOf(System.currentTimeMillis() + this.RN.nextInt());
+	private String generateId() {
+		return String.valueOf(System.currentTimeMillis() + RN.nextInt());
 	}
 
 }
