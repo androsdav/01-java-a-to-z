@@ -9,7 +9,7 @@ public class MenuTracker {
 
     private Input input;
     private Tracker track;
-    private UserAction[] actions = new UserAction[5];
+    private UserAction[] actions = new UserAction[6];
 
     public MenuTracker(Input input, Tracker track) {
         this.input = input;
