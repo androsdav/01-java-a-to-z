@@ -9,7 +9,7 @@ public class MenuTracker {
 
     private Input input;
     private Tracker track;
-    private UserAction[] actions = new UserAction[6];
+    private UserAction[] actions = new UserAction[10];
 
     public MenuTracker(Input input, Tracker track) {
         this.input = input;
@@ -23,6 +23,7 @@ public class MenuTracker {
         this.actions[3] = new SearchItemByName();
         this.actions[4] = new SearchItemByDescription();
         this.actions[5] = new RemoveItemById();
+        this.actions[6] = new UpdateItemById();
     }
 
     public void select(int key) {
@@ -161,6 +162,7 @@ public class MenuTracker {
             return String.format(" %s%s%s", this.key(), ".", " Search item by name.");
         }
     }
+
     // class RemoveItemById, key = 5
     private class RemoveItemById implements UserAction {
         // key = 5
@@ -172,11 +174,41 @@ public class MenuTracker {
             String id = input.ask(" Input id: ");
             track.removeItemById(id);
         }
-        // info - menu item " Remove item by id."
+        // info - menu item " Update item by id."
+        public String info() {
+            return String.format(" %s%s%s", this.key(), ".", " Update item by id.");
+        }
+    }
+
+    // class UpdateItemById, key = 6
+    private class UpdateItemById implements UserAction {
+        // key = 6
+        public int key() {
+            return 6;
+        }
+        // execute - update item by id, key = 6
+        public void execute(Input input, Tracker track) {
+            String id = input.ask(" Input id: ");
+            String name = input.ask(" Input new name item: ");
+            String description = input.ask(" Input new description: ");
+            long create = new Date().getTime();
+            Item item = new Item(name, description, create);
+            item.setId(id);
+            Item result = track.searchItemById(id);
+            track.updateItemById(item);
+            Comment[] comment = result.getAllComment();
+            for (Comment comm : comment) {
+                if (comm != null) {
+                    track.addCommentById(id, comm);
+                }
+            }
+        }
+        // info - menu item " Update item by id."
         public String info() {
             return String.format(" %s%s%s", this.key(), ".", " Remove item by id.");
         }
     }
+
 
 
 }
