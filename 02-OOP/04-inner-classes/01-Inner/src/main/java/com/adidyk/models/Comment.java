@@ -14,4 +14,9 @@ public class Comment {
     public String getComment() {
         return this.comment;
     }
+
+    @Override
+    public String toString() {
+        return ("   - [comm]: " + getComment());
+    }
 }

@@ -72,7 +72,7 @@ public class MenuTracker {
                     System.out.println(item.toString());
                     for (Comment comm : item.getAllComment()) {
                         if (comm != null) {
-                            System.out.println("- [comm]: " +comm.getComment());
+                            System.out.println(comm.toString());
                         }
                     }
                 }
@@ -98,7 +98,7 @@ public class MenuTracker {
                 System.out.println(item.toString());
                 for (Comment comm : item.getAllComment()) {
                     if (comm != null) {
-                        System.out.println("   - [comm]: " + comm.getComment());
+                        System.out.println(comm.toString());
                     }
                 }
             } else {
@@ -125,7 +125,7 @@ public class MenuTracker {
                     System.out.println(item.toString());
                     for (Comment comm : item.getAllComment()) {
                         if (comm != null) {
-                            System.out.println("   - [comm]: " + comm.getComment());
+                            System.out.println(comm.toString());
                         }
                     }
                 }
@@ -152,7 +152,7 @@ public class MenuTracker {
                     System.out.println(item.toString());
                     for (Comment comm : item.getAllComment()) {
                         if (comm != null) {
-                            System.out.println("   - [comm]: " + comm.getComment());
+                            System.out.println(comm.toString());
                         }
                     }
                 }
