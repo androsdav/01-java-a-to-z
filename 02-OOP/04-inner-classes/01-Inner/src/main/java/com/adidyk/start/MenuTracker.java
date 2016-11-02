@@ -24,6 +24,7 @@ public class MenuTracker {
         this.actions[4] = new SearchItemByDescription();
         this.actions[5] = new RemoveItemById();
         this.actions[6] = new UpdateItemById();
+        this.actions[7] = new AddCommentById();
     }
 
     public void select(int key) {
@@ -176,7 +177,7 @@ public class MenuTracker {
         }
         // info - menu item " Update item by id."
         public String info() {
-            return String.format(" %s%s%s", this.key(), ".", " Update item by id.");
+            return String.format(" %s%s%s", this.key(), ".", " Remove item by id.");
         }
     }
 
@@ -205,10 +206,26 @@ public class MenuTracker {
         }
         // info - menu item " Update item by id."
         public String info() {
-            return String.format(" %s%s%s", this.key(), ".", " Remove item by id.");
+            return String.format(" %s%s%s", this.key(), ".", " Update item by id.");
         }
     }
 
-
+    // class AddCommentById, key = 7
+    private class AddCommentById implements UserAction {
+        // key = 7
+        public int key() {
+            return 7;
+        }
+        // execute - add comment by id, key = 7
+        public void execute(Input input, Tracker track) {
+            String id = input.ask(" Input id: ");
+            Comment comment = new Comment(input.ask(" Input comment: "));
+            track.addCommentById(id, comment);
+        }
+        // info - menu item " Add comment by id."
+        public String info() {
+            return String.format(" %s%s%s", this.key(), ".", " Add comment by id.");
+        }
+    }
 
 }
