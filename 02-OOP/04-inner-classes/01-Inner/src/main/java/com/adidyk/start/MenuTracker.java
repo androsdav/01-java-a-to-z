@@ -17,8 +17,8 @@ public class MenuTracker {
     }
 
     public void fillAction() {
-        this.actions[0] = new AddItem();
-        this.actions[1] = new ShowAllItem();
+        this.actions[0] = new ShowAllItem();
+        this.actions[1] = new AddItem();
         this.actions[2] = new SearchItemById();
         this.actions[3] = new SearchItemByName();
         this.actions[4] = new SearchItemByDescription();
@@ -43,29 +43,11 @@ public class MenuTracker {
         System.out.println(" ---------------------------------------------------------------------------");
     }
 
-    // class AddItem,  key = 0
-    private class AddItem implements UserAction {
-        // key = 0
-        public int key() {
-            return 1;
-        }
-        // execute - add new item, key = 0
-        public void execute(Input input, Tracker track) {
-            String name = input.ask(" Input name item: ");
-            String desc = input.ask(" Input desc item: ");
-            track.addItem(new Item(name, desc,  new Date().getTime()));
-        }
-        // info - Add new item
-        public String info() {
-            return String.format(" %s%s%s", this.key(), ".", " Add new item.");
-        }
-    }
-
     // class ShowAllItem, key = 1
     private class ShowAllItem implements UserAction {
         // key = 1
         public int key() {
-            return 2;
+            return 1;
         }
         // execute - show all item, key = 1
         public void execute(Input input, Tracker track) {
@@ -83,6 +65,24 @@ public class MenuTracker {
         // info - menu item " Show all item."
         public String info() {
             return String.format(" %s%s%s", this.key(), ".", " Show all item.");
+        }
+    }
+
+    // class AddItem,  key = 0
+    private class AddItem implements UserAction {
+        // key = 0
+        public int key() {
+            return 2;
+        }
+        // execute - add new item, key = 0
+        public void execute(Input input, Tracker track) {
+            String name = input.ask(" Input name item: ");
+            String desc = input.ask(" Input desc item: ");
+            track.addItem(new Item(name, desc,  new Date().getTime()));
+        }
+        // info - Add new item
+        public String info() {
+            return String.format(" %s%s%s", this.key(), ".", " Add new item.");
         }
     }
 
