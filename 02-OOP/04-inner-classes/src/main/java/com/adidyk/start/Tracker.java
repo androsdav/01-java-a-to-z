@@ -9,7 +9,7 @@ public class Tracker {
 	private static final Random RN = new Random();
 
 	// addItem - add new item in []item
-	protected Item addItem(Item item) {
+	public Item addItem(Item item) {
 		for (int index = 0; index < this.item.length; index++) {
 			if (this.item[index] == null) {
 				item.setId(this.generateId());
@@ -32,12 +32,12 @@ public class Tracker {
 	}
 
 	// getAllItem - return all []item
-	protected Item[] getAllItem() {
+	public Item[] getAllItem() {
 		return this.item;
 	}
 
 	// searchItemById - search item by id in []item
-	protected Item searchItemById(String id) {
+	public Item searchItemById(String id) {
 		Item result = null;
 		for (Item item : this.item) {
 			if (item != null && item.getId().equals(id)) {

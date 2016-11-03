@@ -2,6 +2,7 @@ package com.adidyk.start;
 
 import com.adidyk.models.Item;
 import java.util.Date;
+import static java.lang.Integer.valueOf;
 
 public class StartUi {
 
@@ -23,7 +24,7 @@ public class StartUi {
         menu.fillAction();
         while(true) {
             menu.show();
-            int key = Integer.valueOf(input.ask(" Choose key: "));
+            int key = valueOf(input.ask(" Choose key: "));
             menu.select(key);
             if (key == 9) break;
         }

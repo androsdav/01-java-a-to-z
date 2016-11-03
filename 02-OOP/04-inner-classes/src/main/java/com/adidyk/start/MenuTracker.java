@@ -11,7 +11,7 @@ class MenuTracker {
     private Tracker track;
     private UserAction[] actions = new UserAction[10];
 
-    private MenuTracker(Input input, Tracker track) {
+    MenuTracker(Input input, Tracker track) {
         this.input = input;
         this.track = track;
     }
