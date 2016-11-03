@@ -3,13 +3,13 @@ package com.adidyk.start;
 import com.adidyk.models.*;
 import java.util.*;
 
-public class Tracker {
+class Tracker {
 
 	private Item[] item = new Item[1];
 	private static final Random RN = new Random();
 
 	// addItem - add new item in []item
-	public Item addItem(Item item) {
+	Item addItem(Item item) {
 		for (int index = 0; index < this.item.length; index++) {
 			if (this.item[index] == null) {
 				item.setId(this.generateId());
@@ -32,12 +32,12 @@ public class Tracker {
 	}
 
 	// getAllItem - return all []item
-	public Item[] getAllItem() {
+	Item[] getAllItem() {
 		return this.item;
 	}
 
 	// searchItemById - search item by id in []item
-	public Item searchItemById(String id) {
+	Item searchItemById(String id) {
 		Item result = null;
 		for (Item item : this.item) {
 			if (item != null && item.getId().equals(id)) {
@@ -49,7 +49,7 @@ public class Tracker {
 	}
 
 	// deleteItem - delete item by id in []item
-	protected void removeItemById(String id) {
+	void removeItemById(String id) {
 		for (int index = 0; index < this.item.length; index++ ) {
 			if (this.item[index] != null && this.item[index].getId().equals(id)) {
 				this.item[index] = null;
@@ -59,7 +59,7 @@ public class Tracker {
 	}
 
 	// updateItemById - update name, description, create in item by id
-	protected void updateItemById(Item item) {
+	void updateItemById(Item item) {
 		for (int index = 0; index < this.item.length; index++) {
 			if (this.item[index] != null && this.item[index].getId().equals(item.getId())) {
 				this.item[index] = item;
@@ -69,7 +69,7 @@ public class Tracker {
 	}
 
 	// addCommentById - add comment in item by id
-	protected void addCommentById(String id, Comment comment) {
+	void addCommentById(String id, Comment comment) {
 		for (Item item : this.item)
 			if (item != null && item.getId().equals(id)) {
 				item.addComment(comment);
