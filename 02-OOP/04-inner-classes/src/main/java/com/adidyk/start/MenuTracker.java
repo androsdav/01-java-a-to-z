@@ -9,7 +9,7 @@ class MenuTracker {
 
     private Input input;
     private Tracker track;
-    private UserAction[] actions = new UserAction[10];
+    private UserAction[] actions = new UserAction[9];
 
     MenuTracker(Input input, Tracker track) {
         this.input = input;
@@ -74,13 +74,13 @@ class MenuTracker {
         public int key() {
             return 2;
         }
-        // execute - add new item, key = 0
+        // execute - add new item, key = 2
         public void execute(Input input, Tracker track) {
             String name = input.ask(" Input name item: ");
             String desc = input.ask(" Input description item: ");
             track.addItem(new Item(name, desc,  new Date().getTime()));
         }
-        // info - Add new item
+        // info - menu item " Add new item."
         public String info() {
             return String.format(" %s%s%s", this.key(), ".", " Add new item.");
         }
@@ -119,7 +119,7 @@ class MenuTracker {
         public int key() {
             return 4;
         }
-        // execute - search item by name, key = 3
+        // execute - search item by name, key = 4
         public void execute(Input input, Tracker track) {
             String name = input.ask(" Input name: ");
             for (Item item : track.getAllItem()) {
@@ -145,10 +145,9 @@ class MenuTracker {
         public int key() {
             return 5;
         }
-        // execute - search item by description, key = 4
+        // execute - search item by description, key = 5
         public void execute(Input input, Tracker track) {
             String desc = input.ask(" Input description: ");
-            //Item[] result = track.getAllItem();
             for (Item item : track.getAllItem()) {
                 if (item != null && item.getDescription().contains(desc)) {
                     System.out.println(item.toString());
@@ -172,12 +171,12 @@ class MenuTracker {
         public int key() {
             return 6;
         }
-        // execute - remove item by id, key = 5
+        // execute - remove item by id, key = 6
         public void execute(Input input, Tracker track) {
             String id = input.ask(" Input id: ");
             track.removeItemById(id);
         }
-        // info - menu item " Update item by id."
+        // info - menu item " Remove item by id."
         public String info() {
             return String.format(" %s%s%s", this.key(), ".", " Remove item by id.");
         }
@@ -218,7 +217,7 @@ class MenuTracker {
         public int key() {
             return 8;
         }
-        // execute - add comment by id, key = 7
+        // execute - add comment by id, key = 8
         public void execute(Input input, Tracker track) {
             String id = input.ask(" Input id: ");
             Comment comment = new Comment(input.ask(" Input comment: "));
@@ -236,10 +235,10 @@ class MenuTracker {
         public int key() {
             return 9;
         }
-        // execute - add comment by id, key = 7
+        // execute - exit, key = 9
         public void execute(Input input, Tracker track) {
         }
-        // info - menu item " Add comment by id."
+        // info - menu item " Exit."
         public String info() {
             return String.format(" %s%s%s", this.key(), ".", " Exit.");
         }
