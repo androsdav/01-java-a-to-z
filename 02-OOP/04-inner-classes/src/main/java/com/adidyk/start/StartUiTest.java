@@ -44,7 +44,7 @@ public class StartUiTest {
                 "5", "desc2",                       // 5. Search item by description.  (SearchItemByDescription)
                 "6", "8888", "1",                   // 6. Remove item by id.           (RemoveItemById and ShowAllItem)
                 "7", "9999", "task6", "desc6", "1", // 7. Update item by id.           (UpdateItemById and ShowAllItem)
-                "8", "9999", "comm1", "1",          // 8. Add comment by id.           (addCommentById and showAllItem)
+                "8", "9999", "comm1", "1",          // 8. Add comment by id.           (AddCommentById and ShowAllItem)
                 "9"});                              // 9. Exit.
         new StartUiTest(input).init();
     }
