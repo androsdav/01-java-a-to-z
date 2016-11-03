@@ -5,18 +5,18 @@ import com.adidyk.models.Item;
 
 import java.util.Date;
 
-public class MenuTracker {
+class MenuTracker {
 
     private Input input;
     private Tracker track;
     private UserAction[] actions = new UserAction[10];
 
-    public MenuTracker(Input input, Tracker track) {
+    private MenuTracker(Input input, Tracker track) {
         this.input = input;
         this.track = track;
     }
 
-    public void fillAction() {
+    void fillAction() {
         this.actions[0] = new ShowAllItem();
         this.actions[1] = new AddItem();
         this.actions[2] = new SearchItemById();
@@ -28,11 +28,11 @@ public class MenuTracker {
         this.actions[8] = new Exit();
     }
 
-    public void select(int key) {
+    void select(int key) {
         this.actions[key - 1].execute(this.input, this.track);
     }
 
-    public void show() {
+    void show() {
         System.out.println("");
         System.out.println(" ------------------------------Tracker Menu --------------------------------");
         for (UserAction action: this.actions) {
@@ -68,9 +68,9 @@ public class MenuTracker {
         }
     }
 
-    // class AddItem,  key = 0
+    // class AddItem,  key = 2
     private class AddItem implements UserAction {
-        // key = 0
+        // key = 2
         public int key() {
             return 2;
         }
@@ -86,13 +86,13 @@ public class MenuTracker {
         }
     }
 
-    // class SearchItemById, key = 2
+    // class SearchItemById, key = 3
     private class SearchItemById implements UserAction {
-        // key = 2
+        // key = 3
         public int key() {
             return 3;
         }
-        // execute - search item by id, key = 2
+        // execute - search item by id, key = 3
         public void execute(Input input, Tracker track) {
             String id = input.ask(" Input id: ");
             Item item = track.searchItemById(id);
@@ -113,9 +113,9 @@ public class MenuTracker {
         }
     }
 
-    // class SearchItemByName, key = 3
+    // class SearchItemByName, key = 4
     private class SearchItemByName implements UserAction {
-        // key = 3
+        // key = 4
         public int key() {
             return 4;
         }
@@ -139,9 +139,9 @@ public class MenuTracker {
         }
     }
 
-    // class SearchItemByDescription, key = 4
+    // class SearchItemByDescription, key = 5
     private class SearchItemByDescription implements UserAction {
-        // key = 4
+        // key = 5
         public int key() {
             return 5;
         }
@@ -166,9 +166,9 @@ public class MenuTracker {
         }
     }
 
-    // class RemoveItemById, key = 5
+    // class RemoveItemById, key = 6
     private class RemoveItemById implements UserAction {
-        // key = 5
+        // key = 6
         public int key() {
             return 6;
         }
@@ -183,13 +183,13 @@ public class MenuTracker {
         }
     }
 
-    // class UpdateItemById, key = 6
+    // class UpdateItemById, key = 7
     private class UpdateItemById implements UserAction {
-        // key = 6
+        // key = 7
         public int key() {
             return 7;
         }
-        // execute - update item by id, key = 6
+        // execute - update item by id, key = 7
         public void execute(Input input, Tracker track) {
             String id = input.ask(" Input id: ");
             String name = input.ask(" Input new name item: ");
@@ -212,9 +212,9 @@ public class MenuTracker {
         }
     }
 
-    // class AddCommentById, key = 7
+    // class AddCommentById, key = 8
     private class AddCommentById implements UserAction {
-        // key = 7
+        // key = 8
         public int key() {
             return 8;
         }
@@ -230,9 +230,9 @@ public class MenuTracker {
         }
     }
 
-    // class AddCommentById, key = 8
+    // class Exit, key = 9
     private class Exit implements UserAction {
-        // key = 7
+        // key = 9
         public int key() {
             return 9;
         }
@@ -244,7 +244,5 @@ public class MenuTracker {
             return String.format(" %s%s%s", this.key(), ".", " Exit.");
         }
     }
-
-    int a = 5;
 
 }
