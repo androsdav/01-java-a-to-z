@@ -22,7 +22,7 @@ public class StartUiTest {
         this.track.getAllItem()[3].setId("9999");
     }
 
-    // init - initialization and start method workItem
+    // init - initialization and start work
     private void init() {
         MenuTracker menu = new MenuTracker(this.input, this.track);
         menu.fillAction();
