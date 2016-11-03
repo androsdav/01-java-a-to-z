@@ -77,7 +77,7 @@ class MenuTracker {
         // execute - add new item, key = 0
         public void execute(Input input, Tracker track) {
             String name = input.ask(" Input name item: ");
-            String desc = input.ask(" Input desc item: ");
+            String desc = input.ask(" Input description item: ");
             track.addItem(new Item(name, desc,  new Date().getTime()));
         }
         // info - Add new item
@@ -162,7 +162,7 @@ class MenuTracker {
         }
         // info - menu item " Search item by description."
         public String info() {
-            return String.format(" %s%s%s", this.key(), ".", " Search item by name.");
+            return String.format(" %s%s%s", this.key(), ".", " Search item by description.");
         }
     }
 
