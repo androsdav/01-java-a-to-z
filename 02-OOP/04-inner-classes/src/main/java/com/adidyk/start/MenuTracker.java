@@ -201,7 +201,7 @@ class MenuTracker {
             Comment[] comment = result.getAllComment();
             for (Comment comm : comment) {
                 if (comm != null) {
-                    track.addCommentById(id, comm);
+                    item.addComment(comm);
                 }
             }
         }
@@ -221,7 +221,8 @@ class MenuTracker {
         public void execute(Input input, Tracker track) {
             String id = input.ask(" Input id: ");
             Comment comment = new Comment(input.ask(" Input comment: "));
-            track.addCommentById(id, comment);
+            Item item = track.searchItemById(id);
+            item.addComment(comment);
         }
         // info - menu item " Add comment by id."
         public String info() {

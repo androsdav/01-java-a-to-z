@@ -69,13 +69,13 @@ class Tracker {
 	}
 
 	// addCommentById - add comment in item by id
-	void addCommentById(String id, Comment comment) {
+	/*void addCommentById(String id, Comment comment) {
 		for (Item item : this.item)
 			if (item != null && item.getId().equals(id)) {
 				item.addComment(comment);
 				break;
 			}
-	}
+	}*/
 
 	// generateId - generate id for item
 	private String generateId() {
