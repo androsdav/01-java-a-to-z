@@ -81,32 +81,8 @@ public class TrackerTest {
 		assertThat(result, is(items));
 	}
 
-	@Test
-	public void addCommentByIdTest() {
-		Item item1 = new Item("task", "description", 1);
-		Item item2 = new Item("task", "description", 2);
-		Item item3 = new Item("task", "description", 3);
-		Item item4 = new Item("task", "description", 4);
-		Comment comment1 = new Comment("comment1");
-		Comment comment2 = new Comment("comment2");
-		Comment comment3 = new Comment("comment3");
-		Comment comment4 = new Comment("comment4");
-		Item[] items = {item1, item2, item3, item4};
-		Tracker track = new Tracker();
-		track.addItem(item1);
-		track.addItem(item2);
-		track.addItem(item3);
-		track.addItem(item4);
-		track.addCommentById(item1.getId(), comment1);
-		track.addCommentById(item1.getId(), comment2);
-		track.addCommentById(item1.getId(), comment3);
-		track.addCommentById(item4.getId(), comment4);
-		Item[] result = this.getAllItemWithoutNull(track.getAllItem());
-		assertThat(result, is(items));
-
-	}
 	// getAllItemWithoutNull - method return all []item without null
-	public Item[] getAllItemWithoutNull(Item[] resultAll) {
+	private Item[] getAllItemWithoutNull(Item[] resultAll) {
 		int length = 0;
 		for (Item item : resultAll) {
 			if (item != null) {
