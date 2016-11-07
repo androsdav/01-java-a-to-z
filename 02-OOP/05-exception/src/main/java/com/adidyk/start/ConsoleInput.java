@@ -19,7 +19,7 @@ public class ConsoleInput implements Input {
                 break;
             }
         }
-        return exist ? key : -10000;
+        return exist ? key : -6666;
     }
 
 }
