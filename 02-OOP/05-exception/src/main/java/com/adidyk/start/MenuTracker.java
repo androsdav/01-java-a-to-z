@@ -28,6 +28,14 @@ class MenuTracker {
         this.actions[8] = new Exit();
     }
 
+    public int[] getIndexActions() {
+        int [] range = new int[this.actions.length];
+        for (int index = 0; index < this.actions.length; index++) {
+            range[index] = index + 1;
+        }
+        return range;
+    }
+
     void select(int key) {
         this.actions[key - 1].execute(this.input, this.track);
     }

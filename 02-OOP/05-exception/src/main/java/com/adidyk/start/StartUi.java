@@ -24,7 +24,7 @@ public class StartUi {
         menu.fillAction();
         while(true) {
             menu.show();
-            int key = valueOf(input.ask(" Choose key: "));
+            int key = this.input.ask(" Choose key: ", menu.getIndexActions());
             menu.select(key);
             if (key == 9) break;
         }
@@ -32,7 +32,7 @@ public class StartUi {
 
     // main - just main :)
     public static void main(String[] args) {
-        Input input = new ConsoleInput();
+        Input input = new ValidateInput();
         new StartUi(input).init();
     }
 
