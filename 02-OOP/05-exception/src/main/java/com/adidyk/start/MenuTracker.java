@@ -16,7 +16,8 @@ class MenuTracker {
         this.track = track;
     }
 
-    void fillAction() {
+    // fillAction - array action
+    protected void fillAction() {
         this.actions[0] = new ShowAllItem();
         this.actions[1] = new AddItem();
         this.actions[2] = new SearchItemById();
@@ -28,19 +29,13 @@ class MenuTracker {
         this.actions[8] = new Exit();
     }
 
-    public int[] getIndexActions() {
-        int [] range = new int[this.actions.length];
-        for (int index = 0; index < this.actions.length; index++) {
-            range[index] = index + 1;
-        }
-        return range;
-    }
-
-    void select(int key) {
+    // select - select action
+    protected void select(int key) {
         this.actions[key - 1].execute(this.input, this.track);
     }
 
-    void show() {
+    // show - show all menu
+    protected void show() {
         System.out.println("");
         System.out.println(" ------------------------------Tracker Menu --------------------------------");
         for (UserAction action: this.actions) {
@@ -49,6 +44,15 @@ class MenuTracker {
             }
         }
         System.out.println(" ---------------------------------------------------------------------------");
+    }
+
+    // getIndexActions - get all index ranges key
+    protected int[] getIndexActions() {
+        int [] range = new int[this.actions.length];
+        for (int index = 0; index < this.actions.length; index++) {
+            range[index] = index + 1;
+        }
+        return range;
     }
 
     // class ShowAllItem, key = 1
