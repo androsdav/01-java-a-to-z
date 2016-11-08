@@ -112,7 +112,7 @@ class MenuTracker {
                     }
                 }
             } else {
-                System.out.println(" No result by id");
+                System.out.println(" Not result by id.");
             }
         }
         // info - menu item " Search item by id."

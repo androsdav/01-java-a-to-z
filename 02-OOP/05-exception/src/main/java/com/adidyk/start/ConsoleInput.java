@@ -19,7 +19,11 @@ public class ConsoleInput implements Input {
                 break;
             }
         }
-        return exist ? key : -6666;
+        if (exist) {
+            return key;
+        } else {
+            throw new MenuOutException(" Out of menu range. ");
+        }
     }
 
 }
