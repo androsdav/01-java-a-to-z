@@ -9,7 +9,7 @@ class Tracker {
 	private static final Random RN = new Random();
 
 	// addItem - add new item in []item
-	Item addItem(Item item) {
+	protected Item addItem(Item item) {
 		for (int index = 0; index < this.item.length; index++) {
 			if (this.item[index] == null) {
 				item.setId(this.generateId());
@@ -32,12 +32,12 @@ class Tracker {
 	}
 
 	// getAllItem - return all []item
-	Item[] getAllItem() {
+	protected Item[] getAllItem() {
 		return this.item;
 	}
 
 	// searchItemById - search item by id in []item
-	Item searchItemById(String id) {
+	protected Item searchItemById(String id) {
 		Item result = null;
 		for (Item item : this.item) {
 			if (item != null && item.getId().equals(id)) {
@@ -49,7 +49,7 @@ class Tracker {
 	}
 
 	// deleteItem - delete item by id in []item
-	void removeItemById(String id) {
+	protected void removeItemById(String id) {
 		for (int index = 0; index < this.item.length; index++ ) {
 			if (this.item[index] != null && this.item[index].getId().equals(id)) {
 				this.item[index] = null;
@@ -59,7 +59,7 @@ class Tracker {
 	}
 
 	// updateItemById - update name, description, create in item by id
-	void updateItemById(Item item) {
+	protected void updateItemById(Item item) {
 		for (int index = 0; index < this.item.length; index++) {
 			if (this.item[index] != null && this.item[index].getId().equals(item.getId())) {
 				this.item[index] = item;
@@ -69,7 +69,7 @@ class Tracker {
 	}
 
 	// addCommentById - add comment in item by id
-	void addCommentById(String id, Comment comment) {
+	protected void addCommentById(String id, Comment comment) {
 		for (Item item : this.item)
 			if (item != null && item.getId().equals(id)) {
 				item.addComment(comment);
