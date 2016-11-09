@@ -9,7 +9,7 @@ public class Item {
     private String description;
     private long create;
     private String id;
-    private Comment[] comment = new Comment[1];
+    private Comment[] comment = new Comment[10];
     private DateFormat dateFormat1 = new SimpleDateFormat("dd.MM.yy HH:mm");
 
 
