@@ -16,7 +16,6 @@ public class ValidateInput extends ConsoleInput {
             }
         } while (invalid);
         return value;
-
     }
 
 }

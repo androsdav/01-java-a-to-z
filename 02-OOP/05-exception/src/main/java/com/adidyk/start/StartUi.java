@@ -2,7 +2,6 @@ package com.adidyk.start;
 
 import com.adidyk.models.Item;
 import java.util.Date;
-import static java.lang.Integer.valueOf;
 
 public class StartUi {
 
