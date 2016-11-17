@@ -12,5 +12,6 @@
                   <module>03-polymorphism</module>
                   <module>04-inner-classes</module>
 		  <module>05-exception</module>
+		  <module>06-abstract</module>	
          </modules>
 </project>
