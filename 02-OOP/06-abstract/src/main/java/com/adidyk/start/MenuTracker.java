@@ -18,7 +18,7 @@ class MenuTracker {
 
     // fillAction - array action
     protected void fillAction() {
-        this.actions[0] = new ShowAllItem();
+        this.actions[0] = this.new ShowAllItem();
         this.actions[1] = new AddItem();
         this.actions[2] = new SearchItemById();
         this.actions[3] = new SearchItemByName();
