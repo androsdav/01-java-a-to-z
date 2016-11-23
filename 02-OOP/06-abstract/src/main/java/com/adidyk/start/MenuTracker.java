@@ -81,7 +81,7 @@ class MenuTracker {
 
     // class AddItem,  key = 2
     private class AddItem extends BaseAction {
-        public AddItem() {
+        AddItem() {
             super(" Add new item.");
         }
         // key = 2
@@ -94,10 +94,6 @@ class MenuTracker {
             String desc = input.ask(" Input description item: ");
             track.addItem(new Item(name, desc,  new Date().getTime()));
         }
-        // info - menu item " Add new item."
-       // public String info() {
-         //   return String.format(" %s%s%s", this.key(), ".", " Add new item.");
-        //}
     }
 
     // class SearchItemById, key = 3
@@ -124,14 +120,13 @@ class MenuTracker {
                 System.out.println(" Not result by id.");
             }
         }
-        // info - menu item " Search item by id."
-       // public String info() {
-       //     return String.format(" %s%s%s", this.key(), ".", " Search item by id.");
-       // }
     }
 
     // class SearchItemByName, key = 4
-    private class SearchItemByName implements UserAction {
+    private class SearchItemByName extends BaseAction {
+        SearchItemByName() {
+            super(" Search item by name.");
+        }
         // key = 4
         public int key() {
             return 4;
@@ -150,14 +145,13 @@ class MenuTracker {
                 }
             }
         }
-        // info - menu item " Search item by name."
-        public String info() {
-            return String.format(" %s%s%s", this.key(), ".", " Search item by name.");
-        }
     }
 
     // class SearchItemByDescription, key = 5
-    private class SearchItemByDescription implements UserAction {
+    private class SearchItemByDescription extends BaseAction {
+        SearchItemByDescription() {
+            super(" Search item by description.");
+        }
         // key = 5
         public int key() {
             return 5;
@@ -176,14 +170,13 @@ class MenuTracker {
                 }
             }
         }
-        // info - menu item " Search item by description."
-        public String info() {
-            return String.format(" %s%s%s", this.key(), ".", " Search item by description.");
-        }
     }
 
     // class RemoveItemById, key = 6
-    private class RemoveItemById implements UserAction {
+    private class RemoveItemById extends BaseAction {
+        RemoveItemById() {
+            super(" Remove item by id.");
+        }
         // key = 6
         public int key() {
             return 6;
@@ -193,14 +186,13 @@ class MenuTracker {
             String id = input.ask(" Input id: ");
             track.removeItemById(id);
         }
-        // info - menu item " Remove item by id."
-        public String info() {
-            return String.format(" %s%s%s", this.key(), ".", " Remove item by id.");
-        }
     }
 
     // class UpdateItemById, key = 7
-    private class UpdateItemById implements UserAction {
+    private class UpdateItemById extends BaseAction {
+        UpdateItemById() {
+            super(" Update item by id.");
+        }
         // key = 7
         public int key() {
             return 7;
@@ -222,14 +214,13 @@ class MenuTracker {
                 }
             }
         }
-        // info - menu item " Update item by id."
-        public String info() {
-            return String.format(" %s%s%s", this.key(), ".", " Update item by id.");
-        }
     }
 
     // class AddCommentById, key = 8
-    private class AddCommentById implements UserAction {
+    private class AddCommentById extends BaseAction {
+        AddCommentById() {
+            super(" Add comment by id.");
+        }
         // key = 8
         public int key() {
             return 8;
@@ -240,24 +231,19 @@ class MenuTracker {
             Comment comment = new Comment(input.ask(" Input comment: "));
             track.addCommentById(id, comment);
         }
-        // info - menu item " Add comment by id."
-        public String info() {
-            return String.format(" %s%s%s", this.key(), ".", " Add comment by id.");
-        }
     }
 
     // class Exit, key = 9
-    private class Exit implements UserAction {
+    private class Exit extends BaseAction {
+        Exit() {
+            super(" Exit.");
+        }
         // key = 9
         public int key() {
             return 9;
         }
         // execute - exit, key = 9
         public void execute(Input input, Tracker track) {
-        }
-        // info - menu item " Exit."
-        public String info() {
-            return String.format(" %s%s%s", this.key(), ".", " Exit.");
         }
     }
 
