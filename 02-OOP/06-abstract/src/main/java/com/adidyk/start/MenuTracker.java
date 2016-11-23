@@ -56,7 +56,10 @@ class MenuTracker {
     }
 
     // class ShowAllItem, key = 1
-    private class ShowAllItem implements UserAction {
+    private class ShowAllItem extends BaseAction {
+        public ShowAllItem() {
+            super(" Show all item.");
+        }
         // key = 1
         public int key() {
             return 1;
@@ -74,14 +77,13 @@ class MenuTracker {
                 }
             }
         }
-        // info - menu item " Show all item."
-        public String info() {
-            return String.format(" %s%s%s", this.key(), ".", " Show all item.");
-        }
     }
 
     // class AddItem,  key = 2
-    private class AddItem implements UserAction {
+    private class AddItem extends BaseAction {
+        public AddItem() {
+            super(" Add new item.");
+        }
         // key = 2
         public int key() {
             return 2;
@@ -93,13 +95,16 @@ class MenuTracker {
             track.addItem(new Item(name, desc,  new Date().getTime()));
         }
         // info - menu item " Add new item."
-        public String info() {
-            return String.format(" %s%s%s", this.key(), ".", " Add new item.");
-        }
+       // public String info() {
+         //   return String.format(" %s%s%s", this.key(), ".", " Add new item.");
+        //}
     }
 
     // class SearchItemById, key = 3
-    private class SearchItemById implements UserAction {
+    private class SearchItemById extends BaseAction {
+        SearchItemById() {
+            super(" Search item by id.");
+        }
         // key = 3
         public int key() {
             return 3;
@@ -120,9 +125,9 @@ class MenuTracker {
             }
         }
         // info - menu item " Search item by id."
-        public String info() {
-            return String.format(" %s%s%s", this.key(), ".", " Search item by id.");
-        }
+       // public String info() {
+       //     return String.format(" %s%s%s", this.key(), ".", " Search item by id.");
+       // }
     }
 
     // class SearchItemByName, key = 4
