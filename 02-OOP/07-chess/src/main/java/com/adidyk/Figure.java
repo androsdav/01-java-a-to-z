@@ -10,5 +10,13 @@ public abstract class Figure {
         this.position = position;
     }
 
+    public String getColor() {
+            return this.color;
+        }
+
+    public Cell getCell() {
+        return this.position;
+    }
+
 
 }
