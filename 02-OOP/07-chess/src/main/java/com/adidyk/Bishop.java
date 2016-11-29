@@ -2,38 +2,24 @@ package com.adidyk;
 
 public class Bishop extends Figure {
 
-    private String color;
-    private int line;
-    private int column;
+    //private String color;
+    //Cell cell;
 
-    public Bishop(String color, int line,int column) {
-        this.color = color;
-        this.line = line;
-        this.line = column;
+    public Bishop(String color, Cell cell) {
+        super(color, cell);
     }
 
-    public void setColor(String color) {
-        this.color = color;
-    }
+    //public void setColor(String color) {
+    //    this.color = color;
+    //}
 
-    public void setLine(int posX) {
-        this.line = posX;
-    }
+    //public String getColor() {
+    //    return this.color;
+    //}
 
-    public void setColumn(int posY) {
-        this.column = posY;
-    }
+    //public Cell getCell() {
+    //    return this.cell;
+    //}
 
-    public String getColor() {
-        return this.color;
-    }
-
-    public int getLine() {
-        return this.line;
-    }
-
-    public int getColumn() {
-        return this.column;
-    }
 
 }

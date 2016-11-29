@@ -3,13 +3,16 @@ package com.adidyk;
 public class StartUi {
 
     public static void main(String[] args) {
-        Pown pown = new Pown("black", 2, 2);
-        Bishop bishop = new Bishop("white", 3, 3);
+        //Pown pown = new Pown("black", 2, 2);
+        Bishop bishop = new Bishop("white", new Cell(3, 3));
+        bishop.getCell().setColumn(4);
+        bishop.getCell().setLine(8);
+        System.out.println(bishop.getColor() +" " +bishop.getCell().getLine() +" " +bishop.getCell().getColumn());
         //String color1 =  bishop.getColor();
-        System.out.println(bishop.getColor() +" " +bishop.getLine() +" " +bishop.getColumn());
-        System.out.println(pown.getColor() +" " +pown.getPosY() +" " +pown.getPosY());
+        //System.out.println(bishop.getColor() +" " +bishop.getLine() +" " +bishop.getColumn());
+        //System.out.println(pown.getColor() +" " +pown.getPosY() +" " +pown.getPosY());
 
-        Cell cell = new Cell();
+        /*Cell cell = new Cell();
         cell.setCell(2,4);
         boolean[][]array = cell.getCell();
         for (int i = 0; i < array.length; i++){
@@ -17,6 +20,6 @@ public class StartUi {
                 System.out.print(array[i][j]);
             }
             System.out.println();
-        }
+        }*/
     }
 }
