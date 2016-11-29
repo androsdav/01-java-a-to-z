@@ -18,7 +18,4 @@ public abstract class Figure {
         return this.position;
     }
 
-
-
-
 }
