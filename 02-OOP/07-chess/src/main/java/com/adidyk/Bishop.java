@@ -3,37 +3,37 @@ package com.adidyk;
 public class Bishop extends Figure {
 
     private String color;
-    private int posX;
-    private int posY;
+    private int line;
+    private int column;
 
-    public Bishop(String color, int posX,int posY) {
+    public Bishop(String color, int line,int column) {
         this.color = color;
-        this.posX = posX;
-        this.posY = posY;
+        this.line = line;
+        this.line = column;
     }
 
     public void setColor(String color) {
         this.color = color;
     }
 
-    public void setPosX(int posX) {
-        this.posX = posX;
+    public void setLine(int posX) {
+        this.line = posX;
     }
 
-    public void setPosY(int posY) {
-        this.posY = posY;
+    public void setColumn(int posY) {
+        this.column = posY;
     }
 
     public String getColor() {
         return this.color;
     }
 
-    public int getPosX() {
-        return this.posX;
+    public int getLine() {
+        return this.line;
     }
 
-    public int getPosY() {
-        return this.posY;
+    public int getColumn() {
+        return this.column;
     }
 
 }
