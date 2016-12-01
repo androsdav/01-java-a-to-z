@@ -2,20 +2,24 @@ package com.adidyk;
 
 public abstract class Figure {
 
-    String color;
-    Cell position;
+    public String color;
+    final Cell position;
 
     Figure(String color, Cell position) {
         this.color = color;
         this.position = position;
     }
-
+    // temp method
     public String getColor() {
             return this.color;
         }
-
+    // temp method
     public Cell getCell() {
         return this.position;
     }
+
+    abstract public void way(Cell dist);
+       // Cell[] args = new Cell[3]; Cell[]
+       // return ;
 
 }
