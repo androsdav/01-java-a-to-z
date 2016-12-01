@@ -18,7 +18,6 @@ public class Bishop extends Figure {
 
         if(endX < SIZE && endY < SIZE) {
             if ((endX - startY) == (endY - startY)) {
-
             } else {
                 System.out.println("Imposible Move Exception");
             }
