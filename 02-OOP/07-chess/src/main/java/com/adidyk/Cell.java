@@ -1,20 +1,20 @@
 package com.adidyk;
 
 public class Cell {
-    private int line;
-    private int column;
+    private int axisX;
+    private int axisY;
 
-    public Cell(int line, int column) {
-        this.line = line;
-        this.column = column;
+    public Cell(int axisX, int axisY) {
+        this.axisX = axisX;
+        this.axisY = axisY;
     }
 
-    public void setLine(int line) {
-        this.line = line;
+    public void setAxisX(int axisX) {
+        this.axisX = axisX;
     }
 
-    public void setColumn(int column) {
-        this.column = column;
+    public void setAxisY(int axisY) {
+        this.axisY = axisY;
     }
 
     public int getLine(){
