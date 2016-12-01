@@ -17,12 +17,12 @@ public class Cell {
         this.axisY = axisY;
     }
 
-    public int getLine(){
-        return this.line;
+    public int getAxisX(){
+        return this.axisX;
     }
 
-    public int getColumn() {
-        return this.column;
+    public int getAxisY() {
+        return this.axisY;
     }
 
 }

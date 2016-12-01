@@ -19,7 +19,5 @@ public abstract class Figure {
     }
 
     abstract public void way(Cell dist);
-       // Cell[] args = new Cell[3]; Cell[]
-       // return ;
 
 }
