@@ -2,8 +2,6 @@ package com.adidyk;
 
 public class Bishop extends Figure {
 
-    final public int SIZE = 9;
-
     public Bishop(String color, Cell cell) {
         super(color, cell);
     }
