@@ -6,7 +6,7 @@ public class StartUi {
 
        // Pown pown = new Pown("black", new Cell(1, 2));
         Bishop bishop = new Bishop("white", new Cell(3, 4));
-        Cell dist = new Cell(6, 7);
+        Cell dist = new Cell(6, 8);
         bishop.way(dist);
 
         //System.out.println(bishop.getClass().getSimpleName() +": " +bishop.getColor() +" " +bishop.getCell().getLine() +" " +bishop.getCell().getColumn());

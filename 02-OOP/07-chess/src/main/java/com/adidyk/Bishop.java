@@ -16,13 +16,10 @@ public class Bishop extends Figure {
         int endX = dist.getAxisX();
         int endY = dist.getAxisY();
 
-        if(endX < SIZE && endY < SIZE) {
-            if ((endX - startY) == (endY - startY)) {
-            } else {
-                System.out.println("Imposible Move Exception");
-            }
+        if ((endX - startX) == (endY - startY)) {
+            System.out.println("Move way");
         } else {
-            System.out.println("End position Isn`t correct end of position");
+            System.out.println("Imposible Move Exception");
         }
 
 
