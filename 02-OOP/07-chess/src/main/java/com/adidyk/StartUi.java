@@ -5,11 +5,17 @@ public class StartUi {
     public static void main(String[] args) {
 
        // Pown pown = new Pown("black", new Cell(1, 2));
-        Bishop bishop1 = new Bishop("white", new Cell(3, 4));
-        Bishop bishop2 = new Bishop("white", new Cell(1, 1));
-        Cell dist = new Cell(6, 7);
-        bishop1.way(dist);
-        bishop2.way(dist);
+        Bishop bishop1 = new Bishop("white", new Cell(3, 5));
+        //Bishop bishop2 = new Bishop("white", new Cell(7, 8));
+        Cell dist = new Cell(6, 8);
+        Cell[] way = bishop1.way(dist);
+        for (Cell cell : way) {
+            if(cell != null) {
+                System.out.println(cell.getAxisX() +" " +cell.getAxisY());
+            }
+
+        }
+        //bishop2.way(dist);
 
         //System.out.println(bishop.getClass().getSimpleName() +": " +bishop.getColor() +" " +bishop.getCell().getLine() +" " +bishop.getCell().getColumn());
        // System.out.println(pown.getClass().getSimpleName() +": " +pown.getColor() +" " +pown.getCell().getLine() +" " +pown.getCell().getColumn());

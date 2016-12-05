@@ -18,6 +18,6 @@ public abstract class Figure {
         return this.position;
     }
 
-    abstract public void way(Cell dist);
+    abstract public Cell[] way(Cell dist);
 
 }

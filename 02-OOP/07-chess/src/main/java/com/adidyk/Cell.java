@@ -9,6 +9,10 @@ public class Cell {
         this.axisY = axisY;
     }
 
+    public Cell() {
+
+    }
+
     public void setAxisX(int axisX) {
         this.axisX = axisX;
     }
