@@ -9,7 +9,6 @@ public class Bishop extends Figure {
     }
 
     @Override
-
     public Cell[] way(Cell dist) {
         int startX = getCell().getAxisX();
         int startY = getCell().getAxisY();

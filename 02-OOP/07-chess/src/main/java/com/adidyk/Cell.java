@@ -1,32 +1,28 @@
 package com.adidyk;
 
 public class Cell {
-    private int axisX;
-    private int axisY;
+    private int positionX;
+    private int positionY;
 
-    public Cell(int axisX, int axisY) {
-        this.axisX = axisX;
-        this.axisY = axisY;
+    public Cell(int positionX, int positionY) {
+        this.positionX = positionX;
+        this.positionY = positionY;
     }
 
-    public Cell() {
-
+    public void setPositionX(int positionX) {
+        this.positionX = positionX;
     }
 
-    public void setAxisX(int axisX) {
-        this.axisX = axisX;
+    public void setPositionY(int positionY) {
+        this.positionY = positionY;
     }
 
-    public void setAxisY(int axisY) {
-        this.axisY = axisY;
+    public int getPositionX(){
+        return this.positionX;
     }
 
-    public int getAxisX(){
-        return this.axisX;
-    }
-
-    public int getAxisY() {
-        return this.axisY;
+    public int getPositionY() {
+        return this.positionY;
     }
 
 }
