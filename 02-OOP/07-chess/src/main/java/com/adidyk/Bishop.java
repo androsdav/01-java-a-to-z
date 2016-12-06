@@ -9,30 +9,27 @@ public class Bishop extends Figure {
     }
 
     @Override
-    // Cell[]
+
     public Cell[] way(Cell dist) {
         int startX = getCell().getAxisX();
         int startY = getCell().getAxisY();
         int endX = dist.getAxisX();
         int endY = dist.getAxisY();
         Cell[] way = new Cell[abs(endX - startX) + 1];
+        int mark = 1;
 
-        if ((endX - startX) == (endY - startY)  && (endX - startX != 0)) {
-            System.out.println("Move go");
-            if (endX > startX) {
-                System.out.println("++");
-                for (int index = 0; index < way.length; index++) {
-                    int indexX = startX + index;
-                    int indexY = (indexX - startX)*(endY - startY)/(endX - startX) + startY;
-                    way[index] = new Cell(indexX, indexY);
-                }
-            } else {
-                System.out.println("--");
+        if (abs((endX - startX)) == abs(endY - startY)  && (endX - startX != 0)) {
+            System.out.println("Move go ++");
+            if (endX < startX) { mark = -1;}
+            System.out.println("++");
+            for (int index = 0; index < way.length; index++) {
+                int indexX = startX + index * mark;
+                int indexY = (indexX - startX)*(endY - startY)/(endX - startX) + startY;
+                way[index] = new Cell(indexX, indexY);
             }
         } else {
             System.out.println("Imposible Move Exception");
         }
-        System.out.println(endX +" " +endY +" " +startX +" " +startY);
         return way;
     }
 }
