@@ -21,7 +21,7 @@ public class Bishop extends Figure {
                 sign = -1;
             }
             for (int index = 0; index < highway.length; index++) {
-                int indexX = startX + index * sign;
+                int indexX = startX + sign * index;
                 int indexY = (indexX - startX)*(endY - startY)/(endX - startX) + startY;
                 highway[index] = new Cell(indexX, indexY);
             }
