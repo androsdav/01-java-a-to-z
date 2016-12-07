@@ -8,7 +8,7 @@ public class Bishop extends Figure {
         super(color, cell);
     }
 
-    @Override
+    /*@Override
     public Cell[] way(Cell dist) {
         int startX = getCell().getPositionX();
         int startY = getCell().getPositionY();
@@ -29,5 +29,5 @@ public class Bishop extends Figure {
             System.out.println("Imposible Move Exception");
         }
         return highway;
-    }
+    }*/
 }

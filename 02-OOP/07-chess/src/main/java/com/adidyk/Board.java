@@ -15,7 +15,7 @@ public class Board {
 
     public void removeFigure(Figure figure) {
         for(int index = 0; index < this.figures.length; index++) {
-            if(this.figures[index] != null && this.figures[index].getCell().getPositionX() == figure.getCell().getPositionX() ) {
+            if(this.figures[index] != null && this.figures[index].position.getPositionX() == figure.position.getPositionX() ) {
                 this.figures[index] = null;
                 break;
             }
@@ -24,8 +24,13 @@ public class Board {
 
 
     public void move(Cell source, Cell dist) {
-
         for(int index = 0; index < figures.length; index++) {
+            if((figures[index].getCell().getPositionX() == source.getPositionX() && figures[index].getCell().getPositionY() == source.getPositionY())) {
+                Cell[] hightway = figures[index].way(Cell dist);
+            } else {
+                System.out.println("FigureNotFoundException");
+            }
+
 
         }
 
