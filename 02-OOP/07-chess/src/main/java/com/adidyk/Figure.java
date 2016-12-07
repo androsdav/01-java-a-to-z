@@ -5,7 +5,7 @@ import static java.lang.Math.abs;
 public abstract class Figure {
 
     public String color;
-    final Cell position;
+    public Cell position;
 
     Figure(String color, Cell position) {
         this.color = color;
@@ -25,13 +25,13 @@ public abstract class Figure {
         int startY = this.position.getPositionY();
         int endX = dist.getPositionX();
         int endY = dist.getPositionY();
-        Cell[] highway = new Cell[abs(endX - startX) + 1];
+        Cell[] highway = new Cell[abs(endX - startX)];
         int sign = 1;
         if ((abs(endX - startX) == abs(endY - startY))  && ((endX - startX) != 0) && ((endY - startY) != 0)) {
             if (endX < startX) {
                 sign = -1;
             }
-            for (int index = 0; index < highway.length; index++) {
+            for (int index = 1; index < highway.length; index++) {
                 int indexX = startX + sign * index;
                 int indexY = (indexX - startX)*(endY - startY)/(endX - startX) + startY;
                 highway[index] = new Cell(indexX, indexY);
@@ -40,6 +40,11 @@ public abstract class Figure {
             System.out.println("Imposible Move Exception");
         }
         return highway;
+    }
+
+    public void clone(Cell dist) {
+        this.position = dist;
+
     }
 
 }

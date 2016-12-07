@@ -7,6 +7,8 @@ public class StartUi {
         //Figure bishop = new Bishop("black", new Cell(3,3));
         Board board = new Board();
         board.addFigure(new Bishop("black", new Cell(3, 4)));
+        board.addFigure(new Bishop("black", new Cell(3, 4)));
+        board.addFigure(new Bishop("black", new Cell(3, 4)));
 
 
        // Pown pown = new Pown("black", new Cell(1, 2));

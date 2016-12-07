@@ -13,26 +13,38 @@ public class Board {
         return figure;
     }
 
-    public void removeFigure(Figure figure) {
+/*    public void removeFigure(Figure figure) {
         for(int index = 0; index < this.figures.length; index++) {
             if(this.figures[index] != null && this.figures[index].position.getPositionX() == figure.position.getPositionX() ) {
                 this.figures[index] = null;
                 break;
             }
         }
-    }
-
+    }*/
 
     public void move(Cell source, Cell dist) {
-        for(int index = 0; index < figures.length; index++) {
-            if((figures[index].getCell().getPositionX() == source.getPositionX() && figures[index].getCell().getPositionY() == source.getPositionY())) {
-                Cell[] hightway = figures[index].way(Cell dist);
-            } else {
-                System.out.println("FigureNotFoundException");
+        //int pos = 0;
+        for(int index = 0; index < this.figures.length; index++) {
+            if(this.figures[index].position.getPositionX() == source.getPositionX() && this.figures[index].position.getPositionY() == source.getPositionY()) {
+
+                Cell[] highway = figures[index].way(dist);
+                boolean freeway = true;
+
+                for(int counter = 0; counter < highway.length; counter++) {
+                    for(int number = 0; number < this.figures.length; number++) {
+                        if(highway[counter].getPositionX() == this.figures[number].position.getPositionX() && highway[counter].getPositionY() == this.figures[number].position.getPositionY()) {
+                            freeway = false;
+                            System.out.println("OccupiedWayException");
+                            break;
+                        }
+                    }
+                }
+                if(freeway) {
+                    figures[index].clone(dist);
+                }
+                break;
             }
-
-
         }
-
     }
+
 }
