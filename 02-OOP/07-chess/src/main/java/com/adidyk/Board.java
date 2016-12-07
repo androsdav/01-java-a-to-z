@@ -22,8 +22,6 @@ public class Board {
         }
     }*/
 
-    asadad;
-
     public void move(Cell source, Cell dist) {
         //int pos = 0;
         for(int index = 0; index < this.figures.length; index++) {
