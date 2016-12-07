@@ -25,5 +25,9 @@ public class Board {
 
     public void move(Cell source, Cell dist) {
 
+        for(int index = 0; index < figures.length; index++) {
+
+        }
+
     }
 }
