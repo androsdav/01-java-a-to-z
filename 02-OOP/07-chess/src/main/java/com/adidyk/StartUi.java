@@ -21,7 +21,7 @@ public class StartUi {
 
         System.out.println("End Bishop");
 
-        board.move(new Cell(5, 4), new Cell(8,7));
+        board.move(new Cell(5, 4), new Cell(8, 7));
 
         Figure[] figure2 = board.getFigures();
 

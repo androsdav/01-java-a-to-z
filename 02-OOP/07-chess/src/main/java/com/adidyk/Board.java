@@ -33,11 +33,11 @@ public class Board {
             if ((figure.position.getPositionX() == source.getPositionX()) && (figure.position.getPositionY() == source.getPositionY())) {
                 Cell[] highway = figure.way(dist);
                 // temp test
-                for (Cell high : highway) {
-                    if (high != null) {
-                        System.out.println(high.getPositionX() + " " + high.getPositionY());
-                    }
-                }
+              //  for (Cell high : highway) {
+              //      if (high != null) {
+              //          System.out.println(high.getPositionX() + " " + high.getPositionY());
+              //      }
+              //  }
                 // temp test
                 boolean freeway = true;
                 for (Cell aHighway : highway) {
