@@ -24,7 +24,7 @@ public class Castle extends Figure {
                 int indexY = startY + sign*index;
                 highway[index - 1] = new Cell(indexX, indexY);
             }
-        } else if (endX < startX && startX == endY) {
+        } else if (endY == startY) {
             for (int index = 1; index <= highway.length; index++) {
                 int indexX = startX + sign * index;
                 int indexY = startY;
@@ -33,4 +33,6 @@ public class Castle extends Figure {
             }
         return highway;
     }
+
 }
+

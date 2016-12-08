@@ -11,7 +11,7 @@ public class StartUi {
         board.addFigure(new Bishop("black", new Cell(2, 5)));
         board.addFigure(new Castle("black", new Cell(7, 3)));
 
-        System.out.println("Start Bishop");
+        System.out.println("All Figures");
         Figure[] figure1 = board.getFigures();
         for (Figure fig : figure1) {
             if (fig != null) {
@@ -19,7 +19,7 @@ public class StartUi {
             }
         }
 
-        System.out.println("End Bishop");
+        System.out.println("Move Bishop");
         board.move(new Cell(5, 4), new Cell(8, 7));
         Figure[] figure2 = board.getFigures();
         for (Figure fig : figure2) {
@@ -28,48 +28,14 @@ public class StartUi {
             }
         }
 
-        System.out.println("Move  castle");
-        board.move(new Cell(7, 3), new Cell(7, 7));
+        System.out.println("Move  Castle");
+        board.move(new Cell(7, 3), new Cell(8, 3));
         Figure[] figure3 = board.getFigures();
         for (Figure fig : figure3) {
             if (fig != null) {
                 System.out.println(fig.getClass().getSimpleName() +": " +fig.position.getPositionX() +" " +fig.position.getPositionY() );
             }
         }
-
-
-
-
-
-
-       // Pown pown = new Pown("black", new Cell(1, 2));
-        //Bishop bishop1 = new Bishop("white", new Cell(5, 4));
-        //Bishop bishop2 = new Bishop("white", new Cell(7, 8));
-        //Cell dist = new Cell(7, 2);
-        //Cell[] way = bishop1.way(dist);
-        /*for (Cell cell : way) {
-            if(cell != null) {
-                System.out.println(cell.getAxisX() +" " +cell.getAxisY());
-            }
-
-        }*/
-        //bishop2.way(dist);
-
-        //System.out.println(bishop.getClass().getSimpleName() +": " +bishop.getColor() +" " +bishop.getCell().getLine() +" " +bishop.getCell().getColumn());
-       // System.out.println(pown.getClass().getSimpleName() +": " +pown.getColor() +" " +pown.getCell().getLine() +" " +pown.getCell().getColumn());
-
-      //  Board board = new Board();
-
-        /*Cell cell = new Cell();
-        cell.setCell(2,4);
-        boolean[][]array = cell.getCell();
-        for (int i = 0; i < array.length; i++){
-            for (int j = 0; j < array.length; j++) {
-                System.out.print(array[i][j]);
-            }
-            System.out.println();
-        }*/
     }
-
 
 }

@@ -9,14 +9,6 @@ public class Cell {
         this.positionY = positionY;
     }
 
-    public void setPositionX(int positionX) {
-        this.positionX = positionX;
-    }
-
-    public void setPositionY(int positionY) {
-        this.positionY = positionY;
-    }
-
     public int getPositionX(){
         return this.positionX;
     }
