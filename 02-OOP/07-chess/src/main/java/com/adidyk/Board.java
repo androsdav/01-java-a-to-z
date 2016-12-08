@@ -30,11 +30,13 @@ public class Board {
     public void move(Cell source, Cell dist) {
 
         for (Figure figure : this.figures) {
-            if (figure.position.getPositionX() == source.getPositionX() && figure.position.getPositionY() == source.getPositionY()) {
+            if ((figure.position.getPositionX() == source.getPositionX()) && (figure.position.getPositionY() == source.getPositionY())) {
                 Cell[] highway = figure.way(dist);
 
                 for (Cell high : highway) {
-                    System.out.println(high.getPositionX() +" " +high.getPositionY());
+                    if (high != null) {
+                        System.out.println(high.getPositionX() + " " + high.getPositionY());
+                    }
                 }
 
                 boolean freeway = true;

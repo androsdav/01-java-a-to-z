@@ -26,7 +26,7 @@ public abstract class Figure {
             for (int index = 1; index < highway.length; index++) {
                 int indexX = startX + sign * index;
                 int indexY = (indexX - startX)*(endY - startY)/(endX - startX) + startY;
-                highway[index] = new Cell(indexX, indexY);
+                highway[index - 1] = new Cell(indexX, indexY);
             }
         } else {
             System.out.println("Imposible Move Exception");
