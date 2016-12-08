@@ -8,6 +8,7 @@ public class Board {
         for (int index = 0; index < this.figures.length; index++) {
             if (this.figures[index] == null) {
                 this.figures[index] = figure;
+                break;
             }
         }
         return figure;
