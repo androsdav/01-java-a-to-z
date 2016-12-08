@@ -11,14 +11,6 @@ public abstract class Figure {
         this.color = color;
         this.position = position;
     }
-    // temp method
-    //public String getColor() {
-    //        return this.color;
-    //    }
-    // temp method
-    //public Cell getCell() {
-    //    return this.position;
-    // }
 
     public Cell[] way(Cell dist) {
         int startX = this.position.getPositionX();
@@ -44,7 +36,6 @@ public abstract class Figure {
 
     public void clone(Cell dist) {
         this.position = dist;
-
     }
 
 }

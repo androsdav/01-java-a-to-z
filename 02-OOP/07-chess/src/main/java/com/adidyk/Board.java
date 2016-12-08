@@ -5,15 +5,19 @@ public class Board {
     public Figure[] figures = new Figure[32];
 
     public Figure addFigure(Figure figure) {
-        for(int index = 0; index < this.figures.length; index++) {
-            if(this.figures[index] == null) {
+        for (int index = 0; index < this.figures.length; index++) {
+            if (this.figures[index] == null) {
                 this.figures[index] = figure;
             }
         }
         return figure;
     }
 
-/*    public void removeFigure(Figure figure) {
+    public Figure[] getFigures() {
+        return this.figures;
+    }
+
+    /* public void removeFigure(Figure figure) {
         for(int index = 0; index < this.figures.length; index++) {
             if(this.figures[index] != null && this.figures[index].position.getPositionX() == figure.position.getPositionX() ) {
                 this.figures[index] = null;
@@ -23,24 +27,22 @@ public class Board {
     }*/
 
     public void move(Cell source, Cell dist) {
-        //int pos = 0;
-        for(int index = 0; index < this.figures.length; index++) {
-            if(this.figures[index].position.getPositionX() == source.getPositionX() && this.figures[index].position.getPositionY() == source.getPositionY()) {
 
-                Cell[] highway = figures[index].way(dist);
+        for (Figure figure : this.figures) {
+            if (figure.position.getPositionX() == source.getPositionX() && figure.position.getPositionY() == source.getPositionY()) {
+                Cell[] highway = figure.way(dist);
                 boolean freeway = true;
-
-                for(int counter = 0; counter < highway.length; counter++) {
-                    for(int number = 0; number < this.figures.length; number++) {
-                        if(highway[counter].getPositionX() == this.figures[number].position.getPositionX() && highway[counter].getPositionY() == this.figures[number].position.getPositionY()) {
+                for (Cell aHighway : highway) {
+                    for (Figure figure1 : this.figures) {
+                        if (aHighway.getPositionX() == figure1.position.getPositionX() && aHighway.getPositionY() == figure1.position.getPositionY()) {
                             freeway = false;
                             System.out.println("OccupiedWayException");
                             break;
                         }
                     }
                 }
-                if(freeway) {
-                    figures[index].clone(dist);
+                if (freeway) {
+                    figure.clone(dist);
                 }
                 break;
             }
