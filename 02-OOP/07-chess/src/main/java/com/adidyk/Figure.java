@@ -23,7 +23,7 @@ public abstract class Figure {
             if (endX < startX) {
                 sign = -1;
             }
-            for (int index = 1; index < highway.length; index++) {
+            for (int index = 1; index <= highway.length; index++) {
                 int indexX = startX + sign * index;
                 int indexY = (indexX - startX)*(endY - startY)/(endX - startX) + startY;
                 highway[index - 1] = new Cell(indexX, indexY);

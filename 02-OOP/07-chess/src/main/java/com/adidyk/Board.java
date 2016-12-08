@@ -32,20 +32,22 @@ public class Board {
         for (Figure figure : this.figures) {
             if ((figure.position.getPositionX() == source.getPositionX()) && (figure.position.getPositionY() == source.getPositionY())) {
                 Cell[] highway = figure.way(dist);
-
+                // temp test
                 for (Cell high : highway) {
                     if (high != null) {
                         System.out.println(high.getPositionX() + " " + high.getPositionY());
                     }
                 }
-
+                // temp test
                 boolean freeway = true;
                 for (Cell aHighway : highway) {
                     for (Figure figure1 : this.figures) {
-                        if (aHighway.getPositionX() == figure1.position.getPositionX() && aHighway.getPositionY() == figure1.position.getPositionY()) {
-                            freeway = false;
-                            System.out.println("OccupiedWayException");
-                            break;
+                        if (figure1 != null) {
+                            if (aHighway.getPositionX() == figure1.position.getPositionX() && aHighway.getPositionY() == figure1.position.getPositionY()) {
+                                freeway = false;
+                                System.out.println("OccupiedWayException");
+                                break;
+                            }
                         }
                     }
                 }
