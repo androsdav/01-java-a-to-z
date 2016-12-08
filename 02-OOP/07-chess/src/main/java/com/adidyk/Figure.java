@@ -12,7 +12,9 @@ public abstract class Figure {
         this.position = position;
     }
 
-    public Cell[] way(Cell dist) {
+    public abstract Cell[] way(Cell dist);
+
+    /*public Cell[] way(Cell dist) {
         int startX = this.position.getPositionX();
         int startY = this.position.getPositionY();
         int endX = dist.getPositionX();
@@ -32,7 +34,7 @@ public abstract class Figure {
             System.out.println("Imposible Move Exception");
         }
         return highway;
-    }
+    }*/
 
     public void clone(Cell dist) {
         this.position = dist;
