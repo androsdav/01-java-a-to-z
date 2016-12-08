@@ -32,6 +32,11 @@ public class Board {
         for (Figure figure : this.figures) {
             if (figure.position.getPositionX() == source.getPositionX() && figure.position.getPositionY() == source.getPositionY()) {
                 Cell[] highway = figure.way(dist);
+
+                for (Cell high : highway) {
+                    System.out.println(high.getPositionX() +" " +high.getPositionY());
+                }
+
                 boolean freeway = true;
                 for (Cell aHighway : highway) {
                     for (Figure figure1 : this.figures) {
