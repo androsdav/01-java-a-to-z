@@ -51,46 +51,4 @@ public class Board {
 }
 
 
-    /*    boolean foundFigure = false;
-        for (Figure figure : this.figures) {
-            if ((figure.position.getPositionX() == source.getPositionX()) && (figure.position.getPositionY() == source.getPositionY())) {
-                foundFigure = true;
-                break;
-            }
-        }
-        if (foundFigure) {
-
-            Cell[] highway = figure.way(dist);
-
-        } else {
-            throw new FigureNotFoundException("Cell doesn`t contain any figure");
-        }
-    }*/
-
-/*    public void move(Cell source, Cell dist) throws ImposibleMoveException, FigureNotFoundException {
-          for (Figure figure : this.figures) {
-            if (figure != null) {
-                if ((figure.position.getPositionX() == source.getPositionX()) && (figure.position.getPositionY() == source.getPositionY())) {
-                    Cell[] highway = figure.way(dist);
-                    boolean freeway = true;
-                    for (Cell aHighway : highway) {
-                        for (Figure figure1 : this.figures) {
-                            if (figure1 != null) {
-                                if (aHighway.getPositionX() == figure1.position.getPositionX() && aHighway.getPositionY() == figure1.position.getPositionY()) {
-                                    freeway = false;
-                                    System.out.println("OccupiedWayException");
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    if (freeway) {
-                        figure.clone(dist);
-                    }
-                    break;
-                }
-            }
-        }
-    }*/
-
 
