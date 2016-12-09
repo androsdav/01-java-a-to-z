@@ -1,7 +1,11 @@
 package com.adidyk;
 
-/**
- * Created by didyk on 09.12.16.
- */
-public class FigureNotFoundException {
+
+public class FigureNotFoundException extends RuntimeException {
+
+    public FigureNotFoundException(String msg) {
+        super(msg);
+    }
+
+
 }

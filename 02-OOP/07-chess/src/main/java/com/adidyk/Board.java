@@ -18,7 +18,23 @@ public class Board {
         return this.figures;
     }
 
-    public void move(Cell source, Cell dist) throws ImposibleMoveException {
+    public void move(Cell source, Cell dist) {
+        boolean foundFigure = false;
+        for (Figure figure : this.figures) {
+            if ((figure.position.getPositionX() == source.getPositionX()) && (figure.position.getPositionY() == source.getPositionY())) {
+                foundFigure = true;
+                break;
+            }
+        }
+        if (foundFigure) {
+            Cell[] highway = figure.way(dist);
+
+        } else {
+            throw new FigureNotFoundException("Cell doesn`t contain any figure");
+        }
+    }
+
+/*    public void move(Cell source, Cell dist) throws ImposibleMoveException, FigureNotFoundException {
         for (Figure figure : this.figures) {
             if ((figure.position.getPositionX() == source.getPositionX()) && (figure.position.getPositionY() == source.getPositionY())) {
                 Cell[] highway = figure.way(dist);
@@ -36,12 +52,14 @@ public class Board {
                 }
                 if (freeway) {
                     figure.clone(dist);
+                } else {
+                    // throw new FigureNotFoundException("Cell doesn`t contain any figure");
                 }
                 break;
-            } else {
-                throw new FigureNotFoundException("saaaaaa");
-            }
+            } //else {
+               // throw new FigureNotFoundException("Cell doesn`t contain any figure");
+            //}
         }
-    }
+    }*/
 
 }
