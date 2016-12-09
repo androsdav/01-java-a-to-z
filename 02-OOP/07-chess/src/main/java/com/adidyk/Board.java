@@ -18,7 +18,7 @@ public class Board {
         return this.figures;
     }
 
-    public void move(Cell source, Cell dist) {
+    public void move(Cell source, Cell dist) throws ImposibleMoveException {
         for (Figure figure : this.figures) {
             if ((figure.position.getPositionX() == source.getPositionX()) && (figure.position.getPositionY() == source.getPositionY())) {
                 Cell[] highway = figure.way(dist);
@@ -38,6 +38,8 @@ public class Board {
                     figure.clone(dist);
                 }
                 break;
+            } else {
+                throw new FigureNotFoundException("saaaaaa");
             }
         }
     }

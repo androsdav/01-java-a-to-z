@@ -26,7 +26,7 @@ public class Bishop extends Figure {
             }
         }
         else {
-            throw new ImposibleMoveException("Bishop can`t go to this cell");
+            throw new ImposibleMoveException("Bishop can`t move to this cell");
         }
         return highway;
     }
