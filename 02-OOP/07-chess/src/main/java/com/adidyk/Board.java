@@ -17,7 +17,7 @@ public class Board {
     public Figure[] getFigures() {
         return this.figures;
     }
-    public void move(Cell source, Cell dist) throws ImposibleMoveException, FigureNotFoundException {
+    public void move(Cell source, Cell dist) throws ImposibleMoveException, FigureNotFoundException, OccupiedWayException {
         boolean figureFound =false;
         for (Figure figure : this.figures) {
             if (figure != null) {
@@ -36,20 +36,19 @@ public class Board {
                         }
                         if (!freeway) break;
                     }
-                    if (freeway) {
-                        figure.clone(dist);
+                    if (!freeway) {
+                        throw new OccupiedWayException("Way occupied");
                     } else {
-
+                        figure.clone(dist);
                     }
-                    }
-                    break;
                 }
+
             }
-
-        if (!figureFound) throw new FigureNotFoundException("Figure not found in whis cell");
+            if (figureFound) break;
         }
-
+        if (!figureFound) throw new FigureNotFoundException("Figure not found in this cell");
     }
+}
 
 
     /*    boolean foundFigure = false;
@@ -94,4 +93,4 @@ public class Board {
         }
     }*/
 
-}
+
