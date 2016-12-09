@@ -10,7 +10,7 @@ public abstract class Figure {
         this.position = position;
     }
 
-    public abstract Cell[] way(Cell dist);
+    public abstract Cell[] way(Cell dist) throws ImposibleMoveException;
 
     public void clone(Cell dist) {
         this.position = dist;

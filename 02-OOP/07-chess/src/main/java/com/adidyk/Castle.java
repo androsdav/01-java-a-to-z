@@ -8,7 +8,7 @@ public class Castle extends Figure {
         super(color, cell);
     }
 
-    public Cell[] way(Cell dist) {
+    public Cell[] way(Cell dist) throws ImposibleMoveException {
         int startX = this.position.getPositionX();
         int startY = this.position.getPositionY();
         int endX = dist.getPositionX();
@@ -30,7 +30,9 @@ public class Castle extends Figure {
                 int indexY = startY;
                 highway[index - 1] = new Cell(indexX, indexY);
                 }
-            }
+            } else {
+            throw new ImposibleMoveException("Castle can`t move to this cell");
+        }
         return highway;
     }
 
