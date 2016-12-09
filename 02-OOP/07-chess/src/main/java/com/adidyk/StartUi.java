@@ -20,7 +20,7 @@ public class StartUi {
         }
 
         System.out.println("Move Bishop");
-        board.move(new Cell(4, 4), new Cell(7, 6));
+        board.move(new Cell(1, 1), new Cell(7, 6));
         Figure[] figure2 = board.getFigures();
         for (Figure fig : figure2) {
             if (fig != null) {
