@@ -4,8 +4,8 @@ import static java.lang.Math.abs;
 
 public class Bishop extends Figure {
 
-    public Bishop(String color, Cell cell) {
-        super(color, cell);
+    public Bishop(Cell cell) {
+        super(cell);
     }
 
     public Cell[] way(Cell dist) throws ImposibleMoveException {
@@ -30,5 +30,7 @@ public class Bishop extends Figure {
         }
         return highway;
     }
+
+
 
 }

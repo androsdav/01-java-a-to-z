@@ -2,11 +2,11 @@ package com.adidyk;
 
 public abstract class Figure {
 
-    public String color;
+    //public String color;
     public Cell position;
 
-    Figure(String color, Cell position) {
-        this.color = color;
+    Figure(Cell position) {
+      //  this.color = color;
         this.position = position;
     }
 
