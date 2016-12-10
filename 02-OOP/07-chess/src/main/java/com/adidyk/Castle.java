@@ -4,8 +4,8 @@ import static java.lang.Math.abs;
 
 public class Castle extends Figure {
 
-    public Castle(Cell cell) {
-        super(cell);
+    public Castle(String color, Cell cell) {
+        super(color, cell);
     }
 
     public Cell[] way(Cell dist) throws ImposibleMoveException {
