@@ -19,7 +19,7 @@ public class Board {
     }
 
     public void move(Cell source, Cell dist) throws ImposibleMoveException, FigureNotFoundException, OccupiedWayException {
-        boolean figureFound =false;
+        boolean figureFound = false;
         for (Figure figure : this.figures) {
             if (figure != null) {
                 if (figure.position.equals(source)) {
@@ -27,9 +27,9 @@ public class Board {
                     Cell[] highway = figure.way(dist);
                     boolean freeway = true;
                     for (Cell aHighway : highway) {
-                        for (Figure figure1 : this.figures) {
-                            if (figure1 != null) {
-                                if (aHighway.equals(figure1.position)) {
+                        for (Figure chessman : this.figures) {
+                            if (chessman != null) {
+                                if (aHighway.equals(chessman.position)) {
                                     freeway = false;
                                     break;
                                 }
