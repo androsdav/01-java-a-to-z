@@ -9,7 +9,7 @@ public class Bishop extends Figure {
         super(color, cell);
     }
 
-    // way - will return way, if way = true
+    // way - will return all way, if way = true
     public Cell[] way(Cell dist) throws ImposibleMoveException {
         int startX = this.position.getPositionX();
         int startY = this.position.getPositionY();

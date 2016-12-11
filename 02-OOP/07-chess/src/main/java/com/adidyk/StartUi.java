@@ -10,7 +10,7 @@ public class StartUi {
         board.addFigure(new Bishop("black", new Cell(3, 4)));
         board.addFigure(new Bishop("black", new Cell(2, 5)));
         board.addFigure(new Castle("black", new Cell(7, 3)));
-        board.addFigure(new Castle("black", new Cell(4, 3)));
+        board.addFigure(new Castle("black", new Cell(3, 3)));
 
         System.out.println("All Figures");
         Figure[] figure1 = board.getFigures();
@@ -30,7 +30,7 @@ public class StartUi {
         }
 
         System.out.println("Move  Castle");
-        board.move(new Cell(7, 3), new Cell(3, 3));
+        board.move(new Cell(7, 3), new Cell(5, 3));
         Figure[] figure3 = board.getFigures();
         for (Figure fig : figure3) {
             if (fig != null) {

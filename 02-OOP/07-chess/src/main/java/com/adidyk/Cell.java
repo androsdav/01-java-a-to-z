@@ -1,9 +1,14 @@
 package com.adidyk;
 
 public class Cell {
+
     private int positionX;
     private int positionY;
 
+    public Cell(int positionX, int positionY) {
+        this.positionX = positionX;
+        this.positionY = positionY;
+    }
 
     public int getPositionX(){
         return this.positionX;
@@ -20,8 +25,7 @@ public class Cell {
 
         Cell cell = (Cell) o;
 
-        if (positionX != cell.positionX) return false;
-        return positionY == cell.positionY;
+        return positionX == cell.positionX && positionY == cell.positionY;
 
     }
 
@@ -31,12 +35,5 @@ public class Cell {
         result = 31 * result + positionY;
         return result;
     }
-
-    public Cell(int positionX, int positionY) {
-
-        this.positionX = positionX;
-        this.positionY = positionY;
-    }
-
 
 }
