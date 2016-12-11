@@ -11,7 +11,7 @@ public abstract class Figure {
         this.position = position;
     }
 
-    // way - will return way, if way = true
+    // way - abstract method
     public abstract Cell[] way(Cell dist) throws ImposibleMoveException;
 
     // clone - set new cell
@@ -23,12 +23,9 @@ public abstract class Figure {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Figure figure = (Figure) o;
-
-        if (color != null ? !color.equals(figure.color) : figure.color != null) return false;
-        return position != null ? position.equals(figure.position) : figure.position == null;
-
+        return color != null ? color.equals(figure.color) : figure.color == null &&
+                (position != null ? position.equals(figure.position) : figure.position == null);
     }
 
     @Override

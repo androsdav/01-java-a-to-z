@@ -22,9 +22,7 @@ public class Cell {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Cell cell = (Cell) o;
-
         return positionX == cell.positionX && positionY == cell.positionY;
 
     }

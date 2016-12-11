@@ -1,7 +1,5 @@
 package com.adidyk;
 
-import java.util.Arrays;
-
 public class Board {
 
     public Figure[] figures = new Figure[32];

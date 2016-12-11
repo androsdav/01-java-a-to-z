@@ -33,6 +33,22 @@ public class BoardTest {
         assertThat(result, is(figures));
     }
 
+    @Test
+    public void moveTest() {
+        Figure bishop1 = new Bishop("black", new Cell(5, 4));
+        Figure bishop2 = new Bishop("black", new Cell(7, 5));
+        Figure castle1 = new Castle("white", new Cell(3, 3));
+        Figure bishop1Move = new Bishop("black", new Cell(2, 7));
+        Figure[] figures = {bishop1Move, bishop2, castle1};
+        Board board = new Board();
+        board.addFigure(bishop1);
+        board.addFigure(bishop2);
+        board.addFigure(castle1);
+        board.move(new Cell(5, 4), new Cell(2, 7));
+        Figure[] result = this.getAllIFigureWithoutNull(board.getFigure());
+        assertThat(result, is(figures));
+    }
+
     // getAllFigureWithoutNull - method return all []figure without null
     public Figure[] getAllIFigureWithoutNull(Figure[] resultAll) {
         int length = 0;

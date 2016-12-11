@@ -4,7 +4,6 @@ public class StartUi {
 
     public static void main(String[] args) {
 
-        //Figure bishop = new Bishop("black", new Cell(3,3));
         Board board = new Board();
         board.addFigure(new Bishop("black", new Cell(5, 4)));
         board.addFigure(new Bishop("black", new Cell(3, 4)));
