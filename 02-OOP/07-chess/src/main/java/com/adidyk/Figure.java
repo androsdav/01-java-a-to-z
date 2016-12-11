@@ -34,4 +34,5 @@ public abstract class Figure {
         result = 31 * result + (position != null ? position.hashCode() : 0);
         return result;
     }
+
 }

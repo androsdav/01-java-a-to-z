@@ -5,15 +5,18 @@ public class Cell {
     private int positionX;
     private int positionY;
 
+    // Constructor
     public Cell(int positionX, int positionY) {
         this.positionX = positionX;
         this.positionY = positionY;
     }
 
+    // getPositionX - get X position
     public int getPositionX(){
         return this.positionX;
     }
 
+    // getPositionY - get Y position
     public int getPositionY() {
         return this.positionY;
     }

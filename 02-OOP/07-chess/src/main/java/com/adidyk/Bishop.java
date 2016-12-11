@@ -33,6 +33,4 @@ public class Bishop extends Figure {
         return highway;
     }
 
-
-
 }

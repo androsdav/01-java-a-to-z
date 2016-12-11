@@ -51,6 +51,7 @@ public class Board {
         }
         if (!figureFound) throw new FigureNotFoundException("Figure not found in this cell");
     }
+
 }
 
 
