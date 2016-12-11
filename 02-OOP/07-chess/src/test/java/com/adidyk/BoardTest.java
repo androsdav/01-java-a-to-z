@@ -7,10 +7,20 @@ import static org.junit.Assert.assertThat;
 public class BoardTest {
 
     @Test
-    public void getFiguresTest() {
+    public void addFigureTest() {
+        Figure bishop1 = new Bishop("black", new Cell(1, 1));
+        Board board = new Board();
+        Figure bishop2 = new Bishop("black", new Cell(1, 1));
+        board.addFigure(bishop2);
+        Figure result = board.addFigure(bishop2);
+        assertThat(result, is(bishop1));
+    }
+
+    @Test
+    public void getFigureTest() {
         Figure bishop1 = new Bishop("black", new Cell(1, 1));
         Figure bishop2 = new Bishop("black", new Cell(2, 2));
-        Figure bishop3 = new Bishop("black", new Cell(1, 1));
+        Figure bishop3 = new Bishop("black", new Cell(3, 3));
         Figure[] figures = {bishop1, bishop2, bishop3};
         Board board = new Board();
         Figure bishop4 = new Bishop("black", new Cell(1, 1));
