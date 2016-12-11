@@ -8,10 +8,10 @@ public class BishopTest {
 
     @Test
     public void wayTest() {
-
         Cell[] highway = {new Cell(6, 5), new Cell(7, 6), new Cell(8, 7)};
-        Bishop bishop = new Bishop("black", new Cell(5, 4));
+        Figure bishop = new Bishop("black", new Cell(5, 4));
         Cell[] result = bishop.way(new Cell(8, 7));
         assertThat(result, is(highway));
     }
+
 }

@@ -1,5 +1,7 @@
 package com.adidyk;
 
+import java.util.Arrays;
+
 public class Board {
 
     public Figure[] figures = new Figure[32];
@@ -16,7 +18,7 @@ public class Board {
     }
 
     // getFigure - return all []figure
-    public Figure[] getFigures() {
+    public Figure[] getFigure() {
         return this.figures;
     }
 
@@ -51,7 +53,6 @@ public class Board {
         }
         if (!figureFound) throw new FigureNotFoundException("Figure not found in this cell");
     }
-
 }
 
 

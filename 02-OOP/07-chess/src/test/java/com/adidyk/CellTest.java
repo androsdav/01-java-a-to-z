@@ -20,5 +20,4 @@ public class CellTest {
         assertThat(cell.getPositionY(), is(this.positionY));
     }
 
-
 }

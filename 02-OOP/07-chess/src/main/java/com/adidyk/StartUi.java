@@ -13,7 +13,7 @@ public class StartUi {
         board.addFigure(new Castle("black", new Cell(3, 3)));
 
         System.out.println("All Figures");
-        Figure[] figure1 = board.getFigures();
+        Figure[] figure1 = board.getFigure();
         for (Figure fig : figure1) {
             if (fig != null) {
                 System.out.println(fig.getClass().getSimpleName() +": " +fig.position.getPositionX() +" " +fig.position.getPositionY() );
@@ -22,7 +22,7 @@ public class StartUi {
 
         System.out.println("Move Bishop");
         board.move(new Cell(5, 4), new Cell(2, 1));
-        Figure[] figure2 = board.getFigures();
+        Figure[] figure2 = board.getFigure();
         for (Figure fig : figure2) {
             if (fig != null) {
                 System.out.println(fig.getClass().getSimpleName() +": " +fig.position.getPositionX() +" " +fig.position.getPositionY() );
@@ -31,7 +31,7 @@ public class StartUi {
 
         System.out.println("Move  Castle");
         board.move(new Cell(7, 3), new Cell(5, 3));
-        Figure[] figure3 = board.getFigures();
+        Figure[] figure3 = board.getFigure();
         for (Figure fig : figure3) {
             if (fig != null) {
                 System.out.println(fig.getClass().getSimpleName() +": " +fig.position.getPositionX() +" " +fig.position.getPositionY() );
