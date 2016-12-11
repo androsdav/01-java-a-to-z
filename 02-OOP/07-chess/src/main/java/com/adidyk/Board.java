@@ -4,6 +4,7 @@ public class Board {
 
     public Figure[] figures = new Figure[32];
 
+    // addFigure - add new figure in []figures
     public Figure addFigure(Figure figure) {
         for (int index = 0; index < this.figures.length; index++) {
             if (this.figures[index] == null) {
@@ -14,10 +15,12 @@ public class Board {
         return figure;
     }
 
+    // getFigure - return all []figure
     public Figure[] getFigures() {
         return this.figures;
     }
 
+    // move - found figure in source cell, inspection true way and move figure in a dist cell
     public void move(Cell source, Cell dist) throws ImposibleMoveException, FigureNotFoundException, OccupiedWayException {
         boolean figureFound = false;
         for (Figure figure : this.figures) {

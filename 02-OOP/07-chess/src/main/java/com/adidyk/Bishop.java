@@ -4,10 +4,12 @@ import static java.lang.Math.abs;
 
 public class Bishop extends Figure {
 
+    // Constructor
     public Bishop(String color, Cell cell) {
         super(color, cell);
     }
 
+    // way - will return way, if way = true
     public Cell[] way(Cell dist) throws ImposibleMoveException {
         int startX = this.position.getPositionX();
         int startY = this.position.getPositionY();
