@@ -37,12 +37,12 @@ public class StartUi {
             }
         }
 
-        /*Integer a=120;
-        Integer b=120;
+        Integer a= 128;
+        Integer b= 128;
         Integer c=140;
         Integer d=140;
         System.out.println(a==b);
-        System.out.println(c==d);*/
+        System.out.println(c==d);
     }
 
 }

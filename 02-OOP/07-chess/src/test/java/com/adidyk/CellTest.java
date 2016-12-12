@@ -6,18 +6,19 @@ import static org.junit.Assert.assertThat;
 
 public class CellTest {
 
-    Cell cell = new Cell(3, 4);
-    int positionX = 3;
-    int positionY = 4;
+    private Cell cell = new Cell(3, 4);
+
 
     @Test
     public void getPositionXTest() {
-        assertThat(cell.getPositionX(), is(this.positionX));
+        int positionX = 3;
+        assertThat(this.cell.getPositionX(), is(positionX));
     }
 
     @Test
     public void getPositionYTest() {
-        assertThat(cell.getPositionY(), is(this.positionY));
+        int positionY = 4;
+        assertThat(this.cell.getPositionY(), is(positionY));
     }
 
 }
