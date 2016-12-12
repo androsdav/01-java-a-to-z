@@ -50,7 +50,7 @@ public class BoardTest {
     }
 
     // getAllFigureWithoutNull - method return all []figure without null
-    public Figure[] getAllIFigureWithoutNull(Figure[] resultAll) {
+    private Figure[] getAllIFigureWithoutNull(Figure[] resultAll) {
         int length = 0;
         for (Figure figure : resultAll) {
             if (figure != null) {
