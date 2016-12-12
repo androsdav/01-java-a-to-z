@@ -36,6 +36,13 @@ public class StartUi {
                 System.out.println(fig.getClass().getSimpleName() +": " +fig.position.getPositionX() +" " +fig.position.getPositionY() );
             }
         }
+
+        /*Integer a=120;
+        Integer b=120;
+        Integer c=140;
+        Integer d=140;
+        System.out.println(a==b);
+        System.out.println(c==d);*/
     }
 
 }
