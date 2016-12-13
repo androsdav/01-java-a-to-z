@@ -37,10 +37,11 @@ public class StartUi {
             }
         }
 
-        Integer a= 128;
-        Integer b= 128;
-        Integer c=140;
-        Integer d=140;
+        // result = true, if "a" and "b" in range = -128; 127;
+        Integer a = 128;
+        Integer b = 128;
+        Integer c = 140;
+        Integer d = 140;
         System.out.println(a==b);
         System.out.println(c==d);
     }
