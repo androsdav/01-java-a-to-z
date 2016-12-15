@@ -1,5 +1,7 @@
 package com.adidyk;
 
+import static java.lang.StrictMath.abs;
+
 public class Knight extends Figure {
 
     // Constructor
@@ -14,9 +16,9 @@ public class Knight extends Figure {
         int endX = dist.getPositionX();
         int endY = dist.getPositionY();
         Cell[] highway = new Cell[1];
-        int cathetusH = 1;
-        int cathetusL = 2;
-        if ( ((endX - startX) == cathetusH || (endY - startY) == cathetusL) && ((endX - startX) == cathetusL || (endY - startY) == cathetusH)  ) {
+        int lineH = 1;
+        int lineL = 2;
+        if ((abs(endX - startX) == lineH && abs(endY - startY) == lineL) || (abs(endX - startX) == lineL && abs(endY - startY) == lineH)) {
             highway[0] = new Cell(endX, endY);
         } else {
             throw new ImposibleMoveException("Knight can`t move to this cell");
