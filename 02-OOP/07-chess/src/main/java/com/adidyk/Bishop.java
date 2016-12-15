@@ -10,16 +10,14 @@ public class Bishop extends Figure {
     }
 
     // way - will return all way, if way = true
+    @Override
     public Cell[] way(Cell dist) throws ImposibleMoveException {
-
         int startX = this.position.getPositionX();
         int startY = this.position.getPositionY();
         int endX = dist.getPositionX();
         int endY = dist.getPositionY();
-
         Cell[] highway = new Cell[abs(endX - startX)];
         int sign = 1;
-
         if ((abs(endX - startX) == abs(endY - startY))  && ((endX - startX) != 0) && ((endY - startY) != 0)) {
             if (endX < startX) {
                 sign = -1;

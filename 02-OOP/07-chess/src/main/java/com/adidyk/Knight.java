@@ -10,6 +10,7 @@ public class Knight extends Figure {
     }
 
     // way - will return all way, if way =true
+    @Override
     public Cell[] way(Cell dist) throws ImposibleMoveException {
         int startX = this.position.getPositionX();
         int startY = this.position.getPositionY();
