@@ -2,8 +2,8 @@ package com.adidyk;
 
 public abstract class Figure {
 
-    public String color;
-    public Cell position;
+    private String color;
+    protected Cell position;
 
     // Constructor
     Figure(String color, Cell position) {
@@ -12,7 +12,7 @@ public abstract class Figure {
     }
 
     // way - abstract method
-    public abstract Cell[] way(Cell dist) throws ImposibleMoveException;
+    protected abstract Cell[] way(Cell dist) throws ImposibleMoveException;
 
     // clone - set new cell
     public void clone(Cell dist) {
