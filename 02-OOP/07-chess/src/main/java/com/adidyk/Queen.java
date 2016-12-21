@@ -8,4 +8,11 @@ public class Queen extends Figure{
     }
 
     // way - will return all way, if way = true
+    @Override
+    public Cell[] way(Cell dist) throws ImposibleMoveException {
+        Cell[] resultTemp = {new Cell(1, 1)};
+
+        return resultTemp;
+
+    }
 }
