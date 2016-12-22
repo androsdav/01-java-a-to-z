@@ -44,6 +44,8 @@ public class StartUi {
         Integer d = 140;
         System.out.println(a==b);
         System.out.println(c==d);
+
+        Bishop bishop = new Bishop("black", new Cell(1, 1));
     }
 
 }
