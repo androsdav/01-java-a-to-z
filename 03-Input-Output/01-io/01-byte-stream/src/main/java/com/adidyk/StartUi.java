@@ -1,11 +1,70 @@
 package com.adidyk;
 
+//import java.io.*
+
+import java.io.*;
+
 public class StartUi {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnsupportedEncodingException {
 
-           System.out.println("Hello word !!! ");
+        System.out.println("Hello word !!! ");
+        System.out.println("Proverka rabotu");
 
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in, "Cp866"));
+        PrintWriter pw = new PrintWriter(new OutputStreamWriter(System.out, "Cp866"));
+        System.out.println();
+
+
+      /*  import j ava.io.*;
+
+        class PrWr{
+
+            public static void main(String[] args){
+
+                try{
+
+                    BufferedReader br =
+
+                            new BufferedReader(new InputstreamReader(System.in, "Cp866"));
+
+                    PrintWriter pw = new PrintWriter(
+
+                            new OutputstreamWriter(System.out, "Cp866"), true);
+
+                    String s = "Это строка с русским текстом";
+
+                    System.out.println("System.out puts: " + s);
+
+                    pw.println("PrintWriter puts: " + s) ;
+
+                    int с = 0;
+
+                    pw.println("Посимвольный ввод:");
+
+                    while((с = br.read()) != -1)
+
+                        pw.println((char)c);
+
+                    pw.println("Построчный ввод:");
+
+                    do{
+
+                        s = br.readLine();
+
+                        pw.println(s);
+
+                    }while(!s.equals("q"));
+
+                }catch(Exception e){
+
+                    System.out.println(e);
+
+                }
+
+            }
+
+        }
         /*Board board = new Board();
         board.addFigure(new Bishop("black", new Cell(5, 4)));
         board.addFigure(new Bishop("black", new Cell(3, 4)));
