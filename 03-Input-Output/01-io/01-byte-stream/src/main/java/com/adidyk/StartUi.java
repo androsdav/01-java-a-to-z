@@ -14,7 +14,8 @@ public class StartUi {
         PrintWriter pw = new PrintWriter(new OutputStreamWriter(System.out, "Cp866"), true);
 
         String s = br.readLine();
-        System.out.println("Output s: " + s);
+        pw.println("output s: " + s);
+        //System.out.println("Output s: " + s);
 
 
 
