@@ -8,15 +8,39 @@ public class StartUi {
 
     public static void main(String[] args) throws IOException {
 
-        System.out.println("");
+        try (FileInputStream fis = new FileInputStream("D://old.txt")) {
+            System.out.println("Size file: " + fis.available());
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in, "Cp866"));
-        PrintWriter pw = new PrintWriter(new OutputStreamWriter(System.out, "Cp866"), true);
-        System.out.println("Input: ");
-        String s1 = br.readLine();
-        String s2 = br.readLine();
-        System.out.println("Output: ");
-        pw.println("output s: " + s1 +" " + s2);
+            int i;
+            while ((i = fis.read()) != -1) {
+                System.out.print(i);
+            }
+            /*int i = fis.read();
+            int i1 = fis.read();
+            int i2 = fis.read();
+            int i3 = fis.read();
+            int i4 = fis.read();
+            System.out.println((char)i);
+            System.out.println((char)i1);
+            System.out.println((char)i2);
+            System.out.println((char)i3);
+            System.out.println((char)i4);*/
+        }
+        catch (IOException ex) {
+            System.out.println();
+        }
+
+        //System.out.println("");
+
+        //BufferedReader br = new BufferedReader(new InputStreamReader(System.in, "Cp866"));
+        //PrintWriter pw = new PrintWriter(new OutputStreamWriter(System.out, "Cp866"), true);
+
+
+        //System.out.println("Input: ");
+        //String s1 = br.readLine();
+        //String s2 = br.readLine();
+        //System.out.println("Output: ");
+        //pw.println("output s: " + s1 +" " + s2);
         //System.out.println("Output s: " + s);
 
 
