@@ -7,30 +7,52 @@ import java.io.*;
 public class StartUi {
 
     public static void main(String[] args) throws IOException {
-
+        System.out.println("-------------------------------");
         try (FileInputStream fis = new FileInputStream("D://old.txt")) {
             System.out.println("Size file: " + fis.available());
 
             int i;
             while ((i = fis.read()) != -1) {
-                System.out.print(i);
+                System.out.print((char)i);
             }
-            /*int i = fis.read();
-            int i1 = fis.read();
-            int i2 = fis.read();
-            int i3 = fis.read();
-            int i4 = fis.read();
-            System.out.println((char)i);
-            System.out.println((char)i1);
-            System.out.println((char)i2);
-            System.out.println((char)i3);
-            System.out.println((char)i4);*/
         }
         catch (IOException ex) {
-            System.out.println();
+            System.out.println(ex.getMessage());
         }
+        System.out.println("-------------------------------");
+        try (FileInputStream fis = new FileInputStream("D://old.txt")) {
+            byte[] buffer = new byte[fis.available()];
+            fis.read(buffer, 0, fis.available());
+            System.out.println("Output from buffer");
+            for (byte buff : buffer) {
+                System.out.print((char)buff);
+            }
 
-        //System.out.println("");
+        }
+        catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        System.out.println("-------------------------------");
+        String text ="Hello word! das a das ad as ";
+        try (FileOutputStream fos = new FileOutputStream("D://new.txt")) {
+            byte[] buffer = text.getBytes();
+            fos.write(buffer);
+        }
+        catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        System.out.println("-------------------------------");
+        try (FileInputStream fis = new FileInputStream("D://old.txt");
+        FileOutputStream fos = new FileOutputStream("D://new.txt"))
+        {
+            byte[] buffer = new byte[fis.available()];
+            fis.read(buffer, 0, buffer.length);
+            fos.write(buffer, 0, buffer.length);
+        }
+        catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+       //System.out.println("");
 
         //BufferedReader br = new BufferedReader(new InputStreamReader(System.in, "Cp866"));
         //PrintWriter pw = new PrintWriter(new OutputStreamWriter(System.out, "Cp866"), true);
