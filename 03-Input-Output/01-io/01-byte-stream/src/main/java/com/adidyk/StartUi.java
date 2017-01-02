@@ -45,14 +45,16 @@ public class StartUi {
         try (FileInputStream fis = new FileInputStream("D://old.txt");
         FileOutputStream fos = new FileOutputStream("D://new.txt"))
         {
-            byte[] buffer = new byte[fis.available()];
-            fis.read(buffer, 0, buffer.length);
+            byte[] buffer = new byte[fis.available() - 5];
+            fis.read(buffer, 5, buffer.length - 5);
             fos.write(buffer, 0, buffer.length);
         }
         catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
        //System.out.println("");
+
+        InputStreamReader isr = new InputStreamReader(System.in);
 
         //BufferedReader br = new BufferedReader(new InputStreamReader(System.in, "Cp866"));
         //PrintWriter pw = new PrintWriter(new OutputStreamWriter(System.out, "Cp866"), true);
