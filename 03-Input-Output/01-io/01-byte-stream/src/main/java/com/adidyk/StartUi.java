@@ -12,9 +12,11 @@ public class StartUi {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in, "Cp866"));
         PrintWriter pw = new PrintWriter(new OutputStreamWriter(System.out, "Cp866"), true);
-
-        String s = br.readLine();
-        pw.println("output s: " + s);
+        System.out.println("Input: ");
+        String s1 = br.readLine();
+        String s2 = br.readLine();
+        System.out.println("Output: ");
+        pw.println("output s: " + s1 +" " + s2);
         //System.out.println("Output s: " + s);
 
 
