@@ -12,7 +12,7 @@ public class StartUi {
         byte[] buffer = text.getBytes();
         ByteStream bs = new ByteStream();
         boolean number = bs.isNumber(new ByteArrayInputStream(buffer));
-        System.out.println(number);
+        System.out.println("Even number: " + number);
     }
 
 }
