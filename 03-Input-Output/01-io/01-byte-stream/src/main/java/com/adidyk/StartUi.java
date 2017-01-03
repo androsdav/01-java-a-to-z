@@ -9,7 +9,8 @@ public class StartUi {
     public static void main(String[] args) throws IOException {
 
         ByteStream bs = new ByteStream();
-        bs.isNumber(new FileInputStream("D://test.txt"));
+        boolean number = bs.isNumber(new FileInputStream("D://test.txt"));
+        System.out.println(number);
 
     }
 }

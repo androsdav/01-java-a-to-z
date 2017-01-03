@@ -3,35 +3,28 @@ package com.adidyk;
 import java.io.BufferedInputStream;
 import java.io.InputStream;
 
+import static java.lang.Math.IEEEremainder;
+
 public class ByteStream {
 
     public boolean isNumber(InputStream in) {
-        boolean number = false;
+        boolean numberFlag = false;
 
         try (BufferedInputStream bis = new BufferedInputStream(in)) {
 
-            byte[] args = new byte[bis.available()];
-            bis.read(args, 0, args.length);
-            String argsStr = new String(args, "cp1251");
-            Float argsFlo = Float.valueOf(argsStr);
-
-
-            System.out.println(argsStr);
-            System.out.println(argsFlo);
-
-
-            //for (byte buff : buffer) {
-            //    System.out.print(buff);
-
-            //}
-
-
-
+            byte[] buffer = new byte[bis.available()];
+            bis.read(buffer, 0, buffer.length);
+            Float number = Float.valueOf(new String(buffer, "cp1251"));
+            double remainder = IEEEremainder(number, 2.0);
+            if (remainder == 0) {
+                numberFlag = true;
+            }
+            System.out.println(number);
         }
         catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
 
-        return number;
+        return numberFlag;
     }
 }
