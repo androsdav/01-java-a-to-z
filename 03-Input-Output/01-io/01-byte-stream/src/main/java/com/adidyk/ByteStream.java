@@ -10,10 +10,15 @@ public class ByteStream {
 
         try (BufferedInputStream bis = new BufferedInputStream(in)) {
 
-            byte[] buffer = new byte[bis.available()];
-            bis.read(buffer, 0, buffer.length);
-            String str = new String(buffer, "cp1251");
-            System.out.println(str);
+            byte[] args = new byte[bis.available()];
+            bis.read(args, 0, args.length);
+            String argsStr = new String(args, "cp1251");
+            Float argsFlo = Float.valueOf(argsStr);
+
+
+            System.out.println(argsStr);
+            System.out.println(argsFlo);
+
 
             //for (byte buff : buffer) {
             //    System.out.print(buff);
