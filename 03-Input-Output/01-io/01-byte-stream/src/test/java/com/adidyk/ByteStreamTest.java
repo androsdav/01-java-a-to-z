@@ -9,7 +9,6 @@ public class ByteStreamTest {
 
     @Test
     public void isNumber() {
-
         String text = "123678";
         byte[] buffer = text.getBytes();
         ByteArrayInputStream baiStream = new ByteArrayInputStream(buffer);

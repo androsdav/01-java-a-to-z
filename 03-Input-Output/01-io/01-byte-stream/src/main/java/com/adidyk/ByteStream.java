@@ -6,6 +6,7 @@ import static java.lang.Math.IEEEremainder;
 
 public class ByteStream {
 
+    // isNumber - checks that byte stream have only an even number
     public boolean isNumber(InputStream in) {
         boolean numberFlag = false;
         try (BufferedInputStream bis = new BufferedInputStream(in)) {
@@ -16,7 +17,6 @@ public class ByteStream {
             if (remainder == 0) {
                 numberFlag = true;
             }
-            System.out.println(number);
         }
         catch (Exception ex) {
             System.out.println(ex.getMessage());
