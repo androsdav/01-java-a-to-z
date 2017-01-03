@@ -10,11 +10,17 @@ public class ByteStream {
 
         try (BufferedInputStream bis = new BufferedInputStream(in)) {
 
-            int stream;
-            while((stream = bis.read()) != -1) {
-                float str = (float)stream;
-                System.out.println(str);
-            }
+            byte[] buffer = new byte[bis.available()];
+            bis.read(buffer, 0, buffer.length);
+            String str = new String(buffer, "cp1251");
+            System.out.println(str);
+
+            //for (byte buff : buffer) {
+            //    System.out.print(buff);
+
+            //}
+
+
 
         }
         catch (Exception ex) {
