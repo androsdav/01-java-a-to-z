@@ -7,7 +7,13 @@ import java.io.*;
 public class StartUi {
 
     public static void main(String[] args) throws IOException {
-        System.out.println("-------------------------------");
+
+        ByteStream bs = new ByteStream();
+        bs.isNumber(new FileInputStream("D://test.txt"));
+
+    }
+}
+        /*System.out.println("-------------------------------");
         try (FileInputStream fis = new FileInputStream("D://old.txt")) {
             System.out.println("Size file: " + fis.available());
 
@@ -171,4 +177,4 @@ public class StartUi {
         Bishop bishop = new Bishop("black", new Cell(1, 1));*/
 
 
-}
+
