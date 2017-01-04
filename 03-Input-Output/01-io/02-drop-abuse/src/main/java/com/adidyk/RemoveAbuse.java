@@ -9,10 +9,11 @@ public class RemoveAbuse {
             int index = 0;
             String text;
             while (index != -1) {
+                System.out.println("Input stream: ");
                 text = br.readLine();
-
+                System.out.println("Output stream: ");
+                bw.write(text);
             }
-
         }
         catch (Exception ex) {
             System.out.println(ex.getMessage());
