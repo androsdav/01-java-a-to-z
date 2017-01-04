@@ -12,7 +12,7 @@ public class ByteStream {
         try (BufferedInputStream bis = new BufferedInputStream(in)) {
             byte[] buffer = new byte[bis.available()];
             bis.read(buffer, 0, buffer.length);
-            Float number = Float.valueOf(new String(buffer, "cp1251"));
+            Integer number = Integer.valueOf(new String(buffer, "cp1251"));
             double remainder = IEEEremainder(number, 2.0);
             if (remainder == 0) {
                 numberFlag = true;
@@ -25,3 +25,5 @@ public class ByteStream {
     }
 
 }
+
+
