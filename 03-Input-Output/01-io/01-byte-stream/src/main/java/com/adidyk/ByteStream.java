@@ -2,7 +2,6 @@ package com.adidyk;
 
 import java.io.BufferedInputStream;
 import java.io.InputStream;
-import static java.lang.Math.IEEEremainder;
 
 public class ByteStream {
 
@@ -13,8 +12,7 @@ public class ByteStream {
             byte[] buffer = new byte[bis.available()];
             bis.read(buffer, 0, buffer.length);
             Integer number = Integer.valueOf(new String(buffer, "cp1251"));
-            double remainder = IEEEremainder(number, 2.0);
-            if (remainder == 0) {
+            if (number % 2 == 0) {
                 numberFlag = true;
             }
         }
