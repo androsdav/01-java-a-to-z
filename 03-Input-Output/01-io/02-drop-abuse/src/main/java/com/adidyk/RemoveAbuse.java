@@ -9,14 +9,21 @@ public class RemoveAbuse {
             int index = 0;
             String text;
             while (index != -1) {
-                System.out.println("Input stream: ");
                 text = br.readLine();
-                System.out.println("Output stream: ");
-                bw.write(text);
+                String[] args = text.split(" ");
+                for (int arg = 0; arg < args.length; arg++) {
+                    for (String abu : abuse) {
+                        if (args[arg].equals(abu)) {
+                            args[arg] = null;
+                        }
+                    }
+                }
             }
+
         }
         catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }
 }
+
