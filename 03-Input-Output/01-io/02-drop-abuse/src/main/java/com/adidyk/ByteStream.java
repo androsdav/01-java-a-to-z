@@ -19,7 +19,7 @@ public class ByteStream {
             }
         }
         catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            System.out.print(ex.getMessage());
         }
         return numberFlag;
     }
