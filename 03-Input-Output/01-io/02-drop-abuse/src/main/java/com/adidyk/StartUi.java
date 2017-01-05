@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class StartUi {
 
-    // main - input row from console
+    // main - input several row from console
     public static void main(String[] args) throws IOException {
         RemoveAbuse ra = new RemoveAbuse();
         String[] abuse = {"abuse1", "abuse2"};

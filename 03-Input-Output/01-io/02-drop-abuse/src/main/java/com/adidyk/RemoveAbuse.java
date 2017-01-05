@@ -4,7 +4,7 @@ import java.io.*;
 
 public class RemoveAbuse {
 
-    // dropAbuses - drop words in the stream, that included in the array String
+    // dropAbuses - drop words in the stream, that included in the array abuse
     public void dropAbuses(InputStream in, OutputStream out, String[] abuse) throws IOException {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(in));
              BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(out))) {
