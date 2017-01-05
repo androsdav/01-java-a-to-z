@@ -8,7 +8,7 @@ public class StartUi {
     public static void main(String[] args) throws IOException {
         RemoveAbuse ra = new RemoveAbuse();
         String[] abuse = {"abuse"};
-        System.out.println("Input row : ");
+        System.out.println("Input row: ");
         ra.dropAbuses(System.in, System.out, abuse);
     }
 

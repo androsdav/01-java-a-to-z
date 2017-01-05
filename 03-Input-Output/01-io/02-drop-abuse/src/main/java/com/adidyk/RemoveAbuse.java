@@ -19,7 +19,7 @@ public class RemoveAbuse {
                     }
                 }
                 for (String arg : args) {
-                    bw.write(arg);
+                    bw.write(arg + " ");
                 }
 
             }
