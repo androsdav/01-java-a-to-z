@@ -4,16 +4,21 @@ import java.io.*;
 
 public class RemoveAbuse {
 
+    // dropAbuses - drop words in the stream, that included in the array String
     public void dropAbuses(InputStream in, OutputStream out, String[] abuse) throws IOException {
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(in)); BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(out))) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(in));
+             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(out))) {
             String text;
             text = br.readLine();
             String[] args = text.split(" ");
-            for (String arg : args) {
+            for (int arg = 0; arg < args.length; arg++) {
                 for (String abu : abuse) {
-                    if (!arg.equals(abu)) {
-                        bw.write(arg +" ");
+                    if (args[arg] != null && args[arg].equals(abu)) {
+                        args[arg] = null;
                     }
+                }
+                if (args[arg] != null) {
+                    bw.write(args[arg] + " ");
                 }
             }
         }

@@ -1,15 +1,56 @@
 package com.adidyk;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StartUi {
 
     // main - input row from console
     public static void main(String[] args) throws IOException {
         RemoveAbuse ra = new RemoveAbuse();
-        String[] abuse = {"abuse1", "abuse2"};
+        String[] abuse = new String[2];
+        abuse[0] = "abuse1";
+        abuse[1] = "abuse2";
         System.out.println("Input row: ");
-        ra.dropAbuses(System.in, System.out, abuse);
+        String text;
+        ArrayList<String> list= new ArrayList<>();
+        System.out.println("Input several row, for finished input <q>: ");
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        while (!(text = br.readLine()).equals("q")) {
+            list.add(text);
+        }
+        br.close();
+        ArrayList<Byte> buffer = list.ge
+        ByteArrayInputStream bais = new ByteArrayInputStream(buffer);
+
+
+        try(BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+
+
+                do {
+                    text = br.readLine();
+                    byte[] buffer = text.getBytes();
+                    //ByteArrayInputStream bais = new ByteArrayInputStream(buffer);
+                } while(true);
+                ByteArrayInputStream bais = new ByteArrayInputStream(buffer);
+                ra.dropAbuses(bais, System.out, abuse);
+
+            }
+            while (!text.equals("q"));
+
+
+            /*ra.dropAbuses(row, System.out, abuse);
+                System.out.println("Input <q> for exit ");
+                exit = br.readLine();
+            }
+            while (exit.equals("q"));*/
+
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
 
