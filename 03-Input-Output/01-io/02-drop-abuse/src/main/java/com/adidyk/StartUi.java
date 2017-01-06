@@ -21,7 +21,6 @@ public class StartUi {
         for (String arg : list) {
             row = row.concat(arg).concat(" ");
         }
-        System.out.println(row);
         ra.dropAbuses(new ByteArrayInputStream(row.getBytes()), System.out, abuse);
     }
 
