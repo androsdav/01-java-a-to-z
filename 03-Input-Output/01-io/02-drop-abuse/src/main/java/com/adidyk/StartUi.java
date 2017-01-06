@@ -22,9 +22,7 @@ public class StartUi {
         for (String arg : list) {
             row = row.concat(arg).concat(" ");
         }
-        buffer = row.getBytes();
-        ByteArrayInputStream bais = new ByteArrayInputStream(buffer);
-        ra.dropAbuses(bais, System.out, abuse);
+        ra.dropAbuses(new ByteArrayInputStream(row.getBytes()), System.out, abuse);
     }
 
 }
