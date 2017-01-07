@@ -22,7 +22,6 @@ public class StartUi {
             row = row.concat(arg).concat(" ");
         }
         ra.dropAbuses(new ByteArrayInputStream(row.getBytes()), System.out, abuse);
-        // proverka mvn
     }
 
 }
