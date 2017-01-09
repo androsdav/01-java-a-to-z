@@ -22,7 +22,7 @@ public class RemoveAbuse {
                 }
             }
         }
-        catch (Exception ex)
+        catch (Exception ex){
             System.out.println(ex.getMessage());
         }
     }
