@@ -18,7 +18,8 @@ public class RemoveAbuse {
                     }
                 }
                 if (args[arg] != null) {
-                    bw.write(args[arg] + " ");
+                    bw.write(args[arg]);
+                    bw.write(" ");
                 }
             }
         }
