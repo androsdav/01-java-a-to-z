@@ -10,5 +10,6 @@
          <modules>
                   <module>01-byte-stream</module>
                   <module>02-drop-abuse</module>
+                  <module>03-sort-3G</module>
          </modules>
 </project>
