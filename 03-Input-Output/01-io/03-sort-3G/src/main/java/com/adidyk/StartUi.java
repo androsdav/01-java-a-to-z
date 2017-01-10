@@ -1,11 +1,17 @@
 package com.adidyk;
 
+import java.io.File;
 import java.io.IOException;
 
 public class StartUi {
 
     // main - input several row from console, for finished input <q>
     public static void main(String[] args) throws IOException {
+
+        SortFile sf = new SortFile();
+        File source = new File("source.txt");
+        sf.sort(source);
+        System.getProperty("user.dir");
        /* RemoveAbuse ra = new RemoveAbuse();
         String[] abuse = {"abuse1", "abuse2", "abuse3"};
         String text;
