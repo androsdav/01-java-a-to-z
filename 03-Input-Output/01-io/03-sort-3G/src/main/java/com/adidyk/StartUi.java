@@ -8,10 +8,10 @@ public class StartUi {
     public static void main(String[] args) throws IOException {
         SortFile sf = new SortFile();
         File source = new File("source.txt");
-        File dist = new File("dist.txt");
+        File distance = new File("distance.txt");
 
 
-        sf.sort(source);
+        sf.sort(source, distance);
         System.out.println(source.length());
         System.out.println(source.getAbsoluteFile());
         System.out.println(source.getAbsolutePath());
