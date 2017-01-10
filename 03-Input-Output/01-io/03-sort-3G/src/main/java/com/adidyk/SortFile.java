@@ -10,12 +10,21 @@ public class SortFile {
 
             distance.createNewFile();
             String row;
+            String max = br.readLine();
             while ((row = br.readLine()) != null) {
-                bw.write(row + "\n");
-                //bw.write("\n");
-                System.out.println(row);
-
+                if (max.length() > row.length()) {
+                    bw.write(Integer.toString(row.length()));
+                    bw.newLine();
+                } else {
+                    bw.write(Integer.toUnsignedString(max.length()));
+                    bw.newLine();
+                    max = row;
+                }
+                //bw.write(row);
+                //bw.newLine();
+                //System.out.println(row);
             }
+            bw.write((Integer.toString(max.length())));
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());

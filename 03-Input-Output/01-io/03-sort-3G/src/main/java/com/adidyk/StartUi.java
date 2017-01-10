@@ -12,11 +12,25 @@ public class StartUi {
 
 
         sf.sort(source, distance);
-        System.out.println(source.length());
-        System.out.println(source.getAbsoluteFile());
-        System.out.println(source.getAbsolutePath());
-        System.out.println(source.getParent());
-        System.out.println(source.getParentFile());
+
+        /*
+        Допустим, у вас имеется n отсортированных файлов, которые надо слепить воедино.
+        1. Открывайте FileStream на финальный файл
+        2. Открывайте n FileStream'ов — по одному на каждый из мелких отсортированных файлов.
+        3. Считывайте по одной строчке из каждого файла.
+        4. Найдите строчку, которая "меньше" всех остальных.
+        5. Запишите эту строчку в финальный файл.
+        6. Найдите FileStream, из которого вы считали эту строчку
+        7. Считайте следующую строчку из этого же потока.
+        8. Если строчек больше нет, то закройте этот поток и удалите временный файл.
+        9. Если все файлы были закрыты и удалены, то работа завершена, закройте поток в финальный файл.
+        10. В противном случае goto 4.
+        */
+        //System.out.println(source.length());
+        //System.out.println(source.getAbsoluteFile());
+        //System.out.println(source.getAbsolutePath());
+        //System.out.println(source.getParent());
+        //System.out.println(source.getParentFile());
     }
 }
 
