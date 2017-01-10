@@ -11,7 +11,7 @@ public class StartUi {
         SortFile sf = new SortFile();
         File source = new File("source.txt");
         sf.sort(source);
-        System.getProperty("user.dir");
+        //System.getProperty("user.dir");
        /* RemoveAbuse ra = new RemoveAbuse();
         String[] abuse = {"abuse1", "abuse2", "abuse3"};
         String text;
