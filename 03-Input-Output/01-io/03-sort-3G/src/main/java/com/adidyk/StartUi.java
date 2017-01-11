@@ -7,11 +7,19 @@ public class StartUi {
     // main - input several row from console, for finished input <q>
     public static void main(String[] args) throws IOException {
         SortFile sf = new SortFile();
-        File source = new File("source.txt");
-        File distance = new File("distance.txt");
+        //File source = new File("source.txt");
+        //File distance = new File("distance.txt");
+
+        String source = "source.txt";
+        String distance = "distance.txt";
 
 
         sf.sort(source, distance);
+
+        System.out.print(File.separator);
+        System.out.print(File.separatorChar);
+        System.out.print(File.pathSeparator);
+        System.out.print(File.pathSeparatorChar);
 
         /*
         Допустим, у вас имеется n отсортированных файлов, которые надо слепить воедино.

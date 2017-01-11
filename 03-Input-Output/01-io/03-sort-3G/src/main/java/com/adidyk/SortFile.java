@@ -4,8 +4,47 @@ import java.io.*;
 
 public class SortFile {
 
-    public void sort(File source, File distance) throws FileNotFoundException {
-        try (BufferedReader br = new BufferedReader(new FileReader(source));
+    public void sort(String source, String distance) throws FileNotFoundException {
+
+        try (RandomAccessFile rafRead = new RandomAccessFile(source, "r")) {
+            //RandomAccessFile rafWrite = new RandomAccessFile(distance, "rw")) {
+
+            String row;
+            RandomAccessFile rafWrite = new RandomAccessFile(File.createTempFile("text", ".txt", new File("D:/temp/")), "rw");
+            while ((row = rafRead.readLine()) != null) {
+
+                rafWrite.writeBytes(row);
+
+                if
+
+               // try rafWrite = new RandomAccessFile(File.createTempFile("text", ".txt", new File("D:/temp/")), "rw"); {
+               //     rafWrite.writeBytes(row);
+                }
+               // catch (Exception ex) {
+               //     ex.printStackTrace();
+              //  }
+
+
+
+
+            //rafWrite.setLength(1);
+            //long len = rafRead.length();
+            //String row;
+            //while ((row = rafRead.readLine()) != null) {
+            //   rafWrite.writeBytes(row);
+            //    rafWrite.writeBytes(System.lineSeparator());
+                //System.out.println(row);
+
+            //}
+            //System.out.println(len);
+
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
+
+        /*try (BufferedReader br = new BufferedReader(new FileReader(source));
              BufferedWriter bw = new BufferedWriter(new FileWriter(distance))) {
 
             distance.createNewFile();
@@ -28,7 +67,7 @@ public class SortFile {
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
-        }
+        }*/
 
     }
 
