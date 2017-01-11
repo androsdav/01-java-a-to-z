@@ -22,6 +22,30 @@ public class StartUi {
         System.out.print(File.pathSeparatorChar);
 
         /*
+
+        BufferedWriter out=new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
+        try {
+            byte buf[]=new byte[1024];
+            int len;
+            int count=0;
+            while((len=inputStream.read(buf))>0){
+                count++;
+                out.write(len);
+            }
+            System.out.print("size: "+(count/1024)+"Mb");
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            out.close();
+            inputStream.close();
+        }
+    }
+
+
+
+        */
+
+        /*
         Допустим, у вас имеется n отсортированных файлов, которые надо слепить воедино.
         1. Открывайте FileStream на финальный файл
         2
