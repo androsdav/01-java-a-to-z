@@ -9,46 +9,24 @@ public class SortFile {
         try (RandomAccessFile rafSource = new RandomAccessFile(source, "r");
             RandomAccessFile rafDist = new RandomAccessFile(distance, "rw")) {
 
+            // initialization param
             String row;
-            String tempFile;
-            long length = 0;
-            RandomAccessFile rafTemp;
             int index = 0;
+            String tempFile = "temp".concat(Integer.toString(index)).concat(".txt");;
+            RandomAccessFile rafTemp = new RandomAccessFile(tempFile, "rw");
 
+            // it write rows to file, file size auto detected
             while ((row = rafSource.readLine()) != null) {
-                tempFile = "temp".concat(Integer.toString(index)).concat(".txt");
-                rafTemp = new RandomAccessFile(tempFile, "rw");
-                rafTemp.writeBytes(row);
-                length = length + row.length();
-                index++;
-
-                //              if
-
-                // try rafWrite = new RandomAccessFile(File.createTempFile("text", ".txt", new File("D:/temp/")), "rw"); {
-                //     rafWrite.writeBytes(row);
-                //            }
-                // catch (Exception ex) {
-                //     ex.printStackTrace();
-                //  }
-
-
-                //rafWrite.setLength(1);
-                //long len = rafRead.length();
-                //String row;
-                //while ((row = rafRead.readLine()) != null) {
-                //   rafWrite.writeBytes(row);
-                //    rafWrite.writeBytes(System.lineSeparator());
-                //System.out.println(row);
-
-                //}
-                //System.out.println(len);
-                rafTemp.close();
-//                System.out.println(rafSource.length());
-  //              System.out.println(length);
+                if (rafTemp.length() < 50) {
+                    rafTemp.writeBytes(row.concat(System.lineSeparator()));
+                } else {
+                    index++;
+                    tempFile = "temp".concat(Integer.toString(index)).concat(".txt");
+                    rafTemp = new RandomAccessFile(tempFile, "rw");
+                    rafTemp.writeBytes(row.concat(System.lineSeparator()));
+                }
             }
-            System.out.println(rafSource.length());
-            System.out.println(length);
-
+            rafTemp.close();
         }
         catch (Exception ex) {
             System.out.println(ex.getMessage());
