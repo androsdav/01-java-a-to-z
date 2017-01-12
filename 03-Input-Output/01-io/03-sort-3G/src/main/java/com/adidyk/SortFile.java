@@ -4,25 +4,26 @@ import java.io.*;
 
 public class SortFile {
 
-    public void sort(File source, File distance) throws FileNotFoundException {
+    private String name;
 
-        try (RandomAccessFile rafSource = new RandomAccessFile(source, "r");
-            RandomAccessFile rafDist = new RandomAccessFile(distance, "rw")) {
+    public void sort(File source, File distance) throws IOException {
 
+        try (RandomAccessFile rafSource = new RandomAccessFile(source, "r")) {
             // initialization param
             String row;
             int index = 0;
-            String tempFile = "temp".concat(Integer.toString(index)).concat(".txt");;
-            RandomAccessFile rafTemp = new RandomAccessFile(tempFile, "rw");
-
-            // it write rows to file, file size auto detected
+            String temp = "temp".concat(Integer.toString(index)).concat(".txt");
+            RandomAccessFile rafTemp = new RandomAccessFile(temp, "rw");
+            this.name = temp.concat(" ");
+            // it write rows to files, file size auto detected
             while ((row = rafSource.readLine()) != null) {
                 if (rafTemp.length() < 50) {
                     rafTemp.writeBytes(row.concat(System.lineSeparator()));
                 } else {
                     index++;
-                    tempFile = "temp".concat(Integer.toString(index)).concat(".txt");
-                    rafTemp = new RandomAccessFile(tempFile, "rw");
+                    temp = "temp".concat(Integer.toString(index)).concat(".txt");
+                    this.name = this.name.concat(temp).concat(" ");
+                    rafTemp = new RandomAccessFile(temp, "rw");
                     rafTemp.writeBytes(row.concat(System.lineSeparator()));
                 }
             }
@@ -32,31 +33,33 @@ public class SortFile {
             System.out.println(ex.getMessage());
         }
 
+        try (RandomAccessFile rafDist = new RandomAccessFile(distance, "rw")) {
 
-        /*try (BufferedReader br = new BufferedReader(new FileReader(source));
-             BufferedWriter bw = new BufferedWriter(new FileWriter(distance))) {
+            String[] args = this.name.split(" ");
+            RandomAccessFile rafTemp = new RandomAccessFile(args[0], "rw");
+            byte[] buffer = new byte[(int)rafTemp.length()];
 
-            distance.createNewFile();
-            String row;
-            String max = br.readLine();
-            while ((row = br.readLine()) != null) {
-                if (max.length() > row.length()) {
-                    bw.write(Integer.toString(row.length()));
-                    bw.newLine();
-                } else {
-                    bw.write(Integer.toUnsignedString(max.length()));
-                    bw.newLine();
-                    max = row;
-                }
-                //bw.write(row);
-                //bw.newLine();
-                //System.out.println(row);
-            }
-            bw.write((Integer.toString(max.length())));
 
-        } catch (IOException ex) {
+        }
+        catch (Exception ex) {
             System.out.println(ex.getMessage());
+        }
+
+        String[] args = this.name.split(" ");
+        RandomAccessFile rafTemp = new RandomAccessFile(args[0], "rw");
+        byte[] buffer = new byte[(int)rafTemp.length()];
+        rafTemp.read(buffer, 0, (int)rafTemp.length());
+        String newLine = new String(buffer, "cp1251");
+        System.out.println(newLine);
+
+/*        for (int i = 0; i < buffer.length; i++) {
+            System.out.print(buffer[i]);
         }*/
+
+        rafTemp.close();
+
+
+
 
     }
 
