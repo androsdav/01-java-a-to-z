@@ -38,22 +38,25 @@ public class SortFile {
             String[] args = this.name.split(" ");
             RandomAccessFile rafTemp = new RandomAccessFile(args[0], "rw");
             byte[] buffer = new byte[(int)rafTemp.length()];
-
+            rafTemp.read(buffer, 0, (int)rafTemp.length());
+            String[] newLine = (new String(buffer, "cp1251")).split(" ");
 
         }
         catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
 
+        // convert
         String[] args = this.name.split(" ");
         RandomAccessFile rafTemp = new RandomAccessFile(args[0], "rw");
         byte[] buffer = new byte[(int)rafTemp.length()];
         rafTemp.read(buffer, 0, (int)rafTemp.length());
-        String newLine = new String(buffer, "cp1251");
-        System.out.println(newLine);
+        String[] newLine = (new String(buffer, "cp1251")).split(" ");
 
-/*        for (int i = 0; i < buffer.length; i++) {
-            System.out.print(buffer[i]);
+        /*System.out.print(newLine);
+
+        for (int i = 0; i < newLine.length; i++) {
+            System.out.print(newLine[i]);
         }*/
 
         rafTemp.close();
