@@ -4,39 +4,50 @@ import java.io.*;
 
 public class SortFile {
 
-    public void sort(String source, String distance) throws FileNotFoundException {
+    public void sort(File source, File distance) throws FileNotFoundException {
 
-        try (RandomAccessFile rafRead = new RandomAccessFile(source, "r")) {
-            //RandomAccessFile rafWrite = new RandomAccessFile(distance, "rw")) {
+        try (RandomAccessFile rafSource = new RandomAccessFile(source, "r");
+            RandomAccessFile rafDist = new RandomAccessFile(distance, "rw")) {
 
             String row;
-            RandomAccessFile rafWrite = new RandomAccessFile(File.createTempFile("text", ".txt", new File("D:/temp/")), "rw");
-            while ((row = rafRead.readLine()) != null) {
+            String tempFile;
+            long length = 0;
+            RandomAccessFile rafTemp;
+            int index = 0;
 
-                rafWrite.writeBytes(row);
+            while ((row = rafSource.readLine()) != null) {
+                tempFile = "temp".concat(Integer.toString(index)).concat(".txt");
+                rafTemp = new RandomAccessFile(tempFile, "rw");
+                rafTemp.writeBytes(row);
+                length = length + row.length();
+                index++;
 
-                if
+                //              if
 
-               // try rafWrite = new RandomAccessFile(File.createTempFile("text", ".txt", new File("D:/temp/")), "rw"); {
-               //     rafWrite.writeBytes(row);
-                }
-               // catch (Exception ex) {
-               //     ex.printStackTrace();
-              //  }
-
-
+                // try rafWrite = new RandomAccessFile(File.createTempFile("text", ".txt", new File("D:/temp/")), "rw"); {
+                //     rafWrite.writeBytes(row);
+                //            }
+                // catch (Exception ex) {
+                //     ex.printStackTrace();
+                //  }
 
 
-            //rafWrite.setLength(1);
-            //long len = rafRead.length();
-            //String row;
-            //while ((row = rafRead.readLine()) != null) {
-            //   rafWrite.writeBytes(row);
-            //    rafWrite.writeBytes(System.lineSeparator());
+                //rafWrite.setLength(1);
+                //long len = rafRead.length();
+                //String row;
+                //while ((row = rafRead.readLine()) != null) {
+                //   rafWrite.writeBytes(row);
+                //    rafWrite.writeBytes(System.lineSeparator());
                 //System.out.println(row);
 
-            //}
-            //System.out.println(len);
+                //}
+                //System.out.println(len);
+                rafTemp.close();
+//                System.out.println(rafSource.length());
+  //              System.out.println(length);
+            }
+            System.out.println(rafSource.length());
+            System.out.println(length);
 
         }
         catch (Exception ex) {
