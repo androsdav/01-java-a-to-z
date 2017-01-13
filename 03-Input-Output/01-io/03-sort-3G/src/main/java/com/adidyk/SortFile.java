@@ -8,7 +8,7 @@ public class SortFile {
 
     private String[] names;
 
-    private void split(File source) {
+    private void split(File source) throws IOException {
         try (RandomAccessFile rafSource = new RandomAccessFile(source, "r")) {
             // initialization param
             int index = 0;
@@ -18,19 +18,17 @@ public class SortFile {
             String row;
             // it write rows to files, file size auto detected
             while ((row =rafSource.readLine()) != null) {
-                if (rafTemp.length() < 60) {
+                if (rafTemp.length() < 40) {
                     rafTemp.writeBytes(row.concat(System.lineSeparator()));
                 } else {
                     index++;
                     temp = "temp".concat(Integer.toString(index)).concat(".txt");
-                    System.out.println(name);
                     name = name.concat(temp).concat(" ");
                     rafTemp = new RandomAccessFile(temp, "rw");
                     rafTemp.writeBytes(row.concat(System.lineSeparator()));
                 }
             }
             this.names = name.split(" ");
-            System.out.println(name);
             rafTemp.close();
         }
         catch (Exception ex) {
@@ -38,22 +36,65 @@ public class SortFile {
         }
     }
 
-    private void sortBubble() {
+    private String[] transferToString(RandomAccessFile raf) throws IOException {
+        byte[] buffer = new byte[(int)raf.length()];
+        raf.read(buffer, 0, (int)raf.length());
+        return new String(buffer, "cp1251").split(System.lineSeparator());
+    }
 
+    private String transferToByteArray(String[] rows) throws IOException {
+        String line = "";
+        for (String row : rows) {
+            line = line.concat(row).concat(System.lineSeparator());
+        }
+        return line;
+    }
 
+    private String[] sortBubble(String[] rows) {
+        boolean flag = true;
+        String min;
+        while (flag) {
+            for (int j = rows.length - 1; j > 0; j--) {
+                for (int i = 0; i < j; i++) {
+                    if (rows[i].length() > rows[i+1].length()) {
+                        min = rows[i + 1];
+                        rows[i + 1] =rows[i];
+                        rows[i] = min;
+                    } else {
+                        flag = false;
+                    }
+                }
+
+            }
+        }
+        return rows;
+    }
+
+    private void sortBubbleAll() throws IOException {
+        for (String name : this.names) {
+            System.out.println("Name: " + name);
+            try (RandomAccessFile rafTemp = new RandomAccessFile(name, "rw")) {
+                String[] rows = sortBubble(this.transferToString(rafTemp));
+                String row = transferToByteArray(rows);
+                rafTemp.writeBytes(row);
+            }
+            catch (Exception ex) {
+                System.out.println();
+            }
+        }
     }
 
     public void sort(File source, File distance) throws IOException {
 
         this.split(source);
-//        System.out.println(Arrays.toString(this.names));
+        this.sortBubbleAll();
 
-        for (String index : this.names) {
+/*        for (String index : this.names) {
             if (index != null) {
                 System.out.println(index);
             }
 
-        }
+        } */
 
 
 
