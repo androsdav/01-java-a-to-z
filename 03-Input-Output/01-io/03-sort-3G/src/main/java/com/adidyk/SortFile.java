@@ -1,39 +1,63 @@
 package com.adidyk;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 
 public class SortFile {
 
-    private String name;
+    private String[] names;
 
-    public void sort(File source, File distance) throws IOException {
-
+    private void split(File source) {
         try (RandomAccessFile rafSource = new RandomAccessFile(source, "r")) {
             // initialization param
-            String row;
             int index = 0;
             String temp = "temp".concat(Integer.toString(index)).concat(".txt");
+            String name = temp.concat(" ");
             RandomAccessFile rafTemp = new RandomAccessFile(temp, "rw");
-            this.name = temp.concat(" ");
+            String row;
             // it write rows to files, file size auto detected
-            while ((row = rafSource.readLine()) != null) {
-                if (rafTemp.length() < 50) {
+            while ((row =rafSource.readLine()) != null) {
+                if (rafTemp.length() < 60) {
                     rafTemp.writeBytes(row.concat(System.lineSeparator()));
                 } else {
                     index++;
                     temp = "temp".concat(Integer.toString(index)).concat(".txt");
-                    this.name = this.name.concat(temp).concat(" ");
+                    System.out.println(name);
+                    name = name.concat(temp).concat(" ");
                     rafTemp = new RandomAccessFile(temp, "rw");
                     rafTemp.writeBytes(row.concat(System.lineSeparator()));
                 }
             }
+            this.names = name.split(" ");
+            System.out.println(name);
             rafTemp.close();
         }
         catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
+    }
 
-        try (RandomAccessFile rafDist = new RandomAccessFile(distance, "rw")) {
+    private void sortBubble() {
+
+
+    }
+
+    public void sort(File source, File distance) throws IOException {
+
+        this.split(source);
+//        System.out.println(Arrays.toString(this.names));
+
+        for (String index : this.names) {
+            if (index != null) {
+                System.out.println(index);
+            }
+
+        }
+
+
+
+     /*   try (RandomAccessFile rafDist = new RandomAccessFile(distance, "rw")) {
 
             String[] args = this.name.split(" ");
             RandomAccessFile rafTemp = new RandomAccessFile(args[0], "rw");
@@ -57,9 +81,9 @@ public class SortFile {
 
         for (int i = 0; i < newLine.length; i++) {
             System.out.print(newLine[i]);
-        }*/
+        }
 
-        rafTemp.close();
+        rafTemp.close();*/
 
 
 

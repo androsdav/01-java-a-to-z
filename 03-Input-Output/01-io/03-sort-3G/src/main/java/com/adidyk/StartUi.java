@@ -16,10 +16,10 @@ public class StartUi {
 
         sf.sort(source, distance);
 
-        System.out.print(File.separator);
-        System.out.print(File.separatorChar);
-        System.out.print(File.pathSeparator);
-        System.out.print(File.pathSeparatorChar);
+       // System.out.print(File.separator);
+       // System.out.print(File.separatorChar);
+       // System.out.print(File.pathSeparator);
+       // System.out.print(File.pathSeparatorChar);
 
         /*
 
