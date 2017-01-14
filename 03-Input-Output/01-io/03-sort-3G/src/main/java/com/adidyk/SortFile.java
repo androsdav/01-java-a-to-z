@@ -10,20 +10,21 @@ public class SortFile {
 
     //
     public void sort(File source, File distance) throws IOException {
-        this.split(source);
-        this.sortAllFile();
+        this.splitFile(source);
+        this.sortAllTempFile();
+        this.sortMerge(distance);
     }
 
     // /split - it write rows to files, file size auto detected
-    private void split(File source) throws IOException {
+    private void splitFile(File source) throws IOException {
         try (RandomAccessFile rafSource = new RandomAccessFile(source, "r")) {
             int index = 0;
             String temp = "temp".concat(Integer.toString(index)).concat(".txt");
             String name = temp.concat(" ");
             RandomAccessFile rafTemp = new RandomAccessFile(temp, "rw");
             String row;
-            while ((row =rafSource.readLine()) != null) {
-                if (rafTemp.length() < 60) {
+            while ((row = rafSource.readLine()) != null) {
+                if (rafTemp.length() < 80) {
                     rafTemp.writeBytes(row.concat(System.lineSeparator()));
                 } else {
                     index++;
@@ -42,16 +43,15 @@ public class SortFile {
     }
 
     //
-    private void sortAllFile() throws IOException {
+    private void sortAllTempFile() throws IOException {
         for (String name : this.names) {
-            System.out.println("Name: " + name);
             try (RandomAccessFile rafTemp = new RandomAccessFile(name, "rw")) {
                 String row = this.fromArrayStringInString(this.sortBubble(this.fromRAFileInString(rafTemp)));
                 rafTemp.seek(0);
                 rafTemp.writeBytes(row);
             }
             catch (Exception ex) {
-                System.out.println();
+                System.out.println(ex.getMessage());
             }
         }
     }
@@ -65,21 +65,16 @@ public class SortFile {
 
     //
     private String[] sortBubble(String[] rows) {
-        boolean flag = true;
         String min;
-       // while (flag) {
             for (int j = rows.length - 1; j > 0; j--) {
                 for (int i = 0; i < j; i++) {
                     if (rows[i].length() > rows[i+1].length()) {
                         min = rows[i + 1];
                         rows[i + 1] =rows[i];
                         rows[i] = min;
-                    } //else {
-                       // flag = false;
-                   // }
+                    }
                 }
             }
-        //}
         return rows;
     }
 
@@ -90,6 +85,37 @@ public class SortFile {
             line = line.concat(row).concat(System.lineSeparator());
         }
         return line;
+    }
+
+    private void sortMerge(File distance) throws IOException {
+        try (RandomAccessFile rafDist = new RandomAccessFile(distance, "rw")) {
+            RandomAccessFile [] raf = new RandomAccessFile[this.names.length];
+            for (int index = 0; index < this.names.length; index++) {
+                raf[index] = new RandomAccessFile(this.names[index], "r");
+            }
+            String min = "";
+            String row;
+            int position;
+
+
+            for (int index = 0; index < raf.length; index++) {
+                if ((row = raf[index].readLine()) != null) {
+                    if (min.length() > row.length()) {
+                        min = row;
+                        position = index;
+                    }
+                } else {
+                    raf[index].close();
+                    raf[index] = null;
+                }
+
+            }
+            rafDist.writeBytes(min.concat(System.lineSeparator()));
+
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
 }
