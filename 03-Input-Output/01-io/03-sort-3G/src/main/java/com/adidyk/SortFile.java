@@ -92,22 +92,22 @@ public class SortFile {
         try (RandomAccessFile rafDist = new RandomAccessFile(distance, "rw")) {
 
             RandomAccessFile [] raf = new RandomAccessFile[this.names.length];
-            ArrayList<String> rows = new ArrayList<>();
+            String[] rows = new String[this.names.length];
             //String[] rows = new String[this.names.length];
             for (int index = 0; index < this.names.length; index++) {
                 raf[index] = new RandomAccessFile(this.names[index], "r");
-                rows.add(raf[index].readLine());
+                rows[index] = raf[index].readLine();
             }
 
-            String min = rows.get(0);
+            String min = rows[0];
             int position = 0;
             int flag = 0;
 
-            while (flag < rows.size()) {
-                for (int index = 0; index < rows.size(); index++) {
-                    if (rows.get(index) != null) {
-                        if (min.length() > rows.get(index).length()) {
-                            min = rows.get(index);
+            while (flag <= raf.length) {
+                for (int index = 0; index < rows.length; index++) {
+                    if (rows[index] != null) {
+                        if (min.length() > rows[index].length()) {
+                            min = rows[index];
                             position = index;
                         }
                     }
@@ -115,15 +115,31 @@ public class SortFile {
 
                 rafDist.writeBytes(min.concat(System.lineSeparator()));
 
-                if ((rows[position] = raf[position].readLine()) == null) {
+
+                //boolean temp = rows.add(raf[position].readLine());
+                //System.out.println(temp);
+                //flag++;
+
+                if ((rows[position] = raf[position].readLine()) != null) {
+                    min = rows[position];
+                } else {
+                    flag++;
+                    for (String row : rows) {
+                        if (row != null) {
+                            min = row;
+                            break;
+                        }
+                    }
+                }
+             /*   if ((!rows.add(raf[position].readLine()))) {
                     //min = rows[position + 1];
-                    rows[position] = null;
+                    rows.remove(position);
                     flag++;
                     //System.out.println(flag);
                     //raf[position].close();
                 } else {
-                    min = rows[position];
-                }
+                    min = rows.get(position);
+                } */
             }
         }
         catch (Exception ex) {
