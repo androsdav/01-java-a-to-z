@@ -25,7 +25,7 @@ public class SortFile {
             RandomAccessFile rafTemp = new RandomAccessFile(temp, "rw");
             String row;
             while ((row = rafSource.readLine()) != null) {
-                if (rafTemp.length() < 500) {
+                if (rafTemp.length() < 30) {
                     rafTemp.writeBytes(row.concat(System.lineSeparator()));
                 } else {
                     index++;
@@ -115,16 +115,12 @@ public class SortFile {
 
                 rafDist.writeBytes(min.concat(System.lineSeparator()));
 
-
-                //boolean temp = rows.add(raf[position].readLine());
-                //System.out.println(temp);
-                //flag++;
-
                 if ((rows[position] = raf[position].readLine()) != null) {
                     min = rows[position];
                 } else {
                     flag++;
                     rows[position] = null;
+                    //raf[position] = null;
                     for (String row : rows) {
                         if (row != null) {
                             min = row;
@@ -132,15 +128,7 @@ public class SortFile {
                         }
                     }
                 }
-             /*   if ((!rows.add(raf[position].readLine()))) {
-                    //min = rows[position + 1];
-                    rows.remove(position);
-                    flag++;
-                    //System.out.println(flag);
-                    //raf[position].close();
-                } else {
-                    min = rows.get(position);
-                } */
+
             }
         }
         catch (Exception ex) {
