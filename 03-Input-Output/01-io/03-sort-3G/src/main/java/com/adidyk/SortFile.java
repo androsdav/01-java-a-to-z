@@ -3,6 +3,7 @@ package com.adidyk;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.ArrayList;
 
 public class SortFile {
 
@@ -91,21 +92,22 @@ public class SortFile {
         try (RandomAccessFile rafDist = new RandomAccessFile(distance, "rw")) {
 
             RandomAccessFile [] raf = new RandomAccessFile[this.names.length];
-            String[] rows = new String[this.names.length];
+            ArrayList<String> rows = new ArrayList<>();
+            //String[] rows = new String[this.names.length];
             for (int index = 0; index < this.names.length; index++) {
                 raf[index] = new RandomAccessFile(this.names[index], "r");
-                rows[index] = raf[index].readLine();
+                rows.add(raf[index].readLine());
             }
 
-            String min = rows[0];
+            String min = rows.get(0);
             int position = 0;
             int flag = 0;
 
-            while (flag < rows.length) {
-                for (int index = 0; index < rows.length - 1; index++) {
-                    if (rows[index] != null) {
-                        if (min.length() > rows[index].length()) {
-                            min = rows[index];
+            while (flag < rows.size()) {
+                for (int index = 0; index < rows.size(); index++) {
+                    if (rows.get(index) != null) {
+                        if (min.length() > rows.get(index).length()) {
+                            min = rows.get(index);
                             position = index;
                         }
                     }
