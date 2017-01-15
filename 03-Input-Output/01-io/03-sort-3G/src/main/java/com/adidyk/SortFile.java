@@ -89,29 +89,40 @@ public class SortFile {
 
     private void sortMerge(File distance) throws IOException {
         try (RandomAccessFile rafDist = new RandomAccessFile(distance, "rw")) {
+
             RandomAccessFile [] raf = new RandomAccessFile[this.names.length];
+            String[] rows = new String[this.names.length];
             for (int index = 0; index < this.names.length; index++) {
                 raf[index] = new RandomAccessFile(this.names[index], "r");
+                rows[index] = raf[index].readLine();
             }
-            String min = "";
-            String row;
-            int position;
 
+            String min = rows[0];
+            int position = 0;
+            int flag = 0;
 
-            for (int index = 0; index < raf.length; index++) {
-                if ((row = raf[index].readLine()) != null) {
-                    if (min.length() > row.length()) {
-                        min = row;
-                        position = index;
+            while (flag < rows.length) {
+                for (int index = 0; index < rows.length - 1; index++) {
+                    if (rows[index] != null) {
+                        if (min.length() > rows[index].length()) {
+                            min = rows[index];
+                            position = index;
+                        }
                     }
-                } else {
-                    raf[index].close();
-                    raf[index] = null;
                 }
 
-            }
-            rafDist.writeBytes(min.concat(System.lineSeparator()));
+                rafDist.writeBytes(min.concat(System.lineSeparator()));
 
+                if ((rows[position] = raf[position].readLine()) == null) {
+                    //min = rows[position + 1];
+                    rows[position] = null;
+                    flag++;
+                    //System.out.println(flag);
+                    //raf[position].close();
+                } else {
+                    min = rows[position];
+                }
+            }
         }
         catch (Exception ex) {
             System.out.println(ex.getMessage());
