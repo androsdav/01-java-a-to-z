@@ -103,7 +103,7 @@ public class SortFile {
             int position = 0;
             int flag = 0;
 
-            while (flag <= raf.length) {
+            while (flag < raf.length) {
                 for (int index = 0; index < rows.length; index++) {
                     if (rows[index] != null) {
                         if (min.length() > rows[index].length()) {
@@ -124,6 +124,7 @@ public class SortFile {
                     min = rows[position];
                 } else {
                     flag++;
+                    rows[position] = null;
                     for (String row : rows) {
                         if (row != null) {
                             min = row;
