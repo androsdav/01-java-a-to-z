@@ -24,7 +24,7 @@ public class SortFile {
             RandomAccessFile rafTemp = new RandomAccessFile(temp, "rw");
             String row;
             while ((row = rafSource.readLine()) != null) {
-                if (rafTemp.length() < 100000) {
+                if (rafTemp.length() < 1000) {
                     rafTemp.writeBytes(row.concat(System.lineSeparator()));
                 } else {
                     index++;
