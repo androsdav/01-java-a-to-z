@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
+@SuppressWarnings("ALL")
 public class SortFile {
 
     private String[] names; // names - names all temp file
@@ -24,7 +25,7 @@ public class SortFile {
             RandomAccessFile rafTemp = new RandomAccessFile(temp, "rw");
             String row;
             while ((row = rafSource.readLine()) != null) {
-                if (rafTemp.length() < 1000) {
+                if (rafTemp.length() < 100) {
                     rafTemp.writeBytes(row.concat(System.lineSeparator()));
                 } else {
                     index++;
@@ -88,6 +89,7 @@ public class SortFile {
     }
 
     // sortMerge -
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     private void sortMerge(File distance) throws IOException {
         try (RandomAccessFile rafDist = new RandomAccessFile(distance, "rw")) {
             RandomAccessFile [] raf = new RandomAccessFile[this.names.length];
@@ -113,7 +115,14 @@ public class SortFile {
                     min = rows[position];
                 } else {
                     raf[position].close();
-                    new File(names[position]).delete();
+                    File file = new File(names[position]);
+                    System.out.println(file.getName());
+                    //file.delete();
+
+                    //noinspection ResultOfMethodCallIgnored
+                   // boolean delete = file.delete();
+                   // System.out.println(delete);
+                    //new File(names[position]).delete();
                     flag++;
                     for ( int index = 0; index < rows.length; index++) {
                         if (rows[index] != null) {
@@ -125,6 +134,7 @@ public class SortFile {
                 }
             }
 //            raf[1].close();
+
         }
         catch (Exception ex) {
             System.out.println(ex.getMessage());
