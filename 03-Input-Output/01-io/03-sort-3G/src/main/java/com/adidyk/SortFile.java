@@ -113,16 +113,9 @@ public class SortFile {
                 if ((rows[position] = raf[position].readLine()) != null) {
                     min = rows[position];
                 } else {
-                    raf[position].close();
-                    //File file = new File(names[position]);
-                    //System.out.println(file.getPath());
-                    //file.delete();
-
-                    //noinspection ResultOfMethodCallIgnored
-                   // boolean delete = file.delete();
-                   // System.out.println(delete);
-                    //new File(names[position]).delete();
                     flag++;
+                    raf[position].close();
+                    new File(this.names[position]).delete();
                     for ( int index = 0; index < rows.length; index++) {
                         if (rows[index] != null) {
                             min = rows[index];
@@ -132,25 +125,7 @@ public class SortFile {
                     }
                 }
             }
-//            raf[1].close();
-            //System.out.println(names[0]);
-            //raf[0].close();
-            //File file = new File(this.names[0]);
-            //if (file.delete()) {
-            //    System.out.println("Delete true");
-            //} else {
-            //    System.out.println("Delete false");
-           // }
-
-            //file.delete();
-            //System.out.println(distance.getAbsolutePath());
-            //(new File(names[1])).delete();
-            //(new File(names[2])).delete();
-            //(new File(names[3])).delete();
-            //(new File(names[4])).delete();
-
         }
-
         catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
