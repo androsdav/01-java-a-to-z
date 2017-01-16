@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
-@SuppressWarnings("ALL")
+
 public class SortFile {
 
     private String[] names; // names - names all temp file
@@ -89,7 +89,6 @@ public class SortFile {
     }
 
     // sortMerge -
-    @SuppressWarnings("ResultOfMethodCallIgnored")
     private void sortMerge(File distance) throws IOException {
         try (RandomAccessFile rafDist = new RandomAccessFile(distance, "rw")) {
             RandomAccessFile [] raf = new RandomAccessFile[this.names.length];
@@ -115,8 +114,8 @@ public class SortFile {
                     min = rows[position];
                 } else {
                     raf[position].close();
-                    File file = new File(names[position]);
-                    System.out.println(file.getName());
+                    //File file = new File(names[position]);
+                    //System.out.println(file.getPath());
                     //file.delete();
 
                     //noinspection ResultOfMethodCallIgnored
@@ -134,11 +133,28 @@ public class SortFile {
                 }
             }
 //            raf[1].close();
+            //System.out.println(names[0]);
+            //raf[0].close();
+            //File file = new File(this.names[0]);
+            //if (file.delete()) {
+            //    System.out.println("Delete true");
+            //} else {
+            //    System.out.println("Delete false");
+           // }
+
+            //file.delete();
+            //System.out.println(distance.getAbsolutePath());
+            //(new File(names[1])).delete();
+            //(new File(names[2])).delete();
+            //(new File(names[3])).delete();
+            //(new File(names[4])).delete();
 
         }
+
         catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
+     //   distance.delete();
     }
 
 }
