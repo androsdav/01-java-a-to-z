@@ -17,6 +17,9 @@ public class Palindrome {
             for (char lett : letters) {
                 System.out.print(lett +" ");
             }
+            if (letters.length > 5) {
+                new Exception();
+            }
 
         }
         catch (Exception ex) {
