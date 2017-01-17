@@ -9,7 +9,7 @@ public class SortFile {
 
     private String[] names; // names - names all temp file
 
-    //
+    // sort - start all methods
     public void sort(File source, File distance) throws IOException {
         this.splitFile(source);
         this.sortAllTempFile();
@@ -25,7 +25,7 @@ public class SortFile {
             RandomAccessFile rafTemp = new RandomAccessFile(temp, "rw");
             String row;
             while ((row = rafSource.readLine()) != null) {
-                if (rafTemp.length() < 500) {
+                if (rafTemp.length() < rafSource.length() / 10) {
                     rafTemp.writeBytes(row.concat(System.lineSeparator()));
                 } else {
                     index++;
@@ -43,7 +43,7 @@ public class SortFile {
         }
     }
 
-    // sortAllTempFile -
+    // sortAllTempFile - sort all temp files
     private void sortAllTempFile() throws IOException {
         for (String name : this.names) {
             try (RandomAccessFile rafTemp = new RandomAccessFile(name, "rw")) {
@@ -57,14 +57,14 @@ public class SortFile {
         }
     }
 
-    // from RAFileInString -
+    // from RAFileInString - transfer from RAF in String
     private String[] fromRAFileInString(RandomAccessFile raf) throws IOException {
         byte[] buffer = new byte[(int)raf.length()];
         raf.read(buffer, 0, (int)raf.length());
         return new String(buffer, "cp1251").split(System.lineSeparator());
     }
 
-    // sortBubble -
+    // sortBubble - sort bubble all rows in array string
     private String[] sortBubble(String[] rows) {
         String min;
             for (int j = rows.length - 1; j > 0; j--) {
@@ -79,7 +79,7 @@ public class SortFile {
         return rows;
     }
 
-    // fromArrayStringInString -
+    // fromArrayStringInString - transfer from array String in String
     private String fromArrayStringInString(String[] rows) throws IOException {
         String line = "";
         for (String row : rows) {
@@ -88,7 +88,7 @@ public class SortFile {
         return line;
     }
 
-    // sortMerge -
+    // sortMerge - sort Merge all temp file
     private void sortMerge(File distance) throws IOException {
         try (RandomAccessFile rafDist = new RandomAccessFile(distance, "rw")) {
             RandomAccessFile [] raf = new RandomAccessFile[this.names.length];
@@ -98,12 +98,6 @@ public class SortFile {
                 rows[index] = raf[index].readLine();
                 System.out.println(rows[index]);
             }
-
-            for (int index = 0; index < rows.length; index++) {
-                System.out.print(index +" " +rows[index]);
-                System.out.println();
-            }
-
             String min = rows[0];
             int position = 0;
             int flag = 0;
@@ -121,8 +115,6 @@ public class SortFile {
                     min = rows[position];
                 } else {
                     flag++;
-             //       System.out.println("flag: " +flag);
-
                     raf[position].close();
                     new File(this.names[position]).delete();
                     for ( int index = 0; index < rows.length; index++) {
@@ -138,7 +130,6 @@ public class SortFile {
         catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-     //   distance.delete();
     }
 
 }
