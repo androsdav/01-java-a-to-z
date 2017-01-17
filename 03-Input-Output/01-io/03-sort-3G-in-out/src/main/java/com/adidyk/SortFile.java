@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
-
 public class SortFile {
 
     private String[] names; // names - names all temp file
@@ -96,7 +95,6 @@ public class SortFile {
             for (int index = 0; index < this.names.length; index++) {
                 raf[index] = new RandomAccessFile(this.names[index], "r");
                 rows[index] = raf[index].readLine();
-                System.out.println(rows[index]);
             }
             String min = rows[0];
             int position = 0;
