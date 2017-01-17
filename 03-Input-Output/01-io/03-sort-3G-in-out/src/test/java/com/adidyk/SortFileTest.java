@@ -40,6 +40,8 @@ public class SortFileTest {
         catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
+        source.delete();
+        distance.delete();
         assertThat(this.rowsFact, is(rowsActuality));
     }
 
