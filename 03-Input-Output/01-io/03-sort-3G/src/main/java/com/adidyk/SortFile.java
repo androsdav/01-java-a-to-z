@@ -48,6 +48,7 @@ public class SortFile {
         for (String name : this.names) {
             try (RandomAccessFile rafTemp = new RandomAccessFile(name, "rw")) {
                 String[] rows = this.fromRAFileInString(rafTemp);
+                Arrays.sort(this.fromRAFileInString(rafTemp));
                 Arrays.sort(rows);
                 String row = this.fromArrayStringInString(rows);
                 rafTemp.seek(0);
