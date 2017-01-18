@@ -7,18 +7,21 @@ import java.io.InputStreamReader;
 
 public class Palindrome {
 
-    public void palindromeCheck(InputStream in) throws IOException {
+    public boolean palindromeCheck(InputStream in) throws IOException {
+        boolean palindromeFlag =false;
         try (BufferedReader br = new BufferedReader(new InputStreamReader(in))) {
-            String row = br.readLine().toLowerCase();
-            char[] letters = row.toCharArray();
-            String rows = row.toLowerCase();
-            System.out.println(row);
-            System.out.println(rows);
-            for (char lett : letters) {
-                System.out.print(lett +" ");
-            }
-            if (letters.length > 5) {
-                new Exception();
+            char[] letters = br.readLine().toLowerCase().toCharArray();
+            if (letters.length < 6) {
+                for (int index = 0; index < letters.length / 2; index++) {
+                    if (letters[index] == letters[letters.length - index - 1]) {
+                        palindromeFlag = true;
+                    } else {
+                        palindromeFlag = false;
+                        break;
+                    }
+                }
+            } else {
+                throw new MoreThanFifeLetters("Input word has more than fife letters");
             }
 
         }
@@ -26,5 +29,6 @@ public class Palindrome {
             System.out.println(ex.getMessage());
         }
 
+        return palindromeFlag;
     }
 }
