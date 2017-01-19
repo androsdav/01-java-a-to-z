@@ -3,7 +3,7 @@ package com.adidyk;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.util.logging.Logger;
+import java.util.Arrays;
 
 public class SortFile {
 
@@ -16,7 +16,7 @@ public class SortFile {
         this.sortMerge(distance);
     }
 
-    // /split - it write rows to files, file size auto detected
+    // split - it write rows to files, file size auto detected
     private void splitFile(File source) throws IOException {
         try (RandomAccessFile rafSource = new RandomAccessFile(source, "r")) {
             int index = 0;
@@ -47,7 +47,10 @@ public class SortFile {
     private void sortAllTempFile() throws IOException {
         for (String name : this.names) {
             try (RandomAccessFile rafTemp = new RandomAccessFile(name, "rw")) {
-                String row = this.fromArrayStringInString(this.sortBubble(this.fromRAFileInString(rafTemp)));
+                String[] rows = this.fromRAFileInString(rafTemp);
+                Arrays.sort(this.fromRAFileInString(rafTemp));
+                Arrays.sort(rows);
+                String row = this.fromArrayStringInString(rows);
                 rafTemp.seek(0);
                 rafTemp.writeBytes(row);
             }
@@ -62,21 +65,6 @@ public class SortFile {
         byte[] buffer = new byte[(int)raf.length()];
         raf.read(buffer, 0, (int)raf.length());
         return new String(buffer, "cp1251").split(System.lineSeparator());
-    }
-
-    // sortBubble - sort bubble all rows in array string
-    private String[] sortBubble(String[] rows) {
-        String min;
-            for (int j = rows.length - 1; j > 0; j--) {
-                for (int i = 0; i < j; i++) {
-                    if (rows[i].length() > rows[i+1].length()) {
-                        min = rows[i + 1];
-                        rows[i + 1] =rows[i];
-                        rows[i] = min;
-                    }
-                }
-            }
-        return rows;
     }
 
     // fromArrayStringInString - transfer from array String in String
