@@ -12,5 +12,6 @@
                   <module>02-drop-abuse</module>
                   <module>03-sort-3G-in-out</module>
                   <module>04-palindrome</module>
+                  <module>05-chat-console</module>
          </modules>
 </project>
