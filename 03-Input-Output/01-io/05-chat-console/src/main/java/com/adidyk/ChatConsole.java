@@ -4,11 +4,11 @@ import java.io.*;
 
 public class ChatConsole {
 
-    public void chat(InputStream in, OutputStream log) {
+    public void chat(InputStream in, OutputStream out, File answer, File log) {
 
-        File fileLog = new File("log.txt");
+//        File fileLog = new File("log.txt");
 
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(in)); RandomAccessFile raf = new RandomAccessFile(fileLog, "rw")) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(in)); RandomAccessFile raf = new RandomAccessFile(log, "rw")) {
 
         }
         catch (Exception ex) {
@@ -19,7 +19,7 @@ public class ChatConsole {
 
     }
 
-    private void answer() {
+    private void answer(File answer) {
 
     }
 }
