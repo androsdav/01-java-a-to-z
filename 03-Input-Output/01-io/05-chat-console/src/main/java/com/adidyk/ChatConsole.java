@@ -12,7 +12,14 @@ public class ChatConsole {
 
             String question;
             String answer;
+
             while (!(question = br.readLine()).equals("finish")) {
+                if (question.equals("stop")) {
+
+                    rafLog.writeBytes("[question]: " + question.concat(System.lineSeparator()));
+                    //rafLog.writeBytes("[answer]:   " +answer.concat(System.lineSeparator()));
+
+                }
                 answer = rafAnswer.readLine();
                 System.out.println(answer);
                 rafLog.writeBytes("[question]: " + question.concat(System.lineSeparator()));
