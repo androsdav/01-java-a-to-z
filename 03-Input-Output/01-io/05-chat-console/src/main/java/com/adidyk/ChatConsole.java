@@ -9,11 +9,9 @@ public class ChatConsole {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(in));
         RandomAccessFile rafAnswer = new RandomAccessFile(ans, "rw");
         RandomAccessFile rafLog = new RandomAccessFile(log, "rw")) {
-
             String question;
             String answer;
             boolean flag = false;
-
             while (!(question = br.readLine()).equals("finish")) {
                 if (question.equals("stop")) {
                     flag = true;
@@ -31,12 +29,10 @@ public class ChatConsole {
                 }
             }
             rafLog.writeBytes(question);
-
         }
         catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-
 
     }
 
