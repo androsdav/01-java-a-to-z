@@ -9,7 +9,14 @@ public class StartUi {
         File answer = new File("answer.txt");
         File log = new File("log.txt");
         ChatConsole chatConsole = new ChatConsole();
-        chatConsole.chat(System.in, System.out, answer, log);
+        chatConsole.chat(System.in,answer, log);
+       // try (RandomAccessFile raf = new RandomAccessFile(answer, "rw")) {
+       //     chatConsole.answerRandom(raf);
+       // }
+       // catch (Exception ex) {
+       //     ex.getMessage();
+       // }
+
 
 /*        System.out.println("Input word - palindrome: ");
         try {
