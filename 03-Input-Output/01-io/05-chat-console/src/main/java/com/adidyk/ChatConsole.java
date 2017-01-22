@@ -10,15 +10,16 @@ public class ChatConsole {
         RandomAccessFile rafAnswer = new RandomAccessFile(ans, "rw");
         RandomAccessFile rafLog = new RandomAccessFile(log, "rw")) {
 
-            String question = br.readLine();
+            String question;
             String answer;
-            do {
+            while (!(question = br.readLine()).equals("finish")) {
                 answer = rafAnswer.readLine();
                 System.out.println(answer);
-                rafLog.writeBytes("[question]:" + question.concat(System.lineSeparator()));
-                rafLog.writeBytes("[answer]:" +answer.concat(System.lineSeparator()));
+                rafLog.writeBytes("[question]: " + question.concat(System.lineSeparator()));
+                rafLog.writeBytes("[answer]:   " +answer.concat(System.lineSeparator()));
             }
-            while (!(question = br.readLine()).equals("finish"));
+            rafLog.writeBytes(question);
+
         }
         catch (Exception ex) {
             System.out.println(ex.getMessage());
