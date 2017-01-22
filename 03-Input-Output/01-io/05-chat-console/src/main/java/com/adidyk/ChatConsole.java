@@ -28,7 +28,7 @@ public class ChatConsole {
                 }
                 if (!flag) {
                     long pos = (long)(random() * rows.length);
-                    rafAnswer.seek(Long.valueOf(  rows[(int)(random() * rows.length)] ));
+                    rafAnswer.seek(Long.valueOf(rows[(int)(random() * rows.length - 1)]));
                     System.out.println(pos);
                     answer = rafAnswer.readLine();
                     System.out.println(answer);
@@ -45,19 +45,13 @@ public class ChatConsole {
         }
     }
 
-    public String[] answerRandom(RandomAccessFile raf) throws IOException {
+    //
+    private String[] answerRandom(RandomAccessFile raf) throws IOException {
         String line = "";
         while ((raf.readLine()) != null) {
             line = line.concat(Long.toString(raf.getFilePointer())).concat(" ");
-            //System.out.println("test");
         }
         String[] rows = line.split(" ");
-        //for (String rw : rows) {
-        //    System.out.println(rw);
-       // }
         return rows;
-
-
-   // System.out.println(rowPosition);
     }
 }
