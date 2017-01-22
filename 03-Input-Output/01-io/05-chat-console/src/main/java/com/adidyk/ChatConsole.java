@@ -12,18 +12,23 @@ public class ChatConsole {
 
             String question;
             String answer;
+            boolean flag = false;
 
             while (!(question = br.readLine()).equals("finish")) {
                 if (question.equals("stop")) {
-
-                    rafLog.writeBytes("[question]: " + question.concat(System.lineSeparator()));
-                    //rafLog.writeBytes("[answer]:   " +answer.concat(System.lineSeparator()));
-
+                    flag = true;
                 }
-                answer = rafAnswer.readLine();
-                System.out.println(answer);
-                rafLog.writeBytes("[question]: " + question.concat(System.lineSeparator()));
-                rafLog.writeBytes("[answer]:   " +answer.concat(System.lineSeparator()));
+                if (question.equals("play")) {
+                    flag = false;
+                }
+                if (!flag) {
+                    answer = rafAnswer.readLine();
+                    System.out.println(answer);
+                    rafLog.writeBytes("[question]: " + question.concat(System.lineSeparator()));
+                    rafLog.writeBytes("[answer]:   " + answer.concat(System.lineSeparator()));
+                } else{
+                    rafLog.writeBytes(question.concat(System.lineSeparator()));
+                }
             }
             rafLog.writeBytes(question);
 
