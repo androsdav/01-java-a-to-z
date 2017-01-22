@@ -25,10 +25,10 @@ public class ChatConsole {
                     rafLog.writeBytes("[question]: " + question.concat(System.lineSeparator()));
                     rafLog.writeBytes("[answer]:   " + answer.concat(System.lineSeparator()));
                 } else{
-                    rafLog.writeBytes(question.concat(System.lineSeparator()));
+                    rafLog.writeBytes("[question]: " + question.concat(System.lineSeparator()));
                 }
             }
-            rafLog.writeBytes(question);
+            rafLog.writeBytes("[question]: " + question.concat(System.lineSeparator()));
         }
         catch (Exception ex) {
             System.out.println(ex.getMessage());
