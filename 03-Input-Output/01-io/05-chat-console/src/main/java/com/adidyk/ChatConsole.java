@@ -8,13 +8,16 @@ public class ChatConsole {
 
 //        File fileLog = new File("log.txt");
 
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(in)); RandomAccessFile raf = new RandomAccessFile(log, "rw")) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(in)); RandomAccessFile raf = new RandomAccessFile(answer, "rw")) {
 
+            System.out.println("Input question: ");
+            br.readLine();
+            String row = raf.readLine();
+            System.out.println(row);
         }
         catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-
 
 
     }
