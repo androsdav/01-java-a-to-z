@@ -47,7 +47,7 @@ public class ChatConsole {
 
     //
     private String[] answerRandom(RandomAccessFile raf) throws IOException {
-        String line = "0";
+        String line = "0 ";
         while ((raf.readLine()) != null) {
             line = line.concat(Long.toString(raf.getFilePointer())).concat(" ");
         }
