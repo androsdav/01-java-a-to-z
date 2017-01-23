@@ -1,35 +1,39 @@
 package com.adidyk;
 
 import org.junit.Test;
-
 import java.io.*;
-
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class ChatConsoleTest {
 
+    private File answer = new File("answerTest.txt");
+    private File log = new File("logTest.txt");
+    private String[] answerSource = {"yes", "yes", "yes", "yes"};
+    private String[] questionSource = {"Do you work ?", "Does she do exercise ?", "Did you see her ?", "Do you like it ?"};
+    private String actual = "[question]: Do you work ? " +
+                            "[answer]:   yes " +
+                            "[question]: Does she do exercise ? " +
+                            "[answer]:   yes " +
+                            "[question]: Did you see her ? " +
+                            "[answer]:   yes " +
+                            "[question]: Do you like it ? " +
+                            "[answer]:   yes ";
+
     @Test
     public void chatTest() throws IOException {
+        this.createAnswerFile();
+        String line = this.getLine();
+        ChatConsole chatConsole = new ChatConsole();
+        chatConsole.chat(new ByteArrayInputStream(line.getBytes()), this.answer, this.log);
+        String result = this.getResult();
+        assertThat(result, is(this.actual));
+    }
 
-        String[] answerSource = {"yes", "yes", "yes", "yes"};
-        String[] questionSource = {"Do you work ?", "Does she do exercise ?", "Did you see her ?", "Do you like it ?"};
-        String actual = "[question]: Do you work ? " +
-                        "[answer]:   yes " +
-                        "[question]: Does she do exercise ? " +
-                        "[answer]:   yes " +
-                        "[question]: Did you see her ? " +
-                        "[answer]:   yes " +
-                        "[question]: Do you like it ? " +
-                        "[answer]:   yes ";
-
-        File answer = new File("answerTest.txt");
-        File quest = new File("questionTest.txt");
-        File log = new File("logTest.txt");
-
-        // create file answerTest.txt
-        try (RandomAccessFile rafAnswer = new RandomAccessFile(answer, "rw")) {
-            for (String ans : answerSource) {
+    // createAnswerFile - create file with answers
+    private void createAnswerFile() {
+        try (RandomAccessFile rafAnswer = new RandomAccessFile(this.answer, "rw")) {
+            for (String ans : this.answerSource) {
                 rafAnswer.writeBytes(ans.concat(System.lineSeparator()));
             }
         }
@@ -37,14 +41,19 @@ public class ChatConsoleTest {
             System.out.println(ex.getMessage());
         }
 
+    }
+
+    // getLine - return line from array questionSource
+    private String getLine() {
         String line = "";
-        for (String question : questionSource) {
+        for (String question : this.questionSource) {
             line = line.concat(question).concat(System.lineSeparator());
         }
-        ChatConsole chatCons = new ChatConsole();
-        chatCons.chat(new ByteArrayInputStream(line.getBytes()), answer, log);
+        return line;
+    }
 
-
+    // getResult - return result row from file = "logTest.txt"
+    private String getResult() {
         String result = "";
         String row;
         try (RandomAccessFile rafLog = new RandomAccessFile(log, "r")) {
@@ -52,11 +61,10 @@ public class ChatConsoleTest {
                 result = result.concat(row).concat(" ");
             }
 
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-        assertThat(result, is(actual));
+        return result;
     }
 
 }
