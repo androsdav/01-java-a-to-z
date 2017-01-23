@@ -27,6 +27,8 @@ public class ChatConsoleTest {
         ChatConsole chatConsole = new ChatConsole();
         chatConsole.chat(new ByteArrayInputStream(line.getBytes()), this.answer, this.log);
         String result = this.getResult();
+        this.answer.delete();
+        this.log.delete();
         assertThat(result, is(this.actual));
     }
 
