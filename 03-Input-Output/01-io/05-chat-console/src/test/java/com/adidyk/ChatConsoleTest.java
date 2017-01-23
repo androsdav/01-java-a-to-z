@@ -4,13 +4,24 @@ import org.junit.Test;
 
 import java.io.*;
 
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
+
 public class ChatConsoleTest {
 
     @Test
     public void chatTest() throws IOException {
 
-        String[] answerSource = {"I do not know", "no", "maybe", "nothing"};
+        String[] answerSource = {"yes", "yes", "yes", "yes"};
         String[] questionSource = {"Do you work ?", "Does she do exercise ?", "Did you see her ?", "Do you like it ?"};
+        String actual = "[question]: Do you work ? " +
+                        "[answer]:   yes " +
+                        "[question]: Does she do exercise ? " +
+                        "[answer]:   yes " +
+                        "[question]: Did you see her ? " +
+                        "[answer]:   yes " +
+                        "[question]: Do you like it ? " +
+                        "[answer]:   yes ";
 
         File answer = new File("answerTest.txt");
         File quest = new File("questionTest.txt");
@@ -33,39 +44,19 @@ public class ChatConsoleTest {
         ChatConsole chatCons = new ChatConsole();
         chatCons.chat(new ByteArrayInputStream(line.getBytes()), answer, log);
 
-        //
-       // try (RandomAccessFile rafQuest = new RandomAccessFile(quest, "rw")) {
-       //     for (String question : questionSource) {
-       //         rafQuest.writeBytes(question.concat(System.lineSeparator()));
-       //     }
-       // }
-       // catch (Exception ex) {
-       //     System.out.println(ex.getMessage());
-       // }
 
+        String result = "";
+        String row;
+        try (RandomAccessFile rafLog = new RandomAccessFile(log, "r")) {
+            while ((row = rafLog.readLine()) != null) {
+                result = result.concat(row).concat(" ");
+            }
 
-
-        //
-        //ChatConsole chatConsole = new ChatConsole();
-    //    try (RandomAccessFile raf = new RandomAccessFile(quest, "r")) {
-    //        String row;
-    //        ChatConsole chatConsole = new ChatConsole();
-    //        while ((row = raf.readLine()) != null)  {
-    //            chatConsole.chat(new ByteArrayInputStream(row.getBytes()), answer, log);
-    //        }
-
-    //    }
-    //    catch (Exception ex) {
-    //        System.out.println(ex.getMessage());
-    //    }
-        //for (String question : questionSource) {
-        //    System.out.println(question + "test");
-        //    chatConsole.chat(new BufferedReader(new InputStreamReader(question)), answer, log);
-        //}
-
-
-
-
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        assertThat(result, is(actual));
     }
 
 }
