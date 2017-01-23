@@ -28,7 +28,7 @@ public class ChatConsoleTest {
 
         try (RandomAccessFile rafQuest = new RandomAccessFile(quest, "rw")) {
             for (String question : questionSource) {
-                rafQuest.writeBytes(question);
+                rafQuest.writeBytes(question.concat(System.lineSeparator()));
             }
         }
         catch (Exception ex) {
