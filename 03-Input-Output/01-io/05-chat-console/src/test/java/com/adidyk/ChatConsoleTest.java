@@ -12,6 +12,7 @@ public class ChatConsoleTest {
         String[] answerSource = {"yes", "yes", "yes", "yes"};
         String[] questionSource = {"Do you work ?", "Does she do exercise ?", "Did you see her ?"};
         File answer = new File("answerTest.txt");
+        File quest = new File("");
         File log = new File("logTest.txt");
         // create file answerTest.txt
         try (RandomAccessFile raf = new RandomAccessFile(answer, "rw")) {
