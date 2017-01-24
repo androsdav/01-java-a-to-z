@@ -44,7 +44,7 @@ public class ChatConsoleTest {
         }
 
     }
-//test
+
     // getLine - return line from array questionSource
     private String getLine() {
         String line = "";
