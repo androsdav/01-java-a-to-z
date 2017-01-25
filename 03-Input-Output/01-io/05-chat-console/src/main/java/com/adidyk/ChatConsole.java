@@ -1,11 +1,13 @@
 package com.adidyk;
 
 import java.io.*;
+
 import static java.lang.Math.random;
 
 public class ChatConsole {
 
-    private final String FINISH = "finish", STOP = "stop", PLAY = "play";
+    private static final String FINISH = "finish", STOP = "stop", PLAY = "play";
+    private static final String separator = System.lineSeparator();
 
     // chat - just do all for console chat
     public void chat(InputStream in, File ans, File log) throws IOException {
@@ -17,11 +19,11 @@ public class ChatConsole {
             boolean flagStop = false;
             String[] rows = this.getPositionAllRow(rafAnswer);
             System.out.print("[question]: ");
-            while (!(question = br.readLine()).equals(this.FINISH)) {
-                if (question.equals(this.STOP)) {
+            while (!(question = br.readLine()).equals(FINISH)) {
+                if (STOP.equals(question)) {
                     flagStop = true;
                 }
-                if (question.equals(this.PLAY)) {
+                if (PLAY.equals(question)) {
                     flagStop = false;
                 }
                 if (!flagStop) {
@@ -29,14 +31,18 @@ public class ChatConsole {
                     rafAnswer.seek(Long.valueOf(rows[(int)(pos)]));
                     answer = rafAnswer.readLine();
                     System.out.println("[answer]:   " + answer);
-                    rafLog.writeBytes("[question]: " + question.concat(System.lineSeparator()));
-                    rafLog.writeBytes("[answer]:   " + answer.concat(System.lineSeparator()));
+                    rafLog.writeBytes("[question]: " + question);
+                    rafLog.writeBytes(separator);
+                    rafLog.writeBytes("[answer]:   " + answer);
+                    rafLog.writeBytes(separator);
                 } else{
-                    rafLog.writeBytes("[question]: " + question.concat(System.lineSeparator()));
+                    rafLog.writeBytes("[question]: " + question);
+                    rafLog.writeBytes(separator);
                 }
                 System.out.print("[question]: ");
             }
-            rafLog.writeBytes("[question]: " + question.concat(System.lineSeparator()));
+            rafLog.writeBytes("[question]: " + question);
+            rafLog.writeBytes(separator);
         }
         catch (Exception ex) {
             System.out.println(ex.getMessage());
