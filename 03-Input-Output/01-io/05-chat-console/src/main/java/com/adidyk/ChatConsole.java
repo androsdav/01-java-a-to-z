@@ -1,7 +1,6 @@
 package com.adidyk;
 
 import java.io.*;
-
 import static java.lang.Math.random;
 
 public class ChatConsole {
