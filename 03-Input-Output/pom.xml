@@ -9,5 +9,6 @@
          <packaging>pom</packaging>
          <modules>
                   <module>01-io</module>
+                  <module>02-socket</module>
          </modules>
 </project>

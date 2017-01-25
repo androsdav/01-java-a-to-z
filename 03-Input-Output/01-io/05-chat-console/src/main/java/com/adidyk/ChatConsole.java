@@ -20,7 +20,8 @@ public class ChatConsole {
             boolean flagStop = false;
             String[] rows = this.getPositionAllRow(rafAnswer);
             System.out.print(QUESTION);
-            while (!FINISH.equals((question = br.readLine()))) {
+            //while (!FINISH.equals((question = br.readLine()))) {
+            while (!(question = br.readLine()).equals(FINISH)) {
                 if (STOP.equals(question)) {
                     flagStop = true;
                 }
@@ -42,7 +43,7 @@ public class ChatConsole {
                 }
                 System.out.print(QUESTION);
             }
-            rafLog.writeBytes("[question]: " + question);
+            rafLog.writeBytes(QUESTION + question);
             rafLog.writeBytes(SEPARATOR);
         }
         catch (Exception ex) {
@@ -52,11 +53,11 @@ public class ChatConsole {
 
     // getPositionAllRow - return positions for all rows from file = "answer.txt"
     private String[] getPositionAllRow(RandomAccessFile raf) throws IOException {
-        String line = "0".concat(System.lineSeparator());
+        String line = "0".concat(SEPARATOR);
         while ((raf.readLine()) != null) {
-            line = line.concat(Long.toString(raf.getFilePointer())).concat(System.lineSeparator());
+            line = line.concat(Long.toString(raf.getFilePointer())).concat(SEPARATOR);
         }
-        return line.split(System.lineSeparator());
+        return line.split(SEPARATOR);
     }
 
 }

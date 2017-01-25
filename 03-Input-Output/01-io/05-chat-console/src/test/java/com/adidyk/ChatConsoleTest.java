@@ -10,7 +10,9 @@ public class ChatConsoleTest {
     private File answer = new File("answerTest.txt");
     private File log = new File("logTest.txt");
     private String[] answerSource = {"yes", "yes", "yes", "yes"};
-    private String[] questionSource = {"Do you work ?", "Does she do exercise ?", "Did you see her ?", "Do you like it ?"};
+    private String[] questionSource = {"Do you work ?", "Does she do exercise ?", "Did you see her ?", "Do you like it ?",
+                                       "stop", "What do you think about Java ?", "Are you happy ?", "play",
+                                        "Are you ready ?","Can you do it ?", "finish"};
     private String actual = "[question]: Do you work ? " +
                             "[answer]:   yes " +
                             "[question]: Does she do exercise ? " +
@@ -18,7 +20,17 @@ public class ChatConsoleTest {
                             "[question]: Did you see her ? " +
                             "[answer]:   yes " +
                             "[question]: Do you like it ? " +
-                            "[answer]:   yes ";
+                            "[answer]:   yes " +
+                            "[question]: stop " +
+                            "[question]: What do you think about Java ? " +
+                            "[question]: Are you happy ? " +
+                            "[question]: play " +
+                            "[answer]:   yes " +
+                            "[question]: Are you ready ? " +
+                            "[answer]:   yes " +
+                            "[question]: Can you do it ? " +
+                            "[answer]:   yes " +
+                            "[question]: finish ";
 
     @Test
     public void chatTest() throws IOException {
@@ -42,7 +54,6 @@ public class ChatConsoleTest {
         catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-
     }
 
     // getLine - return line from array questionSource
