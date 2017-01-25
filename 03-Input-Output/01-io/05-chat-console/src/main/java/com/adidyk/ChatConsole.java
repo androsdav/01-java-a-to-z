@@ -20,8 +20,7 @@ public class ChatConsole {
             boolean flagStop = false;
             String[] rows = this.getPositionAllRow(rafAnswer);
             System.out.print(QUESTION);
-            //while (!FINISH.equals((question = br.readLine()))) {
-            while (!(question = br.readLine()).equals(FINISH)) {
+            while (!FINISH.equals((question = br.readLine()))) {
                 if (STOP.equals(question)) {
                     flagStop = true;
                 }
