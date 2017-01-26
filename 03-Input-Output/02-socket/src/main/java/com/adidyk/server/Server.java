@@ -9,6 +9,7 @@ public class Server {
     public static void main(String[] arg) {
         int port = 5000; // 1025 - 65535
         try {
+
             ServerSocket ss = new ServerSocket(port);
             System.out.println("Waiting for a client... ");
             Socket socket = ss.accept();
@@ -24,14 +25,15 @@ public class Server {
 
             while (true) {
                  string = in.readUTF();
+                 String row = "test";
                  System.out.println("Client sent now: " + string);
+                 System.out.println("Server send back... ");
+                 out.writeUTF(string.concat(row));
+                 out.flush();
             }
         }
         catch (Exception ex) {
             ex.printStackTrace();
         }
-        // tet comment for add to git
-
-
     }
 }
