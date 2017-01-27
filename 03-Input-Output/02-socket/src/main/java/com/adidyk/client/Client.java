@@ -1,20 +1,19 @@
 package com.adidyk.client;
 
 import java.io.*;
-import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.Socket;
 
 public class Client {
 
     public static void main(String[] args) {
-        int serverProt = 5000;
-        String interAdress = "127.0.0.1";
+        int serverPort = 5000;
+        String interAdress = "127.0.0.192";
 
         try {
             InetAddress inetAddress = InetAddress.getByName(interAdress);
-            System.out.println("Connecting to the server..." + serverProt);
-            Socket socket = new Socket(inetAddress, serverProt);
+            System.out.println("Connecting to the server..." + serverPort);
+            Socket socket = new Socket(inetAddress, serverPort);
 
             InputStream socketInStr = socket.getInputStream();
             OutputStream socketOutStr = socket.getOutputStream();
