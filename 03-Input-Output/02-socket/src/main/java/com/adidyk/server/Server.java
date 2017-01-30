@@ -7,7 +7,11 @@ import java.net.Socket;
 public class Server {
 
     public static void main(String[] arg) {
-        int port = 5000; // 1025 - 65535
+
+        System.out.println("Hello word !!!");
+        Api api = new Api();
+        api.test("dir");
+     /*   int port = 5000; // 1025 - 65535
         try {
 
             ServerSocket ss = new ServerSocket(port);
@@ -34,6 +38,6 @@ public class Server {
         }
         catch (Exception ex) {
             ex.printStackTrace();
-        }
+        }*/
     }
 }
