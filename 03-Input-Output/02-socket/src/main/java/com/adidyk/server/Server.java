@@ -1,16 +1,15 @@
 package com.adidyk.server;
 
-import java.io.*;
-import java.net.ServerSocket;
-import java.net.Socket;
-
 public class Server {
 
     public static void main(String[] arg) {
 
         System.out.println("Hello word !!!");
         Api api = new Api();
-        api.test("dir");
+        String[] dir = api.showDir("dir");
+        for (String temp : dir) {
+            System.out.println(temp);
+        }
      /*   int port = 5000; // 1025 - 65535
         try {
 

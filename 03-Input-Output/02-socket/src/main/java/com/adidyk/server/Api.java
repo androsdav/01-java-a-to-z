@@ -4,15 +4,35 @@ import java.io.File;
 
 public class Api {
 
-    public void test(String string) {
-        File file = new File(string);
+    public String[] showDir(String dir) {
+        File file = new File(dir);
+        String[] list = null;
 
-        if (file.isDirectory()) {
-            for (File item : file.listFiles()) {
-                System.out.println("Katalog:  " + item);
-
-            }
+        if (file.exists() && file.isDirectory()) {
+            list = file.list();
+        } else {
+            System.out.println("Directory not found");
         }
+        return list;
+    }
+
+    public File[] showFile(String dir) {
+        File file = new File(dir);
+        File[] list = null;
+
+        if(file.exists() && file.isDirectory()) {
+            list = file.listFiles();
+        } else {
+            System.out.println("Directory not found");
+        }
+    }
+
+        //if (file.isDirectory()) {
+        //    for (File item : file.listFiles()) {
+        //        System.out.println("Katalog:  " + item);
+
+//            }
+  //      }
 
         //System.out.println("1. getAbsolutePath :" + file.getAbsolutePath());
         //System.out.println("2. getAbsoluteFile :" + file.getAbsoluteFile());
@@ -22,4 +42,4 @@ public class Api {
         //System.out.println("1. getAbsolutePath :" + file.getAbsolutePath());
     }
 
-}
+
