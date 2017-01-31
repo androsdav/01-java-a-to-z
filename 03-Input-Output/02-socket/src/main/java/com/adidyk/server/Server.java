@@ -17,30 +17,34 @@ public class Server {
 
         System.out.println();
 
-        String[] dir1 = api.showDir("dir" +"/" +dir[3]);
+        Properties prop = System.getProperties();
+        String separator = prop.getProperty("file.separator");
+
+        String[] dir1 = api.showDir("dir" +separator +dir[3]);
         for (String dr : dir1) {
             System.out.println(dr);
         }
 
-        System.out.println("--- Properties ---");
+        /*System.out.println("--- Properties ---");
         Properties p = System.getProperties();
-        System.out.println(p.getProperty("Version: "     +"java.version"));
-        System.out.println(p.getProperty("Vendor :"      +"java.vendor"));
-        System.out.println(p.getProperty("Vendor URL :"  +"java.vendor.url"));
-        System.out.println(p.getProperty("Home: "        +"java.home"));
-        System.out.println(p.getProperty("Version :"     +"java.class.version"));
-        System.out.println(p.getProperty("Path :"        +"java.class.path"));
-        System.out.println(p.getProperty("Name :"        +"os.name"));
-        System.out.println(p.getProperty("OS arch :"     +"os.arch"));
-        System.out.println(p.getProperty("OS version :"  +"os.version"));
-        System.out.println(p.getProperty("File separ :"  +"file.separator"));
-        System.out.println(p.getProperty("Path separ :"  +"path.separator"));
-        System.out.println(p.getProperty("Line separ :"  +"line.separator"));
-        System.out.println(p.getProperty("User name :"   +"user.name"));
-        System.out.println(p.getProperty("User home :"   +"user.home"));
-        System.out.println(p.getProperty("User dir :"    +"user.dir"));
+        System.out.println("Version : " +p.getProperty("java.version"));
+        System.out.println("Vendor :" +p.getProperty("java.vendor"));
+        System.out.println("Vendor URL :" +p.getProperty("java.vendor.url"));
+        System.out.println("Home: " +p.getProperty("java.home"));
+        System.out.println("Version :" +p.getProperty("java.class.version"));
+        System.out.println("Path :" +p.getProperty("java.class.path"));
+        System.out.println("Name :" +p.getProperty("os.name"));
+        System.out.println("OS arch :" +p.getProperty("os.arch"));
+        System.out.println("OS version :" +p.getProperty("os.version"));
+        System.out.println("File separ :" +p.getProperty("file.separator"));
+        System.out.println("Path separ :" +p.getProperty("path.separator"));
+        System.out.println("Line separ :" +p.getProperty("line.separator"));
+        System.out.println("User name :" +p.getProperty("user.name"));
+        System.out.println("User home :" +p.getProperty("user.home"));
+        System.out.println("User dir :" +p.getProperty("user.dir"));
 
 
+*/
 
         /*File[] file = api.showFile("dir");
         for(File temp : file) {
