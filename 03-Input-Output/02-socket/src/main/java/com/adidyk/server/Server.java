@@ -1,6 +1,7 @@
 package com.adidyk.server;
 
 import java.io.File;
+import java.util.Properties;
 
 public class Server {
 
@@ -16,12 +17,36 @@ public class Server {
 
         System.out.println();
 
-        File[] file = api.showFile("dir");
+        String[] dir1 = api.showDir("dir" +"/" +dir[3]);
+        for (String dr : dir1) {
+            System.out.println(dr);
+        }
 
+        System.out.println("--- Properties ---");
+        Properties p = System.getProperties();
+        System.out.println(p.getProperty("Version: "     +"java.version"));
+        System.out.println(p.getProperty("Vendor :"      +"java.vendor"));
+        System.out.println(p.getProperty("Vendor URL :"  +"java.vendor.url"));
+        System.out.println(p.getProperty("Home: "        +"java.home"));
+        System.out.println(p.getProperty("Version :"     +"java.class.version"));
+        System.out.println(p.getProperty("Path :"        +"java.class.path"));
+        System.out.println(p.getProperty("Name :"        +"os.name"));
+        System.out.println(p.getProperty("OS arch :"     +"os.arch"));
+        System.out.println(p.getProperty("OS version :"  +"os.version"));
+        System.out.println(p.getProperty("File separ :"  +"file.separator"));
+        System.out.println(p.getProperty("Path separ :"  +"path.separator"));
+        System.out.println(p.getProperty("Line separ :"  +"line.separator"));
+        System.out.println(p.getProperty("User name :"   +"user.name"));
+        System.out.println(p.getProperty("User home :"   +"user.home"));
+        System.out.println(p.getProperty("User dir :"    +"user.dir"));
+
+
+
+        /*File[] file = api.showFile("dir");
         for(File temp : file) {
             System.out.println(temp);
 
-        }
+        }*/
 
 
 

@@ -4,16 +4,23 @@ import java.io.File;
 
 public class Api {
 
+    public String[] subDir;
+    public String[] way;
+
+   // public Api(String way) {
+   //     this.way = way;
+   // }
+
+
+
     public String[] showDir(String dir) {
         File file = new File(dir);
-        String[] list = null;
-
         if (file.exists() && file.isDirectory()) {
-            list = file.list();
+            this.subDir = file.list();
         } else {
             System.out.println("Directory not found");
         }
-        return list;
+        return this.subDir;
     }
 
     public File[] showFile(String dir) {
