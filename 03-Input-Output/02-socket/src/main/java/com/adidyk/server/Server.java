@@ -1,15 +1,32 @@
 package com.adidyk.server;
 
+import java.io.File;
+
 public class Server {
 
     public static void main(String[] arg) {
 
         System.out.println("Hello word !!!");
         Api api = new Api();
+
         String[] dir = api.showDir("dir");
         for (String temp : dir) {
             System.out.println(temp);
         }
+
+        System.out.println();
+
+        File[] file = api.showFile("dir");
+
+        for(File temp : file) {
+            System.out.println(temp);
+
+        }
+
+
+
+
+
      /*   int port = 5000; // 1025 - 65535
         try {
 

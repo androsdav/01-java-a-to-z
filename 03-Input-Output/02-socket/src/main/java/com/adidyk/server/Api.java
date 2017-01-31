@@ -25,6 +25,7 @@ public class Api {
         } else {
             System.out.println("Directory not found");
         }
+        return list;
     }
 
         //if (file.isDirectory()) {
