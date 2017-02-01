@@ -6,9 +6,12 @@ import java.util.Properties;
 public class Api {
 
     public String[] subDir;
-    public String way;
+    public StringBuffer way;
+    public String[] wayAll = new String[10];
+    public int index = 0;
+    //public String lastDir;
 
-    public Api(String way) {
+    public Api(StringBuffer way) {
         this.way = way;
     }
 
@@ -16,9 +19,11 @@ public class Api {
     String separator = prop.getProperty("file.separator");
 
     public String[] enterDir(String dir) {
-        this.way = this.way.concat(this.separator).concat(dir);
-        File file = new File(way);
-        System.out.println(way);
+        this.wayAll[this.index] = dir;
+        index++;
+        this.way = this.way.append(this.separator).append(dir);
+        File file = new File(String.valueOf(way));
+        System.out.println(this.way);
         if (file.exists() && file.isDirectory()) {
             this.subDir = file.list();
 //            this.way = file.getPath();
@@ -33,17 +38,14 @@ public class Api {
         return this.subDir;
     }
 
-    public File[] showFile(String dir) {
-        File file = new File(dir);
-        File[] list = null;
-
-        if(file.exists() && file.isDirectory()) {
-            list = file.listFiles();
-        } else {
-            System.out.println("Directory not found");
-        }
-        return list;
+    public String[] exitDir() {
+        this.way = this.way.delete(this.way.indexOf(this.wayAll[--this.index]), this.way.length());
+        File file = new File(String.valueOf(way));
+        System.out.println(this.way);
+        this.subDir = file.list();
+        return this.subDir;
     }
+
 
         //if (file.isDirectory()) {
         //    for (File item : file.listFiles()) {

@@ -1,29 +1,41 @@
 package com.adidyk.server;
 
-import java.io.File;
 import java.util.Properties;
 
 public class Server {
 
     public static void main(String[] arg) {
 
-        System.out.println("Hello word !!!");
-        Api api = new Api("dir");
 
-        String[] dir = api.enterDir("temp0");
-        for (String temp : dir) {
-            System.out.println(temp);
+
+        StringBuffer mainDir = new StringBuffer("dir");
+        Api api = new Api(mainDir);
+
+        System.out.println();
+        String[] dir1 = api.enterDir("temp0");
+        for (String dir : dir1) {
+            System.out.println("  --- " +dir);
         }
 
         System.out.println();
-
-        Properties prop = System.getProperties();
-        String separator = prop.getProperty("file.separator");
-
-        String[] dir1 = api.enterDir("temp1");
-        for (String dr : dir1) {
-            System.out.println(dr);
+        String[] dir2 = api.enterDir("temp1");
+        for (String dir : dir2) {
+            System.out.println("  --- " +dir);
         }
+
+        System.out.println();
+        String[] dir3 = api.exitDir();
+        for (String dir : dir3) {
+            System.out.println("  --- " +dir);
+        }
+
+        System.out.println();
+        String[] dir4 = api.exitDir();
+        for (String dir : dir4) {
+            System.out.println("  --- " +dir);
+        }
+
+
 
         /*System.out.println("--- Properties ---");
         Properties p = System.getProperties();
