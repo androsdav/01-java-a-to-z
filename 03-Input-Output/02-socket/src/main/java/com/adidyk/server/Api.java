@@ -19,7 +19,7 @@ public class Api {
     String separator = prop.getProperty("file.separator");
 
     public String[] enterDir(String dir) {
-        this.wayAll[this.index] = dir;
+        this.wayAll[this.index] = this.separator.concat(dir);
         index++;
         this.way = this.way.append(this.separator).append(dir);
         File file = new File(String.valueOf(way));

@@ -11,27 +11,39 @@ public class Server {
         StringBuffer mainDir = new StringBuffer("dir");
         Api api = new Api(mainDir);
 
-        System.out.println();
+        System.out.println("Step 1");
         String[] dir1 = api.enterDir("temp0");
         for (String dir : dir1) {
             System.out.println("  --- " +dir);
         }
 
-        System.out.println();
+        System.out.println("Step 2");
         String[] dir2 = api.enterDir("temp1");
         for (String dir : dir2) {
             System.out.println("  --- " +dir);
         }
 
-        System.out.println();
+        System.out.println("Step 3");
         String[] dir3 = api.exitDir();
         for (String dir : dir3) {
             System.out.println("  --- " +dir);
         }
 
-        System.out.println();
+        System.out.println("Step 4");
         String[] dir4 = api.exitDir();
         for (String dir : dir4) {
+            System.out.println("  --- " +dir);
+        }
+
+        System.out.println("Step 5");
+        String[] dir5 = api.enterDir("temp4");
+        for (String dir : dir5) {
+            System.out.println("  --- " +dir);
+        }
+
+        System.out.println("Step 6");
+        String[] dir6 = api.enterDir("temp5");
+        for (String dir : dir6) {
             System.out.println("  --- " +dir);
         }
 
