@@ -1,25 +1,35 @@
 package com.adidyk.server;
 
 import java.io.File;
+import java.util.Properties;
 
 public class Api {
 
     public String[] subDir;
-    public String[] way;
+    public String way = "";
 
    // public Api(String way) {
    //     this.way = way;
    // }
 
+    Properties prop = System.getProperties();
+    String separator = prop.getProperty("file.separator");
 
-
-    public String[] showDir(String dir) {
-        File file = new File(dir);
-        if (file.exists() && file.isDirectory()) {
-            this.subDir = file.list();
-        } else {
-            System.out.println("Directory not found");
-        }
+    public String[] enterDir(String dir) {
+        //File file = new File(dir);
+        this.way = this.way.concat(this.separator).concat(dir);
+        System.out.println();
+//        if (file.exists() && file.isDirectory()) {
+//            this.subDir = file.list();
+//            this.way = file.getPath();
+//        } else {
+//            System.out.println("Directory not found");
+//        }
+        //System.out.println("Way temp: " + way);
+        //System.out.println("getParent: " + file.getParent());
+        //System.out.println("Path :" +file.getAbsolutePath());
+        //System.out.println("HZ1 :" +file.getAbsoluteFile());
+ //       System.out.println("HZ2 :" +this.way);
         return this.subDir;
     }
 

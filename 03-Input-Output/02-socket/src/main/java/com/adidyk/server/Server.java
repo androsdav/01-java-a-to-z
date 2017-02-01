@@ -10,7 +10,7 @@ public class Server {
         System.out.println("Hello word !!!");
         Api api = new Api();
 
-        String[] dir = api.showDir("dir");
+        String[] dir = api.enterDir("dir");
         for (String temp : dir) {
             System.out.println(temp);
         }
@@ -20,7 +20,7 @@ public class Server {
         Properties prop = System.getProperties();
         String separator = prop.getProperty("file.separator");
 
-        String[] dir1 = api.showDir("dir" +separator +dir[3]);
+        String[] dir1 = api.enterDir("temp0");
         for (String dr : dir1) {
             System.out.println(dr);
         }
