@@ -6,25 +6,25 @@ import java.util.Properties;
 public class Api {
 
     public String[] subDir;
-    public String way = "";
+    public String way;
 
-   // public Api(String way) {
-   //     this.way = way;
-   // }
+    public Api(String way) {
+        this.way = way;
+    }
 
     Properties prop = System.getProperties();
     String separator = prop.getProperty("file.separator");
 
     public String[] enterDir(String dir) {
-        //File file = new File(dir);
         this.way = this.way.concat(this.separator).concat(dir);
-        System.out.println();
-//        if (file.exists() && file.isDirectory()) {
-//            this.subDir = file.list();
+        File file = new File(way);
+        System.out.println(way);
+        if (file.exists() && file.isDirectory()) {
+            this.subDir = file.list();
 //            this.way = file.getPath();
-//        } else {
-//            System.out.println("Directory not found");
-//        }
+        } else {
+            System.out.println("Directory not found");
+        }
         //System.out.println("Way temp: " + way);
         //System.out.println("getParent: " + file.getParent());
         //System.out.println("Path :" +file.getAbsolutePath());

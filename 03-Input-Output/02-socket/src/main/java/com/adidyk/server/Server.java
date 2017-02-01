@@ -8,9 +8,9 @@ public class Server {
     public static void main(String[] arg) {
 
         System.out.println("Hello word !!!");
-        Api api = new Api();
+        Api api = new Api("dir");
 
-        String[] dir = api.enterDir("dir");
+        String[] dir = api.enterDir("temp0");
         for (String temp : dir) {
             System.out.println(temp);
         }
@@ -20,7 +20,7 @@ public class Server {
         Properties prop = System.getProperties();
         String separator = prop.getProperty("file.separator");
 
-        String[] dir1 = api.enterDir("temp0");
+        String[] dir1 = api.enterDir("temp1");
         for (String dr : dir1) {
             System.out.println(dr);
         }
