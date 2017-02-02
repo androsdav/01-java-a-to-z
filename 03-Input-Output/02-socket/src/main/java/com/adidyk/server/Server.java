@@ -1,15 +1,13 @@
 package com.adidyk.server;
 
-import java.util.Properties;
-
 public class Server {
 
     public static void main(String[] arg) {
 
 
 
-        StringBuffer mainDir = new StringBuffer("dir");
-        Api api = new Api(mainDir);
+        StringBuffer root = new StringBuffer("root");
+        Api api = new Api(root);
 
         System.out.println("Step 1");
         String[] dir1 = api.enterDir("temp0");

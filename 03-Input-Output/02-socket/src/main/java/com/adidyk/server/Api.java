@@ -9,7 +9,7 @@ public class Api {
     public StringBuffer way;
     public String[] wayAll = new String[10];
     public int index = 0;
-    //public String lastDir;
+
 
     public Api(StringBuffer way) {
         this.way = way;
@@ -30,11 +30,7 @@ public class Api {
         } else {
             System.out.println("Directory not found");
         }
-        //System.out.println("Way temp: " + way);
-        //System.out.println("getParent: " + file.getParent());
-        //System.out.println("Path :" +file.getAbsolutePath());
-        //System.out.println("HZ1 :" +file.getAbsoluteFile());
- //       System.out.println("HZ2 :" +this.way);
+
         return this.subDir;
     }
 
@@ -60,6 +56,11 @@ public class Api {
         //System.out.println("1. getAbsolutePath :" + file.getAbsolutePath());
         //System.out.println("1. getAbsolutePath :" + file.getAbsolutePath());
         //System.out.println("1. getAbsolutePath :" + file.getAbsolutePath());
+    //System.out.println("Way temp: " + way);
+    //System.out.println("getParent: " + file.getParent());
+    //System.out.println("Path :" +file.getAbsolutePath());
+    //System.out.println("HZ1 :" +file.getAbsoluteFile());
+    //       System.out.println("HZ2 :" +this.way);
     }
 
 
