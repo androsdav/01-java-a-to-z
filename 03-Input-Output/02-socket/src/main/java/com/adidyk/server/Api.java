@@ -23,9 +23,9 @@ public class Api {
         this.wayAll[this.position] = SEPARATOR.concat(dir);
         this.position++;
         if (this.position == this.wayAll.length) {
-           String[] wayAllTemp = new String[2 * this.wayAll.length];
-           System.arraycopy(this.wayAll, 0, wayAllTemp, 0, this.wayAll.length);
-           this.wayAll = wayAllTemp;
+            String[] wayAllTemp = new String[2 * this.wayAll.length];
+            System.arraycopy(this.wayAll, 0, wayAllTemp, 0, this.wayAll.length);
+            this.wayAll = wayAllTemp;
         }
         this.way = this.way.append(SEPARATOR).append(dir);
         File file = new File(String.valueOf(this.way));
@@ -44,9 +44,13 @@ public class Api {
         File file = new File(String.valueOf(this.way));
         System.out.println(this.way);
         this.listDir = file.list();
-            return this.listDir;
-        }
+        return this.listDir;
     }
+
+    public String getWay() {
+        return String.valueOf(this.way);
+    }
+}
 
 
 

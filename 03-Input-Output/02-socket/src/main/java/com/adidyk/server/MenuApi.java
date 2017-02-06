@@ -25,9 +25,14 @@ public class MenuApi {
     }
 
     public void show() {
+        System.out.println();
+        System.out.println(" ------------------------------Tracker Menu --------------------------------");
         for (UserAction action : this.actions) {
-            System.out.println(action.info());
+            if (action != null) {
+                System.out.println(action.info());
+            }
         }
+        System.out.println(" ---------------------------------------------------------------------------");
     }
 
     //
@@ -40,7 +45,6 @@ public class MenuApi {
         public void execute(Input input, Api api) {
             String nameDir = input.ask("Input name directory");
             String[] listDir = api.enterDir(nameDir);
-            //System.out.println("test" +nameDir);
             for (String list : listDir) {
                 System.out.println(" ----  " +list);
             }
