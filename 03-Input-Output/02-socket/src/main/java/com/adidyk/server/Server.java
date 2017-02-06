@@ -45,6 +45,17 @@ public class Server {
             System.out.println("  --- " +dir);
         }
 
+        System.out.println("Step7");
+        String[] dir7 = api.enterDir("temp6");
+        for (String dir : dir7) {
+            System.out.println("  --- " +dir);
+        }
+
+        System.out.println("Step8");
+        String[] dir8 = api.enterDir("temp7");
+        for (String dir : dir8) {
+            System.out.println("  --- " +dir);
+        }
 
 
         /*System.out.println("--- Properties ---");

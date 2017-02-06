@@ -1,44 +1,50 @@
 package com.adidyk.server;
 
 import java.io.File;
-import java.util.Properties;
 
 public class Api {
 
-    public String[] subDir;
-    public StringBuffer way;
-    public String[] wayAll = new String[10];
-    public int index = 0;
-
+    private String[] subDir;
+    private StringBuffer way;
+    private String[] wayAll = new String[10];
+    private int position = 0;
+    private static final String SEPARATOR = System.getProperty(("file.separator"));
 
     public Api(StringBuffer way) {
         this.way = way;
     }
 
-    Properties prop = System.getProperties();
-    String separator = prop.getProperty("file.separator");
-
+    // enterDir -
     public String[] enterDir(String dir) {
-        this.wayAll[this.index] = this.separator.concat(dir);
-        index++;
-        this.way = this.way.append(this.separator).append(dir);
-        File file = new File(String.valueOf(way));
+        this.wayAll[this.position] = SEPARATOR.concat(dir);
+        this.position++;
+        this.way = this.way.append(SEPARATOR).append(dir);
+        File file = new File(String.valueOf(this.way));
         System.out.println(this.way);
         if (file.exists() && file.isDirectory()) {
             this.subDir = file.list();
-//            this.way = file.getPath();
         } else {
             System.out.println("Directory not found");
+        }
+
+        for (String hight : wayAll) {
+            System.out.print(hight);
         }
 
         return this.subDir;
     }
 
+    // exitDir -
     public String[] exitDir() {
-        this.way = this.way.delete(this.way.indexOf(this.wayAll[--this.index]), this.way.length());
-        File file = new File(String.valueOf(way));
+        this.way = this.way.delete(this.way.indexOf(this.wayAll[--this.position]), this.way.length());
+        File file = new File(String.valueOf(this.way));
         System.out.println(this.way);
         this.subDir = file.list();
+
+        for (String hight : wayAll) {
+            System.out.print(hight);
+        }
+
         return this.subDir;
     }
 
