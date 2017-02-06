@@ -27,9 +27,11 @@ public class Api {
             System.out.println("Directory not found");
         }
 
-        for (String hight : wayAll) {
-            System.out.print(hight);
-        }
+      //  for (String hight : wayAll) {
+       //     if (hight != null) {
+       //         System.out.print(hight);
+       //     }
+       /// } System.out.println();
 
         return this.subDir;
     }
@@ -41,9 +43,12 @@ public class Api {
         System.out.println(this.way);
         this.subDir = file.list();
 
-        for (String hight : wayAll) {
-            System.out.print(hight);
-        }
+      //  for (String hight : wayAll) {
+      //      if (hight != null) {
+      //          System.out.print(hight);
+      //      }
+
+     //   } System.out.println();
 
         return this.subDir;
     }
