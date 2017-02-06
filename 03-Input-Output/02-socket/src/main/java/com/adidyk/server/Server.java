@@ -1,12 +1,41 @@
 package com.adidyk.server;
 
+import static java.lang.Integer.valueOf;
+
 public class Server {
 
-    public static void main(String[] arg) {
+    private Input input;
+    private Api api;
+
+    Server(Input input) {
+        this.input = input;
+
+    }
+
+    private void init() {
+        MenuApi menu = new MenuApi(this.input, this.api);
+        menu.fillAction();
+        while(true) {
+            menu.show();
+            int key = valueOf(input.ask(" Choose key: "));
+            menu.select(key);
+            if (key == 9) break;
+        }
+    }
+
+    // main - just main :)
+    public static void main(String[] args) {
+        Input input = new ConsoleInput();
+        new Server(input).init();
+    }
+}
 
 
 
-        StringBuffer root = new StringBuffer("root");
+
+
+
+      /*  StringBuffer root = new StringBuffer("root");
         Api api = new Api(root);
 
         System.out.println("Step 1");
@@ -55,7 +84,7 @@ public class Server {
         String[] dir8 = api.enterDir("temp7");
         for (String dir : dir8) {
             System.out.println("  --- " +dir);
-        }
+        }*/
 
 
         /*System.out.println("--- Properties ---");
@@ -117,5 +146,3 @@ public class Server {
         catch (Exception ex) {
             ex.printStackTrace();
         }*/
-    }
-}
