@@ -1,4 +1,4 @@
-package com.adidyk.server;
+package com.adidyk;
 
 import java.util.Scanner;
 

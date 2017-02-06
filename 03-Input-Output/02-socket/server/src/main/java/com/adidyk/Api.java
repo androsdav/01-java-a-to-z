@@ -1,4 +1,4 @@
-package com.adidyk.server;
+package com.adidyk;
 
 import java.io.File;
 
@@ -19,32 +19,37 @@ public class Api {
     }
 
     // enterDir -
-    public String[] enterDir(String dir) {
-        this.wayAll[this.position] = SEPARATOR.concat(dir);
+
+    public String dir(String folder) {
+        this.wayAll[this.position] = SEPARATOR.concat(folder);
         this.position++;
         if (this.position == this.wayAll.length) {
             String[] wayAllTemp = new String[2 * this.wayAll.length];
             System.arraycopy(this.wayAll, 0, wayAllTemp, 0, this.wayAll.length);
             this.wayAll = wayAllTemp;
         }
-        this.way = this.way.append(SEPARATOR).append(dir);
-        File file = new File(String.valueOf(this.way));
-        System.out.println(this.way);
-        if (file.exists() && file.isDirectory()) {
-            this.listDir = file.list();
-        } else {
-            System.out.println("Directory not found");
-        }
-        return this.listDir;
+        this.way = this.way.append(SEPARATOR).append(folder);
+        return String.valueOf(this.way);
     }
 
     // exitDir -
-    public String[] exitDir() {
+    public String cd() {
         this.way = this.way.delete(this.way.indexOf(this.wayAll[--this.position]), this.way.length());
         File file = new File(String.valueOf(this.way));
         System.out.println(this.way);
         this.listDir = file.list();
-        return this.listDir;
+        return String.valueOf(this.way);
+    }
+
+    public String[] showDir() {
+        File file = new File(String.valueOf(this.way));
+           System.out.println(this.way);
+           if (file.exists() && file.isDirectory()) {
+               this.listDir = file.list();
+           } else {
+               System.out.println("Directory not found");
+           }
+           return this.listDir;
     }
 
     public String getWay() {

@@ -1,4 +1,4 @@
-package com.adidyk.server;
+package com.adidyk;
 
 public interface UserAction {
 

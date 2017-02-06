@@ -1,10 +1,11 @@
-package com.adidyk.server;
+package com.adidyk;
 
 public class MenuApi {
 
-    private Api api;
+}
+ /*   private Api api;
     private Input input;
-    private UserAction[] actions = new UserAction[2];
+    private UserAction[] actions = new UserAction[3];
 
 
     //
@@ -17,6 +18,7 @@ public class MenuApi {
     protected void fillAction() {
         this.actions[0] = new EnterDir();
         this.actions[1] = new ExitDir();
+        this.actions[2] = new Disconnect();
     }
 
     //
@@ -26,7 +28,8 @@ public class MenuApi {
 
     public void show() {
         System.out.println();
-        System.out.println(" ------------------------------Tracker Menu --------------------------------");
+        System.out.println("Way :" +this.api.getWay());
+        System.out.println(" ------------------------------Server Menu --------------------------------");
         for (UserAction action : this.actions) {
             if (action != null) {
                 System.out.println(action.info());
@@ -43,7 +46,7 @@ public class MenuApi {
         }
         @Override
         public void execute(Input input, Api api) {
-            String nameDir = input.ask("Input name directory");
+            String nameDir = input.ask(" Input name directory: ");
             String[] listDir = api.enterDir(nameDir);
             for (String list : listDir) {
                 System.out.println(" ----  " +list);
@@ -71,7 +74,21 @@ public class MenuApi {
         }
         @Override
         public String info() {
-            return String.format(" %s%s%s", this.key(), ".", " Enter Dir.");
+            return String.format(" %s%s%s", this.key(), ".", " Exit Dir.");
+        }
+    }
+
+    private class Disconnect implements UserAction {
+        @Override
+        public int key() {
+            return 3;
+        }
+        @Override
+        public void execute(Input input, Api api) {
+        }
+        @Override
+        public String info() {
+            return String.format(" %s%s%s", this.key(), ".", " Exit Dir.");
         }
     }
 
