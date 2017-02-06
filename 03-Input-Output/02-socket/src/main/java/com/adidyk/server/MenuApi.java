@@ -38,11 +38,12 @@ public class MenuApi {
         }
         @Override
         public void execute(Input input, Api api) {
-            String nameDir = input.ask("Input nae directory");
-            String[] listDir = api.enterDir(nameDir);
-            for (String list : listDir) {
-                System.out.println(" ----  " +list);
-            }
+            String nameDir = input.ask("Input name directory");
+            String[] listDir = api.enterDir("temp0");
+//            System.out.println("test" +nameDir);
+        //    for (String list : listDir) {
+          //      System.out.println(" ----  " +list);
+          //  }
         }
         @Override
         public String info() {

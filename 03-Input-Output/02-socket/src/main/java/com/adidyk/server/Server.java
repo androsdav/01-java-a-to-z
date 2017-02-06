@@ -26,6 +26,7 @@ public class Server {
     // main - just main :)
     public static void main(String[] args) {
         Input input = new ConsoleInput();
+        Api api = new Api(new StringBuffer("root"));
         new Server(input).init();
     }
 }
