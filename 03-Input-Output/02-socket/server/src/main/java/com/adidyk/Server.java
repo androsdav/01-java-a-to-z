@@ -4,6 +4,10 @@ import static java.lang.Integer.valueOf;
 
 public class Server {
 
+    public static void main(String[] args) {
+        Api api = new Api(new StringBuffer("root"));
+        System.out.println(api.getWay());
+    }
 }
 
     /*private Input input;

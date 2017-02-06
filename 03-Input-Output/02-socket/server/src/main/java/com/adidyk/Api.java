@@ -43,13 +43,13 @@ public class Api {
 
     public String[] showDir() {
         File file = new File(String.valueOf(this.way));
-           System.out.println(this.way);
-           if (file.exists() && file.isDirectory()) {
-               this.listDir = file.list();
-           } else {
-               System.out.println("Directory not found");
-           }
-           return this.listDir;
+        System.out.println(this.way);
+        if (file.exists() && file.isDirectory()) {
+            this.listDir = file.list();
+        } else {
+            System.out.println("Directory not found");
+        }
+        return this.listDir;
     }
 
     public String getWay() {

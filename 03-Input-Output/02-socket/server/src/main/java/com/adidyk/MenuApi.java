@@ -1,7 +1,7 @@
 package com.adidyk;
 
 public class MenuApi {
-
+    public int temp = 0;
 }
  /*   private Api api;
     private Input input;
@@ -90,23 +90,4 @@ public class MenuApi {
         public String info() {
             return String.format(" %s%s%s", this.key(), ".", " Exit Dir.");
         }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
+    }*/
