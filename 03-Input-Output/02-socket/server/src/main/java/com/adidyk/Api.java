@@ -19,8 +19,7 @@ public class Api {
     }
 
     // enterDir -
-
-    public String dir(String folder) {
+    public String cdIn(String folder) {
         this.wayAll[this.position] = SEPARATOR.concat(folder);
         this.position++;
         if (this.position == this.wayAll.length) {
@@ -33,15 +32,14 @@ public class Api {
     }
 
     // exitDir -
-    public String cd() {
+    public String cdOut() {
         this.way = this.way.delete(this.way.indexOf(this.wayAll[--this.position]), this.way.length());
         File file = new File(String.valueOf(this.way));
-        System.out.println(this.way);
         this.listDir = file.list();
         return String.valueOf(this.way);
     }
 
-    public String[] showDir() {
+    public String[] dir() {
         File file = new File(String.valueOf(this.way));
         System.out.println(this.way);
         if (file.exists() && file.isDirectory()) {
@@ -52,9 +50,9 @@ public class Api {
         return this.listDir;
     }
 
-    public String getWay() {
-        return String.valueOf(this.way);
-    }
+//    public String getWay() {
+//        return String.valueOf(this.way);
+//    }
 }
 
 

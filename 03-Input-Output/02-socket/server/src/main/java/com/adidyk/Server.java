@@ -1,12 +1,64 @@
 package com.adidyk;
 
-import static java.lang.Integer.valueOf;
-
 public class Server {
 
     public static void main(String[] args) {
         Api api = new Api(new StringBuffer("root"));
-        System.out.println(api.getWay());
+
+        System.out.println("Step 1");
+        String way1 = api.cdIn("temp0");
+        System.out.println(" Way : " +way1);
+        for (String dir : api.dir()) {
+            System.out.println(" -- " +dir);
+        }
+
+
+        System.out.println("Step 2");
+        String way2 = api.cdIn("temp1");
+        System.out.println(" Way : " +way2);
+        for (String dir : api.dir()) {
+            System.out.println(" -- " +dir);
+        }
+
+
+        System.out.println("Step 3");
+        String way3 = api.cdOut();
+        System.out.println(" Way : " +way3);
+        for (String dir : api.dir()) {
+            System.out.println(" -- " +dir);
+        }
+
+/*
+        System.out.println("Step 4");
+        String[] dir4 = api.exitDir();
+        for (String dir : dir4) {
+            System.out.println("  --- " +dir);
+        }
+
+        System.out.println("Step 5");
+        String[] dir5 = api.enterDir("temp4");
+        for (String dir : dir5) {
+            System.out.println("  --- " +dir);
+        }
+
+        System.out.println("Step 6");
+        String[] dir6 = api.enterDir("temp5");
+        for (String dir : dir6) {
+            System.out.println("  --- " +dir);
+        }
+
+        System.out.println("Step7");
+        String[] dir7 = api.enterDir("temp6");
+        for (String dir : dir7) {
+            System.out.println("  --- " +dir);
+        }
+
+        System.out.println("Step8");
+        String[] dir8 = api.enterDir("temp7");
+        for (String dir : dir8) {
+            System.out.println("  --- " +dir);
+        }*/
+
     }
 }
 
