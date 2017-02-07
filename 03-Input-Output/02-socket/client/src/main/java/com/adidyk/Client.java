@@ -27,7 +27,7 @@ public class Client {
             do {
                 System.out.print(" Input command: ");
                 command = br.readLine();
-                out.writeUTF(command);
+                out.writeUTF(command);.
                 command = in.readUTF();
                 System.out.println(" Server send: " + command);
                 //out.writeUTF("test result command ");
