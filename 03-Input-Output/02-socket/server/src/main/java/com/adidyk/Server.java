@@ -9,40 +9,24 @@ public class Server {
 
     public static void main(String[] args) {
 
+        Api api = new Api(new StringBuffer("root"));
 
-   int port = 5000; // 1025 - 65535
+        int port = 5000; // 1025 - 65535
         try {
-
-            //          ServerSocket ss = new ServerSocket(port);
-//            System.out.println("Waiting for a client... ");
+            System.out.println(" Waiting connect Client ... ");
             Socket socket = new ServerSocket(port).accept();
-//            System.out.println("Got a client: ");
-
-//            InputStream socketInStr = socket.getInputStream();
-//            OutputStream socketOutStr = socket.getOutputStream();
-
             DataInputStream in = new DataInputStream(socket.getInputStream());
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-
             String command;
             do {
                 System.out.println(" Wait command ... ");
                 command = in.readUTF();
+                String way1 = api.cdIn(command);
                 System.out.println(" I have command: " + command);
-                out.writeUTF("test result command ");
+                out.writeUTF(way1);
+            } while (!"q".equals(command));
 
-            } while ("q".equals(command));
 
-//            String string = null;
-
-//            while (true) {
-//                 string = in.readUTF();
-            //      String row = "test";
-//                 System.out.println("Client sent now: " + string);
-            //                System.out.println("Server send back... ");
-            //              out.writeUTF(string);
-            //            out.flush();
-            //     }
         }
         catch (Exception ex) {
             ex.printStackTrace();
