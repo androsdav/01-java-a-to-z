@@ -3,7 +3,7 @@ package com.adidyk;
 public interface UserAction {
 
     int key();
-    void execute(Input input, Api api);
+    void execute(String str, Api api);
     String info();
 
 

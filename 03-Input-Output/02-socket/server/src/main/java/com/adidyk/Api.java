@@ -41,7 +41,6 @@ public class Api {
 
     public String[] dir() {
         File file = new File(String.valueOf(this.way));
-        //System.out.println(this.way);
         if (file.exists() && file.isDirectory()) {
             this.listDir = file.list();
         } else {
