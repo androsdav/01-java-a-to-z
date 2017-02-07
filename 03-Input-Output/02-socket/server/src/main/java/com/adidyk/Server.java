@@ -1,9 +1,57 @@
 package com.adidyk;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+
 public class Server {
 
     public static void main(String[] args) {
-        Api api = new Api(new StringBuffer("root"));
+
+
+   int port = 5000; // 1025 - 65535
+        try {
+
+            //          ServerSocket ss = new ServerSocket(port);
+//            System.out.println("Waiting for a client... ");
+            Socket socket = new ServerSocket(port).accept();
+//            System.out.println("Got a client: ");
+
+//            InputStream socketInStr = socket.getInputStream();
+//            OutputStream socketOutStr = socket.getOutputStream();
+
+            DataInputStream in = new DataInputStream(socket.getInputStream());
+            DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+
+            String command;
+            do {
+                System.out.println(" Wait command ... ");
+                command = in.readUTF();
+                System.out.println(" I have command: " + command);
+                out.writeUTF("test result command ");
+
+            } while ("q".equals(command));
+
+//            String string = null;
+
+//            while (true) {
+//                 string = in.readUTF();
+            //      String row = "test";
+//                 System.out.println("Client sent now: " + string);
+            //                System.out.println("Server send back... ");
+            //              out.writeUTF(string);
+            //            out.flush();
+            //     }
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+
+    }
+}
+/*        Api api = new Api(new StringBuffer("root"));
 
         System.out.println();
         System.out.println(" Step 1");
@@ -28,41 +76,9 @@ public class Server {
         System.out.println(" Way : " +way3);
         for (String dir : api.dir()) {
             System.out.println(" -- " +dir);
-        }
+        } */
 
-/*
-        System.out.println("Step 4");
-        String[] dir4 = api.exitDir();
-        for (String dir : dir4) {
-            System.out.println("  --- " +dir);
-        }
 
-        System.out.println("Step 5");
-        String[] dir5 = api.enterDir("temp4");
-        for (String dir : dir5) {
-            System.out.println("  --- " +dir);
-        }
-
-        System.out.println("Step 6");
-        String[] dir6 = api.enterDir("temp5");
-        for (String dir : dir6) {
-            System.out.println("  --- " +dir);
-        }
-
-        System.out.println("Step7");
-        String[] dir7 = api.enterDir("temp6");
-        for (String dir : dir7) {
-            System.out.println("  --- " +dir);
-        }
-
-        System.out.println("Step8");
-        String[] dir8 = api.enterDir("temp7");
-        for (String dir : dir8) {
-            System.out.println("  --- " +dir);
-        }*/
-
-    }
-}
 
     /*private Input input;
     private Api api;
