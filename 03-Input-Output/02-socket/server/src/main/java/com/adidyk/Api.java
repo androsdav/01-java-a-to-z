@@ -34,8 +34,6 @@ public class Api {
     // exitDir -
     public String cdOut() {
         this.way = this.way.delete(this.way.indexOf(this.wayAll[--this.position]), this.way.length());
-        File file = new File(String.valueOf(this.way));
-        this.listDir = file.list();
         return String.valueOf(this.way);
     }
 
@@ -47,6 +45,12 @@ public class Api {
             System.out.println("Directory not found");
         }
         return this.listDir;
+    }
+
+    public String getWayParent() {
+        File file = new File(String.valueOf(this.way));
+        String list = file.getParent();
+        return file.getParent();
     }
 
 //    public String getWay() {

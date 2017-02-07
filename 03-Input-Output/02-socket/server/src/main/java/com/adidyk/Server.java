@@ -21,9 +21,10 @@ public class Server {
             do {
                 System.out.println(" Wait command ... ");
                 command = in.readUTF();
-                String way1 = api.cdIn(command);
+                api.cdIn(command, in, out);
                 System.out.println(" I have command: " + command);
-                out.writeUTF(way1);
+                //out.writeUTF("test1");
+                //out.writeUTF("test2");
             } while (!"q".equals(command));
 
 
