@@ -1,15 +1,62 @@
 package com.adidyk;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.util.HashMap;
+import java.util.Set;
 
 public class Server {
 
     public static void main(String[] args) {
 
-        Api api = new Api(new StringBuffer("root"));
+
+
+                  // create hash map
+                HashMap<String, String> newmap = new HashMap<String, String>();
+
+                // populate hash map
+                newmap.put("1", "tutorials");
+                newmap.put("2", "point");
+                newmap.put("3", "is best");
+
+                // get keyset value from map
+                Set keyset = newmap.keySet();
+
+        for (String key : newmap.keySet()) {
+            if ("2".equals(key)) {
+                System.out.println("Print: " +newmap.get(key));
+
+            }
+  //          System.out.println("Key : " +key);
+        }
+
+                // check key set values
+//                System.out.println("Key set values are: " + keyset);
+            }
+        }
+    /*    System.out.println();
+        System.out.println(" Step 1");
+        String way1 = api.cdIn("temp0");
+        System.out.println(" Way : " +way1);
+        for (String dir : api.dir()) {
+            System.out.println(" -- " +dir);
+        }
+
+
+        System.out.println();
+        System.out.println("Step 2");
+        String way2 = api.cdIn("temp1");
+        System.out.println(" Way : " +way2);
+        for (String dir : api.dir()) {
+            System.out.println(" -- " +dir);
+        }
+
+        System.out.println();
+        System.out.println(" Step 3");
+        String way3 = api.cdOut();
+        System.out.println(" Way : " +way3);
+        for (String dir : api.dir()) {
+            System.out.println(" -- " +dir);*/
+
+   /*     Api api = new Api(new StringBuffer("root"));
 
         int port = 5000; // 1025 - 65535
         try {
@@ -21,7 +68,7 @@ public class Server {
             do {
                 System.out.println(" Wait command ... ");
                 command = in.readUTF();
-                api.cdIn(command, in, out);
+                api.cdIn(command, out);
                 System.out.println(" I have command: " + command);
                 //out.writeUTF("test1");
                 //out.writeUTF("test2");
@@ -33,9 +80,9 @@ public class Server {
             ex.printStackTrace();
         }
 
+*/
 
-    }
-}
+
 /*        Api api = new Api(new StringBuffer("root"));
 
         System.out.println();
