@@ -1,18 +1,10 @@
 package com.adidyk;
 
-
 import java.io.File;
 
 public class Api {
 
-    // Comment
-    // 1. wayAll do not have root directory, maybe must add root to wayAll in constructor
-    //
-    //
-    private String[] listDir;
     private StringBuffer way;
-    private String[] wayAll = new String[10];
-    private int position = 0;
     private static final String SEPARATOR = System.getProperty("file.separator");
 
     public Api(StringBuffer root) {
@@ -20,53 +12,39 @@ public class Api {
     }
 
     // enterDir -
-    public String cdIn(String folder) {
-        this.wayAll[this.position] = SEPARATOR.concat(folder);
-        this.position++;
-        if (this.position == this.wayAll.length) {
-            String[] wayAllTemp = new String[2 * this.wayAll.length];
-            System.arraycopy(this.wayAll, 0, wayAllTemp, 0, this.wayAll.length);
-            this.wayAll = wayAllTemp;
+    public String cdIn(String folder) throws NullPointerException {
+        boolean dirFound = false;
+        File file = new File(String.valueOf(this.way));
+        for (String list : file.list()) {
+            if (folder.equals(list)) {
+                this.way = this.way.append(SEPARATOR).append(folder);
+                dirFound = true;
+                break;
+            }
         }
-        this.way = this.way.append(SEPARATOR).append(folder);
+        if (!dirFound) {
+            System.out.println("Exception: -> Direct no found ");
+        }
         return String.valueOf(this.way);
     }
 
     // exitDir -
     public String cdOut() {
-        this.way = this.way.delete(this.way.indexOf(this.wayAll[--this.position]), this.way.length());
+        this.way = new StringBuffer(new File(String.valueOf(this.way)).getParent());
         return String.valueOf(this.way);
     }
 
     public String[] dir() {
+        String[] listDir = null;
         File file = new File(String.valueOf(this.way));
         if (file.exists() && file.isDirectory()) {
-            this.listDir = file.list();
+            listDir = file.list();
         } else {
             System.out.println("Directory not found");
         }
-        return this.listDir;
+        return listDir;
     }
-
-    public String getWayParent() {
-        File file = new File(String.valueOf(this.way));
-        String list = file.getParent();
-        return file.getParent();
-    }
-
-//    public String getWay() {
-//        return String.valueOf(this.way);
-//    }
 }
-
-
-
-        //if (file.isDirectory()) {
-        //    for (File item : file.listFiles()) {
-        //        System.out.println("Katalog:  " + item);
-
-//            }
-  //      }
 
         //System.out.println("1. getAbsolutePath :" + file.getAbsolutePath());
         //System.out.println("2. getAbsoluteFile :" + file.getAbsoluteFile());
@@ -74,11 +52,11 @@ public class Api {
         //System.out.println("1. getAbsolutePath :" + file.getAbsolutePath());
         //System.out.println("1. getAbsolutePath :" + file.getAbsolutePath());
         //System.out.println("1. getAbsolutePath :" + file.getAbsolutePath());
-    //System.out.println("Way temp: " + way);
-    //System.out.println("getParent: " + file.getParent());
-    //System.out.println("Path :" +file.getAbsolutePath());
-    //System.out.println("HZ1 :" +file.getAbsoluteFile());
-    //       System.out.println("HZ2 :" +this.way);
+        //System.out.println("Way temp: " + way);
+        //System.out.println("getParent: " + file.getParent());
+        //System.out.println("Path :" +file.getAbsolutePath());
+        //System.out.println("HZ1 :" +file.getAbsoluteFile());
+        //System.out.println("HZ2 :" +this.way);
 
 
 

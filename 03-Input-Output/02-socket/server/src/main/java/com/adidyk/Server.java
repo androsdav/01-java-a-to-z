@@ -1,5 +1,9 @@
 package com.adidyk;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -7,23 +11,118 @@ public class Server {
 
     public static void main(String[] args) {
 
+        int port = 5000; // 1025 - 65535
+        Api api = new Api(new StringBuffer("root"));
+        try {
+            System.out.println(" Waiting connect Client ... ");
+            Socket socket = new ServerSocket(port).accept();
+            DataInputStream in = new DataInputStream(socket.getInputStream());
+            DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+            String command;
+            do {
+                System.out.println(" Wait command ... ");
+                command = in.readUTF();
+                api.cdIn(command);
+                System.out.println(" I have command: " + command);
+                //out.writeUTF("test1");
+                //out.writeUTF("test2");
+            } while (!"q".equals(command));
 
 
-                  // create hash map
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+}
+
+        /*
+        //---------------------------------------------------------------------------------------------
+        // Test method from class Api
+        Api api = new Api(new StringBuffer("root"));
+
+        System.out.println();
+        System.out.println(" Step 1 - in");
+        String way1 = api.cdIn("temp0");
+        System.out.println(" Way : " + way1);
+        for (String dir : api.dir()) {
+            System.out.println(" -- " + dir);
+        }
+
+        System.out.println();
+        System.out.println("Step 2 - in");
+        String way2 = api.cdIn("temp1");
+        System.out.println(" Way : " + way2);
+        for (String dir : api.dir()) {
+            System.out.println(" -- " + dir);
+        }
+
+        System.out.println();
+        System.out.println("Step 3 - in");
+        String way3 = api.cdIn("libraries");
+        System.out.println(" Way : " + way3);
+        for (String dir : api.dir()) {
+            System.out.println(" -- " + dir);
+        }
+
+        System.out.println();
+        System.out.println(" Step 4 - out");
+        String way4 = api.cdOut();
+        System.out.println(" Way : " + way4);
+        for (String dir : api.dir()) {
+            System.out.println(" -- " + dir);
+        }
+
+        System.out.println();
+        System.out.println(" Step 5 - out");
+        String way5 = api.cdOut();
+        System.out.println(" Way : " + way5);
+        for (String dir : api.dir()) {
+            System.out.println(" -- " + dir);
+        }
+
+        System.out.println();
+        System.out.println(" Step 6 - out");
+        String way6 = api.cdOut();
+        System.out.println(" Way : " + way6);
+        for (String dir : api.dir()) {
+            System.out.println(" -- " + dir);
+        }
+
+        System.out.println();
+        System.out.println("Step 7 - in");
+        String way7 = api.cdIn("temp4");
+        System.out.println(" Way : " + way7);
+        for (String dir : api.dir()) {
+            System.out.println(" -- " + dir);
+        }
+
+        System.out.println();
+        System.out.println("Step 8 - in");
+        String way8 = api.cdIn("temp51");
+        System.out.println(" Way : " + way8);
+        for (String dir : api.dir()) {
+            System.out.println(" -- " + dir);
+        }
+        //---------------------------------------------------------------------------------------------
+        */
+
+
+
+
+
+/*
+                 // create hash map
                 HashMap<String, String> newmap = new HashMap<String, String>();
-
                 // populate hash map
                 newmap.put("1", "tutorials");
                 newmap.put("2", "point");
                 newmap.put("3", "is best");
-
                 // get keyset value from map
                 Set keyset = newmap.keySet();
-
         for (String key : newmap.keySet()) {
             if ("2".equals(key)) {
                 System.out.println("Print: " +newmap.get(key));
-
             }
   //          System.out.println("Key : " +key);
         }
@@ -31,7 +130,7 @@ public class Server {
                 // check key set values
 //                System.out.println("Key set values are: " + keyset);
             }
-        }
+        }*/
     /*    System.out.println();
         System.out.println(" Step 1");
         String way1 = api.cdIn("temp0");
