@@ -12,12 +12,12 @@ public class Api {
     }
 
     // enterDir -
-    public String cdIn(String folder) throws NullPointerException {
+    public String inputToDir(String dir) throws NullPointerException {
         boolean dirFound = false;
         File file = new File(String.valueOf(this.way));
         for (String list : file.list()) {
-            if (folder.equals(list)) {
-                this.way = this.way.append(SEPARATOR).append(folder);
+            if (dir.equals(list)) {
+                this.way = this.way.append(SEPARATOR).append(dir);
                 dirFound = true;
                 break;
             }
@@ -29,12 +29,12 @@ public class Api {
     }
 
     // exitDir -
-    public String cdOut() {
+    public String outputFromDir() {
         this.way = new StringBuffer(new File(String.valueOf(this.way)).getParent());
         return String.valueOf(this.way);
     }
 
-    public String[] dir() {
+    public String[] showDir() {
         String[] listDir = null;
         File file = new File(String.valueOf(this.way));
         if (file.exists() && file.isDirectory()) {
