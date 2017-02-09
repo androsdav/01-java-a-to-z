@@ -2,30 +2,34 @@ package com.adidyk;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class MenuApi {
 
     private Api api;
+    DataOutputStream out;
 //    private String str;
     private Map<String, UserAction> actions = new HashMap<String, UserAction>();
 
-    public MenuApi(Api api) {
+    public MenuApi(Api api, DataOutputStream out) {
         this.api = api;
+        this.out = out;
   //      this.str = str;
     }
 
     public void fillAction() {
         actions.put("cd", new InputToDir());
-        actions.put("cd ..", new OutputFromDir());
+        actions.put("cd..", new OutputFromDir());
         actions.put("dir", new ShowDir());
     }
 
-    public void select(String key) {
-        if (actions.containsKey(key)) {
+    public void select(String string) throws IOException {
+        String[] key = string.split(" ");
+        if (actions.containsKey(key[0])) {
             System.out.println("Key is true");
-            this.actions.get(key).execute();
+            this.actions.get(key).execute(this.api, key[1]);
         } else {
             System.out.println("Key is false");
         }
@@ -33,22 +37,25 @@ public class MenuApi {
 
     private class InputToDir implements UserAction {
 
-        public void execute() {
-            System.out.println("Its class InputToDir");
+        public void execute(Api api, String row) throws IOException {
+            out.writeUTF("Its class InputToDir");
+            //System.out.println("Its class InputToDir");
         }
     }
 
     private class OutputFromDir implements UserAction {
 
-        public void execute() {
-            System.out.println("Its class OutputFromDir");
+        public void execute(Api api, String row) throws IOException {
+            //System.out.println("Its class OutputFromDir");
+            out.writeUTF("Its class OutputFromDir");
         }
 
     }
 
     private class ShowDir implements UserAction {
-        public void execute() {
-            System.out.println("Its class ShowDir");
+        public void execute(Api api, String row) throws IOException {
+            //System.out.println("Its class ShowDir");
+            out.writeUTF("Its class ShowDir");
         }
     }
 

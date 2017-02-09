@@ -15,20 +15,22 @@ public class Server {
 
         int port = 5000; // 1025 - 65535
         //Api api = new Api(new StringBuffer("root"));
-        MenuApi mApi = new MenuApi(new Api(new StringBuffer(String.valueOf("root"))));
-        mApi.fillAction();
+        //MenuApi mApi = new MenuApi(new Api(new StringBuffer(String.valueOf("root"))));
+        //mApi.fillAction();
         try {
             System.out.println(" Waiting connect Client ... ");
             Socket socket = new ServerSocket(port).accept();
             DataInputStream in = new DataInputStream(socket.getInputStream());
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+            MenuApi mApi = new MenuApi(new Api(new StringBuffer(String.valueOf("root"))), out);
+            mApi.fillAction();
             String command;
             do {
                 System.out.println(" Wait command ... ");
                 command = in.readUTF();
                 mApi.select(command);
                 System.out.println(" I have command: " + command);
-                out.writeUTF(command +" " +"test");
+                //out.writeUTF(command +" " +"test");
                 //out.writeUTF("test2");
             } while (!"q".equals(command));
 
