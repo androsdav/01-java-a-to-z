@@ -5,6 +5,9 @@ import java.io.DataOutputStream;
 
 public class MenuApi {
 
+    private Api api;
+
+
 }
    /* public int temp = 0;
 

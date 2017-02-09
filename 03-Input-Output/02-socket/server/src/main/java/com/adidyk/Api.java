@@ -1,48 +1,61 @@
 package com.adidyk;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Api {
 
     private StringBuffer way;
     private static final String SEPARATOR = System.getProperty("file.separator");
 
+    public Map<String, Api> actions = new HashMap<String, Api>();
+
+    public fillAction() {
+        actions.put("cd", new Api());
+
+    }
+
     public Api(StringBuffer root) {
         this.way = root;
     }
 
     // enterDir -
-    public String inputToDir(String dir) throws NullPointerException {
-        boolean dirFound = false;
-        File file = new File(String.valueOf(this.way));
-        for (String list : file.list()) {
-            if (dir.equals(list)) {
-                this.way = this.way.append(SEPARATOR).append(dir);
-                dirFound = true;
-                break;
+    private class inputToDir {
+        public String execute(String dir) throws NullPointerException {
+            boolean dirFound = false;
+            File file = new File(String.valueOf(way));
+            for (String list : file.list()) {
+                if (dir.equals(list)) {
+                    way = way.append(SEPARATOR).append(dir);
+                    dirFound = true;
+                    break;
+                }
             }
+            if (!dirFound) {
+                System.out.println("Exception: -> Direct no found ");
+            }
+            return String.valueOf(way);
         }
-        if (!dirFound) {
-            System.out.println("Exception: -> Direct no found ");
-        }
-        return String.valueOf(this.way);
     }
 
     // exitDir -
-    public String outputFromDir() {
-        this.way = new StringBuffer(new File(String.valueOf(this.way)).getParent());
-        return String.valueOf(this.way);
-    }
-
-    public String[] showDir() {
-        String[] listDir = null;
-        File file = new File(String.valueOf(this.way));
-        if (file.exists() && file.isDirectory()) {
-            listDir = file.list();
-        } else {
-            System.out.println("Directory not found");
+    private class outputFromDir {
+        public String execute() {
+            way = new StringBuffer(new File(String.valueOf(way)).getParent());
+            return String.valueOf(way);
         }
-        return listDir;
+
+        public String[] showDir() {
+            String[] listDir = null;
+            File file = new File(String.valueOf(this.way));
+            if (file.exists() && file.isDirectory()) {
+                listDir = file.list();
+            } else {
+                System.out.println("Directory not found");
+            }
+            return listDir;
+        }
     }
 }
 
