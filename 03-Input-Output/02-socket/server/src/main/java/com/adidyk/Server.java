@@ -4,8 +4,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.HashMap;
-import java.util.Set;
 
 public class Server {
 
@@ -22,7 +20,7 @@ public class Server {
             do {
                 System.out.println(" Wait command ... ");
                 command = in.readUTF();
-                api.cdIn(command);
+                api.inputToDir(command);
                 System.out.println(" I have command: " + command);
                 //out.writeUTF("test1");
                 //out.writeUTF("test2");
