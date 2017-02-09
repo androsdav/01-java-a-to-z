@@ -7,10 +7,16 @@ import java.net.Socket;
 
 public class Server {
 
+    Server() {
+
+    }
+
     public static void main(String[] args) {
 
         int port = 5000; // 1025 - 65535
-        Api api = new Api(new StringBuffer("root"));
+        //Api api = new Api(new StringBuffer("root"));
+        MenuApi mApi = new MenuApi(new Api(new StringBuffer(String.valueOf("root"))));
+        mApi.fillAction();
         try {
             System.out.println(" Waiting connect Client ... ");
             Socket socket = new ServerSocket(port).accept();
@@ -20,9 +26,9 @@ public class Server {
             do {
                 System.out.println(" Wait command ... ");
                 command = in.readUTF();
-                api.inputToDir(command);
+                mApi.select(command);
                 System.out.println(" I have command: " + command);
-                //out.writeUTF("test1");
+                out.writeUTF(command +" " +"test");
                 //out.writeUTF("test2");
             } while (!"q".equals(command));
 
