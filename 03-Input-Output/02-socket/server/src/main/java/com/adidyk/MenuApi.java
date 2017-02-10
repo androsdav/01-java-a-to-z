@@ -1,6 +1,5 @@
 package com.adidyk;
 
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
@@ -11,7 +10,7 @@ public class MenuApi {
     private Api api;
     DataOutputStream out;
 //    private String str;
-    private Map<String, UserAction> actions = new HashMap<String, UserAction>();
+    private Map<String, UserAction> actions = new HashMap<>();
 
     public MenuApi(Api api, DataOutputStream out) {
         this.api = api;
