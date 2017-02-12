@@ -24,11 +24,10 @@ public class MenuApi {
         actions.put("dir", new ShowDir());
     }
 
-    public void select(String string) throws IOException {
-        String[] key = string.split(" ");
-        if (actions.containsKey(key[0])) {
+    public void select(String key) throws IOException {
+        if (actions.containsKey(key)) {
             System.out.println("Key is true");
-            this.actions.get(key).execute(this.api, key[1]);
+            this.actions.get(key).execute(this.api, key);
         } else {
             System.out.println("Key is false");
         }

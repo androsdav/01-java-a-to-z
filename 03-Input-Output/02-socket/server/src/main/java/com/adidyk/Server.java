@@ -24,15 +24,17 @@ public class Server {
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
             MenuApi mApi = new MenuApi(new Api(new StringBuffer(String.valueOf("root"))), out);
             mApi.fillAction();
-            String command;
+            String string;
             do {
                 System.out.println(" Wait command ... ");
-                command = in.readUTF();
-                mApi.select(command);
-                System.out.println(" I have command: " + command);
-                //out.writeUTF(command +" " +"test");
+                string = in.readUTF();
+                Command command = new Command();
+                command.setCommand(string);
+                mApi.select(command.getKey());
+                //System.out.println(" I have command: " + string);
+                out.writeUTF(command +" " +"test");
                 //out.writeUTF("test2");
-            } while (!"q".equals(command));
+            } while (!"q".equals(string));
 
 
         }
