@@ -30,9 +30,11 @@ public class Server {
                 string = in.readUTF();
                 Command command = new Command();
                 command.setCommand(string);
+                System.out.println("Key: " + command.getKey());
+                System.out.println("Name : " + command.getName());
                 mApi.select(command.getKey());
                 //System.out.println(" I have command: " + string);
-                out.writeUTF(command +" " +"test");
+                //out.writeUTF(command +" " +"test");
                 //out.writeUTF("test2");
             } while (!"q".equals(string));
 
