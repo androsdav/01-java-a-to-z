@@ -23,7 +23,7 @@ public class MenuApi {
     public void fillAction() {
         actions.put("cd", new ChangerDir());
         actions.put("dir", new ShowDir());
-//        actions.put("cd", new OutputFromDir());
+//      actions.put("cd", new OutputFromDir());
 
     }
 
