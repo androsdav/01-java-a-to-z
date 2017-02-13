@@ -9,56 +9,75 @@ public class MenuApi {
 
     private Api api;
     DataOutputStream out;
-//    private String str;
+    Command command;
+
     private Map<String, UserAction> actions = new HashMap<>();
 
     public MenuApi(Api api, DataOutputStream out) {
         this.api = api;
         this.out = out;
+       // this.command = command;
   //      this.str = str;
     }
 
     public void fillAction() {
-        actions.put("cd", new InputToDir());
-        actions.put("cd..", new OutputFromDir());
+        actions.put("cd", new ChangerDir());
         actions.put("dir", new ShowDir());
+//        actions.put("cd", new OutputFromDir());
+
     }
 
-    public void select(String key) throws IOException {
-        if (actions.containsKey(key)) {
+    public void select(Command command) throws IOException {
+        if (actions.containsKey(command.getKey())) {
             System.out.println("Key is true");
-            this.actions.get(key).execute(this.api, key);
+            this.actions.get(command.getKey()).execute(this.api, command.getName());
         } else {
             System.out.println("Key is false");
         }
     }
 
-    private class InputToDir implements UserAction {
-
-        public void execute(Api api, String row) throws IOException {
-            out.writeUTF("Its class InputToDir");
-            //System.out.println("Its class InputToDir");
+    private class ChangerDir implements UserAction {
+        public String key () {
+            return "cd";
         }
-    }
-
-    private class OutputFromDir implements UserAction {
-
-        public void execute(Api api, String row) throws IOException {
-            //System.out.println("Its class OutputFromDir");
-            out.writeUTF("Its class OutputFromDir");
+        public void execute(Api api, String string) throws IOException {
+            out.writeUTF(api.changeDir((string)));
         }
-
+        public String info() {
+            return String.format(" %s%s%s", this.key(), ".", " Change folder.");
+        }
     }
 
     private class ShowDir implements UserAction {
+        public String key () {
+            return "cd";
+        }
         public void execute(Api api, String row) throws IOException {
-            //System.out.println("Its class ShowDir");
-            out.writeUTF("Its class ShowDir");
+            out.writeUTF(api.showDir());
+        }
+        public String info() {
+            return String.format(" %s%s%s", this.key(), ".", " Show folder.");
         }
     }
 
-
 }
+
+//    private class OutputFromDir implements UserAction {
+
+//      public String key () {
+//          return "cd";
+//     }
+
+//    public void execute(Api api, String row) throws IOException {
+//        out.writeUTF(api.outputFromDir());
+// }
+
+// info - menu item " Show all item."
+//        public String info() {
+//            return String.format(" %s%s%s", this.key(), ".", " Show all item.");
+//        }
+
+//  }
    /* public int temp = 0;
 
     private Api api;

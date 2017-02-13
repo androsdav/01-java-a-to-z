@@ -32,7 +32,7 @@ public class Server {
                 command.setCommand(string);
                 System.out.println("Key: " + command.getKey());
                 System.out.println("Name : " + command.getName());
-                mApi.select(command.getKey());
+                mApi.select(command);
                 //System.out.println(" I have command: " + string);
                 //out.writeUTF(command +" " +"test");
                 //out.writeUTF("test2");

@@ -4,9 +4,9 @@ import java.io.IOException;
 
 public interface UserAction {
 
-    //int key();
+    String key();
     void execute(Api api, String row) throws IOException;
-    //String info();
+    String info();
 
 
 }
