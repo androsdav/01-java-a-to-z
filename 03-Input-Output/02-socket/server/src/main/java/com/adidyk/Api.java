@@ -19,7 +19,7 @@ public class Api {
     // changeDir - change folder: input one step, output one step, output to root directory
     public String changeDir(String dir) throws NullPointerException {
 
-        if (dir == null) {
+      if (dir == null) {
             this.way = new StringBuffer(ROOT);
         }
         else if (FROM.equals(dir)) {

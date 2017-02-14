@@ -5,7 +5,7 @@ import java.io.IOException;
 public interface UserAction {
 
     String key();
-    void execute(Api api, String row) throws IOException;
+    void execute(Command command) throws IOException;
     String info();
 
 
