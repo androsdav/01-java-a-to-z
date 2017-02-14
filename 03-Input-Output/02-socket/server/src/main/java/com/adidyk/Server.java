@@ -22,7 +22,7 @@ public class Server {
             Socket socket = new ServerSocket(port).accept();
             DataInputStream in = new DataInputStream(socket.getInputStream());
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-            MenuApi mApi = new MenuApi(new Api(new StringBuffer(String.valueOf("root"))), out);
+            MenuApi mApi = new MenuApi(out, new StringBuffer(String.valueOf("root")));
             mApi.fillAction();
             String string;
             do {

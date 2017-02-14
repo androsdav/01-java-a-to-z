@@ -9,46 +9,40 @@ import java.util.Map;
 
 public class MenuApi {
 
-    private Api api;
-    DataOutputStream out;
-    Command command;
+    private DataOutputStream out;
     private StringBuffer way;
 
     private static final String SEPARATOR = System.getProperty("file.separator");
-    public static final String ROOT = "root";
-    public static final String FROM = "..";
-
+    private static final String ROOT = "root";
+    private static final String FROM = "..";
     private Map<String, UserAction> actions = new HashMap<>();
 
-    public MenuApi(Api api, DataOutputStream out, StringBuffer root) {
-        this.api = api;
+    MenuApi(DataOutputStream out, StringBuffer root) {
         this.out = out;
         this.way = root;
-       // this.command = command;
-  //      this.str = str;
     }
 
-    public void fillAction() {
+    void fillAction() {
         actions.put("cd", new ChangerDir());
         actions.put("dir", new ShowDir());
-//      actions.put("cd", new OutputFromDir());
-
+        actions.put("help", new Help());
     }
 
-    public void select(Command command) throws IOException {
+    void select(Command command) throws IOException {
         if (actions.containsKey(command.getKey())) {
             System.out.println("Key is true");
             this.actions.get(command.getKey()).execute(command);
         } else {
-            System.out.println("Key is false");
+            out.writeUTF("Key is false");
         }
     }
 
     private class ChangerDir implements UserAction {
-
+        // key - return "cd"
         public String key () {
             return "cd";
         }
+        //changeDir - change folder: input one step, output one step, output to root directory
         public void execute(Command command) throws IOException {
             String directory = command.getName();
             if (directory == null) {
@@ -72,44 +66,45 @@ public class MenuApi {
             }
             out.writeUTF(String.valueOf(way));
         }
-            //out.writeUTF(api.changeDir((string)));
-
+        // info - return info about method execute
         public String info() {
             return String.format(" %s%s%s", this.key(), ".", " Change folder.");
         }
     }
 
     private class ShowDir implements UserAction {
+        //
         public String key () {
             return "dir";
         }
+        // showDir - return all folders and files that are in folder
         public void execute(Command command) throws IOException {
-
-            // showDir - return all folders and files that are in folder
-            public String showDir() {
-                String[] listDir = null;
-                File file = new File(String.valueOf(way));
-                if (file.exists() && file.isDirectory()) {
-                    listDir = file.list();
-                } else {
-                    System.out.println("Directory not found");
-                }
-                return Arrays.toString(listDir);
-            }
-
-
-
-
-
-
-
-
-            out.writeUTF(api.showDir());
+            File file = new File(String.valueOf(way));
+            String[] listDir = file.list();
+            out.writeUTF(Arrays.toString(listDir));
         }
+        // info -
         public String info() {
             return String.format(" %s%s%s", this.key(), ".", " Show folder.");
         }
     }
+
+    private class Help implements UserAction {
+        //
+        public String key() {
+            return "help";
+        }
+        //
+        public void execute(Command command) throws IOException {
+            out.writeUTF(String.valueOf(way));
+            //out.writeUTF("There can be your advertising");
+        }
+        //
+        public String info() {
+            return String.format("Its  help");
+        }
+    }
+
 
 }
 
