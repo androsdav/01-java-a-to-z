@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MenuApi {
+public class MenuServer {
 
     private DataOutputStream out;
     private StringBuffer way;
@@ -17,7 +17,7 @@ public class MenuApi {
     private static final String FROM = "..";
     private Map<String, UserAction> actions = new HashMap<>();
 
-    MenuApi(DataOutputStream out, StringBuffer root) {
+    MenuServer(DataOutputStream out, StringBuffer root) {
         this.out = out;
         this.way = root;
     }
@@ -231,3 +231,8 @@ public class MenuApi {
             return String.format(" %s%s%s", this.key(), ".", " Exit Dir.");
         }
     }*/
+
+
+
+
+

@@ -22,8 +22,8 @@ public class Server {
             Socket socket = new ServerSocket(port).accept();
             DataInputStream in = new DataInputStream(socket.getInputStream());
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-            MenuApi mApi = new MenuApi(out, new StringBuffer(String.valueOf("root")));
-            mApi.fillAction();
+            MenuServer menu = new MenuServer(out, new StringBuffer(String.valueOf("root")));
+            menu.fillAction();
             String string;
             do {
                 System.out.println(" Wait command ... ");
@@ -32,7 +32,7 @@ public class Server {
                 command.setCommand(string);
                 System.out.println("Key: " + command.getKey());
                 System.out.println("Name : " + command.getName());
-                mApi.select(command);
+                menu.select(command);
                 //System.out.println(" I have command: " + string);
                 //out.writeUTF(command +" " +"test");
                 //out.writeUTF("test2");
