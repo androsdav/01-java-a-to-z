@@ -96,7 +96,7 @@ public class MenuServer {
         }
         //
         public void execute(Command command) throws IOException {
-            out.writeUTF(String.valueOf(way));
+            out.writeUTF("There can be your advertising");
             //out.writeUTF("There can be your advertising");
         }
         //

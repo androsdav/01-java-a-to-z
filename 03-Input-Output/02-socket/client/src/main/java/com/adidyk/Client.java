@@ -21,17 +21,22 @@ public class Client {
             DataInputStream in = new DataInputStream(socket.getInputStream());
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            MenuClient menu = new MenuClient(in, out);
+            menu.fillAction();
 
-            String command;
+            String string;
 
             do {
                 System.out.print(" Input command: ");
-                command = br.readLine();
-                out.writeUTF(command);
-                command = in.readUTF();
+                string = br.readLine();
+                out.writeUTF(string);
+                Command command = new Command();
+                command.setCommand(string);
+                menu.select(command);
+//                string = in.readUTF();
                 System.out.println(" Server send: " + command);
                 //out.writeUTF("test result command ");
-            } while (!"q".equals(command));
+            } while (!"q".equals(string));
         }
         catch (Exception ex) {
             ex.printStackTrace();
