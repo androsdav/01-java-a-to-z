@@ -17,7 +17,6 @@ public class Command {
             if (in.hasNext()) {
                 this.name = in.next();
             }
-
         }
     }
 

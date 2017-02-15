@@ -7,10 +7,6 @@ import java.net.Socket;
 
 public class Server {
 
-    Server() {
-
-    }
-
     public static void main(String[] args) {
 
         int port = 5000; // 1025 - 65535
@@ -27,18 +23,14 @@ public class Server {
             String string;
             do {
                 System.out.println(" Wait command ... ");
+                menu.getWay();
                 string = in.readUTF();
                 Command command = new Command();
                 command.setCommand(string);
                 System.out.println("Key: " + command.getKey());
                 System.out.println("Name : " + command.getName());
                 menu.select(command);
-                //System.out.println(" I have command: " + string);
-                //out.writeUTF(command +" " +"test");
-                //out.writeUTF("test2");
             } while (!"q".equals(string));
-
-
         }
         catch (Exception ex) {
             ex.printStackTrace();

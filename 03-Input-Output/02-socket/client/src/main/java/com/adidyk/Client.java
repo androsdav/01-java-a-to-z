@@ -25,16 +25,18 @@ public class Client {
             menu.fillAction();
 
             String string;
+            String way;
 
             do {
-                System.out.print(" Input command: ");
+                menu.getway();
+                //System.out.print(in.readUTF());
                 string = br.readLine();
                 out.writeUTF(string);
                 Command command = new Command();
                 command.setCommand(string);
                 menu.select(command);
 //                string = in.readUTF();
-                System.out.println(" Server send: " + command);
+                //System.out.println(" Server send: " + command);
                 //out.writeUTF("test result command ");
             } while (!"q".equals(string));
         }

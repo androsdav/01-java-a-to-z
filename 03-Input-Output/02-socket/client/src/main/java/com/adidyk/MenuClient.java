@@ -19,7 +19,7 @@ public class MenuClient {
         MenuClient(DataInputStream in, DataOutputStream out) {
             this.in = in;
             this.out = out;
-//            this.way = root;
+//          this.way = root;
         }
 
         void fillAction() {
@@ -30,11 +30,16 @@ public class MenuClient {
 
         void select(Command command) throws IOException {
             if (actions.containsKey(command.getKey())) {
-                System.out.println("Key is true");
+                //System.out.println("Key is true");
                 this.actions.get(command.getKey()).execute(command);
             } else {
                 System.out.println("Key is false");
             }
+        }
+
+        public void getway() throws IOException {
+            String string = this.in.readUTF();
+            System.out.print(string + ">");
         }
 
         private class ChangerDir implements UserAction {
@@ -44,13 +49,13 @@ public class MenuClient {
             }
             //changeDir - change folder: input one step, output one step, output to root directory
             public void execute(Command command) throws IOException {
-               String string = in.readUTF();
-                System.out.println(string + "<client test>");
+             //  String string = in.readUTF();
+             //   System.out.println("Way :" +string);
             }
             // info - return info about method execute
-            public String info() {
-                return String.format(" %s%s%s", this.key(), ".", " Change folder.");
-            }
+           // public String info() {
+           //     return String.format(" %s%s%s", this.key(), ".", " Change folder.");
+           // }
         }
 
         private class ShowDir implements UserAction {
@@ -63,13 +68,18 @@ public class MenuClient {
 
             public void execute(Command command) throws IOException {
                 String string = in.readUTF();
-                System.out.println(string +"<client test>");
+                String[] strings = string.split(" ");
+                System.out.println("DIR");
+                for (String str : strings) {
+                    System.out.println(" -- " +str);
+                }
+//                System.out.println(string +"<client test>");
             }
 
             // info -
-            public String info() {
-                return String.format(" %s%s%s", this.key(), ".", " Show folder.");
-            }
+            //public String info() {
+               // return String.format(" %s%s%s", this.key(), ".", " Show folder.");
+            //}
         }
 
         private class Help implements UserAction {
@@ -79,13 +89,15 @@ public class MenuClient {
             }
             //
             public void execute(Command command) throws IOException {
-                String string = in.readUTF();
-                System.out.println(string +"<client test>");
+                for (int index = 0; index < actions.size(); index++) {
+                    String string = in.readUTF();
+                    System.out.println(string);
+                }
             }
             //
-            public String info() {
-                return String.format("Its  help");
-            }
+            //public String info() {
+            //    return String.format("Its  help");
+            //}
         }
 
 

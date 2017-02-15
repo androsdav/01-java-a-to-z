@@ -8,6 +8,6 @@ public interface UserAction {
 
     void execute(Command command) throws IOException;
 
-    String info();
+    //String info();
 
 }

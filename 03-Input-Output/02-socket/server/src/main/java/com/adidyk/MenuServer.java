@@ -29,12 +29,16 @@ public class MenuServer {
     }
 
     void select(Command command) throws IOException {
-        if (actions.containsKey(command.getKey())) {
+        if (this.actions.containsKey(command.getKey())) {
             System.out.println("Key is true");
             this.actions.get(command.getKey()).execute(command);
         } else {
             out.writeUTF("Key is false");
         }
+    }
+
+    public void getWay() throws IOException {
+        this.out.writeUTF(String.valueOf(this.way));
     }
 
     private class ChangerDir implements UserAction {
@@ -64,11 +68,11 @@ public class MenuServer {
                     System.out.println("Exception: -> Direct no found ");
                 }
             }
-            out.writeUTF(String.valueOf(way));
+           // out.writeUTF(String.valueOf(way));
         }
         // info - return info about method execute
         public String info() {
-            return String.format(" %s%s%s", this.key(), ".", " Change folder.");
+            return String.format("%s%s", "[", this.key(), " folder]", " change folder.");
         }
     }
 
@@ -96,7 +100,15 @@ public class MenuServer {
         }
         //
         public void execute(Command command) throws IOException {
+            for (Map.Entry<String, UserAction> action : actions.entrySet()  ) {
+                String string = action.getValue().info();
+                out.writeUTF(string);
+            }
             out.writeUTF("There can be your advertising");
+            //out.writeUTF(actions.get(command.getKey().info()));
+
+            //actions.forEach(s -> System.out.println(s));
+            //actions.get(command.getKey()).info();
             //out.writeUTF("There can be your advertising");
         }
         //
