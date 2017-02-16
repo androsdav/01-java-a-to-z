@@ -72,7 +72,10 @@ public class MenuServer {
         }
         // info - return info about method execute
         public String info() {
-            return String.format("%s%s", "[", this.key(), " folder]", " change folder.");
+            return String.format(" %s%s%s%s%n %s%s%s%s%n %s%s%s%s ",
+                    "[", this.key(), " folder]", "  - change folder",
+                    "[", this.key(), " ..]", "      - change folder",
+                    "[", this.key(), "]", "         - change folder");
         }
     }
 
@@ -89,7 +92,8 @@ public class MenuServer {
         }
         // info -
         public String info() {
-            return String.format(" %s%s%s", this.key(), ".", " Show folder.");
+            return String.format(" %s%s%s%s",
+                    "[", this.key(), "]", "         - return all folders and files that are in folder");
         }
     }
 
@@ -113,7 +117,8 @@ public class MenuServer {
         }
         //
         public String info() {
-            return String.format("Its  help");
+            return String.format(" %s%s%s%s",
+                                 "[", this.key(), "]", "       - help");
         }
     }
 
