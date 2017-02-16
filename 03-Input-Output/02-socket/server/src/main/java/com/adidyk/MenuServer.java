@@ -68,7 +68,6 @@ public class MenuServer {
                     System.out.println("Exception: -> Direct no found ");
                 }
             }
-           // out.writeUTF(String.valueOf(way));
         }
         // info - return info about method execute
         public String info() {
@@ -93,7 +92,7 @@ public class MenuServer {
         // info -
         public String info() {
             return String.format(" %s%s%s%s",
-                    "[", this.key(), "]", "         - return all folders and files that are in folder");
+                    "[", this.key(), "]", "        - return all folders and files that are in folder");
         }
     }
 
@@ -108,12 +107,6 @@ public class MenuServer {
                 String string = action.getValue().info();
                 out.writeUTF(string);
             }
-            out.writeUTF("There can be your advertising");
-            //out.writeUTF(actions.get(command.getKey().info()));
-
-            //actions.forEach(s -> System.out.println(s));
-            //actions.get(command.getKey()).info();
-            //out.writeUTF("There can be your advertising");
         }
         //
         public String info() {
@@ -122,132 +115,7 @@ public class MenuServer {
         }
     }
 
-
 }
-
-//    private class OutputFromDir implements UserAction {
-
-//      public String key () {
-//          return "cd";
-//     }
-
-//    public void execute(Api api, String row) throws IOException {
-//        out.writeUTF(api.outputFromDir());
-// }
-
-// info - menu item " Show all item."
-//        public String info() {
-//            return String.format(" %s%s%s", this.key(), ".", " Show all item.");
-//        }
-
-//  }
-   /* public int temp = 0;
-
-    private Api api;
-    private Input input;
-    private UserAction[] actions = new UserAction[3];
-
-
-    //
-    MenuApi(Input input, Api api) {
-        this.input = input;
-        this.api = api;
-    }
-
-    //
-    protected void fillAction() {
-        this.actions[0] = new CdIn();
-        this.actions[1] = new CdOut();
-        this.actions[2] = new Dir();
-    }
-
-    //
-    protected void select(int key) {
-        this.actions[key - 1].execute(this.input, this.api);
-    }
-
-    public void show() {
-        System.out.println();
-//        System.out.println("Way :" + this.api.getWay());
-        System.out.println(" ------------------------------Server Menu --------------------------------");
-        for (UserAction action : this.actions) {
-            if (action != null) {
-                System.out.println(action.info());
-            }
-        }
-        System.out.println(" ---------------------------------------------------------------------------");
-    }
-
-    //
-    private class CdIn implements UserAction {
-        @Override
-        public int key() {
-            return 1;
-        }
-
-        @Override
-        public void execute(String str, Api api) {
-            //String nameDir = input.ask(" Input name directory: ");
-            String way = api.cdIn(str);
-            }
-
-        @Override
-        public String info() {
-            return String.format(" %s%s%s", this.key(), ".", " Enter Dir.");
-        }
-    }
-
-    //
-    private class CdOut implements UserAction {
-        @Override
-        public int key() {
-            return 2;
-        }
-
-        @Override
-        public void execute(String str, Api api) {
-            String way = api.cdOut();
-
-        }
-
-        @Override
-        public String info() {
-            return String.format(" %s%s%s", this.key(), ".", " Exit Dir.");
-        }
-    }
-
-    private class Dir implements UserAction {
-
-        @Override
-        public int key() {
-            return 3;
-        }
-
-        @Override
-        public void execute(String str, Api api) {
-            String[] listdir = api.dir();
-        }
-
-        @Override
-        public String info() {
-            return null;
-        }
-    }
-}
-/*
-    private class Disconnect implements UserAction {
-        @Override
-        public int key() {
-            return 3;
-        }
-        @Override
-        public void execute(Input input, Api api) {
-        }
-        @Override
-        public String info() {
-            return String.format(" %s%s%s", this.key(), ".", " Exit Dir.");
-        }
-    }*/
 
 
 

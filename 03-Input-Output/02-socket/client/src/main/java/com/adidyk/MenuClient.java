@@ -40,6 +40,7 @@ public class MenuClient {
         public void getway() throws IOException {
             String string = this.in.readUTF();
             System.out.print(string + ">");
+            System.out.println((char) 27 + "[33mWarning! " + (char)27 + "[0m");
         }
 
         private class ChangerDir implements UserAction {
