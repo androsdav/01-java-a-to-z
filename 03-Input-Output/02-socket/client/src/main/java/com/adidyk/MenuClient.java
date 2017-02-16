@@ -9,17 +9,11 @@ import java.util.Map;
 public class MenuClient {
     private DataInputStream in;
     private DataOutputStream out;
-    //private StringBuffer way;
-
-       // private static final String SEPARATOR = System.getProperty("file.separator");
-       // private static final String ROOT = "root";
-       // private static final String FROM = "..";
-        private Map<String, UserAction> actions = new HashMap<>();
+    private Map<String, UserAction> actions = new HashMap<>();
 
         MenuClient(DataInputStream in, DataOutputStream out) {
             this.in = in;
             this.out = out;
-//          this.way = root;
         }
 
         void fillAction() {
@@ -30,17 +24,15 @@ public class MenuClient {
 
         void select(Command command) throws IOException {
             if (actions.containsKey(command.getKey())) {
-                //System.out.println("Key is true");
                 this.actions.get(command.getKey()).execute(command);
             } else {
-                System.out.println("Key is false");
+                System.out.println("Command was false...");
             }
         }
 
         public void getway() throws IOException {
             String string = this.in.readUTF();
-            System.out.print(string + ">");
-            System.out.println((char) 27 + "[33mWarning! " + (char)27 + "[0m");
+            System.out.print("Server:" +string + "> ");
         }
 
         private class ChangerDir implements UserAction {

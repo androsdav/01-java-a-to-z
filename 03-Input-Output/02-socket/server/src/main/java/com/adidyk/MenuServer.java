@@ -30,11 +30,11 @@ public class MenuServer {
 
     void select(Command command) throws IOException {
         if (this.actions.containsKey(command.getKey())) {
-            System.out.println("Key is true");
+            //System.out.println("Key is true");
             this.actions.get(command.getKey()).execute(command);
-        } else {
-            out.writeUTF("Key is false");
-        }
+        } //else {
+          //  out.writeUTF("Key is false");
+        //}
     }
 
     public void getWay() throws IOException {

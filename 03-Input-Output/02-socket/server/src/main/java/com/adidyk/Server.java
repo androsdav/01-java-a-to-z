@@ -2,39 +2,43 @@ package com.adidyk;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
 
-    public static void main(String[] args) {
+    private DataInputStream in;
+    private DataOutputStream out;
+    //private Command command;
 
-        int port = 5000; // 1025 - 65535
-        //Api api = new Api(new StringBuffer("root"));
-        //MenuApi mApi = new MenuApi(new Api(new StringBuffer(String.valueOf("root"))));
-        //mApi.fillAction();
-        try {
-            System.out.println(" Waiting connect Client ... ");
-            Socket socket = new ServerSocket(port).accept();
-            DataInputStream in = new DataInputStream(socket.getInputStream());
-            DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-            MenuServer menu = new MenuServer(out, new StringBuffer(String.valueOf("root")));
-            menu.fillAction();
-            String string;
-            do {
-                System.out.println(" Wait command ... ");
-                menu.getWay();
-                string = in.readUTF();
-                Command command = new Command();
-                command.setCommand(string);
-                System.out.println("Key: " + command.getKey());
-                System.out.println("Name : " + command.getName());
-                menu.select(command);
-            } while (!"q".equals(string));
-        }
-        catch (Exception ex) {
-            ex.printStackTrace();
-        }
+
+
+    Server() throws IOException {
+        Socket socket = new ServerSocket(5000).accept();
+        in = new DataInputStream(socket.getInputStream());
+        out = new DataOutputStream(socket.getOutputStream());
+    }
+
+    private void start() throws IOException {
+
+        MenuServer menu = new MenuServer(this.out, new StringBuffer(String.valueOf("root")));
+        Command command = new Command();
+        menu.fillAction();
+        command.setCommand("help");
+        menu.select(command);
+        String string;
+        do {
+            menu.getWay();
+            string = this.in.readUTF();
+            command.setCommand(string);
+            menu.select(command);
+        } while (!"q".equals(string));
+    }
+
+    public static void main(String[] args) throws IOException {
+        new Server().start();
+
     }
 }
 
