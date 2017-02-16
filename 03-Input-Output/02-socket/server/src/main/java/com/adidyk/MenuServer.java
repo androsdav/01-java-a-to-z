@@ -87,8 +87,14 @@ public class MenuServer {
         public void execute(Command command) throws IOException {
             File file = new File(String.valueOf(way));
             String[] listDir = file.list();
-            out.writeUTF(Arrays.toString(listDir));
+            if (listDir != null) {
+                out.writeInt(listDir.length);
+                for (String list : listDir) {
+                    out.writeUTF(list);
+                }
+            }
         }
+
         // info -
         public String info() {
             return String.format(" %s%s%s%s",

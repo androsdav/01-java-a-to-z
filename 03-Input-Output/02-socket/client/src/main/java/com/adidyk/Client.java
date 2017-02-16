@@ -19,7 +19,7 @@ public class Client {
     }
 
     private void start() throws IOException {
-        MenuClient menu = new MenuClient(in, out);
+        MenuClient menu = new MenuClient(this.in, this.out);
         Command command = new Command();
         menu.fillAction();
         command.setCommand("help");
@@ -27,8 +27,8 @@ public class Client {
         String string;
             do {
                 menu.getway();
-                string = br.readLine();
-                out.writeUTF(string);
+                string = this.br.readLine();
+                this.out.writeUTF(string);
                 command.setCommand(string);
                 menu.select(command);
             } while (!"q".equals(string));

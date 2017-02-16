@@ -52,27 +52,21 @@ public class MenuClient {
         }
 
         private class ShowDir implements UserAction {
-
             //
             public String key () {
                 return "dir";
             }
             // showDir - return all folders and files that are in folder
-
             public void execute(Command command) throws IOException {
-                String string = in.readUTF();
-                String[] strings = string.split(" ");
-                System.out.println("DIR");
-                for (String str : strings) {
-                    System.out.println(" -- " +str);
+                int listDir = in.readInt();
+                if (listDir != 0) {
+                    for (int index = 0; index < listDir; index++) {
+                        System.out.println(in.readUTF());
+                    }
+                } else {
+                    System.out.println("Folder do not have any think..");
                 }
-//                System.out.println(string +"<client test>");
             }
-
-            // info -
-            //public String info() {
-               // return String.format(" %s%s%s", this.key(), ".", " Show folder.");
-            //}
         }
 
         private class Help implements UserAction {
@@ -86,13 +80,9 @@ public class MenuClient {
                     String string = in.readUTF();
                     System.out.println(string);
                 }
+                System.out.println();
             }
-            //
-            //public String info() {
-            //    return String.format("Its  help");
-            //}
         }
-
 
 }
 
