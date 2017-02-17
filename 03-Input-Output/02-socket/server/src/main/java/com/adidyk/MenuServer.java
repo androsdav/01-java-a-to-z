@@ -3,7 +3,6 @@ package com.adidyk;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,24 +16,21 @@ public class MenuServer {
     private static final String FROM = "..";
     private Map<String, UserAction> actions = new HashMap<>();
 
-    MenuServer(DataOutputStream out, StringBuffer root) {
+    public MenuServer(DataOutputStream out, StringBuffer root) {
         this.out = out;
         this.way = root;
     }
 
-    void fillAction() {
+    public void fillAction() {
         actions.put("cd", new ChangerDir());
         actions.put("dir", new ShowDir());
         actions.put("help", new Help());
     }
 
-    void select(Command command) throws IOException {
+    public void select(Command command) throws IOException {
         if (this.actions.containsKey(command.getKey())) {
-            //System.out.println("Key is true");
             this.actions.get(command.getKey()).execute(command);
-        } //else {
-          //  out.writeUTF("Key is false");
-        //}
+        }
     }
 
     public void getWay() throws IOException {
@@ -53,7 +49,11 @@ public class MenuServer {
                 way = new StringBuffer(ROOT);
             }
             else if (FROM.equals(directory)) {
-                way = new StringBuffer(new File(String.valueOf(way)).getParent());
+                if (ROOT.equals(String.valueOf(way))) {
+                    way = new StringBuffer(ROOT);
+                } else {
+                    way = new StringBuffer(new File(String.valueOf(way)).getParent());
+                }
             } else {
                 File dir = new File(String.valueOf(way));
                 boolean dirFound = false;

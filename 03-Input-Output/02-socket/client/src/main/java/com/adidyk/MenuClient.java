@@ -42,13 +42,7 @@ public class MenuClient {
             }
             //changeDir - change folder: input one step, output one step, output to root directory
             public void execute(Command command) throws IOException {
-             //  String string = in.readUTF();
-             //   System.out.println("Way :" +string);
             }
-            // info - return info about method execute
-           // public String info() {
-           //     return String.format(" %s%s%s", this.key(), ".", " Change folder.");
-           // }
         }
 
         private class ShowDir implements UserAction {
