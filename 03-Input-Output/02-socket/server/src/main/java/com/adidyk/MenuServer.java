@@ -6,14 +6,14 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.adidyk.Constant.*;
+
 public class MenuServer {
 
     private DataOutputStream out;
     private StringBuffer way;
 
-    private static final String SEPARATOR = System.getProperty("file.separator");
-    private static final String ROOT = "root";
-    private static final String FROM = "..";
+
     private Map<String, UserAction> actions = new HashMap<>();
 
     public MenuServer(DataOutputStream out, StringBuffer root) {

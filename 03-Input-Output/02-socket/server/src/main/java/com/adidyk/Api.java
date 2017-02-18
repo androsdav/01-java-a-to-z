@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class Api {
 
     private StringBuffer way;
-    private static final String SEPARATOR = System.getProperty("file.separator");
+    protected static final String SEPARATOR = System.getProperty("file.separator");
     public static final String ROOT = "root";
     public static final String FROM = "..";
 

@@ -33,7 +33,6 @@ public class MenuClient {
         public void getway() throws IOException {
             String string = this.in.readUTF();
             System.out.print(" Server:" +string + "> ");
-            System.out.println();
         }
 
         private class ChangerDir implements UserAction {
@@ -56,7 +55,7 @@ public class MenuClient {
                 int listDir = in.readInt();
                 if (listDir != 0) {
                     for (int index = 0; index < listDir; index++) {
-                        System.out.println(in.readUTF());
+                        System.out.println(" --- " +in.readUTF());
                     }
                 } else {
                     System.out.println("Folder do not have any think..");
