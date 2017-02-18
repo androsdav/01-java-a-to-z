@@ -12,8 +12,6 @@ public class MenuServer {
 
     private DataOutputStream out;
     private StringBuffer way;
-
-
     private Map<String, UserAction> actions = new HashMap<>();
 
     public MenuServer(DataOutputStream out, StringBuffer root) {

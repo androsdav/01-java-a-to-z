@@ -12,7 +12,7 @@ public class Server {
     private DataInputStream in;
     private DataOutputStream out;
     private Command command;
-    MenuServer menu;
+    private MenuServer menu;
     //private
 
     Server() throws IOException {
@@ -27,9 +27,9 @@ public class Server {
         this.connect();
         //MenuServer menu = new MenuServer(this.out, new StringBuffer(String.valueOf("root")));
         //Command command = new Command();
-        menu.fillAction();
-        command.setCommand(HELP);
-        menu.select(command);
+        //menu.fillAction();
+        //command.setCommand(HELP);
+        //menu.select(command);
         String string;
         do {
             menu.getWay();
@@ -40,15 +40,15 @@ public class Server {
     }
 
     private void connect() throws IOException {
-        this.out.writeUTF(" Server is connect ");
+        this.out.writeUTF(" Server commands ");
         this.menu.fillAction();
         this.command.setCommand(HELP);
         this.menu.select(this.command);
-
     }
 
     public static void main(String[] args) throws IOException {
         new Server().start();
+        //new Server().connect();
     }
 
 }

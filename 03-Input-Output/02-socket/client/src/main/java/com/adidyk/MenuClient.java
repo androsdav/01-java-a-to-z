@@ -17,7 +17,6 @@ public class MenuClient {
         }
 
         void fillAction() {
-            actions.put("cd", new ChangerDir());
             actions.put("dir", new ShowDir());
             actions.put("help", new Help());
         }
@@ -35,21 +34,8 @@ public class MenuClient {
             System.out.print(" Server:" +string + "> ");
         }
 
-        private class ChangerDir implements UserAction {
-            // key - return "cd"
-            public String key () {
-                return "cd";
-            }
-            //changeDir - change folder: input one step, output one step, output to root directory
-            public void execute(Command command) throws IOException {
-            }
-        }
-
         private class ShowDir implements UserAction {
-            //
-            public String key () {
-                return "dir";
-            }
+
             // showDir - return all folders and files that are in folder
             public void execute(Command command) throws IOException {
                 int listDir = in.readInt();
@@ -65,11 +51,7 @@ public class MenuClient {
         }
 
         private class Help implements UserAction {
-            //
-            public String key() {
-                return "help";
-            }
-            //
+
             public void execute(Command command) throws IOException {
                 for (int index = 0; index < actions.size(); index++) {
                     String string = in.readUTF();
