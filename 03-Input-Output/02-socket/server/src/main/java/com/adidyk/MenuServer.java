@@ -94,7 +94,6 @@ public class MenuServer {
                 }
             }
         }
-
         // info -
         public String info() {
             return String.format(" %s%s%s%s",
