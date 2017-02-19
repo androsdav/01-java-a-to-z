@@ -123,16 +123,18 @@ public class MenuServer {
         public String key () {
             return "download";
         }
-        // showDir - return all folders and files that are in folder
+        // execute- return all folders and files that are in folder
         public void execute(Command command) throws IOException {
 
             String wayFile = String.valueOf(way);
             wayFile = wayFile.concat(SEPARATOR).concat(command.getName());
-            File file = new File(String.valueOf(wayFile));
+            File file = new File(wayFile);
             if (file.isFile() && file.canRead()) {
-                try (BufferedReader br = new BufferedReader(new FileReader(file));) {
+                out.writeLong(file.length());
+                try (BufferedReader br = new BufferedReader(new FileReader(file))) {
                     String row;
                     while ((row = br.readLine()) != null) {
+                        out.writeUTF(row);
                         System.out.println(row);
                     }
                 }

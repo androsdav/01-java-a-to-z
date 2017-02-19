@@ -1,8 +1,6 @@
 package com.adidyk;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -74,8 +72,29 @@ public class MenuClient {
     private class Download implements UserAction {
 
         public void execute(Command command) throws IOException {
-
-            System.out.println("Its download file _)))");
+            long fileLength = in.readLong();
+            if (fileLength != 0) {
+                File newFile = new File(command.getName());
+                try{
+                    if (newFile.createNewFile()) {
+                        try (BufferedWriter bw = new BufferedWriter(new FileWriter(newFile))) {
+                            do {
+                                bw.write(in.readUTF());
+                            }
+                            while (newFile.length() < fileLength);
+                        }
+                        catch (IOException ex) {
+                            System.out.println(ex.getMessage());
+                        }
+                    }
+                }
+                catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            } else {
+                System.out.println("Download Ok");
+            }
+            //System.out.println("Its download file _)))");
         }
     }
 
