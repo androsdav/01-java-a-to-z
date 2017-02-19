@@ -1,6 +1,7 @@
 package com.adidyk;
 
 import java.io.*;
+import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,11 +9,15 @@ import static com.adidyk.Constant.*;
 
 public class MenuServer {
 
+    private Socket socket;
+    private DataInputStream in;
     private DataOutputStream out;
     private StringBuffer way;
     private Map<String, UserAction> actions = new HashMap<>();
 
-    public MenuServer(DataOutputStream out, StringBuffer root) {
+    public MenuServer(Socket socket, DataInputStream in, DataOutputStream out, StringBuffer root) {
+        this.socket = socket;
+        this.in = in;
         this.out = out;
         this.way = root;
     }
@@ -131,11 +136,21 @@ public class MenuServer {
             File file = new File(wayFile);
             if (file.isFile() && file.canRead()) {
                 out.writeLong(file.length());
-                try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-                    String row;
-                    while ((row = br.readLine()) != null) {
-                        out.writeUTF(row);
-                        System.out.println(row);
+     //           DataOutputStream outTemp = out;
+                try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file)) {
+                    try (BufferedOutputStream bos = new BufferedInputStream((socket.getOutputStream()))) {
+
+                        byte[] buffer = new byte[bis.available()];
+                        bos.write(buffer,0,buffer.length);
+
+                        int
+
+                        //   String row;
+                        //   while ((row = br.readLine()) != null) {
+                        //       outTemp.writeUTF(row);
+                        //       System.out.println(row);
+
+                        //out.close();
                     }
                 }
                 catch (IOException ex) {

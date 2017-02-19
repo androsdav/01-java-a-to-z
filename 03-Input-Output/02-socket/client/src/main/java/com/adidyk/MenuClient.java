@@ -77,16 +77,22 @@ public class MenuClient {
                 File newFile = new File(command.getName());
                 try{
                     if (newFile.createNewFile()) {
+                        DataInputStream inTemp = in;
                         try (BufferedWriter bw = new BufferedWriter(new FileWriter(newFile))) {
                             do {
-                                bw.write(in.readUTF());
+                                bw.write(inTemp.readUTF());
                             }
                             while (newFile.length() < fileLength);
+
                         }
                         catch (IOException ex) {
                             System.out.println(ex.getMessage());
                         }
+
                     }
+                    //out.close();
+                    //in.close();
+                    //out.close();
                 }
                 catch (IOException ex) {
                     System.out.println(ex.getMessage());

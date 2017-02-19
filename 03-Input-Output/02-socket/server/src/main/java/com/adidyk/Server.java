@@ -13,13 +13,14 @@ public class Server {
     private DataOutputStream out;
     private Command command;
     private MenuServer menu;
+    private Socket socket;
     //private
 
     Server() throws IOException {
-        Socket socket = new ServerSocket(5000).accept();
+        this.socket = new ServerSocket(5000).accept();
         this.in = new DataInputStream(socket.getInputStream());
         this.out = new DataOutputStream(socket.getOutputStream());
-        this.menu = new MenuServer(this.out, new StringBuffer(String.valueOf(ROOT)));
+        this.menu = new MenuServer(this.socket, this.in, this.out, new StringBuffer(String.valueOf(ROOT)));
         this.command = new Command();
     }
 
