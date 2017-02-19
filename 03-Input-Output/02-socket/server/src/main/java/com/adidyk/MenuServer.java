@@ -1,8 +1,6 @@
 package com.adidyk;
 
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,6 +21,7 @@ public class MenuServer {
         actions.put("cd", new ChangerDir());
         actions.put("dir", new ShowDir());
         actions.put("help", new Help());
+        actions.put("download", new Download());
     }
 
     public void select(Command command) throws IOException {
@@ -106,6 +105,7 @@ public class MenuServer {
         }
         //
         public void execute(Command command) throws IOException {
+            out.writeInt(actions.size());
             for (Map.Entry<String, UserAction> action : actions.entrySet()  ) {
                 String string = action.getValue().info();
                 out.writeUTF(string);
@@ -115,6 +115,43 @@ public class MenuServer {
         public String info() {
             return String.format(" %s%s%s%s",
                                  "[", this.key(), "]", "       - help");
+        }
+    }
+
+    private class Download implements UserAction {
+        //
+        public String key () {
+            return "download";
+        }
+        // showDir - return all folders and files that are in folder
+        public void execute(Command command) throws IOException {
+
+            String wayFile = String.valueOf(way);
+            wayFile = wayFile.concat(SEPARATOR).concat(command.getName());
+            File file = new File(String.valueOf(wayFile));
+            if (file.isFile() && file.canRead()) {
+                try (BufferedReader br = new BufferedReader(new FileReader(file));) {
+                    String row;
+                    while ((row = br.readLine()) != null) {
+                        System.out.println(row);
+                    }
+                }
+                catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
+
+                //FileReader fr = new FileReader(file);
+                //BufferedReader br = new BufferedReader(new FileReader(file));
+            }
+
+
+            //File file = new File(String.valueOf(way));
+
+        }
+        // info -
+        public String info() {
+            return String.format(" %s%s%s%s",
+                    "[", this.key(), "]", "        - return all folders and files that are in folder");
         }
     }
 
