@@ -129,6 +129,7 @@ public class MenuServer {
             return "download";
         }
         // execute- return all folders and files that are in folder
+
         public void execute(Command command) throws IOException {
 
             String wayFile = String.valueOf(way);
@@ -136,14 +137,29 @@ public class MenuServer {
             File file = new File(wayFile);
             if (file.isFile() && file.canRead()) {
                 out.writeLong(file.length());
-     //           DataOutputStream outTemp = out;
-                try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file)) {
-                    try (BufferedOutputStream bos = new BufferedInputStream((socket.getOutputStream()))) {
 
+                BufferedOutputStream bos = new BufferedOutputStream(socket.getOutputStream());
+                    try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))) {
                         byte[] buffer = new byte[bis.available()];
-                        bos.write(buffer,0,buffer.length);
+                        bis.read(buffer, 0, buffer.length);
+                        bos.write(buffer, 0, buffer.length);
+                        bos.flush();
 
-                        int
+                    }
+                    catch (IOException ex) {
+                        System.out.println(ex.getMessage());
+                    }
+//                bos.
+
+                }
+
+
+
+                  //  BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file)) {
+//                        byte[] buffer = new byte[bis.available()];
+ //                       bos.write(buffer,0,buffer.length);
+
+
 
                         //   String row;
                         //   while ((row = br.readLine()) != null) {
@@ -151,11 +167,13 @@ public class MenuServer {
                         //       System.out.println(row);
 
                         //out.close();
-                    }
-                }
-                catch (IOException ex) {
-                    System.out.println(ex.getMessage());
-                }
+//                    } catch (IOException ex) {
+    //                        System.out.println(ex.get);
+  //                      }
+             //   }
+              //  catch (IOException ex) {
+               //     System.out.println(ex.getMessage());
+             //   }
 
                 //FileReader fr = new FileReader(file);
                 //BufferedReader br = new BufferedReader(new FileReader(file));
@@ -164,7 +182,7 @@ public class MenuServer {
 
             //File file = new File(String.valueOf(way));
 
-        }
+
         // info -
         public String info() {
             return String.format(" %s%s%s%s",

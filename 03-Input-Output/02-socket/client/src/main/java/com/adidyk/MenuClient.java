@@ -1,15 +1,18 @@
 package com.adidyk;
 
 import java.io.*;
+import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
 
 public class MenuClient {
+    private Socket socket;
     private DataInputStream in;
     private DataOutputStream out;
     private Map<String, UserAction> actions = new HashMap<>();
 
-        MenuClient(DataInputStream in, DataOutputStream out) {
+        MenuClient(Socket socket, DataInputStream in, DataOutputStream out) {
+            this.socket = socket;
             this.in = in;
             this.out = out;
         }
@@ -75,28 +78,44 @@ public class MenuClient {
             long fileLength = in.readLong();
             if (fileLength != 0) {
                 File newFile = new File(command.getName());
-                try{
-                    if (newFile.createNewFile()) {
-                        DataInputStream inTemp = in;
-                        try (BufferedWriter bw = new BufferedWriter(new FileWriter(newFile))) {
-                            do {
-                                bw.write(inTemp.readUTF());
-                            }
-                            while (newFile.length() < fileLength);
-
-                        }
-                        catch (IOException ex) {
-                            System.out.println(ex.getMessage());
-                        }
-
+                BufferedInputStream bis = new BufferedInputStream(socket.getInputStream());
+                    try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(newFile))) {
+                        byte[] buffer = new byte[bis.available()];
+                        bis.read(buffer, 0, buffer.length);
+                        bos.write(buffer, 0, buffer.length);
+                        bos.flush();
                     }
+                    catch (IOException ex) {
+                        System.out.println(ex.getMessage());
+                    }
+            //    }
+             //   catch (IOException ex) {
+             //       System.out.println(ex.getMessage());
+             //   }
+
+
+//                try{
+//                    if (newFile.createNewFile()) {
+//                        DataInputStream inTemp = in;
+//                        try (BufferedWriter bw = new BufferedWriter(new FileWriter(newFile))) {
+//                            do {
+//                                bw.write(inTemp.readUTF());
+//                            }
+//                            while (newFile.length() < fileLength);
+
+//                        }
+//                        catch (IOException ex) {
+ //                           System.out.println(ex.getMessage());
+ //                       }
+
+   //                 }
                     //out.close();
                     //in.close();
                     //out.close();
-                }
-                catch (IOException ex) {
-                    System.out.println(ex.getMessage());
-                }
+  //              }
+  //              catch (IOException ex) {
+  //                  System.out.println(ex.getMessage());
+  //              }
             } else {
                 System.out.println("Download Ok");
             }

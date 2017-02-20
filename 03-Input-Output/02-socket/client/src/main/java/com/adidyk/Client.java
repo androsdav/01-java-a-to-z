@@ -12,13 +12,14 @@ public class Client {
     private BufferedReader br;
     private Command command;
     private MenuClient menu;
+    private Socket socket;
 
     Client() throws IOException {
-        Socket socket = new Socket(InetAddress.getByName("127.0.0.1"), 5000);
+        this.socket = new Socket(InetAddress.getByName("127.0.0.1"), 5000);
         this.in = new DataInputStream(socket.getInputStream());
         this.out = new DataOutputStream(socket.getOutputStream());
         this.br = new BufferedReader(new InputStreamReader(System.in));
-        menu = new MenuClient(this.in, this.out);
+        this.menu = new MenuClient(this.socket, this.in, this.out);
         this.command = new Command();
     }
 
