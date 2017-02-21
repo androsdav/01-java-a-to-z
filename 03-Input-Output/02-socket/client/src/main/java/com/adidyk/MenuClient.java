@@ -80,15 +80,11 @@ public class MenuClient {
                 File newFile = new File(command.getName());
                 try (BufferedInputStream bis = new BufferedInputStream(socket.getInputStream())) {
                     try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(newFile))) {
-                        while (newFile.length() <= fileLength) {
-                            int c = bis.read();
+                        int c;
+                        while ((c = bis.read()) != -1) {
+//                            int c = bis.read();
                             bos.write(c);
                         }
-//                        while (newFile.length() < fileLength);
-//                        byte[] buffer = new byte[bis.available()];
- //                       bis.read(buffer, 0, buffer.length);
-  //                      bos.write(buffer, 0, buffer.length);
-  //                      bos.flush();
                     } catch (IOException ex) {
                         System.out.println(ex.getMessage());
                     }
