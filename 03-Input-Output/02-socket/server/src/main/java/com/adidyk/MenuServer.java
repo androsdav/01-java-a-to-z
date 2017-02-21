@@ -95,6 +95,7 @@ public class MenuServer {
                     out.writeUTF(list);
                 }
             }
+//            socket.shutdownOutput();
         }
         // info -
         public String info() {
@@ -138,7 +139,7 @@ public class MenuServer {
             if (file.isFile() && file.canRead()) {
                 out.writeLong(file.length());
 
-                try (BufferedOutputStream bos = new BufferedOutputStream(socket.getOutputStream())) {
+                BufferedOutputStream bos = new BufferedOutputStream(socket.getOutputStream());
                     try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))) {
                         int c;
                         while((c = bis.read()) != -1 ) {
@@ -148,10 +149,11 @@ public class MenuServer {
                     } catch (IOException ex) {
                         System.out.println(ex.getMessage());
                     }
+                socket.shutdownOutput();
 
-                } catch (IOException ex) {
-                    System.out.println(ex.getMessage());
-                }
+                //} catch (IOException ex) {
+                //    System.out.println(ex.getMessage());
+                //}
             }
 
 

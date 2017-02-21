@@ -78,7 +78,7 @@ public class MenuClient {
             long fileLength= in.readLong();
             if (fileLength != 0) {
                 File newFile = new File(command.getName());
-                try (BufferedInputStream bis = new BufferedInputStream(socket.getInputStream())) {
+                BufferedInputStream bis = new BufferedInputStream(socket.getInputStream());
                     try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(newFile))) {
                         int c;
                         while ((c = bis.read()) != -1) {
@@ -88,10 +88,12 @@ public class MenuClient {
                     } catch (IOException ex) {
                         System.out.println(ex.getMessage());
                     }
-                }
-                catch (IOException ex) {
-                    System.out.println(ex.getMessage());
-                }
+                socket.shutdownInput();
+
+//                catch (IOException ex) {
+//                    System.out.println(ex.getMessage());
+//                }
+
             //    }
              //   catch (IOException ex) {
              //       System.out.println(ex.getMessage());
@@ -123,6 +125,7 @@ public class MenuClient {
             } else {
                 System.out.println("Download Ok");
             }
+            //socket.getOutputStream();
             //System.out.println("Its download file _)))");
         }
     }
