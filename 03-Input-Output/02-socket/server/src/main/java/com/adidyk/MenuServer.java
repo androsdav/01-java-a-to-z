@@ -1,6 +1,7 @@
 package com.adidyk;
 
 import java.io.*;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +15,7 @@ public class MenuServer {
     private DataOutputStream out;
     private StringBuffer way;
     private Map<String, UserAction> actions = new HashMap<>();
+    private int port = 4000;
 
     public MenuServer(Socket socket, DataInputStream in, DataOutputStream out, StringBuffer root) {
         this.socket = socket;
@@ -132,75 +134,28 @@ public class MenuServer {
         // execute- return all folders and files that are in folder
 
         public void execute(Command command) throws IOException {
-
             String wayFile = String.valueOf(way);
             wayFile = wayFile.concat(SEPARATOR).concat(command.getName());
             File file = new File(wayFile);
             if (file.isFile() && file.canRead()) {
                 out.writeLong(file.length());
-
-                BufferedOutputStream bos = new BufferedOutputStream(socket.getOutputStream());
-                    try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))) {
-                        int c;
-                        while((c = bis.read()) != -1 ) {
-                            bos.write((char)c);
-                        }
-
-                    } catch (IOException ex) {
-                        System.out.println(ex.getMessage());
+                try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))) {
+                    int c;
+                    do {
+                        c = bis.read();
+                        out.write(c);
                     }
-                socket.shutdownOutput();
-
-                //} catch (IOException ex) {
-                //    System.out.println(ex.getMessage());
-                //}
+                    while(c != -1);
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
             }
+        }
 
-
-//                        byte[] buffer = new byte[bis.available()];
-  //                      bis.read(buffer, 0, buffer.length);
-  //                      bos.write(buffer, 0, buffer.length);
-  //                      bos.flush();
-
-
-
-
-
-                //}
-                 //    catch (IOException ex)) {
-                //System.out.println(ex.getMessage());
-                //}
-
-
-
-
-                  //  BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file)) {
-//                        byte[] buffer = new byte[bis.available()];
- //                       bos.write(buffer,0,buffer.length);
-
-
-
-                        //   String row;
-                        //   while ((row = br.readLine()) != null) {
-                        //       outTemp.writeUTF(row);
-                        //       System.out.println(row);
-
-                        //out.close();
-//                    } catch (IOException ex) {
-    //                        System.out.println(ex.get);
-  //                      }
-             //   }
-              //  catch (IOException ex) {
-               //     System.out.println(ex.getMessage());
-             //   }
-
-                //FileReader fr = new FileReader(file);
-                //BufferedReader br = new BufferedReader(new FileReader(file));
-            }
-
-
-            //File file = new File(String.valueOf(way));
-
+        //                        byte[] buffer = new byte[bis.available()];
+        //                      bis.read(buffer, 0, buffer.length);
+        //                      bos.write(buffer, 0, buffer.length);
+        //                      bos.flush();
 
         // info -
         public String info() {

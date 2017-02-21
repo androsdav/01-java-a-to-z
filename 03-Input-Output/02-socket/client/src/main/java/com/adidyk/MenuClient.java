@@ -1,6 +1,7 @@
 package com.adidyk;
 
 import java.io.*;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +11,7 @@ public class MenuClient {
     private DataInputStream in;
     private DataOutputStream out;
     private Map<String, UserAction> actions = new HashMap<>();
+    private int port = 4000;
 
         MenuClient(Socket socket, DataInputStream in, DataOutputStream out) {
             this.socket = socket;
@@ -73,60 +75,20 @@ public class MenuClient {
         }
 
     private class Download implements UserAction {
-
         public void execute(Command command) throws IOException {
             long fileLength= in.readLong();
             if (fileLength != 0) {
                 File newFile = new File(command.getName());
-                BufferedInputStream bis = new BufferedInputStream(socket.getInputStream());
-                    try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(newFile))) {
-                        int c;
-                        while ((c = bis.read()) != -1) {
-//                            int c = bis.read();
-                            bos.write(c);
-                        }
-                    } catch (IOException ex) {
-                        System.out.println(ex.getMessage());
+                try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(newFile))) {
+                    int c;
+                    while ((c = in.read()) != -1) {
+                        bos.write(c);
                     }
-                socket.shutdownInput();
-
-//                catch (IOException ex) {
-//                    System.out.println(ex.getMessage());
-//                }
-
-            //    }
-             //   catch (IOException ex) {
-             //       System.out.println(ex.getMessage());
-             //   }
-
-
-//                try{
-//                    if (newFile.createNewFile()) {
-//                        DataInputStream inTemp = in;
-//                        try (BufferedWriter bw = new BufferedWriter(new FileWriter(newFile))) {
-//                            do {
-//                                bw.write(inTemp.readUTF());
-//                            }
-//                            while (newFile.length() < fileLength);
-
-//                        }
-//                        catch (IOException ex) {
- //                           System.out.println(ex.getMessage());
- //                       }
-
-   //                 }
-                    //out.close();
-                    //in.close();
-                    //out.close();
-  //              }
-  //              catch (IOException ex) {
-  //                  System.out.println(ex.getMessage());
-  //              }
-            } else {
-                System.out.println("Download Ok");
+                }
+                catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
             }
-            //socket.getOutputStream();
-            //System.out.println("Its download file _)))");
         }
     }
 
