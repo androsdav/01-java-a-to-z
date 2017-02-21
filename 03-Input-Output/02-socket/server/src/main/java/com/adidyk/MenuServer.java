@@ -138,18 +138,37 @@ public class MenuServer {
             if (file.isFile() && file.canRead()) {
                 out.writeLong(file.length());
 
-                BufferedOutputStream bos = new BufferedOutputStream(socket.getOutputStream());
+                try (BufferedOutputStream bos = new BufferedOutputStream(socket.getOutputStream())) {
                     try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))) {
-                        byte[] buffer = new byte[bis.available()];
-                        bis.read(buffer, 0, buffer.length);
-                        bos.write(buffer, 0, buffer.length);
-                        bos.flush();
+                        int c;
+                        while((c = bis.read()) != -1 ) {
+                            bos.write((char)c);
+                        }
 
-                    }
-                    catch (IOException ex) {
+                    } catch (IOException ex) {
                         System.out.println(ex.getMessage());
                     }
+
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
                 }
+            }
+
+
+//                        byte[] buffer = new byte[bis.available()];
+  //                      bis.read(buffer, 0, buffer.length);
+  //                      bos.write(buffer, 0, buffer.length);
+  //                      bos.flush();
+
+
+
+
+
+                //}
+                 //    catch (IOException ex)) {
+                //System.out.println(ex.getMessage());
+                //}
+
 
 
 

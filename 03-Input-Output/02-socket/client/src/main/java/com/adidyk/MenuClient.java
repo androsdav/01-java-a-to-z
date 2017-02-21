@@ -75,19 +75,27 @@ public class MenuClient {
     private class Download implements UserAction {
 
         public void execute(Command command) throws IOException {
-            long fileLength = in.readLong();
+            long fileLength= in.readLong();
             if (fileLength != 0) {
                 File newFile = new File(command.getName());
-                BufferedInputStream bis = new BufferedInputStream(socket.getInputStream());
+                try (BufferedInputStream bis = new BufferedInputStream(socket.getInputStream())) {
                     try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(newFile))) {
-                        byte[] buffer = new byte[bis.available()];
-                        bis.read(buffer, 0, buffer.length);
-                        bos.write(buffer, 0, buffer.length);
-                        bos.flush();
-                    }
-                    catch (IOException ex) {
+                        while (newFile.length() <= fileLength) {
+                            int c = bis.read();
+                            bos.write(c);
+                        }
+//                        while (newFile.length() < fileLength);
+//                        byte[] buffer = new byte[bis.available()];
+ //                       bis.read(buffer, 0, buffer.length);
+  //                      bos.write(buffer, 0, buffer.length);
+  //                      bos.flush();
+                    } catch (IOException ex) {
                         System.out.println(ex.getMessage());
                     }
+                }
+                catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
             //    }
              //   catch (IOException ex) {
              //       System.out.println(ex.getMessage());
