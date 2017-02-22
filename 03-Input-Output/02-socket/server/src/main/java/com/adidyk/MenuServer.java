@@ -1,7 +1,6 @@
 package com.adidyk;
 
 import java.io.*;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
@@ -140,12 +139,15 @@ public class MenuServer {
             if (file.isFile() && file.canRead()) {
                 out.writeLong(file.length());
                 try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))) {
-                    int c;
-                    do {
-                        c = bis.read();
-                        out.write(c);
-                    }
-                    while(c != -1);
+                    byte[] buffer = new byte[bis.available()];
+                    bis.read(buffer, 0, buffer.length);
+                    out.write(buffer, 0, buffer.length);
+
+//                    do {
+//                        c = bis.read();
+//                        out.write(c);
+//                    }
+//                    while(c != -1);
                 } catch (IOException ex) {
                     System.out.println(ex.getMessage());
                 }

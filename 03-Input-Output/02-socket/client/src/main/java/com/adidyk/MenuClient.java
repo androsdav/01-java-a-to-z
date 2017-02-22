@@ -1,7 +1,6 @@
 package com.adidyk;
 
 import java.io.*;
-import java.net.InetAddress;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
@@ -77,18 +76,21 @@ public class MenuClient {
     private class Download implements UserAction {
         public void execute(Command command) throws IOException {
             long fileLength= in.readLong();
-            if (fileLength != 0) {
+   //         if (fileLength != 0) {
                 File newFile = new File(command.getName());
                 try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(newFile))) {
-                    int c;
-                    while ((c = in.read()) != -1) {
-                        bos.write(c);
-                    }
+                    byte[] buffer = new byte[(int) fileLength];
+                    in.read(buffer, 0, buffer.length);
+                    bos.write(buffer, 0, buffer.length);
+        //            int c;
+         //           while ((c = in.read()) != -1) {
+         //               bos.write(c);
+          //          }
                 }
                 catch (IOException ex) {
                     System.out.println(ex.getMessage());
                 }
-            }
+     //       }
         }
     }
 
