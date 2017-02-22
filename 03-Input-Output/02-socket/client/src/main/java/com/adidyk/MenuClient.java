@@ -6,14 +6,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MenuClient {
-    private Socket socket;
     private DataInputStream in;
     private DataOutputStream out;
     private Map<String, UserAction> actions = new HashMap<>();
-    private int port = 4000;
 
-        MenuClient(Socket socket, DataInputStream in, DataOutputStream out) {
-            this.socket = socket;
+        MenuClient(DataInputStream in, DataOutputStream out) {
             this.in = in;
             this.out = out;
         }
@@ -42,6 +39,10 @@ public class MenuClient {
 
         // showDir - return all folders and files that are in folder
         public void execute(Command command) throws IOException {
+            boolean dirFound = in.readBoolean();
+            if (!dirFound) {
+                System.out.println(" Directory not found");
+            }
         }
     }
 
@@ -49,10 +50,10 @@ public class MenuClient {
 
             // showDir - return all folders and files that are in folder
             public void execute(Command command) throws IOException {
-                int listDir = in.readInt();
-                if (listDir != 0) {
-                    for (int index = 0; index < listDir; index++) {
-                        System.out.println(" --- " +in.readUTF());
+                int listFile = in.readInt();
+                if (listFile != 0) {
+                    for (int index = 0; index < listFile; index++) {
+                        System.out.println(in.readUTF());
                     }
                 } else {
                     System.out.println("Folder do not have any think..");

@@ -16,8 +16,15 @@ public class Command {
             }
             if (in.hasNext()) {
                 this.name = in.next();
+                break;
+            } else {
+                this.name = null;
             }
         }
+        System.out.println("------------");
+        System.out.println("key: " +key);
+        System.out.println("name: " +name);
+        System.out.println("------------");
     }
 
     public String getKey() {

@@ -1,23 +1,18 @@
 package com.adidyk;
 
 import java.io.*;
-import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
-
 import static com.adidyk.Constant.*;
 
 public class MenuServer {
 
-    private Socket socket;
     private DataInputStream in;
     private DataOutputStream out;
     private StringBuffer way;
     private Map<String, UserAction> actions = new HashMap<>();
-    private int port = 4000;
 
-    public MenuServer(Socket socket, DataInputStream in, DataOutputStream out, StringBuffer root) {
-        this.socket = socket;
+    public MenuServer(DataInputStream in, DataOutputStream out, StringBuffer root) {
         this.in = in;
         this.out = out;
         this.way = root;
@@ -45,58 +40,62 @@ public class MenuServer {
         public String key () {
             return "cd";
         }
-        //changeDir - change folder: input one step, output one step, output to root directory
+        // execute - change folder: input one step, output one step, output to the root directory
         public void execute(Command command) throws IOException {
+            boolean dirFound = false;
             String directory = command.getName();
             if (directory == null) {
                 way = new StringBuffer(ROOT);
-            }
-            else if (FROM.equals(directory)) {
+                dirFound = true;
+            } else if (FROM.equals(directory)) {
                 if (ROOT.equals(String.valueOf(way))) {
                     way = new StringBuffer(ROOT);
+                    dirFound = true;
                 } else {
                     way = new StringBuffer(new File(String.valueOf(way)).getParent());
+                    dirFound = true;
                 }
             } else {
-                File dir = new File(String.valueOf(way));
-                boolean dirFound = false;
-                for (String list : dir.list()) {
-                    if (directory.equals(list)) {
-                        way = way.append(SEPARATOR).append(directory);
+                File files = new File(String.valueOf(way));
+                for (File file : files.listFiles()) {
+                    if (file.isDirectory() && file.getName().equals(directory)) {
+                        System.out.println("Dir is found");
+                        way = way.append(SEPARATOR).append(file.getName());
                         dirFound = true;
                         break;
                     }
                 }
-                if (!dirFound) {
-                    System.out.println("Exception: -> Direct no found ");
-                }
             }
+            out.writeBoolean(dirFound);
         }
         // info - return info about method execute
         public String info() {
             return String.format(" %s%s%s%s%n %s%s%s%s%n %s%s%s%s ",
-                    "[", this.key(), " folder]", "  - change folder",
-                    "[", this.key(), " ..]", "      - change folder",
-                    "[", this.key(), "]", "         - change folder");
+                    "[", this.key(), " directory]", "  - input to directory by one step",
+                    "[", this.key(), " ..]", "         - output from directory by one step",
+                    "[", this.key(), "]", "            - output to the root directory");
         }
     }
 
     private class ShowDir implements UserAction {
-        //
+        // key - return "dir"
         public String key () {
             return "dir";
         }
-        // showDir - return all folders and files that are in folder
+        // showDir - return all folders and files that are in directory
         public void execute(Command command) throws IOException {
             File file = new File(String.valueOf(way));
-            String[] listDir = file.list();
-            if (listDir != null) {
-                out.writeInt(listDir.length);
-                for (String list : listDir) {
-                    out.writeUTF(list);
+            File[] listFile  = file.listFiles();
+            if (listFile != null) {
+                out.writeInt(listFile.length);
+                for (File list : listFile) {
+                    if (list.isDirectory()) {
+                        out.writeUTF(" <DIR>  " +list.length() / 1024 +" Kb        "  +list.getName());
+                    } else {
+                        out.writeUTF("        " +list.length() / 1024 +" Kb        " + list.getName());
+                    }
                 }
             }
-//            socket.shutdownOutput();
         }
         // info -
         public String info() {

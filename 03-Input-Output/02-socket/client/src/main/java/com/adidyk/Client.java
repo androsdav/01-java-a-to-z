@@ -19,7 +19,7 @@ public class Client {
         this.in = new DataInputStream(socket.getInputStream());
         this.out = new DataOutputStream(socket.getOutputStream());
         this.br = new BufferedReader(new InputStreamReader(System.in));
-        this.menu = new MenuClient(this.socket, this.in, this.out);
+        this.menu = new MenuClient(this.in, this.out);
         this.command = new Command();
     }
 
@@ -37,7 +37,9 @@ public class Client {
 
     private void connect() throws IOException {
         System.out.println(this.in.readUTF());
-        this.menu.fillAction();;
+        System.out.println(this.in.readUTF());
+        System.out.println(this.in.readUTF());
+        this.menu.fillAction();
         this.command.setCommand(HELP);
         this.menu.select(this.command);
     }

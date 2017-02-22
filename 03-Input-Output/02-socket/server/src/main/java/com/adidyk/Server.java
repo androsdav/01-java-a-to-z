@@ -20,17 +20,12 @@ public class Server {
         this.socket = new ServerSocket(5000).accept();
         this.in = new DataInputStream(socket.getInputStream());
         this.out = new DataOutputStream(socket.getOutputStream());
-        this.menu = new MenuServer(this.socket, this.in, this.out, new StringBuffer(String.valueOf(ROOT)));
+        this.menu = new MenuServer(this.in, this.out, new StringBuffer(String.valueOf(ROOT)));
         this.command = new Command();
     }
 
     private void start() throws IOException {
         this.connect();
-        //MenuServer menu = new MenuServer(this.out, new StringBuffer(String.valueOf("root")));
-        //Command command = new Command();
-        //menu.fillAction();
-        //command.setCommand(HELP);
-        //menu.select(command);
         String string;
         do {
             menu.getWay();
@@ -41,7 +36,9 @@ public class Server {
     }
 
     private void connect() throws IOException {
-        this.out.writeUTF(" Server commands ");
+        this.out.writeUTF("-------------------------------------------------------------");
+        this.out.writeUTF(" S E R V E R ver.1.00 ");
+        this.out.writeUTF("-------------------------------------------------------------");
         this.menu.fillAction();
         this.command.setCommand(HELP);
         this.menu.select(this.command);
@@ -49,7 +46,6 @@ public class Server {
 
     public static void main(String[] args) throws IOException {
         new Server().start();
-        //new Server().connect();
     }
 
 }
