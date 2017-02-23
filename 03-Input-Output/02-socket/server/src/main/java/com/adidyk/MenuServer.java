@@ -106,7 +106,7 @@ public class MenuServer {
         // info - return info about console command for method execute
         public String info() {
             return String.format(" %s%s%s%s",
-                    "[", this.key(), "]", "        - return all folders and files that are in folder");
+                    "[", this.key(), "]", "            - return info about all console commands");
         }
     }
 
