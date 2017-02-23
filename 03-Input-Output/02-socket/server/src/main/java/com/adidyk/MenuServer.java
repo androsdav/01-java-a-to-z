@@ -35,12 +35,13 @@ public class MenuServer {
         this.out.writeUTF(String.valueOf(this.way));
     }
 
+    // ChangeDir - change directory
     private class ChangerDir implements UserAction {
         // key - return "cd"
         public String key () {
             return "cd";
         }
-        // execute - change folder: input one step, output one step, output to the root directory
+        // execute - change directory: input one step, output one step, output to the "ROOT" directory
         public void execute(Command command) throws IOException {
             boolean dirFound = false;
             String directory = command.getName();
@@ -68,7 +69,7 @@ public class MenuServer {
             }
             out.writeBoolean(dirFound);
         }
-        // info - return info about method execute
+        // info - return info about console command for method execute
         public String info() {
             return String.format(" %s%s%s%s%n %s%s%s%s%n %s%s%s%s ",
                     "[", this.key(), " directory]", "  - input to directory by one step",
@@ -77,6 +78,7 @@ public class MenuServer {
         }
     }
 
+    // ShowDir - show content of a directory
     private class ShowDir implements UserAction {
         // key - return "dir"
         public String key () {
@@ -97,7 +99,7 @@ public class MenuServer {
                 }
             }
         }
-        // info -
+        // info - return info about console command for method execute
         public String info() {
             return String.format(" %s%s%s%s",
                     "[", this.key(), "]", "        - return all folders and files that are in folder");
@@ -105,19 +107,19 @@ public class MenuServer {
     }
 
     private class Help implements UserAction {
-        //
+        // key - return "help"
         public String key() {
             return "help";
         }
-        //
+        // execute -
         public void execute(Command command) throws IOException {
             out.writeInt(actions.size());
-            for (Map.Entry<String, UserAction> action : actions.entrySet()  ) {
+            for (Map.Entry<String, UserAction> action : actions.entrySet()) {
                 String string = action.getValue().info();
                 out.writeUTF(string);
             }
         }
-        //
+        // info - return info about method execute
         public String info() {
             return String.format(" %s%s%s%s",
                                  "[", this.key(), "]", "       - help");
