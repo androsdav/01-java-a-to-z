@@ -12,12 +12,14 @@ public class MenuServer {
     private StringBuffer way;
     private Map<String, UserAction> actions = new HashMap<>();
 
+    // Constructor
     public MenuServer(DataInputStream in, DataOutputStream out, StringBuffer root) {
         this.in = in;
         this.out = out;
         this.way = root;
     }
 
+    // fillAction - fill actions
     public void fillAction() {
         actions.put("cd", new ChangerDir());
         actions.put("dir", new ShowDir());
@@ -25,12 +27,14 @@ public class MenuServer {
         actions.put("download", new Download());
     }
 
+    // select - select to executing by console command
     public void select(Command command) throws IOException {
         if (this.actions.containsKey(command.getKey())) {
             this.actions.get(command.getKey()).execute(command);
         }
     }
 
+    // getWay - return way
     public void getWay() throws IOException {
         this.out.writeUTF(String.valueOf(this.way));
     }
@@ -106,12 +110,13 @@ public class MenuServer {
         }
     }
 
+    // Help - return help
     private class Help implements UserAction {
         // key - return "help"
         public String key() {
             return "help";
         }
-        // execute -
+        // execute - return help about console command
         public void execute(Command command) throws IOException {
             out.writeInt(actions.size());
             for (Map.Entry<String, UserAction> action : actions.entrySet()) {
@@ -119,7 +124,7 @@ public class MenuServer {
                 out.writeUTF(string);
             }
         }
-        // info - return info about method execute
+        // info - return info about console command for method execute
         public String info() {
             return String.format(" %s%s%s%s",
                                  "[", this.key(), "]", "       - help");
