@@ -73,7 +73,7 @@ public class MenuServer {
             }
             out.writeBoolean(dirFound);
         }
-        // info - return info about console command for method execute
+        // info - return info about console commands for method execute
         public String info() {
             return String.format(" %s%s%s%s%n %s%s%s%s%n %s%s%s%s ",
                     "[", this.key(), " directory]", "  - input to directory by one step",
@@ -105,8 +105,7 @@ public class MenuServer {
         }
         // info - return info about console command for method execute
         public String info() {
-            return String.format(" %s%s%s%s",
-                    "[", this.key(), "]", "            - return info about all console commands");
+            return String.format(" %s%s%s%s", "[", this.key(), "]", "           - show all folders and files that are in directory");
         }
     }
 
@@ -116,7 +115,7 @@ public class MenuServer {
         public String key() {
             return "help";
         }
-        // execute - return help about console command
+        // execute - return info about all console commands
         public void execute(Command command) throws IOException {
             out.writeInt(actions.size());
             for (Map.Entry<String, UserAction> action : actions.entrySet()) {
@@ -126,8 +125,7 @@ public class MenuServer {
         }
         // info - return info about console command for method execute
         public String info() {
-            return String.format(" %s%s%s%s",
-                                 "[", this.key(), "]", "       - help");
+            return String.format(" %s%s%s%s", "[", this.key(), "]", "          - return info about all console commands");
         }
     }
 
@@ -167,10 +165,10 @@ public class MenuServer {
 
         // info -
         public String info() {
-            return String.format(" %s%s%s%s",
-                    "[", this.key(), "]", "        - return all folders and files that are in folder");
+            return String.format(" %s%s%s%s", "[", this.key(), "]", "      - return all folders and files that are in folder");
         }
     }
+
 
 }
 
