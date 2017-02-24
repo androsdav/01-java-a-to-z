@@ -96,9 +96,9 @@ public class MenuServer {
                 out.writeInt(listFile.length);
                 for (File list : listFile) {
                     if (list.isDirectory()) {
-                        out.writeUTF(" <DIR>  " +list.length() / 1024 +" Kb        "  +list.getName());
+                        out.writeUTF(String.format("%s%8s%s%s", " <DIR>  ", list.length() / 1024, " Kb      ",  list.getName()));
                     } else {
-                        out.writeUTF("        " +list.length() / 1024 +" Kb        " + list.getName());
+                        out.writeUTF(String.format("%s%8s%s%s", "        ", list.length() / 1024, " Kb      ", list.getName()));
                     }
                 }
             }
