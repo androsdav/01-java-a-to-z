@@ -6,4 +6,5 @@ public class Constant {
     static final String ROOT = "root";
     static final String FROM = "..";
     static final String HELP = "help";
+    static final long SIZE = 1024;
 }

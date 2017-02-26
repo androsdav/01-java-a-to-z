@@ -35,12 +35,11 @@ public class MenuClient {
         }
 
     private class ChangeDir implements UserAction {
-
-        // showDir - return all folders and files that are in folder
+        // execute - return message if console command "cd" used incorrectly
         public void execute(Command command) throws IOException {
-            boolean dirFound = in.readBoolean();
-            if (!dirFound) {
-                System.out.println(" Directory not found");
+            boolean changeTrue = in.readBoolean();
+            if (!changeTrue) {
+                System.out.println(" Message: Directory not found");
             }
         }
     }
@@ -62,12 +61,11 @@ public class MenuClient {
         }
 
         private class Help implements UserAction {
-
+            // execute -
             public void execute(Command command) throws IOException {
-                int test = in.readInt();
-                for (int index = 0; index < test; index++) {
-                    String string = in.readUTF();
-                    System.out.println(string);
+                int size = in.readInt();
+                for (int index = 0; index < size; index++) {
+                    System.out.println(in.readUTF());
                 }
                 System.out.println();
             }
@@ -75,7 +73,7 @@ public class MenuClient {
 
     private class Download implements UserAction {
         public void execute(Command command) throws IOException {
-            long fileLength= in.readLong();
+            long fileLength = in.readLong();
    //         if (fileLength != 0) {
                 File newFile = new File(command.getName());
                 try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(newFile))) {

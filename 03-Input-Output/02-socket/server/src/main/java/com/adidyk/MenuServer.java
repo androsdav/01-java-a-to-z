@@ -47,18 +47,18 @@ public class MenuServer {
         }
         // execute - change directory: input one step, output one step, output to the "ROOT" directory
         public void execute(Command command) throws IOException {
-            boolean dirFound = false;
+            boolean changeTrue = false;
             String directory = command.getName();
             if (directory == null) {
                 way = new StringBuffer(ROOT);
-                dirFound = true;
+                changeTrue = true;
             } else if (FROM.equals(directory)) {
                 if (ROOT.equals(String.valueOf(way))) {
                     way = new StringBuffer(ROOT);
-                    dirFound = true;
+                    changeTrue = true;
                 } else {
                     way = new StringBuffer(new File(String.valueOf(way)).getParent());
-                    dirFound = true;
+                    changeTrue = true;
                 }
             } else {
                 File files = new File(String.valueOf(way));
@@ -66,12 +66,12 @@ public class MenuServer {
                     if (file.isDirectory() && file.getName().equals(directory)) {
                         System.out.println("Dir is found");
                         way = way.append(SEPARATOR).append(file.getName());
-                        dirFound = true;
+                        changeTrue = true;
                         break;
                     }
                 }
             }
-            out.writeBoolean(dirFound);
+            out.writeBoolean(changeTrue);
         }
         // info - return info about console commands for method execute
         public String info() {
@@ -102,6 +102,10 @@ public class MenuServer {
                     }
                 }
             }
+          //  float arg = (float) 2000 / 1000;
+          //  int result = (int)Math.ceil(arg);
+          //  System.out.println("arg: " + arg);
+          //  System.out.println("result: " + result);
         }
         // info - return info about console command for method execute
         public String info() {
@@ -137,25 +141,28 @@ public class MenuServer {
         // execute- return all folders and files that are in folder
 
         public void execute(Command command) throws IOException {
+
             String wayFile = String.valueOf(way);
             wayFile = wayFile.concat(SEPARATOR).concat(command.getName());
             File file = new File(wayFile);
             if (file.isFile() && file.canRead()) {
+                long quantity = Math.round(file.length() / SIZE);
                 out.writeLong(file.length());
                 try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))) {
                     byte[] buffer = new byte[bis.available()];
                     bis.read(buffer, 0, buffer.length);
                     out.write(buffer, 0, buffer.length);
-
-//                    do {
-//                        c = bis.read();
-//                        out.write(c);
-//                    }
-//                    while(c != -1);
                 } catch (IOException ex) {
                     System.out.println(ex.getMessage());
                 }
+            } else {
+                System.out.println("File not found");
             }
+
+            //float arg = (float) 2000 / 1000;
+            //int result = (int)Math.ceil(arg);
+
+
         }
 
         //                        byte[] buffer = new byte[bis.available()];
