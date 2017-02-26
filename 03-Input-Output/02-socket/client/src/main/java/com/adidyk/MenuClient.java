@@ -4,6 +4,8 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.adidyk.Constant.SIZE;
+
 public class MenuClient {
     private DataInputStream in;
     private DataOutputStream out;
@@ -73,22 +75,33 @@ public class MenuClient {
 
     private class Download implements UserAction {
         public void execute(Command command) throws IOException {
-            long fileLength = in.readLong();
-   //         if (fileLength != 0) {
+            if (in.readBoolean()) {
+                int quantity = in.readInt();
+                int fileLength = in.readInt();
                 File newFile = new File(command.getName());
                 try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(newFile))) {
-                    byte[] buffer = new byte[(int) fileLength];
-                    in.read(buffer, 0, buffer.length);
-                    bos.write(buffer, 0, buffer.length);
-        //            int c;
-         //           while ((c = in.read()) != -1) {
-         //               bos.write(c);
-          //          }
-                }
-                catch (IOException ex) {
+                    int size = 0;
+                    for (int index = 0; index < quantity; index++) {
+                        size = size + SIZE;
+                        if (size > fileLength) {
+                            size = SIZE - (size - fileLength);
+                            byte[] buffer = new byte[size];
+                            in.read(buffer, 0, buffer.length);
+                            bos.write(buffer, 0, buffer.length);
+                            bos.flush();
+                        } else {
+                            byte[] buffer = new byte[SIZE];
+                            in.read(buffer, 0, buffer.length);
+                            bos.write(buffer, 0, buffer.length);
+                            bos.flush();
+                        }
+                    }
+                } catch (IOException ex) {
                     System.out.println(ex.getMessage());
                 }
-     //       }
+            } else {
+                System.out.println(" File not found ... ");
+            }
         }
     }
 

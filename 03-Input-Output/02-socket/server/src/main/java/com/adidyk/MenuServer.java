@@ -102,14 +102,11 @@ public class MenuServer {
                     }
                 }
             }
-          //  float arg = (float) 2000 / 1000;
-          //  int result = (int)Math.ceil(arg);
-          //  System.out.println("arg: " + arg);
-          //  System.out.println("result: " + result);
         }
         // info - return info about console command for method execute
         public String info() {
-            return String.format(" %s%s%s%s", "[", this.key(), "]", "           - show all folders and files that are in directory");
+            return String.format(" %s%s%s%s", "[", this.key(), "]",
+                    "           - show all folders and files that are in directory");
         }
     }
 
@@ -129,50 +126,56 @@ public class MenuServer {
         }
         // info - return info about console command for method execute
         public String info() {
-            return String.format(" %s%s%s%s", "[", this.key(), "]", "          - return info about all console commands");
+            return String.format(" %s%s%s%s", "[", this.key(), "]",
+                    "          - return info about all console commands");
         }
     }
 
     private class Download implements UserAction {
-        //
+        // key - return "download"
         public String key () {
             return "download";
         }
-        // execute- return all folders and files that are in folder
-
+        // execute - download selected file from the server to client root directory
         public void execute(Command command) throws IOException {
-
             String wayFile = String.valueOf(way);
             wayFile = wayFile.concat(SEPARATOR).concat(command.getName());
             File file = new File(wayFile);
             if (file.isFile() && file.canRead()) {
-                long quantity = Math.round(file.length() / SIZE);
-                out.writeLong(file.length());
+                out.writeBoolean(true);
+                int quantity = (int)Math.ceil((float)file.length() / SIZE);
+                System.out.println("Quantity: " +quantity);
+                out.writeInt(quantity);
+                out.writeInt((int)file.length());
                 try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))) {
-                    byte[] buffer = new byte[bis.available()];
-                    bis.read(buffer, 0, buffer.length);
-                    out.write(buffer, 0, buffer.length);
+                    int size = 0;
+                    for (int index = 0; index < quantity; index++) {
+                        size = size + SIZE;
+                        if (size > file.length()) {
+                            size = SIZE - (size - (int)file.length());
+                            byte[] buffer = new byte[size];
+                            bis.read(buffer, 0, buffer.length);
+                            out.write(buffer, 0, buffer.length);
+                            out.flush();
+                        } else {
+                            byte[] buffer = new byte[SIZE];
+                            bis.read(buffer, 0, buffer.length);
+                            out.write(buffer, 0, buffer.length);
+                            out.flush();
+                        }
+                    }
                 } catch (IOException ex) {
                     System.out.println(ex.getMessage());
                 }
             } else {
-                System.out.println("File not found");
+                out.writeBoolean(false);
             }
-
-            //float arg = (float) 2000 / 1000;
-            //int result = (int)Math.ceil(arg);
-
-
         }
 
-        //                        byte[] buffer = new byte[bis.available()];
-        //                      bis.read(buffer, 0, buffer.length);
-        //                      bos.write(buffer, 0, buffer.length);
-        //                      bos.flush();
-
-        // info -
+        // info - return info about console command for method execute
         public String info() {
-            return String.format(" %s%s%s%s", "[", this.key(), "]", "      - return all folders and files that are in folder");
+            return String.format(" %s%s%s%s", "[", this.key(), "]",
+                    "      - download selected file from the server to client root directory");
         }
     }
 
