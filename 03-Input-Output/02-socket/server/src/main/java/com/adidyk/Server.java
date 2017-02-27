@@ -36,7 +36,7 @@ public class Server {
     }
 
     private void connect() throws IOException {
-        this.out.writeUTF("-------------------------------------------------------------");
+        this.out.writeUTF("\n-------------------------------------------------------------");
         this.out.writeUTF(" S E R V E R ver.1.00 ");
         this.out.writeUTF("-------------------------------------------------------------");
         this.menu.fillAction();

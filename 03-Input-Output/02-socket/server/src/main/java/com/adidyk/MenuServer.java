@@ -97,9 +97,9 @@ public class MenuServer {
                 out.writeInt(listFile.length);
                 for (File list : listFile) {
                     if (list.isDirectory()) {
-                        out.writeUTF(String.format("%s%10s%s%s", " <DIR>", list.length() / 1024, " [KiB]     ", list.getName()));
+                        out.writeUTF(String.format("%s%11s%s%s", " <DIR>", list.length(), " [B]     ", list.getName()));
                     } else {
-                        out.writeUTF(String.format("%s%10s%s%s", "      ", list.length() / 1024, " [KiB]     ", list.getName()));
+                        out.writeUTF(String.format("%s%11s%s%s", "      ", list.length(), " [B]     ", list.getName()));
                     }
                 }
             }
@@ -125,7 +125,7 @@ public class MenuServer {
             if (file.isFile() && file.canRead()) {
                 out.writeBoolean(true);
                 int quantity = (int)Math.ceil((float)file.length() / SIZE);
-                //System.out.println("Quantity: " +quantity);
+                System.out.println("Quantity: " +quantity);
                 out.writeInt(quantity);
                 out.writeInt((int)file.length());
                 try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))) {

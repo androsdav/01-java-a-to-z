@@ -1,16 +1,12 @@
 package com.adidyk;
 
-import javafx.scene.control.Separator;
-
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.adidyk.Constant.ROOT;
-import static com.adidyk.Constant.SEPARATOR;
-import static com.adidyk.Constant.SIZE;
+import static com.adidyk.Constant.*;
 
 public class MenuClient {
+
     private DataInputStream in;
     private DataOutputStream out;
     private Map<String, UserAction> actions = new HashMap<>();
@@ -96,6 +92,7 @@ public class MenuClient {
                             bos.write(buffer, 0, buffer.length);
                             bos.flush();
                         }
+                        //System.out.print(size * 100 / fileLength +"%");
                     }
                 } catch (IOException ex) {
                     System.out.println(ex.getMessage());
