@@ -125,7 +125,7 @@ public class MenuServer {
             if (file.isFile() && file.canRead()) {
                 out.writeBoolean(true);
                 int quantity = (int)Math.ceil((float)file.length() / SIZE);
-                System.out.println("Quantity: " +quantity);
+                //System.out.println("Quantity: " +quantity);
                 out.writeInt(quantity);
                 out.writeInt((int)file.length());
                 try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))) {
@@ -154,8 +154,9 @@ public class MenuServer {
         }
         // info - return info about console command for method execute
         public String info() {
-            return String.format(" %s%s%s%s", "[", this.key(), "]",
-                    "      - download selected file from the server to client root directory");
+            return String.format(" %s%s%s%s%n%s", "[", this.key(), " file]",
+                    " - download selected file from the server to client",
+                    "                   root directory");
         }
     }
 
@@ -165,13 +166,42 @@ public class MenuServer {
             return "upload";
         }
         //
-        public void execute(Command command) {
-
+        public void execute(Command command) throws IOException {
+            if (in.readBoolean()) {
+                int quantity = in.readInt();
+                int fileLength = in.readInt();
+                String wayFile = String.valueOf(way);
+                wayFile = wayFile.concat(SEPARATOR).concat(command.getName());
+                File newFile = new File(wayFile);
+                try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(newFile))) {
+                    int size = 0;
+                    for (int index = 0; index < quantity; index++) {
+                        size = size + SIZE;
+                        if (size > fileLength) {
+                            size = SIZE - (size - fileLength);
+                            byte[] buffer = new byte[size];
+                            in.read(buffer, 0, buffer.length);
+                            bos.write(buffer, 0, buffer.length);
+                            bos.flush();
+                        } else {
+                            byte[] buffer = new byte[SIZE];
+                            in.read(buffer, 0, buffer.length);
+                            bos.write(buffer, 0, buffer.length);
+                            bos.flush();
+                        }
+                    }
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            } else {
+                System.out.println(" File not found ... ");
+            }
         }
         //
         public String info() {
-            return String.format(" %s%s%s%s", "[", this.key(), "]",
-                    "      - upload selected file from the root directory client to current directory server");
+            return String.format(" %s%s%s%s%s%n%s", "[", this.key(), "]", " file]",
+                    "  - upload selected file from the root directory client",
+                    "                   to current directory server");
         }
     }
 
