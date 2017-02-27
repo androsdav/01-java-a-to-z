@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.adidyk.Constant.ROOT;
 import static com.adidyk.Constant.SIZE;
 
 public class MenuClient {
@@ -11,30 +12,29 @@ public class MenuClient {
     private DataOutputStream out;
     private Map<String, UserAction> actions = new HashMap<>();
 
-        MenuClient(DataInputStream in, DataOutputStream out) {
-            this.in = in;
-            this.out = out;
-        }
+    MenuClient(DataInputStream in, DataOutputStream out) {
+        this.in = in;
+        this.out = out;
+    }
+    void fillAction() {
+        actions.put("cd", new ChangeDir());
+        actions.put("dir", new ShowDir());
+        actions.put("help", new Help());
+        actions.put("download", new Download());
+    }
 
-        void fillAction() {
-            actions.put("cd", new ChangeDir());
-            actions.put("dir", new ShowDir());
-            actions.put("help", new Help());
-            actions.put("download", new Download());
+    void select(Command command) throws IOException {
+        if (actions.containsKey(command.getKey())) {
+            this.actions.get(command.getKey()).execute(command);
+        } else {
+            System.out.println("Command was false...");
         }
+    }
 
-        void select(Command command) throws IOException {
-            if (actions.containsKey(command.getKey())) {
-                this.actions.get(command.getKey()).execute(command);
-            } else {
-                System.out.println("Command was false...");
-            }
-        }
-
-        public void getway() throws IOException {
-            String string = this.in.readUTF();
-            System.out.print(" Server:" +string + "> ");
-        }
+    public void getway() throws IOException {
+        String string = this.in.readUTF();
+        System.out.print(" Server:" +string + "> ");
+    }
 
     private class ChangeDir implements UserAction {
         // execute - return message if console command "cd" used incorrectly
@@ -45,33 +45,30 @@ public class MenuClient {
             }
         }
     }
-
-        private class ShowDir implements UserAction {
-
-            // showDir - return all folders and files that are in folder
-            public void execute(Command command) throws IOException {
-                int listFile = in.readInt();
-                if (listFile != 0) {
-                    for (int index = 0; index < listFile; index++) {
-                        System.out.println(in.readUTF());
-                    }
-                } else {
-                    System.out.println("Folder do not have any think..");
-                }
-                System.out.println();
-            }
-        }
-
-        private class Help implements UserAction {
-            // execute -
-            public void execute(Command command) throws IOException {
-                int size = in.readInt();
-                for (int index = 0; index < size; index++) {
+    private class ShowDir implements UserAction {
+        // showDir - return all folders and files that are in folder
+        public void execute(Command command) throws IOException {
+            int listFile = in.readInt();
+            if (listFile != 0) {
+                for (int index = 0; index < listFile; index++) {
                     System.out.println(in.readUTF());
                 }
-                System.out.println();
+            } else {
+                System.out.println("Folder do not have any think..");
             }
+            System.out.println();
         }
+    }
+    private class Help implements UserAction {
+        // execute -
+        public void execute(Command command) throws IOException {
+            int size = in.readInt();
+            for (int index = 0; index < size; index++) {
+                System.out.println(in.readUTF());
+            }
+            System.out.println();
+        }
+    }
 
     private class Download implements UserAction {
         public void execute(Command command) throws IOException {
@@ -103,6 +100,15 @@ public class MenuClient {
                 System.out.println(" File not found ... ");
             }
         }
+    }
+
+    private class Upload implements UserAction {
+
+        public void execute(Command command) {
+            String wayFile = ROOT;
+            wayFile
+        }
+
     }
 
 }

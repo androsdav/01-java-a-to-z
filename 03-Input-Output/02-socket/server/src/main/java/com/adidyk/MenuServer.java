@@ -23,8 +23,9 @@ public class MenuServer {
     public void fillAction() {
         actions.put("cd", new ChangerDir());
         actions.put("dir", new ShowDir());
-        actions.put("help", new Help());
         actions.put("download", new Download());
+        actions.put("upload", new Upload());
+        actions.put("help", new Help());
     }
 
     // select - select to executing by console command
@@ -110,27 +111,7 @@ public class MenuServer {
         }
     }
 
-    // Help - return help
-    private class Help implements UserAction {
-        // key - return "help"
-        public String key() {
-            return "help";
-        }
-        // execute - return info about all console commands
-        public void execute(Command command) throws IOException {
-            out.writeInt(actions.size());
-            for (Map.Entry<String, UserAction> action : actions.entrySet()) {
-                String string = action.getValue().info();
-                out.writeUTF(string);
-            }
-        }
-        // info - return info about console command for method execute
-        public String info() {
-            return String.format(" %s%s%s%s", "[", this.key(), "]",
-                    "          - return info about all console commands");
-        }
-    }
-
+    // Download - download selected files from the server to client root directory
     private class Download implements UserAction {
         // key - return "download"
         public String key () {
@@ -171,11 +152,47 @@ public class MenuServer {
                 out.writeBoolean(false);
             }
         }
-
         // info - return info about console command for method execute
         public String info() {
             return String.format(" %s%s%s%s", "[", this.key(), "]",
                     "      - download selected file from the server to client root directory");
+        }
+    }
+
+    private class Upload implements UserAction {
+        // key - return "upload"
+        public String key() {
+            return "upload";
+        }
+        //
+        public void execute(Command command) {
+
+        }
+        //
+        public String info() {
+            return String.format(" %s%s%s%s", "[", this.key(), "]",
+                    "      - upload selected file from the root directory client to current directory server");
+        }
+    }
+
+    // Help - return help
+    private class Help implements UserAction {
+        // key - return "help"
+        public String key() {
+            return "help";
+        }
+        // execute - return info about all console commands
+        public void execute(Command command) throws IOException {
+            out.writeInt(actions.size());
+            for (Map.Entry<String, UserAction> action : actions.entrySet()) {
+                String string = action.getValue().info();
+                out.writeUTF(string);
+            }
+        }
+        // info - return info about console command for method execute
+        public String info() {
+            return String.format(" %s%s%s%s", "[", this.key(), "]",
+                    "          - return info about all console commands");
         }
     }
 
