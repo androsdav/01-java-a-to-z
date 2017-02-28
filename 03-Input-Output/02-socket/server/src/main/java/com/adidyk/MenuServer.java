@@ -65,7 +65,7 @@ public class MenuServer {
                 File files = new File(String.valueOf(way));
                 for (File file : files.listFiles()) {
                     if (file.isDirectory() && file.getName().equals(directory)) {
-                        System.out.println("Dir is found");
+                        //System.out.println("Dir is found");
                         way = way.append(SEPARATOR).append(file.getName());
                         changeTrue = true;
                         break;
@@ -125,7 +125,6 @@ public class MenuServer {
             if (file.isFile() && file.canRead()) {
                 out.writeBoolean(true);
                 int quantity = (int)Math.floor((float)file.length() / SIZE);
-                System.out.println("Quantity: " +quantity);
                 out.writeInt(quantity);
                 out.writeInt((int)file.length());
                 try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))) {
@@ -158,12 +157,13 @@ public class MenuServer {
         }
     }
 
+    // Upload - upload selected file from the root directory client to current directory server
     private class Upload implements UserAction {
         // key - return "upload"
         public String key() {
             return "upload";
         }
-        //
+        // execute - upload selected file from the root directory client to current directory server
         public void execute(Command command) throws IOException {
             if (in.readBoolean()) {
                 int quantity = in.readInt();
@@ -172,21 +172,17 @@ public class MenuServer {
                 wayFile = wayFile.concat(SEPARATOR).concat(command.getName());
                 File newFile = new File(wayFile);
                 try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(newFile))) {
-                    int size = 0;
                     for (int index = 0; index < quantity; index++) {
-                        size = size + SIZE;
-                        if (size > fileLength) {
-                            size = SIZE - (size - fileLength);
-                            byte[] buffer = new byte[size];
-                            in.read(buffer, 0, buffer.length);
-                            bos.write(buffer, 0, buffer.length);
-                            bos.flush();
-                        } else {
-                            byte[] buffer = new byte[SIZE];
-                            in.read(buffer, 0, buffer.length);
-                            bos.write(buffer, 0, buffer.length);
-                            bos.flush();
-                        }
+                        byte[] buffer = new byte[SIZE];
+                        in.read(buffer, 0, buffer.length);
+                        bos.write(buffer, 0, buffer.length);
+                        bos.flush();
+                    }
+                    if (quantity * SIZE < fileLength) {
+                        byte[] buffer = new byte[fileLength - quantity * SIZE];
+                        in.read(buffer, 0, buffer.length);
+                        bos.write(buffer, 0, buffer.length);
+                        bos.flush();
                     }
                 } catch (IOException ex) {
                     System.out.println(ex.getMessage());
@@ -195,7 +191,7 @@ public class MenuServer {
                 System.out.println(" File not found ... ");
             }
         }
-        //
+        // info - return info about console command for method execute
         public String info() {
             return String.format(" %s%s%s%s%s%n%s", "[", this.key(), "]", " file]",
                     "  - upload selected file from the root directory client",

@@ -39,6 +39,8 @@ public class Client {
         System.out.println(this.in.readUTF());
         System.out.println(this.in.readUTF());
         System.out.println(this.in.readUTF());
+        System.out.println(this.in.readUTF());
+        System.out.println(this.in.readUTF());
         this.menu.fillAction();
         this.command.setCommand(HELP);
         this.menu.select(this.command);

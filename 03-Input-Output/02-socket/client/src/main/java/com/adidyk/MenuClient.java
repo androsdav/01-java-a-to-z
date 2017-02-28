@@ -31,7 +31,7 @@ public class MenuClient {
         if (actions.containsKey(command.getKey())) {
             this.actions.get(command.getKey()).execute(command);
         } else {
-            System.out.println("\n [Info]: command not found ...");
+            System.out.println(" [Info]: command not found ...");
         }
     }
 
@@ -47,36 +47,37 @@ public class MenuClient {
         public void execute(Command command) throws IOException {
             boolean changeTrue = in.readBoolean();
             if (!changeTrue) {
-                System.out.println("\n [Info]: directory not found ...");
+                System.out.println(" [Info]: directory not found ...");
             }
         }
     }
 
     // ShowDir - show content of a directory by server
     private class ShowDir implements UserAction {
-        // showDir - show content of a directory by server
+        // execute - show content of a directory by server
         public void execute(Command command) throws IOException {
-            System.out.println();
             int listFile = in.readInt();
             if (listFile != 0) {
+                System.out.println();
                 for (int index = 0; index < listFile; index++) {
                     System.out.println(in.readUTF());
                 }
             } else {
-                System.out.println(" [Info]: directory do not have anythink ...");
+                System.out.println(" [Info]: directory do not have anything ...");
             }
         }
     }
 
     // Download - download selected files from the server to client root directory
     private class Download implements UserAction {
-        //
+        // execute - download selected files from the server to client root directory
         public void execute(Command command) throws IOException {
             if (in.readBoolean()) {
                 int quantity = in.readInt();
                 int fileLength = in.readInt();
                 File newFile = new File(ROOT.concat(SEPARATOR).concat(command.getName()));
                 try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(newFile))) {
+                    System.out.println(" [Info]: file is downloaded, wait ...");
                     for (int index = 0; index < quantity; index++) {
                         byte[] buffer = new byte[SIZE];
                         in.read(buffer, 0, buffer.length);
@@ -92,47 +93,44 @@ public class MenuClient {
                 } catch (IOException ex) {
                     System.out.println(ex.getMessage());
                 }
+                System.out.println(" [Info]: download is complete ...");
             } else {
-                System.out.println("\n [Info]: file not found ... ");
+                System.out.println(" [Info]: file not found ... ");
             }
         }
     }
 
-    // Upload -
+    // Upload - upload selected file from the root directory client to current directory server
     private class Upload implements UserAction {
-        // execute -
+        // execute - upload selected file from the root directory client to current directory server
         public void execute(Command command) throws IOException {
             String wayFile = ROOT;
             wayFile = wayFile.concat(SEPARATOR).concat(command.getName());
             File file = new File(wayFile);
             if (file.isFile() && file.canRead()) {
                 out.writeBoolean(true);
-                int quantity = (int)Math.ceil((float)file.length() / SIZE);
+                int quantity = (int)Math.floor((float)file.length() / SIZE);
                 out.writeInt(quantity);
                 out.writeInt((int)file.length());
                 try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))) {
-                    int size = 0;
                     for (int index = 0; index < quantity; index++) {
-                        size = size + SIZE;
-                        if (size > file.length()) {
-                            size = SIZE - (size - (int)file.length());
-                            byte[] buffer = new byte[size];
-                            bis.read(buffer, 0, buffer.length);
-                            out.write(buffer, 0, buffer.length);
-                            out.flush();
-                        } else {
-                            byte[] buffer = new byte[SIZE];
-                            bis.read(buffer, 0, buffer.length);
-                            out.write(buffer, 0, buffer.length);
-                            out.flush();
-                        }
+                        byte[] buffer = new byte[SIZE];
+                        bis.read(buffer, 0, buffer.length);
+                        out.write(buffer, 0, buffer.length);
+                        out.flush();
+                    }
+                    if (quantity * SIZE < file.length()) {
+                        byte[] buffer = new byte[(int)file.length() - quantity * SIZE];
+                        bis.read(buffer, 0, buffer.length);
+                        out.write(buffer, 0, buffer.length);
+                        out.flush();
                     }
                 } catch (IOException ex) {
                     System.out.println(ex.getMessage());
                 }
             } else {
                 out.writeBoolean(false);
-                System.out.println( "\n [Info]: file not found ...");
+                System.out.println( " [Info]: file not found ...");
             }
         }
     }
