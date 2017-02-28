@@ -77,22 +77,17 @@ public class MenuClient {
                 int fileLength = in.readInt();
                 File newFile = new File(ROOT.concat(SEPARATOR).concat(command.getName()));
                 try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(newFile))) {
-                    int size = 0;
                     for (int index = 0; index < quantity; index++) {
-                        size = size + SIZE;
-                        if (size > fileLength) {
-                            size = SIZE - (size - fileLength);
-                            byte[] buffer = new byte[size];
-                            in.read(buffer, 0, buffer.length);
-                            bos.write(buffer, 0, buffer.length);
-                            bos.flush();
-                        } else {
-                            byte[] buffer = new byte[SIZE];
-                            in.read(buffer, 0, buffer.length);
-                            bos.write(buffer, 0, buffer.length);
-                            bos.flush();
-                        }
-                        //System.out.print(size * 100 / fileLength +"%");
+                        byte[] buffer = new byte[SIZE];
+                        in.read(buffer, 0, buffer.length);
+                        bos.write(buffer, 0, buffer.length);
+                        bos.flush();
+                    }
+                    if (quantity * SIZE < fileLength) {
+                        byte[] buffer = new byte[fileLength - quantity * SIZE];
+                        in.read(buffer, 0, buffer.length);
+                        bos.write(buffer, 0, buffer.length);
+                        bos.flush();
                     }
                 } catch (IOException ex) {
                     System.out.println(ex.getMessage());

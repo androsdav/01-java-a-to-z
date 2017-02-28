@@ -124,26 +124,24 @@ public class MenuServer {
             File file = new File(wayFile);
             if (file.isFile() && file.canRead()) {
                 out.writeBoolean(true);
-                int quantity = (int)Math.ceil((float)file.length() / SIZE);
+                int quantity = (int)Math.floor((float)file.length() / SIZE);
                 System.out.println("Quantity: " +quantity);
                 out.writeInt(quantity);
                 out.writeInt((int)file.length());
                 try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))) {
-                    int size = 0;
                     for (int index = 0; index < quantity; index++) {
-                        size = size + SIZE;
-                        if (size > file.length()) {
-                            size = SIZE - (size - (int)file.length());
-                            byte[] buffer = new byte[size];
-                            bis.read(buffer, 0, buffer.length);
-                            out.write(buffer, 0, buffer.length);
-                            out.flush();
-                        } else {
-                            byte[] buffer = new byte[SIZE];
-                            bis.read(buffer, 0, buffer.length);
-                            out.write(buffer, 0, buffer.length);
-                            out.flush();
-                        }
+                        byte[] buffer = new byte[SIZE];
+                        bis.read(buffer, 0, buffer.length);
+                        out.write(buffer, 0, buffer.length);
+                        out.flush();
+                    }
+
+                    if (quantity * SIZE < (int)file.length()) {
+                        byte[] buffer = new byte[(int)file.length() - quantity * SIZE];
+                        bis.read(buffer, 0, buffer.length);
+                        out.write(buffer, 0, buffer.length);
+                        out.flush();
+
                     }
                 } catch (IOException ex) {
                     System.out.println(ex.getMessage());
