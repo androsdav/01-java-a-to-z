@@ -23,6 +23,7 @@ public class MenuClient {
         actions.put("dir", new ShowDir());
         actions.put("download", new Download());
         actions.put("upload", new Upload());
+        actions.put("show", new ShowRootClient());
         actions.put("help", new Help());
     }
 
@@ -113,6 +114,7 @@ public class MenuClient {
                 out.writeInt(quantity);
                 out.writeInt((int)file.length());
                 try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))) {
+                    System.out.println(" [Info]: file is uploaded, wait ...");
                     for (int index = 0; index < quantity; index++) {
                         byte[] buffer = new byte[SIZE];
                         bis.read(buffer, 0, buffer.length);
@@ -128,9 +130,32 @@ public class MenuClient {
                 } catch (IOException ex) {
                     System.out.println(ex.getMessage());
                 }
+                System.out.println(" [Info]: upload is complete ...");
             } else {
                 out.writeBoolean(false);
                 System.out.println( " [Info]: file not found ...");
+            }
+        }
+    }
+
+    // ShowRootClient - show content of a directory root client
+    private class ShowRootClient implements UserAction {
+        // execute - return all folders and files that are in directory root client
+        public void execute(Command command) throws IOException {
+            String way = ROOT;
+            File file = new File(way);
+            File[] listFile = file.listFiles();
+            if (listFile != null) {
+                System.out.println();
+                for (File list : listFile) {
+                    if (list.isDirectory()) {
+                        System.out.println(String.format("%s%11s%s%s", " <DIR>", list.length(), " [B]     ", list.getName()));
+                    } else {
+                        System.out.println(String.format("%s%11s%s%s", "      ", list.length(), " [B]     ", list.getName()));
+                    }
+                }
+            } else {
+                System.out.println(" [Info]: directory do not have anything ...");
             }
         }
     }

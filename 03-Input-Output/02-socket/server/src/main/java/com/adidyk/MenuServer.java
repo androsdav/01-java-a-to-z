@@ -25,6 +25,7 @@ public class MenuServer {
         actions.put("dir", new ShowDir());
         actions.put("download", new Download());
         actions.put("upload", new Upload());
+        actions.put("show", new ShowRootClient());
         actions.put("help", new Help());
     }
 
@@ -89,7 +90,7 @@ public class MenuServer {
         public String key () {
             return "dir";
         }
-        // showDir - return all folders and files that are in directory
+        // execute - return all folders and files that are in directory
         public void execute(Command command) throws IOException {
             File file = new File(String.valueOf(way));
             File[] listFile  = file.listFiles();
@@ -196,6 +197,22 @@ public class MenuServer {
             return String.format(" %s%s%s%s%s%n%s", "[", this.key(), "]", " file]",
                     "  - upload selected file from the root directory client",
                     "                   to current directory server");
+        }
+    }
+
+    // ShowRootClient - show content of a directory root client
+    private  class ShowRootClient implements UserAction {
+        // key - return "show"
+        public String key() {
+            return "show";
+        }
+        // execute - do not doing anything
+        public void execute(Command command) throws IOException {
+        }
+        // info - return info about console command for method execute
+        public String info() {
+            return String.format(" %s%s%s%s", "[", this.key(), "]",
+                    "          - show all files that are in directory root client");
         }
     }
 
