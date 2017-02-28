@@ -199,7 +199,7 @@ public class MenuServer {
         }
     }
 
-    // Help - return help
+    // Help - return info about all console commands
     private class Help implements UserAction {
         // key - return "help"
         public String key() {

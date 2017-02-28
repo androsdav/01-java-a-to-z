@@ -135,9 +135,9 @@ public class MenuClient {
         }
     }
 
-    // Help -
+    // Help - return info about all console commands
     private class Help implements UserAction {
-        // execute -
+        // execute - return info about all console commands
         public void execute(Command command) throws IOException {
             System.out.println();
             int size = in.readInt();
