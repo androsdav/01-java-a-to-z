@@ -36,7 +36,6 @@ public class MenuServer {
         }
     }
 
-    ///
     // getWay - return way
     public void getWay() throws IOException {
         this.out.writeUTF(String.valueOf(this.way));
