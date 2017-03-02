@@ -9,13 +9,15 @@ public class MenuServer {
 
     private DataInputStream in;
     private DataOutputStream out;
+    private Settings set;
     private StringBuffer way;
     private Map<String, UserAction> actions = new HashMap<>();
 
     // Constructor
-    public MenuServer(DataInputStream in, DataOutputStream out, StringBuffer root) {
+    public MenuServer(DataInputStream in, DataOutputStream out, Settings set, StringBuffer root) {
         this.in = in;
         this.out = out;
+        this.set = set;
         this.way = root;
     }
 
@@ -52,7 +54,7 @@ public class MenuServer {
             boolean changeTrue = false;
             String directory = command.getName();
             if (directory == null) {
-                way = new StringBuffer(ROOT);
+                way = new StringBuffer(set.getValue("app.root"));
                 changeTrue = true;
             } else if (FROM.equals(directory)) {
                 if (ROOT.equals(String.valueOf(way))) {

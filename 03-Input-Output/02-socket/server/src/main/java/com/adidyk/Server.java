@@ -1,11 +1,10 @@
 package com.adidyk;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import static com.adidyk.Constant.*;
+
+import static com.adidyk.Constant.HELP;
 
 public class Server {
 
@@ -14,17 +13,38 @@ public class Server {
     private Command command;
     private MenuServer menu;
     private Socket socket;
-    //private
+    private Settings set;
 
     Server() throws IOException {
-        this.socket = new ServerSocket(5000).accept();
+       // this.socket = new ServerSocket(5000).accept();
+      // this.in = new DataInputStream(socket.getInputStream());
+      //  this.out = new DataOutputStream(socket.getOutputStream());
+      // this.menu = new MenuServer(this.in, this.out, new StringBuffer(String.valueOf(ROOT)));
+     //   this.command = new Command();
+    }
+
+    private void loadConfig() throws IOException {
+        this.set = new Settings();
+        File file = new File("src/main/resources/app.properties");
+        try (FileInputStream fis = new FileInputStream(file)) {
+            this.set.load(fis);
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
+    private void init() throws IOException {
+        this.socket = new ServerSocket(Integer.parseInt(this.set.getValue("app.port"))).accept();
         this.in = new DataInputStream(socket.getInputStream());
         this.out = new DataOutputStream(socket.getOutputStream());
-        this.menu = new MenuServer(this.in, this.out, new StringBuffer(String.valueOf(ROOT)));
+        this.menu = new MenuServer(this.in, this.out, this.set, new StringBuffer(String.valueOf(this.set.getValue("app.root"))));
         this.command = new Command();
     }
 
     private void start() throws IOException {
+        this.loadConfig();
+        this.init();
         this.connect();
         String string;
         do {
