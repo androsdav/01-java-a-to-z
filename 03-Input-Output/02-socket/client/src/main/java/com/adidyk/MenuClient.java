@@ -142,6 +142,7 @@ public class MenuClient {
     private class ShowRootClient implements UserAction {
         // execute - return all folders and files that are in directory root client
         public void execute(Command command) throws IOException {
+            System.out.println(" Client: root>");
             String way = ROOT;
             File file = new File(way);
             File[] listFile = file.listFiles();

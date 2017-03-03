@@ -16,7 +16,7 @@ public class Server {
     Server() throws IOException {
     }
 
-    //
+    // start -
     private void start() throws IOException {
         this.loadConfig();
         this.init();
@@ -24,7 +24,7 @@ public class Server {
         this.work();
     }
 
-    //
+    // loadConfig -
     private void loadConfig() throws IOException {
         Settings setting = new Settings();
         File file = new File("src/main/resources/app.properties");
@@ -34,10 +34,9 @@ public class Server {
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         }
-
     }
 
-    //
+    // init -
     private void init() throws IOException {
         Socket socket = new ServerSocket(PORT).accept();
         this.in = new DataInputStream(socket.getInputStream());
@@ -46,7 +45,7 @@ public class Server {
         this.command = new Command();
     }
 
-    //
+    // connect -
     private void connect() throws IOException {
         this.out.writeUTF("\n ------------------------------------------------------------------");
         this.out.writeUTF("  S E R V E R");
@@ -58,7 +57,7 @@ public class Server {
         this.menu.select(this.command);
     }
 
-    //
+    // work -
     private void work() throws IOException {
         String string;
         do {

@@ -5,6 +5,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import static com.adidyk.Constant.*;
 
+
 public class Client {
 
     private DataInputStream in;
@@ -12,10 +13,33 @@ public class Client {
     private BufferedReader br;
     private Command command;
     private MenuClient menu;
-    private Socket socket;
 
-    Client() throws IOException {
-        this.socket = new Socket(InetAddress.getByName("127.0.0.1"), 5000);
+    private Client() throws IOException {
+    }
+
+    //
+    private void start() throws IOException {
+        this.loadConfig();
+        this.init();
+        this.connect();
+        this.work();
+    }
+
+    // loadConfig -
+    private void loadConfig() throws IOException {
+        Settings setting = new Settings();
+        File file = new File("src/main/resources/app.properties");
+        try (FileInputStream fis = new FileInputStream(file)) {
+            setting.load(fis);
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        new Constant(setting);
+    }
+
+    // init -
+    private void init() throws IOException {
+        Socket socket = new Socket(InetAddress.getByName(IP), PORT);
         this.in = new DataInputStream(socket.getInputStream());
         this.out = new DataOutputStream(socket.getOutputStream());
         this.br = new BufferedReader(new InputStreamReader(System.in));
@@ -23,18 +47,7 @@ public class Client {
         this.command = new Command();
     }
 
-    private void start() throws IOException {
-        this.connect();
-        String string;
-            do {
-                menu.getway();
-                string = this.br.readLine();
-                this.out.writeUTF(string);
-                command.setCommand(string);
-                menu.select(command);
-            } while (!"q".equals(string));
-    }
-
+    // connect -
     private void connect() throws IOException {
         System.out.println(this.in.readUTF());
         System.out.println(this.in.readUTF());
@@ -46,6 +59,19 @@ public class Client {
         this.menu.select(this.command);
     }
 
+    // work -
+    private void work() throws IOException {
+        String string;
+            do {
+                menu.getway();
+                string = this.br.readLine();
+                this.out.writeUTF(string);
+                command.setCommand(string);
+                menu.select(command);
+            } while (!"q".equals(string));
+    }
+
+    //
     public static void main(String[] args) throws IOException {
         new Client().start();
     }
