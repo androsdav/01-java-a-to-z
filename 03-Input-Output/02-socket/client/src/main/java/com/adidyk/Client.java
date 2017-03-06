@@ -2,10 +2,8 @@ package com.adidyk;
 
 import java.io.*;
 import java.net.InetAddress;
-import java.net.ServerSocket;
 import java.net.Socket;
 import static com.adidyk.Constant.*;
-
 
 public class Client {
 
@@ -16,47 +14,28 @@ public class Client {
     private Command command;
     private MenuClient menu;
 
+    // Constructor
     private Client(Socket socket) throws IOException {
         this.socket = socket;
+    }
+
+    // start - start to work with server
+    private void start() throws IOException {
+        this.init();
+        this.connect();
+        this.work();
+    }
+
+    // init - initialization parameters
+    private void init() throws IOException {
         this.in = new DataInputStream(this.socket.getInputStream());
         this.out = new DataOutputStream(this.socket.getOutputStream());
         this.br = new BufferedReader(new InputStreamReader(System.in));
         this.menu = new MenuClient(this.in, this.out);
         this.command = new Command();
-
     }
 
-    //
-    private void start() throws IOException {
-    //    this.loadConfig();
-    //    this.init();
-        this.connect();
-        this.work();
-    }
-
-    // loadConfig -
-    //private void loadConfig() throws IOException {
-    //    Settings setting = new Settings();
-    //    File file = new File("src/main/resources/app.properties");
-    //    try (FileInputStream fis = new FileInputStream(file)) {
-    //        setting.load(fis);
-    //    } catch (FileNotFoundException ex) {
-    //        ex.printStackTrace();
-    //    }
-    //    new Constant(setting);
-    //}
-
-    // init -
-    //private void init() throws IOException {
-    //   //Socket socket = new Socket(InetAddress.getByName(IP), PORT);
-    //    this.in = new DataInputStream(this.socket.getInputStream());
-    //    this.out = new DataOutputStream(this.socket.getOutputStream());
-    //    this.br = new BufferedReader(new InputStreamReader(System.in));
-    //    this.menu = new MenuClient(this.in, this.out);
-    //    this.command = new Command();
-    //}
-
-    // connect -
+    // connect - the result of connection server
     private void connect() throws IOException {
         System.out.println(this.in.readUTF());
         System.out.println(this.in.readUTF());
@@ -68,7 +47,7 @@ public class Client {
         this.menu.select(this.command);
     }
 
-    // work -
+    // work - working with server
     private void work() throws IOException {
         String string;
             do {
@@ -82,18 +61,21 @@ public class Client {
 
     // main - just main ;)
     public static void main(String[] args) throws IOException {
+        // loading setting from file "app.properties"
         Settings setting = new Settings();
         File file = new File("src/main/resources/app.properties");
         try (FileInputStream fis = new FileInputStream(file)) {
             setting.load(fis);
+            new Constant(setting);
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         }
-        new Constant(setting);
+        // creating object socket
         try (Socket socket = new Socket(InetAddress.getByName(IP), PORT)) {
             new Client(socket).start();
         }
     }
+
 }
 
 

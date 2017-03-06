@@ -15,7 +15,7 @@ public class Server {
     private MenuServer menu;
 
     // Constructor
-    Server(Socket socket) throws IOException {
+    private Server(Socket socket) throws IOException {
         this.socket = socket;
     }
 
@@ -46,7 +46,7 @@ public class Server {
         this.menu.select(this.command);
     }
 
-    // work - working with server
+    // work - working with client
     private void work() throws IOException {
         String string;
         do {
@@ -59,7 +59,7 @@ public class Server {
 
     // main - just main ;)
     public static void main(String[] args) throws IOException {
-        // loading settings from file app.properties
+        // loading settings from file "app.properties"
         Settings setting = new Settings();
         File file = new File("src/main/resources/app.properties");
         try (FileInputStream fis = new FileInputStream(file)) {
