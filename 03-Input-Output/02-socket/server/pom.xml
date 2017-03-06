@@ -12,14 +12,18 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
         </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.10.19</version>
+            <type>pom</type>
+        </dependency>
     </dependencies>
     <parent>
         <groupId>com.adidyk.03-Input-Output.02-socket</groupId>
         <artifactId>02-socket</artifactId>
         <version>1.0</version>
     </parent>
-
-
     <build>
         <plugins>
             <plugin>

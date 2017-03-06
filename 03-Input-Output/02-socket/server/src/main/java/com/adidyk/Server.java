@@ -3,7 +3,6 @@ package com.adidyk;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-
 import static com.adidyk.Constant.*;
 
 public class Server {
@@ -15,12 +14,12 @@ public class Server {
     private MenuServer menu;
 
     // Constructor
-    private Server(Socket socket) throws IOException {
+    Server(Socket socket) throws IOException {
         this.socket = socket;
     }
 
     // start - start to work with server
-    private void start() throws IOException {
+    void start() throws IOException {
         this.init();
         this.connect();
         this.work();
@@ -75,5 +74,3 @@ public class Server {
     }
 
 }
-
-
