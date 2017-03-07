@@ -19,15 +19,16 @@ public class ServerTest {
     @Test
     public void whenAskAnswerThenChooseRandom() throws IOException {
         Socket socket = mock(Socket.class);
-        ByteArrayInputStream in = new ByteArrayInputStream("q".getBytes());
+//        ByteArrayInputStream in = new ByteArrayInputStream("q".getBytes());
+        ByteArrayInputStream in = new ByteArrayInputStream("".getBytes());
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         when(socket.getInputStream()).thenReturn(in);
         when(socket.getOutputStream()).thenReturn(out);
         Server server = new Server(socket);
-        server.start();
+        server.init();
+        server.work();
         assertThat(out.toString(), is(""));
 
     }
-
 
 }

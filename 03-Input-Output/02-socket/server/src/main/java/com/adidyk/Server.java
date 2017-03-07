@@ -26,7 +26,7 @@ public class Server {
     }
 
     // init - initialization parameters
-    private void init() throws IOException {
+    protected void init() throws IOException {
         this.in = new DataInputStream(this.socket.getInputStream());
         this.out = new DataOutputStream(this.socket.getOutputStream());
         this.menu = new MenuServer(this.in, this.out, new StringBuffer((ROOT)));
@@ -46,7 +46,7 @@ public class Server {
     }
 
     // work - working with client
-    private void work() throws IOException {
+    void work() throws IOException {
         String string;
         do {
             this.menu.getWay();
