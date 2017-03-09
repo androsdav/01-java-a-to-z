@@ -23,7 +23,7 @@ public class Server {
     }
 
     // loadConfig - loading settings from file "app.properties"
-    private void loadConfig() throws IOException {
+    void loadConfig() throws IOException {
         Settings setting = new Settings();
         File file = new File("src/main/resources/app.properties");
         try (FileInputStream fis = new FileInputStream(file)) {
@@ -74,7 +74,6 @@ public class Server {
 
     // main - just main ;)
     public static void main(String[] args) throws IOException {
-        // loading settings from file "app.properties"
         new Server().loadConfig();
         // creating object socket
         try (Socket socket = new ServerSocket(PORT).accept()) {

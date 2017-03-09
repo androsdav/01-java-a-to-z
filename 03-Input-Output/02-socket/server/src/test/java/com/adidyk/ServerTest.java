@@ -24,6 +24,7 @@ public class ServerTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         when(socket.getInputStream()).thenReturn(in);
         when(socket.getOutputStream()).thenReturn(out);
+        new Server().loadConfig();
         Server server = new Server(socket);
         server.init();
         server.work();
