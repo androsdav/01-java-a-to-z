@@ -29,7 +29,6 @@ public class ServerTest {
         server.init();
         server.work();
         assertThat(out.toString(), is(""));
-
     }
 
 }
