@@ -14,8 +14,24 @@ public class Server {
     private MenuServer menu;
 
     // Constructor
+    Server() {
+    }
+
+    // Constructor
     Server(Socket socket) throws IOException {
         this.socket = socket;
+    }
+
+    // loadConfig - loading settings from file "app.properties"
+    private void loadConfig() throws IOException {
+        Settings setting = new Settings();
+        File file = new File("src/main/resources/app.properties");
+        try (FileInputStream fis = new FileInputStream(file)) {
+            setting.load(fis);
+            new Constant(setting);
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
     }
 
     // start - start to work with server
@@ -59,14 +75,7 @@ public class Server {
     // main - just main ;)
     public static void main(String[] args) throws IOException {
         // loading settings from file "app.properties"
-        Settings setting = new Settings();
-        File file = new File("src/main/resources/app.properties");
-        try (FileInputStream fis = new FileInputStream(file)) {
-            setting.load(fis);
-            new Constant(setting);
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        }
+        new Server().loadConfig();
         // creating object socket
         try (Socket socket = new ServerSocket(PORT).accept()) {
             new Server(socket).start();
