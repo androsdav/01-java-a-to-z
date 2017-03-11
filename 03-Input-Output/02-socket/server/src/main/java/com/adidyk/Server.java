@@ -72,6 +72,7 @@ public class Server {
         } while (!"q".equals(string));
     }
 
+    //test
     // main - just main ;)
     public static void main(String[] args) throws IOException {
         new Server().loadConfig();
