@@ -7,14 +7,13 @@ public class Settings {
 
     private final Properties prs = new Properties();
 
-    void load(InputStream io) {
+    public void load(InputStream io) {
         try {
             this.prs.load(io);
         }
         catch (Exception ex) {
             ex.printStackTrace();
         }
-
     }
 
     public String getValue(String key) {

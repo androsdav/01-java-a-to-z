@@ -1,6 +1,5 @@
 package com.adidyk;
 
-
 import java.util.Scanner;
 
 public class Command {

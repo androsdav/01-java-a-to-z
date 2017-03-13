@@ -25,9 +25,9 @@ public class Client {
     // loadConfig - loading settings from file "app.properties"
     private void loadConfig() throws IOException {
         Settings setting = new Settings();
-        File file = new File("src/main/resources/app.properties");
-        try (FileInputStream fis = new FileInputStream(file)) {
-            setting.load(fis);
+        ClassLoader loader = Settings.class.getClassLoader();
+        try (InputStream is = loader.getResourceAsStream("app.properties")) {
+            setting.load(is);
             new Constant(setting);
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
