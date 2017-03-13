@@ -13,7 +13,7 @@ public class Server {
     private Command command;
     private MenuServer menu;
 
-    // Constructor
+    // Constructor test
     private Server() {
     }
 
