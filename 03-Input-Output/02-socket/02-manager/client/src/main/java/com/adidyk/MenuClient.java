@@ -146,7 +146,7 @@ public class MenuClient {
             String way = ROOT;
             File file = new File(way);
             File[] listFile = file.listFiles();
-            if (listFile != null) {
+            if (listFile.length != 0) {
                 System.out.println();
                 for (File list : listFile) {
                     if (list.isDirectory()) {

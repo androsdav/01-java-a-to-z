@@ -216,6 +216,22 @@ public class MenuServer {
         }
     }
 
+    // ShowRootClient - disconnect from the server
+    private  class Quit implements UserAction {
+        // key - return "quit"
+        public String key() {
+            return "quit";
+        }
+        // execute - do not doing anything
+        public void execute(Command command) throws IOException {
+        }
+        // info - return info about console command for method execute
+        public String info() {
+            return String.format(" %s%s%s%s", "[", this.key(), "]",
+                    "          - disconnect from the server");
+        }
+    }
+
     // Help - return info about all console commands
     private class Help implements UserAction {
         // key - return "help"

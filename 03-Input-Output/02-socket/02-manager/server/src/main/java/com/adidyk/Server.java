@@ -75,7 +75,6 @@ public class Server {
     // main - just main ;)
     public static void main(String[] args) throws IOException {
         new Server().loadConfig();
-        // creating object socket
         try (Socket socket = new ServerSocket(PORT).accept()) {
             new Server(socket).start();
         }
