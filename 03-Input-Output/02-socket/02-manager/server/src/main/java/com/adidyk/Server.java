@@ -14,16 +14,16 @@ public class Server {
     private MenuServer menu;
 
     // Constructor
-    Server() {
+    private Server() {
     }
 
     // Constructor
-    Server(Socket socket) throws IOException {
+    private Server(Socket socket) throws IOException {
         this.socket = socket;
     }
 
     // loadConfig - loading settings from file "app.properties"
-    void loadConfig() throws IOException {
+    private void loadConfig() throws IOException {
         Settings setting = new Settings();
         File file = new File("src/main/resources/app.properties");
         try (FileInputStream fis = new FileInputStream(file)) {
@@ -35,14 +35,14 @@ public class Server {
     }
 
     // start - start to work with server
-    void start() throws IOException {
+    private void start() throws IOException {
         this.init();
         this.connect();
         this.work();
     }
 
     // init - initialization parameters
-    protected void init() throws IOException {
+    private void init() throws IOException {
         this.in = new DataInputStream(this.socket.getInputStream());
         this.out = new DataOutputStream(this.socket.getOutputStream());
         this.menu = new MenuServer(this.in, this.out, new StringBuffer((ROOT)));
@@ -62,7 +62,7 @@ public class Server {
     }
 
     // work - working with client
-    void work() throws IOException {
+    private void work() throws IOException {
         String string;
         do {
             this.menu.getWay();

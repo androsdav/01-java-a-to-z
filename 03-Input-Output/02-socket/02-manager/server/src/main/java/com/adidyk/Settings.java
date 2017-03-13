@@ -7,8 +7,7 @@ public class Settings {
 
     private final Properties prs = new Properties();
 
-
-    public void load(InputStream io) {
+    void load(InputStream io) {
         try {
             this.prs.load(io);
         }
@@ -21,6 +20,5 @@ public class Settings {
     public String getValue(String key) {
         return this.prs.getProperty(key);
     }
-
 
 }
