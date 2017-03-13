@@ -26,6 +26,7 @@ public class MenuServer {
         actions.put("download", new Download());
         actions.put("upload", new Upload());
         actions.put("show", new ShowRootClient());
+        actions.put("quit", new Quit());
         actions.put("help", new Help());
     }
 
@@ -66,7 +67,6 @@ public class MenuServer {
                 File files = new File(String.valueOf(way));
                 for (File file : files.listFiles()) {
                     if (file.isDirectory() && file.getName().equals(directory)) {
-                        //System.out.println("Dir is found");
                         way = way.append(SEPARATOR).append(file.getName());
                         changeTrue = true;
                         break;
@@ -135,7 +135,6 @@ public class MenuServer {
                         out.write(buffer, 0, buffer.length);
                         out.flush();
                     }
-
                     if (quantity * SIZE < (int)file.length()) {
                         byte[] buffer = new byte[(int)file.length() - quantity * SIZE];
                         bis.read(buffer, 0, buffer.length);
@@ -194,8 +193,8 @@ public class MenuServer {
         }
         // info - return info about console command for method execute
         public String info() {
-            return String.format(" %s%s%s%s%s%n%s", "[", this.key(), "]", " file]",
-                    "  - upload selected file from the root directory client",
+            return String.format(" %s%s%s%s%n%s", "[", this.key(), " file]",
+                    "   - upload selected file from the root directory client",
                     "                   to current directory server");
         }
     }

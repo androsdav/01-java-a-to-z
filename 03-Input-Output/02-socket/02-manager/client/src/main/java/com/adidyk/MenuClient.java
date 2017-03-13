@@ -24,6 +24,7 @@ public class MenuClient {
         actions.put("download", new Download());
         actions.put("upload", new Upload());
         actions.put("show", new ShowRootClient());
+        actions.put("quit", new Quit());
         actions.put("help", new Help());
     }
 
@@ -160,6 +161,13 @@ public class MenuClient {
             }
         }
     }
+
+    // Quit - disconnect from the server
+    private class Quit implements UserAction {
+        // execute - do not doing anything
+        public void execute(Command command) throws IOException {
+            }
+        }
 
     // Help - return info about all console commands
     private class Help implements UserAction {

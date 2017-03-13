@@ -69,7 +69,7 @@ public class Server {
             string = this.in.readUTF();
             this.command.setCommand(string);
             this.menu.select(this.command);
-        } while (!"q".equals(string));
+        } while (!"quit".equals(string));
     }
 
     // main - just main ;)
