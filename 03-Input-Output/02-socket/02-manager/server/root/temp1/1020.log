@@ -1,0 +1,425 @@
+[ 6-30-2015 11:44:22:387]- LOG(9A8): PRODUCTInst--
+[ 6-30-2015 11:44:22:388]- LOG(9A8): InitProperties - retrieve props from file 'C:\Users\test\AppData\Local\Temp\7zS4A05\properties.ini'
+[ 6-30-2015 11:44:22:389]- LOG(9A8): Installer version: 1.0.5.3
+[ 6-30-2015 11:44:22:390]- LOG(9A8):  --- Language IDs ---
+[ 6-30-2015 11:44:22:391]- LOG(9A8):   User Default UI Language =   1049,   0x419
+[ 6-30-2015 11:44:22:391]- LOG(9A8):   System Default UI Language = 1049,   0x419
+[ 6-30-2015 11:44:22:392]- LOG(9A8):   User Default Language ID =   1033,   0x409
+[ 6-30-2015 11:44:22:393]- LOG(9A8):   System Default Language ID = 1049,   0x419
+[ 6-30-2015 11:44:22:394]- LOG(9A8):   Language ID To Be Used =     1049,   0x419
+[ 6-30-2015 11:44:22:395]- LOG(9A8): Is64BitWindows()
+[ 6-30-2015 11:44:22:396]- LOG(9A8): Compiled as 64bit app so must be on 64 bit Windows.
+[ 6-30-2015 11:44:22:397]- LOG(9A8): OS is 64 bit
+[ 6-30-2015 11:44:22:398]- LOG(9A8): cmdline 'PRODUCTI'
+[ 6-30-2015 11:44:22:399]- LOG(9A8): -\/\/\/- Properties -\/\/\/-
+[ 6-30-2015 11:44:22:400]- LOG(9A8): PRINT_INFNAME = HPLJ1020.INF
+[ 6-30-2015 11:44:22:401]- LOG(9A8): PRINT_VERNAME = SUHP1020.VER
+[ 6-30-2015 11:44:22:402]- LOG(9A8): SHORT_PRINTER_NAME = HP LaserJet 1020 driver
+[ 6-30-2015 11:44:22:402]- LOG(9A8): PRINTER_SERIES_NAME = HP LaserJet 1020 Series
+[ 6-30-2015 11:44:22:403]- LOG(9A8): PRODUCT_VIDPID = vid_03f0&pid_2b17,vid_03f0&pid_2c17,vid_03f0&pid_2d17,vid_03f0&pid_3017,vid_03f0&pid_4117
+[ 6-30-2015 11:44:22:404]- LOG(9A8): REG_INSTALLKEY = HP LaserJet 1020 Series
+[ 6-30-2015 11:44:22:405]- LOG(9A8): ISRUNNING_MUTEX_NAME = HPLaserJet1020InstallExists
+[ 6-30-2015 11:44:22:405]- LOG(9A8): INSTALL_DIRECTORY = HP LaserJet 1020 driver
+[ 6-30-2015 11:44:22:406]- LOG(9A8): -/\/\/\- Properties -/\/\/\-
+[ 6-30-2015 11:44:22:407]- LOG(9A8): PRODUCT Installer ---------------------------------------------------
+[ 6-30-2015 11:44:22:408]- LOG(9A8): InstallSequencer()
+[ 6-30-2015 11:44:22:408]- LOG(9A8): InstallSequencer() step = 0
+[ 6-30-2015 11:44:22:409]- LOG(9A8): InstallSequencer() step = 1
+[ 6-30-2015 11:44:22:410]- LOG(9A8): --- InitializeStep ---
+[ 6-30-2015 11:44:22:412]- LOG(9A8): GetLandDir - Russian
+[ 6-30-2015 11:44:22:413]- LOG(9A8):   print inf:C:\Users\test\AppData\Local\Temp\7zS4A05\HPLJ1020.INF
+[ 6-30-2015 11:44:22:414]- LOG(9A8):   printer verion file: C:\Users\test\AppData\Local\Temp\7zS4A05\SUHP1020.VER
+[ 6-30-2015 11:44:22:415]- LOG(9A8):   printer series name: HP LaserJet 1020 Series
+[ 6-30-2015 11:44:22:416]- LOG(9A8): GetPrinternamesFromINF()
+[ 6-30-2015 11:44:22:425]- LOG(9A8): InstallSequencer() step = 3
+[ 6-30-2015 11:44:22:426]- LOG(9A8): --- LicenseStep --- 
+[ 6-30-2015 11:44:22:427]- LOG(9A8):  License file: 'C:\Users\test\AppData\Local\Temp\7zS4A05\\license.txt'
+[ 6-30-2015 11:44:22:465]- LOG(9A8): IDLCDialog::OnInitDialog() m_positionOnBottom=0, m_topmost=1, m_followPosition=0
+[ 6-30-2015 11:44:22:482]- LOG(9A8): IDLCGenericTextDlg::OnInitDialog 
+[ 6-30-2015 11:44:22:483]- LOG(9A8): Strings(): stringsDllPath: C:\Users\test\AppData\Local\Temp\7zS4A05\strings.dll
+[ 6-30-2015 11:44:22:485]- LOG(9A8): IDLCGenericTextDlg::OnInitDialog -- load text from file 'C:\Users\test\AppData\Local\Temp\7zS4A05\\license.txt'
+[ 6-30-2015 11:44:22:487]- LOG(9A8): Text is plain
+[ 6-30-2015 11:44:24:206]- LOG(9A8):  -[ IDLCGenericTextDlg BUTTON 1 pressed ]-
+[ 6-30-2015 11:44:24:216]- LOG(9A8): StartProgressDialog()  g_progressDlgRunning = 0
+[ 6-30-2015 11:44:24:217]- LOG(9A8): StartProgressDialog()  Starting progress dialog thread ...
+[ 6-30-2015 11:44:24:218]- LOG(9A8): Checking thread dialog handle 0
+[ 6-30-2015 11:44:24:223]- LOG(1508): IDLCProgressDlg::OnInitDialog()
+[ 6-30-2015 11:44:24:224]- LOG(1508): IDLCProgressDlg::DoDataExchange
+[ 6-30-2015 11:44:24:225]- LOG(1508): IDLCDialog::OnInitDialog() m_positionOnBottom=0, m_topmost=1, m_followPosition=0
+[ 6-30-2015 11:44:24:720]- LOG(9A8): InstallSequencer() step = 5
+[ 6-30-2015 11:44:24:721]- LOG(9A8): --- MsiInstallStep --- 
+[ 6-30-2015 11:44:24:722]- LOG(9A8): Installing 1 Core MSIs --
+[ 6-30-2015 11:44:24:723]- LOG(9A8): ==================== INSTALL MSI ========================
+[ 6-30-2015 11:44:24:724]- LOG(9A8): CMsi::Install(C:\Users\test\AppData\Local\Temp\7zS4A05\\, )
+[ 6-30-2015 11:44:24:724]- LOG(9A8): CMsi::_Install(C:\Users\test\AppData\Local\Temp\7zS4A05\\,  REBOOT=ReallySuppress  ADDCLID=1049 )
+[ 6-30-2015 11:44:24:735]- LOG(9A8): ===>>> ERROR (gle=110, 0x6e):  Msg: The system cannot open the device or file specified.
+  Context: CMsi::GetPropertyFromMsi MsiOpenDatabase
+[ 6-30-2015 11:44:24:736]- LOG(9A8): CMsi::GetPropertyFromMsi failed. Setting  to UNKNOWN
+[ 6-30-2015 11:44:24:737]- LOG(9A8): ===>>> ERROR (gle=110, 0x6e):  Msg: The system cannot open the device or file specified.
+  Context: CMsi::GetPropertyFromMsi MsiOpenDatabase
+[ 6-30-2015 11:44:24:738]- LOG(9A8): CMsi::GetPropertyFromMsi failed. Setting  to UNKNOWN
+[ 6-30-2015 11:44:24:739]- LOG(9A8): ===>>> ERROR (gle=110, 0x6e):  Msg: The system cannot open the device or file specified.
+  Context: CMsi::GetPropertyFromMsi MsiOpenDatabase
+[ 6-30-2015 11:44:24:740]- LOG(9A8): CMsi::GetPropertyFromMsi failed. Setting  to UNKNOWN
+[ 6-30-2015 11:44:24:741]- LOG(9A8):   Msi ProductCode = UNKNOWN
+[ 6-30-2015 11:44:24:742]- LOG(9A8):   Msi UpgradeCode = UNKNOWN
+[ 6-30-2015 11:44:24:743]- LOG(9A8):   Msi ProductVersion = UNKNOWN
+[ 6-30-2015 11:44:24:832]- LOG(9A8):   --- FAILED install C:\Users\test\AppData\Local\Temp\7zS4A05\\
+[ 6-30-2015 11:44:24:833]- LOG(9A8): ===>>> ERROR (gle=3, 0x3):  Msg: The system cannot find the path specified.
+  Context: Failed Core msi Install 
+[ 6-30-2015 11:44:24:834]- LOG(9A8): InstallSequencer() step = 4
+[ 6-30-2015 11:44:24:835]- LOG(9A8): --- PreInstallStep ---
+[ 6-30-2015 11:44:24:836]- LOG(9A8): IsDriverInstalled(List)
+[ 6-30-2015 11:44:24:837]- LOG(9A8): IsDriverInstalled(HP LaserJet 1020)
+[ 6-30-2015 11:44:24:838]- LOG(9A8): FindInstalledDrivers()
+[ 6-30-2015 11:44:24:840]- LOG(9A8): PrinterDriver?  HP LaserJet 1020 ?= Microsoft XPS Document Writer v4
+[ 6-30-2015 11:44:24:841]- LOG(9A8): PrinterDriver?  HP LaserJet 1020 ?= Microsoft Shared Fax Driver
+[ 6-30-2015 11:44:24:842]- LOG(9A8): PrinterDriver?  HP LaserJet 1020 ?= Microsoft enhanced Point and Print compatibility driver
+[ 6-30-2015 11:44:24:843]- LOG(9A8): PrinterDriver?  HP LaserJet 1020 ?= HP ePrint
+[ 6-30-2015 11:44:24:844]- LOG(9A8): PrinterDriver?  HP LaserJet 1020 ?= Foxit PhantomPDF Printer Driver
+[ 6-30-2015 11:44:24:844]- LOG(9A8): IsDriverInstalled(HP LaserJet 1022)
+[ 6-30-2015 11:44:24:845]- LOG(9A8): FindInstalledDrivers()
+[ 6-30-2015 11:44:24:847]- LOG(9A8): PrinterDriver?  HP LaserJet 1022 ?= Microsoft XPS Document Writer v4
+[ 6-30-2015 11:44:24:847]- LOG(9A8): PrinterDriver?  HP LaserJet 1022 ?= Microsoft Shared Fax Driver
+[ 6-30-2015 11:44:24:848]- LOG(9A8): PrinterDriver?  HP LaserJet 1022 ?= Microsoft enhanced Point and Print compatibility driver
+[ 6-30-2015 11:44:24:849]- LOG(9A8): PrinterDriver?  HP LaserJet 1022 ?= HP ePrint
+[ 6-30-2015 11:44:24:850]- LOG(9A8): PrinterDriver?  HP LaserJet 1022 ?= Foxit PhantomPDF Printer Driver
+[ 6-30-2015 11:44:24:851]- LOG(9A8): IsDriverInstalled(HP LaserJet 1022n)
+[ 6-30-2015 11:44:24:851]- LOG(9A8): FindInstalledDrivers()
+[ 6-30-2015 11:44:24:852]- LOG(9A8): PrinterDriver?  HP LaserJet 1022n ?= Microsoft XPS Document Writer v4
+[ 6-30-2015 11:44:24:853]- LOG(9A8): PrinterDriver?  HP LaserJet 1022n ?= Microsoft Shared Fax Driver
+[ 6-30-2015 11:44:24:854]- LOG(9A8): PrinterDriver?  HP LaserJet 1022n ?= Microsoft enhanced Point and Print compatibility driver
+[ 6-30-2015 11:44:24:855]- LOG(9A8): PrinterDriver?  HP LaserJet 1022n ?= HP ePrint
+[ 6-30-2015 11:44:24:856]- LOG(9A8): PrinterDriver?  HP LaserJet 1022n ?= Foxit PhantomPDF Printer Driver
+[ 6-30-2015 11:44:24:857]- LOG(9A8): IsDriverInstalled(HP LaserJet 1022nw)
+[ 6-30-2015 11:44:24:857]- LOG(9A8): FindInstalledDrivers()
+[ 6-30-2015 11:44:24:859]- LOG(9A8): PrinterDriver?  HP LaserJet 1022nw ?= Microsoft XPS Document Writer v4
+[ 6-30-2015 11:44:24:860]- LOG(9A8): PrinterDriver?  HP LaserJet 1022nw ?= Microsoft Shared Fax Driver
+[ 6-30-2015 11:44:24:860]- LOG(9A8): PrinterDriver?  HP LaserJet 1022nw ?= Microsoft enhanced Point and Print compatibility driver
+[ 6-30-2015 11:44:24:862]- LOG(9A8): PrinterDriver?  HP LaserJet 1022nw ?= HP ePrint
+[ 6-30-2015 11:44:24:862]- LOG(9A8): PrinterDriver?  HP LaserJet 1022nw ?= Foxit PhantomPDF Printer Driver
+[ 6-30-2015 11:44:24:863]- LOG(9A8): IsDriverInstalled(HP LaserJet 1018)
+[ 6-30-2015 11:44:24:864]- LOG(9A8): FindInstalledDrivers()
+[ 6-30-2015 11:44:24:865]- LOG(9A8): PrinterDriver?  HP LaserJet 1018 ?= Microsoft XPS Document Writer v4
+[ 6-30-2015 11:44:24:866]- LOG(9A8): PrinterDriver?  HP LaserJet 1018 ?= Microsoft Shared Fax Driver
+[ 6-30-2015 11:44:24:867]- LOG(9A8): PrinterDriver?  HP LaserJet 1018 ?= Microsoft enhanced Point and Print compatibility driver
+[ 6-30-2015 11:44:24:868]- LOG(9A8): PrinterDriver?  HP LaserJet 1018 ?= HP ePrint
+[ 6-30-2015 11:44:24:869]- LOG(9A8): PrinterDriver?  HP LaserJet 1018 ?= Foxit PhantomPDF Printer Driver
+[ 6-30-2015 11:44:24:870]- LOG(9A8): _PostProgressMessage hWnd=0x80576 msg=1125, param=17049
+[ 6-30-2015 11:44:24:870]- LOG(9A8): InstallProgramFiles()
+[ 6-30-2015 11:44:24:871]- LOG(1508): IDLCProgressDlg::OnCurrentProgressMsg()
+[ 6-30-2015 11:44:24:872]- LOG(1508):    msg=??????????? ?????? ?? ??????? ????...
+[ 6-30-2015 11:44:24:873]- LOG(9A8):   programFilesDir:C:\Program Files\HP\HP LaserJet 1020 driver
+[ 6-30-2015 11:44:24:874]- LOG(9A8): CopyEntireFolder(C:\Users\test\AppData\Local\Temp\7zS4A05\,C:\Program Files\HP\HP LaserJet 1020 driver)
+[ 6-30-2015 11:44:24:875]- LOG(9A8): CopyFilterFiles(*.*, C:\Users\test\AppData\Local\Temp\7zS4A05\, C:\Program Files\HP\HP LaserJet 1020 driver)
+[ 6-30-2015 11:44:24:876]- LOG(9A8): Copy file C:\Users\test\AppData\Local\Temp\7zS4A05\\DIFxAPI.dll to C:\Program Files\HP\HP LaserJet 1020 driver\DIFxAPI.dll
+[ 6-30-2015 11:44:24:886]- LOG(9A8): Copy file C:\Users\test\AppData\Local\Temp\7zS4A05\\drv64.cab to C:\Program Files\HP\HP LaserJet 1020 driver\drv64.cab
+[ 6-30-2015 11:44:24:892]- LOG(9A8): CopyFilterFiles(*.*, C:\Users\test\AppData\Local\Temp\7zS4A05\\English, C:\Program Files\HP\HP LaserJet 1020 driver\English)
+[ 6-30-2015 11:44:24:893]- LOG(9A8): Copy file C:\Users\test\AppData\Local\Temp\7zS4A05\\English\SDhp1018.chm to C:\Program Files\HP\HP LaserJet 1020 driver\English\SDhp1018.chm
+[ 6-30-2015 11:44:24:896]- LOG(9A8): Copy file C:\Users\test\AppData\Local\Temp\7zS4A05\\English\SDhp1020.chm to C:\Program Files\HP\HP LaserJet 1020 driver\English\SDhp1020.chm
+[ 6-30-2015 11:44:24:899]- LOG(9A8): Copy file C:\Users\test\AppData\Local\Temp\7zS4A05\\English\SDhp1020.SDD to C:\Program Files\HP\HP LaserJet 1020 driver\English\SDhp1020.SDD
+[ 6-30-2015 11:44:24:901]- LOG(9A8): Copy file C:\Users\test\AppData\Local\Temp\7zS4A05\\English\SUhp1020.ent to C:\Program Files\HP\HP LaserJet 1020 driver\English\SUhp1020.ent
+[ 6-30-2015 11:44:24:903]- LOG(9A8): Copy file C:\Users\test\AppData\Local\Temp\7zS4A05\\English\ZShp1018.chm to C:\Program Files\HP\HP LaserJet 1020 driver\English\ZShp1018.chm
+[ 6-30-2015 11:44:24:906]- LOG(9A8): Copy file C:\Users\test\AppData\Local\Temp\7zS4A05\\English\ZShp1020.chm to C:\Program Files\HP\HP LaserJet 1020 driver\English\ZShp1020.chm
+[ 6-30-2015 11:44:24:908]- LOG(9A8): Copy file C:\Users\test\AppData\Local\Temp\7zS4A05\\English\zshp1020s.dll to C:\Program Files\HP\HP LaserJet 1020 driver\English\zshp1020s.dll
+[ 6-30-2015 11:44:24:913]- LOG(9A8): Copy file C:\Users\test\AppData\Local\Temp\7zS4A05\\hp1018.img to C:\Program Files\HP\HP LaserJet 1020 driver\hp1018.img
+[ 6-30-2015 11:44:24:932]- LOG(9A8): Copy file C:\Users\test\AppData\Local\Temp\7zS4A05\\hp1020.img to C:\Program Files\HP\HP LaserJet 1020 driver\hp1020.img
+[ 6-30-2015 11:44:24:947]- LOG(9A8): Copy file C:\Users\test\AppData\Local\Temp\7zS4A05\\hp102032.cat to C:\Program Files\HP\HP LaserJet 1020 driver\hp102032.cat
+[ 6-30-2015 11:44:24:950]- LOG(9A8): Copy file C:\Users\test\AppData\Local\Temp\7zS4A05\\hp102064.cat to C:\Program Files\HP\HP LaserJet 1020 driver\hp102064.cat
+[ 6-30-2015 11:44:24:973]- LOG(9A8): Copy file C:\Users\test\AppData\Local\Temp\7zS4A05\\hp1022.img to C:\Program Files\HP\HP LaserJet 1020 driver\hp1022.img
+[ 6-30-2015 11:44:24:976]- LOG(9A8): Copy file C:\Users\test\AppData\Local\Temp\7zS4A05\\hp1022n.img to C:\Program Files\HP\HP LaserJet 1020 driver\hp1022n.img
+[ 6-30-2015 11:44:24:998]- LOG(9A8): Copy file C:\Users\test\AppData\Local\Temp\7zS4A05\\HPLJ1020.INF to C:\Program Files\HP\HP LaserJet 1020 driver\HPLJ1020.INF
+[ 6-30-2015 11:44:25:001]- LOG(9A8): Copy file C:\Users\test\AppData\Local\Temp\7zS4A05\\license.txt to C:\Program Files\HP\HP LaserJet 1020 driver\license.txt
+[ 6-30-2015 11:44:25:004]- LOG(9A8): Copy file C:\Users\test\AppData\Local\Temp\7zS4A05\\License7z.txt to C:\Program Files\HP\HP LaserJet 1020 driver\License7z.txt
+[ 6-30-2015 11:44:25:006]- LOG(9A8): Copy file C:\Users\test\AppData\Local\Temp\7zS4A05\\ProductInst.exe to C:\Program Files\HP\HP LaserJet 1020 driver\ProductInst.exe
+[ 6-30-2015 11:44:25:023]- LOG(9A8): Copy file C:\Users\test\AppData\Local\Temp\7zS4A05\\properties.ini to C:\Program Files\HP\HP LaserJet 1020 driver\properties.ini
+[ 6-30-2015 11:44:25:027]- LOG(9A8): CopyFilterFiles(*.*, C:\Users\test\AppData\Local\Temp\7zS4A05\\Russian, C:\Program Files\HP\HP LaserJet 1020 driver\Russian)
+[ 6-30-2015 11:44:25:028]- LOG(9A8): Copy file C:\Users\test\AppData\Local\Temp\7zS4A05\\Russian\SDhp1018.chm to C:\Program Files\HP\HP LaserJet 1020 driver\Russian\SDhp1018.chm
+[ 6-30-2015 11:44:25:031]- LOG(9A8): Copy file C:\Users\test\AppData\Local\Temp\7zS4A05\\Russian\SDhp1020.chm to C:\Program Files\HP\HP LaserJet 1020 driver\Russian\SDhp1020.chm
+[ 6-30-2015 11:44:25:033]- LOG(9A8): Copy file C:\Users\test\AppData\Local\Temp\7zS4A05\\Russian\SDhp1020.SDD to C:\Program Files\HP\HP LaserJet 1020 driver\Russian\SDhp1020.SDD
+[ 6-30-2015 11:44:25:036]- LOG(9A8): Copy file C:\Users\test\AppData\Local\Temp\7zS4A05\\Russian\SUhp1020.ent to C:\Program Files\HP\HP LaserJet 1020 driver\Russian\SUhp1020.ent
+[ 6-30-2015 11:44:25:039]- LOG(9A8): Copy file C:\Users\test\AppData\Local\Temp\7zS4A05\\Russian\ZShp1018.chm to C:\Program Files\HP\HP LaserJet 1020 driver\Russian\ZShp1018.chm
+[ 6-30-2015 11:44:25:042]- LOG(9A8): Copy file C:\Users\test\AppData\Local\Temp\7zS4A05\\Russian\ZShp1020.chm to C:\Program Files\HP\HP LaserJet 1020 driver\Russian\ZShp1020.chm
+[ 6-30-2015 11:44:25:044]- LOG(9A8): Copy file C:\Users\test\AppData\Local\Temp\7zS4A05\\Russian\zshp1020s.dll to C:\Program Files\HP\HP LaserJet 1020 driver\Russian\zshp1020s.dll
+[ 6-30-2015 11:44:25:049]- LOG(9A8): Copy file C:\Users\test\AppData\Local\Temp\7zS4A05\\Setup.exe to C:\Program Files\HP\HP LaserJet 1020 driver\Setup.exe
+[ 6-30-2015 11:44:25:052]- LOG(9A8): Copy file C:\Users\test\AppData\Local\Temp\7zS4A05\\Strings.dll to C:\Program Files\HP\HP LaserJet 1020 driver\Strings.dll
+[ 6-30-2015 11:44:25:057]- LOG(9A8): Copy file C:\Users\test\AppData\Local\Temp\7zS4A05\\SUHP1020.VER to C:\Program Files\HP\HP LaserJet 1020 driver\SUHP1020.VER
+[ 6-30-2015 11:44:25:060]- LOG(9A8): _PostProgressMessage hWnd=0x80576 msg=1125, param=13074
+[ 6-30-2015 11:44:25:061]- LOG(9A8): Preinstalling inf C:\Users\test\AppData\Local\Temp\7zS4A05\HPLJ1020.INF
+[ 6-30-2015 11:44:25:062]- LOG(1508): IDLCProgressDlg::OnCurrentProgressMsg()
+[ 6-30-2015 11:44:25:063]- LOG(1508):    msg=??????????????? ????????? ?????? ????????...
+[ 6-30-2015 11:44:25:063]- LOG(9A8): PreInstallDriverFiles()
+[ 6-30-2015 11:44:25:064]- LOG(9A8): _PreInstallDriverFiles()
+[ 6-30-2015 11:44:25:065]- LOG(9A8):   inf:C:\Users\test\AppData\Local\Temp\7zS4A05\HPLJ1020.INF
+[ 6-30-2015 11:44:26:915]- LOG(9A8):   DriverPackagePreinstall = 0, flags=0x15
+[ 6-30-2015 11:44:26:916]- LOG(9A8): InstallSequencer() step = 6
+[ 6-30-2015 11:44:26:918]- LOG(9A8): --- InstallUsbStep --- PROP_PRINTER_NAME: HP LaserJet 1020 Series
+[ 6-30-2015 11:44:26:919]- LOG(9A8): FindInstalledPrinters(driverList 5 elements)
+[ 6-30-2015 11:44:26:922]- LOG(9A8): == Searching installed printers for our driver names...
+[ 6-30-2015 11:44:26:923]- LOG(9A8):   Driver name: HP LaserJet 1020
+[ 6-30-2015 11:44:26:925]- LOG(9A8):   Driver name: HP LaserJet 1022
+[ 6-30-2015 11:44:26:926]- LOG(9A8):   Driver name: HP LaserJet 1022n
+[ 6-30-2015 11:44:26:927]- LOG(9A8):   Driver name: HP LaserJet 1022nw
+[ 6-30-2015 11:44:26:928]- LOG(9A8):   Driver name: HP LaserJet 1018
+[ 6-30-2015 11:44:26:930]- LOG(9A8):   -Installed Driver name: Microsoft XPS Document Writer v4
+[ 6-30-2015 11:44:26:931]- LOG(9A8):   -Installed Driver name: HP ePrint
+[ 6-30-2015 11:44:26:932]- LOG(9A8):   -Installed Driver name: Foxit PhantomPDF Printer Driver
+[ 6-30-2015 11:44:26:934]- LOG(9A8):   -Installed Driver name: Microsoft Shared Fax Driver
+[ 6-30-2015 11:44:26:935]- LOG(9A8):  Found NO printers with our drivername
+[ 6-30-2015 11:44:26:937]- LOG(9A8): SetDriverPackageInfPath(C:\Users\test\AppData\Local\Temp\7zS4A05\HPLJ1020.INF)
+[ 6-30-2015 11:44:26:940]- LOG(9A8): SetScanInfPath()
+[ 6-30-2015 11:44:26:941]- LOG(9A8): SetEwsInfPath()
+[ 6-30-2015 11:44:26:943]- LOG(9A8): SetFaxInfPath()
+[ 6-30-2015 11:44:26:945]- LOG(9A8): SetFaxPrintInfPath()
+[ 6-30-2015 11:44:26:947]- LOG(9A8): _PostProgressMessage hWnd=0x80576 msg=1125, param=13071
+[ 6-30-2015 11:44:26:949]- LOG(9A8): _PostProgressMessage hWnd=0x80576 msg=1129, param=0
+[ 6-30-2015 11:44:26:951]- LOG(1508): IDLCProgressDlg::OnCurrentProgressMsg()
+[ 6-30-2015 11:44:26:952]- LOG(9A8): _PostProgressMessage hWnd=0x80576 msg=1133, param=0
+[ 6-30-2015 11:44:26:954]- LOG(1508):    msg=???????? ??????????? ??????????.
+[ 6-30-2015 11:44:26:956]- LOG(1508): IDLCProgressDlg::OnStopCurrentProgress()
+[ 6-30-2015 11:44:26:958]- LOG(1508): IDLCProgressDlg::OnResetCurrentProgress()
+[ 6-30-2015 11:44:26:986]- LOG(9A8): Inside CConnectDlg -- SetTime to Waiting for PnP...
+[ 6-30-2015 11:44:27:680]- LOG(9A8): IsNewDeviceConnected(vidpidList with 5 elements)
+[ 6-30-2015 11:44:27:681]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2b17)
+[ 6-30-2015 11:44:27:682]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:27:684]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2c17)
+[ 6-30-2015 11:44:27:685]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:27:686]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2d17)
+[ 6-30-2015 11:44:27:687]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:27:688]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_3017)
+[ 6-30-2015 11:44:27:689]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:27:690]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_4117)
+[ 6-30-2015 11:44:27:691]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:28:381]- LOG(9A8): IsNewDeviceConnected(vidpidList with 5 elements)
+[ 6-30-2015 11:44:28:382]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2b17)
+[ 6-30-2015 11:44:28:383]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:28:385]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2c17)
+[ 6-30-2015 11:44:28:386]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:28:387]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2d17)
+[ 6-30-2015 11:44:28:388]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:28:389]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_3017)
+[ 6-30-2015 11:44:28:390]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:28:391]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_4117)
+[ 6-30-2015 11:44:28:392]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:29:084]- LOG(9A8): IsNewDeviceConnected(vidpidList with 5 elements)
+[ 6-30-2015 11:44:29:085]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2b17)
+[ 6-30-2015 11:44:29:086]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:29:087]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2c17)
+[ 6-30-2015 11:44:29:088]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:29:089]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2d17)
+[ 6-30-2015 11:44:29:089]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:29:090]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_3017)
+[ 6-30-2015 11:44:29:091]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:29:092]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_4117)
+[ 6-30-2015 11:44:29:093]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:29:787]- LOG(9A8): IsNewDeviceConnected(vidpidList with 5 elements)
+[ 6-30-2015 11:44:29:788]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2b17)
+[ 6-30-2015 11:44:29:789]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:29:790]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2c17)
+[ 6-30-2015 11:44:29:791]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:29:792]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2d17)
+[ 6-30-2015 11:44:29:793]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:29:794]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_3017)
+[ 6-30-2015 11:44:29:795]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:29:796]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_4117)
+[ 6-30-2015 11:44:29:797]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:30:502]- LOG(9A8): IsNewDeviceConnected(vidpidList with 5 elements)
+[ 6-30-2015 11:44:30:503]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2b17)
+[ 6-30-2015 11:44:30:504]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:30:505]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2c17)
+[ 6-30-2015 11:44:30:505]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:30:506]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2d17)
+[ 6-30-2015 11:44:30:507]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:30:508]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_3017)
+[ 6-30-2015 11:44:30:509]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:30:510]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_4117)
+[ 6-30-2015 11:44:30:511]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:31:193]- LOG(9A8): IsNewDeviceConnected(vidpidList with 5 elements)
+[ 6-30-2015 11:44:31:194]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2b17)
+[ 6-30-2015 11:44:31:195]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:31:196]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2c17)
+[ 6-30-2015 11:44:31:197]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:31:198]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2d17)
+[ 6-30-2015 11:44:31:199]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:31:200]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_3017)
+[ 6-30-2015 11:44:31:200]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:31:201]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_4117)
+[ 6-30-2015 11:44:31:202]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:31:898]- LOG(9A8): IsNewDeviceConnected(vidpidList with 5 elements)
+[ 6-30-2015 11:44:31:899]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2b17)
+[ 6-30-2015 11:44:31:900]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:31:901]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2c17)
+[ 6-30-2015 11:44:31:902]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:31:903]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2d17)
+[ 6-30-2015 11:44:31:904]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:31:905]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_3017)
+[ 6-30-2015 11:44:31:906]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:31:906]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_4117)
+[ 6-30-2015 11:44:31:907]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:32:603]- LOG(9A8): IsNewDeviceConnected(vidpidList with 5 elements)
+[ 6-30-2015 11:44:32:604]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2b17)
+[ 6-30-2015 11:44:32:605]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:32:606]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2c17)
+[ 6-30-2015 11:44:32:607]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:32:608]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2d17)
+[ 6-30-2015 11:44:32:608]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:32:609]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_3017)
+[ 6-30-2015 11:44:32:610]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:32:611]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_4117)
+[ 6-30-2015 11:44:32:612]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:33:306]- LOG(9A8): IsNewDeviceConnected(vidpidList with 5 elements)
+[ 6-30-2015 11:44:33:307]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2b17)
+[ 6-30-2015 11:44:33:308]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:33:309]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2c17)
+[ 6-30-2015 11:44:33:310]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:33:311]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2d17)
+[ 6-30-2015 11:44:33:311]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:33:312]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_3017)
+[ 6-30-2015 11:44:33:313]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:33:314]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_4117)
+[ 6-30-2015 11:44:33:315]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:34:016]- LOG(9A8): IsNewDeviceConnected(vidpidList with 5 elements)
+[ 6-30-2015 11:44:34:017]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2b17)
+[ 6-30-2015 11:44:34:018]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:34:019]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2c17)
+[ 6-30-2015 11:44:34:020]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:34:021]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2d17)
+[ 6-30-2015 11:44:34:021]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:34:022]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_3017)
+[ 6-30-2015 11:44:34:023]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:34:024]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_4117)
+[ 6-30-2015 11:44:34:025]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:34:720]- LOG(9A8): IsNewDeviceConnected(vidpidList with 5 elements)
+[ 6-30-2015 11:44:34:721]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2b17)
+[ 6-30-2015 11:44:34:722]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:34:723]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2c17)
+[ 6-30-2015 11:44:34:724]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:34:724]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2d17)
+[ 6-30-2015 11:44:34:725]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:34:726]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_3017)
+[ 6-30-2015 11:44:34:727]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:34:728]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_4117)
+[ 6-30-2015 11:44:34:729]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:35:421]- LOG(9A8): IsNewDeviceConnected(vidpidList with 5 elements)
+[ 6-30-2015 11:44:35:422]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2b17)
+[ 6-30-2015 11:44:35:423]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:35:424]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2c17)
+[ 6-30-2015 11:44:35:425]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:35:426]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2d17)
+[ 6-30-2015 11:44:35:426]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:35:427]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_3017)
+[ 6-30-2015 11:44:35:428]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:35:429]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_4117)
+[ 6-30-2015 11:44:35:430]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:36:117]- LOG(9A8): IsNewDeviceConnected(vidpidList with 5 elements)
+[ 6-30-2015 11:44:36:118]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2b17)
+[ 6-30-2015 11:44:36:119]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:36:120]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2c17)
+[ 6-30-2015 11:44:36:121]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:36:122]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2d17)
+[ 6-30-2015 11:44:36:122]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:36:123]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_3017)
+[ 6-30-2015 11:44:36:124]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:36:125]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_4117)
+[ 6-30-2015 11:44:36:126]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:36:828]- LOG(9A8): IsNewDeviceConnected(vidpidList with 5 elements)
+[ 6-30-2015 11:44:36:829]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2b17)
+[ 6-30-2015 11:44:36:830]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:36:831]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2c17)
+[ 6-30-2015 11:44:36:832]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:36:832]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2d17)
+[ 6-30-2015 11:44:36:833]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:36:834]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_3017)
+[ 6-30-2015 11:44:36:835]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:36:836]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_4117)
+[ 6-30-2015 11:44:36:837]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:37:528]- LOG(9A8): IsNewDeviceConnected(vidpidList with 5 elements)
+[ 6-30-2015 11:44:37:529]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2b17)
+[ 6-30-2015 11:44:37:530]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:37:531]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2c17)
+[ 6-30-2015 11:44:37:532]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:37:533]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2d17)
+[ 6-30-2015 11:44:37:534]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:37:534]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_3017)
+[ 6-30-2015 11:44:37:535]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:37:536]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_4117)
+[ 6-30-2015 11:44:37:537]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:38:225]- LOG(9A8): IsNewDeviceConnected(vidpidList with 5 elements)
+[ 6-30-2015 11:44:38:226]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2b17)
+[ 6-30-2015 11:44:38:227]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:38:228]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2c17)
+[ 6-30-2015 11:44:38:229]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:38:230]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2d17)
+[ 6-30-2015 11:44:38:230]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:38:231]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_3017)
+[ 6-30-2015 11:44:38:232]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:38:233]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_4117)
+[ 6-30-2015 11:44:38:234]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:38:930]- LOG(9A8): IsNewDeviceConnected(vidpidList with 5 elements)
+[ 6-30-2015 11:44:38:931]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2b17)
+[ 6-30-2015 11:44:38:932]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:38:933]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2c17)
+[ 6-30-2015 11:44:38:934]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:38:935]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_2d17)
+[ 6-30-2015 11:44:38:936]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:38:936]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_3017)
+[ 6-30-2015 11:44:38:937]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:38:938]- LOG(9A8): _GetUSBDevice(index=0, vidpid=vid_03f0&pid_4117)
+[ 6-30-2015 11:44:38:939]- LOG(9A8): _GetUSBDevice first time so GetClassDevs
+[ 6-30-2015 11:44:39:126]- LOG(9A8): InstallSequencer() step = 8
+[ 6-30-2015 11:44:39:127]- LOG(9A8): TerminateProgressThrd(0x1d19540)
+[ 6-30-2015 11:44:39:128]- LOG(9A8): _PostProgressMessage hWnd=0x80576 msg=1124, param=0
+[ 6-30-2015 11:44:39:130]- LOG(1508): IDLCProgressDlg::OnTerminate()
+[ 2-22-2016 17:30:29:627]- LOG(2A9C): PRODUCTInst--
+[ 2-22-2016 17:30:29:627]- LOG(2A9C): InitProperties - retrieve props from file 'C:\Users\test\AppData\Local\Temp\7zS328D\properties.ini'
+[ 2-22-2016 17:30:29:627]- LOG(2A9C): Installer version: 1.0.5.3
+[ 2-22-2016 17:30:29:627]- LOG(2A9C):  --- Language IDs ---
+[ 2-22-2016 17:30:29:627]- LOG(2A9C):   User Default UI Language =   1049,   0x419
+[ 2-22-2016 17:30:29:627]- LOG(2A9C):   System Default UI Language = 1049,   0x419
+[ 2-22-2016 17:30:29:642]- LOG(2A9C):   User Default Language ID =   1033,   0x409
+[ 2-22-2016 17:30:29:642]- LOG(2A9C):   System Default Language ID = 1049,   0x419
+[ 2-22-2016 17:30:29:642]- LOG(2A9C):   Language ID To Be Used =     1049,   0x419
+[ 2-22-2016 17:30:29:642]- LOG(2A9C): Is64BitWindows()
+[ 2-22-2016 17:30:29:642]- LOG(2A9C): Compiled as 64bit app so must be on 64 bit Windows.
+[ 2-22-2016 17:30:29:642]- LOG(2A9C): OS is 64 bit
+[ 2-22-2016 17:30:29:642]- LOG(2A9C): cmdline 'PRODUCTI'
+[ 2-22-2016 17:30:29:642]- LOG(2A9C): -\/\/\/- Properties -\/\/\/-
+[ 2-22-2016 17:30:29:642]- LOG(2A9C): PRINT_INFNAME = HPLJ1020.INF
+[ 2-22-2016 17:30:29:642]- LOG(2A9C): PRINT_VERNAME = SUHP1020.VER
+[ 2-22-2016 17:30:29:642]- LOG(2A9C): SHORT_PRINTER_NAME = HP LaserJet 1020 driver
+[ 2-22-2016 17:30:29:642]- LOG(2A9C): PRINTER_SERIES_NAME = HP LaserJet 1020 Series
+[ 2-22-2016 17:30:29:642]- LOG(2A9C): PRODUCT_VIDPID = vid_03f0&pid_2b17,vid_03f0&pid_2c17,vid_03f0&pid_2d17,vid_03f0&pid_3017,vid_03f0&pid_4117
+[ 2-22-2016 17:30:29:642]- LOG(2A9C): REG_INSTALLKEY = HP LaserJet 1020 Series
+[ 2-22-2016 17:30:29:642]- LOG(2A9C): ISRUNNING_MUTEX_NAME = HPLaserJet1020InstallExists
+[ 2-22-2016 17:30:29:642]- LOG(2A9C): INSTALL_DIRECTORY = HP LaserJet 1020 driver
+[ 2-22-2016 17:30:29:642]- LOG(2A9C): -/\/\/\- Properties -/\/\/\-
+[ 2-22-2016 17:30:29:642]- LOG(2A9C): PRODUCT Installer ---------------------------------------------------
+[ 2-22-2016 17:30:29:642]- LOG(2A9C): InstallSequencer()
+[ 2-22-2016 17:30:29:642]- LOG(2A9C): InstallSequencer() step = 0
+[ 2-22-2016 17:30:29:642]- LOG(2A9C): InstallSequencer() step = 1
+[ 2-22-2016 17:30:29:642]- LOG(2A9C): --- InitializeStep ---
+[ 2-22-2016 17:30:29:642]- LOG(2A9C): GetLandDir - Russian
+[ 2-22-2016 17:30:29:642]- LOG(2A9C):   print inf:C:\Users\test\AppData\Local\Temp\7zS328D\HPLJ1020.INF
+[ 2-22-2016 17:30:29:642]- LOG(2A9C):   printer verion file: C:\Users\test\AppData\Local\Temp\7zS328D\SUHP1020.VER
+[ 2-22-2016 17:30:29:642]- LOG(2A9C):   printer series name: HP LaserJet 1020 Series
+[ 2-22-2016 17:30:29:658]- LOG(2A9C): GetPrinternamesFromINF()
+[ 2-22-2016 17:30:29:658]- LOG(2A9C): InstallSequencer() step = 3
+[ 2-22-2016 17:30:29:658]- LOG(2A9C): --- LicenseStep --- 
+[ 2-22-2016 17:30:29:658]- LOG(2A9C):  License file: 'C:\Users\test\AppData\Local\Temp\7zS328D\\license.txt'
+[ 2-22-2016 17:30:29:689]- LOG(2A9C): IDLCDialog::OnInitDialog() m_positionOnBottom=0, m_topmost=1, m_followPosition=0
+[ 2-22-2016 17:30:29:720]- LOG(2A9C): IDLCGenericTextDlg::OnInitDialog 
+[ 2-22-2016 17:30:29:720]- LOG(2A9C): Strings(): stringsDllPath: C:\Users\test\AppData\Local\Temp\7zS328D\strings.dll
+[ 2-22-2016 17:30:29:720]- LOG(2A9C): IDLCGenericTextDlg::OnInitDialog -- load text from file 'C:\Users\test\AppData\Local\Temp\7zS328D\\license.txt'
+[ 2-22-2016 17:30:29:720]- LOG(2A9C): Text is plain
+[ 2-22-2016 17:30:33:283]- LOG(2A9C):  -[ IDLCGenericTextDlg BUTTON 0 pressed ]-
+[ 2-22-2016 17:30:33:283]- LOG(2A9C): m_confirmedBtn = 2037, btnID = 2037, both are equal
+[ 2-22-2016 17:30:36:673]- LOG(2A9C): ProcessFailure(2) NEXT=0, BACK=1, CANCELED=2, FAILED=3
+[ 2-22-2016 17:30:36:673]- LOG(2A9C): InstallSequencer() step = 3
+[ 2-22-2016 17:30:36:689]- LOG(2A9C): --- LicenseStep ---  -/\ ROLLBACK /\-
+[ 2-22-2016 17:30:36:689]- LOG(2A9C): ProcessFailure(1) NEXT=0, BACK=1, CANCELED=2, FAILED=3
+[ 2-22-2016 17:30:36:689]- LOG(2A9C): InstallSequencer() step = 1
+[ 2-22-2016 17:30:36:689]- LOG(2A9C): --- InitializeStep ---
+[ 2-22-2016 17:30:36:689]- LOG(2A9C): ProcessFailure(1) NEXT=0, BACK=1, CANCELED=2, FAILED=3
+[ 2-22-2016 17:30:36:689]- LOG(2A9C): InstallSequencer() step = 0
+[ 2-22-2016 17:30:36:689]- LOG(2A9C): InstallSequencer() step = 8
+[ 2-22-2016 17:30:36:689]- LOG(2A9C): TerminateProgressThrd(0)
