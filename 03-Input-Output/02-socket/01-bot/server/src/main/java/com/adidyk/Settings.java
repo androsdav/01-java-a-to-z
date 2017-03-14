@@ -1,6 +1,8 @@
 package com.adidyk;
 
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 public class Settings {
@@ -16,8 +18,13 @@ public class Settings {
         }
     }
 
-    public String getValue(String key) {
-        return this.prs.getProperty(key);
+    public void test() {
+        for (Map.Entry map : this.prs.entrySet()) {
+            System.out.println(map.getKey());
+            System.out.println(map.getValue());
+        }
     }
+
+
 
 }
