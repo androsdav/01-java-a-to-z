@@ -12,23 +12,27 @@ public class Server {
     private DataOutputStream out;
     private Command command;
     private MenuServer menu;
+    private Settings setting;
 
     // Constructor
-    //private Server(Socket socket) throws IOException {
-    //    this.socket = socket;
-    //}
+    private Server(){
+        this.setting = new Settings();
+    }
+
+    // Constructor
+    private Server(Socket socket) throws IOException {
+        this.socket = socket;
+    }
 
     // loadConfig - loading settings from file "app.properties"
     private void loadConfig() throws IOException {
-        Settings setting = new Settings();
         ClassLoader loader = Settings.class.getClassLoader();
         try (InputStream is = loader.getResourceAsStream("app.properties")) {
-            setting.load(is);
-            //new Constant(setting);
+            this.setting.load(is);
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         }
-        setting.test();
+        //setting.test();
     }
 
     // start - start to work with server
@@ -72,9 +76,9 @@ public class Server {
     // main - just main ;)
     public static void main(String[] args) throws IOException {
         new Server().loadConfig();
-       // try (Socket socket = new ServerSocket(PORT).accept()) {
-       //     new Server(socket).start();
-       // }
+        try (Socket socket = new ServerSocket(PORT).accept()) {
+            new Server(socket).start();
+        }
     }
 
 }
