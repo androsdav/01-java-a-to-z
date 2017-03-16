@@ -9,14 +9,14 @@ public class MenuServer {
 
     private DataInputStream in;
     private DataOutputStream out;
-    private StringBuffer way;
+    private Settings setting;
     private Map<String, UserAction> actions = new HashMap<>();
 
     // Constructor
-    public MenuServer(DataInputStream in, DataOutputStream out, StringBuffer root) {
+    public MenuServer(DataInputStream in, DataOutputStream out, Settings setting) {
         this.in = in;
         this.out = out;
-        this.way = root;
+        this.setting = setting;
     }
 
     // fillAction - fill actions

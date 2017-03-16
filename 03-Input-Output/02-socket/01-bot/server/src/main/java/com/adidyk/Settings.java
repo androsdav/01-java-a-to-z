@@ -17,6 +17,10 @@ public class Settings {
         }
     }
 
+    public String getValue(String key) {
+        return this.prop.getProperty(key);
+    }
+
     public Properties getProperties () {
         return this.prop;
 
