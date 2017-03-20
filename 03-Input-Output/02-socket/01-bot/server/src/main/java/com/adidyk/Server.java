@@ -80,7 +80,11 @@ public class Server {
         new Server().loadConfig();
         try (Socket socket = new ServerSocket(PORT).accept()) {
             new Server(socket).start();
+
         }
+        //try (Socket socket = new ServerSocket(PORT).accept()) {
+        //    new Server(socket).start();
+        //}
     }
 
 }
