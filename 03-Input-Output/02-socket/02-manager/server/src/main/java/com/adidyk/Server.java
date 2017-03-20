@@ -61,7 +61,7 @@ public class Server {
         this.menu.select(this.command);
     }
 
-    // work - working with client
+    // work - working with client test
     private void work() throws IOException {
         String string;
         do {
