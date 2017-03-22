@@ -12,10 +12,10 @@ public class Constant {
     Constant(Settings set) {
         IP = set.getValue("app.ip");
         PORT = Integer.parseInt(set.getValue("app.port"));
-        ROOT = set.getValue("app.root");
-        SEPARATOR = System.getProperty(set.getValue("app.separator"));
-        FROM = set.getValue("app.from");
-        HELP = set.getValue("app.help");
-        SIZE = Integer.parseInt(set.getValue("app.size"));
+        //ROOT = set.getValue("app.root");
+        //SEPARATOR = System.getProperty(set.getValue("app.separator"));
+        //FROM = set.getValue("app.from");
+        //HELP = set.getValue("app.help");
+        //SIZE = Integer.parseInt(set.getValue("app.size"));
     }
 }

@@ -5,11 +5,11 @@ import java.util.Properties;
 
 public class Settings {
 
-    private final Properties prs = new Properties();
+    private final Properties prop = new Properties();
 
     public void load(InputStream io) {
         try {
-            this.prs.load(io);
+            this.prop.load(io);
         }
         catch (Exception ex) {
             ex.printStackTrace();
@@ -17,7 +17,11 @@ public class Settings {
     }
 
     public String getValue(String key) {
-        return this.prs.getProperty(key);
+        return this.prop.getProperty(key);
+    }
+
+    public Properties getProp() {
+        return this.prop;
     }
 
 }

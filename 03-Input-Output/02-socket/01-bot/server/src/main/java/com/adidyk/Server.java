@@ -8,13 +8,15 @@ import static com.adidyk.Constant.*;
 public class Server {
 
     private Socket socket;
-    private DataInputStream in;
-    private DataOutputStream out;
-    private Command command;
-    private MenuServer menu;
+    private BufferedReader in;
+    private PrintWriter out;
+    //private Command command;
+    //private MenuServer menu;
+    private Settings setting;
 
     // Constructor
-    private Server() {
+    private Server(Settings setting) {
+        this.setting = setting;
     }
 
     // Constructor
@@ -24,11 +26,13 @@ public class Server {
 
     // loadConfig - loading settings from file "app.properties"
     private void loadConfig() throws IOException {
-        Settings setting = new Settings();
+        //Settings setting = new Settings();
         ClassLoader loader = Settings.class.getClassLoader();
-        try (InputStream is = loader.getResourceAsStream("app.properties")) {
-            setting.load(is);
-            new Constant(setting);
+        try (InputStream app = loader.getResourceAsStream("app.properties");
+            InputStream oracle = loader.getResourceAsStream("oracle.properties")) {
+            this.setting.load(app);
+            new Constant(this.setting);
+            this.setting.load(oracle);
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         }
@@ -43,38 +47,32 @@ public class Server {
 
     // init - initialization parameters
     private void init() throws IOException {
-        this.in = new DataInputStream(this.socket.getInputStream());
-        this.out = new DataOutputStream(this.socket.getOutputStream());
-        this.menu = new MenuServer(this.in, this.out, new StringBuffer((ROOT)));
-        this.command = new Command();
+       this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
+       this.out = new PrintWriter(this.socket.getOutputStream());
     }
 
     // connect - the result of connection server
     private void connect() throws IOException {
-        this.out.writeUTF("\n ------------------------------------------------------------------");
-        this.out.writeUTF("  S E R V E R");
-        this.out.writeUTF(" ------------------------------------------------------------------");
-        this.out.writeUTF("\n [Info]: server is connected ...");
-        this.out.writeUTF(" [Info]: server has next console commands ...");
-        this.menu.fillAction();
-        this.command.setCommand(HELP);
-        this.menu.select(this.command);
+        this.out.print("\n ------------------------------------------------------------------");
+        this.out.print("  S E R V E R");
+        this.out.print(" ------------------------------------------------------------------");
+        this.out.print("\n [Info]: server is connected ...");
+        this.out.print(" [Info]: server has next console commands ...");
     }
 
     // work - working with client
     private void work() throws IOException {
-        String string;
+        String question;
         do {
-            this.menu.getWay();
-            string = this.in.readUTF();
-            this.command.setCommand(string);
-            this.menu.select(this.command);
-        } while (!"quit".equals(string));
+            question = in.readLine();
+            out.println(question + "test");
+        } while (!"quit".equals(question));
     }
 
     // main - just main ;)
     public static void main(String[] args) throws IOException {
-        new Server().loadConfig();
+        Settings setting = new Settings();
+        new Server(setting).loadConfig();
         try (Socket socket = new ServerSocket(PORT).accept()) {
             new Server(socket).start();
         }
