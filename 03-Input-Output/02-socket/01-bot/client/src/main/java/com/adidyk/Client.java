@@ -8,9 +8,9 @@ import static com.adidyk.Constant.*;
 public class Client {
 
     private Socket socket;
-    private BufferedReader in;
-    private PrintWriter out;
-    private BufferedReader br;
+    private DataInputStream in;
+    private DataOutputStream out;
+    private BufferedReader console;
 
     // Constructor
     private Client() throws IOException {
@@ -42,20 +42,20 @@ public class Client {
 
     // init - initialization parameters
     private void init() throws IOException {
-        this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
-        this.out = new PrintWriter(this.socket.getOutputStream(), true);
-        this.br = new BufferedReader(new InputStreamReader(System.in));
+        this.in = new DataInputStream(this.socket.getInputStream());
+        this.out = new DataOutputStream(this.socket.getOutputStream());
+        this.console = new BufferedReader(new InputStreamReader(System.in));
         //this.menu = new MenuClient(this.in, this.out);
         //this.command = new Command();
     }
 
     // connect - the result of connection server
     private void connect() throws IOException {
-        System.out.println(this.in.readLine());
-        System.out.println(this.in.readLine());
-        System.out.println(this.in.readLine());
-        System.out.println(this.in.readLine());
-        System.out.println(this.in.readLine());
+        System.out.println(in.readUTF());
+        System.out.println(in.readUTF());
+        System.out.println(this.in.readUTF());
+        System.out.println(this.in.readUTF());
+        System.out.println(this.in.readUTF());
         //this.menu.fillAction();
         //this.command.setCommand(HELP);
         //this.menu.select(this.command);
@@ -65,9 +65,15 @@ public class Client {
     private void work() throws IOException {
         String string;
             do {
-                while (!(string = this.in.readLine()).isEmpty()) {
-                    System.out.println(string);
-                }
+                System.out.print(CLIENT);
+                string = this.console.readLine();
+                this.out.writeUTF(string);
+                //this.out.println(string);
+                //string = this.in.readLine();
+                //System.out.println(string);
+                //while (!(string = this.in.readLine()).isEmpty()) {
+                //    System.out.println(string);
+               // }
 
               //  menu.getway();
               //  string = this.br.readLine();

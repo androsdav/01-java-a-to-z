@@ -8,8 +8,8 @@ import static com.adidyk.Constant.*;
 public class Server {
 
     private Socket socket;
-    private BufferedReader in;
-    private PrintWriter out;
+    private DataInputStream in;
+    private DataOutputStream out;
     //private Command command;
     //private MenuServer menu;
     private Settings setting;
@@ -47,26 +47,27 @@ public class Server {
 
     // init - initialization parameters
     private void init() throws IOException {
-       this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
-       this.out = new PrintWriter(this.socket.getOutputStream());
+       this.in = new DataInputStream(this.socket.getInputStream());
+       this.out = new DataOutputStream(this.socket.getOutputStream());
     }
 
     // connect - the result of connection server
     private void connect() throws IOException {
-        this.out.print("\n ------------------------------------------------------------------");
-        this.out.print("  S E R V E R");
-        this.out.print(" ------------------------------------------------------------------");
-        this.out.print("\n [Info]: server is connected ...");
-        this.out.print(" [Info]: server has next console commands ...");
+        this.out.writeUTF("\n ------------------------------------------------------------------");
+        this.out.writeUTF("  S E R V E R - B O T");
+        this.out.writeUTF(" ------------------------------------------------------------------");
+        this.out.writeUTF("\n [Info]: server-bot is connected ...");
+        this.out.writeUTF(" [Info]: for exit input next wordserver has next console commands ...");
     }
 
     // work - working with client
     private void work() throws IOException {
         String question;
         do {
-            question = in.readLine();
-            out.println(question + "test");
-        } while (!"quit".equals(question));
+     //       System.out.println("Waiting command ...");
+     //       question = in.readLine();
+     //       out.println(question + "test");
+        } while (true); //while (!"quit".equals(question));
     }
 
     // main - just main ;)

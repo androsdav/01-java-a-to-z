@@ -3,6 +3,7 @@ package com.adidyk;
 public class Constant {
     static String IP;
     static int PORT;
+    static String CLIENT;
     static String ROOT;
     static String SEPARATOR;
     static String FROM;
@@ -12,6 +13,7 @@ public class Constant {
     Constant(Settings set) {
         IP = set.getValue("app.ip");
         PORT = Integer.parseInt(set.getValue("app.port"));
+        CLIENT = set.getValue("app.client");
         //ROOT = set.getValue("app.root");
         //SEPARATOR = System.getProperty(set.getValue("app.separator"));
         //FROM = set.getValue("app.from");
