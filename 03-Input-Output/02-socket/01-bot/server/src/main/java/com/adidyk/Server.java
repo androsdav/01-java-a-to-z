@@ -64,10 +64,11 @@ public class Server {
     private void work() throws IOException {
         String question;
         do {
+            question = this.in.readUTF();
      //       System.out.println("Waiting command ...");
      //       question = in.readLine();
      //       out.println(question + "test");
-        } while (true); //while (!"quit".equals(question));
+        } while (!"quit".equals(question));
     }
 
     // main - just main ;)

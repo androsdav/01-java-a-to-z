@@ -65,7 +65,7 @@ public class Client {
     private void work() throws IOException {
         String string;
             do {
-                System.out.print(CLIENT);
+                System.out.print(" " + CLIENT);
                 string = this.console.readLine();
                 this.out.writeUTF(string);
                 //this.out.println(string);
@@ -74,7 +74,6 @@ public class Client {
                 //while (!(string = this.in.readLine()).isEmpty()) {
                 //    System.out.println(string);
                // }
-
               //  menu.getway();
               //  string = this.br.readLine();
               //  this.out.writeUTF(string);
