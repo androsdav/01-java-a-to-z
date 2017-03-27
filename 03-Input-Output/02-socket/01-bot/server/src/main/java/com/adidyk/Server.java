@@ -26,13 +26,14 @@ public class Server {
 
     // loadConfig - loading settings from file "app.properties"
     private void loadConfig() throws IOException {
-        //Settings setting = new Settings();
+        Settings settApp = new Settings();
         ClassLoader loader = Settings.class.getClassLoader();
         try (InputStream app = loader.getResourceAsStream("app.properties");
             InputStream oracle = loader.getResourceAsStream("oracle.properties")) {
-            this.setting.load(app);
-            new Constant(this.setting);
+            settApp.load(app);
+            new Constant(settApp);
             this.setting.load(oracle);
+            this.setting.getAllKey();
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         }
@@ -65,6 +66,7 @@ public class Server {
         String question;
         do {
             question = this.in.readUTF();
+           // this.setting.getAllKey();
      //       System.out.println("Waiting command ...");
      //       question = in.readLine();
      //       out.println(question + "test");

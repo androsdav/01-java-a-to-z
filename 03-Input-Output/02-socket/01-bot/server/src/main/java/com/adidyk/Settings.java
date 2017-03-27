@@ -1,6 +1,7 @@
 package com.adidyk;
 
 import java.io.InputStream;
+import java.util.Enumeration;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -23,10 +24,17 @@ public class Settings {
     }
 
     public void getAllKey() {
-       /// Set<String> keys = this.prop.keySet();
-        for (Map.Entry<String, String> item : this.prop.entrySet()) {
+        Enumeration <?> e = this.prop.propertyNames();
+        while(e.hasMoreElements()) {
+            String key = (String)e.nextElement();
+            String value = this.prop.getProperty(key);
+            System.out.println(key +" = " +value);
 
         }
+       /// Set<String> keys = this.prop.keySet();
+       // for (Map.Entry<String, String> item : this.prop.entrySet()) {
+
+        //}
 
     }
 
