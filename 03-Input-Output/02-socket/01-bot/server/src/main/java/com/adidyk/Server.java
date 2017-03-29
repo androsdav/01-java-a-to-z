@@ -33,7 +33,7 @@ public class Server {
             settApp.load(app);
             new Constant(settApp);
             this.setting.load(oracle);
-            this.setting.getAllKey();
+            this.setting.setHashMap();
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         }
