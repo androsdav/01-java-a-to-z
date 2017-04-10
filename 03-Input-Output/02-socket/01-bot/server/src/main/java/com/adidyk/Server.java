@@ -10,13 +10,10 @@ public class Server {
     private Socket socket;
     private DataInputStream in;
     private DataOutputStream out;
-    //private Command command;
-    //private MenuServer menu;
-    private Settings setting;
+    private Bot bot;
 
     // Constructor
-    private Server(Settings setting) {
-        this.setting = setting;
+    private Server() {
     }
 
     // Constructor
@@ -26,14 +23,11 @@ public class Server {
 
     // loadConfig - loading settings from file "app.properties"
     private void loadConfig() throws IOException {
-        Settings settApp = new Settings();
+        Settings setting = new Settings();
         ClassLoader loader = Settings.class.getClassLoader();
-        try (InputStream app = loader.getResourceAsStream("app.properties");
-            InputStream oracle = loader.getResourceAsStream("oracle.properties")) {
-            settApp.load(app);
-            new Constant(settApp);
-            this.setting.load(oracle);
-            this.setting.setHashMap();
+        try (InputStream app = loader.getResourceAsStream("app.properties")) {
+            setting.load(app);
+            new Constant(setting);
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         }
@@ -50,6 +44,8 @@ public class Server {
     private void init() throws IOException {
        this.in = new DataInputStream(this.socket.getInputStream());
        this.out = new DataOutputStream(this.socket.getOutputStream());
+       this.bot = new Bot(this.in, this.out);
+       this.bot.loadAskAnswer();
     }
 
     // connect - the result of connection server
@@ -63,20 +59,16 @@ public class Server {
 
     // work - working with client
     private void work() throws IOException {
-        String question;
+        String ask;
         do {
-            question = this.in.readUTF();
-           // this.setting.getAllKey();
-     //       System.out.println("Waiting command ...");
-     //       question = in.readLine();
-     //       out.println(question + "test");
-        } while (!"quit".equals(question));
+            ask = this.in.readUTF();
+            bot.getAnswer(ask);
+        } while (!"quit".equals(ask));
     }
 
     // main - just main ;)
     public static void main(String[] args) throws IOException {
-        Settings setting = new Settings();
-        new Server(setting).loadConfig();
+        new Server().loadConfig();
         try (Socket socket = new ServerSocket(PORT).accept()) {
             new Server(socket).start();
         }

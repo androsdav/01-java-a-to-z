@@ -11,6 +11,7 @@ public class Client {
     private DataInputStream in;
     private DataOutputStream out;
     private BufferedReader console;
+    private Bot bot;
 
     // Constructor
     private Client() throws IOException {
@@ -45,8 +46,7 @@ public class Client {
         this.in = new DataInputStream(this.socket.getInputStream());
         this.out = new DataOutputStream(this.socket.getOutputStream());
         this.console = new BufferedReader(new InputStreamReader(System.in));
-        //this.menu = new MenuClient(this.in, this.out);
-        //this.command = new Command();
+        this.bot = new Bot(this.in, this.out);
     }
 
     // connect - the result of connection server
@@ -56,18 +56,16 @@ public class Client {
         System.out.println(this.in.readUTF());
         System.out.println(this.in.readUTF());
         System.out.println(this.in.readUTF());
-        //this.menu.fillAction();
-        //this.command.setCommand(HELP);
-        //this.menu.select(this.command);
     }
 
     // work - working with server
     private void work() throws IOException {
-        String string;
+        String ask;
             do {
                 System.out.print(" " + CLIENT);
-                string = this.console.readLine();
-                this.out.writeUTF(string);
+                ask = this.console.readLine();
+                this.out.writeUTF(ask);
+                this.bot.getAnswer();
                 //this.out.println(string);
                 //string = this.in.readLine();
                 //System.out.println(string);
@@ -79,7 +77,7 @@ public class Client {
               //  this.out.writeUTF(string);
               //  command.setCommand(string);
               //  menu.select(command);
-            } while (!"quit".equals(string));
+            } while (!"quit".equals(ask));
     }
 
     // main - just main ;)
