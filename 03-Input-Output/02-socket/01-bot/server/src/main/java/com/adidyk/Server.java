@@ -44,7 +44,7 @@ public class Server {
     private void init() throws IOException {
        this.in = new DataInputStream(this.socket.getInputStream());
        this.out = new DataOutputStream(this.socket.getOutputStream());
-       this.bot = new Bot(this.in, this.out);
+       this.bot = new Bot(this.out);
        this.bot.loadAskAnswer();
     }
 

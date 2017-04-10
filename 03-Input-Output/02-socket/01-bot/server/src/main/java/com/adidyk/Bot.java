@@ -10,11 +10,9 @@ import java.util.Properties;
 public class Bot {
 
     private Map<String, String> oracle = new HashMap<>();
-    private DataInputStream in;
     private DataOutputStream out;
 
-    public Bot(DataInputStream in, DataOutputStream out) {
-        this.in = in;
+    public Bot(DataOutputStream out) {
         this.out = out;
     }
 
@@ -36,12 +34,14 @@ public class Bot {
 
     public void getAnswer(String ask) throws IOException {
         if (this.oracle.containsKey(ask)) {
-            //this.out.writeBoolean(true);
+            this.out.writeBoolean(true);
             this.out.writeUTF(this.oracle.get(ask));
-            //System.out.println(this.oracle.get(ask));
+        } else {
+            this.out.writeBoolean(false);
         }
 
 
     }
 
 }
+

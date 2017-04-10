@@ -1,25 +1,24 @@
 package com.adidyk;
 
 import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
+
+import static com.adidyk.Constant.CLIENT;
 
 public class Bot {
 
     private DataInputStream in;
-    private DataOutputStream out;
 
-    public Bot (DataInputStream in, DataOutputStream out) {
+    public Bot (DataInputStream in) {
         this.in = in;
-        this.out = out;
     }
 
     public void getAnswer() throws IOException {
-        String answer = this.in.readUTF();
-        if (answer != null) {
-            System.out.println(answer);
+        if (this.in.readBoolean()) {
+            System.out.print(" " + CLIENT + this.in.readUTF());
         } else {
-            System.out.println("I do not know answer for your ask ... ");
+            System.out.println(" " + CLIENT + "I don`t know answer  for your ask ... ");
         }
     }
+
 }

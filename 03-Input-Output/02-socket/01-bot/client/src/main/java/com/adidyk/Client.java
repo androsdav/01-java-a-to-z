@@ -46,7 +46,7 @@ public class Client {
         this.in = new DataInputStream(this.socket.getInputStream());
         this.out = new DataOutputStream(this.socket.getOutputStream());
         this.console = new BufferedReader(new InputStreamReader(System.in));
-        this.bot = new Bot(this.in, this.out);
+        this.bot = new Bot(this.in);
     }
 
     // connect - the result of connection server
@@ -66,17 +66,6 @@ public class Client {
                 ask = this.console.readLine();
                 this.out.writeUTF(ask);
                 this.bot.getAnswer();
-                //this.out.println(string);
-                //string = this.in.readLine();
-                //System.out.println(string);
-                //while (!(string = this.in.readLine()).isEmpty()) {
-                //    System.out.println(string);
-               // }
-              //  menu.getway();
-              //  string = this.br.readLine();
-              //  this.out.writeUTF(string);
-              //  command.setCommand(string);
-              //  menu.select(command);
             } while (!"quit".equals(ask));
     }
 
