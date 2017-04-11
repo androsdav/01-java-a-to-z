@@ -43,9 +43,7 @@ public class Bot {
             for (Map.Entry<String, String> item : this.oracle.entrySet()) {
                 this.out.writeUTF(item.getKey());
             }
-
-        }
-        else {
+        } else {
             this.out.writeBoolean(false);
             this.out.writeUTF(" " + SERVER + " ");
         }
