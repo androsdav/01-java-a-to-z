@@ -68,7 +68,7 @@ public class Client {
                 System.out.print(" " + CLIENT + " ");
                 ask = this.console.readLine();
                 this.out.writeUTF(ask);
-                this.bot.getAnswer();
+                this.bot.getAnswer(ask);
             } while (!QUIT.equals(ask));
     }
 

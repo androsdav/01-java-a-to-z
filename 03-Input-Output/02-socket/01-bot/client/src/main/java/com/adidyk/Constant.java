@@ -5,6 +5,7 @@ public class Constant {
     static int PORT;
     static String CLIENT;
     static String QUIT;
+    static String HELP;
     static String NOT;
 
     Constant(Settings set) {
@@ -12,6 +13,7 @@ public class Constant {
         IP = set.getValue("app.ip");
         CLIENT = set.getValue("app.client");
         QUIT = set.getValue("app.quit");
+        HELP = set.getValue("app.help");
         NOT = set.getValue("app.not");
     }
 }
