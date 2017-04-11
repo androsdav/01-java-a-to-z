@@ -40,9 +40,8 @@ public class Bot {
             this.out.writeUTF(" " + SERVER + this.oracle.get(ask));
         } else {
             this.out.writeBoolean(false);
+            this.out.writeUTF(SERVER);
         }
-
-
     }
 
 }
