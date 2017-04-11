@@ -66,7 +66,7 @@ public class Client {
                 ask = this.console.readLine();
                 this.out.writeUTF(ask);
                 this.bot.getAnswer();
-            } while (!"quit".equals(ask));
+            } while (!QUIT.equals(ask));
     }
 
     // main - just main ;)

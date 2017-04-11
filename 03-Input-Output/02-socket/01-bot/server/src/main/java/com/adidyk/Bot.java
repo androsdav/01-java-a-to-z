@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import static com.adidyk.Constant.*;
+
 
 public class Bot {
 
@@ -27,7 +29,7 @@ public class Bot {
         while (e.hasMoreElements()) {
             String key = (String) e.nextElement();
             String value = prop.getProperty(key);
-            System.out.println(key + " = " + value);
+            //System.out.println(key + " = " + value);
             this.oracle.put(key, value);
         }
     }
@@ -35,7 +37,7 @@ public class Bot {
     public void getAnswer(String ask) throws IOException {
         if (this.oracle.containsKey(ask)) {
             this.out.writeBoolean(true);
-            this.out.writeUTF(this.oracle.get(ask));
+            this.out.writeUTF(" " + SERVER + this.oracle.get(ask));
         } else {
             this.out.writeBoolean(false);
         }

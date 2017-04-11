@@ -63,7 +63,7 @@ public class Server {
         do {
             ask = this.in.readUTF();
             bot.getAnswer(ask);
-        } while (!"quit".equals(ask));
+        } while (!QUIT.equals(ask));
     }
 
     // main - just main ;)

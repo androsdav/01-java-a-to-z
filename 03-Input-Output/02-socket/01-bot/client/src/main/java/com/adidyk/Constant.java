@@ -4,20 +4,12 @@ public class Constant {
     static String IP;
     static int PORT;
     static String CLIENT;
-    static String ROOT;
-    static String SEPARATOR;
-    static String FROM;
-    static String HELP;
-    static int SIZE;
+    static String QUIT;
 
     Constant(Settings set) {
-        IP = set.getValue("app.ip");
         PORT = Integer.parseInt(set.getValue("app.port"));
+        IP = set.getValue("app.ip");
         CLIENT = set.getValue("app.client");
-        //ROOT = set.getValue("app.root");
-        //SEPARATOR = System.getProperty(set.getValue("app.separator"));
-        //FROM = set.getValue("app.from");
-        //HELP = set.getValue("app.help");
-        //SIZE = Integer.parseInt(set.getValue("app.size"));
+        QUIT = set.getValue("app.quit");
     }
 }
