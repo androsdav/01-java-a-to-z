@@ -14,7 +14,6 @@ public class Settings {
         catch (Exception ex) {
             ex.printStackTrace();
         }
-
     }
 
     public String getValue(String key) {
