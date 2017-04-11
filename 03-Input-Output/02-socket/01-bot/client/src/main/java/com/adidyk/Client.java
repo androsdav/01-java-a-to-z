@@ -56,6 +56,8 @@ public class Client {
         System.out.println(this.in.readUTF());
         System.out.println(this.in.readUTF());
         System.out.println(this.in.readUTF());
+        System.out.println(this.in.readUTF());
+        System.out.println(this.in.readUTF());
     }
 
     // work - working with server

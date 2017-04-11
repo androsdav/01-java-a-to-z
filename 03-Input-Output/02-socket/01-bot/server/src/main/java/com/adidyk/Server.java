@@ -54,7 +54,9 @@ public class Server {
         this.out.writeUTF("  S E R V E R - B O T");
         this.out.writeUTF(" ------------------------------------------------------------------");
         this.out.writeUTF("\n [Info]: server-bot is connected ...");
-        this.out.writeUTF(" [Info]: for exit input next wordserver has next console commands ...");
+        this.out.writeUTF(" [Info]: server know next:");
+        this.out.writeUTF("\n [help] - return all question which server knows ");
+        this.out.writeUTF(" [quit] - disconnect from the server \n");
     }
 
     // work - working with client

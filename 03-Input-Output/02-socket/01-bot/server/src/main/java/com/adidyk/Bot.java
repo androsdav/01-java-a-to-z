@@ -29,7 +29,6 @@ public class Bot {
         while (e.hasMoreElements()) {
             String key = (String) e.nextElement();
             String value = prop.getProperty(key);
-            //System.out.println(key + " = " + value);
             this.oracle.put(key, value);
         }
     }
