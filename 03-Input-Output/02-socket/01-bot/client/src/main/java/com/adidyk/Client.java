@@ -64,7 +64,8 @@ public class Client {
     private void work() throws IOException {
         String ask;
             do {
-                System.out.print(" " + CLIENT);
+                System.out.println();
+                System.out.print(" " + CLIENT + " ");
                 ask = this.console.readLine();
                 this.out.writeUTF(ask);
                 this.bot.getAnswer();

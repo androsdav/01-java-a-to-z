@@ -36,10 +36,18 @@ public class Bot {
     public void getAnswer(String ask) throws IOException {
         if (this.oracle.containsKey(ask)) {
             this.out.writeBoolean(true);
-            this.out.writeUTF(" " + SERVER + this.oracle.get(ask));
-        } else {
+            this.out.writeUTF(" " + SERVER + " " + this.oracle.get(ask));
+        } else if (HELP.equals(ask)) {
+            this.out.writeUTF(HELP);
+            this.out.writeInt(this.oracle.size());
+            for (Map.Entry<String, String> item : this.oracle.entrySet()) {
+                this.out.writeUTF(item.getKey());
+            }
+
+        }
+        else {
             this.out.writeBoolean(false);
-            this.out.writeUTF(SERVER);
+            this.out.writeUTF(" " + SERVER + " ");
         }
     }
 

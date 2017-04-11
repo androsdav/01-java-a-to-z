@@ -5,11 +5,13 @@ public class Constant {
     static int PORT;
     static String CLIENT;
     static String QUIT;
+    static String NOT;
 
     Constant(Settings set) {
         PORT = Integer.parseInt(set.getValue("app.port"));
         IP = set.getValue("app.ip");
         CLIENT = set.getValue("app.client");
         QUIT = set.getValue("app.quit");
+        NOT = set.getValue("app.not");
     }
 }
