@@ -15,14 +15,11 @@ public class Find {
                     find(item.getPath());
                 } else if (item.isFile()) {
                     if (name.equals(item.getName())) {
-                        findTrue = true;
+                        //findTrue = true;
                         System.out.println(item.getPath());
                     }
                 }
             }
         }
-        //if (!findTrue) {
-        //    System.out.println("Find result: file not found");
-        //}
     }
 }
