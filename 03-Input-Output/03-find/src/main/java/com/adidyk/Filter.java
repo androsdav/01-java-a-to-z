@@ -11,10 +11,8 @@ public class Filter {
         filter = new FilenameFilter() {
             @Override
             public boolean accept(File dir, String name) {
-                if (dir.isFile()) {
-                    if (name.equals("pom.txt")) {
-                        return true;
-                    }
+                if ((dir.isFile() && name.equals("pom.txt")) || dir.isDirectory()) {
+                    return true;
                 } else {
                     return false;
                 }
