@@ -17,10 +17,10 @@ public class Find {
                 if (item.isDirectory()) {
                     find(item.getPath());
                 } else if (item.isFile()) {
-          //          if (name.equals(item.getName())) {
+                    if (name.equals(item.getName())) {
                         //findTrue = true;
                         System.out.println(item.getPath());
-            //        }
+                    }
                 }
             }
         }
