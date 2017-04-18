@@ -9,7 +9,7 @@ public class Find {
         File file = new File(root);
         boolean findTrue = false;
 
-        File[] items = file.listFiles(new Filter("1"));
+        File[] items = file.listFiles(new Filter("2"));
         if (items != null) {
             for (File item : items) {
                 if (item.isDirectory()) {
