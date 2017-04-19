@@ -10,12 +10,21 @@ public class Find {
         this.input = input;
     }
 
-    public void find(String root, String ) {
-
+    public void find(String root, String mask) {
         File file = new File(root);
-
         if (file.exists() && file.isDirectory()) {
+            File[] items = file.listFiles(new Filter(mask));
+            if (items != null) {
+                for (File item : items) {
+                    if (item.isDirectory()) {
+                        find(item.getParent(), mask);
 
+                    }
+                }
+            }
+
+        } else {
+            System.out.println("Directory not found");
         }
 
 
