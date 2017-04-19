@@ -16,7 +16,7 @@ public class Filter implements FilenameFilter {
     @Override
     public boolean accept(File dir, String name) {
 
-        if (mask.equals("1")) {
+        if (this.mask.equals("1")) {
             if (name.lastIndexOf('.') > 0) {
                 int lastIndex = name.lastIndexOf('.');
                 String str = name.substring(lastIndex);
@@ -26,7 +26,7 @@ public class Filter implements FilenameFilter {
             }
         }
 
-        else if (mask.equals("2")) {
+        else if (this.mask.equals("2")) {
             if (name.equals("123.txt")) {
                 return true;
             }

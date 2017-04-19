@@ -4,9 +4,22 @@ import java.io.File;
 
 public class Find {
 
-    public void find(String root) {
-        //String name = "pom.txt";
+    private Input input;
+
+    private Find(Input input) {
+        this.input = input;
+    }
+
+    public void find(String root, String ) {
+
         File file = new File(root);
+
+        if (file.exists() && file.isDirectory()) {
+
+        }
+
+
+        //String name = "pom.txt";
         boolean findTrue = false;
 
         File[] items = file.listFiles(new Filter("2"));
