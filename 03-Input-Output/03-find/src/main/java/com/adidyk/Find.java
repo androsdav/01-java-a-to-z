@@ -6,6 +6,14 @@ import static com.adidyk.Filter.filter;
 
 public class Find {
 
+    public void setPath() {
+
+    }
+
+    public void getPath() {
+
+    }
+
     public void find(String root) {
         //String name = "pom.txt";
         File file = new File(root);
