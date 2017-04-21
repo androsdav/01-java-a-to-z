@@ -22,7 +22,7 @@ public class Tracker {
     }
 
     // find -
-    public void find(String nameFile, String keyFind) {
+    public ArrayList<String> find(String nameFile, String keyFind) {
         File file = new File(this.path);
         File[] items = file.listFiles();
         if (items != null) {
@@ -34,10 +34,17 @@ public class Tracker {
                 }
             }
         }
+        return this.result;
     }
 
+    // getPath -
     public String getPath() {
         return this.path;
+    }
+
+    // getResult -
+    public ArrayList<String> getResult() {
+        return this.result;
     }
 
 
