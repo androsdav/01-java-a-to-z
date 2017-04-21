@@ -4,14 +4,28 @@ import java.io.File;
 
 public class Find {
 
-    private Input input;
+    //private Input input;
 
-    private Find(Input input) {
-        this.input = input;
+    //private Find(Input input) {
+    //    this.input = input;
+    //}
+
+    public void find(String path) {
+        File file = new File(path);
+        boolean pathTrue = false;
+        if (file.exists() && file.isDirectory()) {
+            pathTrue = true;
+        }
     }
+}
 
-    public void find(String root, String mask) {
-        File file = new File(root);
+            /*
+
+        } else {
+            System.out.println("Directory not found");
+        }
+
+        File file = new File(path);
         if (file.exists() && file.isDirectory()) {
             File[] items = file.listFiles(new Filter(mask));
             if (items != null) {
@@ -26,7 +40,6 @@ public class Find {
         } else {
             System.out.println("Directory not found");
         }
-
 
         //String name = "pom.txt";
         boolean findTrue = false;
@@ -45,4 +58,4 @@ public class Find {
             //}
         }
     }
-}
+}*/
