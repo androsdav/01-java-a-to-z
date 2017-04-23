@@ -31,7 +31,7 @@ public class StartUi {
 
     private void start() {
         this.init();
-
+        this.work();
     }
 
     private void init() {
@@ -46,12 +46,14 @@ public class StartUi {
     }
 
     private void work() {
+        String string;
         do {
-            this.menu.ge
-            String string = input.ask("");
-            this.command.setCommand("dasdsa");
+            this.tracker.getPath();
+            string = this.input.ask();
+            this.command.setCommand(string);
+            this.menu.
 
-        } while(true);
+        } while(!"quit".equals(string));
     }
 
     public static void main(String[] arg) {
