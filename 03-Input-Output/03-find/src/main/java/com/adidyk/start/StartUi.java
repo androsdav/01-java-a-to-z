@@ -2,6 +2,8 @@ package com.adidyk.start;
 
 import com.adidyk.modeles.Command;
 
+import java.io.IOException;
+
 public class StartUi {
 
     private Input input;
@@ -29,7 +31,7 @@ public class StartUi {
 
 //    private void start() {
 
-    private void start() {
+    private void start() throws IOException {
         this.init();
         this.work();
     }
@@ -41,26 +43,25 @@ public class StartUi {
     }
 
     private void connect() {
-
-
+        System.out.println();
     }
 
-    private void work() {
+    private void work() throws IOException {
         String string;
         do {
-            this.tracker.getPath();
+            System.out.println("Path: " + this.tracker.getPath());
             string = this.input.ask();
             this.command.setCommand(string);
-            this.menu.
+            this.menu.select(this.command);
 
         } while(!"quit".equals(string));
     }
 
-    public static void main(String[] arg) {
+    public static void main(String[] arg) throws IOException {
 
         Input input = new ConsoleInput();
 
-        new StartUi(input).init();
+        new StartUi(input).start();
 
         //Command com = new Command();
         //com.setCommand("key1 name1 key2");
