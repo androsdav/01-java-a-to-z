@@ -1,4 +1,4 @@
-package com.adidyk;
+package com.adidyk.start;
 
 import java.util.Scanner;
 

@@ -21,7 +21,7 @@ public class Tracker {
         return path;
     }
 
-    // find -
+    // find - find all files that is true config search
     public ArrayList<String> find(String nameFile, String keyFind) {
         File file = new File(this.path);
         File[] items = file.listFiles();
