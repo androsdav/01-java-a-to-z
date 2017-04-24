@@ -41,4 +41,25 @@ public class MenuTracker {
             return String.format("%s", "test");
         }
     }
+
+    // Help - return info about all console commands
+    private class Help implements UserAction {
+        // key - return "help"
+        public String key() {
+            return "help";
+        }
+        // execute - return info about all console commands
+        public void execute(Command command, Tracker tracker) throws IOException {
+//            out.writeInt(actions.size());
+            for (Map.Entry<String, UserAction> action : actions.entrySet()) {
+                String string = action.getValue().info();
+                System.out.println()out.writeUTF(string);
+            }
+        }
+        // info - return info about console command for method execute
+        public String info() {
+            return String.format(" %s%s%s%s", "[", this.key(), "]",
+                    "          - return info about all console commands");
+        }
+    }
 }
