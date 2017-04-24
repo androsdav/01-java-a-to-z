@@ -9,8 +9,7 @@ public class StartUi {
     private Input input;
     private Tracker tracker;
     private MenuTracker menu;
-
-    Command command;
+    private Command command;
 
     StartUi(Input input) {
         this.input = input;
@@ -33,17 +32,24 @@ public class StartUi {
 
     private void start() throws IOException {
         this.init();
+        this.connect();
         this.work();
     }
 
     private void init() {
         this.tracker = new Tracker();
         this.command = new Command();
-        this.menu = new MenuTracker();
+        this.menu = new MenuTracker(this.input, this.tracker);
     }
 
-    private void connect() {
-        System.out.println();
+    private void connect() throws IOException {
+        System.out.println("\n ------------------------------------------------------------------");
+        System.out.println(" S E A R C H     E N G I N E");
+        System.out.println(" ------------------------------------------------------------------");
+        System.out.println("\n [Info]: search engine has next console command ...");
+        this.menu.fillAction();
+        this.command.setCommand("HELP");
+        this.menu.select(this.command);
     }
 
     private void work() throws IOException {
