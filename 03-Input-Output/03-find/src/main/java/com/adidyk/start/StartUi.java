@@ -15,21 +15,7 @@ public class StartUi {
         this.input = input;
     }
 
-
-    //private Input input;
-
-
-
-    //private StartUi(Input input) {
-
-        //this.input = input;
-
-    //}
-
-
-
-//    private void start() { I go to the Kramatorsk
-
+    // start -
     private void start() throws IOException {
         this.init();
         this.connect();
@@ -59,14 +45,12 @@ public class StartUi {
             string = this.input.ask();
             this.command.setCommand(string);
             this.menu.select(this.command);
-
         } while(!"quit".equals(string));
     }
 
     public static void main(String[] arg) throws IOException {
 
         Input input = new ConsoleInput();
-
         new StartUi(input).start();
 
         //Command com = new Command();

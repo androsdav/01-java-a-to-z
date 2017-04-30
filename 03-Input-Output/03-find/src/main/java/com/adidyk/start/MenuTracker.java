@@ -19,6 +19,7 @@ public class MenuTracker {
 
     public void fillAction() {
         actions.put("input", new SetPath());
+        actions.put("help", new Help());
     }
 
     public void select(Command command) throws IOException {
@@ -28,17 +29,18 @@ public class MenuTracker {
     }
 
     private class SetPath implements UserAction {
-
+        // key -
         public String key() {
             return "input";
         }
-
+        // execute -
         public void execute(Command command, Tracker tracker) {
-
+            tracker.setPath(command.getName());
         }
-
+        // info -
         public String info() {
-            return String.format("%s", "test");
+            return String.format("%s%s%s%s", "[", this.key(), "]",
+                    "           - input directory for find");
         }
     }
 
@@ -50,10 +52,9 @@ public class MenuTracker {
         }
         // execute - return info about all console commands
         public void execute(Command command, Tracker tracker) throws IOException {
-//            out.writeInt(actions.size());
             for (Map.Entry<String, UserAction> action : actions.entrySet()) {
                 String string = action.getValue().info();
-                System.out.println()out.writeUTF(string);
+                System.out.println(string);
             }
         }
         // info - return info about console command for method execute
