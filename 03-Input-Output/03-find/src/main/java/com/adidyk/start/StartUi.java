@@ -36,20 +36,20 @@ public class StartUi {
         this.menu.fillAction();
         this.command.setCommand("help");
         this.menu.select(this.command);
+        String string;
+        do {
+            System.out.print("\n [Info]: input correct name directory ...");
+            System.out.print("\n [Path]: " + "> ");
+            string = this.input.ask();
+            this.command.setCommand(string);
+            this.menu.select(this.command);
+        } while(tracker.getPath() == null);
     }
 
     private void work() throws IOException {
-        String path;
-        do {
-            System.out.print("\n [Info]: input correct name directory ...");
-            System.out.print("\n Path: " + "> ");
-            path = this.input.ask();
-            this.command.setCommand(path);
-            this.menu.select();
-        } while(tracker.getPath() != null);
         String string;
         do {
-            System.out.print("\n Path: " + this.tracker.getPath() + "> ");
+            System.out.print("\n [Path]: " + this.tracker.getPath() + "> ");
             string = this.input.ask();
             this.command.setCommand(string);
             this.menu.select(this.command);

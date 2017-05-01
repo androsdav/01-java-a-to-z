@@ -42,8 +42,8 @@ public class MenuTracker {
         }
         // info -
         public String info() {
-            return String.format("%s%s%s%s", "[", this.key(), "]",
-                    "           - input directory for find");
+            return String.format(" %s%s%s%s%s", "[", this.key(), " path", "]",
+                    "    - input path");
         }
     }
 
