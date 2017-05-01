@@ -11,6 +11,7 @@ public class MenuTracker {
     private Input input;
     private Tracker tracker;
     private Map<String, UserAction> actions = new HashMap<>();
+    public static final String SEPARATOR = System.getProperty("file.separator");
 
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
@@ -18,8 +19,9 @@ public class MenuTracker {
     }
 
     public void fillAction() {
-        actions.put("input", new SetPath());
+        actions.put("cd", new SetPath());
         actions.put("help", new Help());
+        actions.put("quit", new Quit());
     }
 
     public void select(Command command) throws IOException {
@@ -34,7 +36,7 @@ public class MenuTracker {
     private class SetPath implements UserAction {
         // key -
         public String key() {
-            return "input";
+            return "cd";
         }
         // execute -
         public void execute(Command command, Tracker tracker) {
@@ -42,8 +44,23 @@ public class MenuTracker {
         }
         // info -
         public String info() {
-            return String.format(" %s%s%s%s%s", "[", this.key(), " path", "]",
-                    "    - input path");
+            return String.format(" %s%s%s%s%s%s%s%s", "[", this.key(), " path", "]",
+                    "    - input path use file separator", "[", SEPARATOR, "]");
+        }
+    }
+
+    private class Quit implements UserAction {
+        // key - return "quit"
+        public String key() {
+            return "quit";
+        }
+        // execute - do not doing anything
+        public void execute(Command command, Tracker tracker) {
+        }
+        // info -
+        public String info() {
+            return String.format(" %s%s%s%s", "[", this.key(), "]",
+                    "    - end work with program");
         }
     }
 

@@ -22,12 +22,14 @@ public class StartUi {
         this.work();
     }
 
+    // init -
     private void init() {
         this.tracker = new Tracker();
         this.command = new Command();
         this.menu = new MenuTracker(this.input, this.tracker);
     }
 
+    // connect -
     private void connect() throws IOException {
         System.out.println("\n ------------------------------------------------------------------");
         System.out.println("  S E A R C H     E N G I N E");
@@ -38,7 +40,7 @@ public class StartUi {
         this.menu.select(this.command);
         String string;
         do {
-            System.out.print("\n [Info]: input correct name directory ...");
+            System.out.print("\n [Info]: input correct name path or <root> directory ...");
             System.out.print("\n [Path]: " + "> ");
             string = this.input.ask();
             this.command.setCommand(string);
@@ -46,6 +48,7 @@ public class StartUi {
         } while(tracker.getPath() == null);
     }
 
+    // work -
     private void work() throws IOException {
         String string;
         do {
@@ -56,29 +59,10 @@ public class StartUi {
         } while(!"quit".equals(string));
     }
 
+    // main - just main ;)
     public static void main(String[] arg) throws IOException {
-
         Input input = new ConsoleInput();
         new StartUi(input).start();
-
-        //Command com = new Command();
-        //com.setCommand("key1 name1 key2");
-        //System.out.println(com.getKey());
-        //System.out.println(com.getName());
-        //System.out.println(com.getKeyFind());
-
-        //Tracker tracker = new Tracker();
-        //tracker.setPath("g:/");
-
-        //System.out.println("Test, Hello Word");
-
-        //new Filter();
-        //Filter.init();
-        // test git
-  //      Input input = new ConsoleInput();
-   //     new StartUi(input).start();
-   //     Find find = new Find();
-   //     find.find("root");
     }
 
 }
