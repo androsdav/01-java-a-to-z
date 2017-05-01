@@ -1,7 +1,6 @@
 package com.adidyk.start;
 
 import com.adidyk.modeles.Command;
-
 import java.io.IOException;
 
 public class StartUi {

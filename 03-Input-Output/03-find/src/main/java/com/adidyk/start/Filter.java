@@ -1,4 +1,4 @@
-package com.adidyk;
+package com.adidyk.start;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -6,28 +6,29 @@ import java.io.FilenameFilter;
 public class Filter implements FilenameFilter {
 
 
-    private String mask;
+    private String keyFind;
+    private String name;
 
-    Filter(String mask) {
-        this.mask = mask;
+    Filter(String name, String keyFind) {
+        this.name = name;
+        this.keyFind = keyFind;
     }
-
 
     @Override
     public boolean accept(File dir, String name) {
-
-        if (this.mask.equals("1")) {
+        // "-e" - file extension
+        if ("-e".equals(this.keyFind)) {
             if (name.lastIndexOf('.') > 0) {
                 int lastIndex = name.lastIndexOf('.');
-                String str = name.substring(lastIndex);
-                if (str.equals(".txt")) {
+                String string = name.substring(lastIndex);
+                if (this.name.equals(string)) {
                     return true;
                 }
             }
         }
-
-        else if (this.mask.equals("2")) {
-            if (name.equals("123.txt")) {
+        // "-f" - full match
+        else if ("-f".equals(this.keyFind)) {
+            if (this.name.equals(name)) {
                 return true;
             }
         }

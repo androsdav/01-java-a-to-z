@@ -1,8 +1,10 @@
 package com.adidyk.start;
 
+import com.adidyk.start.Filter;
 import com.adidyk.modeles.Command;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,17 +15,21 @@ public class MenuTracker {
     private Map<String, UserAction> actions = new HashMap<>();
     public static final String SEPARATOR = System.getProperty("file.separator");
 
+    // Constructor -
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;
     }
 
+    // fillAction -
     public void fillAction() {
         actions.put("cd", new SetPath());
+        actions.put("find", new Find());
         actions.put("help", new Help());
         actions.put("quit", new Quit());
     }
 
+    // select -
     public void select(Command command) throws IOException {
         if (this.actions.containsKey(command.getKey())) {
             this.actions.get(command.getKey()).execute(command, this.tracker);
@@ -46,6 +52,26 @@ public class MenuTracker {
         public String info() {
             return String.format(" %s%s%s%s%s%s%s%s", "[", this.key(), " path", "]",
                     "    - input path use file separator", "[", SEPARATOR, "]");
+        }
+    }
+
+    private class Find implements UserAction {
+        // key -
+        public String key() {
+            return "find";
+        }
+        // execute -
+        public void execute(Command command, Tracker tracker) {
+            Filter filter = new Filter(command.getName(), command.getKeyFind());
+            //ArrayList<String> result = tracker.find(tracker.getPath(), filter);
+            tracker.find(tracker.getPath());
+            //for (String item : result) {
+            //    System.out.println("Result find: " + item);
+            //}
+        }
+        // info -
+        public String info() {
+            return String.format(" %s", "finding file");
         }
     }
 
@@ -83,4 +109,5 @@ public class MenuTracker {
                     "          - return info about all console commands");
         }
     }
+
 }

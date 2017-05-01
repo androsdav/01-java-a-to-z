@@ -23,19 +23,20 @@ public class Tracker {
     }
 
     // find - find all files thatn is true config search
-    public ArrayList<String> find(String nameFile, String keyFind) {
-        File file = new File(this.path);
+    public void find(String path) {
+        File file = new File(path);
         File[] items = file.listFiles();
         if (items != null) {
             for (File item : items) {
                 if (item.isDirectory()) {
-                    find(item.getParent(), keyFind);
+                    find(item.getName());
                 } else if (item.isFile()) {
-                    this.result.add(item.getPath());
+                    System.out.println(item.getPath());
+                    //this.result.add(item.getPath());
                 }
             }
         }
-        return this.result;
+        //return this.result;
     }
 
     // getPath -
