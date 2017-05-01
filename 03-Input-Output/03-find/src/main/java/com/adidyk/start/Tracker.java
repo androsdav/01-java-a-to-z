@@ -16,12 +16,13 @@ public class Tracker {
         if (file.exists() && file.isDirectory()) {
             this.path = path;
         } else {
-            throw new IncorrectInputPath("Input path is false");
+            //throw new IncorrectInputPath("Input path is false");
+            System.out.println(" [Info]: Input path is false");
         }
         return path;
     }
 
-    // find - find all files that is true config search
+    // find - find all files thatn is true config search
     public ArrayList<String> find(String nameFile, String keyFind) {
         File file = new File(this.path);
         File[] items = file.listFiles();

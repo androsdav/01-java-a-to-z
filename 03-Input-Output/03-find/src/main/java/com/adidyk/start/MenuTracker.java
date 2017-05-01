@@ -25,6 +25,8 @@ public class MenuTracker {
     public void select(Command command) throws IOException {
         if (this.actions.containsKey(command.getKey())) {
             this.actions.get(command.getKey()).execute(command, this.tracker);
+        } else {
+            System.out.println(" [Info]: command not found  ...");
         }
     }
 
