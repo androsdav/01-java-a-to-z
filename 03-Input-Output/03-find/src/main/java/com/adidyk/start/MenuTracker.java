@@ -1,6 +1,5 @@
 package com.adidyk.start;
 
-import com.adidyk.start.Filter;
 import com.adidyk.modeles.Command;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,20 +7,18 @@ import java.util.HashMap;
 import java.util.Map;
 import static com.adidyk.modeles.Constant.SEPARATOR;
 
-public class MenuTracker {
+class MenuTracker {
 
-    private Input input;
     private Tracker tracker;
     private Map<String, UserAction> actions = new HashMap<>();
 
     // Constructor
-    public MenuTracker(Input input, Tracker tracker) {
-        this.input = input;
+    MenuTracker(Tracker tracker) {
         this.tracker = tracker;
     }
 
     // fillAction - fills actions
-    public void fillAction() {
+    void fillAction() {
         actions.put("cd", new SetPath());
         actions.put("find", new Find());
         actions.put("help", new Help());
@@ -30,7 +27,7 @@ public class MenuTracker {
     }
 
     // select - selects execution from the console command
-    public void select(Command command) throws IOException {
+    void select(Command command) throws IOException {
         if (this.actions.containsKey(command.getKey())) {
             this.actions.get(command.getKey()).execute(command, this.tracker);
         } else {

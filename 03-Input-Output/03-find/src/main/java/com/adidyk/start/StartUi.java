@@ -28,7 +28,7 @@ public class StartUi {
     private void init() {
         this.tracker = new Tracker();
         this.command = new Command();
-        this.menu = new MenuTracker(this.input, this.tracker);
+        this.menu = new MenuTracker(this.tracker);
         new Constant();
     }
 
