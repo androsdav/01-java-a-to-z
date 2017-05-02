@@ -15,13 +15,13 @@ public class MenuTracker {
     private Map<String, UserAction> actions = new HashMap<>();
     public static final String SEPARATOR = System.getProperty("file.separator");
 
-    // Constructor -
+    // Constructor
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;
     }
 
-    // fillAction -
+    // fillAction - fills actions
     public void fillAction() {
         actions.put("cd", new SetPath());
         actions.put("find", new Find());
@@ -30,7 +30,7 @@ public class MenuTracker {
         actions.put("show", new Show());
     }
 
-    // select -
+    // select - selects execution from the console command
     public void select(Command command) throws IOException {
         if (this.actions.containsKey(command.getKey())) {
             this.actions.get(command.getKey()).execute(command, this.tracker);
@@ -39,20 +39,21 @@ public class MenuTracker {
         }
     }
 
-    // SetPath -
+    // SetPath - sets path or folder name - root
     private class SetPath implements UserAction {
-        // key -
+        // key - return "cd"
         public String key() {
             return "cd";
         }
-        // execute -
+        // execute - sets path from the console
         public void execute(Command command, Tracker tracker) {
             tracker.setPath(command.getName());
         }
-        // info -
+        // info - returns info about console command for execute method
         public String info() {
-            return String.format(" %s%s%s%s%s%s%s%s", "[", this.key(), " path", "]",
-                    "    - input path use file separator", "[", SEPARATOR, "]");
+            return String.format(" %s%s%s%s%s%s%s%s%n %s%s%s%s%s",
+                    "[", this.key(), " path", "]", "    - sets path, for input use file separator ", "[", SEPARATOR, "]",
+                    "[", this.key(), " root", "]", "    - sets root folder");
         }
     }
 
