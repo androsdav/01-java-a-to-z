@@ -80,10 +80,11 @@ public class MenuTracker {
         }
         // info - returns info about console command for execute method
         public String info() {
-            return String.format(" %s%s%s%s%s%n %s%s%s%s%s%n %s%s%s%s%s",
+            return String.format(" %s%s%s%s%s%n %s%s%s%s%s%n %s%s%s%s%s%n %s%s%s%s%s",
                     "[", this.key(), " name.txt -f", "]", " - searches all files by name and extension together",
                     "[", this.key(), " sub -m", "]", "      - searches all files by maximum match",
-                    "[", this.key(), " txt -e", "]", "      - searches all files by extension");
+                    "[", this.key(), " txt -e", "]", "      - searches all files by extension",
+                    "[", this.key(), " regex -r", "]", "    - searches all files by regex");
         }
     }
 
@@ -97,6 +98,7 @@ public class MenuTracker {
         public void execute(Command command, Tracker tracker) {
             ArrayList<String> result = tracker.getResult();
             if (result.size() != 0) {
+                System.out.println();
                 for (String item : result) {
                     System.out.println(" - " + item);
                 }

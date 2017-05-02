@@ -2,16 +2,21 @@ package com.adidyk.start;
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Filter implements FilenameFilter {
 
-    private String keyFind;
     private String name;
+    private String keyFind;
+    private Pattern pattern;
 
     // Constructor
     Filter(String name, String keyFind) {
         this.name = name;
         this.keyFind = keyFind;
+        this.pattern = Pattern.compile(this.name);
+
     }
 
     @Override
@@ -31,6 +36,12 @@ public class Filter implements FilenameFilter {
         // "-e" - file extension
         else if ("-e".equals(this.keyFind)) {
             if (name.endsWith(this.name)) {
+                return true;
+            }
+        }
+        else if ("-r".equals(this.keyFind)) {
+            Matcher matcher = this.pattern.matcher(name);
+            if (matcher.find()) {
                 return true;
             }
         }

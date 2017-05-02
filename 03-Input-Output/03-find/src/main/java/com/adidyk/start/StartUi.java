@@ -37,7 +37,7 @@ public class StartUi {
         System.out.println("\n ------------------------------------------------------------------");
         System.out.println("  S E A R C H     E N G I N E");
         System.out.println(" ------------------------------------------------------------------");
-        System.out.println("\n [Info]: SEARCH ENGINE has next console commands ... \n");
+        System.out.println("\n [Info]: SEARCH ENGINE has next console commands ... ");
         this.menu.fillAction();
         this.command.setCommand(HELP);
         this.menu.select(this.command);
