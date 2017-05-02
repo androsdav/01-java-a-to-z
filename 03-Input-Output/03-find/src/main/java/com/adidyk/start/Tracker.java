@@ -8,7 +8,7 @@ class Tracker {
     private String path = null;
     private ArrayList<String> result = new ArrayList<>();
 
-    // setPath -
+    // setPath - sets this.path if path is true
     String setPath(String path) {
         File file = new File(path);
         if (file.exists() && file.isDirectory()) {
@@ -19,7 +19,7 @@ class Tracker {
         return path;
     }
 
-    // find - find all files thatn is true config search
+    // find - finds all files in folder and writes to this.result
     ArrayList<String> find(String path, Filter filter) {
         File file = new File(path);
         File[] items = file.listFiles(filter);
