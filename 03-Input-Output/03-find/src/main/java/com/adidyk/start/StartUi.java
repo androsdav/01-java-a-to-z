@@ -43,7 +43,7 @@ public class StartUi {
         this.menu.select(this.command);
         String string;
         do {
-            System.out.print("\n [Info]: input correct path name or folder name - [root] ...");
+            System.out.print("\n [Info]: input correct path name or folder name - [root] ...\n");
             System.out.print("\n [Path]: " + "> ");
             string = this.input.ask();
             this.command.setCommand(string);
@@ -51,7 +51,7 @@ public class StartUi {
         } while(tracker.getPath() == null);
     }
 
-    // work -
+    // work - work program SEARCH ENGINE
     private void work() throws IOException {
         String string;
         do {
