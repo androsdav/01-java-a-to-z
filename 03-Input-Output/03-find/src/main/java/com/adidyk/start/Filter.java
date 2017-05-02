@@ -32,6 +32,12 @@ public class Filter implements FilenameFilter {
                 return true;
             }
         }
+        // "-m" - maximum match
+        else if ("-m".equals(this.keyFind)) {
+            if (name.contains(this.name)) {
+                return true;
+            }
+        }
 
        return new File(dir, name).isDirectory();
     }
