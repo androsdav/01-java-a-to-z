@@ -52,8 +52,10 @@ public class MenuTracker {
         // info - returns info about console command for execute method
         public String info() {
             return String.format(" %s%s%s%s%s%s%s%s%n %s%s%s%s%s",
-                    "[", this.key(), " path", "]", "        - sets path, for input use file separator ", "[", SEPARATOR, "]",
-                    "[", this.key(), " root", "]", "        - sets root folder");
+                    "[", this.key(), " path", "]",
+                    "          - sets path, for input use file separator ", "[", SEPARATOR, "]",
+                    "[", this.key(), " root", "]",
+                    "          - sets root folder");
         }
     }
 
@@ -79,7 +81,7 @@ public class MenuTracker {
         }
         // info - returns info about console command for execute method
         public String info() {
-            return String.format(" %s%s%s%s%s%n %s%s%s%s%s",
+            return String.format(" %s%s%s%s%s%n %s%s%s%s%s%n %s%s%s%s%s",
                     "[", this.key(), " name.txt -f", "]", " - searches all files by name and extension together",
                     "[", this.key(), " sub -m", "]", "      - searches all files by maximum match",
                     "[", this.key(), " txt -e", "]", "      - searches all files by extension");
@@ -116,7 +118,7 @@ public class MenuTracker {
         // info -
         public String info() {
             return String.format(" %s%s%s%s", "[", this.key(), "]",
-                    "    - end work with program");
+                    "             - program end work");
         }
     }
 
@@ -136,7 +138,7 @@ public class MenuTracker {
         // info - return info about console command for method execute
         public String info() {
             return String.format(" %s%s%s%s", "[", this.key(), "]",
-                    "          - return info about all console commands");
+                    "             - return info about all console commands");
         }
     }
 
