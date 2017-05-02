@@ -27,6 +27,7 @@ public class MenuTracker {
         actions.put("find", new Find());
         actions.put("help", new Help());
         actions.put("quit", new Quit());
+        actions.put("show", new Show());
     }
 
     // select -
@@ -55,6 +56,7 @@ public class MenuTracker {
         }
     }
 
+    // Find -
     private class Find implements UserAction {
         // key -
         public String key() {
@@ -73,6 +75,25 @@ public class MenuTracker {
         // info -
         public String info() {
             return String.format(" %s", "finding file");
+        }
+    }
+
+    // Show -
+    private class Show implements UserAction {
+        // key -
+        public String key() {
+            return "show";
+        }
+        // execute -
+        public void execute(Command command, Tracker tracker) {
+            ArrayList<String> result = tracker.getResult();
+            for (String item : result) {
+                System.out.println("Result find: " + item);
+            }
+        }
+        // info -
+        public String info() {
+            return String.format("%s", this.key());
         }
     }
 

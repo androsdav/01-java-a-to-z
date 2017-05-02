@@ -18,13 +18,16 @@ public class Filter implements FilenameFilter {
     public boolean accept(File dir, String name) {
         // "-e" - file extension
         if ("-e".equals(this.keyFind)) {
-            if (name.lastIndexOf('.') > 0) {
-                int lastIndex = name.lastIndexOf('.');
-                String string = name.substring(lastIndex);
-                if (this.name.equals(string)) {
-                    return true;
-                }
+            if (name.endsWith(this.name)) {
+                return true;
             }
+          //  if (name.lastIndexOf('.') > 0) {
+          //      int lastIndex = name.lastIndexOf('.');
+          //      String string = name.substring(lastIndex);
+          //      if (this.name.equals(string)) {
+          //          return true;
+          //      }
+          //  }
         }
         // "-f" - full match
         else if ("-f".equals(this.keyFind)) {
@@ -38,7 +41,6 @@ public class Filter implements FilenameFilter {
                 return true;
             }
         }
-
        return new File(dir, name).isDirectory();
     }
 

@@ -1,6 +1,6 @@
 package com.adidyk.start;
 
-import com.adidyk.exceptions.IncorrectInputPath;
+//import com.adidyk.exceptions.IncorrectInputPath;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ public class Tracker {
     private ArrayList<String> result = new ArrayList<>();
 
     // setPath -
-    public String setPath(String path) throws IncorrectInputPath {
+    public String setPath(String path) {
         File file = new File(path);
         if (file.exists() && file.isDirectory()) {
             this.path = path;

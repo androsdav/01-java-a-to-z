@@ -1,7 +1,9 @@
 package com.adidyk.start;
 
 import com.adidyk.modeles.Command;
+import com.adidyk.modeles.Constant;
 import java.io.IOException;
+import static com.adidyk.modeles.Constant.*;
 
 public class StartUi {
 
@@ -10,36 +12,38 @@ public class StartUi {
     private MenuTracker menu;
     private Command command;
 
+    // Constructor
     private StartUi(Input input) {
         this.input = input;
     }
 
-    // start -
+    // start - start program - SEARCH ENGINE
     private void start() throws IOException {
         this.init();
         this.connect();
         this.work();
     }
 
-    // init -
+    // init - start initialization parameters
     private void init() {
         this.tracker = new Tracker();
         this.command = new Command();
         this.menu = new MenuTracker(this.input, this.tracker);
+        new Constant();
     }
 
-    // connect -
+    // connect - welcome to SEARCH ENGINE, show program help, have to input correct path name
     private void connect() throws IOException {
         System.out.println("\n ------------------------------------------------------------------");
         System.out.println("  S E A R C H     E N G I N E");
         System.out.println(" ------------------------------------------------------------------");
-        System.out.println("\n [Info]: search engine has next console command ...");
+        System.out.println("\n [Info]: SEARCH ENGINE has next console commands ... \n");
         this.menu.fillAction();
-        this.command.setCommand("help");
+        this.command.setCommand(HELP);
         this.menu.select(this.command);
         String string;
         do {
-            System.out.print("\n [Info]: input correct name path or <root> directory ...");
+            System.out.print("\n [Info]: input correct path name or folder name - [root] ...");
             System.out.print("\n [Path]: " + "> ");
             string = this.input.ask();
             this.command.setCommand(string);
