@@ -41,9 +41,10 @@ public class StartUi {
         this.menu.fillAction();
         this.command.setCommand(HELP);
         this.menu.select(this.command);
+        System.out.println(" ------------------------------------------------------------------");
         String string;
         do {
-            System.out.print("\n [Info]: input correct path name or folder name - [root] ...\n");
+            System.out.print("\n [Info]: input correct path name or folder name - [root] ...");
             System.out.print("\n [Path]: " + "> ");
             string = this.input.ask();
             this.command.setCommand(string);

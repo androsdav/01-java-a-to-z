@@ -17,7 +17,7 @@ public class Tracker {
             this.path = path;
         } else {
             //throw new IncorrectInputPath("Input path is false");
-            System.out.println(" [Info]: Input path is false");
+            System.out.println(" [Info]: entered path false ...");
         }
         return path;
     }
@@ -32,7 +32,7 @@ public class Tracker {
                     find(item.getPath(), filter);
                     //System.out.println("dir:" +item.getPath());
                 } else if (item.isFile()) {
-                    System.out.println("file: " +item.getPath());
+                   // System.out.println("file: " +item.getPath());
                     this.result.add(item.getPath());
                 }
             }

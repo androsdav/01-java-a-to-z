@@ -45,37 +45,44 @@ public class MenuTracker {
         public String key() {
             return "cd";
         }
-        // execute - sets path from the console
+        // execute - sets path from the console or folder name - root
         public void execute(Command command, Tracker tracker) {
             tracker.setPath(command.getName());
         }
         // info - returns info about console command for execute method
         public String info() {
             return String.format(" %s%s%s%s%s%s%s%s%n %s%s%s%s%s",
-                    "[", this.key(), " path", "]", "    - sets path, for input use file separator ", "[", SEPARATOR, "]",
-                    "[", this.key(), " root", "]", "    - sets root folder");
+                    "[", this.key(), " path", "]", "        - sets path, for input use file separator ", "[", SEPARATOR, "]",
+                    "[", this.key(), " root", "]", "        - sets root folder");
         }
     }
 
-    // Find -
+    // Find - finds all files in folder and show to console
     private class Find implements UserAction {
-        // key -
+        // key - return "find"
         public String key() {
             return "find";
         }
-        // execute -
+        // execute - finds all files in folder and show to console
         public void execute(Command command, Tracker tracker) {
             tracker.remove();
             Filter filter = new Filter(command.getName(), command.getKeyFind());
-            //ArrayList<String> result = tracker.find(tracker.getPath(), filter);
             ArrayList<String> result = tracker.find(tracker.getPath(), filter);
-            for (String item : result) {
-                System.out.println("Result find: " + item);
+            if (result.size() != 0) {
+                System.out.println();
+                for (String item : result) {
+                    System.out.println(" - " + item);
+                }
+            } else {
+                System.out.print(" [Info]: nothing found ...\n");
             }
         }
-        // info -
+        // info - returns info about console command for execute method
         public String info() {
-            return String.format(" %s", "finding file");
+            return String.format(" %s%s%s%s%s%n %s%s%s%s%s",
+                    "[", this.key(), " name.txt -f", "]", " - searches all files by name and extension together",
+                    "[", this.key(), " sub -m", "]", "      - searches all files by maximum match",
+                    "[", this.key(), " txt -e", "]", "      - searches all files by extension");
         }
     }
 
