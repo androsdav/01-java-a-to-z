@@ -60,7 +60,7 @@ public class StartUi {
             string = this.input.ask();
             this.command.setCommand(string);
             this.menu.select(this.command);
-        } while(!"quit".equals(string));
+        } while(!QUIT.equals(string));
     }
 
     // main - just main ;)

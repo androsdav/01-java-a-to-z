@@ -2,18 +2,17 @@ package com.adidyk.start;
 
 import com.adidyk.start.Filter;
 import com.adidyk.modeles.Command;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import static com.adidyk.modeles.Constant.SEPARATOR;
 
 public class MenuTracker {
 
     private Input input;
     private Tracker tracker;
     private Map<String, UserAction> actions = new HashMap<>();
-    public static final String SEPARATOR = System.getProperty("file.separator");
 
     // Constructor
     public MenuTracker(Input input, Tracker tracker) {
@@ -88,34 +87,40 @@ public class MenuTracker {
         }
     }
 
-    // Show -
+    // Show - shows last result searches
     private class Show implements UserAction {
-        // key -
+        // key - return "show"
         public String key() {
             return "show";
         }
-        // execute -
+        // execute - shows last result searches
         public void execute(Command command, Tracker tracker) {
             ArrayList<String> result = tracker.getResult();
-            for (String item : result) {
-                System.out.println("Result find: " + item);
+            if (result.size() != 0) {
+                for (String item : result) {
+                    System.out.println(" - " + item);
+                }
+            } else {
+                System.out.print(" [Info]: nothing found ...\n");
             }
         }
-        // info -
+        // info - return info about console command for execute method
         public String info() {
-            return String.format("%s", this.key());
+            return String.format(" %s%s%s%s",
+                    "[", this.key(), "]", "             - shows last result searches");
         }
     }
 
+    // Quit - program end work
     private class Quit implements UserAction {
         // key - return "quit"
         public String key() {
             return "quit";
         }
-        // execute - do not doing anything
+        // execute - don`t doing anything
         public void execute(Command command, Tracker tracker) {
         }
-        // info -
+        // info - return info about console command for execute method
         public String info() {
             return String.format(" %s%s%s%s", "[", this.key(), "]",
                     "             - program end work");
@@ -130,6 +135,7 @@ public class MenuTracker {
         }
         // execute - return info about all console commands
         public void execute(Command command, Tracker tracker) throws IOException {
+            System.out.println();
             for (Map.Entry<String, UserAction> action : actions.entrySet()) {
                 String string = action.getValue().info();
                 System.out.println(string);

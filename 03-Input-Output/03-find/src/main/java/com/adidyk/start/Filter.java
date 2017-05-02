@@ -5,10 +5,10 @@ import java.io.FilenameFilter;
 
 public class Filter implements FilenameFilter {
 
-
     private String keyFind;
     private String name;
 
+    // Constructor
     Filter(String name, String keyFind) {
         this.name = name;
         this.keyFind = keyFind;
@@ -16,21 +16,8 @@ public class Filter implements FilenameFilter {
 
     @Override
     public boolean accept(File dir, String name) {
-        // "-e" - file extension
-        if ("-e".equals(this.keyFind)) {
-            if (name.endsWith(this.name)) {
-                return true;
-            }
-          //  if (name.lastIndexOf('.') > 0) {
-          //      int lastIndex = name.lastIndexOf('.');
-          //      String string = name.substring(lastIndex);
-          //      if (this.name.equals(string)) {
-          //          return true;
-          //      }
-          //  }
-        }
         // "-f" - full match
-        else if ("-f".equals(this.keyFind)) {
+        if ("-f".equals(this.keyFind)) {
             if (this.name.equals(name)) {
                 return true;
             }
@@ -41,7 +28,13 @@ public class Filter implements FilenameFilter {
                 return true;
             }
         }
-       return new File(dir, name).isDirectory();
+        // "-e" - file extension
+        else if ("-e".equals(this.keyFind)) {
+            if (name.endsWith(this.name)) {
+                return true;
+            }
+        }
+        return new File(dir, name).isDirectory();
     }
 
 }
