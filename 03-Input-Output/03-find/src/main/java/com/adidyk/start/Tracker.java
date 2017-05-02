@@ -23,20 +23,25 @@ public class Tracker {
     }
 
     // find - find all files thatn is true config search
-    public void find(String path) {
+    public ArrayList<String> find(String path, Filter filter) {
         File file = new File(path);
-        File[] items = file.listFiles();
+        File[] items = file.listFiles(filter);
         if (items != null) {
             for (File item : items) {
                 if (item.isDirectory()) {
-                    find(item.getName());
+                    find(item.getPath(), filter);
+                    //System.out.println("dir:" +item.getPath());
                 } else if (item.isFile()) {
-                    System.out.println(item.getPath());
-                    //this.result.add(item.getPath());
+                    System.out.println("file: " +item.getPath());
+                    this.result.add(item.getPath());
                 }
             }
         }
-        //return this.result;
+        return this.result;
+    }
+
+    public void remove() {
+        this.result.clear();
     }
 
     // getPath -

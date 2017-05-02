@@ -62,12 +62,13 @@ public class MenuTracker {
         }
         // execute -
         public void execute(Command command, Tracker tracker) {
+            tracker.remove();
             Filter filter = new Filter(command.getName(), command.getKeyFind());
             //ArrayList<String> result = tracker.find(tracker.getPath(), filter);
-            tracker.find(tracker.getPath());
-            //for (String item : result) {
-            //    System.out.println("Result find: " + item);
-            //}
+            ArrayList<String> result = tracker.find(tracker.getPath(), filter);
+            for (String item : result) {
+                System.out.println("Result find: " + item);
+            }
         }
         // info -
         public String info() {
