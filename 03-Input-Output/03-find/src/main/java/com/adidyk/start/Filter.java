@@ -16,7 +16,6 @@ public class Filter implements FilenameFilter {
         this.name = name;
         this.keyFind = keyFind;
         this.pattern = Pattern.compile(this.name);
-
     }
 
     @Override

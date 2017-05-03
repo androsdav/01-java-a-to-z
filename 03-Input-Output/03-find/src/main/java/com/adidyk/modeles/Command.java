@@ -40,11 +40,3 @@ public class Command {
     }
 
 }
-
-// Command
-//  key  name keyFind
-// input c:/temp/ - input path
-// find temp.txt -f - full match
-// find temp.txt -m - maximum match
-// find temp.txt -r - regex match
-// save log.txt - save result find to file log.txt
