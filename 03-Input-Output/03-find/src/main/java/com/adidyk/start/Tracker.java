@@ -39,9 +39,8 @@ class Tracker {
     }
 
     // save - saves result to file to root directory
-
-    void save() {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("log.txt"))) {
+    void save(String fileName) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName))) {
             for (String item : this.result) {
                 bw.write(item.concat(System.lineSeparator()));
             }

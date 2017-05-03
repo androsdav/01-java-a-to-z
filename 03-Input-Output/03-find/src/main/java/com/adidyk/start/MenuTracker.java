@@ -119,7 +119,7 @@ class MenuTracker {
         }
         // execute -
         public void execute(Command command, Tracker tracker) {
-            tracker.save();
+            tracker.save(command.getName());
         }
         // info - return info about console command for execute method
         public String info() {
