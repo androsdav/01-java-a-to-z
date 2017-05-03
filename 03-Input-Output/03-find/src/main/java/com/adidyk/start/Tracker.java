@@ -6,6 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static com.adidyk.modeles.Constant.*;
+
 class Tracker {
 
     private String path = null;
@@ -40,13 +42,16 @@ class Tracker {
 
     // save - saves result to file to root directory
     void save(String fileName) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName))) {
-            for (String item : this.result) {
-                bw.write(item.concat(System.lineSeparator()));
+        if (this.result.size() != 0) {
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName))) {
+                for (String item : this.result) {
+                    bw.write(item.concat(LINE_SEPARATOR));
+                }
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
             }
-        }
-        catch (IOException ex) {
-            System.out.println(ex.getMessage());
+        } else {
+            System.out.println(" [Info]: there is nothing to save ...");
         }
     }
 

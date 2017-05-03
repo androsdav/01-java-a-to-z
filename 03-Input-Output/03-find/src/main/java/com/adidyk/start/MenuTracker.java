@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import static com.adidyk.modeles.Constant.SEPARATOR;
+import static com.adidyk.modeles.Constant.*;
 
 class MenuTracker {
 
