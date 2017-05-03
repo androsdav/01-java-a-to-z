@@ -1,6 +1,9 @@
 package com.adidyk.start;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 class Tracker {
@@ -33,6 +36,20 @@ class Tracker {
             }
         }
         return this.result;
+    }
+
+    // save - saves result to file to root directory
+
+    void save() {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("log.txt"))) {
+            for (String item : this.result) {
+
+            }
+
+        }
+        catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     // remove - removes result searches
