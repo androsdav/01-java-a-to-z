@@ -73,7 +73,7 @@ class MenuTracker {
                     System.out.println(" - " + item);
                 }
             } else {
-                System.out.print(" [Info]: nothing found ...\n");
+                System.out.print(" [Info]: there is nothing to found ...\n");
             }
         }
         // info - returns info about console command for execute method
@@ -101,7 +101,7 @@ class MenuTracker {
                     System.out.println(" - " + item);
                 }
             } else {
-                System.out.print(" [Info]: nothing found ...\n");
+                System.out.print(" [Info]: there is nothing to show ...\n");
             }
         }
         // info - return info about console command for execute method
