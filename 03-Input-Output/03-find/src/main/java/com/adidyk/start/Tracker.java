@@ -35,19 +35,19 @@ class Tracker {
         return this.result;
     }
 
+    // remove - removes result searches
     void remove() {
         this.result.clear();
     }
 
-    // getPath -
+    // getPath - returns path
     String getPath() {
         return this.path;
     }
 
-    // getResult -
+    // getResult - returns result searches
     ArrayList<String> getResult() {
         return this.result;
     }
-
 
 }
