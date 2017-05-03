@@ -43,9 +43,8 @@ class Tracker {
     void save() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("log.txt"))) {
             for (String item : this.result) {
-
+                bw.write(item);
             }
-
         }
         catch (IOException ex) {
             System.out.println(ex.getMessage());

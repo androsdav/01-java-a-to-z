@@ -21,9 +21,10 @@ class MenuTracker {
     void fillAction() {
         actions.put("cd", new SetPath());
         actions.put("find", new Find());
-        actions.put("help", new Help());
-        actions.put("quit", new Quit());
         actions.put("show", new Show());
+        actions.put("save", new Save());
+        actions.put("quit", new Quit());
+        actions.put("help", new Help());
     }
 
     // select - selects execution from the console command
@@ -102,6 +103,23 @@ class MenuTracker {
             } else {
                 System.out.print(" [Info]: nothing found ...\n");
             }
+        }
+        // info - return info about console command for execute method
+        public String info() {
+            return String.format(" %s%s%s%s",
+                    "[", this.key(), "]", "             - shows last result searches");
+        }
+    }
+
+    // Save - save result to file log.txt
+    private class Save implements UserAction {
+        // key - return "save"
+        public String key() {
+            return "save";
+        }
+        // execute -
+        public void execute(Command command, Tracker tracker) {
+            tracker.save();
         }
         // info - return info about console command for execute method
         public String info() {
