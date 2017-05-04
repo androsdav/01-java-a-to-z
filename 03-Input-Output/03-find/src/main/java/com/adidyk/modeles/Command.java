@@ -8,6 +8,7 @@ public class Command {
     private String name;
     private String keyFind;
 
+    // setCommand - set command from console
     public void setCommand(String string) {
         Scanner in = new Scanner(string);
         while (in.hasNext()) {
@@ -27,14 +28,17 @@ public class Command {
         }
     }
 
+    // getKey - return "this.key"
     public String getKey() {
         return this.key;
     }
 
+    // getName - return "this.name"
     public String getName() {
         return this.name;
     }
 
+    // getKeyFind - return "this.keyFind"
     public String getKeyFind(){
         return this.keyFind;
     }

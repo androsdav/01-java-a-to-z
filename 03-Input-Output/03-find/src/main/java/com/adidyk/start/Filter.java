@@ -32,12 +32,13 @@ public class Filter implements FilenameFilter {
                 return true;
             }
         }
-        // "-e" - file extension
+        // "-e" - file extension match
         else if ("-e".equals(this.keyFind)) {
             if (name.endsWith(this.name)) {
                 return true;
             }
         }
+        // "-r" - regex match
         else if ("-r".equals(this.keyFind)) {
             Matcher matcher = this.pattern.matcher(name);
             if (matcher.find()) {
