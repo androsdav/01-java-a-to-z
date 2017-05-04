@@ -123,8 +123,9 @@ class MenuTracker {
         }
         // info - return info about console command for execute method
         public String info() {
-            return String.format(" %s%s%s%s",
-                    "[", this.key(), "]", "             - shows last result searches");
+            return String.format(" %s%s%s%s%s%n %s%s%s%s",
+                    "[", this.key(), " name.txt", "]", "    - saves last result searches to file - [name.txt]",
+                    "[", this.key(), "]", "             - saves last result searches to default file - [log.txt]");
         }
     }
 
