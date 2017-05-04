@@ -162,7 +162,7 @@ class MenuTracker {
         // info - return info about console command for method execute
         public String info() {
             return String.format(" %s%s%s%s", "[", this.key(), "]",
-                    "             - return info about all console commands");
+                    "             - returns info about all console commands");
         }
     }
 
