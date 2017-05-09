@@ -5,34 +5,35 @@ import java.util.LinkedList;
 import java.util.TreeSet;
 
 public class StartUi {
+    private LinkedList<String> linkedList;
+    private ArrayList<String> arrayList;
+    private TreeSet<String> treeSet;
+    private Productivity product;
+    private Input input;
+
+    private StartUi(Input input) {
+        this.input = input;
+        this.linkedList = new LinkedList<>();
+        this.arrayList = new ArrayList<>();
+        this.treeSet = new TreeSet<>();
+        this.product = new Productivity();
+    }
+
+    private void start() {
+        this.work();
+    }
+
+    private void work() {
+        String string = this.input.ask("Input string: ");
+        int amount = Integer.parseInt(this.input.ask("Input amount: "));
+        System.out.println(this.product.add(this.linkedList, string, amount) + "ns");
+        System.out.println(this.product.add(this.arrayList, string, amount) + "ns");
+        System.out.println(this.product.add(this.treeSet, string, amount) + "ns");
+    }
 
     public static void main(String[] arg) {
-        System.out.println("Test begin to start new project now !!!");
-        System.out.println("Add new ");
-        String line = "test line";
-        int amount = 1000000;
-        LinkedList<String> linkedList = new LinkedList<>();
-        ArrayList<String> arrayList = new ArrayList<>();
-        ArrayList<String> arrayList1 = new ArrayList<>();
-        ArrayList<String> arrayList2 = new ArrayList<>();
-        ArrayList<String> arrayList3 = new ArrayList<>();
-
-        TreeSet<String> treeSet = new TreeSet<>();
-        TreeSet<String> treeSet1 = new TreeSet<>();
-
-        Productivity product = new Productivity();
-        System.out.println("ArrayList  :  " + product.add(arrayList, line, amount) + " [ns]");
-        System.out.println("TreeSet    :  " + product.add(treeSet, line, amount) + " [ns]");
-        System.out.println("TreeSet1:  :  " + product.add(treeSet1, line, amount) + " [ns]");
-        System.out.println("ArrayList1 :  " + product.add(arrayList1, line, amount) + " [ns]");
-        System.out.println("ArrayList2 :  " + product.add(arrayList2, line, amount) + " [ns]");
-        System.out.println("ArrayList3 :  " + product.add(arrayList3, line, amount) + " [ns]");
-
-        System.out.println("LinkedList :  " + product.add(linkedList, line, amount) + " [ns]");
-
-        //System.out.println("TreeSet:  " + product.add(arrayList2, line, amount) + " [ns]");
-        //System.out.println("TreeSet:  " + product.add(arrayList3, line, amount) + " [ns]");
-        //System.out.println("LinkedList:  " + product.add(arrayList, line, amount) + " [ns]");
+        Input input = new ConsoleInput();
+        new StartUi(input).start();
     }
 
 }
