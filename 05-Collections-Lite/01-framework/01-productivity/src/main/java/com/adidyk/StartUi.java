@@ -24,13 +24,14 @@ public class StartUi {
     }
 
     private void work() {
-        String string = this.input.ask("Input string: ");
+       // String string = this.input.ask("Input string: ");
+        String string = "testString";
 
         int amount = Integer.parseInt(this.input.ask("Input amount: "));
 
-        System.out.println("LinkedList: " + this.product.add(this.linkedList, string, amount) + " [ns]");
-        System.out.println("ArrayList:  " + this.product.add(this.arrayList, string, amount) + " [ns]");
-        System.out.println("TreeSet:    " + this.product.add(this.treeSet, string, amount) + " [ns]");
+        System.out.println("LinkedList: " + (float)this.product.add(this.linkedList, string, amount) + " [ns]");
+        System.out.println("ArrayList:  " + (float)this.product.add(this.arrayList, string, amount) + " [ns]");
+        System.out.println("TreeSet:    " + (float)this.product.add(this.treeSet, string, amount) + " [ns]");
     }
 
     public static void main(String[] arg) {

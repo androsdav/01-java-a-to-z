@@ -10,7 +10,7 @@ public class Productivity {
             collection.add(line);
         }
         long end = System.nanoTime();
-        return end - start;
+        return (end - start) / amount;
     }
 
     public long delete(Collection<String> collection, int amount) {
