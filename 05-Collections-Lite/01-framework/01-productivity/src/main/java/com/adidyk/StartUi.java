@@ -2,12 +2,13 @@ package com.adidyk;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Set;
 import java.util.TreeSet;
 
 public class StartUi {
     private LinkedList<String> linkedList;
     private ArrayList<String> arrayList;
-    private TreeSet<String> treeSet;
+    private Set<String> treeSet;
     private Productivity product;
     private Input input;
 
@@ -48,9 +49,9 @@ public class StartUi {
             System.out.println(item);
         }
 
-        //System.out.println("LinkedList: " + (float)this.product.delete(this.linkedList, amount / 2) + " [ns]");
-        //System.out.println("ArrayList:  " + (float)this.product.delete(this.arrayList, amount / 2) + " [ns]");
-        //System.out.println("TreeSet:    " + (float)this.product.delete(this.treeSet, amount / 2 ) + " [ns]");
+        System.out.println("LinkedList: " + (float)this.product.delete(this.linkedList, amount / 2) + " [ns]");
+        System.out.println("ArrayList:  " + (float)this.product.delete(this.arrayList, amount / 2) + " [ns]");
+        System.out.println("TreeSet:    " + (float)this.product.delete(this.treeSet, amount / 2 ) + " [ns]");
     }
 
     public static void main(String[] arg) {
