@@ -32,6 +32,11 @@ public class StartUi {
         System.out.println("LinkedList: " + (float)this.product.add(this.linkedList, string, amount) + " [ns]");
         System.out.println("ArrayList:  " + (float)this.product.add(this.arrayList, string, amount) + " [ns]");
         System.out.println("TreeSet:    " + (float)this.product.add(this.treeSet, string, amount) + " [ns]");
+
+        System.out.println();
+        System.out.println("LinkedList: " + (float)this.product.delete(this.linkedList, amount) + " [ns]");
+        System.out.println("ArrayList:  " + (float)this.product.delete(this.arrayList, amount) + " [ns]");
+        System.out.println("TreeSet:    " + (float)this.product.delete(this.treeSet, amount) + " [ns]");
     }
 
     public static void main(String[] arg) {
