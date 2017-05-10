@@ -34,9 +34,23 @@ public class StartUi {
         System.out.println("TreeSet:    " + (float)this.product.add(this.treeSet, string, amount) + " [ns]");
 
         System.out.println();
-        System.out.println("LinkedList: " + (float)this.product.delete(this.linkedList, amount) + " [ns]");
-        System.out.println("ArrayList:  " + (float)this.product.delete(this.arrayList, amount) + " [ns]");
-        System.out.println("TreeSet:    " + (float)this.product.delete(this.treeSet, amount) + " [ns]");
+        for (String item : this.arrayList) {
+            System.out.println(item);
+        }
+
+        System.out.println();
+        for (String item : this.linkedList) {
+            System.out.println(item);
+        }
+
+        System.out.println();
+        for (String item : this.treeSet) {
+            System.out.println(item);
+        }
+
+        //System.out.println("LinkedList: " + (float)this.product.delete(this.linkedList, amount / 2) + " [ns]");
+        //System.out.println("ArrayList:  " + (float)this.product.delete(this.arrayList, amount / 2) + " [ns]");
+        //System.out.println("TreeSet:    " + (float)this.product.delete(this.treeSet, amount / 2 ) + " [ns]");
     }
 
     public static void main(String[] arg) {
