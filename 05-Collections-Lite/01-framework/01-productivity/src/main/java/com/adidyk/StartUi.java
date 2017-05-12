@@ -6,7 +6,11 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class StartUi {
-    private ArrayList warmUp;
+
+    private ArrayList<String> warmUpArrayList;
+    private LinkedList<String> warmUpLinkedList;
+    private TreeSet<String> warmUpTreeSet;
+
     private LinkedList<String> linkedList;
     private ArrayList<String> arrayList;
     private Set<String> treeSet;
@@ -14,8 +18,12 @@ public class StartUi {
     private Input input;
 
     private StartUi(Input input) {
-        this.input = input;
-        this.warmUp = new ArrayList<>();
+        //this.input = input;
+
+        this.warmUpArrayList = new ArrayList<>();
+        this.warmUpLinkedList = new LinkedList<>();
+        this.warmUpTreeSet = new TreeSet<>();
+
         this.linkedList = new LinkedList<>();
         this.arrayList = new ArrayList<>();
         this.treeSet = new TreeSet<>();
@@ -29,13 +37,20 @@ public class StartUi {
     private void work() {
         // String string = this.input.ask("Input string: ");
         String string = "testString";
+        int amount = 500000;
 
-        int amount = Integer.parseInt(this.input.ask("Input amount: "));
+//        int amount = Integer.parseInt(this.input.ask("Input amount: "));
 
-        System.out.println("ArrayList:  " + (float) this.product.add(this.warmUp, string, amount) + " [ns]");
-        System.out.println("ArrayList:  " + (float) this.product.add(this.arrayList, string, amount) + " [ns]");
-        System.out.println("LinkedList: " + (float) this.product.add(this.linkedList, string, amount) + " [ns]");
-        System.out.println("TreeSet:    " + (float) this.product.add(this.treeSet, string, amount) + " [ns]");
+//        System.out.println("warm - Up LinkedList:  " + (float) this.product.add(this.warmUpLinkedList, string, amount) + " [ns]");
+//        System.out.println("        TreeSet:    " + (float) this.product.add(this.treeSet, string, amount) + " [ns]");
+//        System.out.println("        ArrayList:  " + (float) this.product.add(this.arrayList, string, amount) + " [ns]");
+        System.out.println("        LinkedList: " + (float) this.product.add(this.linkedList, string, amount) + " [ns]");
+
+//        System.out.println("warm - Up ArrayList:  " + (float) this.product.add(this.warmUpArrayList, string, amount) + " [ns]");
+//        System.out.println("        ArrayList:  " + (float) this.product.add(this.arrayList, string, amount) + " [ns]");
+
+//        System.out.println("warm - Up TreeSet: " + (float) this.product.add(this.warmUpTreeSet, string, amount) + " [ns]");
+//        System.out.println("        TreeSet:    " + (float) this.product.add(this.treeSet, string, amount) + " [ns]");
 
         System.out.println();
         //      for (String item : this.arrayList) {
@@ -53,9 +68,10 @@ public class StartUi {
         //    }
 
         int amount1 = 50;
+//        System.out.println("ArrayList:  " + (float) this.product.delete(this.arrayList, amount1) + " [ns]");
         System.out.println("LinkedList: " + (float) this.product.delete(this.linkedList, amount1) + " [ns]");
-        System.out.println("ArrayList:  " + (float) this.product.delete(this.arrayList, amount1) + " [ns]");
-        System.out.println("TreeSet:    " + (float) this.product.delete(this.treeSet, amount1) + " [ns]");
+//        System.out.println("ArrayList:  " + (float) this.product.delete(this.arrayList, amount1) + " [ns]");
+//        System.out.println("TreeSet:    " + (float) this.product.delete(this.treeSet, amount1) + " [ns]");
 
 
        // System.out.println("---------------------ArrayList");
