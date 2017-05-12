@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class StartUi {
+    private ArrayList warmUp;
     private LinkedList<String> linkedList;
     private ArrayList<String> arrayList;
     private Set<String> treeSet;
@@ -14,6 +15,7 @@ public class StartUi {
 
     private StartUi(Input input) {
         this.input = input;
+        this.warmUp = new ArrayList<>();
         this.linkedList = new LinkedList<>();
         this.arrayList = new ArrayList<>();
         this.treeSet = new TreeSet<>();
@@ -30,8 +32,9 @@ public class StartUi {
 
         int amount = Integer.parseInt(this.input.ask("Input amount: "));
 
-        System.out.println("LinkedList: " + (float) this.product.add(this.linkedList, string, amount) + " [ns]");
+        System.out.println("ArrayList:  " + (float) this.product.add(this.warmUp, string, amount) + " [ns]");
         System.out.println("ArrayList:  " + (float) this.product.add(this.arrayList, string, amount) + " [ns]");
+        System.out.println("LinkedList: " + (float) this.product.add(this.linkedList, string, amount) + " [ns]");
         System.out.println("TreeSet:    " + (float) this.product.add(this.treeSet, string, amount) + " [ns]");
 
         System.out.println();
