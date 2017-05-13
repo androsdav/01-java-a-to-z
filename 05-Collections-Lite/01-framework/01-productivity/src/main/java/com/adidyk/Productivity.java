@@ -5,23 +5,25 @@ import java.util.*;
 public class Productivity {
 
     // add -
-    long add(Collection<String> collection, String line, int amount) {
+    long add(Collection<String> collection, String string, int amount) {
         long start = System.nanoTime();
         for (int index = 0; index < amount; index++) {
-            collection.add( + index);
+            //collection.add(this.randomString());
+            collection.add(string + index);
         }
         long end = System.nanoTime();
-        return (end - start);
+        return (end - start) / amount;
     }
 
     // insert -
-    public long insert(Collection<String> collection, String line, int amount) {
+    public long insert(List<String> collection, String string, int amount) {
         long start = System.nanoTime();
-        ListIterator<String> listItr = (ListIterator<String>) collection.iterator();
+        ListIterator<String> listItr = collection.listIterator();
         int index = 0;
         while(listItr.hasNext() && index < amount) {
-            listItr.add(line + index);
-            listItr.next();
+            listItr.add(string + index);
+            //listItr.next();
+
             index++;
         }
         long end = System.nanoTime();
@@ -46,7 +48,7 @@ public class Productivity {
         StringBuilder randString = new StringBuilder();
         int count = (int) (Math.random() * 30);
         for (int i = 0; i < count; i++) {
-            randString.append(symbols.charAt((int) (Math.random() * symbols.length()))).append(i);
+            randString.append(symbols.charAt((int) (Math.random() * symbols.length())));
         }
         return String.valueOf(randString);
     }

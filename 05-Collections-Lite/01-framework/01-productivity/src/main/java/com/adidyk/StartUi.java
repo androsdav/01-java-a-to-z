@@ -35,12 +35,34 @@ public class StartUi {
     }
 
     private void work() {
-        // String string = this.input.ask("Input string: ");
-        String string = "testString";
-        //int amount = 20;
+
+        int amountAdd = 20;
+        int amountInsert = 10;
+        int amountDelete = 5;
+
+        String stringAdd = "stringAdd";
+        String stringInsert = "stringInsert";
         //int amount1 = 5;
-        //System.out.println("rrayList:  " + (float) this.product.add(this.arrayList, string, amount) + " [ns]");
-        System.out.println(product.randomString());
+        System.out.println("---------------------ArrayList add");
+        System.out.println("ArrayList add:  " + (float)this.product.add(this.arrayList, stringAdd, amountAdd) + " [ns]");
+        for (String item : this.arrayList) {
+            System.out.println(item);
+        }
+
+        System.out.println("---------------------ArrayList insert");
+        System.out.println("ArrayList insert: " + (float)this.product.insert(this.arrayList, stringInsert, amountInsert) + " [ns]");
+        for (String item : this.arrayList) {
+            System.out.println(item);
+        }
+
+        System.out.println("---------------------ArrayList delete");
+        System.out.println("ArrayList delete: " + (float)this.product.delete(this.arrayList, amountDelete) + " [ns]");
+        for (String item : this.arrayList) {
+            System.out.println(item);
+        }
+
+
+        //System.out.println(product.randomString());
 
 //        int amount = Integer.parseInt(this.input.ask("Input amount: "));
 
