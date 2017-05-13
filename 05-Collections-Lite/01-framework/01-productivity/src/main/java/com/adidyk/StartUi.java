@@ -42,8 +42,8 @@ public class StartUi {
 //        int amount = Integer.parseInt(this.input.ask("Input amount: "));
 
 //        System.out.println("warm - Up LinkedList:  " + (float) this.product.add(this.warmUpLinkedList, string, amount) + " [ns]");
-//        System.out.println("        TreeSet:    " + (float) this.product.add(this.treeSet, string, amount) + " [ns]");
-//        System.out.println("        ArrayList:  " + (float) this.product.add(this.arrayList, string, amount) + " [ns]");
+        System.out.println("        TreeSet:    " + (float) this.product.add(this.treeSet, string, amount) + " [ns]");
+        System.out.println("        ArrayList:  " + (float) this.product.add(this.arrayList, string, amount) + " [ns]");
         System.out.println("        LinkedList: " + (float) this.product.add(this.linkedList, string, amount) + " [ns]");
 
 //        System.out.println("warm - Up ArrayList:  " + (float) this.product.add(this.warmUpArrayList, string, amount) + " [ns]");
@@ -69,7 +69,7 @@ public class StartUi {
 
         int amount1 = 50;
 //        System.out.println("ArrayList:  " + (float) this.product.delete(this.arrayList, amount1) + " [ns]");
-        System.out.println("LinkedList: " + (float) this.product.delete(this.linkedList, amount1) + " [ns]");
+//        System.out.println("LinkedList: " + (float) this.product.delete(this.linkedList, amount1) + " [ns]");
 //        System.out.println("ArrayList:  " + (float) this.product.delete(this.arrayList, amount1) + " [ns]");
 //        System.out.println("TreeSet:    " + (float) this.product.delete(this.treeSet, amount1) + " [ns]");
 
