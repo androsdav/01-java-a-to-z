@@ -8,7 +8,6 @@ public class Productivity {
     long add(Collection<String> collection, String string, int amount) {
         long start = System.nanoTime();
         for (int index = 0; index < amount; index++) {
-            //collection.add(this.randomString());
             collection.add(string + index);
         }
         long end = System.nanoTime();
@@ -22,8 +21,6 @@ public class Productivity {
         int index = 0;
         while(listItr.hasNext() && index < amount) {
             listItr.add(string + index);
-            //listItr.next();
-
             index++;
         }
         long end = System.nanoTime();
