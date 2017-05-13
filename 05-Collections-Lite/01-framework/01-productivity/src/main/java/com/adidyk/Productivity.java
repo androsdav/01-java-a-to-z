@@ -4,7 +4,8 @@ import java.util.*;
 
 public class Productivity {
 
-    public long add(Collection<String> collection, String line, int amount) {
+    // add -
+    long add(Collection<String> collection, String line, int amount) {
         long start = System.nanoTime();
         for (int index = 0; index < amount; index++) {
             collection.add(line + index);
@@ -13,33 +14,21 @@ public class Productivity {
         return (end - start);
     }
 
-
+    // insert -
     public long insert(Collection<String> collection, String line, int amount) {
-        //ArrayList<String> test = new ArrayList<>();
-        //collection.add(1, "1");
-//        Iterator itr = collection.iterator();
-
-//        Collection<String> list = new ArrayList<>();
-  //      Iterator<String> itr = list.iterator();
+        long start = System.nanoTime();
         ListIterator<String> listItr = (ListIterator<String>) collection.iterator();
         int index = 0;
-        while(listItr.hasNext()) {
+        while(listItr.hasNext() && index < amount) {
             listItr.add(line);
+            listItr.next();
+            index++;
         }
-
-        // ListIterator itr = collection.listIterator();
-       // int index = 0;
-       // while (itr.hasNext() && index < amount) {
-       //     itr.add
-        //}
-      //  collection.get(1);
-      //  collection.set(1, line);
-        return 1;
+        long end = System.nanoTime();
+        return (end - start) / amount;
     }
 
-
-
-
+    // delete -
     public long delete(Collection<String> collection, int amount) {
         long start = System.nanoTime();
         Iterator<String> itr = collection.iterator();
@@ -49,8 +38,8 @@ public class Productivity {
             itr.remove();
             index++;
         }
-        long ned = System.nanoTime();
-        return (ned - start) / amount;
+        long end = System.nanoTime();
+        return (end - start) / amount;
     }
 
 
