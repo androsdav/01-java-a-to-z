@@ -17,12 +17,17 @@ public class Productivity {
     // insert -
     public long insert(List<String> collection, String string, int amount) {
         long start = System.nanoTime();
-        ListIterator<String> listItr = collection.listIterator();
-        int index = 0;
-        while(listItr.hasNext() && index < amount) {
-            listItr.add(string + index);
-            index++;
+
+        for (String item : collection) {
+
         }
+
+        //ListIterator<String> listItr = collection.listIterator();
+        //int index = 0;
+        //while(listItr.hasNext() && index < amount) {
+        //    listItr.add(string + index);
+        //    index++;
+        //}
         long end = System.nanoTime();
         return (end - start) / amount;
     }
@@ -40,6 +45,7 @@ public class Productivity {
         long end = System.nanoTime();
         return (end - start) / amount;
     }
+
     public String randomString() {
         String symbols = "qwerty";
         StringBuilder randString = new StringBuilder();
