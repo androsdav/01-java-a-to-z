@@ -14,7 +14,7 @@ public class Productivity {
         return (end - start) / amount;
     }
 
-    // insert -
+    // insert - insert elements in collection
     public long insert(List<String> collection, String string, int amount) {
         long start = System.nanoTime();
 
