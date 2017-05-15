@@ -5,9 +5,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class Productivity {
+class Productivity {
 
-    // add -
+    // add - adds elements at end of Collections
     long add(Collection<String> collection, String string, int amount) {
         long start = System.nanoTime();
         for (int index = 0; index < amount; index++) {
@@ -17,8 +17,8 @@ public class Productivity {
         return (end - start);
     }
 
-    // insert - insert elements in collection
-    public long insert(List<String> collection, String string, int amount) {
+    // insert - inserts elements at beginning of List
+    long insert(List<String> collection, String string, int amount) {
         long start = System.nanoTime();
         ListIterator<String> listItr = collection.listIterator();
         int index = 0;
@@ -30,8 +30,8 @@ public class Productivity {
         return (end - start);
     }
 
-    // delete -
-    public long delete(Collection<String> collection, int amount) {
+    // delete - deletes amount elements at beginning of Collections
+    long delete(Collection<String> collection, int amount) {
         long start = System.nanoTime();
         Iterator<String> itr = collection.iterator();
         int index = 0;
@@ -44,13 +44,4 @@ public class Productivity {
         return (end - start);
     }
 
-    public String randomString() {
-        String symbols = "qwerty";
-        StringBuilder randString = new StringBuilder();
-        int count = (int) (Math.random() * 30);
-        for (int i = 0; i < count; i++) {
-            randString.append(symbols.charAt((int) (Math.random() * symbols.length())));
-        }
-        return String.valueOf(randString);
-    }
 }
