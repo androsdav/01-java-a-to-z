@@ -1,6 +1,9 @@
 package com.adidyk;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 public class Productivity {
 
@@ -11,25 +14,20 @@ public class Productivity {
             collection.add(string + index);
         }
         long end = System.nanoTime();
-        return (end - start) / amount;
+        return (end - start);
     }
 
     // insert - insert elements in collection
     public long insert(List<String> collection, String string, int amount) {
         long start = System.nanoTime();
-
-        for (String item : collection) {
-
+        ListIterator<String> listItr = collection.listIterator();
+        int index = 0;
+        while(listItr.hasNext() && index < amount) {
+            listItr.add(string + index);
+            index++;
         }
-
-        //ListIterator<String> listItr = collection.listIterator();
-        //int index = 0;
-        //while(listItr.hasNext() && index < amount) {
-        //    listItr.add(string + index);
-        //    index++;
-        //}
         long end = System.nanoTime();
-        return (end - start) / amount;
+        return (end - start);
     }
 
     // delete -
@@ -43,7 +41,7 @@ public class Productivity {
             index++;
         }
         long end = System.nanoTime();
-        return (end - start) / amount;
+        return (end - start);
     }
 
     public String randomString() {

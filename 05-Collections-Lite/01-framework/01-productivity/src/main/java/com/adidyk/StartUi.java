@@ -5,6 +5,8 @@ import java.util.LinkedList;
 import java.util.Set;
 import java.util.TreeSet;
 
+import static java.lang.Math.pow;
+
 public class StartUi {
 
     private ArrayList<String> warmUpArrayList;
@@ -36,30 +38,27 @@ public class StartUi {
 
     private void work() {
 
-        int amountAdd = 20;
-        int amountInsert = 10;
-        int amountDelete = 5;
+        int amountAdd = 500000;
+        int amountInsert = 5000;
+        int amountDelete = 5000;
 
         String stringAdd = "stringAdd";
         String stringInsert = "stringInsert";
-        //int amount1 = 5;
+
         System.out.println("---------------------ArrayList add");
-        System.out.println("ArrayList add:  " + (float)this.product.add(this.arrayList, stringAdd, amountAdd) + " [ns]");
-        for (String item : this.arrayList) {
-            System.out.println(item);
-        }
-
+        System.out.println("ArrayList add:  " + (double)this.product.add(this.arrayList, stringAdd, amountAdd) / pow(10, 9) + " [s]");
         System.out.println("---------------------ArrayList insert");
-        System.out.println("ArrayList insert: " + (float)this.product.insert(this.arrayList, stringInsert, amountInsert) + " [ns]");
-        for (String item : this.arrayList) {
-            System.out.println(item);
-        }
-
+        System.out.println("ArrayList insert: " + (double)this.product.insert(this.arrayList, stringInsert, amountInsert) / pow(10, 9) + " [s]");
         System.out.println("---------------------ArrayList delete");
-        System.out.println("ArrayList delete: " + (float)this.product.delete(this.arrayList, amountDelete) + " [ns]");
-        for (String item : this.arrayList) {
-            System.out.println(item);
-        }
+        System.out.println("ArrayList delete: " + (float)this.product.delete(this.arrayList, amountDelete) / pow(10, 9) + " [s]");
+
+        System.out.println("---------------------LinkedList add");
+        System.out.println("ArrayList add:  " + (double)this.product.add(this.linkedList, stringAdd, amountAdd) / pow(10, 9) + " [s]");
+        System.out.println("---------------------LinkedList insert");
+        System.out.println("ArrayList insert: " + (double)this.product.insert(this.linkedList, stringInsert, amountInsert) / pow(10, 9) + " [s]");
+        System.out.println("---------------------LinkedList delete");
+        System.out.println("ArrayList delete: " + (float)this.product.delete(this.linkedList, amountDelete) / pow(10, 9) + " [s]");
+
 
 
         //System.out.println(product.randomString());
