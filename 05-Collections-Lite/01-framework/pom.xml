@@ -9,5 +9,6 @@
          <packaging>pom</packaging>
          <modules>
                   <module>01-productivity</module>
+                  <module>02-convert-list</module>
          </modules>
 </project>
