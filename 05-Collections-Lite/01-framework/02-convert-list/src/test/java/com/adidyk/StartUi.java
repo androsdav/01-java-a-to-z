@@ -1,6 +1,5 @@
 package com.adidyk;
 
-import java.util.*;
 import static java.lang.Math.*;
 
 public class StartUi {
