@@ -1,11 +1,28 @@
 package com.adidyk;
 
-import java.util.*;
-import static java.lang.Math.*;
+import java.util.List;
 
 public class StartUi {
 
-    private LinkedList<String> linkedList;
+    public static void main(String[] arg) {
+
+        int[][] array = {
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9},
+                {10, 11, 12}
+        };
+        ConvertList convert = new ConvertList();
+        List<Integer> list = convert.toList(array);
+        for (Integer item : list) {
+            System.out.println(item);
+        }
+
+    }
+
+}
+
+/*    private LinkedList<String> linkedList;
     private ArrayList<String> arrayList;
     private Set<String> treeSet;
     private Productivity product;
@@ -49,4 +66,4 @@ public class StartUi {
         new StartUi().start();
     }
 
-}
+}*/
