@@ -2,7 +2,6 @@ package com.adidyk;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import static java.lang.StrictMath.ceil;
 
 public class ConvertList {
