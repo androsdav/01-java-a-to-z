@@ -2,16 +2,17 @@ package com.adidyk;
 
 public class User {
 
-    private long id;
+    private Integer id;
     private String name;
     private String city;
 
-    User(String name, String city) {
+    User(Integer id, String name, String city) {
+        this.id = id;
         this.name = name;
         this.city = city;
     }
 
-    public void setid(long id) {
+    public void setid(Integer id) {
         this.id = id;
     }
 
@@ -23,7 +24,7 @@ public class User {
         this.city = city;
     }
 
-    public long getId() {
+    public Integer getId() {
         return this.id;
     }
 
