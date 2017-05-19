@@ -3,13 +3,12 @@ package com.adidyk.models;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import static org.hamcrest.CoreMatchers.is;
-//import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class ItemTest {
 
-    private Item item = new Item("task", "I wont to buy your product", 100);
+    private final Item item = new Item("task", "I wont to buy your product", 100);
 
     @Test
     public void setNameTest() {

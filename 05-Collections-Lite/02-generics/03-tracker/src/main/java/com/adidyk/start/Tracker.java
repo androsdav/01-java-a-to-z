@@ -5,34 +5,18 @@ import java.util.*;
 
 class Tracker {
 
-	private Item[] item = new Item[1];
+	private ArrayList<Item> item = new ArrayList<>();
 	private static final Random RN = new Random();
 
 	// addItem - add new item in []item
 	protected Item addItem(Item item) {
-		for (int index = 0; index < this.item.length; index++) {
-			if (this.item[index] == null) {
-				item.setId(this.generateId());
-				this.item[index] = item;
-				break;
-			}
-		}
-		int length = 0;
-		for (Item anItem : this.item) {
-			if (anItem != null) {
-				length++;
-			}
-		}
-		if (length == this.item.length) {
-			Item[] itemTemp = new Item[2 * this.item.length];
-			System.arraycopy(this.item, 0, itemTemp, 0, this.item.length);
-			this.item = itemTemp;
-		}
+	    item.setId(this.generateId());
+	    this.item.add(item);
 		return item;
 	}
 
 	// getAllItem - return all []item
-	protected Item[] getAllItem() {
+	protected ArrayList<Item> getAllItem() {
 		return this.item;
 	}
 
@@ -40,7 +24,7 @@ class Tracker {
 	protected Item searchItemById(String id) {
 		Item result = null;
 		for (Item item : this.item) {
-			if (item != null && item.getId().equals(id)) {
+			if (item.getId().equals(id)) {
 				result = item;
 				break;
 			}
@@ -50,9 +34,10 @@ class Tracker {
 
 	// deleteItem - delete item by id in []item
 	protected void removeItemById(String id) {
-		for (int index = 0; index < this.item.length; index++ ) {
-			if (this.item[index] != null && this.item[index].getId().equals(id)) {
-				this.item[index] = null;
+		for (int index = 0; index < this.item.size(); index++) {
+			if (this.item.get(index).getId().equals(id)) {
+
+			    this.item.remove(index);
 				break;
 			}
 		}
@@ -60,9 +45,9 @@ class Tracker {
 
 	// updateItemById - update name, description, create in item by id
 	protected void updateItemById(Item item) {
-		for (int index = 0; index < this.item.length; index++) {
-			if (this.item[index] != null && this.item[index].getId().equals(item.getId())) {
-				this.item[index] = item;
+		for (int index = 0; index < this.item.size(); index++) {
+			if (this.item.get(index).getId().equals(item.getId())) {
+				this.item.set(index, item);
 				break;
 			}
 		}
@@ -71,7 +56,7 @@ class Tracker {
 	// addCommentById - add comment in item by id
 	protected void addCommentById(String id, Comment comment) {
 		for (Item item : this.item)
-			if (item != null && item.getId().equals(id)) {
+			if (item.getId().equals(id)) {
 				item.addComment(comment);
 				break;
 			}
