@@ -9,5 +9,6 @@
          <packaging>pom</packaging>
          <modules>
                   <module>01-convert-list</module>
+                  <module>02-convert-list-map</module>
          </modules>
 </project>
