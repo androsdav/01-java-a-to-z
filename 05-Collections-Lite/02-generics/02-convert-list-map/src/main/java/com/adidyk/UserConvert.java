@@ -12,6 +12,6 @@ public class UserConvert {
             mapUser.put(user.getId(), user);
         }
         return mapUser;
-
     }
+
 }
