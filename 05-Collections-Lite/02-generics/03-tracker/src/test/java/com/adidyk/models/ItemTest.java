@@ -1,8 +1,11 @@
 package com.adidyk.models;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+//import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
 
 public class ItemTest {
 
@@ -59,28 +62,15 @@ public class ItemTest {
         Item item = new Item("name1", "description1", 100);
         Comment comment1 = new Comment("comment1");
         Comment comment2 = new Comment("comment2");
-        Comment comment3 = new Comment("comment3");
-        Comment comment4 = new Comment("comment4");
         item.addComment(comment1);
         item.addComment(comment2);
-        item.addComment(comment3);
-        item.addComment(comment4);
-        Comment[] comments = {comment1, comment2, comment3, comment4};
-        Comment[] comment = item.getAllComment();
-        int length = 0;
-        for (Comment comm : comment) {
-                if (comm != null) {
-                    length++;
-                }
-            }
-        Comment[] result = new Comment[length];
-        int index = 0;
-        for (Comment comm : comment){
-            if (comm != null) {
-                result[index++] = comm;
-            }
-        }
-        assertThat(result, is(comments));
+        Comment comment3 = new Comment("comment1");
+        Comment comment4 = new Comment("comment2");
+        ArrayList<Comment> commentsActual = new ArrayList<>();
+        commentsActual.add(comment3);
+        commentsActual.add(comment4);
+        ArrayList<Comment> commentsExpected = item.getAllComment();
+        assertThat(commentsActual, is(commentsExpected));
     }
 
 }

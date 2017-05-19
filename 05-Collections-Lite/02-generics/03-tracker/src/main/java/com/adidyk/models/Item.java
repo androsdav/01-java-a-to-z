@@ -2,6 +2,7 @@ package com.adidyk.models;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 public class Item {
 
@@ -9,9 +10,8 @@ public class Item {
     private String description;
     private long create;
     private String id;
-    private Comment[] comment = new Comment[10];
+    private ArrayList<Comment> comment = new ArrayList<>();
     private DateFormat dateFormat1 = new SimpleDateFormat("dd.MM.yy HH:mm");
-
 
     public Item(String name, String description, long create) {
         this.name = name;
@@ -52,27 +52,11 @@ public class Item {
     }
 
     public Comment addComment(Comment comment) {
-        for (int index = 0; index < this.comment.length; index++) {
-            if (this.comment[index] == null) {
-                this.comment[index] = comment;
-                break;
-            }
-        }
-        int length = 0;
-        for (Comment comm : this.comment) {
-            if (comm != null) {
-                length++;
-            }
-        }
-        if (length == this.comment.length) {
-            Comment[] commentTemp = new Comment[2 * this.comment.length];
-            System.arraycopy(this.comment, 0, commentTemp, 0, this.comment.length);
-            this.comment = commentTemp;
-        }
+        this.comment.add(comment);
         return comment;
     }
 
-    public Comment[] getAllComment() {
+    public ArrayList<Comment> getAllComment() {
         return this.comment;
     }
 
@@ -103,6 +87,5 @@ public class Item {
         result = 31 * result + id.hashCode();
         return result;
     }
+
 }
-
-

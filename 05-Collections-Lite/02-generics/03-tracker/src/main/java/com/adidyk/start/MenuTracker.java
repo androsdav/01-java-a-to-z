@@ -3,6 +3,7 @@ package com.adidyk.start;
 import com.adidyk.models.Comment;
 import com.adidyk.models.Item;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 class MenuTracker {
@@ -138,9 +139,9 @@ class MenuTracker {
                 if (item != null && item.getName().equals(name)) {
                     System.out.println(item.toString());
                     for (Comment comm : item.getAllComment()) {
-                        if (comm != null) {
+                        //if (comm != null) {
                             System.out.println(comm.toString());
-                        }
+                        //}
                     }
                 }
             }
@@ -163,9 +164,9 @@ class MenuTracker {
                 if (item != null && item.getDescription().contains(desc)) {
                     System.out.println(item.toString());
                     for (Comment comm : item.getAllComment()) {
-                        if (comm != null) {
+                       // if (comm != null) {
                             System.out.println(comm.toString());
-                        }
+                       // }
                     }
                 }
             }
@@ -207,11 +208,11 @@ class MenuTracker {
             item.setId(id);
             Item result = track.searchItemById(id);
             track.updateItemById(item);
-            Comment[] comment = result.getAllComment();
+            ArrayList<Comment> comment = result.getAllComment();
             for (Comment comm : comment) {
-                if (comm != null) {
+                //if (comm != null) {
                     track.addCommentById(id, comm);
-                }
+                //}
             }
         }
     }

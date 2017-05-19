@@ -19,4 +19,20 @@ public class Comment {
     public String toString() {
         return ("   - [comm]: " + getComment());
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Comment comment1 = (Comment) o;
+
+        return comment.equals(comment1.comment);
+    }
+
+    @Override
+    public int hashCode() {
+        return comment.hashCode();
+    }
+
 }
