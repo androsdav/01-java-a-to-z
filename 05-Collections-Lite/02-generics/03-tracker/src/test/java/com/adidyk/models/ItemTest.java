@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 public class ItemTest {
 
-    Item item = new Item("task", "I wont to buy your product", 100);
+    private Item item = new Item("task", "I wont to buy your product", 100);
 
     @Test
     public void setNameTest() {
@@ -26,7 +26,7 @@ public class ItemTest {
     public void setCreateTest() {
         this.item.setCreate(200);
         long result = this.item.getCreate();
-        assertThat(result, is(200l));
+        assertThat(result, is(200L));
     }
     
     @Test
@@ -51,7 +51,7 @@ public class ItemTest {
     @Test
     public void getCreateTest() {
         long result = this.item.getCreate();
-        assertThat(result, is(100l));
+        assertThat(result, is(100L));
     }
 
     @Test
