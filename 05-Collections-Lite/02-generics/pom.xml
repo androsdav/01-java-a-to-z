@@ -10,5 +10,6 @@
          <modules>
                   <module>01-convert-list</module>
                   <module>02-convert-list-map</module>
+                  <module>03-tracker</module>
          </modules>
 </project>
