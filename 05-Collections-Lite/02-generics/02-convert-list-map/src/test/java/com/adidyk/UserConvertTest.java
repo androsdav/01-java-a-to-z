@@ -1,7 +1,6 @@
 package com.adidyk;
 
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,4 +28,5 @@ public class UserConvertTest {
         Map<Integer, User> mapUserExpected = user.process(list);
         assertThat(mapUserActual, is(mapUserExpected));
     }
+
 }
