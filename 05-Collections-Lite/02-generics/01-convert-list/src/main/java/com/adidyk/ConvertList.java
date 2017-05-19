@@ -34,6 +34,7 @@ public class ConvertList {
         return array;
     }
 
+    // convert - converts list of arrays into one list
     public List<Integer> convert(List<int[]> list) {
         List<Integer> resultList = new ArrayList<>();
         for (int[] aList : list) {
