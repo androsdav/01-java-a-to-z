@@ -36,7 +36,6 @@ class Tracker {
 	protected void removeItemById(String id) {
 		for (int index = 0; index < this.item.size(); index++) {
 			if (this.item.get(index).getId().equals(id)) {
-
 			    this.item.remove(index);
 				break;
 			}

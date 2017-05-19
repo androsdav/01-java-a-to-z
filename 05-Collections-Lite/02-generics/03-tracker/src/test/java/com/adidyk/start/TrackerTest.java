@@ -27,16 +27,13 @@ public class TrackerTest {
 		ArrayList<Item> itemActual = new ArrayList<>();
 		itemActual.add(item1);
 		itemActual.add(item2);
-
 		Item item3 = new Item("task1", "description1", 1);
 		Item item4 = new Item("task2", "description2", 2);
-
-		//Item[] items = {item1, item2, item3, item4};
 		Tracker track = new Tracker();
 		track.addItem(item3);
 		track.addItem(item4);
-		ArrayList<Item> itemExpected = this.track.getAllItem();
-		assertThat(result, is(items));
+		ArrayList<Item> itemExpected = track.getAllItem();
+		assertThat(itemActual, is(itemExpected));
 	}
     
 	@Test
@@ -50,43 +47,55 @@ public class TrackerTest {
 		track.addItem(item2);
 		track.addItem(item3);
 		track.addItem(item4);
-		Item result = track.searchItemById(item3.getId());
-		assertThat(result, is(item3));
+		Item itemActual = new Item("task3", "description3", 3);
+		Item itemExpected = track.searchItemById(item3.getId());
+		assertThat(itemActual, is(itemExpected));
 	}
 
 	@Test
 	public void deleteItemByIdTest() {
 		Item item1 = new Item("task1", "description1", 1);
 		Item item2 = new Item("task2", "description2", 2);
-		Item item3 = new Item("task3", "description3", 3);
-		Item item4 = new Item("task4", "description4", 4);
-		Item[] items = {item1, item2, item4};
+		Item item3 = new Item("task4", "description4", 4);
+		ArrayList<Item> itemActual = new ArrayList<>();
+		itemActual.add(item1);
+		itemActual.add(item2);
+		itemActual.add(item3);
+		Item item4 = new Item("task1", "description1", 1);
+		Item item5 = new Item("task2", "description2", 2);
+		Item item6 = new Item("task3", "description3", 3);
+		Item item7 = new Item("task4", "description4", 4);
 		Tracker track = new Tracker();
-		track.addItem(item1);
-		track.addItem(item2);
-		track.addItem(item3);
 		track.addItem(item4);
-		track.removeItemById(item3.getId());
-		Item[] result = this.getAllItemWithoutNull(track.getAllItem());
-		assertThat(result, is(items));
+		track.addItem(item5);
+		track.addItem(item6);
+		track.addItem(item7);
+		track.removeItemById(item6.getId());
+		ArrayList<Item> itemExpected = track.getAllItem();
+		assertThat(itemActual, is(itemExpected));
 	}
 
 	@Test
 	public void updateItemByIdTest() {
-		Item item1 = new Item("task", "description", 1);
-		Item item2 = new Item("task", "description", 1);
-		Item item3 = new Item("task", "description", 1);
+		Item item1 = new Item("task1", "description1", 1);
+		Item item2 = new Item("task5", "description5", 5);
+		Item item3 = new Item("task3", "description3", 3);
+		ArrayList<Item> itemActual = new ArrayList<>();
+		itemActual.add(item1);
+		itemActual.add(item2);
+		itemActual.add(item3);
+		Item item4 = new Item("task1", "description1", 1);
+		Item item5 = new Item("task2", "description2", 2);
+		Item item6 = new Item("task3", "description3", 3);
 		Tracker track = new Tracker();
-		track.addItem(item1);
-		track.addItem(item2);
-		track.addItem(item3);
-		item3.setName("task1");
-		item3.setDescription("description1");
-		item3.setCreate(2);
-		Item[] items = {item1, item2, item3};
-		track.updateItemById(item3);
-		Item[] result = this.getAllItemWithoutNull(track.getAllItem());
-		assertThat(result, is(items));
+		track.addItem(item4);
+		track.addItem(item5);
+		track.addItem(item6);
+		Item item7 = new Item("task5", "description5", 5);
+		item7.setId(item5.getId());
+		track.updateItemById(item7);
+		ArrayList<Item> itemExpected = track.getAllItem();
+		assertThat(itemActual, is(itemExpected));
 	}
 
 	@Test
