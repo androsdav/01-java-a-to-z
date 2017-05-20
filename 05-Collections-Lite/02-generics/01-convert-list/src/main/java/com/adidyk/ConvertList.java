@@ -20,15 +20,15 @@ public class ConvertList {
     // toArray - converts list collection  to [][] array
     public int[][] toArray(List<Integer> list, int rows) {
         int array[][] = new int[rows][(int)ceil((double)list.size() / rows)];
-        int index = 0;
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < array[i].length; j++) {
-                if (index < list.size()) {
-                    array[i][j] = list.get(index);
-                } else {
-                    array[i][j] = 0;
-                }
-                index++;
+        int i = 0;
+        int j = 0;
+        for (Integer anList : list) {
+            array[i][j] = anList;
+            if (j < array[i].length - 1) {
+                j++;
+            } else {
+                j = 0;
+                if (i < rows) {i++;}
             }
         }
         return array;
