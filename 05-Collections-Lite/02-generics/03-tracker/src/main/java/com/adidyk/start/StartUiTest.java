@@ -18,8 +18,8 @@ public class StartUiTest {
         this.track.addItem(new Item("task1", "desc1", new Date().getTime()));
         this.track.addItem(new Item("task2", "desc2", new Date().getTime()));
         this.track.addItem(new Item("task3", "desc3", new Date().getTime()));
-        this.track.getAllItem()[2].setId("8888");
-        this.track.getAllItem()[3].setId("9999");
+        this.track.getAllItem().get(2).setId("8888");
+        this.track.getAllItem().get(3).setId("9999");
     }
 
     // init - initialization and start work

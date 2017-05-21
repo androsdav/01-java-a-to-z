@@ -1,6 +1,5 @@
 package com.adidyk.start;
 
-import com.adidyk.models.Comment;
 import com.adidyk.models.Item;
 import org.junit.Test;
 
@@ -17,6 +16,7 @@ public class TrackerTest {
 		Item itemActual = new Item("task", "description", 1);
 		Tracker track = new Tracker();
 		Item itemExpected = track.addItem(item);
+		itemActual.setId(itemExpected.getId());
 		assertThat(itemActual, is(itemExpected));
 	}
 
@@ -32,10 +32,12 @@ public class TrackerTest {
 		Tracker track = new Tracker();
 		track.addItem(item3);
 		track.addItem(item4);
+		item1.setId(item3.getId());
+		item2.setId(item4.getId());
 		ArrayList<Item> itemExpected = track.getAllItem();
 		assertThat(itemActual, is(itemExpected));
 	}
-    
+
 	@Test
 	public void searchItemByIdTest() {
 		Item item1 = new Item("task1", "description1", 1);
@@ -48,6 +50,7 @@ public class TrackerTest {
 		track.addItem(item3);
 		track.addItem(item4);
 		Item itemActual = new Item("task3", "description3", 3);
+		itemActual.setId(item3.getId());
 		Item itemExpected = track.searchItemById(item3.getId());
 		assertThat(itemActual, is(itemExpected));
 	}
@@ -70,6 +73,9 @@ public class TrackerTest {
 		track.addItem(item5);
 		track.addItem(item6);
 		track.addItem(item7);
+		item1.setId(item4.getId());
+		item2.setId(item5.getId());
+		item3.setId(item7.getId());
 		track.removeItemById(item6.getId());
 		ArrayList<Item> itemExpected = track.getAllItem();
 		assertThat(itemActual, is(itemExpected));
@@ -91,13 +97,16 @@ public class TrackerTest {
 		track.addItem(item4);
 		track.addItem(item5);
 		track.addItem(item6);
+		item1.setId(item4.getId());
+		item3.setId(item6.getId());
+		item2.setId(item5.getId());
 		Item item7 = new Item("task5", "description5", 5);
 		item7.setId(item5.getId());
 		track.updateItemById(item7);
 		ArrayList<Item> itemExpected = track.getAllItem();
 		assertThat(itemActual, is(itemExpected));
 	}
-
+/*
 	@Test
 	public void addCommentByIdTest() {
 
@@ -122,5 +131,5 @@ public class TrackerTest {
 		ArrayList<Item> itemExpected = track.getAllItem();
 		assertThat(itemActual, is(itemExpected));
 	}
-
+*/
 }
