@@ -1,10 +1,9 @@
 package com.adidyk.start;
 
+import com.adidyk.models.Comment;
 import com.adidyk.models.Item;
 import org.junit.Test;
-
 import java.util.ArrayList;
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -106,10 +105,9 @@ public class TrackerTest {
 		ArrayList<Item> itemExpected = track.getAllItem();
 		assertThat(itemActual, is(itemExpected));
 	}
-/*
+
 	@Test
 	public void addCommentByIdTest() {
-
 		Item item1 = new Item("task1", "description1", 1);
 		Item item2 = new Item("task2", "description2", 2);
 		Comment comment1 = new Comment("comment1");
@@ -128,8 +126,10 @@ public class TrackerTest {
 		track.addItem(item4);
 		track.addCommentById(item3.getId(), comment3);
 		track.addCommentById(item4.getId(), comment4);
+		item1.setId(item3.getId());
+		item2.setId(item4.getId());
 		ArrayList<Item> itemExpected = track.getAllItem();
 		assertThat(itemActual, is(itemExpected));
 	}
-*/
+
 }
