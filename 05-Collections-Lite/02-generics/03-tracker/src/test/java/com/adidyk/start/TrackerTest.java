@@ -100,44 +100,27 @@ public class TrackerTest {
 
 	@Test
 	public void addCommentByIdTest() {
-		Item item1 = new Item("task", "description", 1);
-		Item item2 = new Item("task", "description", 2);
-		Item item3 = new Item("task", "description", 3);
-		Item item4 = new Item("task", "description", 4);
+
+		Item item1 = new Item("task1", "description1", 1);
+		Item item2 = new Item("task2", "description2", 2);
 		Comment comment1 = new Comment("comment1");
 		Comment comment2 = new Comment("comment2");
-		Comment comment3 = new Comment("comment3");
-		Comment comment4 = new Comment("comment4");
-		Item[] items = {item1, item2, item3, item4};
+		item1.addComment(comment1);
+		item2.addComment(comment2);
+		ArrayList<Item> itemActual = new ArrayList<>();
+		itemActual.add(item1);
+		itemActual.add(item2);
+		Item item3 = new Item("task1", "description1", 1);
+		Item item4 = new Item("task2", "description2", 2);
+		Comment comment3 = new Comment("comment1");
+		Comment comment4 = new Comment("comment2");
 		Tracker track = new Tracker();
-		track.addItem(item1);
-		track.addItem(item2);
 		track.addItem(item3);
 		track.addItem(item4);
-		track.addCommentById(item1.getId(), comment1);
-		track.addCommentById(item1.getId(), comment2);
-		track.addCommentById(item1.getId(), comment3);
+		track.addCommentById(item3.getId(), comment3);
 		track.addCommentById(item4.getId(), comment4);
-		Item[] result = this.getAllItemWithoutNull(track.getAllItem());
-		assertThat(result, is(items));
-
-	}
-	// getAllItemWithoutNull - method return all []item without null
-	public Item[] getAllItemWithoutNull(Item[] resultAll) {
-		int length = 0;
-		for (Item item : resultAll) {
-			if (item != null) {
-				length++;
-			}
-		}
-		Item[] resultWithoutNull = new Item[length];
-		int index = 0;
-		for (Item item : resultAll) {
-			if (item != null) {
-				resultWithoutNull[index++] = item;
-			}
-		}
-		return resultWithoutNull;
+		ArrayList<Item> itemExpected = track.getAllItem();
+		assertThat(itemActual, is(itemExpected));
 	}
 
 }
