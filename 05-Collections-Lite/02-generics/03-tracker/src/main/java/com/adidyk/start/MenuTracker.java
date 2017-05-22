@@ -198,9 +198,7 @@ class MenuTracker {
             track.updateItemById(item);
             ArrayList<Comment> comment = result.getAllComment();
             for (Comment comm : comment) {
-                //if (comm != null) {
-                    track.addCommentById(id, comm);
-                //}
+                track.addCommentById(id, comm);
             }
         }
     }
