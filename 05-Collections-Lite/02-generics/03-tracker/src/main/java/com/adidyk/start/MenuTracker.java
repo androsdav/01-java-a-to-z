@@ -151,12 +151,10 @@ class MenuTracker {
         public void execute(Input input, Tracker track) {
             String desc = input.ask(" Input description: ");
             for (Item item : track.getAllItem()) {
-                if (item != null && item.getDescription().contains(desc)) {
+                if (item.getDescription().contains(desc)) {
                     System.out.println(item.toString());
                     for (Comment comm : item.getAllComment()) {
-                       // if (comm != null) {
-                            System.out.println(comm.toString());
-                       // }
+                        System.out.println(comm.toString());
                     }
                 }
             }
