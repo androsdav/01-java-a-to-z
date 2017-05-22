@@ -65,9 +65,9 @@ class MenuTracker {
         // execute - show all item, key = 1
         public void execute(Input input, Tracker track) {
             for (Item item : track.getAllItem()) {
-                System.out.println(item.toString());
+                System.out.println(item);
                 for (Comment comm : item.getAllComment()) {
-                    System.out.println(comm.toString());
+                    System.out.println(comm);
                 }
             }
         }
@@ -104,9 +104,9 @@ class MenuTracker {
             String id = input.ask(" Input id: ");
             Item item = track.searchItemById(id);
             if (item != null) {
-                System.out.println(item.toString());
+                System.out.println(item);
                 for (Comment comm : item.getAllComment()) {
-                    System.out.println(comm.toString());
+                    System.out.println(comm);
                 }
             } else {
                 System.out.println(" Not result by id.");
@@ -130,9 +130,9 @@ class MenuTracker {
             for (Item item : track.getAllItem()) {
                 if (item.getName().equals(name)) {
                     flagResult = true;
-                    System.out.println(item.toString());
+                    System.out.println(item);
                     for (Comment comm : item.getAllComment()) {
-                        System.out.println(comm.toString());
+                        System.out.println(comm);
                     }
                 }
             }
@@ -156,9 +156,9 @@ class MenuTracker {
             for (Item item : track.getAllItem()) {
                 if (item.getDescription().contains(desc)) {
                     flagResult =true;
-                    System.out.println(item.toString());
+                    System.out.println(item);
                     for (Comment comm : item.getAllComment()) {
-                        System.out.println(comm.toString());
+                        System.out.println(comm);
                     }
                 }
             }
