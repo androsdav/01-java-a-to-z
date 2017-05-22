@@ -178,7 +178,11 @@ class MenuTracker {
         // execute - remove item by id, key = 6
         public void execute(Input input, Tracker track) {
             String id = input.ask(" Input id: ");
-            track.removeItemById(id);
+            if (track.searchItemById(id) != null) {
+                track.removeItemById(id);
+            } else {
+                System.out.println(" Not result by id");
+            }
         }
     }
 
@@ -194,16 +198,20 @@ class MenuTracker {
         // execute - update item by id, key = 7
         public void execute(Input input, Tracker track) {
             String id = input.ask(" Input id: ");
-            String name = input.ask(" Input new name item: ");
-            String description = input.ask(" Input new description: ");
-            long create = new Date().getTime();
-            Item item = new Item(name, description, create);
-            item.setId(id);
-            Item result = track.searchItemById(id);
-            track.updateItemById(item);
-            ArrayList<Comment> comment = result.getAllComment();
-            for (Comment comm : comment) {
-                track.addCommentById(id, comm);
+            if (track.searchItemById(id) != null) {
+                String name = input.ask(" Input new name item: ");
+                String description = input.ask(" Input new description: ");
+                long create = new Date().getTime();
+                Item item = new Item(name, description, create);
+                item.setId(id);
+                Item result = track.searchItemById(id);
+                track.updateItemById(item);
+                ArrayList<Comment> comment = result.getAllComment();
+                for (Comment comm : comment) {
+                    track.addCommentById(id, comm);
+                }
+            } else {
+                System.out.println(" Not result by id");
             }
         }
     }
@@ -220,8 +228,12 @@ class MenuTracker {
         // execute - add comment by id, key = 8
         public void execute(Input input, Tracker track) {
             String id = input.ask(" Input id: ");
-            Comment comment = new Comment(input.ask(" Input comment: "));
-            track.addCommentById(id, comment);
+            if (track.searchItemById(id) != null) {
+                Comment comment = new Comment(input.ask(" Input comment: "));
+                track.addCommentById(id, comment);
+            } else {
+                System.out.println(" Not result by id");
+            }
         }
     }
 
