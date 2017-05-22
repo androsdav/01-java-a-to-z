@@ -126,14 +126,17 @@ class MenuTracker {
         // execute - search item by name, key = 4
         public void execute(Input input, Tracker track) {
             String name = input.ask(" Input name: ");
+            boolean flagResult = false;
             for (Item item : track.getAllItem()) {
                 if (item.getName().equals(name)) {
+                    flagResult = true;
                     System.out.println(item.toString());
                     for (Comment comm : item.getAllComment()) {
                         System.out.println(comm.toString());
                     }
                 }
             }
+            if(!flagResult) {System.out.println(" Not result by name");}
         }
     }
 
@@ -149,14 +152,17 @@ class MenuTracker {
         // execute - search item by description, key = 5
         public void execute(Input input, Tracker track) {
             String desc = input.ask(" Input description: ");
+            boolean flagResult = false;
             for (Item item : track.getAllItem()) {
                 if (item.getDescription().contains(desc)) {
+                    flagResult =true;
                     System.out.println(item.toString());
                     for (Comment comm : item.getAllComment()) {
                         System.out.println(comm.toString());
                     }
                 }
             }
+            if (!flagResult) {System.out.println(" Not result by description");}
         }
     }
 
