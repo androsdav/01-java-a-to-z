@@ -9,7 +9,7 @@ class MenuTracker {
 
     private Input input;
     private Tracker track;
-    private UserAction[] actions = new UserAction[9];
+    private ArrayList<UserAction> actions = new ArrayList<>();
 
     MenuTracker(Input input, Tracker track) {
         this.input = input;
@@ -18,20 +18,21 @@ class MenuTracker {
 
     // fillAction - array action
     protected void fillAction() {
-        this.actions[0] = new ShowAllItem();
-        this.actions[1] = new AddItem();
-        this.actions[2] = new SearchItemById();
-        this.actions[3] = new SearchItemByName();
-        this.actions[4] = new SearchItemByDescription();
-        this.actions[5] = new RemoveItemById();
-        this.actions[6] = new UpdateItemById();
-        this.actions[7] = new AddCommentById();
-        this.actions[8] = new Exit();
+
+        this.actions.add(0, new ShowAllItem());
+        this.actions.add(1, new AddItem());
+        this.actions.add(2, new SearchItemById());
+        this.actions.add(3, new SearchItemByName());
+        this.actions.add(4, new SearchItemByDescription());
+        this.actions.add(5, new RemoveItemById());
+        this.actions.add(6, new UpdateItemById());
+        this.actions.add(7, new AddCommentById());
+        this.actions.add(8, new Exit());
     }
 
     // select - select action
     protected void select(int key) {
-        this.actions[key - 1].execute(this.input, this.track);
+        this.actions.get(key - 1).execute(this.input, this.track);
     }
 
     // show - show all menu
@@ -39,17 +40,15 @@ class MenuTracker {
         System.out.println("");
         System.out.println(" ------------------------------Tracker Menu --------------------------------");
         for (UserAction action: this.actions) {
-            if (action != null) {
-                System.out.println(action.info());
-            }
+            System.out.println(action.info());
         }
         System.out.println(" ---------------------------------------------------------------------------");
     }
 
     // getIndexActions - get all index ranges key
     protected int[] getIndexActions() {
-        int [] range = new int[this.actions.length];
-        for (int index = 0; index < this.actions.length; index++) {
+        int [] range = new int[this.actions.size()];
+        for (int index = 0; index < this.actions.size(); index++) {
             range[index] = index + 1;
         }
         return range;
@@ -57,7 +56,7 @@ class MenuTracker {
 
     // class ShowAllItem, key = 1
     private class ShowAllItem extends BaseAction {
-        public ShowAllItem() {
+        private ShowAllItem() {
             super(" Show all item.");
         }
         // key = 1
@@ -67,13 +66,9 @@ class MenuTracker {
         // execute - show all item, key = 1
         public void execute(Input input, Tracker track) {
             for (Item item : track.getAllItem()) {
-                if (item != null) {
-                    System.out.println(item.toString());
-                    for (Comment comm : item.getAllComment()) {
-                        if (comm != null) {
-                            System.out.println(comm.toString());
-                        }
-                    }
+                System.out.println(item.toString());
+                for (Comment comm : item.getAllComment()) {
+                    System.out.println(comm.toString());
                 }
             }
         }
@@ -112,9 +107,7 @@ class MenuTracker {
             if (item != null) {
                 System.out.println(item.toString());
                 for (Comment comm : item.getAllComment()) {
-                    if (comm != null) {
-                        System.out.println(comm.toString());
-                    }
+                    System.out.println(comm.toString());
                 }
             } else {
                 System.out.println(" Not result by id.");
@@ -135,12 +128,10 @@ class MenuTracker {
         public void execute(Input input, Tracker track) {
             String name = input.ask(" Input name: ");
             for (Item item : track.getAllItem()) {
-                if (item != null && item.getName().equals(name)) {
+                if (item.getName().equals(name)) {
                     System.out.println(item.toString());
                     for (Comment comm : item.getAllComment()) {
-                        //if (comm != null) {
-                            System.out.println(comm.toString());
-                        //}
+                        System.out.println(comm.toString());
                     }
                 }
             }
