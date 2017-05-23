@@ -16,15 +16,22 @@ public class StartUi {
 
         System.out.println("Classic loop for");
         for (int index = 0; index < users.size(); index++) {
-            System.out.println("Name: " + users.get(index).getName() + "age: " + users.get(index).getAge());
+            System.out.println(String.format("%s%8s%s%3s", "Name: ", users.get(index).getName(), "  age: ", users.get(index).getAge()));
         }
+
+        System.out.println();
 
         System.out.println("Classic loop for-ich");
         for (User user : users) {
-            System.out.println("Name: " + user.getName() + "age: " + user.getAge());
+            System.out.println(String.format("%s%8s%s%3s", "Name: ", user.getName(), "  age: ", user.getAge()));
         }
 
+        System.out.println();
+
         System.out.println("Classic loop for-ich with toString");
+        for (User user : users) {
+            System.out.println(user);
+        }
 
     }
 
