@@ -10,5 +10,6 @@
          <modules>
                   <module>01-framework</module>
                   <module>02-generics</module>
+                  <module>03-sorting</module>
          </modules>
 </project>
