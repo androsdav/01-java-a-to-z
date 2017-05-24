@@ -20,7 +20,7 @@ public class StartUi {
 
         System.out.println("Classic loop for-ich");
         for (User user : users) {
-            System.out.println(String.format("%s%8s%s%3s", "Name: ", user.getName(), "  age: ", user.getAge()));
+            System.out.println(user);
         }
 
         System.out.println();
@@ -29,7 +29,6 @@ public class StartUi {
         for (User user : users) {
             System.out.println(user);
         }
-
 
         System.out.println();
         System.out.println(users);

@@ -28,10 +28,7 @@ public class User implements Comparable<User> {
 
     @Override
     public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                '}';
+        return String.format("%s%8s%s%3s", "Name: ", this.getName(), "  age: ", this.getAge());
     }
 
     @Override
