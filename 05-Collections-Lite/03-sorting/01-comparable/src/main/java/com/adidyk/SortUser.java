@@ -24,6 +24,4 @@ public class SortUser {
         return new TreeSet<>(users);
     }
 
-
-
 }
