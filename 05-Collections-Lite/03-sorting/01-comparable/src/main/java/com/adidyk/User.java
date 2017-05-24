@@ -1,6 +1,6 @@
 package com.adidyk;
 
-public class User {
+public class User implements Comparable<User> {
 
     private String name;
     private int age;
@@ -33,4 +33,15 @@ public class User {
                 ", age=" + age +
                 '}';
     }
+
+    @Override
+    public int compareTo(User user) {
+        if (this.age > user.getAge())
+            return 1;
+        else if (this.age < user.getAge())
+            return -1;
+        else
+            return 0;
+        }
+
 }
