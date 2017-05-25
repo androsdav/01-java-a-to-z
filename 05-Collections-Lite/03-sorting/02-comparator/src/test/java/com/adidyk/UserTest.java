@@ -6,15 +6,7 @@ import static org.junit.Assert.assertThat;
 
 public class UserTest {
 
-    private final User user = new User(1, "Tom", "New-York");
-
-    @Test
-    public void setIdTest() {
-        Integer idActual = 2;
-        this.user.setId(2);
-        Integer idExpected = this.user.getId();
-        assertThat(idActual, is(idExpected));
-    }
+    private final User user = new User("Tom", 110);
 
     @Test
     public void setNameTest() {
@@ -25,18 +17,11 @@ public class UserTest {
     }
 
     @Test
-    public void setCityTest() {
-        String nameActual = "Chicago";
-        this.user.setCity("Chicago");
-        String cityExpected = this.user.getCity();
-        assertThat(nameActual, is(cityExpected));
-    }
-
-    @Test
-    public void getIdTest() {
-        Integer idActual = 1;
-        Integer idExpected = this.user.getId();
-        assertThat(idActual, is(idExpected));
+    public void setAgeTest() {
+        int ageActual = 99;
+        this.user.setAge(99);
+        int ageExpected = this.user.getAge();
+        assertThat(ageActual, is(ageExpected));
     }
 
     @Test
@@ -47,10 +32,10 @@ public class UserTest {
     }
 
     @Test
-    public void getCity() {
-        String cityActual = "New-York";
-        String cityExpected = this.user.getCity();
-        assertThat(cityActual, is(cityExpected));
+    public void getAge() {
+        int ageActual = 110;
+        int ageExpected = this.user.getAge();
+        assertThat(ageActual, is(ageExpected));
     }
 
 }
