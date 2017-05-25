@@ -13,7 +13,7 @@ public class SortUserTest {
 
     private Set<User> userActual = new TreeSet<>();
     private List<User> user = new ArrayList<>();
-    private SortUser sort = new SortUser();
+    private SortUser sorting = new SortUser();
 
     @Before
     public void init() {
@@ -32,22 +32,8 @@ public class SortUserTest {
     }
 
     @Test
-    public void sortAddUserByFor() throws Exception {
-        Set<User> userExpected = this.sort.sortAddUserByFor(this.user);
-        assertThat(this.userActual, is(userExpected));
-
-    }
-
-    @Test
-    public void sortAddUserByAddAll() throws Exception {
-        Set<User> userExpected = this.sort.sortAddUserByAddAll(this.user);
-        assertThat(this.userActual, is(userExpected));
-
-    }
-
-    @Test
     public void sortAddUserByConstructor() throws Exception {
-        Set<User> userExpected = this.sort.sortAddUserByConstructor(this.user);
+        Set<User> userExpected = this.sorting.sortAddUserByConstructor(this.user);
         assertThat(this.userActual, is(userExpected));
     }
 
