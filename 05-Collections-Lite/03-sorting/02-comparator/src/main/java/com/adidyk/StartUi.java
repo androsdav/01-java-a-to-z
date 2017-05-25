@@ -5,6 +5,7 @@ import java.util.List;
 
 public class StartUi {
 
+    // just main ;), its only for me
     public static void main(String[] arg) {
         SortUser sorting = new SortUser();
         // Add user to List
