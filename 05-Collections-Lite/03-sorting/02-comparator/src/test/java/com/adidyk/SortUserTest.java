@@ -2,9 +2,7 @@ package com.adidyk;
 
 import org.junit.Before;
 import org.junit.Test;
-
 import java.util.*;
-
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
