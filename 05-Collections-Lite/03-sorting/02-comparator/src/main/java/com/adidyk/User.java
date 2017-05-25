@@ -28,7 +28,7 @@ public class User implements Comparable<User> {
 
     @Override
     public String toString() {
-        return String.format("%s%8s%s%3s%s%s",
+        return String.format("%s%13s%s%3s%s%s",
                 " Name: ", this.getName(), "  age: ", this.getAge(), " hashCode: ", hashCode());
     }
 
