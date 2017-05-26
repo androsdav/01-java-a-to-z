@@ -10,11 +10,10 @@ import java.util.Map;
 
 public class Bank {
 
-    private List<Account> account = new ArrayList<>();
     private Map<User, List<Account>> user = new HashMap<>();
 
     public void addUser(User user) {
-        this.user.put(user, this.account);
+        this.user.put(user, new ArrayList<Account>());
     }
 
     public void deleteUser(User user) {
