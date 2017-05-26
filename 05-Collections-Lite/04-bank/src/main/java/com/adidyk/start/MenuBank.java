@@ -113,9 +113,10 @@ public class MenuBank {
         }
         // execute - add new user to collections
         public void execute(Input input, Bank bank) {
-            String name = input.ask(" Enter username for which you want to add account: ");
-            String passport = input.ask("Enter passport serial: ");
-            bank.deleteUser(new User(name, passport));
+            String name = input.ask(" Enter username for add account: ");
+            String passport = input.ask("Enter serial of user passport: ");
+            String requisites = input.ask("Enter requisites of account: ");
+            bank.addAccountToUser(new User(name, passport), new Account(requisites));
         }
     }
 

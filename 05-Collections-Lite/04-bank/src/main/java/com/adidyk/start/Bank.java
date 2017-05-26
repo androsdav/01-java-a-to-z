@@ -23,7 +23,7 @@ public class Bank {
         this.user.get(user).add(account);
     }
 
-    public void deleteAccountFromer(User user, Account account) {
+    public void deleteAccountFromUseer(User user, Account account) {
         this.user.get(user).remove(account);
     }
 
