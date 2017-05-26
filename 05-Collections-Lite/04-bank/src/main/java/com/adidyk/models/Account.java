@@ -51,4 +51,5 @@ public class Account {
         return String.format("%s%20s%s%10s%s",
                 "  requisites: ", this.getRequisites(), "    value: ", this.getValue(), " $");
     }
+
 }

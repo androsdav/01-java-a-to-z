@@ -2,7 +2,6 @@ package com.adidyk.start;
 
 import com.adidyk.models.Account;
 import com.adidyk.models.User;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
