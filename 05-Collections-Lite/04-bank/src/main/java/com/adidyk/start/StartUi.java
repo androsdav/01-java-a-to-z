@@ -11,13 +11,13 @@ public class StartUi {
         User user = new User("Albert", "123123313");
         System.out.println(user);
 
-        Account account = new Account(1111222233334444L);
+        Account account = new Account("1111-2122-2223-1242");
 
-        System.out.println(account.getRequisites() +"   " +account.getValue());
+        System.out.println(account);
         account.setValue(10);
-        System.out.println(account.getRequisites() +"   " +account.getValue());
-        account.setValue(20);
-        System.out.println(account.getRequisites() +"   " +account.getValue());
+        System.out.println(account);
+        account.setValue(2000000);
+        System.out.println(account);
 
       /*  SortUser sorting = new SortUser();
         // Add user to List
