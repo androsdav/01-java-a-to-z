@@ -1,13 +1,12 @@
-package com.adidyk;
-
-import java.util.ArrayList;
-import java.util.List;
+package com.adidyk.start;
 
 public class StartUi {
 
     // just main ;), its only for me
     public static void main(String[] arg) {
-        SortUser sorting = new SortUser();
+        System.out.println("Its Bank");
+
+      /*  SortUser sorting = new SortUser();
         // Add user to List
         List<User> users = new ArrayList<>();
         users.add(new User("Albert", 17));
@@ -33,7 +32,7 @@ public class StartUi {
         List<User> userNameLength = sorting.sortLength(users);
         for (User user : userNameLength) {
             System.out.println(user);
-        }
+        }*/
     }
 
 }
