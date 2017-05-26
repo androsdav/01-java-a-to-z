@@ -5,7 +5,7 @@ public class User {
     private String name;
     private String passport;
 
-    User(String name, String passport) {
+    public User(String name, String passport) {
         this.name = name;
         this.passport = passport;
     }
