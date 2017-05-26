@@ -22,7 +22,7 @@ public class StartUi {
             menu.show();
             int key = this.input.ask(" Choose key: ", menu.getIndexActions());
             menu.select(key);
-            if (key == 9) break;
+            if (key == menu.getIndexActions().length) break;
         }
     }
 
