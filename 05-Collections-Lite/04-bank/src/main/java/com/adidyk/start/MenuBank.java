@@ -21,7 +21,8 @@ public class MenuBank {
         this.actions.add(0, new ShowAllUser());
         this.actions.add(1, new AddUser());
         this.actions.add(2, new DeleteUser());
-        this.actions.add(3, new Exit());
+        this.actions.add(3, new AddAccountToUser());
+        this.actions.add(4, new Exit());
     }
 
     public void select(int key) {
@@ -45,6 +46,7 @@ public class MenuBank {
         return range;
     }
 
+    // ShowAllUser -
     private class ShowAllUser extends BaseAction {
         // Constructor
         ShowAllUser() {
@@ -63,6 +65,7 @@ public class MenuBank {
 
     }
 
+    // AddUser -
     private class AddUser extends BaseAction {
         // Constructor
         AddUser() {
@@ -80,6 +83,7 @@ public class MenuBank {
         }
     }
 
+    // DeleteUser -
     private class DeleteUser extends BaseAction {
         // Constructor
         DeleteUser() {
@@ -97,6 +101,25 @@ public class MenuBank {
         }
     }
 
+    // AddAccountToUser -
+    private class AddAccountToUser extends BaseAction {
+        // Constructor
+        AddAccountToUser() {
+            super(" Add account to user.");
+        }
+        // key = 2
+        public int key() {
+            return 3;
+        }
+        // execute - add new user to collections
+        public void execute(Input input, Bank bank) {
+            String name = input.ask(" Enter username for which you want to add account: ");
+            String passport = input.ask("Enter passport serial: ");
+            bank.deleteUser(new User(name, passport));
+        }
+    }
+
+    // Exit -
     private class Exit extends BaseAction {
         // Constructor
         Exit() {
