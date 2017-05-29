@@ -45,9 +45,7 @@ public class User {
 
     @Override
     public String toString() {
-        return String.format(" %s%10s%s%5s%s%n %s %10s %s %5s %s",
-                "|", "Name", "|", "passport", "|",
-                "|", this.getName(), "|", this.passport, " |");
+        return String.format(" %s%10s%s%8s%s","|", this.getName(), " | ", this.passport, " |");
     }
 
 }

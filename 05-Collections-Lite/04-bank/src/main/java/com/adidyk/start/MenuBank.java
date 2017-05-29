@@ -61,13 +61,12 @@ public class MenuBank {
         }
         // execute - show all user, key = 1
         public void execute(Input input, Bank bank) {
-            System.out.println(" |                 USERS                   | ACCOUNT |");
+            System.out.print(String.format(" %s%8s%5s%5s%s%s%s%n","|", "NAME", " | ", "PASSPORT", " | ", "ACCOUNT", " |"));
             for (Map.Entry<User, List<Account>> item : bank.getUsers().entrySet()) {
-                System.out.println(" -----------------------------------------------------");
+                System.out.println(" |-----------|----------|---------|------------------------");
                 System.out.println(item.getKey() +String.format("%5s%5s", String.valueOf(item.getValue().size()), "|"));
             }
             System.out.println(" -----------------------------------------------------");
-
         }
 
     }
