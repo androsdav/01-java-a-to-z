@@ -31,6 +31,13 @@ public class Bank {
         return this.user.get(user);
     }
 
+    public boolean transferMoney(User srcUser, Account strAccount, User dstUser, Account dstAccount, double amount) {
+
+
+
+        return false;
+    }
+
     public Map<User, List<Account>> getUsers() {
         return this.user;
     }

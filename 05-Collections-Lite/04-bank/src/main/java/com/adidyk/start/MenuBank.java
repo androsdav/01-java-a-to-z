@@ -22,9 +22,10 @@ public class MenuBank {
         this.actions.add(1, new AddUser());
         this.actions.add(2, new DeleteUser());
         this.actions.add(3, new AddAccountToUser());
-        this.actions.add(4, new DeleteAccountFromUser());
-        this.actions.add(5, new GetUserAccount());
-        this.actions.add(6, new Exit());
+        this.actions.add(4, new ReplenishAccount());
+        this.actions.add(5, new DeleteAccountFromUser());
+        this.actions.add(6, new GetUserAccount());
+        this.actions.add(7, new Exit());
     }
 
     public void select(int key) {
@@ -97,7 +98,7 @@ public class MenuBank {
     private class DeleteUser extends BaseAction {
         // Constructor
         DeleteUser() {
-            super(" Delete user by name user.");
+            super(" Delete user.");
         }
         // key = 2
         public int key() {
@@ -107,8 +108,9 @@ public class MenuBank {
         public void execute(Input input, Bank bank) {
             String name = input.ask(" [action] enter user name: ");
             String passport = input.ask(" [action] enter user passport: ");
-            if (bank.getUsers().containsKey(new User(name, passport))) {
-                bank.deleteUser(new User(name, passport));
+            User user = new User(name, passport);
+            if (bank.getUsers().containsKey(user)) {
+                bank.deleteUser(user);
             } else {
                 System.out.println(" [inform] user not found ... ");
             }
@@ -131,8 +133,42 @@ public class MenuBank {
             String passport = input.ask(" [action] enter user passport: ");
             User user = new User(name, passport);
             if(bank.getUsers().containsKey(user)) {
-                String requisites = input.ask(" enter user requisites: ");
+                String requisites = input.ask(" [action] enter user requisites: ");
                 bank.addAccountToUser(user, new Account(requisites));
+            } else {
+                System.out.println(" [inform] user not found ... ");
+            }
+        }
+    }
+
+    // ReplenishAccount - replenish account to user
+    private class ReplenishAccount extends BaseAction {
+        // Constructor
+        ReplenishAccount() {
+            super(" Replenish account to user.");
+        }
+        // key = 2
+        public int key() {
+            return 5;
+        }
+        // execute - replenish account to user
+        public void execute(Input input, Bank bank) {
+            String name = input.ask(" [action] enter user name: ");
+            String passport = input.ask(" [action] enter user passport: ");
+            User user = new User(name, passport);
+            if(bank.getUsers().containsKey(user)) {
+                String requisites = input.ask(" [action] enter user requisites: ");
+                List<Account> accounts = bank.getUserAccounts(user);
+                boolean accountTrue = false;
+                for (Account item : accounts) {
+                    if (item.getRequisites().equals(requisites)) {
+                        accountTrue = true;
+                        String value = input.ask(" [action] enter value: ");
+                        item.setValue(Double.parseDouble(value));
+                        break;
+                    }
+                }
+                if (!accountTrue) { System.out.println(" [inform] account not found ... ");}
             } else {
                 System.out.println(" [inform] user not found ... ");
             }
@@ -147,7 +183,7 @@ public class MenuBank {
         }
         // key = 2
         public int key() {
-            return 5;
+            return 6;
         }
         // execute - delete account from user
         public void execute(Input input, Bank bank) {
@@ -155,7 +191,7 @@ public class MenuBank {
             String passport = input.ask(" [action] enter user passport: ");
             User user = new User(name, passport);
             if (bank.getUsers().containsKey(user)) {
-                String requisites = input.ask(" enter user requisites: ");
+                String requisites = input.ask(" [action] enter user requisites: ");
                 Account account = new Account(requisites);
                 if (bank.getUserAccounts(user).contains(account)) {
                     bank.deleteAccountFromUser(user, account);
@@ -176,7 +212,7 @@ public class MenuBank {
         }
         // key = 2
         public int key() {
-            return 6;
+            return 7;
         }
         // execute - get user account
         public void execute(Input input, Bank bank) {
@@ -195,7 +231,7 @@ public class MenuBank {
                                 "|", number1, item.getKey(), item.getValue().size(), "|"));
                         number1++;
                         if (item.getKey().equals(user)) {
-                            System.out.println();
+                            System.out.println("");
                             System.out.print(String.format("     %s%s%s%9s%4s%10s%7s%n",
                                     "| ", "#", " |", "ACCOUNT", " | ", "VALUE", " | "));
                             int number2 = 1;
@@ -225,7 +261,7 @@ public class MenuBank {
         }
         // key = 2
         public int key() {
-            return 7;
+            return 8;
         }
         // execute - add new user to collections
         public void execute(Input input, Bank bank) {

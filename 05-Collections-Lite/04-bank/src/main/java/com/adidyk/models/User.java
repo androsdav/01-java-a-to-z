@@ -22,7 +22,7 @@ public class User {
         return this.name;
     }
 
-    public String getRassport() {
+    public String getPassport() {
         return this.passport;
     }
 
