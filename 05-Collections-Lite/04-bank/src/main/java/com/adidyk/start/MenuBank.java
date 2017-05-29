@@ -149,8 +149,22 @@ public class MenuBank {
         public int key() {
             return 5;
         }
-        // execute - add account to user
+        // execute - delete account from user
         public void execute(Input input, Bank bank) {
+            String name = input.ask(" [action] enter user name: ");
+            String passport = input.ask(" [action] enter user passport: ");
+            User user = new User(name, passport);
+            if (bank.getUsers().containsKey(user)) {
+                String requisites = input.ask(" enter user requisites: ");
+                Account account = new Account(requisites);
+                if (bank.getUserAccounts(user).contains(account)) {
+                    bank.deleteAccountFromUser(user, account);
+                }else {
+                    System.out.println(" [inform] account not found ... ");
+                }
+            } else {
+                System.out.println(" [inform] user not found ... ");
+            }
         }
     }
 
