@@ -93,21 +93,19 @@ public class MenuBank {
         public int key() {
             return 3;
         }
-        // execute - add new user to collections
+        // execute - delete user from collection
         public void execute(Input input, Bank bank) {
             String name = input.ask(" Enter name of user wants to delete: ");
             String passport = input.ask("Enter passport serial: ");
-            User user = new User(name, passport);
-            Map<User, List<Account>> map =bank.getUsers();
-            if (map.containsKey(user)) {
-                bank.deleteUser(user);
+            if (bank.getUsers().containsKey(new User(name, passport))) {
+                bank.deleteUser(new User(name, passport));
             } else {
                 System.out.println("User not found");
             }
         }
     }
 
-    // AddAccountToUser -
+    // AddAccountToUser - add account to user
     private class AddAccountToUser extends BaseAction {
         // Constructor
         AddAccountToUser() {
@@ -117,12 +115,16 @@ public class MenuBank {
         public int key() {
             return 4;
         }
-        // execute - add new user to collections
+        // execute - add account to user
         public void execute(Input input, Bank bank) {
             String name = input.ask(" Enter username for add account: ");
             String passport = input.ask("Enter serial of user passport: ");
-            String requisites = input.ask("Enter requisites of account: ");
-            bank.addAccountToUser(new User(name, passport), new Account(requisites));
+            if(bank.getUsers().containsKey(new User(name, passport))) {
+                String requisites = input.ask("Enter requisites of account: ");
+                bank.addAccountToUser(new User(name, passport), new Account(requisites));
+            } else {
+                System.out.println("User not found");
+            }
         }
     }
 
