@@ -13,7 +13,7 @@ public class StartUi {
         users.add(new User("Albert", 17));
         users.add(new User("Carl", 45));
         users.add(new User("Daniel", 16));
-        users.add(new User("Leonard", 102));
+        users.add(new User("Leonardo", 102));
         users.add(new User("Melvin", 54));
         users.add(new User("Christopher", 33));
         users.add(new User("David", 23));
@@ -23,17 +23,13 @@ public class StartUi {
         System.out.println("Its sort List by use Comparator hashCode:");
         System.out.println();
         List<User> usersHashCode = sorting.sortHash(users);
-        for (User user : usersHashCode) {
-            System.out.println(user);
-        }
+        usersHashCode.forEach(System.out::println);
         // Sort Comparator name length
         System.out.println();
         System.out.println("Its sort List by use Comparator name length: ");
         System.out.println();
         List<User> userNameLength = sorting.sortLength(users);
-        for (User user : userNameLength) {
-            System.out.println(user);
-        }
+        userNameLength.forEach(System.out::println);
     }
 
 }

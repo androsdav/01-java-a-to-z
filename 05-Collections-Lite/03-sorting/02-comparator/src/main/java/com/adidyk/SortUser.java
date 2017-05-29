@@ -4,33 +4,19 @@ import java.util.*;
 
 public class SortUser {
 
-    public Set<User> sortAddUserByConstructor(List<User> users) {
-        return new TreeSet<>(users);
+    public Set<User> sortAddUserByConstructor(List<User> list) {
+        return new TreeSet<>(list);
     }
 
-    public List<User> sortHash(List<User> users) {
-        Collections.sort(users, new Comparator<User>() {
-            @Override
-            public int compare(User o1, User o2) {
-                if (o1.hashCode() > o2.hashCode())
-                    return 1;
-                else if (o1.hashCode() < o2.hashCode())
-                    return -1;
-                else
-                    return 0;
-            }
-        });
-        return users;
+
+    public List<User> sortHash(List<User> list) {
+        Collections.sort(list,(user1, user2) -> Integer.valueOf(user1.hashCode()).compareTo(user2.hashCode()));
+        return list;
     }
 
-    public List<User> sortLength(List<User> users) {
-        Collections.sort(users, new Comparator<User>() {
-            @Override
-            public int compare(User o1, User o2) {
-                return o1.getName().length() - o2.getName().length();
-            }
-        });
-        return users;
+    public List<User> sortLength(List<User> list) {
+        Collections.sort(list, (User user1, User user2) -> user1.getName().length() - user2.getName().length());
+        return list;
     }
 
 }

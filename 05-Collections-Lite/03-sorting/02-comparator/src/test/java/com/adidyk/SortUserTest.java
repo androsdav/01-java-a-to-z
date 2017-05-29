@@ -26,9 +26,9 @@ public class SortUserTest {
         this.users.add(new User("Brandon", 78));
         this.userSetActual.addAll(this.users);
         this.userHashActual.addAll(this.users);
-        Collections.sort(this.userHashActual, new UserHashCodeComparator());
+        Collections.sort(this.userHashActual, (user1, user2) -> Integer.valueOf(user1.hashCode()).compareTo(user2.hashCode()));
         this.userLengthActual.addAll(this.users);
-        Collections.sort(this.userLengthActual, new UserNameByLengthComparator());
+        Collections.sort(this.userLengthActual, (User user1, User user2) -> user1.getName().length() - user2.getName().length());
 
     }
 
@@ -45,7 +45,6 @@ public class SortUserTest {
     }
 
     @Test
-
     public void sortLength() {
         List<User> userExpected = this.sorting.sortLength(this.users);
         assertThat(this.userLengthActual, is(userExpected));
