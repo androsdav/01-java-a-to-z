@@ -48,8 +48,8 @@ public class Account {
 
     @Override
     public String toString() {
-        return String.format("%s%20s%s%10s%s",
-                "  requisites: ", this.getRequisites(), "    value: ", this.getValue(), " $");
+        return String.format("%s%10s%s%13s%s%s",
+                "|", this.getRequisites(), " | ", this.getValue(), " $", "|");
     }
 
 }

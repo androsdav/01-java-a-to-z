@@ -10,6 +10,7 @@ public class StartUi {
     private StartUi(Input input) {
         this.input = input;
         this.bank = new Bank();
+        this.bank.addUser(new User("1", "1"));
         this.bank.addUser(new User("Adolf", "16375"));
         this.bank.addUser(new User("Rudolf", "22445"));
         this.bank.addUser(new User("Bob", "35336"));

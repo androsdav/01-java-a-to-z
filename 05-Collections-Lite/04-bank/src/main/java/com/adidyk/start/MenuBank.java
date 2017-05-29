@@ -34,11 +34,11 @@ public class MenuBank {
 
     public void show() {
         System.out.println();
-        System.out.println(" ----------------BANK----------------");
+        System.out.println(" ----------------BANK-MENU---------------");
         for (UserAction action : this.actions) {
             System.out.println(action.info());
         }
-        System.out.println(" ------------------------------------");
+        System.out.println(" ----------------------------------------");
     }
 
     public int[] getIndexActions() {
@@ -61,12 +61,16 @@ public class MenuBank {
         }
         // execute - show all user, key = 1
         public void execute(Input input, Bank bank) {
-            System.out.print(String.format(" %s%8s%5s%5s%s%s%s%n","|", "NAME", " | ", "PASSPORT", " | ", "ACCOUNT", " |"));
+            System.out.print(String.format(" %s%s%s%8s%5s%5s%s%s%s%n",
+                    "| ", "#", " |", "NAME", " | ", "PASSPORT", " | ", "ACCOUNT", " |"));
+            int number = 1;
             for (Map.Entry<User, List<Account>> item : bank.getUsers().entrySet()) {
-                System.out.println(" |-----------|----------|---------|------------------------");
-                System.out.println(item.getKey() +String.format("%5s%5s", String.valueOf(item.getValue().size()), "|"));
+                System.out.println(" |---|-----------|----------|---------|");
+                System.out.println(String.format(" %s%3s%s%5s%5s",
+                        "|", number, item.getKey(), item.getValue().size(), "|"));
+                number++;
             }
-            System.out.println(" -----------------------------------------------------");
+            System.out.println(" |---|-----------|----------|---------|");
         }
 
     }
@@ -83,8 +87,8 @@ public class MenuBank {
         }
         // execute - add new user to collections
         public void execute(Input input, Bank bank) {
-            String name = input.ask(" Enter name new user: ");
-            String passport = input.ask(" Enter passport serial for new user: ");
+            String name = input.ask(" [action] enter user name: ");
+            String passport = input.ask(" [action] enter user passport: ");
             bank.addUser(new User(name, passport));
         }
     }
@@ -101,12 +105,12 @@ public class MenuBank {
         }
         // execute - delete user from collection
         public void execute(Input input, Bank bank) {
-            String name = input.ask(" Enter name of user wants to delete: ");
-            String passport = input.ask("Enter passport serial: ");
+            String name = input.ask(" [action] enter user name: ");
+            String passport = input.ask(" [action] enter user passport: ");
             if (bank.getUsers().containsKey(new User(name, passport))) {
                 bank.deleteUser(new User(name, passport));
             } else {
-                System.out.println("User not found");
+                System.out.println(" [inform] user not found ... ");
             }
         }
     }
@@ -123,14 +127,14 @@ public class MenuBank {
         }
         // execute - add account to user
         public void execute(Input input, Bank bank) {
-            String name = input.ask(" Enter username for add account: ");
-            String passport = input.ask("Enter serial of user passport: ");
+            String name = input.ask(" [action] enter user name: ");
+            String passport = input.ask(" [action] enter user passport: ");
             User user = new User(name, passport);
             if(bank.getUsers().containsKey(user)) {
-                String requisites = input.ask("Enter requisites of account: ");
+                String requisites = input.ask(" enter user requisites: ");
                 bank.addAccountToUser(user, new Account(requisites));
             } else {
-                System.out.println("User not found");
+                System.out.println(" [inform] user not found ... ");
             }
         }
     }
@@ -162,26 +166,44 @@ public class MenuBank {
         }
         // execute - get user account
         public void execute(Input input, Bank bank) {
-            String name = input.ask(" Enter username for add account: ");
-            String passport = input.ask("Enter serial of user passport: ");
+            String name = input.ask(" [action] enter user name: ");
+            String passport = input.ask(" [action] enter user passport: ");
+            System.out.println();
             User user = new User(name, passport);
             if (bank.getUsers().containsKey(user)) {
-                System.out.println(user);
                 if (!bank.getUserAccounts(user).isEmpty()) {
-                    for (Account account : bank.getUserAccounts(user)) {
-                        System.out.println(account);
+                    System.out.print(String.format(" %s%s%s%8s%5s%5s%s%s%s%n",
+                            "| ", "#", " |", "NAME", " | ", "PASSPORT", " | ", "ACCOUNT", " |"));
+                    int number1 = 1;
+                    for (Map.Entry<User, List<Account>> item : bank.getUsers().entrySet()) {
+                        System.out.println(" |---|-----------|----------|---------|");
+                        System.out.println(String.format(" %s%3s%s%5s%5s",
+                                "|", number1, item.getKey(), item.getValue().size(), "|"));
+                        number1++;
+                        if (item.getKey().equals(user)) {
+                            System.out.println();
+                            System.out.print(String.format("     %s%s%s%9s%4s%10s%7s%n",
+                                    "| ", "#", " |", "ACCOUNT", " | ", "VALUE", " | "));
+                            int number2 = 1;
+                            for (Account account : bank.getUserAccounts(user)) {
+                                System.out.println("     |---|-----------|----------------|");
+                                System.out.println(String.format("     %s%3s%s",
+                                       "|", number2, account));
+                                number2++;
+                            }
+                            System.out.println();
+                        }
                     }
                 } else {
-                    System.out.println("Account not found");
+                    System.out.println(" [inform] account not found ... ");
                 }
             } else {
-                System.out.println(" User not found");
+                System.out.println(" [inform] user not found ... ");
             }
-
         }
     }
 
-    // Exit -
+    // Exit - exit program
     private class Exit extends BaseAction {
         // Constructor
         Exit() {
