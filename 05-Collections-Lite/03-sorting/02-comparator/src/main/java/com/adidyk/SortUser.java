@@ -14,7 +14,7 @@ public class SortUser {
     }
 
     public List<User> sortLength(List<User> list) {
-        Collections.sort(list, (User user1, User user2) -> user1.getName().length() - user2.getName().length());
+        Collections.sort(list, (user1, user2) -> user1.getName().length() - user2.getName().length());
         return list;
     }
 

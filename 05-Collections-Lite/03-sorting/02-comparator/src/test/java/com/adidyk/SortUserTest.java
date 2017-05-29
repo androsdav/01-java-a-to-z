@@ -28,7 +28,7 @@ public class SortUserTest {
         this.userHashActual.addAll(this.users);
         Collections.sort(this.userHashActual, (user1, user2) -> Integer.valueOf(user1.hashCode()).compareTo(user2.hashCode()));
         this.userLengthActual.addAll(this.users);
-        Collections.sort(this.userLengthActual, (User user1, User user2) -> user1.getName().length() - user2.getName().length());
+        Collections.sort(this.userLengthActual, (user1, user2) -> user1.getName().length() - user2.getName().length());
     }
 
     @Test
