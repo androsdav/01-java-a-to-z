@@ -8,7 +8,6 @@ public class SortUser {
         return new TreeSet<>(list);
     }
 
-
     public List<User> sortHash(List<User> list) {
         Collections.sort(list,(user1, user2) -> Integer.valueOf(user1.hashCode()).compareTo(user2.hashCode()));
         return list;
