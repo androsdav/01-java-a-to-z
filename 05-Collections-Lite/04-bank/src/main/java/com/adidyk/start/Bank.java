@@ -23,16 +23,16 @@ public class Bank {
         this.user.get(user).add(account);
     }
 
-    public void deleteAccountFromUseer(User user, Account account) {
+    public void deleteAccountFromUser(User user, Account account) {
         this.user.get(user).remove(account);
+    }
+
+    public List<Account> getUserAccounts(User user) {
+        return this.user.get(user);
     }
 
     public Map<User, List<Account>> getUsers() {
         return this.user;
-    }
-
-    public List<Account> getUserAcounts(User user) {
-        return this.user.get(user);
     }
 
 }
