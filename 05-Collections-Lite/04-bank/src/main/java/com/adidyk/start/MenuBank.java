@@ -46,7 +46,7 @@ public class MenuBank {
         return range;
     }
 
-    // ShowAllUser -
+    // ShowAllUser - shows all user form list
     private class ShowAllUser extends BaseAction {
         // Constructor
         ShowAllUser() {
@@ -65,7 +65,7 @@ public class MenuBank {
 
     }
 
-    // AddUser -
+    // AddUser - add new user to list
     private class AddUser extends BaseAction {
         // Constructor
         AddUser() {
@@ -97,7 +97,13 @@ public class MenuBank {
         public void execute(Input input, Bank bank) {
             String name = input.ask(" Enter name of user wants to delete: ");
             String passport = input.ask("Enter passport serial: ");
-            bank.deleteUser(new User(name, passport));
+            User user = new User(name, passport);
+            Map<User, List<Account>> map =bank.getUsers();
+            if (map.containsKey(user)) {
+                bank.deleteUser(user);
+            } else {
+                System.out.println("User not found");
+            }
         }
     }
 
@@ -109,7 +115,7 @@ public class MenuBank {
         }
         // key = 2
         public int key() {
-            return 3;
+            return 4;
         }
         // execute - add new user to collections
         public void execute(Input input, Bank bank) {
@@ -128,7 +134,7 @@ public class MenuBank {
         }
         // key = 2
         public int key() {
-            return 4;
+            return 5;
         }
         // execute - add new user to collections
         public void execute(Input input, Bank bank) {
