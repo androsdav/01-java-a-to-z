@@ -25,7 +25,8 @@ public class MenuBank {
         this.actions.add(4, new ReplenishAccount());
         this.actions.add(5, new DeleteAccountFromUser());
         this.actions.add(6, new GetUserAccount());
-        this.actions.add(7, new Exit());
+        this.actions.add(7, new TransferMoney());
+        this.actions.add(8, new Exit());
     }
 
     public void select(int key) {
@@ -253,19 +254,46 @@ public class MenuBank {
         }
     }
 
+    private class TransferMoney extends BaseAction {
+        // Constructor
+        TransferMoney() {
+            super(" Transfer money.");
+        }
+        // key = 8
+        public int key() {
+            return 8;
+        }
+        // execute - add new user to collections
+        public void execute(Input input, Bank bank) {
+            String srcName = input.ask(" [action] enter user srcName: ");
+            String srcPassport = input.ask(" [action] enter user srcPassport: ");
+            User srcUser = new User(srcName, srcPassport);
+            String srcRequisites = input.ask(" [action] enter user srcRequisites: ");
+            Account srcAccount = new Account(srcRequisites);
+            String dstName = input.ask(" [action] enter user dstName: ");
+            String dstPassport = input.ask(" [action] enter user dstPassport: ");
+            User dstUser = new User(dstName, dstPassport);
+            String dstRequisites = input.ask(" [action] enter user dstRequisites: ");
+            Account dstAccount = new Account(dstRequisites);
+            double amount = Double.parseDouble(input.ask(" [action] enter amount for transfer: "));
+            bank.transferMoney(srcUser, srcAccount, dstUser, dstAccount, amount);
+        }
+    }
+
     // Exit - exit program
     private class Exit extends BaseAction {
         // Constructor
         Exit() {
             super(" Exit.");
         }
-        // key = 2
+        // key = 9
         public int key() {
-            return 8;
+            return 9;
         }
         // execute - add new user to collections
         public void execute(Input input, Bank bank) {
         }
     }
+
 
 }
