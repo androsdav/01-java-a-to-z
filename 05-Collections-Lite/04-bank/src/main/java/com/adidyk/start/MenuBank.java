@@ -281,7 +281,7 @@ public class MenuBank {
                         double amount = Double.parseDouble(input.ask(" [action] enter amount for transfer: "));
                         boolean transfer = bank.transferMoney(srcUser, srcAccount, dstUser, dstAccount, amount);
                         if (!transfer) {
-                            System.out.println(" [inform] [inform]  account not found or not enough money ... ");
+                            System.out.println(" [inform] [inform]  srcAccount not found or not enough money ... ");
                         }
                     } else {
                         System.out.println(" [inform] dstAccount not found ... ");
@@ -309,6 +309,5 @@ public class MenuBank {
         public void execute(Input input, Bank bank) {
         }
     }
-
 
 }
