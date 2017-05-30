@@ -31,11 +31,23 @@ public class Bank {
         return this.user.get(user);
     }
 
-    public boolean transferMoney(User srcUser, Account strAccount, User dstUser, Account dstAccount, double amount) {
-
-
-
-        return false;
+    public boolean transferMoney(User srcUser, Account srcAccount, User dstUser, Account dstAccount, double amount) {
+        boolean transfer = true;
+        List <Account> srcList = this.user.get(srcUser);
+        List <Account> dstList = this.user.get(dstUser);
+        if (this.user.get(srcUser).contains(srcAccount)) {
+            if (srcList.get(srcList.indexOf(srcAccount)).getValue() >= amount) {
+                srcList.get(srcList.indexOf(srcAccount)).subValue(amount);
+                dstList.get(srcList.indexOf(dstAccount)).addValue(amount);
+            } else {
+                transfer =false;
+                System.out.println(" [inform] not enough money ... ");
+            }
+        } else {
+            transfer = false;
+            System.out.println(" [inform] account not found ... ");
+        }
+        return transfer;
     }
 
     public Map<User, List<Account>> getUsers() {

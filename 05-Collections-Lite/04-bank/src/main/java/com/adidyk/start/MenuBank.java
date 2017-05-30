@@ -164,7 +164,7 @@ public class MenuBank {
                     if (item.getRequisites().equals(requisites)) {
                         accountTrue = true;
                         String value = input.ask(" [action] enter value: ");
-                        item.setValue(Double.parseDouble(value));
+                        item.addValue(Double.parseDouble(value));
                         break;
                     }
                 }
