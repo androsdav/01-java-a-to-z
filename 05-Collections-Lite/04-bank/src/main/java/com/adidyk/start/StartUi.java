@@ -8,6 +8,7 @@ public class StartUi {
     private Input input;
     private Bank bank;
 
+    // Constructor
     private StartUi(Input input) {
         this.input = input;
         this.bank = new Bank();
@@ -21,6 +22,7 @@ public class StartUi {
         this.bank.addUser(new User("Bruce", "35336"));
     }
 
+    // init - initialisation params and start program
     private void init() {
         MenuBank menu = new MenuBank(this.input, this.bank);
         menu.fillAction();
@@ -36,7 +38,6 @@ public class StartUi {
     public static void main(String[] arg) {
         Input input = new ValidateInput();
         new StartUi(input).init();
-
     }
 
 }

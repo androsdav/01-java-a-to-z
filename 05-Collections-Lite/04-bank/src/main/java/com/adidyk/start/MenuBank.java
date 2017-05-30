@@ -12,11 +12,13 @@ public class MenuBank {
     private Bank bank;
     private ArrayList<UserAction> actions = new ArrayList<>();
 
+    // Constructor
     MenuBank(Input input, Bank bank) {
         this.input = input;
         this.bank = bank;
     }
 
+    // fillAction - fill action
     public void fillAction() {
         this.actions.add(0, new ShowAllUser());
         this.actions.add(1, new AddUser());
@@ -29,11 +31,13 @@ public class MenuBank {
         this.actions.add(8, new Exit());
     }
 
+    // select - select action
     public void select(int key) {
         System.out.println();
         this.actions.get(key - 1).execute(this.input, this.bank);
     }
 
+    // show - shows all action
     public void show() {
         System.out.println();
         System.out.println(" ----------------BANK-MENU---------------");
@@ -43,6 +47,7 @@ public class MenuBank {
         System.out.println(" ----------------------------------------");
     }
 
+    // getIndexActions - return size ArrayList<userAction> actions
     public int[] getIndexActions() {
         int [] range = new int[this.actions.size()];
         for (int index = 0; index < this.actions.size(); index++) {
@@ -51,7 +56,7 @@ public class MenuBank {
         return range;
     }
 
-    // ShowAllUser - shows all user form list
+    // ShowAllUser - shows all user from collection
     private class ShowAllUser extends BaseAction {
         // Constructor
         ShowAllUser() {
@@ -61,7 +66,7 @@ public class MenuBank {
         public int key() {
             return 1;
         }
-        // execute - show all user, key = 1
+        // execute - show all user
         public void execute(Input input, Bank bank) {
             System.out.print(String.format(" %s%s%s%8s%5s%5s%s%s%s%n",
                     "| ", "#", " |", "NAME", " | ", "PASSPORT", " | ", "ACCOUNT", " |"));
@@ -74,10 +79,9 @@ public class MenuBank {
             }
             System.out.println(" |---|-----------|----------|---------|");
         }
-
     }
 
-    // AddUser - add new user to list
+    // AddUser - add new user to collection
     private class AddUser extends BaseAction {
         // Constructor
         AddUser() {
@@ -87,7 +91,7 @@ public class MenuBank {
         public int key() {
             return 2;
         }
-        // execute - add new user to collections
+        // execute - add new user to collection
         public void execute(Input input, Bank bank) {
             String name = input.ask(" [action] enter user name: ");
             String passport = input.ask(" [action] enter user passport: ");
@@ -95,13 +99,13 @@ public class MenuBank {
         }
     }
 
-    // DeleteUser - delete user
+    // DeleteUser - delete user from collection
     private class DeleteUser extends BaseAction {
         // Constructor
         DeleteUser() {
             super(" Delete user.");
         }
-        // key = 2
+        // key = 3
         public int key() {
             return 3;
         }
@@ -124,7 +128,7 @@ public class MenuBank {
         AddAccountToUser() {
             super(" Add account to user.");
         }
-        // key = 2
+        // key = 4
         public int key() {
             return 4;
         }
@@ -148,7 +152,7 @@ public class MenuBank {
         ReplenishAccount() {
             super(" Replenish account to user.");
         }
-        // key = 2
+        // key = 5
         public int key() {
             return 5;
         }
@@ -182,7 +186,7 @@ public class MenuBank {
         DeleteAccountFromUser() {
             super(" Delete account from user.");
         }
-        // key = 2
+        // key = 6
         public int key() {
             return 6;
         }
@@ -211,7 +215,7 @@ public class MenuBank {
         GetUserAccount() {
             super(" Get user account.");
         }
-        // key = 2
+        // key = 7
         public int key() {
             return 7;
         }
@@ -254,6 +258,7 @@ public class MenuBank {
         }
     }
 
+    // TransferMoney - transfer money from account first user to account second user
     private class TransferMoney extends BaseAction {
         // Constructor
         TransferMoney() {
@@ -263,7 +268,7 @@ public class MenuBank {
         public int key() {
             return 8;
         }
-        // execute - add new user to collections
+        // execute - transfer money
         public void execute(Input input, Bank bank) {
             String srcName = input.ask(" [action] enter user srcName: ");
             String srcPassport = input.ask(" [action] enter user srcPassport: ");
@@ -305,7 +310,7 @@ public class MenuBank {
         public int key() {
             return 9;
         }
-        // execute - add new user to collections
+        // execute - don`t does anything
         public void execute(Input input, Bank bank) {
         }
     }
