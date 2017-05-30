@@ -35,10 +35,10 @@ public class Bank {
         boolean transfer = true;
         List <Account> srcList = this.user.get(srcUser);
         List <Account> dstList = this.user.get(dstUser);
-        if (this.user.get(srcUser).contains(srcAccount)) {
+        if (srcList.contains(srcAccount)) {
             if (srcList.get(srcList.indexOf(srcAccount)).getValue() >= amount) {
                 srcList.get(srcList.indexOf(srcAccount)).subValue(amount);
-                dstList.get(srcList.indexOf(dstAccount)).addValue(amount);
+                dstList.get(dstList.indexOf(dstAccount)).addValue(amount);
             } else {
                 transfer =false;
                 System.out.println(" [inform] not enough money ... ");

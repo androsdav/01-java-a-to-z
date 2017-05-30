@@ -1,5 +1,6 @@
 package com.adidyk.start;
 
+import com.adidyk.models.Account;
 import com.adidyk.models.User;
 
 public class StartUi {
@@ -11,6 +12,9 @@ public class StartUi {
         this.input = input;
         this.bank = new Bank();
         this.bank.addUser(new User("1", "1"));
+        this.bank.addUser(new User("2", "2"));
+        this.bank.addAccountToUser(new User("1", "1"), new Account("1"));
+        this.bank.addAccountToUser(new User("2", "2"), new Account("2"));
         this.bank.addUser(new User("Adolf", "16375"));
         this.bank.addUser(new User("Rudolf", "22445"));
         this.bank.addUser(new User("Bob", "35336"));
