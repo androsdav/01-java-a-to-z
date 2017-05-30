@@ -270,15 +270,27 @@ public class MenuBank {
             User srcUser = new User(srcName, srcPassport);
             String srcRequisites = input.ask(" [action] enter user srcRequisites: ");
             Account srcAccount = new Account(srcRequisites);
-            String dstName = input.ask(" [action] enter user dstName: ");
-            String dstPassport = input.ask(" [action] enter user dstPassport: ");
-            User dstUser = new User(dstName, dstPassport);
-            String dstRequisites = input.ask(" [action] enter user dstRequisites: ");
-            Account dstAccount = new Account(dstRequisites);
-            double amount = Double.parseDouble(input.ask(" [action] enter amount for transfer: "));
-            boolean transfer = bank.transferMoney(srcUser, srcAccount, dstUser, dstAccount, amount);
-            if (!transfer) {
-                System.out.println(" [inform] [inform]  account not found or not enough money ... ");
+            if (bank.getUsers().containsKey(srcUser)) {
+                String dstName = input.ask(" [action] enter user dstName: ");
+                String dstPassport = input.ask(" [action] enter user dstPassport: ");
+                User dstUser = new User(dstName, dstPassport);
+                if (bank.getUsers().containsKey(dstUser)) {
+                    String dstRequisites = input.ask(" [action] enter user dstRequisites: ");
+                    Account dstAccount = new Account(dstRequisites);
+                    if (bank.getUserAccounts(dstUser).contains(dstAccount)) {
+                        double amount = Double.parseDouble(input.ask(" [action] enter amount for transfer: "));
+                        boolean transfer = bank.transferMoney(srcUser, srcAccount, dstUser, dstAccount, amount);
+                        if (!transfer) {
+                            System.out.println(" [inform] [inform]  account not found or not enough money ... ");
+                        }
+                    } else {
+                        System.out.println(" [inform] dstAccount not found ... ");
+                    }
+                } else {
+                    System.out.println(" [inform] dstUser not found ... ");
+                }
+            } else {
+                System.out.println(" [inform] srcUser not found ... ");
             }
         }
     }

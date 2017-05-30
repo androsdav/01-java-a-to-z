@@ -10,9 +10,9 @@ public class StartUiTest {
         Input input = new ConsoleInput();
         Bank  bank = new Bank();
         bank.addUser(new User("1", "1"));
-        bank.addUser(new User("Adolf", "16375"));
-        bank.addUser(new User("Rudolf", "22445"));
-        bank.addUser(new User("Bob", "35336"));
+        bank.addUser(new User("Jonathan", "16375"));
+        bank.addUser(new User("Benjamin", "22445"));
+        bank.addUser(new User("Russell", "35336"));
 
     }
 }

@@ -15,9 +15,10 @@ public class StartUi {
         this.bank.addUser(new User("2", "2"));
         this.bank.addAccountToUser(new User("1", "1"), new Account("1"));
         this.bank.addAccountToUser(new User("2", "2"), new Account("2"));
-        this.bank.addUser(new User("Adolf", "16375"));
-        this.bank.addUser(new User("Rudolf", "22445"));
-        this.bank.addUser(new User("Bob", "35336"));
+        this.bank.addUser(new User("Logan", "16375"));
+        this.bank.addUser(new User("Russell", "22445"));
+        this.bank.addUser(new User("Jordan", "35336"));
+        this.bank.addUser(new User("Bruce", "35336"));
     }
 
     private void init() {
