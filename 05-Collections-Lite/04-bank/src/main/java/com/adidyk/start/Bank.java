@@ -40,12 +40,10 @@ public class Bank {
                 srcList.get(srcList.indexOf(srcAccount)).subValue(amount);
                 dstList.get(dstList.indexOf(dstAccount)).addValue(amount);
             } else {
-                transfer =false;
-                System.out.println(" [inform] not enough money ... ");
+                transfer = false;
             }
         } else {
             transfer = false;
-            System.out.println(" [inform] account not found ... ");
         }
         return transfer;
     }

@@ -276,7 +276,10 @@ public class MenuBank {
             String dstRequisites = input.ask(" [action] enter user dstRequisites: ");
             Account dstAccount = new Account(dstRequisites);
             double amount = Double.parseDouble(input.ask(" [action] enter amount for transfer: "));
-            bank.transferMoney(srcUser, srcAccount, dstUser, dstAccount, amount);
+            boolean transfer = bank.transferMoney(srcUser, srcAccount, dstUser, dstAccount, amount);
+            if (!transfer) {
+                System.out.println(" [inform] [inform]  account not found or not enough money ... ");
+            }
         }
     }
 
