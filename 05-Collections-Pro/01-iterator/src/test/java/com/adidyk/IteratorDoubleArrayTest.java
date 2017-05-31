@@ -4,9 +4,9 @@ import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public class IteratorArrayTest {
+public class IteratorDoubleArrayTest {
 
-    private final IteratorArray it = new IteratorArray(new int[]{1, 2, 3});
+    private final IteratorDoubleArray it = new IteratorDoubleArray(new int[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}});
 
     @Test
     public void hasNexTrueTest() {
@@ -21,6 +21,14 @@ public class IteratorArrayTest {
         this.it.next();
         this.it.next();
         this.it.next();
+        this.it.next();
+        this.it.next();
+        this.it.next();
+        this.it.next();
+        this.it.next();
+        this.it.next();
+        this.it.next();
+        this.it.next();
         boolean result = this.it.hasNext();
         assertThat(result, is(false));
     }
@@ -28,7 +36,7 @@ public class IteratorArrayTest {
     @Test
     public void nextTest() {
         this.it.next();
-        int result = (Integer) it.next();
+        int result = (Integer) this.it.next();
         assertThat(result, is(2));
     }
 
