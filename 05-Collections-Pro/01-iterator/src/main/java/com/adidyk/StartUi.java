@@ -7,14 +7,11 @@ public class StartUi {
 
         IteratorArray it = new IteratorArray(new int[]{1, 2, 3});
 
-
         System.out.println(it.next());
         System.out.println(it.next());
         System.out.println(it.next());
-        System.out.println(it.next());
-
-
-
+        System.out.println(it.hasNext());
+        System.out.println(it.hasNext());
 
     }
 }
