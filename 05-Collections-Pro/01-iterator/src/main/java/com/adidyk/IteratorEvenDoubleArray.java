@@ -2,14 +2,13 @@ package com.adidyk;
 
 import java.util.Iterator;
 
-
-public class IteratorDoubleArray implements Iterator {
+public class IteratorEvenDoubleArray implements Iterator {
 
     private final int[][] array;
     private int indexI = 0;
     private int indexJ = 0;
 
-    IteratorDoubleArray(int[][] array) {
+    IteratorEvenDoubleArray(int[][] array) {
         this.array = array;
     }
 
