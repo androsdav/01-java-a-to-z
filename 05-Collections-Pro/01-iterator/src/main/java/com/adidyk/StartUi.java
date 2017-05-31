@@ -21,15 +21,31 @@ public class StartUi {
         System.out.println(it.hasNext());
         */
 
-        IteratorDoubleArray iter = new IteratorDoubleArray(new int[][]{{1, 2, 3}, {5, 6, 7}});
+        IteratorDoubleArray iter = new IteratorDoubleArray(new int[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}});
+
+        System.out.println(iter.hasNext());
+        System.out.println(iter.next());
+        System.out.println(iter.hasNext());
+        System.out.println(iter.next());
+        System.out.println(iter.hasNext());
+        System.out.println(iter.next());
+        System.out.println(iter.hasNext());
 
         System.out.println(iter.next());
+        System.out.println(iter.hasNext());
         System.out.println(iter.next());
+        System.out.println(iter.hasNext());
         System.out.println(iter.next());
+        System.out.println(iter.hasNext());
 
         System.out.println(iter.next());
+        System.out.println(iter.hasNext());
         System.out.println(iter.next());
+        System.out.println(iter.hasNext());
         System.out.println(iter.next());
+        System.out.println(iter.hasNext());
+
+
 
        /* while(iter.hasNext()) {
             System.out.println(iter.next());

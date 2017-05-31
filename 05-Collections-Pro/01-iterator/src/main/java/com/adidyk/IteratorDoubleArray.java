@@ -16,16 +16,12 @@ import java.util.Iterator;
 
         @Override
         public boolean hasNext() {
-            boolean hasNExtFlag = false;
-            if (this.indexI < this.array[this.indexJ].length && this.indexJ < this.array[this.indexI].length ) {
-                hasNExtFlag = true;
-            }
-            return hasNExtFlag;
+            return this.indexI < this.array.length - 1;
         }
 
         @Override
         public Object next() {
-            if (this.indexJ == this.array[this.indexI].length) {
+            if (this.indexJ >= this.array[this.indexI].length) {
                 this.indexI++;
                 this.indexJ = 0;
             }
