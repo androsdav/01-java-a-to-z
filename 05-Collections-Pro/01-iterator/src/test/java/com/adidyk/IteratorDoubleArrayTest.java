@@ -27,8 +27,6 @@ public class IteratorDoubleArrayTest {
         this.it.next();
         this.it.next();
         this.it.next();
-        this.it.next();
-        this.it.next();
         boolean result = this.it.hasNext();
         assertThat(result, is(false));
     }
