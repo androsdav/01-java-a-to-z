@@ -9,17 +9,14 @@ import java.util.Iterator;
         private int indexI = 0;
         private int indexJ = 0;
 
-        public IteratorDoubleArray(int[][] array) {
+        IteratorDoubleArray(int[][] array) {
             this.array = array;
         }
 
-
-        @Override
         public boolean hasNext() {
-            return this.indexI < this.array.length;
+            return this.indexJ < this.array.length;
         }
 
-        @Override
         public Object next() {
             if (this.indexJ >= this.array[this.indexI].length) {
                 this.indexI++;
@@ -28,7 +25,6 @@ import java.util.Iterator;
             return this.array[this.indexI][this.indexJ++];
         }
 
-        @Override
         public void remove() {
         }
 }

@@ -12,17 +12,14 @@ public class IteratorArray implements Iterator {
         this.array = array;
     }
 
-    @Override
     public boolean hasNext() {
         return this.index < this.array.length;
     }
 
-    @Override
     public Object next() {
         return this.array[this.index++];
     }
 
-    @Override
     public void remove() {
     }
 
