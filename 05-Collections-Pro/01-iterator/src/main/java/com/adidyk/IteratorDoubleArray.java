@@ -16,7 +16,7 @@ import java.util.Iterator;
 
         @Override
         public boolean hasNext() {
-            return this.indexI < this.array.length - 1;
+            return this.indexI < this.array.length;
         }
 
         @Override
