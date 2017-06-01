@@ -16,7 +16,7 @@ public class IteratorEvenArrayTest {
         boolean result =  this.it.hasNext();
         assertThat(result, is(true));
     }
-
+/*
     @Test
     public void hasNextFalseTest() {
         this.it.next();
@@ -26,7 +26,7 @@ public class IteratorEvenArrayTest {
         boolean result = this.it.hasNext();
         assertThat(result, is(false));
     }
-
+*/
     @Test
     public void nextTest() {
         int result = (Integer) it.next();
