@@ -16,12 +16,12 @@ public class IteratorDoubleArray {
             this.indexI++;
             this.indexJ = 0;
         }
-        if (this.indexI == this.array.length - 1 && this.indexJ == this.array.length - 1) {
-            this.index = false;
-        }
     }
 
     public boolean hasNext() {
+        if (this.indexI == this.array.length - 1 && this.indexJ == this.array.length ) {
+            this.index = false;
+        }
             return this.index;
     }
 
