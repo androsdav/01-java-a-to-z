@@ -8,6 +8,7 @@ public class IteratorEvenArray implements Iterator {
     private int indexFirst = 0;
     private int index = 0;
     private int shift = 0;
+    private boolean result = true;
 
     IteratorEvenArray(final int[] array) {
         this.array = array;
@@ -30,7 +31,10 @@ public class IteratorEvenArray implements Iterator {
     }
 
     public boolean hasNext() {
-        return this.shift != 0;
+        if (shift == 0) {
+            result = false;
+        }
+        return result;
     }
 
     public Object next() {
