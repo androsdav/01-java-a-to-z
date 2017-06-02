@@ -7,7 +7,6 @@ public class IteratorEvenArray implements Iterator {
     private final int[] array;
     private int indexFirst = 0;
     private int index = 0;
-    private int shift = 1;
 
     IteratorEvenArray(final int[] array) {
         this.array = array;
@@ -18,19 +17,19 @@ public class IteratorEvenArray implements Iterator {
             this.index++;
         }
         this.indexFirst = this.index;
-        this.index++;
-        while (this.array[this.index] % 2 != 0 && this.index < this.array.length - 1) {
+        if (this.index < this.array.length - 1) {
             this.index++;
         }
-        if (this.index == this.array.length - 1) {
-            this.shift = 0;
-        } else {
-            this.shift = this.index - this.indexFirst;
+        while (this.array[this.index] % 2 != 0 && this.index < this.array.length) {
+            this.index++;
+            if (this.index == this.array.length) {
+                break;
+            }
         }
     }
 
     public boolean hasNext() {
-        return shift != 0;
+        return (this.index < this.array.length && this.indexFirst != this.array.length - 1);
     }
 
     public Object next() {

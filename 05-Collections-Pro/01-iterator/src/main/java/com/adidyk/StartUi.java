@@ -17,7 +17,7 @@ public class StartUi {
         }
 
         System.out.println("IteratorEvenArray");
-        IteratorEvenArray it2 = new IteratorEvenArray(new int[]{1, 3, 4, 5, 6, 7, 8, 1, 3, 5});
+        IteratorEvenArray it2 = new IteratorEvenArray(new int[]{2, 3, 4, 1, 3, 6, 5, 7, 8, 7, 10, 1, 12, 3, 14, 1, 16, 1, 18, 20, 22, 24, 23, 26, 1092, 1});
         while (it2.hasNext()) {
             System.out.println(it2.next());
         }
