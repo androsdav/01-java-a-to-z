@@ -1,6 +1,7 @@
 package com.adidyk;
 
 import java.util.Iterator;
+import static java.lang.Math.round;
 
 public class IteratorPrimeArray implements Iterator {
 
@@ -14,24 +15,28 @@ public class IteratorPrimeArray implements Iterator {
 
     private boolean primeSearch() {
         boolean isPrime = true;
-        for (int index = 0; index < this.array[this.index]; index++) {
-            if (this.array[this.index] % index == 0) {
-                isPrime = false;
-                break;
+        if (this.array[this.index] > 1) {
+            for (int index = 2; index < round(this.array[this.index] / 2); index++) {
+                if (this.array[this.index] % index == 0) {
+                    isPrime = false;
+                    break;
+                }
             }
+        } else {
+            isPrime = false;
         }
         return isPrime;
     }
 
     private void primeNext() {
-        while (this.primeSearch() && this.index < this.array.length - 1) {
+        while (!this.primeSearch() && this.index < this.array.length - 1) {
             this.index++;
         }
         this.indexFirst = this.index;
         if (this.index < this.array.length - 1) {
             this.index++;
         }
-        while (this.primeSearch() && this.index < this.array.length) {
+        while (!this.primeSearch() && this.index < this.array.length) {
             this.index++;
             if (this.index == this.array.length) {
                 break;
