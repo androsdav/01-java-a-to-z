@@ -1,7 +1,6 @@
 package com.adidyk;
 
 import org.junit.Test;
-
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -34,6 +33,18 @@ public class IteratorArrayTest {
         this.it.next();
         boolean result = this.it.hasNext();
         assertThat(result, is(false));
+    }
+
+    @Test
+    public void loopTest() {
+        int[] resultActual = new int[]{12, 22, 32, 42, 52};
+        int[] resultExpected = new int[5];
+        int index = 0;
+        while(this.it.hasNext()) {
+            resultExpected[index] = (Integer)this.it.next();
+            index++;
+        }
+        assertThat(resultActual, is(resultExpected));
     }
 
 }
