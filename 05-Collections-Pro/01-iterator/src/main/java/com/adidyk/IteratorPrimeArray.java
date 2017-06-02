@@ -16,7 +16,7 @@ public class IteratorPrimeArray implements Iterator {
     private boolean primeSearch() {
         boolean isPrime = true;
         if (this.array[this.index] > 1) {
-            for (int index = 2; index < round(this.array[this.index] / 2); index++) {
+            for (int index = 2; index <= round(this.array[this.index] / 2); index++) {
                 if (this.array[this.index] % index == 0) {
                     isPrime = false;
                     break;
@@ -45,11 +45,11 @@ public class IteratorPrimeArray implements Iterator {
     }
 
     public boolean hasNext() {
+        this.primeNext();
         return (this.index < this.array.length && this.indexFirst != this.array.length - 1);
     }
 
     public Object next() {
-        this.primeNext();
         return this.array[this.indexFirst];
     }
 

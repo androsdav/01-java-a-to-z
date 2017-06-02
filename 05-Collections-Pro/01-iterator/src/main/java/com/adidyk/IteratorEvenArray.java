@@ -29,11 +29,11 @@ public class IteratorEvenArray implements Iterator {
     }
 
     public boolean hasNext() {
+        this.evenNext();
         return (this.index < this.array.length && this.indexFirst != this.array.length - 1);
     }
 
     public Object next() {
-        this.evenNext();
         return this.array[this.indexFirst];
     }
 
