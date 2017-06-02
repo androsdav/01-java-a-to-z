@@ -21,6 +21,12 @@ public class StartUi {
         while (it2.hasNext()) {
             System.out.println(it2.next());
         }
+
+        System.out.println("IteratorPrimeArray");
+        IteratorPrimeArray it3 = new IteratorPrimeArray(new int[]{1, 2, 4, 5, 6, 8});
+        while(it3.hasNext()) {
+            System.out.println(it3.next());
+        }
     }
 
 }
