@@ -23,7 +23,7 @@ public class StartUi {
         }
 
         System.out.println("IteratorPrimeArray");
-        IteratorPrimeArray it3 = new IteratorPrimeArray(new int[]{1, 2, 4, 5, 6, 8, 17, 31, 51, 61, 32, 18});
+        IteratorPrimeArray it3 = new IteratorPrimeArray(new int[]{1, 2, 4, 5, 6, 8, 17, 31, 51, 61, 32, 18, 71, 131, 132});
         while(it3.hasNext()) {
             System.out.println(it3.next());
         }
