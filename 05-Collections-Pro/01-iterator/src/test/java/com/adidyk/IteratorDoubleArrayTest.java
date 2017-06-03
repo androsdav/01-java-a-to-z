@@ -5,6 +5,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class IteratorDoubleArrayTest {
+
     private final IteratorDoubleArray it = new IteratorDoubleArray(new int[][]{
             {11, 22, 33},
             {66, 77, 88},
