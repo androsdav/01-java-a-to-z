@@ -5,9 +5,9 @@ import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public class IteratorEvenArrayTest {
+public class IteratorPrimeArrayTest {
 
-    private final IteratorEvenArray it = new IteratorEvenArray(new int[]{2, 1, 7, 8, 1, 10, 12, 14, 1, 22, 3, 1, 24});
+    private final IteratorPrimeArray it = new IteratorPrimeArray(new int[]{1, 2, 3, 4, 4, 3, 7, 13, 13, 11, 4, 10, 131});
 
     @Test
     public void nextTest() {
@@ -15,7 +15,7 @@ public class IteratorEvenArrayTest {
         this.it.next();
         this.it.next();
         int result = (Integer)this.it.next();
-        assertThat(result, is(12));
+        assertThat(result, is(7));
     }
 
     @Test
@@ -34,14 +34,15 @@ public class IteratorEvenArrayTest {
         this.it.next();
         this.it.next();
         this.it.next();
+        this.it.next();
         boolean result = this.it.hasNext();
         assertThat(result, is(false));
     }
 
     @Test
     public void loopTest() {
-        int[] resultActual = new int[]{2, 8, 10, 12, 14, 22, 24};
-        int[] resultExpected = new int[7];
+        int[] resultActual = new int[]{2, 3, 3, 7, 13, 13, 11, 131};
+        int[] resultExpected = new int[8];
         int index = 0;
         while(this.it.hasNext()) {
             resultExpected[index] = (Integer)this.it.next();

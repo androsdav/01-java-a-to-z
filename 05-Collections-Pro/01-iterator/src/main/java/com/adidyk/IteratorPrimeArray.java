@@ -6,7 +6,6 @@ import static java.lang.Math.round;
 public class IteratorPrimeArray implements Iterator {
 
     private final int[] array;
-    private int indexFirst = 0;
     private int index = 0;
 
     IteratorPrimeArray(final int[] array) {
@@ -29,30 +28,27 @@ public class IteratorPrimeArray implements Iterator {
     }
 
     private void primeNext() {
-        while (!this.primeSearch() && this.index < this.array.length - 1) {
-            this.index++;
-        }
-        this.indexFirst = this.index;
-        if (this.index < this.array.length - 1) {
-            this.index++;
-        }
-        while (!this.primeSearch() && this.index < this.array.length) {
-            this.index++;
-            if (this.index == this.array.length) {
-                break;
+        if (this.index < this.array.length) {
+            while (!this.primeSearch()) {
+                this.index++;
+                if (this.index == this.array.length) {
+                    break;
+                }
             }
         }
     }
 
     public boolean hasNext() {
         this.primeNext();
-        return (this.index < this.array.length && this.indexFirst != this.array.length - 1);
+        return (this.index < this.array.length);
     }
 
     public Object next() {
-        return this.array[this.indexFirst];
+        this.primeNext();
+        return this.array[this.index++];
     }
 
     public void remove() {
     }
+
 }
