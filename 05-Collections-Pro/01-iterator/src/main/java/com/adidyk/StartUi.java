@@ -3,6 +3,7 @@ package com.adidyk;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+//import java.util.function.Consumer;
 
 public class StartUi {
 
@@ -40,20 +41,70 @@ public class StartUi {
         //listAll
         List<Integer> listAll = new ArrayList<>();
 
+        System.out.println("Iterator1");
         while(it1.hasNext()) {
             System.out.println(it1.next());
         }
 
+        System.out.println("Iterator2");
         while(it2.hasNext()) {
             System.out.println(it2.next());
         }
 
+        System.out.println("Iterator3");
         while(it3.hasNext()) {
             System.out.println(it3.next());
         }
 
+        ArrayList<Iterator<Integer>> listTemp = new ArrayList<>();
+        listTemp.add(it1);
+        listTemp.add(it2);
+        listTemp.add(it3);
+
+        Iterator<Iterator<Integer>> itAll = listTemp.iterator();
+/*
+        while(itAll.hasNext()) {
+            System.out.println(itAll.next());
+
+        }
+
+*/
+        while(itAll.hasNext()) {
+            System.out.println(itAll.next());
+
+        }
 
 
+
+
+       // Iterator<Iterator<Integer>> itAll = new Iteartor<>(it1, it2, it3);
+
+
+        /*
+        Iterator <Iterator<Integer>> itAll = new Iterator<Iterator<Integer>>() {
+            @Override
+            public boolean hasNext() {
+                return false;
+            }
+
+            @Override
+            public Iterator<Integer> next() {
+                return null;
+            }
+
+            @Override
+            public void remove() {
+
+            }
+
+            @Override
+            public void forEachRemaining(Consumer<? super Iterator<Integer>> action) {
+
+            }
+        };
+
+
+*/
     }
 
 }
