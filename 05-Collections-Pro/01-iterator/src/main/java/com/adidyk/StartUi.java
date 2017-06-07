@@ -61,6 +61,8 @@ public class StartUi {
         listTemp.add(it2);
         listTemp.add(it3);
 
+        Iterator<Iterator<Integer>> iterator = listTemp.iterator();
+
         /*
         while(itAll.hasNext()) {
             System.out.println(itAll.next());
@@ -68,10 +70,14 @@ public class StartUi {
         }
 
 */
-        for (Iterator<Integer> aListTemp : listTemp) {
-            System.out.println(aListTemp);
-
+        System.out.println("Iterator iterator");
+        for (Iterator<Integer> aListTemp : iterator) {
+            while (aListTemp.hasNext()) {
+                System.out.println(aListTemp.next());
+            }
         }
+
+
 
 
 
