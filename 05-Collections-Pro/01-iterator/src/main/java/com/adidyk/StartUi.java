@@ -61,18 +61,18 @@ public class StartUi {
         listTemp.add(it2);
         listTemp.add(it3);
 
-        Iterator<Iterator<Integer>> itAll = listTemp.iterator();
-/*
+        /*
         while(itAll.hasNext()) {
             System.out.println(itAll.next());
 
         }
 
 */
-        while(itAll.hasNext()) {
-            System.out.println(itAll.next());
+        for (Iterator<Integer> aListTemp : listTemp) {
+            System.out.println(aListTemp);
 
         }
+
 
 
 
