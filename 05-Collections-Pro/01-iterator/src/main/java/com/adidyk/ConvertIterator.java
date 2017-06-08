@@ -13,10 +13,16 @@ public class ConvertIterator implements IteratorIterator {
 
 
     public Iterator<Integer> convert(Iterator<Iterator<Integer>> it) {
-        Iterator<Integer> result;
-        while(it.hasNext()) {
+
+     //   for (Iterator<Integer> item : this.it) {
+
+     //   }
+
+
+        //Iterator<Integer> result;
+//        while(it.hasNext()) {
      //       result = it.next().next();
-        }
+  //      }
         return null;
     }
 
