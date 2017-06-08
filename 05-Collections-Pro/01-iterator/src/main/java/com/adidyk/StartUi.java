@@ -46,12 +46,24 @@ public class StartUi {
 
         ConvertIteratorIterator iter = new ConvertIteratorIterator();
         Iterator<Integer> it = iter.convert((Arrays.asList(it1, it2, it3)).iterator());
-
-        System.out.println(it.next());
-        System.out.println(it.next());
-        System.out.println(it.next());
-
 /*
+        System.out.println(it.next());
+        System.out.println(it.next());
+        System.out.println(it.next());
+        System.out.println(it.next());
+        System.out.println(it.next());
+        System.out.println(it.next());
+        System.out.println(it.next());
+        System.out.println(it.next());
+        System.out.println(it.next());
+        System.out.println(it.next());
+        System.out.println(it.next());
+        System.out.println(it.hasNext());
+        System.out.println(it.next());
+        System.out.println(it.hasNext());
+        System.out.println(it.hasNext());
+        System.out.println(it.hasNext());
+*/
         while(it.hasNext()) {
             System.out.println(it.next());
         }
