@@ -25,17 +25,7 @@ public class ConvertIteratorIterator implements IteratorIterator {
         }
 
         public boolean hasNext() {
-            boolean hasNextTrue;
-            if (this.iterators.hasNext()) {
-                hasNextTrue = true;
-            } else {
-                if (this.iterator.hasNext()) {
-                    hasNextTrue = true;
-                } else {
-                    hasNextTrue = false;
-                }
-            }
-            return hasNextTrue;
+            return (this.iterators.hasNext() || this.iterator.hasNext());
         }
 
         public Object next() {
