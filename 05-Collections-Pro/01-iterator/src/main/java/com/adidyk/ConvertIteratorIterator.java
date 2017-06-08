@@ -39,13 +39,3 @@ public class ConvertIteratorIterator implements IteratorIterator {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
