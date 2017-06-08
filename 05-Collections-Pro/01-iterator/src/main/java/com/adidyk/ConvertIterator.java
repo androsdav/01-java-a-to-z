@@ -4,37 +4,60 @@ import java.util.Iterator;
 
 public class ConvertIterator implements IteratorIterator {
 
-    private final Iterator<Iterator<Integer>> it;
-    private Iterator<Integer> itAll;
-
-    ConvertIterator(Iterator<Iterator<Integer>> it) {
-        this.it = it;
+    public Iterator<Integer> convert(Iterator<Iterator<Integer>> it) {
+        return new NewIterator();
     }
+
+    public class NewIterator implements Iterator {
+
+
+        public boolean hasNext() {
+            return false;
+        }
+
+        public Object next() {
+            return null;
+        }
+
+        public void remove() {
+        }
+
+    }
+
+
+}
+/*
+    private Iterator<Iterator<Integer>> iteratorIt;
+    private Iterator<Integer> iteratorNext;
+
 
 
     public Iterator<Integer> convert(Iterator<Iterator<Integer>> it) {
 
-     //   for (Iterator<Integer> item : this.it) {
+        }
+        return public class TestIterator() {
 
-     //   }
 
+    };
 
-        //Iterator<Integer> result;
-//        while(it.hasNext()) {
-     //       result = it.next().next();
-  //      }
-        return null;
+/*
+    public void iteratorNext() {
+        if (this.iteratorIt.hasNext()) {
+            this.iteratorNext = this.iteratorIt.next();
+        }
+
     }
 
     public boolean hasNext() {
-        return false;
+        return true;
     }
 
     public Object next() {
-        return it.next();
+        this.iteratorNext();
+        return iteratorIt.next();
     }
 
     public void remove() {
     }
+*/
 
-}

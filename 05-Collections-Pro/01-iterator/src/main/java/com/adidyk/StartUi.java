@@ -1,6 +1,7 @@
 package com.adidyk;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 //import java.util.function.Consumer;
@@ -13,12 +14,12 @@ public class StartUi {
         System.out.println("Iterators");
         System.out.println();
 
-
         //list1 it1
         List<Integer> list1 = new ArrayList<>();
         list1.add(1);
         list1.add(2);
         list1.add(3);
+        list1.add(33);
         Iterator<Integer> it1 = list1.iterator();
 
         //list2 it2
@@ -38,53 +39,74 @@ public class StartUi {
         list3.add(12);
         Iterator<Integer> it3 = list3.iterator();
 
-        //listAll
-        List<Integer> listAll = new ArrayList<>();
+//------------------------------------------------------------------
+        ArrayList<Iterator<Integer>> listAll = new ArrayList<>();
+        listAll.add(it1);
+        listAll.add(it2);
+        listAll.add(it3);
 
-        System.out.println("Iterator1");
-        while(it1.hasNext()) {
-            System.out.println(it1.next());
+        ConvertIteratorIterator iter = new ConvertIteratorIterator();
+        Iterator<Integer> it = iter.convert((Arrays.asList(it1, it2, it3)).iterator());
+
+        System.out.println(it.next());
+        System.out.println(it.next());
+        System.out.println(it.next());
+
+/*
+        while (it.hasNext()) {
+            System.out.println(it.next());
         }
 
-        System.out.println("Iterator2");
-        while(it2.hasNext()) {
-            System.out.println(it2.next());
+
+/*
+        for (Iterator<Integer> it : Arrays.asList(it1, it2, it3)) {
+            while (it.hasNext()) {
+                System.out.println(it.next());
+            }
+
         }
 
-        System.out.println("Iterator3");
-        while(it3.hasNext()) {
-            System.out.println(it3.next());
-        }
+//        ConvertIterator it = new ConvertIterator()
 
-        ArrayList<Iterator<Integer>> listTemp = new ArrayList<>();
-        listTemp.add(it1);
-        listTemp.add(it2);
-        listTemp.add(it3);
 
-        Iterator<Iterator<Integer>> iterator = listTemp.iterator();
 
-        for (Iterator<Integer> item : listTemp) {
+        /*
+        for (Iterator<Integer> item : listAll) {
             System.out.println(item);
             while(item.hasNext()) {
                 System.out.println(item.next());
             }
         }
-
-        /*
-        while(itAll.hasNext()) {
-            System.out.println(itAll.next());
-
-        }
-
 */
-        /*
-        System.out.println("Iterator iterator");
-        for (Iterator<Integer> aListTemp : iterator) {
-            while (aListTemp.hasNext()) {
-                System.out.println(aListTemp.next());
+        //Iterator<Iterator<Integer>> itAll = listAll.iterator();
+
+        //-------------------------------------------------------------------------
+/*
+        Iterator<Iterator<Integer>> itAll = Arrays.asList(it1, it2, it3).iterator();
+
+        while (itAll.hasNext()) {
+            while(itAll.next().hasNext()) {
+                System.out.println(itAll.next().next());
             }
         }
-*/
+
+        //-------------------------------------------------------------------------
+
+        /*
+        for (Iterator<Integer> integerIterator : Arrays.asList(it1, it2, it3)) {
+            while(integerIterator.hasNext()) {
+                System.out.println(integerIterator.next());
+            }
+        }
+
+
+
+//        System.out.println(itAll.next());
+//        System.out.println(itAll.next());
+//        System.out.println(itAll.next());
+
+
+
 
 
 
