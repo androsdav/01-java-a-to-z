@@ -12,26 +12,41 @@ public class ConvertIteratorIterator implements IteratorIterator {
 
         private final Iterator<Iterator<Integer>> iterators;
         private Iterator<Integer> iterator;
+        private int result;
 
         AdvancedIterator(Iterator<Iterator<Integer>> it) {
             this.iterators = it;
             this.iterator = this.iterators.next();
         }
 
-
-        public void iteratorNext() {
-            if (!this.iterator.hasNext()) {
+        private void iteratorNext() {
+            if(this.iterator.hasNext()) {
+                this.result = this.iterator.next();
+            }
+            /*
+            else if (!this.iterator.hasNext()) {
                 this.iterator = this.iterators.next();
             }
+            */
         }
 
         public boolean hasNext() {
-            return (!this.iterators.hasNext());
+            boolean hasNextTrue = true;
+            //if (this.iterators.hasNext()) {
+            //    hasNextTrue = true;
+            //} else {
+            //    if (this.iterator.hasNext()) {
+            //        hasNextTrue = true;
+            //    } else {
+            //        hasNextTrue = false;
+            //    }
+           // }
+            return hasNextTrue;
         }
 
         public Object next() {
             this.iteratorNext();
-            return this.iterator.next();
+            return this.result;
         }
 
         public void remove() {

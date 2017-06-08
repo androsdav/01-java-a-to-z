@@ -19,7 +19,6 @@ public class StartUi {
         list1.add(1);
         list1.add(2);
         list1.add(3);
-        list1.add(33);
         Iterator<Integer> it1 = list1.iterator();
 
         //list2 it2
@@ -40,10 +39,10 @@ public class StartUi {
         Iterator<Integer> it3 = list3.iterator();
 
 //------------------------------------------------------------------
-        ArrayList<Iterator<Integer>> listAll = new ArrayList<>();
-        listAll.add(it1);
-        listAll.add(it2);
-        listAll.add(it3);
+   //     ArrayList<Iterator<Integer>> listAll = new ArrayList<>();
+   //     listAll.add(it1);
+   //     listAll.add(it2);
+   //     listAll.add(it3);
 
         ConvertIteratorIterator iter = new ConvertIteratorIterator();
         Iterator<Integer> it = iter.convert((Arrays.asList(it1, it2, it3)).iterator());
@@ -51,17 +50,12 @@ public class StartUi {
         System.out.println(it.next());
         System.out.println(it.next());
         System.out.println(it.next());
-        System.out.println(it.next());
-        System.out.println(it.next());
-        System.out.println(it.next());
-        System.out.println(it.next());
-        System.out.println(it.next());
-        System.out.println(it.next());
-        System.out.println(it.next());
-        System.out.println(it.next());
-        System.out.println(it.next());
-        System.out.println(it.hasNext());
-        System.out.println(it.next());
+
+/*
+        while(it.hasNext()) {
+            System.out.println(it.next());
+        }
+
 
 /*
         while (it.hasNext()) {
