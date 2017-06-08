@@ -25,19 +25,14 @@ public class ConvertIteratorIterator implements IteratorIterator {
             }
         }
 
-
-
         public boolean hasNext() {
-            return false;
+            return (!this.iterators.hasNext());
         }
 
         public Object next() {
             this.iteratorNext();
             return this.iterator.next();
         }
-
-
-
 
         public void remove() {
         }
