@@ -15,11 +15,14 @@ public class ConvertIteratorIterator implements IteratorIterator {
 
         AdvancedIterator(Iterator<Iterator<Integer>> it) {
             this.iterators = it;
+            this.iterator = this.iterators.next();
         }
 
 
         public void iteratorNext() {
+            if (!this.iterator.hasNext()) {
                 this.iterator = this.iterators.next();
+            }
         }
 
 
@@ -27,7 +30,6 @@ public class ConvertIteratorIterator implements IteratorIterator {
         public boolean hasNext() {
             return false;
         }
-
 
         public Object next() {
             this.iteratorNext();
