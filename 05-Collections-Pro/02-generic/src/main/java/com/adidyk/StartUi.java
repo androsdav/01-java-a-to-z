@@ -1,5 +1,8 @@
 package com.adidyk;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StartUi {
 
     // main - its only for compile jar file
@@ -55,18 +58,18 @@ public class StartUi {
         System.out.println();
         System.out.println(array);
 
-/*
+
         System.out.println();
         System.out.println("Its little example for use Collections....  ");
         System.out.println();
-/*
+
         List<String> list = new ArrayList<>(5);
 
-        list.add("1");
+        list.add("2");
         list.add("2");
         list.add("3");
         list.add("4");
-
+/*
         for (String item : list) {
             System.out.println(item);
         }
