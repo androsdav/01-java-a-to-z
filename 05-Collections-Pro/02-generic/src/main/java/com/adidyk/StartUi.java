@@ -7,8 +7,37 @@ public class StartUi {
         System.out.println("SimpleArray");
 
         SimpleArray<String> array = new SimpleArray<>();
-        String string = array.add("first-string");
-        System.out.println(string);
+
+        array.add("1");
+        array.add("2");
+        array.add("3");
+        array.add("4");
+        array.add("5");
+        array.add("6");
+
+
+        System.out.println("Add and print all object result:");
+        for (Object object : array.getAllObject()) {
+            System.out.println(object);
+        }
+
+        System.out.println("Delete object 4 and print all object result:");
+        array.removeObjectByObject("4");
+
+        for (Object object : array.getAllObject()) {
+            System.out.println(object);
+        }
+
+        System.out.println("Add and print all object result:");
+        array.add("7");
+
+        for (Object object : array.getAllObject()) {
+            System.out.println(object);
+        }
+
+
+
+
     }
 
 }
