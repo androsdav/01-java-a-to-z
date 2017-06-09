@@ -9,5 +9,6 @@
          <packaging>pom</packaging>
          <modules>
                   <module>01-iterator</module>
+                  <module>02-generic</module>
          </modules>
 </project>
