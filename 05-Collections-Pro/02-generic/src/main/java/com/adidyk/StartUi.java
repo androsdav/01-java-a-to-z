@@ -15,8 +15,7 @@ public class StartUi {
         array.add("5");
         array.add("6");
 
-
-        System.out.println("Add and print all object result:");
+        System.out.println("Add objects and print all object result:");
         for (Object object : array.getAllObject()) {
             System.out.println(object);
         }
@@ -28,9 +27,22 @@ public class StartUi {
             System.out.println(object);
         }
 
-        System.out.println("Add and print all object result:");
+        System.out.println("Add object and print all object result:");
         array.add("7");
 
+        for (Object object : array.getAllObject()) {
+            System.out.println(object);
+        }
+
+        System.out.println("Delete object by object and print all object result:");
+        array.removeObjectByObject("4");
+
+        for (Object object : array.getAllObject()) {
+            System.out.println(object);
+        }
+
+        System.out.println("Delete object by index and print all object result:");
+        array.removeObjectByIndex(20);
         for (Object object : array.getAllObject()) {
             System.out.println(object);
         }

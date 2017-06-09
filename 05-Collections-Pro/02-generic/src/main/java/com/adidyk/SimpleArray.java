@@ -25,25 +25,31 @@ public class SimpleArray<T> {
         for (int index = 0; index < this.objects.length; index++) {
             if (this.objects[index] == object) {
                 System.arraycopy(this.objects, index + 1, this.objects, index, this.objects.length - 1 - index);
+                this.index--;
                 break;
             }
-
         }
         Object[] objectTemp = new Object[this.objects.length - 1];
         System.arraycopy(this.objects, 0, objectTemp, 0, this.objects.length - 1);
         this.objects = objectTemp;
-        this.index--;
+
+    }
+
+    public void removeObjectByIndex(int index) {
+        if (index < this.objects.length) {
+            System.arraycopy(this.objects, index + 1, this.objects, index, this.objects.length - 1 - index);
+            this.index--;
+        } else {
+            System.out.println("Index more than length array objects ... ");
+        }
     }
 
     public Object[] getAllObject() {
         return this.objects;
-
     }
 
 
-    public void removeObjectByIndex(int index) {
 
-    }
 
 
 }
