@@ -24,9 +24,7 @@ public class SimpleArray<T> {
     public void removeObjectByObject(T object) {
         for (int index = 0; index < this.objects.length; index++) {
             if (this.objects[index] == object) {
-                for (int indexDell = index; indexDell < this.objects.length - 1; indexDell++) {
-                    this.objects[indexDell] = this.objects[indexDell + 1];
-                }
+                System.arraycopy(this.objects, index + 1, this.objects, index, this.objects.length - 1 - index);
                 break;
             }
 
