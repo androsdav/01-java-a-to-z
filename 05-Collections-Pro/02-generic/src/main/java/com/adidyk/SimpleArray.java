@@ -21,16 +21,29 @@ public class SimpleArray<T> {
         return object;
     }
 
-
     public void removeObjectByObject(T object) {
-        int indexDell;
         for (int index = 0; index < this.objects.length; index++) {
             if (this.objects[index] == object) {
-                this.objects[index] = null;
+                for (int indexDell = index; indexDell < this.objects.length - 1; index++) {
+                    this.objects[indexDell] = this.objects[indexDell + 1];
+                }
                 break;
             }
 
         }
+        Object[] objectTemp = new Object[this.objects.length - 1];
+        System.arraycopy(this.objects, 0, objectTemp, 0, this.objects.length - 1);
+        this.objects = objectTemp;
+    }
+
+    public Object[] getAllObject() {
+        return this.objects;
+
+    }
+
+
+    public void removeObjectByIndex(int index) {
+
     }
 
 
