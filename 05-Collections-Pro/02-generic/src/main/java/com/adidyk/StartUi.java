@@ -16,15 +16,15 @@ public class StartUi {
         array.add("5");
         array.add("6");
 
-        /*
+        //------------------------------
+        System.out.println("Get object by index and used loop for: ");
         for (int index = 0; index < array.size(); index++) {
-            System.out.println(array.getAllObject());
+            System.out.println(array.get(index));
         }
-        */
 
         //------------------------------
         System.out.println("Add objects and Get all object: ");
-        for (Object object : array.getAllObject()) {
+        for (Object object : array.getAll()) {
             System.out.println(object);
         }
         System.out.println("size: " + array.size());
@@ -32,7 +32,7 @@ public class StartUi {
         //------------------------------
         System.out.println("Delete object <4> and Get all object:");
         array.remove("4");
-        for (Object object : array.getAllObject()) {
+        for (Object object : array.getAll()) {
             System.out.println(object);
         }
         System.out.println("size: " + array.size());
@@ -40,7 +40,7 @@ public class StartUi {
         //------------------------------
         System.out.println("Add object <7> and Get all object: ");
         array.add("7");
-        for (Object object : array.getAllObject()) {
+        for (Object object : array.getAll()) {
             System.out.println(object);
         }
         System.out.println("size: " + array.size());
@@ -48,10 +48,12 @@ public class StartUi {
         //------------------------------
         System.out.println("Delete object by index <4> and Get all object:");
         array.remove(4);
-        for (Object object : array.getAllObject()) {
+        for (Object object : array.getAll()) {
             System.out.println(object);
         }
         System.out.println("size: " + array.size());
+        System.out.println();
+        System.out.println(array);
 
 /*
         System.out.println();

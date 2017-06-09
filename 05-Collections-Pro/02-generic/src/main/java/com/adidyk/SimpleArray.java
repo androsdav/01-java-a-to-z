@@ -1,5 +1,7 @@
 package com.adidyk;
 
+import java.util.Arrays;
+
 import static java.lang.Math.round;
 
 public class SimpleArray<T> {
@@ -15,6 +17,7 @@ public class SimpleArray<T> {
         this.objects = new Object[size];
     }
 
+    // add - add object to objects array
     public T add(T object) {
         if (this.index == this.objects.length) {
             Object[] objectTemp = new Object[(int) round(1.5 * this.objects.length)];
@@ -25,7 +28,7 @@ public class SimpleArray<T> {
         return object;
     }
 
-    // remove object by object
+    // remove - object by object
     public void remove(T object) {
         for (int index = 0; index < this.objects.length; index++) {
             if (this.objects[index] == object) {
@@ -39,7 +42,7 @@ public class SimpleArray<T> {
         this.objects = objectTemp;
     }
 
-    // remove object by index
+    // remove - object by index
     public void remove(int index) {
         if (index < this.objects.length) {
             System.arraycopy(this.objects, index + 1, this.objects, index, this.objects.length - 1 - index);
@@ -49,7 +52,14 @@ public class SimpleArray<T> {
         }
     }
 
-    public Object[] getAllObject() {
+    // get - get object by index
+
+    public T get(int index) {
+        return (T) this.objects[index];
+    }
+
+    // getAll -
+    public Object[] getAll() {
         Object[] objectGet = null;
         boolean nullTrue = false;
         for (int index = 0; index < this.objects.length; index++) {
@@ -64,6 +74,12 @@ public class SimpleArray<T> {
         return objectGet;
     }
 
+    // set - set object by index
+    public void set() {
+
+    }
+
+    // size -
     public int size() {
         int length = 0;
         for (int index = 0; index < this.objects.length; index++) {
@@ -75,4 +91,24 @@ public class SimpleArray<T> {
         return length;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof SimpleArray)) return false;
+
+        SimpleArray<?> that = (SimpleArray<?>) o;
+
+        // Probably incorrect - comparing Object[] arrays with Arrays.equals
+        return Arrays.equals(objects, that.objects);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(objects);
+    }
+
+    @Override
+    public String toString() {
+        return "SimpleArray{" + "objects=" + Arrays.toString(this.getAll()) +'}';
+    }
 }
