@@ -53,7 +53,6 @@ public class SimpleArray<T> {
     }
 
     // get - get object by index
-
     public T get(int index) {
         return (T) this.objects[index];
     }
@@ -99,12 +98,12 @@ public class SimpleArray<T> {
         SimpleArray<?> that = (SimpleArray<?>) o;
 
         // Probably incorrect - comparing Object[] arrays with Arrays.equals
-        return Arrays.equals(objects, that.objects);
+        return Arrays.equals(this.getAll(), that.getAll());
     }
 
     @Override
     public int hashCode() {
-        return Arrays.hashCode(objects);
+        return Arrays.hashCode(this.getAll());
     }
 
     @Override
