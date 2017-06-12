@@ -18,14 +18,32 @@ public class SimpleArray<T> {
     }
 
     // add - add object to objects array
-    public T add(T object) {
+    public void add(T object) {
         if (this.index == this.objects.length) {
             Object[] objectTemp = new Object[(int) round(1.5 * this.objects.length)];
             System.arraycopy(this.objects, 0, objectTemp, 0, this.objects.length);
             this.objects = objectTemp;
         }
         this.objects[this.index++] = object;
-        return object;
+    }
+
+    // add - add object bto objects to index
+    public void add(int index, T object) {
+        if (this.index == this.objects.length) {
+            Object[] objectTemp = new Object[(int) round(1.5 * this.objects.length)];
+            System.arraycopy(this.objects, 0, objectTemp, 0, this.objects.length);
+            this.objects = objectTemp;
+        }
+        System.arraycopy(this.objects, index - 1, this.objects, index, this.objects.length - 1 - index);
+        this.objects[index] = object;
+    }
+
+    // set
+    public void set(int index, T object) {
+        if (index < this.getAll().length) {
+
+        }
+
     }
 
     // remove - object by object
@@ -57,7 +75,7 @@ public class SimpleArray<T> {
         return (T) this.objects[index];
     }
 
-    // getAll -
+    // getAll - without null
     public Object[] getAll() {
         Object[] objectGet = null;
         boolean nullTrue = false;
@@ -108,6 +126,6 @@ public class SimpleArray<T> {
 
     @Override
     public String toString() {
-        return "SimpleArray{" + "objects=" + Arrays.toString(this.getAll()) +'}';
+        return "SimpleArray{" + "objects=" + Arrays.toString(this.objects) +'}';
     }
 }

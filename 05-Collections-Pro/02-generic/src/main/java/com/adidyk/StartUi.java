@@ -1,8 +1,5 @@
 package com.adidyk;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class StartUi {
 
     // main - its only for compile jar file
@@ -24,6 +21,9 @@ public class StartUi {
         for (int index = 0; index < array.size(); index++) {
             System.out.println(array.get(index));
         }
+        System.out.println("size: " + array.size());
+        System.out.println(array);
+        System.out.println();
 
         //------------------------------
         System.out.println("Add objects and Get all object: ");
@@ -31,6 +31,8 @@ public class StartUi {
             System.out.println(object);
         }
         System.out.println("size: " + array.size());
+        System.out.println(array);
+        System.out.println();
 
         //------------------------------
         System.out.println("Delete object <4> and Get all object:");
@@ -39,6 +41,8 @@ public class StartUi {
             System.out.println(object);
         }
         System.out.println("size: " + array.size());
+        System.out.println(array);
+        System.out.println();
 
         //------------------------------
         System.out.println("Add object <7> and Get all object: ");
@@ -47,6 +51,8 @@ public class StartUi {
             System.out.println(object);
         }
         System.out.println("size: " + array.size());
+        System.out.println(array);
+        System.out.println();
 
         //------------------------------
         System.out.println("Delete object by index <4> and Get all object:");
@@ -55,28 +61,57 @@ public class StartUi {
             System.out.println(object);
         }
         System.out.println("size: " + array.size());
-        System.out.println();
         System.out.println(array);
-
-
-        System.out.println();
-        System.out.println("Its little example for use Collections....  ");
         System.out.println();
 
-        List<String> list = new ArrayList<>(5);
+        //------------------------------
+        System.out.println("Add object and Get all object:");
+        array.add(4, "8");
+        System.out.println(array);
+        array.add(4, "9");
+        System.out.println(array);
+        array.add(4, "10");
+        System.out.println(array);
+        array.add(4, "11");
+        System.out.println(array);
+        for (Object object : array.getAll()) {
+            System.out.println(object);
+        }
+        System.out.println("size: " + array.size());
+        System.out.println(array);
+        System.out.println();
 
-        list.add("2");
-        list.add("2");
-        list.add("3");
-        list.add("4");
+        //------------------------------
+        System.out.println("Add object <test> by index <4> and Get all object:");
+        array.add(4, "test");
+        for (Object object : array.getAll()) {
+            System.out.println(object);
+        }
+        System.out.println("size: " + array.size());
+        System.out.println(array);
+        System.out.println();
+
 /*
-        for (String item : list) {
+
+        System.out.println();
+        System.out.println("Test method add by index");
+        List<String> list = new ArrayList<>();
+        list.add("20");
+        list.add("30");
+        list.add("40");
+        list.add("50");
+
+        for(String item : list) {
             System.out.println(item);
         }
 
-        list.remove("5");
+        list.add(1, "test");
 
-        System.out.println("List size: " +list.size());
+        System.out.println("Add by index");
+        for(String item : list) {
+            System.out.println(item);
+        }
+
 
 
 
@@ -84,6 +119,9 @@ public class StartUi {
 
 
 */
+
+
+
     }
 
 }
