@@ -27,15 +27,19 @@ public class SimpleArray<T> {
         this.objects[this.index++] = object;
     }
 
-    // add - add object bto objects to index
+    // add - add object to objects to index
     public void add(int index, T object) {
+
         if (this.index == this.objects.length) {
             Object[] objectTemp = new Object[(int) round(1.5 * this.objects.length)];
             System.arraycopy(this.objects, 0, objectTemp, 0, this.objects.length);
             this.objects = objectTemp;
         }
-        System.arraycopy(this.objects, index - 1, this.objects, index, this.objects.length - 1 - index);
-        this.objects[index] = object;
+        if (index < this.index) {
+            System.arraycopy(this.objects, index, this.objects, index + 1, this.getAll().length - index);
+            this.objects[index] = object;
+            this.index++;
+        }
     }
 
     // set
@@ -77,17 +81,8 @@ public class SimpleArray<T> {
 
     // getAll - without null
     public Object[] getAll() {
-        Object[] objectGet = null;
-        boolean nullTrue = false;
-        for (int index = 0; index < this.objects.length; index++) {
-            if (this.objects[index] == null) {
-                objectGet = new Object[index];
-                System.arraycopy(this.objects, 0, objectGet, 0, index);
-                nullTrue = true;
-                break;
-            }
-        }
-        if (!nullTrue) {objectGet = this.objects;}
+        Object[] objectGet = new Object[this.index];
+        System.arraycopy(this.objects, 0, objectGet, 0, this.index);
         return objectGet;
     }
 
@@ -98,14 +93,7 @@ public class SimpleArray<T> {
 
     // size -
     public int size() {
-        int length = 0;
-        for (int index = 0; index < this.objects.length; index++) {
-            if (this.objects[index] == null) {
-                length = index;
-                break;
-            }
-        }
-        return length;
+        return this.index;
     }
 
     @Override
@@ -126,6 +114,6 @@ public class SimpleArray<T> {
 
     @Override
     public String toString() {
-        return "SimpleArray{" + "objects=" + Arrays.toString(this.objects) +'}';
+        return "SimpleArray{" + "objects=" + Arrays.toString(this.objects) +'}' +" size:  " + this.size();
     }
 }
