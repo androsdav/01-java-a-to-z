@@ -98,12 +98,12 @@ public class SimpleArray<T> {
 
         SimpleArray<?> that = (SimpleArray<?>) o;
 
-        return Arrays.equals(this.getAll(), that.getAll());
+        return Arrays.equals(this.objects, that.objects);
     }
 
     @Override
     public int hashCode() {
-        return Arrays.hashCode(this.getAll());
+        return Arrays.hashCode(this.objects);
     }
 
     @Override
