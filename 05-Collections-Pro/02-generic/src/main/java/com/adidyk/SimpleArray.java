@@ -9,15 +9,17 @@ public class SimpleArray<T> {
     private Object[] objects;
     private int index = 0;
 
+    // Constructor
     public SimpleArray() {
         this.objects = new Object[10];
     }
 
+    // Constructor
     public SimpleArray(int size) {
         this.objects = new Object[size];
     }
 
-    // add - add object to objects array
+    // add - adds object to array of objects
     public void add(T object) {
         if (this.index == this.objects.length) {
             Object[] objectTemp = new Object[(int) round(1.5 * this.objects.length)];
@@ -27,9 +29,9 @@ public class SimpleArray<T> {
         this.objects[this.index++] = object;
     }
 
-    // add - add object to objects to index
+    // add - inserts object by index into array of objects
+    //       and shifts array of objects to right by one position, starting with the set index
     public void add(int index, T object) {
-
         if (this.index == this.objects.length) {
             Object[] objectTemp = new Object[(int) round(1.5 * this.objects.length)];
             System.arraycopy(this.objects, 0, objectTemp, 0, this.objects.length);
@@ -42,15 +44,15 @@ public class SimpleArray<T> {
         }
     }
 
-    // set
+    // set - sets object by index into array of objects (rewriting)
     public void set(int index, T object) {
-        if (index < this.getAll().length) {
-
+        if (index < this.index) {
+            this.objects[index] = object;
         }
-
     }
 
-    // remove - object by object
+    // remove - deletes object by object from array of objects,
+    //          and shifts array of objects to left by one position, starting with the index of set object
     public void remove(T object) {
         for (int index = 0; index < this.objects.length; index++) {
             if (this.objects[index] == object) {
@@ -59,12 +61,10 @@ public class SimpleArray<T> {
                 break;
             }
         }
-        Object[] objectTemp = new Object[this.objects.length - 1];
-        System.arraycopy(this.objects, 0, objectTemp, 0, this.objects.length - 1);
-        this.objects = objectTemp;
     }
 
-    // remove - object by index
+    // remove - deletes object by index from array of objects,
+    //          and shifts array of objects to left by one position, starting with the index of set object
     public void remove(int index) {
         if (index < this.objects.length) {
             System.arraycopy(this.objects, index + 1, this.objects, index, this.objects.length - 1 - index);
@@ -74,24 +74,19 @@ public class SimpleArray<T> {
         }
     }
 
-    // get - get object by index
+    // get - returns object by index from array of objects
     public T get(int index) {
         return (T) this.objects[index];
     }
 
-    // getAll - without null
+    // getAll - returns array of objects without null
     public Object[] getAll() {
         Object[] objectGet = new Object[this.index];
         System.arraycopy(this.objects, 0, objectGet, 0, this.index);
         return objectGet;
     }
 
-    // set - set object by index
-    public void set() {
-
-    }
-
-    // size -
+    // size - returns length of array of objects without null
     public int size() {
         return this.index;
     }
@@ -103,7 +98,6 @@ public class SimpleArray<T> {
 
         SimpleArray<?> that = (SimpleArray<?>) o;
 
-        // Probably incorrect - comparing Object[] arrays with Arrays.equals
         return Arrays.equals(this.getAll(), that.getAll());
     }
 
@@ -114,6 +108,6 @@ public class SimpleArray<T> {
 
     @Override
     public String toString() {
-        return "SimpleArray{" + "objects=" + Arrays.toString(this.objects) +'}' +" size:  " + this.size();
+        return "SimpleArray{" + "objects=" + Arrays.toString(this.getAll()) +'}' +" size:  " + this.size();
     }
 }

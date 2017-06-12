@@ -79,6 +79,9 @@ public class StartUi {
         System.out.println(array);
         System.out.println();
 
+        array.set(4, "NewTest");
+        System.out.println(array);
+
 /*
 
         System.out.println();
