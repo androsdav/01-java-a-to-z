@@ -54,7 +54,7 @@ public class SimpleArray<T> {
     // remove - deletes object by object from array of objects,
     //          and shifts array of objects to left by one position, starting with the index of set object
     public void remove(T object) {
-        for (int index = 0; index < this.objects.length; index++) {
+        for (int index = 0; index < this.index; index++) {
             if (this.objects[index] == object) {
                 System.arraycopy(this.objects, index + 1, this.objects, index, this.objects.length - 1 - index);
                 this.index--;
@@ -66,7 +66,7 @@ public class SimpleArray<T> {
     // remove - deletes object by index from array of objects,
     //          and shifts array of objects to left by one position, starting with the index of set object
     public void remove(int index) {
-        if (index < this.objects.length) {
+        if (index < this.index) {
             System.arraycopy(this.objects, index + 1, this.objects, index, this.objects.length - 1 - index);
             this.index--;
         } else {
