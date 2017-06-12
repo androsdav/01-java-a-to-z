@@ -109,4 +109,5 @@ public class SimpleArray<T> {
     public String toString() {
         return "SimpleArray{" + "objects=" + Arrays.toString(this.getAll()) +'}' +" size:  " + this.size();
     }
+
 }
