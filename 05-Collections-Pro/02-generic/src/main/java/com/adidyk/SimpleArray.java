@@ -1,6 +1,7 @@
 package com.adidyk;
 
 import java.util.Arrays;
+
 import static java.lang.Math.round;
 
 public class SimpleArray<T> {
