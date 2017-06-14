@@ -28,6 +28,7 @@ public class SimpleArray<T> {
         this.objects[this.index++] = object;
     }
 
+
     // add - inserts object by index into array of objects
     //       and shifts array of objects to right by one position, starting with the set index
     public void add(int index, T object) {
