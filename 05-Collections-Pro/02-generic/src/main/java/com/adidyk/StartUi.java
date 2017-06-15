@@ -10,11 +10,11 @@ public class StartUi {
         System.out.println("SimpleArray");
 
 
-        Base user = new User("User", "123");
-        Base role = new Role("Role", "234");
-        UserOrRoleStore<Base> users = new UserOrRoleStore<>();
+        User user = new User("User", "123");
+        Role role = new Role("Role", "234");
+        UserOrRoleStore<User> users = new UserOrRoleStore<>();
         users.add(user);
-        users.add(role);
+        //users.add(role);
 
         for (Object item : users.getAll()) {
             System.out.println(item);

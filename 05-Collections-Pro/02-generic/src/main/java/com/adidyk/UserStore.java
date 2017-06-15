@@ -1,47 +1,51 @@
 package com.adidyk;
 
-public class UserStore {
+public class UserStore<T extends Base> implements Store<T> {
 
-    private SimpleArray<User> list = new SimpleArray<>();
+    private SimpleArray<T> list;
 
+    public UserStore() {
+        this.list = new SimpleArray<>();
+    }
 
     @Override
-    public void add(User object) {
+    public void add(T object) {
         this.list.add(object);
     }
 
     @Override
-    public void add(int index, Base object) {
-
+    public void add(int index, T object) {
+        this.list.add(index, object);
     }
 
     @Override
-    public void set(int index, Base object) {
-
+    public void set(int index, T object) {
+        this.list.set(index, object);
     }
 
     @Override
-    public void remove(Base object) {
-
+    public void remove(T object) {
+        this.list.remove(object);
     }
 
     @Override
     public void remove(int index) {
-
+        this.list.remove(index);
     }
 
     @Override
-    public Base get(int index) {
-        return null;
+    public T get(int index) {
+        return this.list.get(index);
     }
 
     @Override
     public Object[] getAll() {
-        return new Object[0];
+        return this.list.getAll();
     }
 
     @Override
     public int size() {
-        return 0;
+        return this.list.size();
     }
+
 }
