@@ -52,6 +52,6 @@ public class User extends Base {
 
     @Override
     public String toString() {
-        return String.format(" %s%s%s%s%s%s", "User {", " id = ", this.id, " name = ", this.name, "}");
+        return String.format(" %s%s%s%s%s%s%s", "User{", "id = ", this.id, ";", " name = ", this.name, "}");
     }
 }

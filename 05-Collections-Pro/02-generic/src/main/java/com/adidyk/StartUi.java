@@ -11,7 +11,7 @@ public class StartUi {
 
 
         User user = new User("Vasya", "123");
-        UserStore<User> users = new UserStore<>();
+        UserOrRoleStore<User> users = new UserOrRoleStore<>();
         users.add(user);
 
         for (Object item : users.getAll()) {
