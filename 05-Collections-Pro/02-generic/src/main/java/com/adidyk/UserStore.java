@@ -1,13 +1,13 @@
 package com.adidyk;
 
-public class UserStore implements Store {
+public class UserStore {
 
     private SimpleArray<User> list = new SimpleArray<>();
 
 
     @Override
-    public void add(Base object) {
-        this.list.add((User) object);
+    public void add(User object) {
+        this.list.add(object);
     }
 
     @Override
