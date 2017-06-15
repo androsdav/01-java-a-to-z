@@ -1,20 +1,20 @@
 package com.adidyk;
 
-public class UserStore extends Base implements Store {
+public class UserStore<T extends Base> implements Store<T> {
 
-    private SimpleArray<T> array;
-    public User user = new User();
+    private SimpleArray<T> list;
+//    public User user = new User();
 
     public UserStore() {
-        this.array = new SimpleArray<>();
-    }
-
-    public void add(T object) {
-        array.add(object);
+        this.list = new SimpleArray<>();
     }
 
     @Override
-    public void add() {
+    public void add(T object) {
+        list.add(object);
+    }
 
+    public Object[] getAll() {
+        return this.list.getAll();
     }
 }

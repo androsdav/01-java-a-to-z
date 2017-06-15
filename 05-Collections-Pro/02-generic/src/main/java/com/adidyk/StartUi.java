@@ -10,10 +10,13 @@ public class StartUi {
         System.out.println("SimpleArray");
 
 
-        User user = new User();
-        user.setId("id_test");
+        User user = new User("Vasya", "123");
         UserStore<User> users = new UserStore<>();
         users.add(user);
+
+        for (Object item : users.getAll()) {
+            System.out.println(item);
+        }
 
 
 
