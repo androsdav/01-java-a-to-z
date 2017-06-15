@@ -4,7 +4,7 @@ public abstract class Base {
 
     abstract void setName(String name);
     abstract void setId(String id);
-    abstract String geName();
+    abstract String getName();
     abstract String getId();
 
 }

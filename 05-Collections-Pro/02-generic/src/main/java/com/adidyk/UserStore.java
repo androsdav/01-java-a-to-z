@@ -1,6 +1,6 @@
 package com.adidyk;
 
-public class UserStore<T extends Base> implements Store<T> {
+public class UserStore extends Base implements Store {
 
     private SimpleArray<T> array;
     public User user = new User();
@@ -14,11 +14,7 @@ public class UserStore<T extends Base> implements Store<T> {
     }
 
     @Override
-    public void setId(String id) {
-    }
+    public void add() {
 
-    @Override
-    public String getId() {
-        return null;
     }
 }
