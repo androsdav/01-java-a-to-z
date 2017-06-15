@@ -49,5 +49,4 @@ public class UserOrRoleStore<T extends Base> implements Store<T> {
         return this.list.size();
     }
 
-
 }

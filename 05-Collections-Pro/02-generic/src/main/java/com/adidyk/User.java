@@ -2,12 +2,12 @@ package com.adidyk;
 
 public class User extends Base {
 
-    private String id;
     private String name;
+    private String id;
 
     User(String name, String id) {
-        this.id = id;
         this.name = name;
+        this.id = id;
     }
 
     @Override
@@ -54,4 +54,5 @@ public class User extends Base {
     public String toString() {
         return String.format(" %s%s%s%s%s%s%s", "User{", "id = ", this.id, ";", " name = ", this.name, "}");
     }
+
 }

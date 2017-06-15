@@ -6,13 +6,8 @@ public class UserStore implements Store {
 
 
     @Override
-    public void add(User object) {
-        this.list.add(object);
-    }
-
-    @Override
     public void add(Base object) {
-
+        this.list.add((User) object);
     }
 
     @Override
