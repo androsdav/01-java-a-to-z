@@ -3,6 +3,12 @@ package com.adidyk;
 public class User extends Base {
 
     private String id;
+    private String name;
+
+    public void setName(String name) {
+        this.name = name;
+
+    }
 
     @Override
     public void setId(String id) {
