@@ -3,6 +3,8 @@ package com.adidyk;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Iterator;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -46,6 +48,44 @@ public class NewArrayListTest {
     public void sizeTest() {
         assertThat(3, is(this.list.size()));
     }
+
+    @Test
+    public void iteratorTest() {
+        NewIteratorTest iterator =  new NewIteratorTest();
+        iterator.nextTest();
+        iterator.hasNextTrue();
+        iterator.hasNextFalse();
+    }
+
+    private class NewIteratorTest {
+
+        Iterator<User> it = list.iterator();
+
+        @Test
+        private void nextTest() {
+            this.it.next();
+            assertThat(new User("2", "Bill", 18), is(this.it.next()));
+        }
+
+        @Test
+        private void hasNextTrue() {
+            this.it.next();
+            this.it.next();
+            this.it.hasNext();
+            assertThat(true, is(this.it.hasNext()));
+        }
+
+        @Test
+        private void hasNextFalse() {
+            this.it.next();
+            this.it.next();
+            this.it.next();
+            this.it.hasNext();
+            assertThat(false, is(this.it.hasNext()));
+        }
+
+    }
+
 
 
 
