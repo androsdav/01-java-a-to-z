@@ -10,5 +10,6 @@
          <modules>
                   <module>01-iterator</module>
                   <module>02-generic</module>
+                  <module>03-list</module>
          </modules>
 </project>
