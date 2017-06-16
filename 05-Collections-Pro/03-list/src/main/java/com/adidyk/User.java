@@ -1,6 +1,6 @@
 package com.adidyk;
 
-public class User extends Base {
+public class User {
 
     private String id;
     private String name;
@@ -12,12 +12,10 @@ public class User extends Base {
         this.age = age;
     }
 
-    @Override
     public void setId(String id) {
         this.id = id;
     }
 
-    @Override
     public void setName(String name) {
         this.name = name;
     }
@@ -26,12 +24,10 @@ public class User extends Base {
         this.age = age;
     }
 
-    @Override
     public String getId() {
         return this.id;
     }
 
-    @Override
     public String getName() {
         return this.name;
     }

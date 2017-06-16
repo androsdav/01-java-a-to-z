@@ -2,7 +2,6 @@ package com.adidyk;
 
 import java.util.Arrays;
 import java.util.Iterator;
-
 import static java.lang.Math.round;
 
 public class NewArrayList<E> implements Iterable<E> {
@@ -69,7 +68,7 @@ public class NewArrayList<E> implements Iterable<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return new NewIterator(getAll());
+        return new NewIterator(this.getAll());
     }
 
     private class NewIterator implements Iterator<E> {
