@@ -7,4 +7,3 @@ public class StartUi {
         System.out.println("NewArrayList and Comparable");
     }
 }
-
