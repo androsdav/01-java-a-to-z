@@ -2,11 +2,18 @@ package com.adidyk;
 
 public class User extends Base {
 
-    private String name;
     private String id;
+    private String name;
+    private int age;
 
-    User(String name, String id) {
+    User(String id, String name, int age) {
+        this.id = id;
         this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -15,20 +22,23 @@ public class User extends Base {
         this.name = name;
     }
 
-    @Override
-    public void setId(String id) {
-        this.id = id;
+    public void setAge(int age) {
+        this.age = age;
     }
 
+
+    @Override
+    public String getId() {
+        return this.id;
+    }
 
     @Override
     public String getName() {
         return this.name;
     }
 
-    @Override
-    public String getId() {
-        return this.id;
+    public int getAge() {
+        return this.age;
     }
 
     @Override
@@ -38,6 +48,7 @@ public class User extends Base {
 
         User user = (User) o;
 
+        if (age != user.age) return false;
         if (id != null ? !id.equals(user.id) : user.id != null) return false;
         return name != null ? name.equals(user.name) : user.name == null;
 
@@ -47,12 +58,13 @@ public class User extends Base {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + age;
         return result;
     }
 
     @Override
     public String toString() {
-        return String.format(" %s%s%s%s%s%s%s", "User{", "id = ", this.id, ";", " name = ", this.name, "}");
+        return String.format( "%s%s%s%s%s%s%s%s",
+                " User {", "id=", this.getId(), "; name=", this.getName(), "; age=", this.getAge(), "}");
     }
-
 }

@@ -5,8 +5,13 @@ public class Role extends Base {
     private String id;
     private String name;
 
-    Role(String name, String id) {
+    Role(String id, String name) {
+        this.id = id;
         this.name = name;
+    }
+
+    @Override
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -16,10 +21,9 @@ public class Role extends Base {
     }
 
     @Override
-    public void setId(String id) {
-        this.id = id;
+    public String getId() {
+        return this.id;
     }
-
 
     @Override
     public String getName() {
@@ -27,20 +31,12 @@ public class Role extends Base {
     }
 
     @Override
-    public String getId() {
-        return this.id;
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Role role = (Role) o;
-
         if (id != null ? !id.equals(role.id) : role.id != null) return false;
         return name != null ? name.equals(role.name) : role.name == null;
-
     }
 
     @Override
@@ -52,7 +48,7 @@ public class Role extends Base {
 
     @Override
     public String toString() {
-        return String.format(" %s%s%s%s%s%s%s", "Role{", "id = ", this.id, ";", " name = ", this.name, "}");
+        return String.format("%s%s%s%s%s%s", " Role {", "id=", this.id, "; name=", this.name, "}");
     }
 
 }

@@ -1,8 +1,9 @@
 package com.adidyk;
 
-public class UserStore<T extends Base> implements Store<T> {
+public class RoleStore<T extends Base> implements Store<T> {
 
     private SimpleArray<T> list = new SimpleArray<>();
+
 
     @Override
     public void add(T object) {
@@ -12,6 +13,7 @@ public class UserStore<T extends Base> implements Store<T> {
     @Override
     public void add(int index, T object) {
         this.list.add(index, object);
+
     }
 
     @Override
@@ -22,6 +24,7 @@ public class UserStore<T extends Base> implements Store<T> {
     @Override
     public void remove(T object) {
         this.list.remove(object);
+
     }
 
     @Override

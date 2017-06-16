@@ -9,6 +9,36 @@ public class StartUi {
 
         System.out.println("SimpleArray");
 
+        UserStore<User> listUser = new UserStore<>();
+        listUser.add(new User("123", "Ivan", 15));
+        listUser.add(new User("124", "Vano", 14));
+        listUser.add(new User("125", "Petr", 12));
+        listUser.add(new User("126", "Dima", 17));
+        listUser.add(new User("127", "Leha", 19));
+
+        for (Object item : listUser.getAll()) {
+            System.out.println(item);
+        }
+
+        UserStore<Role> listRole = new UserStore<>();
+        listRole.add(new Role("124", "Ruslan"));
+        listRole.add(new Role("114", "Rusl"));
+        listRole.add(new Role("125", "Rusn"));
+        listRole.add(new Role("122", "Rusl"));
+
+        for (Object item : listRole.getAll()) {
+            System.out.println(item);
+        }
+
+        System.out.println();
+        listRole.remove(3);
+
+        for (Object item : listRole.getAll()) {
+            System.out.println(item);
+        }
+
+
+/*
 
         User user = new User("User", "123");
         Role role = new Role("Role", "234");
@@ -37,7 +67,7 @@ public class StartUi {
 
 
 
-
+*/
 
     }
 
