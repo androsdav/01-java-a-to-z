@@ -16,10 +16,19 @@ public class StartUi {
         listUser.add(new User("126", "Dima", 17));
         listUser.add(new User("127", "Leha", 19));
 
+        System.out.println();
         for (Object item : listUser.getAll()) {
             System.out.println(item);
         }
 
+        System.out.println();
+        listUser.remove(new User("123", "Ivan", 15));
+        for (Object item : listUser.getAll()) {
+            System.out.println(item);
+        }
+
+
+/*
         UserStore<Role> listRole = new UserStore<>();
         listRole.add(new Role("124", "Ruslan"));
         listRole.add(new Role("114", "Rusl"));

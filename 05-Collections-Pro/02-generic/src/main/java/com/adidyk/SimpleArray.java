@@ -55,7 +55,7 @@ public class SimpleArray<T> {
     //          and shifts array of objects to left by one position, starting with the index of set object
     public void remove(T object) {
         for (int index = 0; index < this.index; index++) {
-            if (this.objects[index] == object) {
+            if (this.objects[index].equals(object)) {
                 System.arraycopy(this.objects, index + 1, this.objects, index, this.objects.length - 1 - index);
                 this.index--;
                 break;
@@ -95,9 +95,7 @@ public class SimpleArray<T> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof SimpleArray)) return false;
-
         SimpleArray<?> that = (SimpleArray<?>) o;
-
         return Arrays.equals(this.objects, that.objects);
     }
 

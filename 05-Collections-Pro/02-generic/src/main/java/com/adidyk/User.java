@@ -45,9 +45,7 @@ public class User extends Base {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         User user = (User) o;
-
         if (age != user.age) return false;
         if (id != null ? !id.equals(user.id) : user.id != null) return false;
         return name != null ? name.equals(user.name) : user.name == null;
