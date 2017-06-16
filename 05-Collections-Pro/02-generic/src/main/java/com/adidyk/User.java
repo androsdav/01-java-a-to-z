@@ -26,7 +26,6 @@ public class User extends Base {
         this.age = age;
     }
 
-
     @Override
     public String getId() {
         return this.id;
@@ -65,4 +64,5 @@ public class User extends Base {
         return String.format( "%s%s%s%s%s%s%s%s",
                 " User {", "id=", this.getId(), "; name=", this.getName(), "; age=", this.getAge(), "}");
     }
+
 }
