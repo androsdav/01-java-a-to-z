@@ -50,9 +50,6 @@ public class RoleStoreTest {
     @Test
     public void removeByObjectTest(){
         this.list.remove(new Role("3", "Bob"));
-        for (Object item : this.list.getAll()) {
-            System.out.println(item);
-        }
         Object[] objects = new Object[] {this.tom, this.bill};
         assertThat(objects, is(this.list.getAll()));
     }
