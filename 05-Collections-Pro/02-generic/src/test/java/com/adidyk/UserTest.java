@@ -12,7 +12,6 @@ public class UserTest {
     public void setIdTest() throws Exception {
         this.girl.setId("222");
         assertThat(new User("222", "Matilda", 18), is(this.girl));
-
     }
 
     @Test
@@ -30,7 +29,6 @@ public class UserTest {
     @Test
     public void getIdTest() throws Exception {
         assertThat("111", is(this.girl.getId()));
-
     }
 
     @Test
