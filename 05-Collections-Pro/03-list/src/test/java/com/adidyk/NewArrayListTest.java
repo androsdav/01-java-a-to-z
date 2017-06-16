@@ -2,9 +2,7 @@ package com.adidyk;
 
 import org.junit.Before;
 import org.junit.Test;
-
 import java.util.Iterator;
-
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -50,16 +48,34 @@ public class NewArrayListTest {
     }
 
     @Test
+    public void forEachTest() {
+        Object[] resultActual = new Object[] { new User("1", "Tom", 17),new User("2", "Bill", 18), new User("3", "Bob", 20)};
+        Object[] resultExpected = new Object[3];
+        int index = 0;
+        for (Object user : this.list.getAll()) {
+            resultExpected[index] = user;
+            index++;
+        }
+        assertThat(resultActual, is(resultExpected));
+
+    }
+
+    @Test
     public void iteratorTest() {
-        NewIteratorTest iterator =  new NewIteratorTest();
-        iterator.nextTest();
-        iterator.hasNextTrue();
-        iterator.hasNextFalse();
+        new NewIteratorTest().nextTest();
+        new NewIteratorTest().hasNextTrue();
+        new NewIteratorTest().hasNextFalse();
+        new NewIteratorTest().loopTest();
     }
 
     private class NewIteratorTest {
 
         Iterator<User> it = list.iterator();
+
+        @Before
+        public void init() {
+            init();
+        }
 
         @Test
         private void nextTest() {
@@ -84,9 +100,18 @@ public class NewArrayListTest {
             assertThat(false, is(this.it.hasNext()));
         }
 
+        @Test
+        private void loopTest() {
+            Object[] resultActual = new Object[] { new User("1", "Tom", 17),new User("2", "Bill", 18), new User("3", "Bob", 20)};
+            Object[] resultExpected = new Object[3];
+            int index = 0;
+            while(this.it.hasNext()) {
+                resultExpected[index] = this.it.next();
+                index++;
+            }
+            assertThat(resultActual, is(resultExpected));
+        }
+
     }
-
-
-
 
 }

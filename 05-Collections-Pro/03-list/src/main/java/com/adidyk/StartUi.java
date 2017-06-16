@@ -16,18 +16,13 @@ public class StartUi {
 
         System.out.println(list);
 
-        for (int index = 0; index < list.size(); index++) {
-            System.out.println(list.get(index));
-        }
-
         Iterator<User> it = list.iterator();
-/*
-        System.out.println(it.next());
         System.out.println(it.next());
         System.out.println(it.next());
         System.out.println(it.hasNext());
-        System.out.println(it.next());
-*/
+        System.out.println(it.hasNext());
+        System.out.println(it.hasNext());
+        System.out.println(it.hasNext());
 
         /*
         while (it.hasNext()) {
@@ -35,11 +30,12 @@ public class StartUi {
 
         }
         */
+        /*
         for(User item : list) {
             System.out.println(item);
 
         }
-
+*/
     }
 
 
