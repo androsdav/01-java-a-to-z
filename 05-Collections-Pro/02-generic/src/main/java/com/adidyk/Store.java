@@ -11,9 +11,4 @@ public interface Store<T extends Base> {
    Object[] getAll();
    int size();
 
-
-
-
-
-
 }
