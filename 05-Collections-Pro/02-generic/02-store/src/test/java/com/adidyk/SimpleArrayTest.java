@@ -35,11 +35,20 @@ public class SimpleArrayTest {
     }
 
     @Test
-    public void setTest() {
+    public void setByIndexTest() {
         this.list.set(0, "test1");
         this.list.set(2, "test2");
         this.list.set(4, "test3");
         Object[] objects = new Object[]{"test1", "2", "test2", "4","test3"};
+        assertThat(objects, is(this.list.getAll()));
+    }
+
+    @Test
+    public void setByObjectTest() {
+        this.list.set("1", "10");
+        this.list.set("3", "30");
+        this.list.set("5", "50");
+        Object[] objects= new Object[] {"10", "2", "30", "4", "50"};
         assertThat(objects, is(this.list.getAll()));
     }
 

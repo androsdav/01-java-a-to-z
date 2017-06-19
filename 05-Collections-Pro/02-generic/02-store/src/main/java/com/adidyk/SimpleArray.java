@@ -51,6 +51,16 @@ public class SimpleArray<T> {
         }
     }
 
+    // set - sets object by object
+    public void set(T oldObject, T newObject) {
+        for (int index = 0; index < this.index; index++) {
+            if (this.objects[index].equals(oldObject)) {
+                this.objects[index] = newObject;
+                break;
+            }
+        }
+    }
+
     // remove - deletes object by object from array of objects,
     //          and shifts array of objects to left by one position, starting with the index of set object
     public void remove(T object) {

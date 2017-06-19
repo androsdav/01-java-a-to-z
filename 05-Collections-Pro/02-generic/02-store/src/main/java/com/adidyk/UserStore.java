@@ -10,13 +10,8 @@ public class UserStore<T extends Base> implements Store<T> {
     }
 
     @Override
-    public void add(int index, T object) {
-        this.list.add(index, object);
-    }
-
-    @Override
-    public void set(int index, T object) {
-        this.list.set(index, object);
+    public void set(T oldObject, T newObject) {
+        this.list.set(oldObject, newObject);
     }
 
     @Override
@@ -24,15 +19,6 @@ public class UserStore<T extends Base> implements Store<T> {
         this.list.remove(object);
     }
 
-    @Override
-    public void remove(int index) {
-        this.list.remove(index);
-    }
-
-    @Override
-    public T get(int index) {
-        return this.list.get(index);
-    }
 
     @Override
     public Object[] getAll() {
