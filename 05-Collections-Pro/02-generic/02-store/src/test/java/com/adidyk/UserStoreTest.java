@@ -29,20 +29,10 @@ public class UserStoreTest {
     }
 
     @Test
-    public void addByIndexTest() {
-        User felix = new User("5", "Felix", 5);
-        User rory = new  User("8", "Rory", 6);
-        this.list.add(0, new User("5", "Felix", 5));
-        this.list.add(3, new User("8", "Rory", 6));
-        Object[] objects = new Object[] {felix, this.tom, this.bill, rory, this.bob};
-        assertThat(objects, is(this.list.getAll()));
-
-    }
-
-    @Test
-    public void setTest() {
+    public void setByObjectTest() {
+        User bill = new User("2", "Bill", 18);
         User amanda = new User("7", "Amanda", 25);
-        this.list.set(1, new User("7", "Amanda", 25));
+        this.list.set(bill, amanda);
         Object[] objects = new Object[] {this.tom, amanda, this.bob};
         assertThat(objects, is(this.list.getAll()));
     }
@@ -52,18 +42,6 @@ public class UserStoreTest {
         this.list.remove(new User("3", "Bob", 20));
         Object[] objects = new Object[] {this.tom, this.bill};
         assertThat(objects, is(this.list.getAll()));
-    }
-
-    @Test
-    public void removeByIndexTest() {
-        this.list.remove(0);
-        Object[] objects = new Object[] {this.bill, this.bob};
-        assertThat(objects, is(this.list.getAll()));
-    }
-
-    @Test
-    public void getTest() {
-        assertThat(new User("3", "Bob", 20), is(this.list.get(2)));
     }
 
     @Test

@@ -29,21 +29,11 @@ public class RoleStoreTest {
     }
 
     @Test
-    public void addByIndexTest() {
-        Role felix = new Role("5", "Felix");
-        Role rory = new  Role("8", "Rory");
-        this.list.add(0, new Role("5", "Felix"));
-        this.list.add(3, new Role("8", "Rory"));
-        Object[] objects = new Object[] {felix, this.tom, this.bill, rory, this.bob};
-        assertThat(objects, is(this.list.getAll()));
-
-    }
-
-    @Test
-    public void setTest() {
+    public void setByObjectTest() {
         Role amanda = new Role("7", "Amanda");
-        this.list.set(1, new Role("7", "Amanda"));
-        Object[] objects = new Object[] {this.tom, amanda, this.bob};
+        Role bob = new Role("3", "Bob");
+        this.list.set(bob, amanda);
+        Object[] objects = new Object[] {this.tom, this.bill, amanda};
         assertThat(objects, is(this.list.getAll()));
     }
 
@@ -52,18 +42,6 @@ public class RoleStoreTest {
         this.list.remove(new Role("3", "Bob"));
         Object[] objects = new Object[] {this.tom, this.bill};
         assertThat(objects, is(this.list.getAll()));
-    }
-
-    @Test
-    public void removeByIndexTest() {
-        this.list.remove(0);
-        Object[] objects = new Object[] {this.bill, this.bob};
-        assertThat(objects, is(this.list.getAll()));
-    }
-
-    @Test
-    public void getTest() {
-        assertThat(new Role("3", "Bob"), is(this.list.get(2)));
     }
 
     @Test
