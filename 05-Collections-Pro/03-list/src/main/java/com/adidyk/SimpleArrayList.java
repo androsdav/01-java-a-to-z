@@ -4,18 +4,18 @@ import java.util.Arrays;
 import java.util.Iterator;
 import static java.lang.Math.round;
 
-public class NewArrayList<E> implements Iterable<E> {
+public class SimpleArrayList<E> implements SimpleContainer<E> {
 
     private Object[] objects;
     private int index = 0;
 
     // Constructor
-    NewArrayList() {
+    SimpleArrayList() {
         this.objects = new Object[10];
     }
 
     // Constructor
-    NewArrayList(int size) {
+    SimpleArrayList(int size) {
         this.objects = new Object[size];
     }
 
@@ -50,7 +50,7 @@ public class NewArrayList<E> implements Iterable<E> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        NewArrayList<?> that = (NewArrayList<?>) o;
+        SimpleArrayList<?> that = (SimpleArrayList<?>) o;
         return Arrays.equals(objects, that.objects);
 
     }

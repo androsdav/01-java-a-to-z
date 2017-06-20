@@ -8,7 +8,7 @@ import static org.junit.Assert.assertThat;
 
 public class NewArrayListTest {
 
-    private NewArrayList<User> list = new NewArrayList<>();
+    private SimpleArrayList<User> list = new SimpleArrayList<>();
     private User tom;
     private User bill;
     private User bob;
