@@ -19,15 +19,9 @@ public class UserStore<T extends Base> implements Store<T> {
         this.list.remove(object);
     }
 
-
     @Override
     public Object[] getAll() {
         return this.list.getAll();
-    }
-
-    @Override
-    public int size() {
-        return this.list.size();
     }
 
 }

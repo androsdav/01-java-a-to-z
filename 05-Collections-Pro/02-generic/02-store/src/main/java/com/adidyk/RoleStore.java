@@ -25,9 +25,4 @@ public class RoleStore<T extends Base> implements Store<T> {
         return this.list.getAll();
     }
 
-    @Override
-    public int size() {
-        return this.list.size();
-    }
-
 }

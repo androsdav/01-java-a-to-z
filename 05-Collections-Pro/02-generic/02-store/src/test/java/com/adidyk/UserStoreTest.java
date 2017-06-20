@@ -33,7 +33,7 @@ public class UserStoreTest {
         User bill = new User("2", "Bill", 18);
         User amanda = new User("7", "Amanda", 25);
         this.list.set(bill, amanda);
-        Object[] objects = new Object[] {this.tom, amanda, this.bob};
+        Object[] objects = new Object[] {this.tom, new User("7", "Amanda", 25), this.bob};
         assertThat(objects, is(this.list.getAll()));
     }
 
@@ -50,11 +50,6 @@ public class UserStoreTest {
         this.list.add(new User("6", "Evan", 33));
         Object[] objects = new Object[] {this.tom, this.bill, this.bob, evan};
         assertThat(objects, is(this.list.getAll()));
-    }
-
-    @Test
-    public void sizeTest() {
-        assertThat(3, is(this.list.size()));
     }
 
 }

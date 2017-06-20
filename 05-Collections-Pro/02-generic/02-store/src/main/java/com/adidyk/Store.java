@@ -6,6 +6,5 @@ public interface Store<T extends Base> {
    void set(T oldObject, T newObject);
    void remove(T object);
    Object[] getAll();
-   int size();
 
 }
