@@ -6,6 +6,7 @@ public class StartUi {
     public static void main(String[] arg) {
         System.out.println("NewArrayList and Comparable");
         System.out.println("Its only for github");
+        System.out.println('Its may second bad days for Java coding');
 
     }
 }
