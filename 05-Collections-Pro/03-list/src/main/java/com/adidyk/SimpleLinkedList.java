@@ -7,16 +7,24 @@ public class SimpleLinkedList {
     private String next;
 
     private Node node;
+    private Node first;
     private Node last;
+    private int size;
+
 
 
     SimpleLinkedList() {
-        this.last = new Node(null, null, null);
+        this.last = null;
+        this.first = null;
+
     }
 
     public void add(String item) {
         this.last = new Node(this.last, item, null);
-
+        this.size++;
+        if (this.size == 1) {
+            this.first = this.last;
+        }
     }
 
     public Node getLast(){
@@ -24,7 +32,14 @@ public class SimpleLinkedList {
     }
 
     public String get(int index) {
-        return null;
+        Node temp = null;
+        if (this.size > 0 && index < this.size) {
+            for (int position = 0; index < this.size; index++) {
+                temp =
+
+            }
+        }
+        return "temp";
     }
 
     /*

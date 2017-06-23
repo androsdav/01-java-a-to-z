@@ -2,7 +2,7 @@ package com.adidyk;
 
 public class Node {
 
-    private Node prev;
+    public Node prev;
     private String item;
     private Node next;
 
