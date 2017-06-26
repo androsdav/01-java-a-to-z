@@ -1,12 +1,12 @@
 package com.adidyk;
 
-public class Node {
+public class Node<E> {
 
-    public Node prev;
-    private String item;
-    private Node next;
+    public Node<E> prev;
+    private <E> item;
+    private Node<E> next;
 
-    Node (Node prev, String item, Node next) {
+    Node (Node<E> prev, <E> item, Node<E> next) {
         this.prev = prev;
         this.item = item;
         this. next = next;

@@ -1,7 +1,5 @@
 package com.adidyk;
 
-import java.util.LinkedList;
-
 public class StartUi {
 
     // main - its only for compile jar file
@@ -22,6 +20,6 @@ public class StartUi {
         System.out.println("Item: " +list.getLast().getItem());
         System.out.println("Next: " +list.getLast().getNext());
 
-        LinkedList
+
     }
 }
