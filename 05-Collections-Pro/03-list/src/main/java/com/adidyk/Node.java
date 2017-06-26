@@ -3,36 +3,36 @@ package com.adidyk;
 public class Node<E> {
 
     public Node<E> prev;
-    private <E> item;
-    private Node<E> next;
+    public E item;
+    public Node<E> next;
 
-    Node (Node<E> prev, <E> item, Node<E> next) {
+    Node (Node<E> prev, E item, Node<E> next) {
         this.prev = prev;
         this.item = item;
         this. next = next;
     }
 
-    public void setPrev(Node prev) {
+    public void setPrev(Node<E> prev) {
         this.prev = prev;
     }
 
-    public void setItem(String item) {
+    public void setItem(E item) {
         this.item = item;
     }
 
-    public void setNext(Node next) {
+    public void setNext(Node<E> next) {
         this.next = next;
     }
 
-    public Node getPrev() {
+    public Node<E> getPrev() {
         return this.prev;
     }
 
-    public String getItem() {
+    public E getItem() {
         return this.item;
     }
 
-    public Node getNext() {
+    public Node<E> getNext() {
         return this.next;
     }
 }

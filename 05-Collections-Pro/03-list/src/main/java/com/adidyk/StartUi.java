@@ -9,16 +9,24 @@ public class StartUi {
         System.out.println("Its may second bad days for Java coding");
 
 
-        SimpleLinkedList list = new SimpleLinkedList();
+        SimpleLinkedList<User> list = new SimpleLinkedList<>();
 
-        list.add("test");
-        list.add("test1");
-        list.add("test2");
+        list.add(new User("0", "Bob", 10));
+        list.add(new User("1", "Matilda", 11));
+        list.add(new User("2", "Bill", 12));
+        list.add(new User("3", "Donald", 13));
+        list.add(new User("4", "Argon", 14));
+        list.add(new User("5", "Will", 15));
+        list.add(new User("6", "Amanda", 16));
+        list.add(new User("7", "Sabrina", 17));
 
+        System.out.println();
+        System.out.println(list.getSize());
 
-        System.out.println("Prev: " +list.getLast().getPrev());
-        System.out.println("Item: " +list.getLast().getItem());
-        System.out.println("Next: " +list.getLast().getNext());
+        System.out.println(list.getFirst());
+        System.out.println(list.getLast());
+        System.out.println(list.get(4));
+
 
 
     }
