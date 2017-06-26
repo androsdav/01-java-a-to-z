@@ -25,9 +25,6 @@ public class StartUi {
         System.out.println();
         System.out.println(list.size());
 
-//        System.out.println(list.getFirst());
-//        System.out.println(list.getLast());
-
         System.out.println("Index = 0 :" +list.get(0));
         System.out.println("Index = 1 :" +list.get(1));
         System.out.println("Index = 2 :" +list.get(2));
