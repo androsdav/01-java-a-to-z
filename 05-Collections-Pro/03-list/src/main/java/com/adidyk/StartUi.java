@@ -39,6 +39,11 @@ public class StartUi {
 
         Iterator<User> it = list.iterator();
 
+        System.out.println("Its test iterator: ");
+        while(it.hasNext()) {
+            System.out.println(it.next());
+        }
+
         System.out.println("Its output forEch: ");
         for (User item : list) {
             System.out.println(item);
