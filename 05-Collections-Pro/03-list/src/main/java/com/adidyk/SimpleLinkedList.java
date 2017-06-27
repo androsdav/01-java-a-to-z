@@ -53,27 +53,26 @@ public class SimpleLinkedList<E> implements SimpleContainer<E> {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
+        if (!(o instanceof SimpleLinkedList)) return false;
         SimpleLinkedList<?> that = (SimpleLinkedList<?>) o;
-
         if (size != that.size) return false;
-        if (first != null ? !first.equals(that.first) : that.first != null) return false;
-        return last != null ? last.equals(that.last) : that.last == null;
+        if (!getFirst().equals(that.getFirst())) return false;
+        return getLast().equals(that.getLast());
 
     }
 
     @Override
     public int hashCode() {
-        int result = first != null ? first.hashCode() : 0;
-        result = 31 * result + (last != null ? last.hashCode() : 0);
+        int result = getFirst().hashCode();
+        result = 31 * result + getLast().hashCode();
         result = 31 * result + size;
         return result;
     }
 
     @Override
     public String toString() {
-        return String.format( "%s%s%s%s%s%s%s", "SimpleLinkedList{", "first=", this.first, "last=", this.last, " size=", this.size);
+        return String.format( " %s%s%s%s%s%s%s%s",
+                "SimpleLinkedList{", "first =", this.first.item, "; last =", this.last.item, "}", " size=", this.size);
     }
 
     @Override
