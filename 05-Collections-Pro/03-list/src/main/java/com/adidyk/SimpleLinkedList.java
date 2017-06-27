@@ -26,6 +26,7 @@ public class SimpleLinkedList<E> implements SimpleList<E> {
 
     // get - gets object by index from linked list
     public E get(int index) {
+        this.checkPositionIndex(index);
         Node<E> object = this.first;
         for (int position = 0; position < index; position++) {
             object = object.next;
@@ -36,18 +37,37 @@ public class SimpleLinkedList<E> implements SimpleList<E> {
     // getFirst - returns first object from linked list
     public E getFirst() {
         final Node<E> object = this.first;
+        if (object == null) {
+            throw new HasNotFirstElementException("Has not first element ... ");
+        }
         return object.item;
     }
 
     // getLast - returns last object from linked list
     public E getLast(){
         final Node<E> object = this.last;
+        if (object == null) {
+            throw new HasNotLastElementException("Has not last element ...");
+
+        }
         return object.item;
     }
 
     // size - returns size linked list
     public int size() {
         return this.size;
+    }
+
+    // outOfBoundMsg - returns information about exception
+    private String outOfBoundMsg(int index) {
+        return "Index: " + index + "; " + "range of indexes: [" + "0-" + (this.size - 1) + "]";
+    }
+
+    // checkPositionIndex - check position index
+    private void checkPositionIndex(int index) {
+        if (!(index >= 0 && index < this.size)) {
+            throw new IndexOutOfBoundsException(this.outOfBoundMsg(index));
+        }
     }
 
     @Override
