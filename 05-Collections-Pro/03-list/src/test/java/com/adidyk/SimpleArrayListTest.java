@@ -6,7 +6,7 @@ import java.util.Iterator;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public class NewArrayListTest {
+public class SimpleArrayListTest {
 
     private SimpleArrayList<User> list = new SimpleArrayList<>();
     private User tom;
