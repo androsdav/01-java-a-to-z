@@ -49,12 +49,11 @@ public class SimpleArrayListTest {
 
     @Test
     public void forEachTest() {
-        Object[] resultActual = new Object[] { new User("1", "Tom", 17),new User("2", "Bill", 18), new User("3", "Bob", 20)};
+        Object[] resultActual = new Object[] {new User("1", "Tom", 17), new User("2", "Bill", 18), new User("3", "Bob", 20)};
         Object[] resultExpected = new Object[3];
         int index = 0;
         for (Object user : this.list.getAll()) {
-            resultExpected[index] = user;
-            index++;
+            resultExpected[index++] = user;
         }
         assertThat(resultActual, is(resultExpected));
 
@@ -106,8 +105,7 @@ public class SimpleArrayListTest {
             Object[] resultExpected = new Object[3];
             int index = 0;
             while(this.it.hasNext()) {
-                resultExpected[index] = this.it.next();
-                index++;
+                resultExpected[index++] = this.it.next();
             }
             assertThat(resultActual, is(resultExpected));
         }

@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import static java.lang.Math.round;
 
-public class SimpleArrayList<E> implements SimpleContainer<E> {
+public class SimpleArrayList<E> implements SimpleList<E> {
 
     private Object[] objects;
     private int index = 0;
@@ -68,15 +68,15 @@ public class SimpleArrayList<E> implements SimpleContainer<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return new NewIterator(this.getAll());
+        return new SimpleIterator(this.getAll());
     }
 
-    private class NewIterator implements Iterator<E> {
+    private class SimpleIterator implements Iterator<E> {
 
         private Object[] objects;
         private int index = 0;
 
-        NewIterator(Object[] objects) {
+        SimpleIterator(Object[] objects) {
             this.objects = objects;
         }
 

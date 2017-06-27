@@ -2,7 +2,7 @@ package com.adidyk;
 
 import java.util.Iterator;
 
-public class SimpleLinkedList<E> implements SimpleContainer<E> {
+public class SimpleLinkedList<E> implements SimpleList<E> {
 
     private Node<E> first;
     private Node<E> last;
@@ -77,17 +77,17 @@ public class SimpleLinkedList<E> implements SimpleContainer<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return new NewIterator(this.first, this.size);
+        return new SimpleIterator(this.first, this.size);
     }
 
-    private class NewIterator implements Iterator<E> {
+    private class SimpleIterator implements Iterator<E> {
 
         private Node<E> object;
         private E result;
         private int size;
         private int index;
 
-        NewIterator(Node<E> first, int size) {
+        SimpleIterator(Node<E> first, int size) {
             this.object = first;
             this.size = size;
         }

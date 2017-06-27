@@ -42,7 +42,7 @@ public class StartUi {
         }
 
         System.out.println("Its output forEch: ");
-        for (User item : list) {
+        for (Object item : list) {
             System.out.println(item);
         }
 
