@@ -46,6 +46,8 @@ public class StartUi {
             System.out.println(item);
         }
 
+        System.out.println(list);
+
 
 
 

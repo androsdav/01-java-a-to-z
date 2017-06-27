@@ -12,7 +12,7 @@ public class SimpleLinkedList<E> implements SimpleContainer<E> {
     SimpleLinkedList() {
     }
 
-    // add - add object to SimpleLinkedList
+    // add - adds object to linked list
     public void add(E object) {
         final Node<E> oldNode = this.last;
         final Node<E> newNode = new Node<>(oldNode, object, null);
@@ -24,30 +24,56 @@ public class SimpleLinkedList<E> implements SimpleContainer<E> {
         this.size++;
     }
 
-    // get - get object by index
+    // get - gets object by index from linked list
     public E get(int index) {
-        Node<E> result = this.first;
+        Node<E> object = this.first;
         for (int position = 0; position < index; position++) {
-            result = result.next;
+            object = object.next;
         }
-       return result.item;
+       return object.item;
     }
 
-    // getFirst -
+    // getFirst - returns first object from linked list
     public E getFirst() {
-        final Node<E> result = this.first;
-        return result.item;
+        final Node<E> object = this.first;
+        return object.item;
     }
 
-    // getLast -
+    // getLast - returns last object from linked list
     public E getLast(){
-        final Node<E> result = this.last;
-        return result.item;
+        final Node<E> object = this.last;
+        return object.item;
     }
 
-    // size -
+    // size - returns size linked list
     public int size() {
         return this.size;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        SimpleLinkedList<?> that = (SimpleLinkedList<?>) o;
+
+        if (size != that.size) return false;
+        if (first != null ? !first.equals(that.first) : that.first != null) return false;
+        return last != null ? last.equals(that.last) : that.last == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = first != null ? first.hashCode() : 0;
+        result = 31 * result + (last != null ? last.hashCode() : 0);
+        result = 31 * result + size;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return String.format( "%s%s%s%s%s%s%s", "SimpleLinkedList{", "first=", this.first, "last=", this.last, " size=", this.size);
     }
 
     @Override
@@ -57,15 +83,13 @@ public class SimpleLinkedList<E> implements SimpleContainer<E> {
 
     private class NewIterator implements Iterator<E> {
 
-        private Node<E> first;
-        private Node<E> result;
-        private E temp;
+        private Node<E> object;
+        private E result;
         private int size;
         private int index;
 
         NewIterator(Node<E> first, int size) {
-            this.first = first;
-            this.result = first;
+            this.object = first;
             this.size = size;
         }
 
@@ -76,16 +100,16 @@ public class SimpleLinkedList<E> implements SimpleContainer<E> {
 
         @Override
         public E next() {
-            if (this.result.prev == null) temp = result.item;
-            temp = this.result.item;
-            this.result = this.result.next;
+            this.result = this.object.item;
+            this.object = this.object.next;
             this.index++;
-            return this.temp;
+            return this.result;
         }
 
         @Override
         public void remove() {
         }
+
     }
 
    private static class Node<E> {
