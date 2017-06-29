@@ -36,6 +36,31 @@ public class StartUi {
             System.out.println(user);
         }
 
+        SimpleQueue<User> queue = new SimpleQueue<>();
+        System.out.println("empty: " +queue.empty() +"size: " +queue.size());
+        queue.push(new User("0", "0", 0));
+        queue.push(new User("1", "1", 1));
+        queue.push(new User("2", "2", 2));
+        queue.push(new User("3", "3", 3));
+        queue.push(new User("4", "4", 4));
+
+        System.out.println("peek: " +queue.peek() +"size: " +queue.size());
+        System.out.println("pop: " +queue.pop() +"size: " +queue.size());
+        System.out.println("search: " +queue.search(new User("4", "4", 4)) +"size: " +queue.size());
+
+        Iterator<User> it1 = queue.iterator();
+        System.out.println();
+        System.out.println("Iteator");
+        while(it1.hasNext()) {
+            System.out.println(it1.next());
+        }
+
+        System.out.println();
+        System.out.println("forEach");
+        for (User user : queue) {
+            System.out.println(user);
+        }
+
     }
 }
         /*

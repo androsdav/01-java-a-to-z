@@ -19,7 +19,7 @@ public class SimpleLinkedList<E> implements SimpleList<E> {
         this.last = newNode;
         if (oldNode == null)
             this.first = newNode;
-         else
+        else
             oldNode.next = newNode;
         this.size++;
     }

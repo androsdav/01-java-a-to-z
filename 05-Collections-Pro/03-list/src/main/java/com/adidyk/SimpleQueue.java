@@ -2,61 +2,66 @@ package com.adidyk;
 
 import java.util.Iterator;
 
-public class SimpleStack<E> implements StackAndQueue<E> {
+public class SimpleQueue<E> implements StackAndQueue<E> {
 
+    private Node<E> first;
     private Node<E> last;
     private int size;
 
-    // empty  - returns true if Stack is empty, and false if Stack is not empty
+    // empty  - returns true if Queue is empty, and false if Stack is not empty
     public boolean empty() {
-        boolean stackEmpty = false;
-        if (this.last == null) stackEmpty = true;
-        return stackEmpty;
+        boolean queueEmpty = false;
+        if (this.first == null) queueEmpty = true;
+        return queueEmpty;
     }
 
-    // peek - returns last object from Stack
+    // peek - returns first object from Queue
     public E peek() {
-        final Node<E> object = this.last;
+        final Node<E> object = this.first;
         if (object == null) {
-            throw new HasNotLastElementException("Stack has not object ... ");
+            throw new HasNotFirstElementException("Queue has not object ... ");
         }
         return object.item;
     }
 
-    // pop - returns last object and remove this object from Stack
+    // pop - returns first object and remove this object from Queue
     public E pop() {
-        final Node<E> object = this.last;
+        final Node<E> object = this.first;
         if (object == null) {
-            throw new HasNotLastElementException("Stack has not object ... ");
+            throw new HasNotFirstElementException("Queue has not object ... ");
         }
-        this.last = object.prev;
-        size--;
+        this.first = object.next;
+        this.size--;
         return object.item;
     }
 
-    // push - adds object to top of Stack
+    // push - adds object to beginning of Queue
     public E push(E object) {
-        final Node<E> oldNode = this.last;
-        final Node<E> newNode = new Node<>(oldNode, object, null);
+        Node<E> oldNode = this.last;
+        Node<E> newNode = new Node<>(oldNode, object, null);
         this.last = newNode;
-        if (oldNode != null) oldNode.next = newNode;
+        if (oldNode == null)
+            this.first = newNode;
+        else
+            oldNode.next = newNode;
         this.size++;
         return object;
+
     }
 
-    // search - searches item in Stack and returns to needed count method pop, if search item false returns -1
+    // search - searches item in Queue and returns to needed count method pop, if search item false returns -1
     public int search(E item) {
-        Node<E> object = this.last;
+        Node<E> object = this.first;
         boolean searchItem = false;
         int count = 0;
-        for (int index = this.size - 1; index >= 0; index--) {
+        for (int index = 0; index < this.size - 1; index++) {
             if (object.item.equals(item)) {
                 count++;
-                searchItem  = true;
+                searchItem = true;
                 break;
             }
             count++;
-            object = object.prev;
+            object = object.next;
         }
         if (!searchItem) count = -1;
         return count;
@@ -69,38 +74,38 @@ public class SimpleStack<E> implements StackAndQueue<E> {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof SimpleStack)) return false;
-        SimpleStack<?> that = (SimpleStack<?>) o;
+        if (!(o instanceof SimpleQueue)) return false;
+        SimpleQueue<?> that = (SimpleQueue<?>) o;
         if (size != that.size) return false;
-        return last.equals(that.last);
+        return first.equals(that.first);
     }
 
     @Override
     public int hashCode() {
-        int result = last.hashCode();
+        int result = first.hashCode();
         result = 31 * result + size;
         return result;
     }
 
     @Override
     public String toString() {
-        return String.format("%s%s%s%s%s%s", "SimpleStack{", "last=", this.last,"; size=", this.size, "}");
+        return String.format("%s%s%s%s%s%s", "SimpleQueue{", "first=", this.first, ", size=", this.size, "}");
     }
 
     @Override
     public Iterator<E> iterator() {
-        return new SimpleIterator(this.last, this.size);
+        return new SimpleIterator(this.first, this.size);
     }
 
-    public class SimpleIterator implements Iterator<E> {
+    private class SimpleIterator implements Iterator<E> {
 
         private Node<E> object;
         private E result;
         private int size;
         private int index;
 
-        SimpleIterator(Node<E> last, int size) {
-            this.object = last;
+        SimpleIterator(Node<E> first, int size) {
+            this.object = first;
             this.size = size;
         }
 
@@ -112,7 +117,7 @@ public class SimpleStack<E> implements StackAndQueue<E> {
         @Override
         public E next() {
             this.result = this.object.item;
-            this.object = this.object.prev;
+            this.object = this.object.next;
             this.index++;
             return this.result;
         }
@@ -120,6 +125,7 @@ public class SimpleStack<E> implements StackAndQueue<E> {
         @Override
         public void remove() {
         }
+
     }
 
     private static class Node<E> {
@@ -135,4 +141,5 @@ public class SimpleStack<E> implements StackAndQueue<E> {
         }
 
     }
+
 }

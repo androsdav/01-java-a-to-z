@@ -6,6 +6,6 @@ public interface StackAndQueue<E> extends Iterable<E> {
     E peek();
     E pop();
     E push(E object);
-    int search(E object);
+    int search(E item);
 
 }
