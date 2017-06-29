@@ -1,6 +1,6 @@
 package com.adidyk;
 
-public interface StackAndQueue<E> {
+public interface StackAndQueue<E> extends Iterable<E> {
 
     boolean empty();
     E peek();

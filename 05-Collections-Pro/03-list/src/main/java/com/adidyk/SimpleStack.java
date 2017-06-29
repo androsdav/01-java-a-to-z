@@ -1,5 +1,7 @@
 package com.adidyk;
 
+import java.util.Iterator;
+
 public class SimpleStack<E> implements StackAndQueue<E> {
 
     private Node<E> last;
@@ -32,7 +34,7 @@ public class SimpleStack<E> implements StackAndQueue<E> {
         return object.item;
     }
 
-    // push -
+    // push - adds object to top of Stack
     public E push(E object) {
         final Node<E> oldNode = this.last;
         this.last = new Node<>(oldNode, object, null);
@@ -40,18 +42,21 @@ public class SimpleStack<E> implements StackAndQueue<E> {
         return object;
     }
 
-    // search -
+    // search - searches item in Stack and returns to needed count method pop, if search item false returns -1
     public int search(E item) {
         Node<E> object = this.last;
         int count = 0;
-        for (int index = this.size; index >= 0; index--) {
+        boolean searchItem = false;
+        for (int index = this.size - 1; index >= 0; index--) {
             if (object.item.equals(item)) {
                 count++;
+                searchItem  = true;
                 break;
             }
             count++;
             object = object.prev;
         }
+        if (!searchItem) count = -1;
         return count;
     }
 
@@ -78,6 +83,42 @@ public class SimpleStack<E> implements StackAndQueue<E> {
     @Override
     public String toString() {
         return String.format("%s%s%s%s%s%s", "SimpleStack{", "last=", this.last,"; size=", this.size, "}");
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return new SimpleIterator(this.last, this.size);
+    }
+
+    public class SimpleIterator implements Iterator<E> {
+
+        private Node<E> object;
+        private E result;
+        private int size;
+        private int index;
+
+
+        SimpleIterator(Node<E> last, int size) {
+            this.object = last;
+            this.size = size;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return (this.index < this.size);
+        }
+
+        @Override
+        public E next() {
+            this.result = this.object.item;
+            this.object = this.object.prev;
+            this.index++;
+            return this.result;
+        }
+
+        @Override
+        public void remove() {
+        }
     }
 
     private static class Node<E> {

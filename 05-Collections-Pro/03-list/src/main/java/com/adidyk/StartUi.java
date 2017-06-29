@@ -1,5 +1,7 @@
 package com.adidyk;
 
+import java.util.Iterator;
+
 public class StartUi {
 
     // main - its only for compile jar file and use collections Stack
@@ -18,10 +20,21 @@ public class StartUi {
         stack.push(new User("4", "4", 4));
         System.out.println(stack.peek());
         System.out.println("Pop: " +stack.pop() +"Last:" +stack.peek() +stack.size());
-        System.out.println("Pop: " +stack.pop() +"Last:" +stack.peek() +stack.size());
-        System.out.println("Pop: " +stack.pop() +"Last:" +stack.peek() +stack.size());
+   //     System.out.println("Pop: " +stack.pop() +"Last:" +stack.peek() +stack.size());
+     //   System.out.println("Pop: " +stack.pop() +"Last:" +stack.peek() +stack.size());
 
-       // System.out.println(stack.search(new User("0", "0", 0)));
+        System.out.println(stack.search(new User("0", "0", 0)));
+
+        Iterator<User> it = stack.iterator();
+
+        while(it.hasNext()) {
+            System.out.println(it.next());
+        }
+
+        System.out.println();
+        for (Object user : stack) {
+            System.out.println(user);
+        }
 
     }
 }
