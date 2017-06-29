@@ -45,13 +45,39 @@ public class SimpleStack<E> implements StackAndQueue<E> {
         Node<E> object = this.last;
         int count = 0;
         for (int index = this.size; index >= 0; index--) {
-            if (object.equals(item)) {
+            if (object.item.equals(item)) {
+                count++;
                 break;
             }
             count++;
             object = object.prev;
         }
         return count;
+    }
+
+    public int size() {
+        return this.size;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof SimpleStack)) return false;
+        SimpleStack<?> that = (SimpleStack<?>) o;
+        if (size != that.size) return false;
+        return last.equals(that.last);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = last.hashCode();
+        result = 31 * result + size;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s%s%s%s%s%s", "SimpleStack{", "last=", this.last,"; size=", this.size, "}");
     }
 
     private static class Node<E> {

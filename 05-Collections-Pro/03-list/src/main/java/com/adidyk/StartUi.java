@@ -1,14 +1,31 @@
 package com.adidyk;
 
-import java.util.ArrayDeque;
-import java.util.Iterator;
-import java.util.Queue;
-import java.util.Stack;
-
 public class StartUi {
 
     // main - its only for compile jar file and use collections Stack
     public static void main(String[] arg) {
+
+        SimpleStack<User> stack = new SimpleStack<>();
+
+        System.out.println("\nEmpty: ");
+        System.out.println(stack.empty() +"\n");
+
+        System.out.println("Push: ");
+        stack.push(new User("0", "0", 0));
+        stack.push(new User("1", "1", 1));
+        stack.push(new User("2", "2", 2));
+        stack.push(new User("3", "3", 3));
+        stack.push(new User("4", "4", 4));
+        System.out.println(stack.peek());
+        System.out.println("Pop: " +stack.pop() +"Last:" +stack.peek() +stack.size());
+        System.out.println("Pop: " +stack.pop() +"Last:" +stack.peek() +stack.size());
+        System.out.println("Pop: " +stack.pop() +"Last:" +stack.peek() +stack.size());
+
+       // System.out.println(stack.search(new User("0", "0", 0)));
+
+    }
+}
+        /*
         System.out.println("SimpleArrayList and SimpleLinkedList and  Comparable");
 
 
@@ -84,19 +101,4 @@ public class StartUi {
             System.out.println(user);
         }
 
-        Queue<User> queue = new ArrayDeque<>();
-
-
-
-
-
-
-
-
-
-        //System.out.println(stack);
-
-
-
-    }
-}
+        Queue<User> queue = new ArrayDeque<>(); */
