@@ -1,6 +1,8 @@
 package com.adidyk;
 
+import java.util.ArrayDeque;
 import java.util.Iterator;
+import java.util.Queue;
 import java.util.Stack;
 
 public class StartUi {
@@ -70,7 +72,7 @@ public class StartUi {
 
         System.out.println("Stack classsssssssssssssss");
 
-        SimpleStack<User> stk = new SimpleStack<>();
+        SimpleOldStack<User> stk = new SimpleOldStack<>();
         stk.add(new User("0", "0", 0));
         stk.add(new User("1", "1", 1));
         stk.add(new User("2", "2", 2));
@@ -79,8 +81,13 @@ public class StartUi {
 
         for (User user : stk) {
             System.out.println(user);
-
         }
+
+        Queue<User> queue = new ArrayDeque<>();
+
+
+
+
 
 
 
