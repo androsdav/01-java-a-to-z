@@ -54,7 +54,8 @@ public class StartUi {
 
         System.out.println();
         System.out.println("Use push");
-        stack.push(new User("33", "Anatoliy", 45));
+        System.out.println("Return method push: " +stack.push(new User("33", "Anatoliy", 45)));
+        System.out.println();
         for (User user : stack) {
             System.out.println(user);
         }
