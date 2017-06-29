@@ -54,7 +54,7 @@ public class SimpleQueue<E> implements StackAndQueue<E> {
         Node<E> object = this.first;
         boolean searchItem = false;
         int count = 0;
-        for (int index = 0; index < this.size - 1; index++) {
+        for (int index = 0; index < this.size; index++) {
             if (object.item.equals(item)) {
                 count++;
                 searchItem = true;

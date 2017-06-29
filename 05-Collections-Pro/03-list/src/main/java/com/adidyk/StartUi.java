@@ -44,9 +44,11 @@ public class StartUi {
         queue.push(new User("3", "3", 3));
         queue.push(new User("4", "4", 4));
 
+        System.out.println("empty: " +queue.empty() +"size: " +queue.size());
         System.out.println("peek: " +queue.peek() +"size: " +queue.size());
         System.out.println("pop: " +queue.pop() +"size: " +queue.size());
-        System.out.println("search: " +queue.search(new User("4", "4", 4)) +"size: " +queue.size());
+        System.out.println("peek: " +queue.peek() +"size: " +queue.size());
+        System.out.println("search: " +queue.search(new User("4", "4", 4)) +" size: " +queue.size());
 
         Iterator<User> it1 = queue.iterator();
         System.out.println();
@@ -60,6 +62,7 @@ public class StartUi {
         for (User user : queue) {
             System.out.println(user);
         }
+
 
     }
 }
