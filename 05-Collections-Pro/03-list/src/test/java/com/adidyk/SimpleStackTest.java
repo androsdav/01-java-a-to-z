@@ -42,7 +42,7 @@ public class SimpleStackTest {
 
     @Test
     public void popTest() {
-        assertThat(new User("3", "Bill", 12), is(this.stack.pop()));
+        assertThat(new User("3", "Will", 13), is(this.stack.pop()));
         assertThat(new User("2", "Bill", 12), is(this.stack.peek()));
     }
 
