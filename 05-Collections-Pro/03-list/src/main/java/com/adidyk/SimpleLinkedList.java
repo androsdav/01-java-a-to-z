@@ -8,10 +8,6 @@ public class SimpleLinkedList<E> implements SimpleList<E> {
     private Node<E> last;
     private int size;
 
-    // Constructor
-    SimpleLinkedList() {
-    }
-
     // add - adds object to linked list
     public void add(E object) {
         final Node<E> oldNode = this.last;
