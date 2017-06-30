@@ -2,16 +2,13 @@ package com.adidyk;
 
 import org.junit.Before;
 import org.junit.Test;
-
 import java.util.Iterator;
-
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class SimpleStackTest {
 
     private SimpleStack<User> stack = new SimpleStack<>();
-   // private SimpleStack<User> stackExpected = new SimpleStack<>();
     private User bob = new User("0", "Bob", 10);
     private User neo = new User("1", "Neo", 11);
     private User bill = new User("2", "Bill", 12);
@@ -23,10 +20,6 @@ public class SimpleStackTest {
         this.stack.push(new User("1", "Neo", 11));
         this.stack.push(new User("2", "Bill", 12));
         this.stack.push(new User("3", "Will", 13));
-       // this.stackExpected.push(this.will);
-       // this.stackExpected.push(this.bill);
-      //  this.stackExpected.push(this.neo);
-      //  this.stackExpected.push(this.bob);
     }
 
     @Test
@@ -49,7 +42,7 @@ public class SimpleStackTest {
 
     @Test
     public void popTest() {
-        this.stack.pop();
+        assertThat(new User("3", "Bill", 12), is(this.stack.pop()));
         assertThat(new User("2", "Bill", 12), is(this.stack.peek()));
     }
 
@@ -85,7 +78,7 @@ public class SimpleStackTest {
         new SimpleIteratorTest().nextTest();
         new SimpleIteratorTest().hasNextTrue();
         new SimpleIteratorTest().hasNextFalse();
-        //new SimpleIteratorTest().loopTest();
+        new SimpleIteratorTest().loopTest();
     }
 
     private class SimpleIteratorTest {
@@ -123,8 +116,17 @@ public class SimpleStackTest {
             assertThat(false, is(this.it.hasNext()));
         }
 
+        @Test
+        private void loopTest() {
+            Object[] resultActual = new Object[] {will, bill, neo, bob};
+            Object[] resultExpected = new Object[4];
+            int index = 0;
+            while(this.it.hasNext()) {
+                resultExpected[index++] = this.it.next();
+            }
+            assertThat(resultActual, is(resultExpected));
+        }
 
     }
-
 
 }
