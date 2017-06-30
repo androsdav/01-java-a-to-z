@@ -136,4 +136,5 @@ public class SimpleStack<E> implements StackAndQueue<E> {
         }
 
     }
+
 }
