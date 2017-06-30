@@ -67,6 +67,7 @@ public class SimpleQueue<E> implements StackAndQueue<E> {
         return count;
     }
 
+    // size - return size queue
     public int size() {
         return this.size;
     }
