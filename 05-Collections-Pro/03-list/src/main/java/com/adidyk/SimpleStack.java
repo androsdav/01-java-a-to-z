@@ -92,7 +92,7 @@ public class SimpleStack<E> implements StackAndQueue<E> {
         return new SimpleIterator(this.last, this.size);
     }
 
-    public class SimpleIterator implements Iterator<E> {
+    private class SimpleIterator implements Iterator<E> {
 
         private Node<E> object;
         private E result;
