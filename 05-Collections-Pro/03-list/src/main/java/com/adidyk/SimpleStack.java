@@ -29,6 +29,7 @@ public class SimpleStack<E> implements StackAndQueue<E> {
         if (object == null) {
             throw new HasNotLastElementException("Stack has not object ... ");
         }
+        this.last = null;
         this.last = object.prev;
         size--;
         return object.item;

@@ -30,6 +30,7 @@ public class SimpleQueue<E> implements StackAndQueue<E> {
         if (object == null) {
             throw new HasNotFirstElementException("Queue has not object ... ");
         }
+        this.first = null;
         this.first = object.next;
         this.size--;
         return object.item;
