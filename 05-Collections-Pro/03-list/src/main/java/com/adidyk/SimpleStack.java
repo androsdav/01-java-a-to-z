@@ -25,10 +25,10 @@ public class SimpleStack<E> implements StackAndQueue<E> {
 
     // pop - returns last object and remove this object from Stack
     public E pop() {
-        final Node<E> object = this.last;
-        if (object == null) {
+        if (this.last == null) {
             throw new HasNotLastElementException("Stack has not object ... ");
         }
+        final Node<E> object = new Node<>(this.last.prev, this.last.item, this.last.next);
         this.last = null;
         this.last = object.prev;
         size--;

@@ -26,10 +26,10 @@ public class SimpleQueue<E> implements StackAndQueue<E> {
 
     // pop - returns first object and remove this object from Queue
     public E pop() {
-        final Node<E> object = this.first;
-        if (object == null) {
+        if (this.first == null) {
             throw new HasNotFirstElementException("Queue has not object ... ");
         }
+        final Node<E> object = new Node<>(this.first.prev, this.first.item, this.first.next);
         this.first = null;
         this.first = object.next;
         this.size--;
