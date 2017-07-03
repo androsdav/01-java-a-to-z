@@ -15,6 +15,10 @@ public class StartUi {
         System.out.println(user1.hashCode());
         System.out.println(user2.hashCode());
         System.out.println(user3.hashCode());
+
+        if (user1.hashCode() == user2.hashCode()) {
+            System.out.println("dasdasdasdasd");
+        }
 /*
         SimpleNode<User> node5 = new SimpleNode<>(new User("4", "0",4), null);
         SimpleNode<User> node4 = new SimpleNode<>(new User("3", "3",3), node5);
