@@ -2,25 +2,17 @@ package com.adidyk;
 
 public class Cycle {
 
-    public <E> void  hasCycle(SimpleNode<E> first) {
+    // hasCycle - return true if linked list is cycle, and false if linked list is not cycle
+    public <E> boolean  hasCycle(SimpleNode<E> first) {
         int firstHashCode = first.hashCode();
-        int index = 0;
+        boolean result = false;
         for (SimpleNode<E> item = first.next; item != null; item = item.next) {
-
             if (firstHashCode == item.hashCode()) {
-                System.out.println("Cycle");
+                result = true;
                 break;
             }
-
-            System.out.println("["+index++ +"]" + " itemItem: " +item.item);
-            System.out.println("   " + " hashCode: " +item.item.hashCode());
-            System.out.println("   " + " hashCode: " +item.hashCode());
-
-            //System.out.println("item: " +item.item);
-            //System.out.println("link: " +item);
-            //System.out.println("hash: " +item.hashCode());
         }
-
+        return result;
     }
 
 }
