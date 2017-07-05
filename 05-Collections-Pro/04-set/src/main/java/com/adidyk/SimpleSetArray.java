@@ -13,24 +13,18 @@ public class SimpleSetArray<E> implements SimpleSet<E> {
 
     // add -
     public boolean add(E object) {
+        boolean addObject = true;
         if(this.checkFirstAddObject()) {
-            Object[] objectsTemp = new Object[this.objects.length + 1];
-            System.arraycopy(this.objects, 0, objectsTemp, 0, this.objects.length);
-            this.objects = objectsTemp;
-            this.objects[this.index] = object;
-        }
-
-        boolean addObject = !this.searchDuplicate(object);
-        if (addObject) {
-            Object[] objectsTemp = new Object[this.objects.length + 1];
-            System.arraycopy(this.objects, 0, objectsTemp, 0, this.objects.length);
-            this.objects = objectsTemp;
-            this.objects[this.index] = object;
-            this.index++;
+            this.addObject(object);
+        } else {
+            if(addObject = !this.searchDuplicate(object)) {
+                this.addObject(object);
+            }
         }
         return addObject;
     }
 
+    // checkFirstAddObject -
     private boolean checkFirstAddObject() {
         boolean firstAddTrue = false;
         if (this.objects.length == 0) {
@@ -42,13 +36,21 @@ public class SimpleSetArray<E> implements SimpleSet<E> {
     // searchDuplicate -
     private boolean searchDuplicate(E object) {
         boolean sameObject = false;
-        for (int position = 0; position <= this.index; position++) {
+        for (int position = 0; position < this.index; position++) {
             if(this.objects[position] != null && object.equals(this.objects[position])) {
                 sameObject = true;
                 break;
             }
         }
         return sameObject;
+    }
+
+    // addObject -
+    private void addObject(E object) {
+        Object[] objectsTemp = new Object[this.objects.length + 1];
+        System.arraycopy(this.objects, 0, objectsTemp, 0, this.objects.length);
+        this.objects = objectsTemp;
+        this.objects[this.index++] = object;
     }
 
     public E get(int position) {
@@ -63,6 +65,31 @@ public class SimpleSetArray<E> implements SimpleSet<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new SimpleIterator(this.objects);
     }
+
+    private class SimpleIterator implements Iterator<E> {
+
+        private Object[] objects;
+        private int index = 0;
+
+        public SimpleIterator(Object[] objects) {
+            this.objects = objects;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return this.index < this.objects.length;
+        }
+
+        @Override
+        public E next() {
+            return (E) this.objects[this.index++];
+        }
+
+        @Override
+        public void remove() {
+        }
+    }
+
 }
