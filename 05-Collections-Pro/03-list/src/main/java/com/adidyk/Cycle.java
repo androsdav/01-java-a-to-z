@@ -4,6 +4,8 @@ public class Cycle {
 
     // hasCycle - return true if linked list is cycle, and false if linked list is not cycle
     public <E> boolean  hasCycle(SimpleNode<E> first) {
+        SimpleLinkedList<E> list = new SimpleLinkedList<>();
+        list.add());
         int firstHashCode = first.hashCode();
         boolean result = false;
         for (SimpleNode<E> item = first.next; item != null; item = item.next) {
