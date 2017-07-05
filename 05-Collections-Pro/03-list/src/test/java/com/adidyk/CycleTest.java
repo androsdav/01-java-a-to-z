@@ -1,7 +1,6 @@
 package com.adidyk;
 
 import org.junit.Test;
-
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -25,6 +24,12 @@ public class CycleTest {
     @Test
     public void hasCycleTrueTest() {
         this.user5.next = this.user0;
+        assertThat(true, is(this.cycle.hasCycle(this.user0)));
+    }
+
+    @Test
+    public void hasHalfCycleTrueTest() {
+        this.user5.next = this.user3;
         assertThat(true, is(this.cycle.hasCycle(this.user0)));
     }
 
