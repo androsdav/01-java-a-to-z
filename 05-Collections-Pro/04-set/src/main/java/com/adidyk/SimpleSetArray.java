@@ -7,11 +7,12 @@ public class SimpleSetArray<E> implements SimpleSet<E> {
     private Object[] objects;
     private int index = 0;
 
+    // Constructor
     SimpleSetArray() {
         this.objects = new Object[0];
     }
 
-    // add -
+    // add - adds object to array
     public boolean add(E object) {
         boolean addObject = true;
         if(this.checkFirstAddObject()) {
@@ -24,7 +25,12 @@ public class SimpleSetArray<E> implements SimpleSet<E> {
         return addObject;
     }
 
-    // checkFirstAddObject -
+    // size - return size set
+    public int size() {
+        return this.objects.length;
+    }
+
+    // checkFirstAddObject - returns true if this is first addition of object, false - this is not first addition object
     private boolean checkFirstAddObject() {
         boolean firstAddTrue = false;
         if (this.objects.length == 0) {
@@ -51,16 +57,6 @@ public class SimpleSetArray<E> implements SimpleSet<E> {
         System.arraycopy(this.objects, 0, objectsTemp, 0, this.objects.length);
         this.objects = objectsTemp;
         this.objects[this.index++] = object;
-    }
-
-    public E get(int position) {
-        return (E) this.objects[position];
-    }
-
-
-    @Override
-    public int size() {
-        return this.objects.length;
     }
 
     @Override

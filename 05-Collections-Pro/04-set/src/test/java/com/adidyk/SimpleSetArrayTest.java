@@ -60,11 +60,6 @@ public class SimpleSetArrayTest {
 
         private Iterator<User> it = set.iterator();
 
-        @Before
-        public void init() {
-            init();
-        }
-
         @Test
         private void nextTest() {
             this.it.next();
