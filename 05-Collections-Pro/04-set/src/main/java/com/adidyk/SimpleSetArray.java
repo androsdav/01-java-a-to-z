@@ -75,6 +75,7 @@ public class SimpleSetArray<E> implements SimpleSet<E> {
         @Override
         public void remove() {
         }
+
     }
 
 }

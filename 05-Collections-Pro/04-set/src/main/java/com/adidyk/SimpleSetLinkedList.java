@@ -64,7 +64,6 @@ public class SimpleSetLinkedList<E> implements SimpleSet<E> {
             this.size = size;
         }
 
-
         @Override
         public boolean hasNext() {
             return (this.index < this.size);
@@ -97,4 +96,5 @@ public class SimpleSetLinkedList<E> implements SimpleSet<E> {
         }
 
     }
+
 }
