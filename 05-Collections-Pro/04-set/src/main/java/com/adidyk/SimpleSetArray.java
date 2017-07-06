@@ -12,15 +12,13 @@ public class SimpleSetArray<E> implements SimpleSet<E> {
         this.objects = new Object[0];
     }
 
-    // add - adds object to array
+    // add - adds object to set container
     public boolean add(E object) {
         boolean addObject = true;
-        if(this.checkFirstAddObject()) {
+        if(this.objects.length == 0) {
             this.addObject(object);
-        } else {
-            if(addObject = !this.searchDuplicate(object)) {
-                this.addObject(object);
-            }
+        } else if(addObject = !this.searchDuplicate(object)) {
+            this.addObject(object);
         }
         return addObject;
     }
@@ -30,16 +28,7 @@ public class SimpleSetArray<E> implements SimpleSet<E> {
         return this.objects.length;
     }
 
-    // checkFirstAddObject - returns true if this is first addition of object, false - this is not first addition object
-    private boolean checkFirstAddObject() {
-        boolean firstAddTrue = false;
-        if (this.objects.length == 0) {
-            firstAddTrue = true;
-        }
-        return firstAddTrue;
-    }
-
-    // searchDuplicate -
+    // searchDuplicate - searches duplicate and return true if it`s duplicate, false - if it`s not duplicate
     private boolean searchDuplicate(E object) {
         boolean sameObject = false;
         for (int position = 0; position < this.index; position++) {
@@ -51,7 +40,7 @@ public class SimpleSetArray<E> implements SimpleSet<E> {
         return sameObject;
     }
 
-    // addObject -
+    // addObject - adds object to set container
     private void addObject(E object) {
         Object[] objectsTemp = new Object[this.objects.length + 1];
         System.arraycopy(this.objects, 0, objectsTemp, 0, this.objects.length);
