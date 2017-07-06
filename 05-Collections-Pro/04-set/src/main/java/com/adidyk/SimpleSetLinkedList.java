@@ -6,23 +6,21 @@ public class SimpleSetLinkedList<E> implements SimpleSet<E> {
 
     private Node<E> first;
     private Node<E> last;
-    private int size;
+    private int size = 0;
 
+    // add - adds object to Set-linkedList container
     public boolean add(E object) {
         boolean addObject = false;
         if (!searchDuplicate(object)) {
-            Node<E> oldNode = this.last;
-            Node<E> newNode = new Node<>(oldNode, object, null);
-            this.last = newNode;
-            if (oldNode == null)
-                this.first = newNode;
-            else
-                oldNode.next = newNode;
-            this.size++;
+            this.addObject(object);
             addObject = true;
         }
-
         return addObject;
+    }
+
+    // size - return size Set-LinkedList container and return true if object added to container, false - not added
+    public int size() {
+        return this.size;
     }
 
     // searchDuplicate - searches duplicate and return true if it`s duplicate, false - if it`s not duplicate
@@ -37,9 +35,16 @@ public class SimpleSetLinkedList<E> implements SimpleSet<E> {
         return sameObject;
     }
 
-
-    public int size() {
-        return 0;
+    // addObject - adds object to Set-LinkedList container
+    private void addObject(E object) {
+        Node<E> oldNode = this.last;
+        Node<E> newNode = new Node<>(oldNode, object, null);
+        this.last = newNode;
+        if (oldNode == null)
+            this.first = newNode;
+        else
+            oldNode.next = newNode;
+        this.size++;
     }
 
     @Override
@@ -47,7 +52,7 @@ public class SimpleSetLinkedList<E> implements SimpleSet<E> {
         return new SimpleIterator(this.first, this.size);
     }
 
-    public class SimpleIterator implements Iterator<E> {
+    private class SimpleIterator implements Iterator<E> {
 
         private Node<E> object;
         private E result;
@@ -76,6 +81,7 @@ public class SimpleSetLinkedList<E> implements SimpleSet<E> {
         @Override
         public void remove() {
         }
+
     }
 
     private static class Node<E> {

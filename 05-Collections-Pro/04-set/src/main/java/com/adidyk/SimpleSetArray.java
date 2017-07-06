@@ -12,7 +12,7 @@ public class SimpleSetArray<E> implements SimpleSet<E> {
         this.objects = new Object[0];
     }
 
-    // add - adds object to set container
+    // add - adds object to Set-Array container and return true if object added to container, false - not added
     public boolean add(E object) {
         boolean addObject = true;
         if(this.objects.length == 0) {
@@ -23,7 +23,7 @@ public class SimpleSetArray<E> implements SimpleSet<E> {
         return addObject;
     }
 
-    // size - return size set
+    // size - return size Set-Array container
     public int size() {
         return this.objects.length;
     }
@@ -40,7 +40,7 @@ public class SimpleSetArray<E> implements SimpleSet<E> {
         return sameObject;
     }
 
-    // addObject - adds object to set container
+    // addObject - adds object to Set-Array container
     private void addObject(E object) {
         Object[] objectsTemp = new Object[this.objects.length + 1];
         System.arraycopy(this.objects, 0, objectsTemp, 0, this.objects.length);
