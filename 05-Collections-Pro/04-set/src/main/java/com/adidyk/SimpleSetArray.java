@@ -45,6 +45,7 @@ public class SimpleSetArray<E> implements SimpleSet<E> {
 
     private boolean searchDuplicateByBinary(E object) {
         boolean sameObject = false;
+        boolean work = true;
         int left = 0;
         int right = this.objects.length - 1;
         int index;
@@ -52,14 +53,18 @@ public class SimpleSetArray<E> implements SimpleSet<E> {
             index = (right + left) / 2;
             if (this.objects[index].hashCode() == object.hashCode()) {
                 sameObject = true;
+                //work = true;
             } else {
-                if (this.objects[index].hashCode() > object.hashCode()) {
+                if (this.objects[index].hashCode() > object.hashCode() && right - left != 0) {
                     right = index - 1;
                 } else {
-                    left = index + 1;
+                    if (right - left != 0) left = index + 1;
                 }
             }
-        } while(left == right);
+            if (index == left && index == right ) work = false;
+            if (sameObject) work = false;
+
+        } while(work);
         return sameObject;
     }
 
