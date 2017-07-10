@@ -1,13 +1,7 @@
 package com.adidyk;
 
-import org.junit.Before;
-import org.junit.Test;
-import java.util.Iterator;
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
-
 public class SimpleSetArrayTest {
-
+/*
     private SimpleSetArray<User> set = new SimpleSetArray<>();
 
     @Before
@@ -42,7 +36,7 @@ public class SimpleSetArrayTest {
                 new User("3","Will",12), new User("4","Zeal",13)};
         Object[] objectExpected = new Object[4];
         int index = 0;
-        for(User user : set) {
+        for(User user : this.set) {
             objectExpected[index++] = user;
         }
         assertThat(objectActual, is(objectExpected));
@@ -100,5 +94,5 @@ public class SimpleSetArrayTest {
         }
 
     }
-
+*/
 }

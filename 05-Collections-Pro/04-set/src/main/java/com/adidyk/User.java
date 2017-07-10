@@ -1,6 +1,6 @@
 package com.adidyk;
 
-public class User {
+public class User implements Comparable<User> {
 
     private String id;
     private String name;
@@ -57,8 +57,12 @@ public class User {
 
     @Override
     public String toString() {
-        return String.format( "%s%s%s%s%s%s%s%s",
-                " User {", "id=", this.getId(), "; name=", this.getName(), "; age=", this.getAge(), "}");
+        return String.format( "%s%s%s%s%s%s%s%s%s%s",
+                " User {", "id=", this.getId(), "; name=", this.getName(), "; age=", this.getAge(), "}", " hashCode: ", hashCode());
     }
 
+    @Override
+    public int compareTo(User user) {
+        return Integer.valueOf(this.hashCode()).compareTo(user.hashCode());
+    }
 }

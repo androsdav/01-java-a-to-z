@@ -42,7 +42,7 @@ public class SimpleSetLinkedListTest {
                 new User("3","Will",12), new User("4","Zeal",13)};
         Object[] objectExpected = new Object[4];
         int index = 0;
-        for(User user : set) {
+        for(User user : this.set) {
             objectExpected[index++] = user;
         }
         assertThat(objectActual, is(objectExpected));

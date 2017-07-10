@@ -23,18 +23,6 @@ public class SimpleSetLinkedList<E> implements SimpleSet<E> {
         return this.size;
     }
 
-    // searchDuplicate - searches duplicate and return true if it`s duplicate, false - if it`s not duplicate
-    private boolean searchDuplicate(E object) {
-        boolean sameObject = false;
-        for (Node<E> node = this.first; node != null; node = node.next) {
-            if (object.equals(node.item)) {
-                sameObject = true;
-                break;
-            }
-        }
-        return sameObject;
-    }
-
     // addObject - adds object to Set-LinkedList container
     private void addObject(E object) {
         Node<E> oldNode = this.last;
@@ -45,6 +33,18 @@ public class SimpleSetLinkedList<E> implements SimpleSet<E> {
         else
             oldNode.next = newNode;
         this.size++;
+    }
+
+    // searchDuplicate - searches duplicate and return true if it`s duplicate, false - if it`s not duplicate
+    private boolean searchDuplicate(E object) {
+        boolean sameObject = false;
+                for (Node<E> node = this.first; node != null; node = node.next) {
+            if (object.equals(node.item)) {
+                sameObject = true;
+                break;
+            }
+        }
+        return sameObject;
     }
 
     @Override
