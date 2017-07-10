@@ -65,4 +65,5 @@ public class User implements Comparable<User> {
     public int compareTo(User user) {
         return Integer.valueOf(this.hashCode()).compareTo(user.hashCode());
     }
+
 }
