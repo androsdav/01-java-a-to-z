@@ -58,7 +58,8 @@ public class User implements Comparable<User> {
     @Override
     public String toString() {
         return String.format( "%s%s%s%s%s%s%s%s%s%s",
-                " User {", "id=", this.getId(), "; name=", this.getName(), "; age=", this.getAge(), "}", " hashCode: ", hashCode());
+                " User {", "id=", this.getId(), "; name=", this.getName(), "; age=", this.getAge(), "}",
+                " hashCode: ", hashCode());
     }
 
     @Override
