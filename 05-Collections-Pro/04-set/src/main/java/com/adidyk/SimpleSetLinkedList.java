@@ -10,12 +10,12 @@ public class SimpleSetLinkedList<E> implements SimpleSet<E> {
 
     // add - adds object to Set-linkedList container
     public boolean add(E object) {
-        boolean addObject = false;
+        boolean isAdded = false;
         if (!searchDuplicate(object)) {
             this.addObject(object);
-            addObject = true;
+            isAdded = true;
         }
-        return addObject;
+        return isAdded;
     }
 
     // size - return size Set-LinkedList container and return true if object added to container, false - not added

@@ -16,14 +16,14 @@ public class SimpleSetArray<E> implements SimpleSet<E> {
     // add - adds object to Set-Array container and return true if object added to container, false - not added
     //       and sorts all object in Set-Array by hashcode
     public boolean add(E object) {
-        boolean addObject = true;
+        boolean isAdded = true;
         if(this.objects.length == 0) {
             this.addObject(object);
-        } else if(addObject = !this.searchDuplicateByBinary(object)) {
+        } else if(isAdded = !this.searchDuplicateByBinary(object)) {
             this.addObject(object);
         }
-        Arrays.sort(this.objects);
-        return addObject;
+        this.sortObjectsByHashCode();
+        return isAdded;
     }
 
     // size - return size Set-Array container
@@ -57,6 +57,10 @@ public class SimpleSetArray<E> implements SimpleSet<E> {
         System.arraycopy(this.objects, 0, objectsTemp, 0, this.objects.length);
         this.objects = objectsTemp;
         this.objects[this.index++] = object;
+    }
+
+    private void sortObjectsByHashCode() {
+        Arrays.sort(this.objects);
     }
 
     @Override
