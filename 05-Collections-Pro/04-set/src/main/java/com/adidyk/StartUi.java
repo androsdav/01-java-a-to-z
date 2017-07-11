@@ -1,5 +1,7 @@
 package com.adidyk;
 
+import java.util.Iterator;
+
 public class StartUi {
 
     // main - its only for compile jar file
@@ -14,6 +16,7 @@ public class StartUi {
 
         System.out.println("Its my collections");
         SimpleSetArray<User> set = new SimpleSetArray<>();
+
         set.add(new User("00", "A", 0));
         set.add(new User("01", "B", 1));
         set.add(new User("02", "C", 2));
@@ -26,23 +29,32 @@ public class StartUi {
         set.add(new User("09", "L", 9));
         set.add(new User("10", "M", 10));
 
-        //set.add(new User("00", "A", 0));
-        //set.add(new User("01", "B", 1));
-        //set.add(new User("02", "C", 2));
-        //set.add(new User("03", "D", 3));
-        //set.add(new User("04", "I", 4));
-        //set.add(new User("05", "F", 5));
-        //set.add(new User("06", "G", 6));
-        //set.add(new User("07", "E", 7));
-        //set.add(new User("08", "K", 8));
-        //set.add(new User("09", "L", 9));
-        //set.add(new User("10", "M", 10));
+        set.add(new User("00", "A", 0));
+        set.add(new User("01", "B", 1));
+        set.add(new User("02", "C", 2));
+        set.add(new User("03", "D", 3));
+        set.add(new User("04", "I", 4));
+        set.add(new User("05", "F", 5));
+        set.add(new User("06", "G", 6));
+        set.add(new User("07", "E", 7));
+        set.add(new User("08", "K", 8));
+        set.add(new User("09", "L", 9));
+        set.add(new User("10", "M", 10));
 
 
 
         for (User item : set) {
             System.out.println(item);
         }
+
+        Iterator it = set.iterator();
+
+        System.out.println("Iterator");
+
+        while(it.hasNext()) {
+            System.out.println(it.next());
+        }
+
 
         /*
         System.out.println("Comparable");
