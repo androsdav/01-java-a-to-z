@@ -39,11 +39,11 @@ public class User {
     public Calendar getBirthday() {
         return this.birthday;
     }
-/*
-    @Override
+
+   @Override
     public String toString() {
         return String.format( "%s%s%s%s%s%s%s%s", "User{","name=", this.getNAme(),"; children=", this.getChildren(),
                 "; birthday=", this.sdf.format(this.getBirthday().getTime()), "}");
     }
-*/
+
 }
