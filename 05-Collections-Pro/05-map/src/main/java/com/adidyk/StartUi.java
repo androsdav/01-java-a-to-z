@@ -1,7 +1,6 @@
 package com.adidyk;
 
 import java.util.GregorianCalendar;
-import java.util.HashMap;
 
 public class StartUi {
 
@@ -31,11 +30,18 @@ public class StartUi {
 
   */
 
-        System.out.println();
-        HashMap<Integer, User> map = new HashMap<>(20);
+      //  System.out.println();
+      //  HashMap<Integer, User> map = new HashMap<>(20);
 
-        System.out.println(map.put(1, new User("Bob", 0, new GregorianCalendar(1999, 1, 1))));
+      //  System.out.println(map.put(1, new User("Bob", 0, new GregorianCalendar(1999, 1, 1))));
 //        map.put(2, new User("Bil", 1, new GregorianCalendar(2000, 1, 1)));
+
+
+        User user1 = new User("Bob", 1, new GregorianCalendar(1992, 1, 1));
+        User user2 = new User("bob", 1, new GregorianCalendar(1992, 1, 1));
+
+        System.out.println("hashCode: " +user1.hashCode());
+        System.out.println("hashCode: " +user2.hashCode());
 
 
 
