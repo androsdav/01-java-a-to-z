@@ -1,6 +1,9 @@
 package com.adidyk;
 
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class StartUi {
 
@@ -59,6 +62,11 @@ public class StartUi {
 
 //        System.out.println(firstBill);
   //      System.out.println(secondBill);
+        Map<String, String> test = new HashMap<>();
+        Map<String, String> test1 = new LinkedHashMap<>();
+
+
+
 
     }
 
