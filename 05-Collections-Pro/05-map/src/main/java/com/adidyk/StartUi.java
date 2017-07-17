@@ -43,6 +43,12 @@ public class StartUi {
         System.out.println("hashCode: " +user1.hashCode());
         System.out.println("hashCode: " +user2.hashCode());
 
+        int n = 16;
+        int hash = 47478888;
+
+        int i = (n - 1) & hash;
+        System.out.println(i);
+
 
 
 
