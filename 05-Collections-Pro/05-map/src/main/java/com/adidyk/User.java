@@ -1,6 +1,5 @@
 package com.adidyk;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class User {
@@ -8,7 +7,6 @@ public class User {
     private String name;
     private int children;
     private Calendar birthday;
-    private final SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 
     User(String name, int children, Calendar birthday) {
         this.name = name;
@@ -39,15 +37,5 @@ public class User {
     public Calendar getBirthday() {
         return this.birthday;
     }
-
-  //  HashMap
-
-    /* HashMap
-   @Override
-    public String toString() {
-        return String.format( "%s%s%s%s%s%s%s%s", "User{","name=", this.getNAme(),"; children=", this.getChildren(),
-                "; birthday=", this.sdf.format(this.getBirthday().getTime()), "}");
-    }
-*/
 
 }
