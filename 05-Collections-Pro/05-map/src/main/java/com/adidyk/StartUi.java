@@ -10,26 +10,18 @@ public class StartUi {
     public static void main(String[] arg) {
         User first  = new User("Bob", 4, new GregorianCalendar(1992, 2, 2));
         User second = new User("Bob", 4, new GregorianCalendar(1992, 2, 2));
-
-
         System.out.println(first.hashCode());
         System.out.println(second.hashCode());
-
         if (first.hashCode() == second.hashCode()) {
             System.out.println("true");
         } else {
             System.out.println("false, Its bad Ass");
         }
-
         Map<User, Object> map = new HashMap<>();
         map.put(first, new Object());
         map.put(second, new Object());
         System.out.println(map);
-
         System.out.println("Test");
-        String name122 = "ADSDS";
-        String name123 = "dasADSDS";
-        String name123s = "ADSDS";
         String name = "A";
         String name1 = "A";
         int hash = name.hashCode();

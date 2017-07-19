@@ -14,27 +14,27 @@ public class User {
         this.birthday = birthday;
     }
 
-    public void setName(String name) {
+    void setName(String name) {
         this.name = name;
     }
 
-    public void SetChildren(int children) {
+    void SetChildren(int children) {
         this.children = children;
     }
 
-    public void setBirthday(Calendar birthday) {
+    void setBirthday(Calendar birthday) {
         this.birthday = birthday;
     }
 
-    public String getNAme() {
+    String getNAme() {
         return this.name;
     }
 
-    public int getChildren() {
+    int getChildren() {
         return this.children;
     }
 
-    public Calendar getBirthday() {
+    Calendar getBirthday() {
         return this.birthday;
     }
 
