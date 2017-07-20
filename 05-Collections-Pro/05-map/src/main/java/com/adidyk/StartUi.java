@@ -4,8 +4,14 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ *
+ */
 public class StartUi {
 
+    /**
+     * @param arg 1
+     */
     // main - its only for compile jar file
     public static void main(String[] arg) {
         User first  = new User("Bob", 4, new GregorianCalendar(1992, 2, 2));
