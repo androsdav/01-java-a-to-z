@@ -7,6 +7,7 @@
          <artifactId>java-a-to-z</artifactId>
          <version>1.0</version>
          <packaging>pom</packaging>
+
          <modules>
                   <module>01-Basic</module>
                   <module>02-OOP</module>
