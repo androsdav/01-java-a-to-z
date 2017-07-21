@@ -3,30 +3,33 @@ package com.adidyk;
 import java.util.Calendar;
 
 /**
- * Its my first JavaDoc. I like java codding
- * everyday and all
- * day.
- */
+ * Class for create user (object) with params: name, children and birthday.
+ * @author Didyk Andrey (androsdav@bigmir.net).
+ * @since 21.07.2017.
+ * @version 1.
+*/
 class User {
 
     /**
-     *
+     * name - name user.
      */
     private String name;
+
     /**
-     *
+     * children - number of children for the user.
      */
     private int children;
+
     /**
-     *
-     */
+     * birthday - user birthday.
+     **/
     private Calendar birthday;
 
     /**
-     * @param name 1
-     * @param children 1
-     * @param birthday 1
-     */
+     * @param name name user.
+     * @param children number of children for the user.
+     * @param birthday user birthday.
+     **/
     User(String name, int children, Calendar birthday) {
         this.name = name;
         this.children = children;
@@ -34,50 +37,52 @@ class User {
     }
 
     /**
-     * @param name 1
-     */
+     * setName - sets name for user.
+     * @param name name user.
+     **/
     void setName(String name) {
         this.name = name;
     }
 
     /**
-     * @param children 1
-     */
+     * setChildren - sets number children for the user.
+     * @param children number of children for the user.
+     **/
     void setChildren(int children) {
         this.children = children;
     }
 
     /**
-     * @param birthday 1
-     */
+     * setBirthday - sets user birthday.
+     * @param birthday user birthday.
+     **/
     void setBirthday(Calendar birthday) {
         this.birthday = birthday;
     }
 
     /**
-     * @return 1
+     * @return String this.name - name user.
      */
     String getNAme() {
         return this.name;
     }
-
     /**
-     * @return 1
-     */
+     * @return int this.children - number of children of user.
+    **/
     int getChildren() {
         return this.children;
     }
 
     /**
-     * @return 1
+     * @return this.birthday - user birthday.
      */
     Calendar getBirthday() {
         return this.birthday;
     }
 
     /**
-     * @return 1
-     */
+     * @return int result - hashCode for user.
+     **/
     @Override
     public int hashCode() {
         int result = this.name != null ? this.name.hashCode() : 0;
