@@ -66,7 +66,6 @@ class User {
     String getNAme() {
         return this.name;
     }
-
     /**
      * @return int this.children - number of children of user.
     **/
@@ -79,6 +78,17 @@ class User {
      */
     Calendar getBirthday() {
         return this.birthday;
+    }
+
+    /**
+     * @return int result - hashCode for user.
+     **/
+    @Override
+    public int hashCode() {
+        int result = this.name != null ? this.name.hashCode() : 0;
+        result = 31 * result + this.children;
+        result = 31 * result + (this.birthday != null ? this.birthday.hashCode() : 0);
+        return result;
     }
 
 }
