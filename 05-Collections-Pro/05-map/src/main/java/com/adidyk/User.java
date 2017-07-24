@@ -66,6 +66,7 @@ class User {
     String getNAme() {
         return this.name;
     }
+
     /**
      * @return int this.children - number of children of user.
     **/
