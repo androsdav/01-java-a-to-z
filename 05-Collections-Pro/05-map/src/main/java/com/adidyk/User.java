@@ -3,10 +3,10 @@ package com.adidyk;
 import java.util.Calendar;
 
 /**
- * Class for create user (object) with params: name, children and birthday.
+ * Class USer for create user (object) with params: name, children and birthday.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 21.07.2017.
- * @version 1.
+ * @version 1.0.
 */
 class User {
 
@@ -78,17 +78,6 @@ class User {
      */
     Calendar getBirthday() {
         return this.birthday;
-    }
-
-    /**
-     * @return int result - hashCode for user.
-     **/
-    @Override
-    public int hashCode() {
-        int result = this.name != null ? this.name.hashCode() : 0;
-        result = 31 * result + this.children;
-        result = 31 * result + (this.birthday != null ? this.birthday.hashCode() : 0);
-        return result;
     }
 
 }
