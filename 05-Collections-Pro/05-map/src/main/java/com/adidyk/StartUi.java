@@ -18,8 +18,8 @@ public class StartUi {
      * @param arg nothing
      */
     public static void main(String[] arg) {
-        User first  = new User("Bob", 2, new GregorianCalendar(1992, 2, 2));
-        User second = new User("Bob", 2, new GregorianCalendar(1992, 2, 2));
+        User first  = new User("Bob", 3, new GregorianCalendar(1992, 2, 2));
+        User second = new User("Bob", 3, new GregorianCalendar(1992, 2, 2));
         Map<User, Object> map = new HashMap<>();
         map.put(first, new Object());
         map.put(second, new Object());
