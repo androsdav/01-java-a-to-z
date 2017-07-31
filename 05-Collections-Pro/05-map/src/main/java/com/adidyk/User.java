@@ -66,6 +66,7 @@ class User {
     String getNAme() {
         return this.name;
     }
+
     /**
      * @return int this.children - number of children of user.
     **/
@@ -89,6 +90,22 @@ class User {
         result = 31 * result + this.children;
         result = 31 * result + (this.birthday != null ? this.birthday.hashCode() : 0);
         return result;
+    }
+
+    /**
+     * @return boolean result - return "true" if name and number of children and birthday
+     * users is same, and return "false" if all params users isn`t same.
+     **/
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+        User user = (User) obj;
+        return this.name.equals(user.name) && this.children == user.children && this.birthday.equals(user.birthday);
     }
 
 }
