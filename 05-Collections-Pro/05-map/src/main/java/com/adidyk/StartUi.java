@@ -24,6 +24,14 @@ public class StartUi {
         map.put(first, new Object());
         map.put(second, new Object());
         System.out.println(map);
+        //
+        //
+        Integer a = 10;
+        Double b = 10.5;
+        String c = "string";
+        System.out.println("HashCode: " + a.hashCode());
+        System.out.println("HashCode: " + b.hashCode());
+        System.out.println("HashCode: " + c.hashCode());
     }
 
 }
