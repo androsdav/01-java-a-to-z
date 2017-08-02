@@ -26,12 +26,34 @@ public class StartUi {
         System.out.println(map);
         //
         //
-        Integer a = 10;
-        Double b = 10.5;
-        String c = "string";
-        System.out.println("HashCode: " + a.hashCode());
-        System.out.println("HashCode: " + b.hashCode());
-        System.out.println("HashCode: " + c.hashCode());
+        Byte xByte = 120;
+        Short xShort = 1245;
+        Integer xInt = 1245236;
+        Long xLong = 123456789L;
+        Float xFloat = 9.2F;
+        Double xDouble = 456.234D;
+        Character xChar = 'F';
+        Boolean xBoolean = true;
+        String xString = "string";
+
+        System.out.println("1. Byte:    " + xByte.hashCode());
+        System.out.println("2. Short:   " + xShort.hashCode());
+        System.out.println("3. Int:     " + xInt.hashCode());
+        System.out.println("4. Long:    " + xLong.hashCode());
+        System.out.println("5. Float:   " + xFloat.hashCode());
+        System.out.println("6. Double:  " + xDouble.hashCode());
+        System.out.println("7. Char:    " + xChar.hashCode());
+        System.out.println("8. Boolean: " + xBoolean.hashCode());
+        System.out.println("8. String:  " + xString.hashCode());
+
+        System.out.println("9. All:     " + xByte.hashCode() + xShort.hashCode() + xInt.hashCode()
+        + xLong.hashCode() + xFloat.hashCode() + xDouble.hashCode() + xChar.hashCode() + xBoolean.hashCode() + xString.hashCode());
+
+        System.out.println();
+        System.out.println("first:  " + first.hashCode());
+        System.out.println("second: " + second.hashCode());
+
+        //
     }
 
 }
