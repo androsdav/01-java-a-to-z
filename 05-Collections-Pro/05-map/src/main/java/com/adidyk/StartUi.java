@@ -18,8 +18,11 @@ public class StartUi {
      * @param arg nothing
      */
     public static void main(String[] arg) {
-        User first  = new User("Bob", 3, new GregorianCalendar(1992, 2, 2));
+        System.out.println();
+        User first  = new User("Bob", 2147483647, new GregorianCalendar(1992, 2, 2));
+        System.out.println();
         User second = new User("Bob", 3, new GregorianCalendar(1992, 2, 2));
+        System.out.println();
         Map<User, Object> map = new HashMap<>();
         map.put(first, new Object());
         map.put(second, new Object());
@@ -28,7 +31,7 @@ public class StartUi {
         //
         Byte xByte = 120;
         Short xShort = 1245;
-        Integer xInt = 1245236;
+        Integer xInt = 2147483647;
         Long xLong = 123456789L;
         Float xFloat = 9.2F;
         Double xDouble = 456.234D;
@@ -49,11 +52,17 @@ public class StartUi {
         System.out.println("9. All:     " + xByte.hashCode() + xShort.hashCode() + xInt.hashCode()
         + xLong.hashCode() + xFloat.hashCode() + xDouble.hashCode() + xChar.hashCode() + xBoolean.hashCode() + xString.hashCode());
 
-        System.out.println();
-        System.out.println("first:  " + first.hashCode());
-        System.out.println("second: " + second.hashCode());
+        System.out.println("first: " + first.hashCode());
 
+        // hash String
+        int hash = 0;
+            for (int i = 0; i < xString.length(); i++) {
+                hash = 31 * hash + (int) xString.charAt(i);
+            }
+        System.out.println("String hash my:  " + hash);
+        System.out.println("Test print char:  " + (int) xString.charAt(0));
         //
+        // hash
     }
 
 }
