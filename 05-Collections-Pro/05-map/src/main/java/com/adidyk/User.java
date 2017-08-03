@@ -87,11 +87,8 @@ class User {
     @Override
     public int hashCode() {
         int result = this.name != null ? this.name.hashCode() : 0;
-        System.out.println(result);
         result = 31 * result + this.children;
-        System.out.println(result);
         result = 31 * result + (this.birthday != null ? this.birthday.hashCode() : 0);
-        System.out.println(result);
         return result;
     }
 
