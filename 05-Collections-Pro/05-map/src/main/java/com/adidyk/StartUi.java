@@ -62,7 +62,15 @@ public class StartUi {
         System.out.println("String hash my:  " + hash);
         System.out.println("Test print char:  " + (int) xString.charAt(0));
         //
-        // hash
+        //
+        // Beat operation
+        System.out.println();
+        int a = 10;
+        int b = 7;
+        System.out.println("OR  | : " +  (a | b));
+        System.out.println("AND & : " +  (a & b));
+        System.out.println("XOR ^ : " +  (a ^ b));
+        System.out.println("NOT ~ : " + (a | b));
     }
 
 }
