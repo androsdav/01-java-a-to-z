@@ -70,7 +70,19 @@ public class StartUi {
         System.out.println("OR  | : " +  (a | b));
         System.out.println("AND & : " +  (a & b));
         System.out.println("XOR ^ : " +  (a ^ b));
-        System.out.println("NOT ~ : " + (a | b));
+        System.out.println("NOT ~ : " + ~(a | b));
+        System.out.println("<<    : " +  (b << 2));
+        System.out.println(">>    : " +  (a >> 1));
+        int i = 192;
+        System.out.println("i << 1 : " + (i << 1));
+        System.out.println("i << 1 : " + (i >> 1));
+        System.out.println("i << 1 : " + (i >>> 1));
+        int c = 1;
+        System.out.println("i << 29: " + (c << 29));
+        System.out.println("i << 29: " + (c << 30));
+        System.out.println("i << 29: " + (c << 31));
+        System.out.println("i << 29: " + (c << 32));
+
     }
 
 }
