@@ -83,8 +83,6 @@ public class StartUi {
         System.out.println("i << 29: " + (c << 31));
         System.out.println("i << 29: " + (c << 32));
         System.out.println("The end today");
-        System.out.println("I wont to go London");
-
     }
 
 }
