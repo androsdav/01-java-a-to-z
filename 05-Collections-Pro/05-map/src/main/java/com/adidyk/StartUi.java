@@ -67,9 +67,9 @@ public class StartUi {
         System.out.println();
         int a = 10;
         int b = 7;
-        System.out.println("OR  | : " +  (a | b));
-        System.out.println("AND & : " +  (a & b));
-        System.out.println("XOR ^ : " +  (a ^ b));
+        System.out.println("OR  | : " + a + " | " + b + " = " +  (a | b));
+        System.out.println("AND & : " + a + " & " + b + " = " +  (a & b));
+        System.out.println("XOR ^ : " + a + " ^ " + b + " = " +  (a ^ b));
         System.out.println("NOT ~ : " + ~(a | b));
         System.out.println("<<    : " +  (b << 2));
         System.out.println(">>    : " +  (a >> 1));
@@ -83,7 +83,8 @@ public class StartUi {
         System.out.println("i << 29: " + (c << 31));
         System.out.println("i << 29: " + (c << 32));
         System.out.println("The end today");
-        System.out.println("My first day coding... Goooo");
+        System.out.println();
+        System.out.println(15 % 5);
     }
 
 }
