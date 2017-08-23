@@ -93,6 +93,7 @@ public class StartUi {
         System.out.println(int1.hashCode());
         System.out.println(int2.hashCode());
 
+        System.out.println();
         System.out.println(first.hashCode());
         System.out.println(second.hashCode());
     }
