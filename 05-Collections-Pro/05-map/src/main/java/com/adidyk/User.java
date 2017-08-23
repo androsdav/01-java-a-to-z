@@ -16,6 +16,11 @@ class User {
     private String name;
 
     /**
+     * name - name user.
+     */
+    private String secondName;
+
+    /**
      * children - number of children for the user.
      */
     private int children;
@@ -30,8 +35,9 @@ class User {
      * @param children number of children for the user.
      * @param birthday user birthday.
      **/
-    User(String name, int children, Calendar birthday) {
+    User(String name, String secondName, int children, Calendar birthday) {
         this.name = name;
+        this.secondName = secondName;
         this.children = children;
         this.birthday = birthday;
     }
