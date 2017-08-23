@@ -96,6 +96,9 @@ public class StartUi {
         System.out.println();
         System.out.println(first.hashCode());
         System.out.println(second.hashCode());
+
+
+
     }
 
 }
