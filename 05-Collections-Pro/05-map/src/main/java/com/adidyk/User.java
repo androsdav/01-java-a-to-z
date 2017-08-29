@@ -3,7 +3,7 @@ package com.adidyk;
 import java.util.Calendar;
 
 /**
- * Class USer for create user (object) with params: name, children and birthday.
+ * Class User for create user (object) with params: name, children and birthday.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 21.07.2017.
  * @version 1.0.
@@ -84,19 +84,19 @@ class User {
     /**
      * @return int result - hashCode for user.
      **/
-  /*  @Override
+    @Override
     public int hashCode() {
         int result = this.name != null ? this.name.hashCode() : 0;
         result = 31 * result + this.children;
         result = 31 * result + (this.birthday != null ? this.birthday.hashCode() : 0);
         return result;
     }
-*/
+
     /**
      * @return boolean result - return "true" if name and number of children and birthday
      * users is same, and return "false" if all params users isn`t same.
      **/
-  /*  @Override
+    @Override
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -106,26 +106,6 @@ class User {
         }
         User user = (User) obj;
         return this.name.equals(user.name) && this.children == user.children && this.birthday.equals(user.birthday);
-    }*/
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-
-        User user = (User) obj;
-
-        if (children != user.children) return false;
-        if (!name.equals(user.name)) return false;
-        return birthday.equals(user.birthday);
-
     }
 
-    @Override
-    public int hashCode() {
-        int result = name.hashCode();
-        result = 31 * result + children;
-        result = 31 * result + birthday.hashCode();
-        return result;
-    }
 }

@@ -41,7 +41,7 @@ public class UserTest {
      * setBirthdayTest - tests method "setBirthday" class "User".
      */
     @Test
-   public void setBirthdayTest() {
+    public void setBirthdayTest() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         this.user.setBirthday(new GregorianCalendar(2000, 7, 3));
         assertThat("03.08.2000", is(sdf.format(this.user.getBirthday().getTime())));
