@@ -10,26 +10,91 @@ import java.util.Iterator;
  * @param <K> the type of keys maintained by this map
  * @param <V> the type of mapped values
  */
-public class SimpleHashMap<K,V> implements SimpleMap<K, V> {
+public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
 
+    /**
+     *  @param table its array
+     */
+    private Object[] table;
 
+    /**
+     * its constructor.
+     */
+    SimpleHashMap() {
+        this.table = new Object[12];
+    }
+
+    /**
+     * @param key its class K.
+     * @param value its class V.
+     * @return true or false.
+     */
     @Override
     public boolean put(K key, V value) {
         return false;
     }
 
+    /**
+     * @param key its class K.
+     * @return V its class.
+     */
     @Override
     public V get(K key) {
         return null;
     }
 
+    /**
+     * @param key its class K.
+     * @return V its class.
+     */
     @Override
     public boolean remove(K key) {
         return false;
     }
 
+    /**
+     * @return V its class.
+     */
     @Override
     public Iterator<K> iterator() {
         return null;
     }
+
+    /**
+     * its class Node.
+     * @param <K> the type of keys maintained by this map
+     * @param <V> the type of mapped values
+     */
+    private static class Node<K, V> {
+
+        /**
+         * @param hash
+         */
+        private int hash;
+
+        /**
+         * @param key
+         */
+        private K key;
+
+        /**
+         * @param value
+         */
+        private V value;
+
+        /**
+         * its constructor.
+         * @param hash key.
+         * @param key key.
+         * @param value key.
+         */
+        Node(int hash, K key, V value) {
+            this.hash = hash;
+            this.key = key;
+            this.value = value;
+        }
+
+
+    }
+
 }
