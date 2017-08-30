@@ -96,8 +96,17 @@ public class StartUi {
         System.out.println();
         System.out.println(first.hashCode());
         System.out.println(second.hashCode());
+        System.out.println("HZZZZ");
+        int h, h1;
+        h = first.hashCode();
+        b = h >>> 16;
+        h1 = h ^ b;
+        System.out.println("Its may: " + h1);
+        int hTemp = (first.hashCode()) ^ (first.hashCode() >>> 16);
+        System.out.println("Its java: " + hTemp);
 
-
+        System.out.println(10 & 7);
+        System.out.println(7 & 10);
 
     }
 

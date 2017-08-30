@@ -15,13 +15,19 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
     /**
      *  @param table its array
      */
-    private Object[] table;
+    private Node<K, V>[] table;
+
+    /**
+     * @param size size
+     */
+    private int size = 12;
 
     /**
      * its constructor.
      */
     SimpleHashMap() {
-        this.table = new Object[12];
+        this.table = (Node<K, V>[]) new Node[12];
+        Node<K,V>[] newTab = (Node<K,V>[])new Node[this.size];
     }
 
     /**
@@ -31,7 +37,37 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
      */
     @Override
     public boolean put(K key, V value) {
+        int hash = this.hash(key);
+        int bucket = this.bucket(hash);
+        if (this.table[bucket] != null) {
+            Node oldNode = this.table[bucket];
+            Node<K, V> newNode = new Node<>(hash, key, value, oldNode);
+        }
+        //Node<K, V> newNode = new Node<>(hash, key, value);
+        //this.table[bucket] = newNode;
         return false;
+    }
+
+    /**
+     * @param key key.
+     *  @return hash code.
+     */
+    private int hash(K key) {
+        int h;
+        if (key == null) {
+            h = 0;
+        } else {
+            h = key.hashCode() ^ (key.hashCode() >>> 16);
+        }
+        return h;
+    }
+
+    /**
+     * @param hash hash.
+     * @return bucket
+     */
+    private int bucket(int hash) {
+        return hash & (this.table.length - 1);
     }
 
     /**
@@ -83,15 +119,22 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
         private V value;
 
         /**
+         * @param next
+         */
+        private Node<K, V> next;
+
+        /**
          * its constructor.
          * @param hash key.
          * @param key key.
          * @param value key.
+         * @param next next.
          */
-        Node(int hash, K key, V value) {
+        Node(int hash, K key, V value, Node<K, V> next) {
             this.hash = hash;
             this.key = key;
             this.value = value;
+            this.next = next;
         }
 
 
