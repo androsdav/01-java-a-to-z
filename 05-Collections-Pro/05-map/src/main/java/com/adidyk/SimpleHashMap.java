@@ -39,9 +39,20 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
         int hash = this.hash(key);
         int bucket = this.bucket(hash);
         if (this.table[bucket] != null) {
-            Node<K, V> oldNode = this.table[bucket];
-            Node<K, V> newNode = new Node<>(hash, key, value, oldNode);
-            this.table[bucket] = newNode;
+            boolean keyDouble = false;
+            Node<K, V> firstNode = this.table[bucket];
+            for (Node<K, V> item = firstNode; item != null; item = item.next) {
+                if (item.hash == hash && item.key.equals(key)) {
+                    item.value = value;
+                    keyDouble = true;
+                    break;
+                }
+            }
+            if (!keyDouble) {
+                Node<K, V> oldNode = this.table[bucket];
+                Node<K, V> newNode = new Node<>(hash, key, value, oldNode);
+                this.table[bucket] = newNode;
+            }
         } else {
             this.table[bucket] = new Node<>(hash, key, value, null);
         }
@@ -98,7 +109,7 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
     /**
      *
      * @param index index
-     * @return Noe<K, V>
+     * @return Noe<K,V>
      */
     public Node<K, V> getIndex(int index) {
         return this.table[index];
@@ -151,6 +162,13 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
             this.key = key;
             this.value = value;
             this.next = next;
+        }
+
+        /**
+         * @param value value.
+         */
+        public void setValue(V value) {
+            this.value = value;
         }
 
         /**
