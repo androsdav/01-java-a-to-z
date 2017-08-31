@@ -154,12 +154,12 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
         }
 
         /**
-         *
          * @return all param object for class Node
          */
         @Override
         public String toString() {
-            return String.format("%s%s%s%s%s%s%s%s", "Node{", "hash=", this.hash, ", key=", this.key, ", value=", this.value, "}");
+            return String.format("%s%s%s%s%s%s%s%s%s%s", "Node{", "hash=", this.hash, ", key=", this.key,
+                    ", value=", this.value, ", next=", next, "}");
         }
     }
 

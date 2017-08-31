@@ -17,15 +17,17 @@ public class StartUi {
      */
     public static void main(String[] arg) {
 
-        User first  = new User("Bill", 3, new GregorianCalendar(1992, 2, 2));
-        User second = new User("Bob", 3, new GregorianCalendar(1992, 2, 2));
+        User bill  = new User("Bill", 3, new GregorianCalendar(1982, 2, 2));
+        User bob = new User("Bob", 3, new GregorianCalendar(1922, 4, 6));
+        User dilan = new User("Dilan", 4, new GregorianCalendar(1980, 1, 1));
 
         SimpleHashMap<User, String> map = new SimpleHashMap<>();
-        map.put(first, "first");
-        map.put(second, "second");
+        map.put(bill, "Bill");
+        map.put(bob, "Bob");
+        map.put(dilan, "Dilan");
 
         for (int index = 0; index < map.getSize(); index++) {
-            System.out.println(map.getIndex(index));
+            System.out.println("[" + index  + "]  " + map.getIndex(index));
         }
 
     }
