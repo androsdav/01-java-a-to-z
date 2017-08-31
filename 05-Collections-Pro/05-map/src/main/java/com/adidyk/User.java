@@ -1,5 +1,6 @@
 package com.adidyk;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -108,4 +109,14 @@ class User {
         return this.name.equals(user.name) && this.children == user.children && this.birthday.equals(user.birthday);
     }
 
+    /**
+     *
+     * @return all param for User
+     */
+    @Override
+    public String toString() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        return String.format("%s%s%s%s%s%s%s%s", "User{", "name=", name, ", children=", children, ", birthday=",
+                sdf.format(this.getBirthday().getTime()), '}');
+    }
 }

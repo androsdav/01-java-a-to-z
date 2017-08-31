@@ -20,14 +20,13 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
     /**
      * @param size size
      */
-    private int size = 12;
+    private int size;
 
     /**
      * its constructor.
      */
     SimpleHashMap() {
         this.table = (Node<K, V>[]) new Node[12];
-        Node<K,V>[] newTab = (Node<K,V>[])new Node[this.size];
     }
 
     /**
@@ -40,11 +39,12 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
         int hash = this.hash(key);
         int bucket = this.bucket(hash);
         if (this.table[bucket] != null) {
-            Node oldNode = this.table[bucket];
+            Node<K, V> oldNode = this.table[bucket];
             Node<K, V> newNode = new Node<>(hash, key, value, oldNode);
+            this.table[bucket] = newNode;
+        } else {
+            this.table[bucket] = new Node<>(hash, key, value, null);
         }
-        //Node<K, V> newNode = new Node<>(hash, key, value);
-        //this.table[bucket] = newNode;
         return false;
     }
 
@@ -53,13 +53,13 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
      *  @return hash code.
      */
     private int hash(K key) {
-        int h;
+        int hash;
         if (key == null) {
-            h = 0;
+            hash = 0;
         } else {
-            h = key.hashCode() ^ (key.hashCode() >>> 16);
+            hash = key.hashCode() ^ (key.hashCode() >>> 16);
         }
-        return h;
+        return hash;
     }
 
     /**
@@ -86,6 +86,22 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
     @Override
     public boolean remove(K key) {
         return false;
+    }
+
+    /**
+     * @return size table
+     */
+    public int getSize() {
+        return this.table.length;
+    }
+
+    /**
+     *
+     * @param index index
+     * @return Noe<K, V>
+     */
+    public Node<K, V> getIndex(int index) {
+        return this.table[index];
     }
 
     /**
@@ -137,7 +153,14 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
             this.next = next;
         }
 
-
+        /**
+         *
+         * @return all param object for class Node
+         */
+        @Override
+        public String toString() {
+            return String.format("%s%s%s%s%s%s%s%s", "Node{", "hash=", this.hash, ", key=", this.key, ", value=", this.value, "}");
+        }
     }
 
 }
