@@ -30,16 +30,28 @@ public class StartUi {
         map.put(bob, "Bob");
         map.put(dilan, "Dilan");
         map.put(amanda, "Amanda");
-        map.put(donald, "Amanda");
+        map.put(donald, "Donald");
         map.put(adolf, "Adolf");
         map.put(brendon, "Brendon");
+
         map.put(adolf, "!!!!!!! NEW Adolf !!!!!!!");
         map.put(brendon, "BRENDON");
 
-        for (int index = 0; index < map.getSize(); index++) {
+        System.out.println();
+        System.out.println("1. All Node in HashMap: ");
+        for (int index = 0; index < map.size(); index++) {
             System.out.println("[" + index  + "]  " + map.getIndex(index));
         }
 
+        System.out.println();
+        System.out.println("2. Get all Node: ");
+        System.out.println(map.get(bill));
+        System.out.println(map.get(bob));
+        System.out.println(map.get(dilan));
+        System.out.println(map.get(amanda));
+        System.out.println(map.get(donald));
+        System.out.println(map.get(adolf));
+        System.out.println(map.get(brendon));
     }
 
 }

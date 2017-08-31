@@ -35,28 +35,64 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
      * @return true or false.
      */
     @Override
-    public boolean put(K key, V value) {
+    public V put(K key, V value) {
+        V result = null;
         int hash = this.hash(key);
         int bucket = this.bucket(hash);
         if (this.table[bucket] != null) {
             boolean keyDouble = false;
+            /*
+            Node<K, V> firstNode = this.table[bucket];
+            Node<K, V> item = this.searchKey(firstNode, key, hash);
+            if (item != null) {
+                result = item.value;
+                item.value = value;
+                //keyDouble = true;
+            } else {
+                Node<K, V> oldNode = this.table[bucket];
+                Node<K, V> newNode = new Node<>(hash, key, value, oldNode);
+                this.table[bucket] = newNode;
+            }
+            */
             Node<K, V> firstNode = this.table[bucket];
             for (Node<K, V> item = firstNode; item != null; item = item.next) {
-                if (item.hash == hash && item.key.equals(key)) {
+                if (item.hash == hash && key.equals(item.key)) {
+                    result = item.value;
                     item.value = value;
                     keyDouble = true;
                     break;
                 }
             }
+
+
             if (!keyDouble) {
                 Node<K, V> oldNode = this.table[bucket];
                 Node<K, V> newNode = new Node<>(hash, key, value, oldNode);
                 this.table[bucket] = newNode;
             }
+
         } else {
             this.table[bucket] = new Node<>(hash, key, value, null);
         }
-        return false;
+        this.size++;
+        return result;
+    }
+
+    /**
+     * @param firstNode ist node
+     * @param key key
+     * @param hash hash
+     * @return key
+     */
+    private Node<K, V> searchKey(Node<K, V> firstNode, K key, int hash) {
+        Node<K, V> result = null;
+        for (Node<K, V> item = firstNode; item != null; item = item.next) {
+            if (item.hash == hash && key.equals(item.key)) {
+                result = item;
+                break;
+            }
+        }
+        return result;
     }
 
     /**
@@ -87,7 +123,22 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
      */
     @Override
     public V get(K key) {
-        return null;
+        V result = null;
+        boolean resultTrue = false;
+        for (Node<K, V> aTable : this.table) {
+            if (aTable != null) {
+                for (Node<K, V> item = aTable; item != null; item = item.next) {
+                    if (item.hash == this.hash(key) && key.equals(item.key)) {
+                        result = item.value;
+                        resultTrue = true;
+                    }
+                }
+            }
+            if (resultTrue) {
+                break;
+            }
+        }
+        return result;
     }
 
     /**
@@ -102,8 +153,8 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
     /**
      * @return size table
      */
-    public int getSize() {
-        return this.table.length;
+    public int size() {
+        return this.size;
     }
 
     /**

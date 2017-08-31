@@ -15,7 +15,7 @@ public interface SimpleMap<K, V> extends Iterable<K> {
      * @param value its class V.
      * @return true or false.
      */
-    boolean put(K key, V value);
+    V put(K key, V value);
 
     /**
      * @param key its class K.
