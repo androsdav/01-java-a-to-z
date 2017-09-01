@@ -24,6 +24,9 @@ public class StartUi {
         User amanda = new User("Amanda", 10, new GregorianCalendar(2000, 6, 6));
         User adolf = new User("Adolf", 101, new GregorianCalendar(1945, 4, 3));
         User brendon = new User("Brendon", 111, new GregorianCalendar(1933, 4, 7));
+        User ken = new User("Ken", 111, new GregorianCalendar(1933, 4, 7));
+        User kelly = new User("Kelly", 111, new GregorianCalendar(1933, 4, 7));
+        User will = new User("Will", 111, new GregorianCalendar(1933, 4, 7));
 
         SimpleHashMap<User, String> map = new SimpleHashMap<>();
         map.put(bill, "Bill");
@@ -33,9 +36,12 @@ public class StartUi {
         map.put(donald, "Donald");
         map.put(adolf, "Adolf");
         map.put(brendon, "Brendon");
+        map.put(ken, "Ken");
+        map.put(kelly, "Kelly");
+        map.put(will, "Will");
 
-        map.put(adolf, "!!!!!!! NEW Adolf !!!!!!!");
-        map.put(brendon, "BRENDON");
+        System.out.println(map.put(adolf, "!!!!!!! NEW Adolf !!!!!!!"));
+        System.out.println(map.put(brendon, "BRENDON"));
 
         System.out.println();
         System.out.println("1. All Node in HashMap: ");
