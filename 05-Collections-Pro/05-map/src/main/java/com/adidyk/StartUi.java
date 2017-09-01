@@ -16,7 +16,6 @@ public class StartUi {
      * @param arg nothing
      */
     public static void main(String[] arg) {
-
         User bill  = new User("Bill", 3, new GregorianCalendar(1982, 2, 2));
         User bob = new User("Bob", 3, new GregorianCalendar(1922, 4, 6));
         User dilan = new User("Dilan", 4, new GregorianCalendar(1980, 1, 1));
@@ -27,7 +26,7 @@ public class StartUi {
         User ken = new User("Ken", 111, new GregorianCalendar(1933, 4, 7));
         User kelly = new User("Kelly", 111, new GregorianCalendar(1933, 4, 7));
         User will = new User("Will", 111, new GregorianCalendar(1933, 4, 7));
-
+        User don = new User("Don", 111, new GregorianCalendar(1933, 4, 7));
         SimpleHashMap<User, String> map = new SimpleHashMap<>();
         map.put(bill, "Bill");
         map.put(bob, "Bob");
@@ -39,18 +38,31 @@ public class StartUi {
         map.put(ken, "Ken");
         map.put(kelly, "Kelly");
         map.put(will, "Will");
-
-        System.out.println(map.put(adolf, "!!!!!!! NEW Adolf !!!!!!!"));
-        System.out.println(map.put(brendon, "BRENDON"));
-
+        map.put(don, "Don");
+        //System.out.println(map.put(adolf, "!!!!!!! NEW Adolf !!!!!!!"));
+        //System.out.println(map.put(brendon, "BRENDON"));
         System.out.println();
         System.out.println("1. All Node in HashMap: ");
         for (int index = 0; index < map.size(); index++) {
             System.out.println("[" + index  + "]  " + map.getIndex(index));
         }
-
+        map.remove(don);
+        map.remove(amanda);
+        map.remove(ken);
+        //map.remove(bob);
+        //map.remove(dilan);
+        //map.remove(amanda);
+        //map.remove(donald);
+        System.out.println();
+        System.out.println("1. All Node in HashMap: ");
+        for (int index = 0; index < map.size(); index++) {
+            System.out.println("[" + index  + "]  " + map.getIndex(index));
+        }
         System.out.println();
         System.out.println("2. Get all Node: ");
+        System.out.println(map.get(ken));
+        System.out.println(map.get(kelly));
+        System.out.println(map.get(will));
         System.out.println(map.get(bill));
         System.out.println(map.get(bob));
         System.out.println(map.get(dilan));

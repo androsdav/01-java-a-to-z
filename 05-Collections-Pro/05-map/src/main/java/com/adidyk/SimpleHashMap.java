@@ -47,11 +47,12 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
                 item.value = value;
             } else {
                 Node<K, V> oldNode = this.table[bucket];
-                Node<K, V> newNode = new Node<>(hash, key, value, oldNode);
+                Node<K, V> newNode = new Node<>(hash, key, null, value, oldNode);
+                oldNode.prev = newNode;
                 this.table[bucket] = newNode;
             }
         } else {
-            Node<K, V> newNode = new Node<>(hash, key, value, null);
+            Node<K, V> newNode = new Node<>(hash, key, null, value, null);
             this.table[bucket] = newNode;
         }
         this.size++;
@@ -65,15 +66,15 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
     @Override
     public V get(K key) {
         V result = null;
-        for (Node<K, V> aTable : this.table) {
-            if (aTable != null) {
-                Node<K, V> item = this.searchKey(aTable, key);
+        int hash = this.hash(key);
+        int bucket = this.bucket(hash);
+            if (this.table[bucket] != null) {
+                Node<K, V> firstNode = this.table[bucket];
+                Node<K, V> item = this.searchKey(firstNode, key);
                 if (item != null) {
                     result = item.value;
-                    break;
                 }
             }
-        }
         return result;
     }
 
@@ -84,16 +85,30 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
     @Override
     public V remove(K key) {
         V result = null;
-        for (Node<K, V> aTable : this.table) {
-            if (aTable != null) {
-                Node<K, V> item = this.searchKey(aTable, key);
+        int hash = this.hash(key);
+        int bucket = this.bucket(hash);
+            if (this.table[bucket] != null) {
+                Node<K, V> firstNode = this.table[bucket];
+                Node<K, V> item = this.searchKey(firstNode, key);
                 if (item != null) {
-
+                    result = item.value;
+                    if (item.prev == null) { // first element in LinkedList
+                        if (item.next == null) {
+                            this.table[bucket] = null;
+                        } else {
+                            this.table[bucket] = item.next;
+                        }
+                    } else if (item.next == null) {
+                        Node<K, V> prevNode = item.prev;
+                        prevNode.next = null;
+                    } else {
+                        Node<K, V> prevNode = item.prev;
+                        Node<K, V> nextNode = item.next;
+                        prevNode.next = nextNode;
+                        nextNode.prev = prevNode;
+                    }
                 }
-
             }
-
-        }
         return result;
     }
 
@@ -107,7 +122,7 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
     /**
      *
      * @param index index
-     * @return Noe<K,V>
+     * @return Node<K,V>
      */
     public Node<K, V> getIndex(int index) {
         return this.table[index];
@@ -180,6 +195,11 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
         private K key;
 
         /**
+         * @param prev
+         */
+        private Node<K, V> prev;
+
+        /**
          * @param value
          */
         private V value;
@@ -193,12 +213,14 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
          * its constructor.
          * @param hash key.
          * @param key key.
+         * @param prev next.
          * @param value key.
          * @param next next.
          */
-        Node(int hash, K key, V value, Node<K, V> next) {
+        Node(int hash, K key, Node<K, V> prev, V value, Node<K, V> next) {
             this.hash = hash;
             this.key = key;
+            this.prev = prev;
             this.value = value;
             this.next = next;
         }
