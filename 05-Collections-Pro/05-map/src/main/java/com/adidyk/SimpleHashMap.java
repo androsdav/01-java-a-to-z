@@ -59,6 +59,62 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
     }
 
     /**
+     * @param key its class K.
+     * @return V its class.
+     */
+    @Override
+    public V get(K key) {
+        V result = null;
+        for (Node<K, V> aTable : this.table) {
+            if (aTable != null) {
+                Node<K, V> item = this.searchKey(aTable, key);
+                if (item != null) {
+                    result = item.value;
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * @param key its class K.
+     * @return V its class.
+     */
+    @Override
+    public V remove(K key) {
+        V result = null;
+        for (Node<K, V> aTable : this.table) {
+            if (aTable != null) {
+                Node<K, V> item = this.searchKey(aTable, key);
+                if (item != null) {
+
+                }
+
+            }
+
+        }
+        return result;
+    }
+
+    /**
+     * @return size table
+     */
+    public int size() {
+        return this.table.length;
+    }
+
+    /**
+     *
+     * @param index index
+     * @return Noe<K,V>
+     */
+    public Node<K, V> getIndex(int index) {
+        return this.table[index];
+    }
+
+    /* ---------------- Private operations -------------- */
+    /**
      * @param firstNode ist node
      * @param key key
      * @return key
@@ -96,61 +152,7 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
         return hash & (this.table.length - 1);
     }
 
-    /**
-     * @param key its class K.
-     * @return V its class.
-     */
-    @Override
-    public V get(K key) {
-        V result = null;
-        boolean resultTrue = false;
-        for (int bucket = 0; bucket < this.table.length; bucket++) {
-            if (this.table[bucket] != null) {
-                Node<K, V> item = this.searchKey(this.table[bucket], key);
-            }
-            Node<V, K> item =
-
-            /*
-            if (aTable != null) {
-                for (Node<K, V> item = aTable; item != null; item = item.next) {
-                    if (item.hash == this.hash(key) && key.equals(item.key)) {
-                        result = item.value;
-                        resultTrue = true;
-                    }
-                }
-            }
-            if (resultTrue) {
-                break;
-            }
-            */
-        }
-        return result;
-    }
-
-    /**
-     * @param key its class K.
-     * @return V its class.
-     */
-    @Override
-    public boolean remove(K key) {
-        return false;
-    }
-
-    /**
-     * @return size table
-     */
-    public int size() {
-        return this.table.length;
-    }
-
-    /**
-     *
-     * @param index index
-     * @return Noe<K,V>
-     */
-    public Node<K, V> getIndex(int index) {
-        return this.table[index];
-    }
+    /* ---------------- Iterator operations -------------- */
 
     /**
      * @return V its class.

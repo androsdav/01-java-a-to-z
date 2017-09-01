@@ -27,6 +27,6 @@ public interface SimpleMap<K, V> extends Iterable<K> {
      * @param key its class K.
      * @return V its class.
      */
-    boolean remove(K key);
+    V remove(K key);
 
 }
