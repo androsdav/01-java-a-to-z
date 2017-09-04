@@ -1,6 +1,11 @@
 package com.adidyk;
 
+
 import java.util.GregorianCalendar;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * Class "StartUi" for create Map and puts key = user and value = new Object().
@@ -73,6 +78,17 @@ public class StartUi {
         System.out.println(map.get(donald));
         System.out.println(map.get(adolf));
         System.out.println(map.get(brendon));
+        HashMap<User, String> map1 = new HashMap<>();
+        map1.put(bob, "BOB");
+        map1.put(bill, "BILL");
+        map1.put(adolf, "ADOLF");
+        map1.put(amanda, "AMANDA");
+        Set set = map1.entrySet();
+        Iterator iter = set.iterator();
+        while (iter.hasNext()) {
+            Map.Entry me = (Map.Entry) iter.next();
+            System.out.println("key: " + me.getKey() + " value: " + me.getValue());
+        }
     }
 
 }

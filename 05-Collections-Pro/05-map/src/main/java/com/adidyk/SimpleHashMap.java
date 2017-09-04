@@ -189,6 +189,9 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
          */
         private Node<K, V>[] table;
 
+        /**
+         * @param index index
+         */
         private int index = 0;
 
         /**
@@ -201,7 +204,7 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
         }
 
         /**
-         * nothing
+         * nothing.
          */
         private void evenNext() {
             if (this.index < this.table.length) {
@@ -215,7 +218,7 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
         }
 
         /**
-         * @return end
+         * @return end.
          */
         @Override
         public boolean hasNext() {
@@ -229,12 +232,14 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
         @Override
         public K next() {
             this.evenNext();
-            return this.table[this.index++];
+            return null;
         }
 
+        /**
+         * nothing.
+         */
         @Override
         public void remove() {
-
         }
     }
 
