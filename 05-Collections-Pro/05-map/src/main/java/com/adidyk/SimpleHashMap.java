@@ -48,8 +48,8 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
             } else {
                 Node<K, V> oldNode = this.table[bucket];
                 Node<K, V> newNode = new Node<>(hash, key, null, value, oldNode);
-                oldNode.prev = newNode;
                 this.table[bucket] = newNode;
+                oldNode.prev = newNode;
             }
         } else {
             Node<K, V> newNode = new Node<>(hash, key, null, value, null);
@@ -96,7 +96,9 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
                         if (item.next == null) {
                             this.table[bucket] = null;
                         } else {
-                            this.table[bucket] = item.next;
+                            Node<K, V> node = item.next;
+                            node.prev = null;
+                            this.table[bucket] = node;
                         }
                     } else if (item.next == null) {
                         Node<K, V> prevNode = item.prev;
@@ -174,7 +176,66 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
      */
     @Override
     public Iterator<K> iterator() {
-        return null;
+        return new SimpleIterator(this.table);
+    }
+
+    /**
+     * class Iterator.
+     */
+    private class SimpleIterator implements Iterator<K> {
+
+        /**
+         * @param table table
+         */
+        private Node<K, V>[] table;
+
+        private int index = 0;
+
+        /**
+         *
+         * @param table its table
+         */
+        SimpleIterator(Node<K, V>[] table) {
+            this.table = table;
+
+        }
+
+        /**
+         * nothing
+         */
+        private void evenNext() {
+            if (this.index < this.table.length) {
+                while (this.table[this.index] == null) {
+                    this.index++;
+                    if (this.index == this.table.length) {
+                        break;
+                    }
+                }
+            }
+        }
+
+        /**
+         * @return end
+         */
+        @Override
+        public boolean hasNext() {
+            this.evenNext();
+            return false;
+        }
+
+        /**
+         * @return next element.
+         */
+        @Override
+        public K next() {
+            this.evenNext();
+            return this.table[this.index++];
+        }
+
+        @Override
+        public void remove() {
+
+        }
     }
 
     /**
@@ -223,13 +284,6 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
             this.prev = prev;
             this.value = value;
             this.next = next;
-        }
-
-        /**
-         * @param value value.
-         */
-        public void setValue(V value) {
-            this.value = value;
         }
 
         /**

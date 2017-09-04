@@ -46,9 +46,12 @@ public class StartUi {
         for (int index = 0; index < map.size(); index++) {
             System.out.println("[" + index  + "]  " + map.getIndex(index));
         }
+        //map.remove(don);
+        map.remove(kelly);
+        map.remove(bob);
         map.remove(don);
-        map.remove(amanda);
-        map.remove(ken);
+        //map.remove(amanda);
+        //map.remove(ken);
         //map.remove(bob);
         //map.remove(dilan);
         //map.remove(amanda);
