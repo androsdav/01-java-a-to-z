@@ -175,14 +175,14 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
      * @return V its class.
      */
     @Override
-    public Iterator<K> iterator() {
+    public Iterator iterator() {
         return new SimpleIterator(this.table);
     }
 
     /**
      * class Iterator.
      */
-    private class SimpleIterator implements Iterator<K> {
+    private class SimpleIterator implements Iterator<Node<K, V>> {
 
         /**
          * @param table table
@@ -195,18 +195,29 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
         private int index = 0;
 
         /**
+         * @param position position
+         */
+        private int position = 0;
+
+        /**
+         * @param result result
+         */
+        private Node<K, V> result;
+
+        private Node<K, V> nextNode;
+
+        /**
          *
          * @param table its table
          */
         SimpleIterator(Node<K, V>[] table) {
             this.table = table;
-
         }
 
         /**
          * nothing.
          */
-        private void evenNext() {
+        private void arrayNext() {
             if (this.index < this.table.length) {
                 while (this.table[this.index] == null) {
                     this.index++;
@@ -214,6 +225,16 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
                         break;
                     }
                 }
+
+                this.result =
+
+                Node<K, V> firstNode = this.table[this.index];
+                if (this.table[this.index].next == null) {
+                    this.result = this.table[this.index];
+                } else {
+
+                }
+
             }
         }
 
@@ -222,17 +243,17 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
          */
         @Override
         public boolean hasNext() {
-            this.evenNext();
-            return false;
+            this.arrayNext();
+            return this.index < this.table.length;
         }
 
         /**
          * @return next element.
          */
         @Override
-        public K next() {
-            this.evenNext();
-            return null;
+        public Node<K, V> next() {
+            this.arrayNext();
+            return this.result;
         }
 
         /**
@@ -296,8 +317,11 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
          */
         @Override
         public String toString() {
+            /*
             return String.format("%s%s%s%s%s%s%s%s%s%s", "Node{", "hash=", this.hash, ", key=", this.key,
                     ", value=", this.value, ", next=", next, "}");
+                    */
+            return String.format("%s%s%s%s", "key: ", this.key, "value: ", this.value);
         }
     }
 

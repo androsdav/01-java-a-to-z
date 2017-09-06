@@ -2,10 +2,7 @@ package com.adidyk;
 
 
 import java.util.GregorianCalendar;
-import java.util.Map;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Set;
 
 /**
  * Class "StartUi" for create Map and puts key = user and value = new Object().
@@ -52,9 +49,9 @@ public class StartUi {
             System.out.println("[" + index  + "]  " + map.getIndex(index));
         }
         //map.remove(don);
-        map.remove(kelly);
-        map.remove(bob);
-        map.remove(don);
+        //map.remove(kelly);
+        //map.remove(bob);
+        //map.remove(don);
         //map.remove(amanda);
         //map.remove(ken);
         //map.remove(bob);
@@ -78,6 +75,24 @@ public class StartUi {
         System.out.println(map.get(donald));
         System.out.println(map.get(adolf));
         System.out.println(map.get(brendon));
+        System.out.println();
+        Iterator it = map.iterator();
+        System.out.println();
+        System.out.println(it.next());
+        System.out.println(it.next());
+        System.out.println(it.next());
+        System.out.println(it.hasNext());
+        System.out.println(it.hasNext());
+        System.out.println(it.hasNext());
+        System.out.println(it.hasNext());
+        System.out.println(it.hasNext());
+        System.out.println(it.hasNext());
+        /*
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
+        */
+        /*
         HashMap<User, String> map1 = new HashMap<>();
         map1.put(bob, "BOB");
         map1.put(bill, "BILL");
@@ -89,6 +104,7 @@ public class StartUi {
             Map.Entry me = (Map.Entry) iter.next();
             System.out.println("key: " + me.getKey() + " value: " + me.getValue());
         }
+        */
     }
 
 }
