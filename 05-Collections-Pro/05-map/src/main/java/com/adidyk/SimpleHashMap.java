@@ -6,46 +6,51 @@ import java.util.Iterator;
  * Class SimpleHashMap is HashTable structure by analogy as in Java. SimpleHashMap is implemented on arrays where
  * each cell of the array can contain linked list object Node. Object of class Node has next parameters:
  *
- *  -> hash  - hash value by key;
+ * -> hash  - hash value by key;
  * -> key   - key its generic type <K>;
  * -> prev  - link on previous object of class Node;
- * -> value - value;
+ * -> value - value its generic type <V>;
  * -> next  - link on next object of class Node.
  *
  * Class SimpleHashMap have next method:
- * -> put    - adds key and value in array, where is bucket number is calculated by hash code of key;
+ * -> put    - adds key and value in array, where is bucket number is calculated from hash code of key;
  * -> get    - returns value by key;
  * -> remove - remove object of class Node by key.
+ *
+ * Class SimpleHashMap can use method for-each and method iterator.
+ * @param <K> the type of keys maintained by this map.
+ * @param <V> the type of mapped values.
  *
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 30.08.2017.
  * @version 1.0.
- * @param <K> the type of keys maintained by this map
- * @param <V> the type of mapped values
  */
 class SimpleHashMap<K, V> implements SimpleMap<K, V> {
 
     /**
-     *  @param table its array
+     *  @param table - array for object for class Node.
      */
     private Node<K, V>[] table;
 
     /**
-     * @param size size
+     * @param size - quantity of object of class Node.
      */
     private int size;
 
     /**
-     * its constructor.
+     * Constructor - sets size of array ([]table).
      */
     SimpleHashMap() {
         this.table = (Node<K, V>[]) new Node[12];
     }
 
     /**
-     * @param key its class K.
-     * @param value its class V.
-     * @return true or false.
+     * put - adds new object Node (hash, key, prev, value, next) in array where is bucket number is calculated
+     * from hash code of key and returns added value. If key already exists in the table, only value is update and
+     * returns old value.
+     * @param key - its generic type <K>.
+     * @param value - its generic type <V>.
+     * @return added value if table don`t has key, old value if table has key.
      */
     @Override
     public V put(K key, V value) {
@@ -73,6 +78,7 @@ class SimpleHashMap<K, V> implements SimpleMap<K, V> {
     }
 
     /**
+     * get - returns value by key;
      * @param key its class K.
      * @return V its class.
      */
