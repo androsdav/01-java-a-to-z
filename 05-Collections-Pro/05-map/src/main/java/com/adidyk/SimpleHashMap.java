@@ -299,7 +299,6 @@ class SimpleHashMap<K, V> implements SimpleMap<K, V> {
         }
     }
 
-
     /**
      * ------------------------------------------------------------------------------------------------------------
      * Class Node using for created object of class Node. Object of class Node has next parameters:
