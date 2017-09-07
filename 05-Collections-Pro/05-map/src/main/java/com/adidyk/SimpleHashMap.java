@@ -3,27 +3,28 @@ package com.adidyk;
 import java.util.Iterator;
 
 /**
+ * ------------------------------------------------------------------------------------------------------------
  * Class SimpleHashMap is HashTable structure by analogy as in Java. SimpleHashMap is implemented on arrays where
  * each cell of the array can contain linked list object Node. Object of class Node has next parameters:
- *
- * -> hash  - hash value by key;
+  * -> hash  - hash value by key;
  * -> key   - key its generic type <K>;
  * -> prev  - link on previous object of class Node;
  * -> value - value its generic type <V>;
  * -> next  - link on next object of class Node.
- *
+ *------------------------------------------------------------------------------------------------------------
  * Class SimpleHashMap have next method:
  * -> put    - adds key and value in array, where is bucket number is calculated from hash code of key;
  * -> get    - returns value by key;
  * -> remove - remove object of class Node by key.
- *
+ *------------------------------------------------------------------------------------------------------------
  * Class SimpleHashMap can use method for-each and method iterator.
- * @param <K> the type of keys maintained by this map.
- * @param <V> the type of mapped values.
- *
+ * @param <K> - the type of keys maintained by this map.
+ * @param <V> - the type of mapped values.
+ *------------------------------------------------------------------------------------------------------------
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 30.08.2017.
  * @version 1.0.
+ * ------------------------------------------------------------------------------------------------------------
  */
 class SimpleHashMap<K, V> implements SimpleMap<K, V> {
 
@@ -33,7 +34,7 @@ class SimpleHashMap<K, V> implements SimpleMap<K, V> {
     private Node<K, V>[] table;
 
     /**
-     * @param size - quantity of object of class Node.
+     * @param size - quantity of objects of class Node.
      */
     private int size;
 
@@ -50,7 +51,7 @@ class SimpleHashMap<K, V> implements SimpleMap<K, V> {
      * returns old value.
      * @param key - its generic type <K>.
      * @param value - its generic type <V>.
-     * @return added value if table don`t has key, old value if table has key.
+     * @return returns added value if table don`t has key, old value if table has key.
      */
     @Override
     public V put(K key, V value) {
@@ -78,9 +79,9 @@ class SimpleHashMap<K, V> implements SimpleMap<K, V> {
     }
 
     /**
-     * get - returns value by key;
-     * @param key its class K.
-     * @return V its class.
+     * get - search value by key and returns value by inputted key if key is true or returns null if key is false.
+     * @param key - its generic type <K>.
+     * @return returns value by inputted key if key is true or returns null if key is false.
      */
     @Override
     public V get(K key) {
@@ -98,8 +99,10 @@ class SimpleHashMap<K, V> implements SimpleMap<K, V> {
     }
 
     /**
-     * @param key its class K.
-     * @return V its class.
+     * remove - search value by key and remove object for class Node if inputted key is true or returns null if
+     * inputted key is false.
+     * @param key - its generic type <K>.
+     * @return returns value by inputted key if key is true or returns null if inputted key is false.
      */
     @Override
     public V remove(K key) {
@@ -111,7 +114,7 @@ class SimpleHashMap<K, V> implements SimpleMap<K, V> {
                 Node<K, V> item = this.searchKey(firstNode, key);
                 if (item != null) {
                     result = item.value;
-                    if (item.prev == null) { // first element in LinkedList
+                    if (item.prev == null) {
                         if (item.next == null) {
                             this.table[bucket] = null;
                         } else {
@@ -134,26 +137,19 @@ class SimpleHashMap<K, V> implements SimpleMap<K, V> {
     }
 
     /**
-     * @return size table
+     * @return returns quantity of objects of class Node.
      */
-    public int size() {
-        return this.table.length;
+    int size() {
+        return this.size;
     }
 
     /**
-     *
-     * @param index index
-     * @return Node<K,V>
-     */
-    public Node<K, V> getIndex(int index) {
-        return this.table[index];
-    }
-
-    /* ---------------- Private operations -------------- */
-    /**
-     * @param firstNode ist node
-     * @param key key
-     * @return key
+     * searchKey - searches key in linked list and returns object of class Node for inputted key if inputted key
+     * is true or returns null if inputted key is false.
+     * @param firstNode - is first object of class Node in cell of array []table (bucket).
+     * @param key - its generic type <K>.
+     * @return returns object of class Node for inputted key if inputted key is true or returns null if inputted
+     * key is false.
      */
     private Node<K, V> searchKey(Node<K, V> firstNode, K key) {
         Node<K, V> result = null;
@@ -167,8 +163,9 @@ class SimpleHashMap<K, V> implements SimpleMap<K, V> {
     }
 
     /**
-     * @param key key.
-     *  @return hash code.
+     * hash - calculates hash value using hash code key, as well as "XOR" and bit right shift operators ">>>".
+     * @param key - its generic type <K>.
+     * @return returns hash value for inputted key.
      */
     private int hash(K key) {
         int hash;
@@ -181,17 +178,18 @@ class SimpleHashMap<K, V> implements SimpleMap<K, V> {
     }
 
     /**
-     * @param hash hash.
-     * @return bucket
+     * bucket - calculates cell in array ([]table) using hash value by key and size of array, as well as
+     * logical operation AND "&".
+     * @param hash - is hash calculated by key.
+     * @return returns number for bucket calculated by key.
      */
     private int bucket(int hash) {
         return hash & (this.table.length - 1);
     }
 
-    /* ---------------- Iterator operations -------------- */
 
     /**
-     * @return V its class.
+     * @return returns object of class SimpleIterator.
      */
     @Override
     public Iterator iterator() {
@@ -214,27 +212,17 @@ class SimpleHashMap<K, V> implements SimpleMap<K, V> {
         private int index = 0;
 
         /**
-         * @param position position
-         */
-        private int position = 0;
-
-        /**
          * @param result result
          */
         private Node<K, V> result;
 
         /**
-         * @param nextNode nextNode
-         */
-        private Node<K, V> nextNode;
-
-        /**
-         * @param firstNode firstNode
+         * @param node firstNode
          */
         private Node<K, V> node;
 
         /**
-         *
+         * @param listTrue true
          */
         private boolean listTrue = false;
 
@@ -247,7 +235,8 @@ class SimpleHashMap<K, V> implements SimpleMap<K, V> {
         }
 
         /**
-         * nothing.
+         * Constructor - sets next default parameters:
+         *
          */
         private void arrayNext() {
             if (!this.listTrue) {
@@ -310,37 +299,37 @@ class SimpleHashMap<K, V> implements SimpleMap<K, V> {
     private static class Node<K, V> {
 
         /**
-         * @param hash
+         * @param hash - hash value by key.
          */
         private int hash;
 
         /**
-         * @param key
+         * @param key - key is generic type <K>;
          */
         private K key;
 
         /**
-         * @param prev
+         * @param prev - link on previous object of class Node;
          */
         private Node<K, V> prev;
 
         /**
-         * @param value
+         * @param value - value is generic type <V>;
          */
         private V value;
 
         /**
-         * @param next
+         * @param next link on next object of class Node.
          */
         private Node<K, V> next;
 
         /**
-         * its constructor.
-         * @param hash key.
-         * @param key key.
-         * @param prev next.
-         * @param value key.
-         * @param next next.
+         * Constructor  - sets next default parameters:
+         * @param hash  - hash value by key;
+         * @param key   - key its generic type <K>;
+         * @param prev  - link on previous object of class Node;
+         * @param value - value is generic type <V>;
+         * @param next  - link on next object of class Node..
          */
         Node(int hash, K key, Node<K, V> prev, V value, Node<K, V> next) {
             this.hash = hash;

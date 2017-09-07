@@ -42,11 +42,13 @@ public class StartUi {
         map.put(don, "Don");
         //System.out.println(map.put(adolf, "!!!!!!! NEW Adolf !!!!!!!"));
         //System.out.println(map.put(brendon, "BRENDON"));
+       /*
         System.out.println();
         System.out.println("1. All Node in HashMap: ");
         for (int index = 0; index < map.size(); index++) {
             System.out.println("[" + index  + "]  " + map.getIndex(index));
         }
+        */
         //map.remove(don);
         //map.remove(kelly);
         //map.remove(bob);
@@ -57,11 +59,13 @@ public class StartUi {
         //map.remove(dilan);
         //map.remove(amanda);
         //map.remove(donald);
+        /*
         System.out.println();
         System.out.println("1. All Node in HashMap: ");
         for (int index = 0; index < map.size(); index++) {
             System.out.println("[" + index  + "]  " + map.getIndex(index));
         }
+        */
         System.out.println();
         System.out.println("2. Get all Node: ");
         System.out.println(map.get(ken));
