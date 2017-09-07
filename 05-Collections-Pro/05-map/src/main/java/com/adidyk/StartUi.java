@@ -101,6 +101,7 @@ public class StartUi {
         for (Object aMap : map) {
             System.out.println(aMap);
         }
+        System.out.println(map.size());
         /*
         HashMap<User, String> map1 = new HashMap<>();
         map1.put(bob, "BOB");
