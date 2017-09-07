@@ -3,14 +3,27 @@ package com.adidyk;
 import java.util.Iterator;
 
 /**
- * Class SimpleHashMap for create structure HashTable by data key and value.
+ * Class SimpleHashMap is HashTable structure by analogy as in Java. SimpleHashMap is implemented on arrays where
+ * each cell of the array can contain linked list object Node. Object of class Node has next parameters:
+ *
+ *  -> hash  - hash value by key;
+ * -> key   - key its generic type <K>;
+ * -> prev  - link on previous object of class Node;
+ * -> value - value;
+ * -> next  - link on next object of class Node.
+ *
+ * Class SimpleHashMap have next method:
+ * -> put    - adds key and value in array, where is bucket number is calculated by hash code of key;
+ * -> get    - returns value by key;
+ * -> remove - remove object of class Node by key.
+ *
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 30.08.2017.
  * @version 1.0.
  * @param <K> the type of keys maintained by this map
  * @param <V> the type of mapped values
  */
-public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
+class SimpleHashMap<K, V> implements SimpleMap<K, V> {
 
     /**
      *  @param table its array
@@ -204,7 +217,20 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
          */
         private Node<K, V> result;
 
+        /**
+         * @param nextNode nextNode
+         */
         private Node<K, V> nextNode;
+
+        /**
+         * @param firstNode firstNode
+         */
+        private Node<K, V> node;
+
+        /**
+         *
+         */
+        private boolean listTrue = false;
 
         /**
          *
@@ -218,23 +244,28 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
          * nothing.
          */
         private void arrayNext() {
-            if (this.index < this.table.length) {
-                while (this.table[this.index] == null) {
-                    this.index++;
-                    if (this.index == this.table.length) {
+            if (!this.listTrue) {
+                for (int position = this.index; position < this.table.length; position++) {
+                    if (this.table[position] != null) {
+                        this.index = position;
+                        this.node = this.table[this.index];
                         break;
                     }
                 }
+                this.listTrue = true;
+            }
+        }
 
-                this.result =
-
-                Node<K, V> firstNode = this.table[this.index];
-                if (this.table[this.index].next == null) {
-                    this.result = this.table[this.index];
-                } else {
-
-                }
-
+        /**
+         * nothing.
+         */
+        private void listNext() {
+            this.result = this.node;
+            if (this.node.next != null) {
+                this.node = this.node.next;
+            } else {
+                this.index++;
+                this.listTrue = false;
             }
         }
 
@@ -253,6 +284,7 @@ public class SimpleHashMap<K, V> implements SimpleMap<K, V> {
         @Override
         public Node<K, V> next() {
             this.arrayNext();
+            this.listNext();
             return this.result;
         }
 

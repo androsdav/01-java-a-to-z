@@ -2,7 +2,6 @@ package com.adidyk;
 
 
 import java.util.GregorianCalendar;
-import java.util.Iterator;
 
 /**
  * Class "StartUi" for create Map and puts key = user and value = new Object().
@@ -76,22 +75,28 @@ public class StartUi {
         System.out.println(map.get(adolf));
         System.out.println(map.get(brendon));
         System.out.println();
-        Iterator it = map.iterator();
-        System.out.println();
-        System.out.println(it.next());
-        System.out.println(it.next());
-        System.out.println(it.next());
-        System.out.println(it.hasNext());
-        System.out.println(it.hasNext());
-        System.out.println(it.hasNext());
-        System.out.println(it.hasNext());
-        System.out.println(it.hasNext());
-        System.out.println(it.hasNext());
         /*
-        while (it.hasNext()) {
-            System.out.println(it.next());
-        }
+        Iterator it = map.iterator();
+        System.out.println("Test iterator");
+        System.out.println(it.next());
+        System.out.println(it.next());
+        System.out.println(it.next());
+        System.out.println(it.next());
+        System.out.println(it.next());
+        System.out.println(it.next());
+        System.out.println(it.next());
+        System.out.println(it.next());
+        System.out.println(it.next());
+        System.out.println(it.next());
+        System.out.println(it.next());
+        System.out.println(it.hasNext());
+        System.out.println(it.hasNext());
+        System.out.println(it.hasNext());
+        Iterator it = map.iterator();
         */
+        for (Object aMap : map) {
+            System.out.println(aMap);
+        }
         /*
         HashMap<User, String> map1 = new HashMap<>();
         map1.put(bob, "BOB");
