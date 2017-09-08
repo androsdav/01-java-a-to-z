@@ -49,8 +49,8 @@ class SimpleHashMap<K, V> implements SimpleMap<K, V> {
      * put - adds new object Node (hash, key, prev, value, next) in array where is bucket number is calculated
      * from hash code of key and returns added value. If key already exists in the table, only value is update and
      * returns old value.
-     * @param key - its generic type <K>.
-     * @param value - its generic type <V>.
+     * @param key - is generic type <K>.
+     * @param value - is generic type <V>.
      * @return returns added value if table don`t has key, old value if table has key.
      */
     @Override
@@ -101,7 +101,7 @@ class SimpleHashMap<K, V> implements SimpleMap<K, V> {
     /**
      * remove - search value by key and remove object for class Node if inputted key is true or returns null if
      * inputted key is false.
-     * @param key - its generic type <K>.
+     * @param key - is generic type <K>.
      * @return returns value by inputted key if key is true or returns null if inputted key is false.
      */
     @Override
@@ -114,6 +114,7 @@ class SimpleHashMap<K, V> implements SimpleMap<K, V> {
                 Node<K, V> item = this.searchKey(firstNode, key);
                 if (item != null) {
                     result = item.value;
+                    this.size--;
                     if (item.prev == null) {
                         if (item.next == null) {
                             this.table[bucket] = null;
@@ -292,7 +293,7 @@ class SimpleHashMap<K, V> implements SimpleMap<K, V> {
         }
 
         /**
-         * nothing.
+         * remove - method does`t have any changes.
          */
         @Override
         public void remove() {

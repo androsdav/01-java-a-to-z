@@ -2,9 +2,8 @@ package com.adidyk;
 
 import org.junit.Before;
 import org.junit.Test;
-
 import java.util.GregorianCalendar;
-
+import java.util.Iterator;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -37,6 +36,11 @@ public class SimpleHashMapTest {
      * @param dilan - reference variable to object of class User with params: name, children and birthday.
      */
     private User dilan = new User("Dilan", 4, new GregorianCalendar(1980, 1, 1));
+
+    /**
+     * it - iterator.
+     */
+    private Iterator it = this.map.iterator();
 
     /**
      * init - adds elements (key and value) in container SimpleHashMap.
@@ -110,9 +114,45 @@ public class SimpleHashMapTest {
     public void removeFalseKeyTest() {
         User amanda = new User("Amanda", 32, new GregorianCalendar(1986, 3, 2));
         assertThat(null, is(this.map.remove(amanda)));
-
     }
+
+    /**
+     * sizeTest - test method size of class SimpleHashMap.
+     */
+    @Test
+    public void sizeTest() {
+        assertThat(3, is(this.map.size()));
+        User amanda = new User("Amanda", 32, new GregorianCalendar(1986, 3, 2));
+        User brendon = new User("Brendon", 111, new GregorianCalendar(1933, 4, 7));
+        this.map.put(amanda, "AMANDA");
+        this.map.put(brendon, "BRENDON");
+        assertThat(5, is(this.map.size()));
+        this.map.remove(this.bob);
+        this.map.remove(this.bill);
+        this.map.remove(brendon);
+        assertThat(2, is(this.map.size()));
+    }
+
+    /**
+     * hasNextTrue - test method hasNext when next of class SimpleHashMap value is true.
+     */
+    @Test
+    public void hasNextTrue() {
+        this.it.next();
+        this.it.next();
+        this.it.hasNext();
+        assertThat(true, is(this.it.hasNext()));
+    }
+
+    /**
+     * hasNextFalse - test method hasNext of class SimpleHashMap when next value is false.
+     */
+    @Test
+    public void hasNextFalse() {
+        this.it.next();
+        this.it.next();
+        this.it.next();
+        assertThat(false, is(this.it.hasNext()));
+    }
+
 }
-
-
-

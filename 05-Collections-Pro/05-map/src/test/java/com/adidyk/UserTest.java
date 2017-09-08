@@ -63,7 +63,6 @@ public class UserTest {
         assertThat(3, is(this.user.getChildren()));
     }
 
-
     /**
      * getBirthdayTest - tests method "getBirthday" class "User".
      */

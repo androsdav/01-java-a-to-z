@@ -119,4 +119,5 @@ class User {
         return String.format("%s%s%s%s%s%s%s%s", "User{", "name=", name, ", children=", children, ", birthday=",
                 sdf.format(this.getBirthday().getTime()), '}');
     }
+
 }
