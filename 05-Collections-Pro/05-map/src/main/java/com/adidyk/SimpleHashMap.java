@@ -55,7 +55,7 @@ class SimpleHashMap<K, V> implements SimpleMap<K, V> {
      */
     @Override
     public V put(K key, V value) {
-        V result = null;
+        V result = value;
         int hash = this.hash(key);
         int bucket = this.bucket(hash);
         if (this.table[bucket] != null) {
