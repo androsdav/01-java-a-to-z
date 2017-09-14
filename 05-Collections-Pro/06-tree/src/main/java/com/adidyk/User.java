@@ -9,7 +9,7 @@ import java.util.Calendar;
  * @since 21.07.2017.
  * @version 1.0.
 */
-class User {
+class User extends Comparable<User> {
 
     /**
      * name - name user.
@@ -110,7 +110,6 @@ class User {
     }
 
     /**
-     *
      * @return all param for User
      */
     @Override
@@ -120,4 +119,12 @@ class User {
                 sdf.format(this.getBirthday().getTime()), '}');
     }
 
+    /**
+     * @param user - is user.
+     * @return true or false.
+     */
+    @Override
+    public int compareTo(User user) {
+        return 0;
+    }
 }
