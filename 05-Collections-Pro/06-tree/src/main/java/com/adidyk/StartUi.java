@@ -1,7 +1,8 @@
 package com.adidyk;
 
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.GregorianCalendar;
+import java.util.Hashtable;
+import java.util.TreeSet;
 
 /**
  * Class "StartUi" for create Map and puts key = user and value = new Object().
@@ -16,6 +17,7 @@ public class StartUi {
      * @param arg nothing.
      */
     public static void main(String[] arg) {
+        /*
         System.out.println("SimpleHashMap");
         System.out.println("Tree");
         TreeMap<String, String> tree = new TreeMap<>();
@@ -23,10 +25,38 @@ public class StartUi {
         tree.put("BOB2", "Madly2");
         tree.put("BOB3", "Madly3");
         System.out.println(tree);
-
         for (Map.Entry<String, String> item : tree.entrySet()) {
             System.out.println("key: " + item.getKey() +  " value: " + item.getValue());
         }
+        */
+        User bill = new User("Bill", 3, new GregorianCalendar(1982, 2, 2));
+        User bob = new User("Bob", 2, new GregorianCalendar(1932, 1, 4));
+        User dilan1 = new User("Dilan", 42, new GregorianCalendar(1241, 4, 5));
+        User dilan2 = new User("Dilan", 43, new GregorianCalendar(1240, 4, 5));
+        User dilan3 = new User("Dilan", 41, new GregorianCalendar(1247, 4, 5));
+        User dilan4 = new User("Dilan", 40, new GregorianCalendar(1239, 4, 5));
+        User adolf = new User("Adolf", 3, new GregorianCalendar(1982, 2, 2));
+        User adler = new User("Adler", 2, new GregorianCalendar(1932, 1, 4));
+        User smith = new User("Smith", 4, new GregorianCalendar(1242, 4, 5));
+        User amanda = new User("Amanda", 4, new GregorianCalendar(1242, 4, 5));
+
+        TreeSet<User> listing = new TreeSet<>();
+        listing.add(dilan4);
+        listing.add(amanda);
+        listing.add(smith);
+        listing.add(dilan3);
+        listing.add(bill);
+        listing.add(adler);
+        listing.add(bob);
+        listing.add(dilan1);
+        listing.add(adolf);
+        listing.add(dilan2);
+
+        for (User item : listing) {
+            System.out.println(item);
+        }
+        Hashtable<String, String> table = new Hashtable<>();
+
     }
 
 }

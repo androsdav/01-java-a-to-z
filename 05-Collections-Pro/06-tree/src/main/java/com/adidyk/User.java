@@ -9,7 +9,7 @@ import java.util.Calendar;
  * @since 21.07.2017.
  * @version 1.0.
 */
-class User extends Comparable<User> {
+class User implements Comparable<User> {
 
     /**
      * name - name user.
@@ -121,10 +121,16 @@ class User extends Comparable<User> {
 
     /**
      * @param user - is user.
-     * @return true or false.
+     * @return returns 0 or 1 or -1.
      */
     @Override
     public int compareTo(User user) {
-        return 0;
+        int result = this.name.compareTo(user.name);
+        if (result != 0) {
+            return result;
+        }
+        result = this.birthday.compareTo(user.birthday);
+        return result;
     }
+
 }

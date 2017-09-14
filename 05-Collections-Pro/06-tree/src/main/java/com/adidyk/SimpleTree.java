@@ -15,5 +15,6 @@ public interface SimpleTree<E extends Comparable<E>> extends Iterable<E> {
      * @param child - is child for parent.
      * @return returns true if child is parent or returns false is child don`t added.
      */
-    boolean add (E parent, E child);
+    boolean add(E parent, E child);
+
 }
