@@ -1,5 +1,6 @@
 package com.adidyk;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -29,13 +30,55 @@ import java.util.List;
 public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
 
     /**
+     * @param root is root.
+     */
+    private Node<E> root = null;
+
+    /**
      * @param parent - is parent for child.
      * @param child - is child for parent.
      * @return returns true if child search your parent or false if child don`t search your parent.
      */
     @Override
     public boolean add(E parent, E child) {
+        if (this.root == null) {
+            this.addRoot(parent, child);
+            //this.root = new Node<>(parent);
+        } else {
+            if (parent.equals(this.root.value)) {
+                Node<E> newChild = new Node<>(child);
+                this.root.child.add(newChild);
+            }
+        }
         return false;
+    }
+
+    private void addRoot(E parent, E child) {
+        this.root = new Node<>(parent);
+        this.root.child.add(child);
+    }
+
+    /**
+     *
+     * @param parent parent.
+     * @param child child.
+     */
+    private void searchParent(E parent, E child) {
+        for (Node<E> item : this.root.child) {
+            if (item.value.equals(parent)) {
+                Node<E> newChild =
+
+            }
+        }
+
+    }
+
+    /**
+     *
+     * @return root.
+     */
+    public Node<E> getRoot() {
+        return this.root;
     }
 
     /**
@@ -55,21 +98,37 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         /**
          * <E> - its class.
          */
-        private List<Node<E>> children;
+        private E value;
 
         /**
          * <E> - its class.
          */
-        private E value;
+        private List<Node<E>> child;
 
-        Node() {
-
+        /**
+         * Constructor.
+         * @param value is value.
+         */
+        Node(E value) {
+            this.value = value;
+            this.child = new ArrayList<>();
         }
 
+        /**
+         *
+         * @param children add children to parent.
+         */
+        private void addChildren(Node<E> children) {
+            this.child.add(children);
+        }
 
-
-
-
-
+        /**
+         *
+         * @return all information for parent.
+         */
+        @Override
+        public String toString() {
+            return String.format("%s%s%s%s%s%s", "Node{", "value=", this.value, ", children=", this.child, "}");
+        }
     }
 }

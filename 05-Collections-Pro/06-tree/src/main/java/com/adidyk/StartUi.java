@@ -1,8 +1,8 @@
 package com.adidyk;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
-import java.util.Hashtable;
-import java.util.TreeSet;
+import java.util.List;
 
 /**
  * Class "StartUi" for create Map and puts key = user and value = new Object().
@@ -29,6 +29,7 @@ public class StartUi {
             System.out.println("key: " + item.getKey() +  " value: " + item.getValue());
         }
         */
+        /*
         User bill = new User("Bill", 3, new GregorianCalendar(1982, 2, 2));
         User bob = new User("Bob", 2, new GregorianCalendar(1932, 1, 4));
         User dilan1 = new User("Dilan", 42, new GregorianCalendar(1241, 4, 5));
@@ -56,7 +57,30 @@ public class StartUi {
             System.out.println(item);
         }
         Hashtable<String, String> table = new Hashtable<>();
+        */
+        User bob = new User("Bob", 2, new GregorianCalendar(1932, 1, 4));
+        User adolf = new User("Adolf", 3, new GregorianCalendar(1982, 2, 2));
+        User adler = new User("Adler", 2, new GregorianCalendar(1932, 1, 4));
+        User smith = new User("Smith", 4, new GregorianCalendar(1242, 4, 5));
+        User amanda = new User("Amanda", 4, new GregorianCalendar(1242, 4, 5));
+        Tree<User> tree = new Tree<>();
+        tree.add(bob, bob);
+        tree.add(bob, adolf);
+        tree.add(bob, adler);
+        tree.add(bob, smith);
+        tree.add(bob, amanda);
+        System.out.println();
+        System.out.println(tree.getRoot());
 
+        System.out.println();
+        List<User> list = new ArrayList<>();
+        System.out.println(list);
+        System.out.println(list.size());
+        if (list.size() == 0) {
+            System.out.println("List does`t has any user (null) ");
+        } else {
+            System.out.println("List has any user (not null)");
+        }
     }
 
 }
