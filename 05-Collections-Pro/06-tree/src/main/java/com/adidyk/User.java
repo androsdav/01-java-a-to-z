@@ -139,6 +139,10 @@ class User implements Comparable<User> {
         if (result != 0) {
             return result;
         }
+        result = Integer.compare(this.children, user.children);
+        if (result != 0) {
+            return result;
+        }
         result = this.birthday.compareTo(user.birthday);
         return result;
     }

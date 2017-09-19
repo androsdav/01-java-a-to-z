@@ -43,9 +43,10 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     public boolean add(E parent, E child) {
         boolean addTrue = false;
         if (this.root == null) {
-            this.addRoot(parent, child);
+            this.addRoot(parent);
             addTrue = true;
-        } else if (parent.equals(this.root.value)) {
+        } else if (parent.compareTo(this.root.value) == 0) {
+            addTrue = true;
             this.addChildToRoot(child);
         } else {
             List<Node<E>> listChild = this.root.child;
@@ -55,18 +56,13 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     }
 
     /**
-     *
      * @param parent parent.
-     * @param child parent.
      */
-    private void addRoot(E parent, E child) {
+    private void addRoot(E parent) {
         this.root = new Node<>(parent);
-        Node<E> newChild = new Node<>(child);
-        this.root.child.add(newChild);
     }
 
     /**
-     *
      * @param child child.
      */
     private void addChildToRoot(E child) {
@@ -75,19 +71,27 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     }
 
     /**
-     *
      * @param parent parent.
      * @param child child.
      * @param listChild children.
      */
     private void addChildToParent(E parent, E child, List<Node<E>> listChild) {
+        for (Node<E> item : listChild) {
+            if (parent.compareTo(item.value) == 0) {
+                Node<E> newChild = new Node<>(child);
+                item.child.add(newChild);
+            }
+        }
+
+        /*
         listChild.stream().filter(item -> item != null).forEach(item -> {
             addChildToParent(parent, child, item.child);
-            if (parent.equals(item.value)) {
+            if (parent.compareTo(item.value)) {
                 Node<E> newChild = new Node<>(child);
                 item.child.add(newChild);
             }
         });
+        */
     }
 
     /**
@@ -162,7 +166,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
          */
         @Override
         public String toString() {
-            return String.format("%s%s%s%s%s%s%n", "Node{//", "value=", this.value, "->child=", this.child, "//}");
+            return String.format("%s%s%s%s%s%s", "Node{", "value=", this.value, "->child=", this.child, "}");
         }
     }
 }
