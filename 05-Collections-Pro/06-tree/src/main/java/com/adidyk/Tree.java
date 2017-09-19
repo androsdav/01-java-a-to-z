@@ -81,15 +81,13 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
      * @param listChild children.
      */
     private void addChildToParent(E parent, E child, List<Node<E>> listChild) {
-        for (Node<E> item : listChild) {
-            if (item != null) {
-                addChildToParent(parent, child, item.child);
-                if (parent.equals(item.value)) {
-                    Node<E> newChild = new Node<>(child);
-                    item.child.add(newChild);
-                }
+        listChild.stream().filter(item -> item != null).forEach(item -> {
+            addChildToParent(parent, child, item.child);
+            if (parent.equals(item.value)) {
+                Node<E> newChild = new Node<>(child);
+                item.child.add(newChild);
             }
-        }
+        });
     }
 
     /**
