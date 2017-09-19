@@ -1,8 +1,6 @@
 package com.adidyk;
 
-import java.util.ArrayList;
 import java.util.GregorianCalendar;
-import java.util.List;
 
 /**
  * Class "StartUi" for create Map and puts key = user and value = new Object().
@@ -64,23 +62,12 @@ public class StartUi {
         User smith = new User("Smith", 4, new GregorianCalendar(1242, 4, 5));
         User amanda = new User("Amanda", 4, new GregorianCalendar(1242, 4, 5));
         Tree<User> tree = new Tree<>();
-        tree.add(bob, bob);
-        tree.add(bob, adolf);
+        //tree.add(bob, adolf);
         tree.add(bob, adler);
         tree.add(bob, smith);
-        tree.add(bob, amanda);
+        //tree.add(bob, amanda);
         System.out.println();
         System.out.println(tree.getRoot());
-
-        System.out.println();
-        List<User> list = new ArrayList<>();
-        System.out.println(list);
-        System.out.println(list.size());
-        if (list.size() == 0) {
-            System.out.println("List does`t has any user (null) ");
-        } else {
-            System.out.println("List has any user (not null)");
-        }
     }
 
 }

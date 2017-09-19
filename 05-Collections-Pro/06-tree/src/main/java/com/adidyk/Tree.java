@@ -41,21 +41,52 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
      */
     @Override
     public boolean add(E parent, E child) {
+        boolean addTrue = false;
         if (this.root == null) {
             this.addRoot(parent, child);
-            //this.root = new Node<>(parent);
+            addTrue = true;
+        } else if (parent.equals(this.root)) {
+            this.addChildToRoot(child);
         } else {
-            if (parent.equals(this.root.value)) {
-                Node<E> newChild = new Node<>(child);
-                this.root.child.add(newChild);
-            }
+            List<Node<E>> listChild = this.root.child;
+            this.addChildToParent(parent, child, listChild);
         }
-        return false;
+        return addTrue;
     }
 
+    /**
+     *
+     * @param parent parent.
+     * @param child parent.
+     */
     private void addRoot(E parent, E child) {
         this.root = new Node<>(parent);
-        this.root.child.add(child);
+        Node<E> newChild = new Node<>(child);
+        this.root.child.add(newChild);
+    }
+
+    /**
+     *
+     * @param child child.
+     */
+    private void addChildToRoot(E child) {
+        Node<E> newChild = new Node<>(child);
+        this.root.child.add(newChild);
+    }
+
+    /**
+     *
+     * @param parent parent.
+     * @param child child.
+     * @param listChild children.
+     */
+    private void addChildToParent(E parent, E child, List<Node<E>> listChild) {
+        for (Node<E> item : listChild) {
+            if (parent.equals(item.value)) {
+                Node<E> newChild = new Node<>(child);
+                item.child.add(newChild);
+            }
+        }
     }
 
     /**
@@ -63,6 +94,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
      * @param parent parent.
      * @param child child.
      */
+    /*
     private void searchParent(E parent, E child) {
         for (Node<E> item : this.root.child) {
             if (item.value.equals(parent)) {
@@ -72,6 +104,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         }
 
     }
+    */
 
     /**
      *
@@ -128,7 +161,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
          */
         @Override
         public String toString() {
-            return String.format("%s%s%s%s%s%s", "Node{", "value=", this.value, ", children=", this.child, "}");
+            return String.format("%s%s%s%s%s%s", "Node{", "value=", this.value, " child=", this.child, "}");
         }
     }
 }
