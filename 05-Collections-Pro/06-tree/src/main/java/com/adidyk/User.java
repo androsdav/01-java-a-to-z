@@ -1,6 +1,5 @@
 package com.adidyk;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -112,11 +111,22 @@ class User implements Comparable<User> {
     /**
      * @return all param for User
      */
+    /*
     @Override
     public String toString() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         return String.format("%s%s%s%s%s%s%s%s", "User{", "name=", name, ", children=", children, ", birthday=",
                 sdf.format(this.getBirthday().getTime()), '}');
+    }
+    */
+
+    /**
+     * @return all param for User
+     */
+    @Override
+    public String toString() {
+//        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        return String.format("%s%s%s%s", "User{", "name=", name, "}");
     }
 
     /**
