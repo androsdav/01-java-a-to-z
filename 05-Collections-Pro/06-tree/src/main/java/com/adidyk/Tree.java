@@ -139,12 +139,12 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     private List<Node<E>> getChildren(E parent, List<Node<E>> nodeList) {
         List<Node<E>> result = null;
         for (Node<E> node : nodeList) {
-            if (node.child.size() > 0) {
-                this.getChildren(parent, node.child);
-            }
             if (parent.compareTo(node.value) == 0) {
                 result = node.child;
                 break;
+            }
+            if (node.child.size() > 0) {
+                this.getChildren(parent, node.child);
             }
         }
         return result;
