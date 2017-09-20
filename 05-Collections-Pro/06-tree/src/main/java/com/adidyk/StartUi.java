@@ -63,32 +63,57 @@ public class StartUi {
         User adolf = new User("Adolf", 3, new GregorianCalendar(1982, 2, 2));
         User adler = new User("Adler", 2, new GregorianCalendar(1932, 1, 4));
         User smith = new User("Smith", 4, new GregorianCalendar(1242, 4, 5));
+        User nik = new User("Nik", 4, new GregorianCalendar(1242, 4, 5));
+        User frank = new User("Frank", 4, new GregorianCalendar(1242, 4, 5));
+        User will = new User("Will", 4, new GregorianCalendar(1242, 4, 5));
         Tree<User> tree = new Tree<>();
         //tree.add(bob, adolf);
         tree.add(bob, bob);
         tree.add(bob, bill);
-        tree.add(bill, amanda);
-        tree.add(amanda, smith);
+        tree.add(bob, amanda);
         tree.add(bill, dilan);
         tree.add(bill, adolf);
+        tree.add(amanda, adler);
+        tree.add(amanda, smith);
+        tree.add(adolf, nik);
+        tree.add(adolf, frank);
+        tree.add(adolf, will);
+//        tree.add(amanda, smith);
+//        tree.add(bill, dilan);
+//        tree.add(bill, adolf);
 
         System.out.print("Bob : ");
         for (Object node : tree.getChildrenByParent(bob)) {
-            System.out.print(" " + node);
+            if (node != null) {
+                System.out.print(" " + node);
+            }
         }
         System.out.println();
 
         System.out.print("Bill : ");
         for (Object node : tree.getChildrenByParent(bill)) {
-            System.out.print(" " + node);
+            if (node != null) {
+                System.out.print(" " + node);
+            }
         }
         System.out.println();
 
         System.out.print("Amanda : ");
         for (Object node : tree.getChildrenByParent(amanda)) {
-            System.out.print(" " + node);
+            if (node != null) {
+                System.out.print(" " + node);
+            }
         }
         System.out.println();
+
+        System.out.print("Adolf : ");
+        for (Object node : tree.getChildrenByParent(adolf)) {
+            if (node != null) {
+                System.out.print(" " + node);
+            }
+        }
+        System.out.println();
+
 
 
 
