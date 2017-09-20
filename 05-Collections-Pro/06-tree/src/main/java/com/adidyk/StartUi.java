@@ -68,17 +68,39 @@ public class StartUi {
         tree.add(bob, bob);
         tree.add(bob, bill);
         tree.add(bill, amanda);
+        tree.add(amanda, smith);
         tree.add(bill, dilan);
         tree.add(bill, adolf);
 
- //       tree.add(dilan, adolf);
+        System.out.print("Bob : ");
+        for (Object node : tree.getChildrenByParent(bob)) {
+            System.out.print(" " + node);
+        }
+        System.out.println();
+
+        System.out.print("Bill : ");
+        for (Object node : tree.getChildrenByParent(bill)) {
+            System.out.print(" " + node);
+        }
+        System.out.println();
+
+        System.out.print("Amanda : ");
+        for (Object node : tree.getChildrenByParent(amanda)) {
+            System.out.print(" " + node);
+        }
+        System.out.println();
+
+
+
+
+
+        //       tree.add(dilan, adolf);
  //       tree.add(adolf, adler);
  //       tree.add(adolf, smith);
  //       tree.add(smith, amanda);
 
-        System.out.println();
-        System.out.println(tree.getRoot());
-        //Object
+
+
     }
 
 }

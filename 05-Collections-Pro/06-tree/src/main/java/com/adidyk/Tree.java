@@ -112,11 +112,37 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     */
 
     /**
-     *
+     * @param parent sucks.
      * @return root.
      */
-    public Node<E> getRoot() {
-        return this.root;
+    public List<Node<E>> getChildrenByParent(E parent) {
+        List<Node<E>> result = null;
+        if (parent != null) {
+            if (parent.compareTo(this.root.value) == 0) {
+                result = this.root.child;
+            } else {
+                List<Node<E>> nodeList = this.root.child;
+                result = this.getChildren(parent, nodeList);
+            }
+        }
+        return result;
+    }
+
+    /**
+     *
+     * @param parent sucks.
+     * @param nodeList is node.
+     * @return all object by class Node.
+     */
+    private List<Node<E>> getChildren(E parent, List<Node<E>> nodeList) {
+        List<Node<E>> result = null;
+        for (Node<E> node : nodeList) {
+            if (parent.compareTo(node.value) == 0) {
+                result = node.child;
+                break;
+            }
+        }
+        return result;
     }
 
     /**
@@ -160,13 +186,14 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
             this.child.add(children);
         }
 
+        /*
         /**
          *
          * @return all information for parent.
          */
         @Override
         public String toString() {
-            return String.format("%s%s%s%s%s%s", "Node{", "value=", this.value, "->child=", this.child, "}");
+            return String.format("%s", this.value);
         }
     }
 }

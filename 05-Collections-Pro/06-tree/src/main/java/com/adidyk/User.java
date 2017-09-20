@@ -126,7 +126,7 @@ class User implements Comparable<User> {
     @Override
     public String toString() {
 //        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-        return String.format("%s%s%s%s", "User{", "name=", name, "}");
+        return String.format("%s", this.name);
     }
 
     /**
