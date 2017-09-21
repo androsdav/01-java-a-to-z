@@ -78,6 +78,10 @@ public class StartUi {
         tree.add(dilan, nik);
         tree.add(dilan, frank);
         tree.add(dilan, will);
+        tree.add(adolf, frank);
+        tree.add(adolf, nik);
+        tree.add(smith, nik);
+
 //        tree.add(amanda, smith);
 //        tree.add(bill, dilan);
 //        tree.add(bill, adolf);
@@ -113,6 +117,13 @@ public class StartUi {
             }
         }
         System.out.println();
+
+        System.out.println("Adolf : ");
+        for (Object node : tree.getChildrenByParent(adolf)) {
+            if (node != null) {
+                System.out.println(" " + adolf);
+            }
+        }
 
     }
 

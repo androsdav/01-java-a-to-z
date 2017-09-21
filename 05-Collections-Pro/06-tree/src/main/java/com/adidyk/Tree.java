@@ -55,7 +55,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
             this.addChildToRoot(child);
         } else {
             List<Node<E>> listChild = this.root.child;
-            this.addChildToParent(parent, child, listChild);
+            this.addChildToParent(parent, child);
         }
         return addTrue;
     }
@@ -75,21 +75,32 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         this.root.child.add(newChild);
     }
 
+    private void addChildToParent(Node<E> parent, E child) {
+        if (child.compareTo(parent.value) == 0) {
+            Node<E> newChild = new Node<>(child);
+            parent.child.add(newChild);
+        } else {
+            addChildToParent(parent, child);
+        }
+    }
+/*
     /**
      * @param parent parent.
      * @param child child.
      * @param listChild children.
      */
+/*
     private void addChildToParent(E parent, E child, List<Node<E>> listChild) {
         for (Node<E> item : listChild) {
             if (parent.compareTo(item.value) == 0) {
                 Node<E> newChild = new Node<>(child);
                 item.child.add(newChild);
                 break;
+            } else {
+                this.addChildToParent(parent, child, item.child);
             }
-            this.addChildToParent(parent, child, item.child);
         }
-
+    }*/
         /*
         listChild.stream().filter(item -> item != null).forEach(item -> {
             addChildToParent(parent, child, item.child);
@@ -99,8 +110,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
             }
         });
         */
-    }
-
+/*
     /**
      *
      * @param parent parent.
