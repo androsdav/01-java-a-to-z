@@ -55,7 +55,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
             this.addChildToRoot(child);
         } else {
             List<Node<E>> listChild = this.root.child;
-            this.addChildToParent(parent, child);
+            this.addChildToParent(parent, child, this.root);
         }
         return addTrue;
     }
@@ -75,12 +75,12 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         this.root.child.add(newChild);
     }
 
-    private void addChildToParent(Node<E> parent, E child) {
-        if (child.compareTo(parent.value) == 0) {
+    private void addChildToParent(E parent, E child, Node<E> root) {
+        if (parent.compareTo(root.value) == 0) {
             Node<E> newChild = new Node<>(child);
-            parent.child.add(newChild);
+            root.child.add(newChild);
         } else {
-            addChildToParent(parent, child);
+            addChildToParent(parent, child, root.child.get(index));
         }
     }
 /*
