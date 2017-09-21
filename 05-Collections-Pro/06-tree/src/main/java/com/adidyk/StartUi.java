@@ -114,18 +114,6 @@ public class StartUi {
         }
         System.out.println();
 
-
-
-
-
-
-        //       tree.add(dilan, adolf);
- //       tree.add(adolf, adler);
- //       tree.add(adolf, smith);
- //       tree.add(smith, amanda);
-
-
-
     }
 
 }

@@ -35,6 +35,11 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     private Node<E> root = null;
 
     /**
+     * @param result is result.
+     */
+    private List<Node<E>> result;
+
+    /**
      * @param parent - is parent for child.
      * @param child - is child for parent.
      * @return returns true if child search your parent or false if child don`t search your parent.
@@ -137,19 +142,23 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
      * @return all object by class Node.
      */
     private List<Node<E>> getChildren(E parent, List<Node<E>> nodeList) {
+        boolean searchTrue = false;
         List<Node<E>> result = null;
         for (Node<E> node : nodeList) {
             if (parent.compareTo(node.value) == 0) {
-                result = node.child;
-                break;
+                this.result = node.child;
+                searchTrue = true;
             }
-            if (node.child.size() > 0) {
+            if (!searchTrue) {
                 this.getChildren(parent, node.child);
             }
-        }
-        return result;
-    }
 
+            if (searchTrue) {
+                break;
+            }
+        }
+        return this.result;
+    }
     /**
      * @return null now while method iterator don`t have your realisation.
      */
