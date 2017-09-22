@@ -167,6 +167,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
                 break;
             }
         }
+        // sucks
         return this.result;
     }
     /**
