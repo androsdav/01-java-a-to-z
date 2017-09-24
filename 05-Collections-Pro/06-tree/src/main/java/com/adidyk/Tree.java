@@ -83,7 +83,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
             addChildToParent(parent, child, root.child.get(index));
         }
     }
-/*
+/* tree sucks
     /**
      * @param parent parent.
      * @param child child.
