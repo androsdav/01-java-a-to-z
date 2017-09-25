@@ -81,11 +81,28 @@ public class StartUi {
         tree.add(adolf, frank);
         tree.add(adolf, nik);
         tree.add(smith, nik);
+/*
+        System.out.println();
+        ArrayDeque<User> stack = new ArrayDeque<>();
+        stack.addLast(bob);
+        stack.addLast(bill);
+        stack.addLast(will);
+        stack.addLast(nik);
+        for (User user : stack) {
+            System.out.print("  " + user);
+        }
+        System.out.println();
+        System.out.println(stack.pollLast());
+        System.out.println(stack.pollLast());
+        System.out.println(stack.pollLast());
+        System.out.println(stack.pollLast());
+        System.out.println(stack.pollLast());
 
 //        tree.add(amanda, smith);
 //        tree.add(bill, dilan);
 //        tree.add(bill, adolf);
 
+        /*
         System.out.print("Bob : ");
         for (Object node : tree.getChildrenByParent(bob)) {
             if (node != null) {
@@ -123,7 +140,7 @@ public class StartUi {
             if (node != null) {
                 System.out.println(" " + adolf);
             }
-        }
+        }*/
 
     }
 

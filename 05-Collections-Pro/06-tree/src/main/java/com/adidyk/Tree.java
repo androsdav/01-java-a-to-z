@@ -1,5 +1,6 @@
 package com.adidyk;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -40,6 +41,11 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     private List<Node<E>> result;
 
     /**
+     * order is order.
+     */
+    private ArrayDeque<Node<E>> order = new ArrayDeque<>();
+
+    /**
      * @param parent - is parent for child.
      * @param child - is child for parent.
      * @return returns true if child search your parent or false if child don`t search your parent.
@@ -50,11 +56,12 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         if (this.root == null) {
             this.addRoot(parent);
             addTrue = true;
+            /*
         } else if (parent.compareTo(this.root.value) == 0) {
             addTrue = true;
             this.addChildToRoot(child);
+            */
         } else {
-            List<Node<E>> listChild = this.root.child;
             this.addChildToParent(parent, child, this.root);
         }
         return addTrue;
@@ -75,14 +82,48 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         this.root.child.add(newChild);
     }
 
+    /**
+     * @param parent parent.
+     * @param child child.
+     * @param root root.
+     */
     private void addChildToParent(E parent, E child, Node<E> root) {
+        boolean parentSearch = false;
+        boolean childDouble = false;
+        for (Node<E> node : root.child) {
+            if (parent.compareTo(node.value) == 0) {
+                Node<E> newChild = new Node<>(child);
+                node.child.add(newChild);
+                parentSearch = true;
+                break;
+            }
+            this.order.addLast(node);
+        }
+        if (this.order.peekFirst() != null && !parentSearch) {
+            this.addChildToParent(parent, child, this.order.pollFirst());
+        }
+        this.clearOrder();
+    }
+
+    /**
+     * clearOrder - clear.
+     */
+    private void clearOrder() {
+        this.order.clear();
+    }
+
+        /*int index = 0;
+        for (Node<E> ittem) {
+        }
+        }
         if (parent.compareTo(root.value) == 0) {
             Node<E> newChild = new Node<>(child);
             root.child.add(newChild);
         } else {
             addChildToParent(parent, child, root.child.get(index));
         }
-    }
+        */
+
 /* tree sucks
     /**
      * @param parent parent.
