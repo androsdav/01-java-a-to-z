@@ -78,9 +78,23 @@ public class StartUi {
         tree.add(dilan, nik);
         tree.add(dilan, frank);
         tree.add(dilan, will);
+        tree.add(adolf, amanda);
         tree.add(adolf, frank);
+        tree.add(adolf, bob);
         tree.add(adolf, nik);
         tree.add(smith, nik);
+        tree.add(smith, bob);
+        System.out.println();
+
+        /*
+        TreeMap<String, User> tree1 = new TreeMap<>();
+        tree1.put("1", bob);
+        tree1.put("2", bill);
+        tree1.put("3", will);
+        System.out.println(tree1.get("4"));
+        */
+
+
 /*
         System.out.println();
         ArrayDeque<User> stack = new ArrayDeque<>();
