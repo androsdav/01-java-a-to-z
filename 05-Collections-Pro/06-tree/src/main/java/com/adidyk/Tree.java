@@ -52,34 +52,18 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
      */
     @Override
     public boolean add(E parent, E child) {
-        boolean addTrue = false;
+        boolean addTrue;
         if (this.root == null) {
-            this.addRoot(parent);
+            this.root = new Node<>(parent);
             addTrue = true;
-            /*
         } else if (parent.compareTo(this.root.value) == 0) {
+            Node<E> newChild = new Node<>(child);
+            this.root.child.add(newChild);
             addTrue = true;
-            this.addChildToRoot(child);
-            */
         } else {
-            this.addChildToParent(parent, child, this.root);
+            addTrue = this.addChildToParent(parent, child, this.root);
         }
         return addTrue;
-    }
-
-    /**
-     * @param parent parent.
-     */
-    private void addRoot(E parent) {
-        this.root = new Node<>(parent);
-    }
-
-    /**
-     * @param child child.
-     */
-    private void addChildToRoot(E child) {
-        Node<E> newChild = new Node<>(child);
-        this.root.child.add(newChild);
     }
 
     /**
@@ -87,29 +71,26 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
      * @param child child.
      * @param root root.
      */
-    private void addChildToParent(E parent, E child, Node<E> root) {
+    private boolean addChildToParent(E parent, E child, Node<E> root) {
         boolean parentSearch = false;
         boolean childDouble = false;
         for (Node<E> node : root.child) {
-            if (parent.compareTo(node.value) == 0) {
-                Node<E> newChild = new Node<>(child);
-                node.child.add(newChild);
-                parentSearch = true;
-                break;
+            if (child.compareTo(node.value) == 0) {
+                if (parent.compareTo(node.value) == 0) {
+                    Node<E> newChild = new Node<>(child);
+                    node.child.add(newChild);
+                    parentSearch = true;
+                    break;
+                }
+                childDouble = true;
             }
             this.order.addLast(node);
         }
-        if (this.order.peekFirst() != null && !parentSearch) {
+        if (this.order.peekFirst() != null && !parentSearch && !childDouble) {
             this.addChildToParent(parent, child, this.order.pollFirst());
         }
-        this.clearOrder();
-    }
-
-    /**
-     * clearOrder - clear.
-     */
-    private void clearOrder() {
         this.order.clear();
+        return parentSearch;
     }
 
         /*int index = 0;
