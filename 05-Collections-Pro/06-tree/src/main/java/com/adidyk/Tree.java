@@ -116,16 +116,14 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
             if (child.compareTo(node.value) == 0) {
                 childDouble = true;
                 break;
-            } else
-                if (parent.compareTo(node.value) == 0) {
+            } else if (parent.compareTo(node.value) == 0) {
                 this.newNode = node;
             }
             this.order.addLast(node);
         }
         if (this.order.peekFirst() != null && !childDouble) {
             this.addChildToParent(parent, child, this.order.pollFirst());
-        } else
-            if (this.newNode != null && !childDouble) {
+        } else if (this.newNode != null && !childDouble) {
                 Node<E> newChild = new Node<>(child);
                 this.newNode.child.add(newChild);
                 this.newNode = null;
