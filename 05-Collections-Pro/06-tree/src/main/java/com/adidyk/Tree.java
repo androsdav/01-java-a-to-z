@@ -85,6 +85,33 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
      */
     private boolean addChildToRoot(E child, Node<E> root) {
         boolean childDouble = false;
+        if (root.child.size() != 0) {
+            for (Node<E> node : root.child) {
+                if (child.compareTo(node.value) == 0) {
+                    childDouble = true;
+                    break;
+                }
+                this.order.addLast(node);
+            }
+        }
+        if (this.order.peekFirst() != null && !childDouble) {
+            this.addChildToRoot(child, this.order.pollFirst());
+        } else if (!childDouble) {
+            Node<E> newChild = new Node<>(child);
+            this.root.child.add(newChild);
+        }
+        this.order.clear();
+        return !childDouble;
+    }
+/*
+    /**
+     *
+     * @param child child.
+     * @param root root.
+     * @return ture or false.
+     */
+  /*  private boolean searchChildDouble(E child, Node<E> root) {
+        boolean childDouble = false;
         for (Node<E> node : root.child) {
             if (child.compareTo(node.value) == 0) {
                 childDouble = true;
@@ -94,15 +121,14 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         }
         if (this.order.peekFirst() != null && !childDouble) {
             this.addChildToRoot(child, this.order.pollFirst());
-        }
-        if (!childDouble) {
+        } else if (!childDouble) {
             Node<E> newChild = new Node<>(child);
             this.root.child.add(newChild);
         }
         this.order.clear();
         return !childDouble;
     }
-
+*/
     /**
      * @param parent parent.
      * @param child child.
