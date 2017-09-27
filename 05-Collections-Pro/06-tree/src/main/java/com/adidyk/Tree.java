@@ -81,6 +81,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
 
     /**
      * @param child child.
+     * @param root root.
      * @return true or false.
      */
     private boolean addChildToRoot(E child, Node<E> root) {
@@ -103,32 +104,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         this.order.clear();
         return !childDouble;
     }
-/*
-    /**
-     * its problem fom may gitHub
-     * @param child child.
-     * @param root root.
-     * @return ture or false.
-     */
-  /*  private boolean searchChildDouble(E child, Node<E> root) {
-        boolean childDouble = false;
-        for (Node<E> node : root.child) {
-            if (child.compareTo(node.value) == 0) {
-                childDouble = true;
-                break;
-            }
-            this.order.addLast(node);
-        }
-        if (this.order.peekFirst() != null && !childDouble) {
-            this.addChildToRoot(child, this.order.pollFirst());
-        } else if (!childDouble) {
-            Node<E> newChild = new Node<>(child);
-            this.root.child.add(newChild);
-        }
-        this.order.clear();
-        return !childDouble;
-    }
-*/
+
     /**
      * @param parent parent.
      * @param child child.
@@ -138,14 +114,16 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     private boolean addChildToParent(E parent, E child, Node<E> root) {
         boolean parentSearch = false;
         boolean childDouble = false;
-        for (Node<E> node : root.child) {
-            if (child.compareTo(node.value) == 0) {
-                childDouble = true;
-                break;
-            } else if (parent.compareTo(node.value) == 0) {
-                this.newNode = node;
+        if (this.order.size() != 0) {
+            for (Node<E> node : root.child) {
+                if (child.compareTo(node.value) == 0) {
+                    childDouble = true;
+                    break;
+                } else if (parent.compareTo(node.value) == 0) {
+                    this.newNode = node;
+                }
+                this.order.addLast(node);
             }
-            this.order.addLast(node);
         }
         if (this.order.peekFirst() != null && !childDouble) {
             this.addChildToParent(parent, child, this.order.pollFirst());
