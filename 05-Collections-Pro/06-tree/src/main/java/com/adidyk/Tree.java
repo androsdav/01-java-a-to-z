@@ -105,7 +105,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     }
 /*
     /**
-     *
+     * its problem fom may gitHub
      * @param child child.
      * @param root root.
      * @return ture or false.
