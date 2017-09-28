@@ -67,6 +67,12 @@ public class StartUi {
         User frank = new User("Frank", 4, new GregorianCalendar(1242, 4, 5));
         User will = new User("Will", 4, new GregorianCalendar(1242, 4, 5));
         Tree<User> tree = new Tree<>();
+        System.out.println("true: " + tree.add(bob, bill));
+        System.out.println("true: " + tree.add(bob, amanda));
+        System.out.println("true: " + tree.add(bill, dilan));
+        System.out.println("true: " + tree.add(bill, adolf));
+        System.out.println();
+        /*
         System.out.println("true: " + tree.add(bob, bob));
         System.out.println("true: " + tree.add(bob, bill));
         System.out.println("true: " + tree.add(bob, amanda));
@@ -86,16 +92,16 @@ public class StartUi {
         System.out.println("false: " + tree.add(adolf, nik));
         System.out.println("false: " + tree.add(smith, nik));
         System.out.println("false: " + tree.add(smith, bob));
+        */
         System.out.println();
 
-        /*
-        TreeMap<String, User> tree1 = new TreeMap<>();
-        tree1.put("1", bob);
-        tree1.put("2", bill);
-        tree1.put("3", will);
-        System.out.println(tree1.get("4"));
-        */
-
+        System.out.print("Bill : ");
+        for (Object node : tree.get(amanda)) {
+            if (node != null) {
+                System.out.print(" " + node);
+            }
+        }
+        System.out.println();
 
 /*
         System.out.println();
@@ -106,13 +112,7 @@ public class StartUi {
         stack.addLast(nik);
         for (User user : stack) {
             System.out.print("  " + user);
-        }
-        System.out.println();
-        System.out.println(stack.pollLast());
-        System.out.println(stack.pollLast());
-        System.out.println(stack.pollLast());
-        System.out.println(stack.pollLast());
-        System.out.println(stack.pollLast());
+
 
 //        tree.add(amanda, smith);
 //        tree.add(bill, dilan);
@@ -133,31 +133,7 @@ public class StartUi {
                 System.out.print(" " + node);
             }
         }
-        System.out.println();
-
-        System.out.print("Amanda : ");
-        for (Object node : tree.getChildrenByParent(amanda)) {
-            if (node != null) {
-                System.out.print(" " + node);
-            }
-        }
-        System.out.println();
-
-        System.out.print("Dilan : ");
-        for (Object node : tree.getChildrenByParent(dilan)) {
-            if (node != null) {
-                System.out.print(" " + node);
-            }
-        }
-        System.out.println();
-
-        System.out.println("Adolf : ");
-        for (Object node : tree.getChildrenByParent(adolf)) {
-            if (node != null) {
-                System.out.println(" " + adolf);
-            }
         }*/
-
     }
 
 }

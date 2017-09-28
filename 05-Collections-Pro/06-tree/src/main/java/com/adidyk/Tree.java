@@ -114,7 +114,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     private boolean addChildToParent(E parent, E child, Node<E> root) {
         boolean parentSearch = false;
         boolean childDouble = false;
-        if (this.order.size() != 0) {
+        if (root.child.size() != 0) {
             for (Node<E> node : root.child) {
                 if (child.compareTo(node.value) == 0) {
                     childDouble = true;
@@ -154,7 +154,6 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     }
 
     /**
-     *
      * @param parent parent.
      * @param root root.
      * @return sucks.
@@ -162,13 +161,15 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     private List<Node<E>> getChildrenToParent(E parent, Node<E> root) {
         boolean listSearch = false;
         List<Node<E>> childList = null;
-        for (Node<E> node : root.child) {
-            if (parent.compareTo(node.value) == 0) {
-                childList = node.child;
-                listSearch = true;
-                break;
+        if (root.child.size() != 0) {
+            for (Node<E> node : root.child) {
+                if (parent.compareTo(node.value) == 0) {
+                    childList = node.child;
+                    listSearch = true;
+                    break;
+                }
+                this.order.addLast(node);
             }
-            this.order.addLast(node);
         }
         if (this.order.peekFirst() != null && !listSearch) {
             this.getChildrenToParent(parent, this.order.pollFirst());
@@ -176,90 +177,6 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         return childList;
     }
 
-        /*int index = 0;
-        for (Node<E> ittem) {
-        }
-        }
-        if (parent.compareTo(root.value) == 0) {
-            Node<E> newChild = new Node<>(child);
-            root.child.add(newChild);
-        } else {
-            addChildToParent(parent, child, root.child.get(index));
-        }
-        */
-/* tree sucks
-    /**
-     * @param parent parent.
-     * @param child child.
-     * @param listChild children.
-     */
-/*
-    private void addChildToParent(E parent, E child, List<Node<E>> listChild) {
-        for (Node<E> item : listChild) {
-            if (parent.compareTo(item.value) == 0) {
-                Node<E> newChild = new Node<>(child);
-                item.child.add(newChild);
-                break;
-            } else {
-                this.addChildToParent(parent, child, item.child);
-            }
-        }
-    }*/
-        /*
-        listChild.stream().filter(item -> item != null).forEach(item -> {
-            addChildToParent(parent, child, item.child);
-            if (parent.compareTo(item.value)) {
-                Node<E> newChild = new Node<>(child);
-                item.child.add(newChild);
-            }
-        });
-        */
-/*
-    /**
-     *
-     * @param parent parent.
-     * @param child child.
-     */
-
-    /*
-    private void searchParent(E parent, E child) {
-        for (Node<E> item : this.root.child) {
-            if (item.value.equals(parent)) {
-                Node<E> newChild =
-
-            }
-        }
-
-    }
-    */
-/*
-    /**
-     *
-     * @param parent sucks.
-     * @param nodeList is node.
-     * @return all object by class Node.
-     */
-/*
-    private List<Node<E>> getChildren(E parent, List<Node<E>> nodeList) {
-        boolean searchTrue = false;
-        List<Node<E>> result = null;
-        for (Node<E> node : nodeList) {
-            if (parent.compareTo(node.value) == 0) {
-                this.result = node.child;
-                searchTrue = true;
-            }
-            if (!searchTrue) {
-                this.getChildren(parent, node.child);
-            }
-
-            if (searchTrue) {
-                break;
-            }
-        }
-        // sucks
-        return this.result;
-    }
-    */
     /**
      * @return null now while method iterator don`t have your realisation.
      */
