@@ -69,7 +69,7 @@ public class StartUi {
         Tree<User> tree = new Tree<>();
         System.out.println("true: " + tree.add(bob, bill));
         System.out.println("true: " + tree.add(bob, amanda));
-        System.out.println("true: " + tree.add(bill, dilan));
+        System.out.println("true: " + tree.add(bill, amanda));
         System.out.println("true: " + tree.add(bill, adolf));
         System.out.println();
         /*

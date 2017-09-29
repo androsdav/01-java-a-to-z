@@ -52,6 +52,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
      */
     @Override
     public boolean add(E parent, E child) {
+        this.order.clear();
         boolean addTrue = false;
         if (this.root == null) {
             addTrue = this.addRoot(parent, child);
@@ -130,10 +131,10 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         } else if (this.newNode != null && !childDouble) {
                 Node<E> newChild = new Node<>(child);
                 this.newNode.child.add(newChild);
-                this.newNode = null;
+                //this.newNode = null;
                 parentSearch = true;
             }
-        this.order.clear();
+        //this.order.clear();
         return parentSearch;
     }
 
