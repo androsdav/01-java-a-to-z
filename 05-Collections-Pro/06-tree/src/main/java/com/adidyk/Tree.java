@@ -118,7 +118,43 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
      * @param parent parent.
      * @param child child.
      * @param root root.
+     * @return true or false.
      */
+    private boolean addChildToParent(E parent, E child, Node<E> root) {
+        boolean childDouble = false;
+        if (root.child.size() != 0) {
+            for (Node<E> node : root.child) {
+                if (child.compareTo(node.value) == 0) {
+                    childDouble = true;
+                    this.newNode = null;
+                    break;
+                }
+                if (parent.compareTo(node.value) == 0) {
+                    this.newNode = node;
+                }
+                if (node.child.size() != 0) {
+                    this.order.addLast(node);
+                }
+            }
+        }
+        if (this.order.peekFirst() != null && !childDouble) {
+            this.addChildToParent(parent, child, this.order.pollFirst());
+        } else if (this.newNode != null && !childDouble) {
+            Node<E> newChild = new Node<>(child);
+            this.newNode.child.add(newChild);
+        }
+        this.order.clear();
+        return true;
+    }
+
+
+        /*
+    /**
+     * @param parent parent.
+     * @param child child.
+     * @param root root.
+     */
+    /*
     private void addChildToParent(E parent, E child, Node<E> root) {
         boolean childDouble = false;
         if (root.child.size() != 0) {
@@ -141,6 +177,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         }
         this.order.clear();
     }
+    */
 
     /**
      * @param parent sucks.

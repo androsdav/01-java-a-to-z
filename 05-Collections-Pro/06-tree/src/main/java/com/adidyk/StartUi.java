@@ -70,7 +70,7 @@ public class StartUi {
         System.out.println("true: " + tree.add(bob, bill));
         System.out.println("true: " + tree.add(bob, amanda));
         System.out.println("true: " + tree.add(bill, dilan));
-        System.out.println("true: " + tree.add(bob, dilan));
+        //System.out.println("true: " + tree.add(bob, dilan));
         System.out.println("true: " + tree.add(bill, adolf));
         System.out.println("true: " + tree.add(amanda, adler));
         System.out.println("true: " + tree.add(amanda, smith));
@@ -78,7 +78,7 @@ public class StartUi {
         System.out.println("true: " + tree.add(adler, frank));
         System.out.println("true: " + tree.add(adler, will));
         System.out.println("true: " + tree.add(bob, dilan));
-        System.out.println("true: " + tree.add(bob, will));
+        System.out.println("true: " + tree.add(nik, will));
         System.out.println();
         /*
         System.out.println("true: " + tree.add(bob, bob));
@@ -103,8 +103,8 @@ public class StartUi {
         */
         System.out.println();
 
-        System.out.print("Bill : ");
-        for (Object node : tree.get(amanda)) {
+        System.out.print("Adler : ");
+        for (Object node : tree.get(adler)) {
             if (node != null) {
                 System.out.print(" " + node);
             }
