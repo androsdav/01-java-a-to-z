@@ -69,8 +69,14 @@ public class StartUi {
         Tree<User> tree = new Tree<>();
         System.out.println("true: " + tree.add(bob, bill));
         System.out.println("true: " + tree.add(bob, amanda));
-        System.out.println("true: " + tree.add(bill, amanda));
+//        System.out.println("true: " + tree.add(bill, amanda));
         System.out.println("true: " + tree.add(bill, adolf));
+        System.out.println("true: " + tree.add(bill, nik));
+        System.out.println("true: " + tree.add(bill, frank));
+        System.out.println("true: " + tree.add(bill, will));
+        System.out.println("true: " + tree.add(bill, smith));
+        System.out.println("true: " + tree.add(bill, adler));
+        System.out.println("true: " + tree.add(bill, dilan));
         System.out.println();
         /*
         System.out.println("true: " + tree.add(bob, bob));
