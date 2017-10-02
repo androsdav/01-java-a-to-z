@@ -52,16 +52,24 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
      */
     @Override
     public boolean add(E parent, E child) {
-        this.order.clear();
+        //this.order.clear();
         boolean addTrue = false;
         if (this.root == null) {
             addTrue = this.addRoot(parent, child);
         } else if (parent.compareTo(this.root.value) == 0) {
             if (child.compareTo(this.root.value) != 0) {
-                addTrue = this.addChildToRoot(child, this.root);
+                this.addChildToRoot(child, this.root);
+                if (this.newNode != null) {
+                    addTrue = true;
+                    this.newNode = null;
+                }
             }
         } else if (child.compareTo(this.root.value) != 0) {
-            addTrue = this.addChildToParent(parent, child, this.root);
+            this.addChildToParent(parent, child, this.root);
+            if (this.newNode != null) {
+                addTrue = true;
+                this.newNode = null;
+            }
         }
         return addTrue;
     }
@@ -83,9 +91,8 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     /**
      * @param child child.
      * @param root root.
-     * @return true or false.
      */
-    private boolean addChildToRoot(E child, Node<E> root) {
+    private void addChildToRoot(E child, Node<E> root) {
         boolean childDouble = false;
         if (root.child.size() != 0) {
             for (Node<E> node : root.child) {
@@ -101,24 +108,24 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         } else if (!childDouble) {
             Node<E> newChild = new Node<>(child);
             this.root.child.add(newChild);
+            this.newNode = this.root;
         }
         this.order.clear();
-        return !childDouble;
+       // return !childDouble;
     }
 
     /**
      * @param parent parent.
      * @param child child.
      * @param root root.
-     * @return true or false.
      */
-    private boolean addChildToParent(E parent, E child, Node<E> root) {
-        boolean parentSearch = false;
+    private void addChildToParent(E parent, E child, Node<E> root) {
         boolean childDouble = false;
         if (root.child.size() != 0) {
             for (Node<E> node : root.child) {
                 if (child.compareTo(node.value) == 0) {
                     childDouble = true;
+                    this.newNode = null;
                     break;
                 } else if (parent.compareTo(node.value) == 0) {
                     this.newNode = node;
@@ -126,17 +133,13 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
                 this.order.addLast(node);
             }
         }
-        //if (this.order.peekFirst() != null && !childDouble) {
-        if (this.order.size() != 0 && !childDouble) {
+        if (this.order.peekFirst() != null && !childDouble) {
             this.addChildToParent(parent, child, this.order.pollFirst());
         } else if (this.newNode != null && !childDouble) {
-                Node<E> newChild = new Node<>(child);
-                this.newNode.child.add(newChild);
-                this.newNode = null;
-                parentSearch = true;
-            }
+            Node<E> newChild = new Node<>(child);
+            this.newNode.child.add(newChild);
+        }
         this.order.clear();
-        return parentSearch;
     }
 
     /**
