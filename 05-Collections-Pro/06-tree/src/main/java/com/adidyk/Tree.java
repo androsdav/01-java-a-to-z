@@ -262,7 +262,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
 
         /*
         /**
-         * tass bank dont tell me
+         * Task bank do not tell me
          * @return all information for parent.
          */
         @Override
