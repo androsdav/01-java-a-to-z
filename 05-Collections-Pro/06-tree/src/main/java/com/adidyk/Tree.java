@@ -225,7 +225,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
 
         /*
         /**
-         *
+         * tass bank dont tell me
          * @return all information for parent.
          */
         @Override
