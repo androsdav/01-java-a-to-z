@@ -62,7 +62,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
      * -> if tree is empty (don`t has any elements) @param parent is becoming first element
      *    (@param this.root) in the tree and if parent (@param parent) don`t equals child (@param child)
      *    the child added to parent (@param this.root);
-     * ->
+     * -> if
      * @param parent - is parent for child.
      * @param child - is child for parent.
      * @return returns true if child search your parent or false if child don`t search your parent.
