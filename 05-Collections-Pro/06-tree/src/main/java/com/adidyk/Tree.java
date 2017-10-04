@@ -52,7 +52,6 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
      */
     @Override
     public boolean add(E parent, E child) {
-        //this.order.clear();
         boolean addTrue = false;
         if (this.root == null) {
             addTrue = this.addRoot(parent, child);
@@ -65,11 +64,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
                 }
             }
         } else if (child.compareTo(this.root.value) != 0) {
-            this.addChildToParent(parent, child, this.root);
-            if (this.newNode != null) {
-                addTrue = true;
-                this.newNode = null;
-            }
+            addTrue = this.addChildToParent(parent, child, this.root);
         }
         return addTrue;
     }
@@ -80,12 +75,14 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
      * @return true or false.
      */
     private boolean addRoot(E parent, E child) {
+        boolean addTrue = false;
         this.root = new Node<>(parent);
         if (parent.compareTo(child) != 0) {
             Node<E> newChild = new Node<>(child);
             this.root.child.add(newChild);
+            addTrue = true;
         }
-        return true;
+        return addTrue;
     }
 
     /**
@@ -121,6 +118,37 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
      * @return true or false.
      */
     private boolean addChildToParent(E parent, E child, Node<E> root) {
+        Node<E> newNode = null;
+        boolean childDouble = false;
+        boolean addTrue = false;
+        this.order.addLast(root);
+        do {
+            Node<E> listChild = this.order.pollFirst();
+            for (Node<E> node : listChild.child) {
+                if (child.compareTo(node.value) == 0) {
+                    childDouble = true;
+                    break;
+                }
+                if (parent.compareTo(node.value) == 0) {
+                    newNode = node;
+                }
+                if (node.child.size() != 0) {
+                    this.order.addLast(node);
+                }
+            }
+            if (childDouble) {
+                break;
+            }
+
+        } while (!this.order.isEmpty());
+        if (!childDouble && newNode != null) {
+            Node<E> newChild = new Node<>(child);
+            newNode.child.add(newChild);
+            addTrue = true;
+        }
+        return addTrue;
+    }
+        /*
         boolean childDouble = false;
         if (root.child.size() != 0) {
             for (Node<E> node : root.child) {
@@ -146,6 +174,42 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         this.order.clear();
         return true;
     }
+
+    /*
+    /**
+     * @param parent parent.
+     * @param child child.
+     * @param root root.
+     * @return true or false.
+     */
+    /*
+    private boolean addChildToParent(E parent, E child, Node<E> root) {
+        boolean childDouble = false;
+        if (root.child.size() != 0) {
+            for (Node<E> node : root.child) {
+                if (child.compareTo(node.value) == 0) {
+                    childDouble = true;
+                    this.newNode = null;
+                    break;
+                }
+                if (parent.compareTo(node.value) == 0) {
+                    this.newNode = node;
+                }
+                if (node.child.size() != 0) {
+                    this.order.addLast(node);
+                }
+            }
+        }
+        if (this.order.peekFirst() != null && !childDouble) {
+            this.addChildToParent(parent, child, this.order.pollFirst());
+        } else if (this.newNode != null && !childDouble) {
+            Node<E> newChild = new Node<>(child);
+            this.newNode.child.add(newChild);
+        }
+        this.order.clear();
+        return true;
+    }
+    */
 
 
         /*
@@ -218,6 +282,33 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         }
         return childList;
     }
+
+    /*
+    /**
+     * @param parent parent.
+     * @param root root.
+     * @return sucks.
+     */
+    /*
+    private List<Node<E>> getChildrenToParent(E parent, Node<E> root) {
+        boolean listSearch = false;
+        List<Node<E>> childList = null;
+        if (root.child.size() != 0) {
+            for (Node<E> node : root.child) {
+                if (parent.compareTo(node.value) == 0) {
+                    childList = node.child;
+                    listSearch = true;
+                    break;
+                }
+                this.order.addLast(node);
+            }
+        }
+        if (this.order.peekFirst() != null && !listSearch) {
+            this.getChildrenToParent(parent, this.order.pollFirst());
+        }
+        return childList;
+    }
+    */
 
     /**
      * @return null now while method iterator don`t have your realisation.
