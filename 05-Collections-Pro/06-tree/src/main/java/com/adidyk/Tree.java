@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
+ * * This is container don`t has duplicate elements.
  * ------------------------------------------------------------------------------------------------------------
  * Class SimpleHashMap is HashTable structure by analogy as in Java. SimpleHashMap is implemented on arrays where
  * each cell of the array can contain linked list object Node. Object of class Node has next parameters:
@@ -137,7 +138,6 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
             if (childDouble) {
                 break;
             }
-
         } while (!order.isEmpty());
         if (!childDouble && newNode != null) {
             Node<E> newChild = new Node<>(child);
@@ -147,10 +147,12 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         return addTrue;
     }
 
+
     /**
      * @param parent sucks.
      * @return root.
      */
+    @Override
     public List<Node<E>> get(E parent) {
         List<Node<E>> result = null;
         if (parent != null) {

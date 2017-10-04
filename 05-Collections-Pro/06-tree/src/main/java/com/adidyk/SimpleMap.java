@@ -8,7 +8,7 @@ package com.adidyk;
  * @param <K> the type of keys maintained by this map.
  * @param <V> the type of mapped values.
  */
-interface SimpleMap<K, V> extends Iterable<K> {
+public interface SimpleMap<K, V> extends Iterable<K> {
 
     /**
      * @param key - is generic type <K>.

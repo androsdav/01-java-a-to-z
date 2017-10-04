@@ -1,20 +1,29 @@
 package com.adidyk;
 
+import java.util.List;
+
 /**
- * Interface SimpleMap for create structure HashTable by data key and value.
+ * Interface SimpleTree for create elementary Tree by.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 30.08.2017.
  * @version 1.0.
- * @param <E> the type of keys maintained by this map.
+ * @param <E> the type element of container for structure Tree.
  */
 public interface SimpleTree<E extends Comparable<E>> extends Iterable<E> {
 
     /**
-     *
-     * @param parent - is parent for child.
-     * @param child - is child for parent.
-     * @return returns true if child is parent or returns false is child don`t added.
+     * add - adds a new child to the parent.
+     * @param parent - is generic type <E>.
+     * @param child - is generic type <E>.
+     * @return returns true if child added to the parent or returns false if child don`t added
+     * to the parent.
      */
     boolean add(E parent, E child);
+
+    /**
+     * @param parent - is generic type <E>.
+     * @return returns list all child for inputted parent.
+     */
+    List<?> get(E parent);
 
 }
