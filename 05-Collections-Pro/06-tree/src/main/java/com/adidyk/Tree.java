@@ -6,23 +6,23 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
+ * * Interface SimpleTree for create elementary structure Tree.
  * * This is container don`t has duplicate elements.
  * ------------------------------------------------------------------------------------------------------------
- * Class SimpleHashMap is HashTable structure by analogy as in Java. SimpleHashMap is implemented on arrays where
- * each cell of the array can contain linked list object Node. Object of class Node has next parameters:
- * -> hash  - hash value by key;
- * -> key   - key its generic type <K>;
- * -> prev  - link on previous object of class Node;
- * -> value - value its generic type <V>;
- * -> next  - link on next object of class Node.
+ * Class Tree is Tree elementary structure by "analogy" as in Java.
+ * Container of Tree is implemented on elementary structure tree where each element (parent -
+ * object of static class Node<E>) of structure can contain ArrayList object Node<E> (children).
+ * Object of class Node<E> has next parameters:
+ * -> value - value its generic type <E>;
+ * -> child - link on ArrayList object of class Node<E> (List<Node<E>).
  *------------------------------------------------------------------------------------------------------------
- * Class SimpleHashMap have next method:
- * -> put    - adds key and value in array, where is bucket number is calculated from hash code of key;
- * -> get    - returns value by key;
- * -> remove - remove object of class Node by key.
+ * Class Tree has next method:
+ * -> add  - adds new child to the parent;
+ * -> get  - returns list all child for inputted parent;
+ * -> size - returns number of elements in the tree.
  *------------------------------------------------------------------------------------------------------------
- * Class SimpleHashMap can use method for-each and method iterator.
- * @param <E> - the type of keys maintained by this map.
+ * Class Tree can use method for-each and method iterator.
+ * @param <E> - the type of element maintained by this tree.
  *------------------------------------------------------------------------------------------------------------
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 30.08.2017.
@@ -32,16 +32,37 @@ import java.util.List;
 public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
 
     /**
-     * @param root is root.
+     * @param root - first parent (root) in the tree.
      */
-    private Node<E> root = null;
-
-     /**
-     * order is order.
-     */
-    private ArrayDeque<Node<E>> order = new ArrayDeque<>();
+    private Node<E> root;
 
     /**
+     * @param size - number of elements in the tree.
+     */
+    private int size;
+
+    /**
+     * Constructor - sets null for the root.
+     */
+    Tree() {
+        this.root = null;
+    }
+
+    /**
+     * Constructor - sets first parent (@param this.root) in the tree.
+     * @param parent is parent.
+     */
+    Tree(E parent) {
+        this.root = new Node<>(parent);
+        this.size++;
+    }
+
+    /**
+     * add - adds new child to the parent. Implementation next:
+     * -> if tree is empty (don`t has any elements) @param parent is becoming first element
+     *    (@param this.root) in the tree and if parent (@param parent) don`t equals child (@param child)
+     *    the child added to parent (@param this.root);
+     * ->
      * @param parent - is parent for child.
      * @param child - is child for parent.
      * @return returns true if child search your parent or false if child don`t search your parent.
@@ -51,13 +72,15 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         boolean addTrue = false;
         if (this.root == null) {
             addTrue = this.addRoot(parent, child);
-        }
-        if (parent.compareTo(this.root.value) == 0) {
+        } else if (parent.compareTo(this.root.value) == 0) {
             if (child.compareTo(this.root.value) != 0) {
                 addTrue = this.addChildToRoot(child, this.root);
             }
         } else if (child.compareTo(this.root.value) != 0) {
             addTrue = this.addChildToParent(parent, child, this.root);
+        }
+        if (addTrue) {
+            this.size++;
         }
         return addTrue;
     }
@@ -74,6 +97,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
             Node<E> newChild = new Node<>(child);
             this.root.child.add(newChild);
             addTrue = true;
+            this.size++;
         }
         return addTrue;
     }
@@ -147,7 +171,6 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         return addTrue;
     }
 
-
     /**
      * @param parent sucks.
      * @return root.
@@ -191,52 +214,13 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
             }
         } while (!order.isEmpty());
         return childList;
-        /*
-        boolean listSearch = false;
-        List<Node<E>> childList = null;
-        if (root.child.size() != 0) {
-            for (Node<E> node : root.child) {
-                if (parent.compareTo(node.value) == 0) {
-                    childList = node.child;
-                    listSearch = true;
-                    break;
-                }
-                this.order.addLast(node);
-            }
-        }
-        if (this.order.peekFirst() != null && !listSearch) {
-            this.getChildrenToParent(parent, this.order.pollFirst());
-        }
-        return childList;
-        */
     }
 
-    /*
-    /**
-     * @param parent parent.
-     * @param root root.
-     * @return sucks.
-     */
-    /*
-    private List<Node<E>> getChildrenToParent(E parent, Node<E> root) {
-        boolean listSearch = false;
-        List<Node<E>> childList = null;
-        if (root.child.size() != 0) {
-            for (Node<E> node : root.child) {
-                if (parent.compareTo(node.value) == 0) {
-                    childList = node.child;
-                    listSearch = true;
-                    break;
-                }
-                this.order.addLast(node);
-            }
-        }
-        if (this.order.peekFirst() != null && !listSearch) {
-            this.getChildrenToParent(parent, this.order.pollFirst());
-        }
-        return childList;
+    @Override
+    public int size() {
+        return this.size;
     }
-    */
+
 
     /**
      * @return null now while method iterator don`t have your realisation.

@@ -83,7 +83,7 @@ public class StartUi {
 
         //System.out.println("true: " + tree.add(bob, dilan));
         //System.out.println("true: " + tree.add(nik, will));
-        System.out.println();
+        System.out.println(tree.size());
         /*
         System.out.println("true: " + tree.add(bob, bob));
         System.out.println("true: " + tree.add(bob, bill));
