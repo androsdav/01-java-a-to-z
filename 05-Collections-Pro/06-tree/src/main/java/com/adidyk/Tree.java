@@ -35,12 +35,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
      */
     private Node<E> root = null;
 
-    /**
-     * @param newNode is node.
-     */
-    private Node<E> newNode = null;
-
-    /**
+     /**
      * order is order.
      */
     private ArrayDeque<Node<E>> order = new ArrayDeque<>();
@@ -55,13 +50,10 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         boolean addTrue = false;
         if (this.root == null) {
             addTrue = this.addRoot(parent, child);
-        } else if (parent.compareTo(this.root.value) == 0) {
+        }
+        if (parent.compareTo(this.root.value) == 0) {
             if (child.compareTo(this.root.value) != 0) {
-                this.addChildToRoot(child, this.root);
-                if (this.newNode != null) {
-                    addTrue = true;
-                    this.newNode = null;
-                }
+                addTrue = this.addChildToRoot(child, this.root);
             }
         } else if (child.compareTo(this.root.value) != 0) {
             addTrue = this.addChildToParent(parent, child, this.root);
@@ -88,27 +80,32 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     /**
      * @param child child.
      * @param root root.
+     * @return true or false.
      */
-    private void addChildToRoot(E child, Node<E> root) {
+    private boolean addChildToRoot(E child, Node<E> root) {
         boolean childDouble = false;
-        if (root.child.size() != 0) {
-            for (Node<E> node : root.child) {
+        ArrayDeque<Node<E>> order = new ArrayDeque<>();
+        order.addLast(root);
+        do {
+            Node<E> listChild = order.pollFirst();
+            for (Node<E> node : listChild.child) {
                 if (child.compareTo(node.value) == 0) {
                     childDouble = true;
                     break;
                 }
-                this.order.addLast(node);
+                if (node.child.size() != 0) {
+                    order.addLast(node);
+                }
             }
-        }
-        if (this.order.peekFirst() != null && !childDouble) {
-            this.addChildToRoot(child, this.order.pollFirst());
-        } else if (!childDouble) {
+            if (childDouble) {
+                break;
+            }
+        } while (!order.isEmpty());
+        if (!childDouble) {
             Node<E> newChild = new Node<>(child);
             this.root.child.add(newChild);
-            this.newNode = this.root;
         }
-        this.order.clear();
-       // return !childDouble;
+        return !childDouble;
     }
 
     /**
@@ -118,12 +115,13 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
      * @return true or false.
      */
     private boolean addChildToParent(E parent, E child, Node<E> root) {
-        Node<E> newNode = null;
         boolean childDouble = false;
         boolean addTrue = false;
-        this.order.addLast(root);
+        Node<E> newNode = null;
+        ArrayDeque<Node<E>> order = new ArrayDeque<>();
+        order.addLast(root);
         do {
-            Node<E> listChild = this.order.pollFirst();
+            Node<E> listChild = order.pollFirst();
             for (Node<E> node : listChild.child) {
                 if (child.compareTo(node.value) == 0) {
                     childDouble = true;
@@ -133,14 +131,14 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
                     newNode = node;
                 }
                 if (node.child.size() != 0) {
-                    this.order.addLast(node);
+                    order.addLast(node);
                 }
             }
             if (childDouble) {
                 break;
             }
 
-        } while (!this.order.isEmpty());
+        } while (!order.isEmpty());
         if (!childDouble && newNode != null) {
             Node<E> newChild = new Node<>(child);
             newNode.child.add(newChild);
@@ -148,100 +146,6 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         }
         return addTrue;
     }
-        /*
-        boolean childDouble = false;
-        if (root.child.size() != 0) {
-            for (Node<E> node : root.child) {
-                if (child.compareTo(node.value) == 0) {
-                    childDouble = true;
-                    this.newNode = null;
-                    break;
-                }
-                if (parent.compareTo(node.value) == 0) {
-                    this.newNode = node;
-                }
-                if (node.child.size() != 0) {
-                    this.order.addLast(node);
-                }
-            }
-        }
-        if (this.order.peekFirst() != null && !childDouble) {
-            this.addChildToParent(parent, child, this.order.pollFirst());
-        } else if (this.newNode != null && !childDouble) {
-            Node<E> newChild = new Node<>(child);
-            this.newNode.child.add(newChild);
-        }
-        this.order.clear();
-        return true;
-    }
-
-    /*
-    /**
-     * @param parent parent.
-     * @param child child.
-     * @param root root.
-     * @return true or false.
-     */
-    /*
-    private boolean addChildToParent(E parent, E child, Node<E> root) {
-        boolean childDouble = false;
-        if (root.child.size() != 0) {
-            for (Node<E> node : root.child) {
-                if (child.compareTo(node.value) == 0) {
-                    childDouble = true;
-                    this.newNode = null;
-                    break;
-                }
-                if (parent.compareTo(node.value) == 0) {
-                    this.newNode = node;
-                }
-                if (node.child.size() != 0) {
-                    this.order.addLast(node);
-                }
-            }
-        }
-        if (this.order.peekFirst() != null && !childDouble) {
-            this.addChildToParent(parent, child, this.order.pollFirst());
-        } else if (this.newNode != null && !childDouble) {
-            Node<E> newChild = new Node<>(child);
-            this.newNode.child.add(newChild);
-        }
-        this.order.clear();
-        return true;
-    }
-    */
-
-
-        /*
-    /**
-     * @param parent parent.
-     * @param child child.
-     * @param root root.
-     */
-    /*
-    private void addChildToParent(E parent, E child, Node<E> root) {
-        boolean childDouble = false;
-        if (root.child.size() != 0) {
-            for (Node<E> node : root.child) {
-                if (child.compareTo(node.value) == 0) {
-                    childDouble = true;
-                    this.newNode = null;
-                    break;
-                } else if (parent.compareTo(node.value) == 0) {
-                    this.newNode = node;
-                }
-                this.order.addLast(node);
-            }
-        }
-        if (this.order.peekFirst() != null && !childDouble) {
-            this.addChildToParent(parent, child, this.order.pollFirst());
-        } else if (this.newNode != null && !childDouble) {
-            Node<E> newChild = new Node<>(child);
-            this.newNode.child.add(newChild);
-        }
-        this.order.clear();
-    }
-    */
 
     /**
      * @param parent sucks.
@@ -267,6 +171,27 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     private List<Node<E>> getChildrenToParent(E parent, Node<E> root) {
         boolean listSearch = false;
         List<Node<E>> childList = null;
+        ArrayDeque<Node<E>> order = new ArrayDeque<>();
+        order.addLast(root);
+        do {
+            Node<E> listChild = order.pollFirst();
+            for (Node<E> node : listChild.child) {
+                if (parent.compareTo(node.value) == 0) {
+                    childList = node.child;
+                    listSearch = true;
+                }
+                if (node.child.size() != 0) {
+                    order.addLast(node);
+                }
+            }
+            if (listSearch) {
+                break;
+            }
+        } while (!order.isEmpty());
+        return childList;
+        /*
+        boolean listSearch = false;
+        List<Node<E>> childList = null;
         if (root.child.size() != 0) {
             for (Node<E> node : root.child) {
                 if (parent.compareTo(node.value) == 0) {
@@ -281,6 +206,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
             this.getChildrenToParent(parent, this.order.pollFirst());
         }
         return childList;
+        */
     }
 
     /*

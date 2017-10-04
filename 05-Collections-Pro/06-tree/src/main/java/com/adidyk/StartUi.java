@@ -66,6 +66,9 @@ public class StartUi {
         User nik = new User("Nik", 4, new GregorianCalendar(1242, 4, 5));
         User frank = new User("Frank", 4, new GregorianCalendar(1242, 4, 5));
         User will = new User("Will", 4, new GregorianCalendar(1242, 4, 5));
+        User karl = new User("Karl", 1, new GregorianCalendar(1442, 7, 8));
+
+
         Tree<User> tree = new Tree<>();
         System.out.println("true: " + tree.add(bob, bill));
         System.out.println("true: " + tree.add(bob, amanda));
@@ -76,7 +79,7 @@ public class StartUi {
         System.out.println("true: " + tree.add(amanda, nik));
         System.out.println("true: " + tree.add(adler, frank));
         System.out.println("true: " + tree.add(adler, will));
-        System.out.println("true: " + tree.add(dilan, bill));
+        System.out.println("true: " + tree.add(frank, karl));
 
         //System.out.println("true: " + tree.add(bob, dilan));
         //System.out.println("true: " + tree.add(nik, will));
@@ -105,10 +108,8 @@ public class StartUi {
         System.out.println();
 
         System.out.print("Adler : ");
-        for (Object node : tree.get(adler)) {
-            if (node != null) {
-                System.out.print(" " + node);
-            }
+        for (Object node : tree.get(bob)) {
+            System.out.print(" " + node);
         }
         System.out.println();
 
