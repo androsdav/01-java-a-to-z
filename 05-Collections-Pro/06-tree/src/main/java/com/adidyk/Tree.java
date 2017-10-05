@@ -29,7 +29,7 @@ import java.util.List;
  * @version 1.0.
  * ------------------------------------------------------------------------------------------------------------
  */
-public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
+class Tree<E extends Comparable<E>> implements SimpleTree<E> {
 
     /**
      * @param root - first parent (root) in the tree.
@@ -49,8 +49,8 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     }
 
     /**
-     * Constructor - sets first parent (@param this.root) in the tree.
-     * @param parent is parent.
+     * Constructor - sets first parent (this.root) in the tree.
+     * @param parent - is parent.
      */
     Tree(E parent) {
         this.root = new Node<>(parent);
@@ -58,13 +58,14 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     }
 
     /**
-     * add - adds new child to the parent. Implementation next:
-     * -> if tree is empty (don`t has any elements) @param parent is becoming first element
-     *    (@param this.root) in the tree and if parent (@param parent) don`t equals child (@param child)
+     * add - adds new child to the parent. Implementation is next:
+     * -> if tree is empty ( doesn`t have any elements) @param parent is becoming first element
+     *    (@param this.root) in tree and if parent (@param parent) isn`t equals child (@param child)
      *    the child added to parent (@param this.root);
-     * -> if
-     * @param parent - is parent for child.
-     * @param child - is child for parent.
+     * -> if tree isn`t empty, method looks for the entered parent (@param parent) and adds entered child
+     *    (@param child) to parent if entered child isn`t duplicate in tree.
+     * @param parent - is parent (is generic type <E>).
+     * @param child  - child that is added to parent (is generic type <E>).
      * @return returns true if child search your parent or false if child don`t search your parent.
      */
     @Override

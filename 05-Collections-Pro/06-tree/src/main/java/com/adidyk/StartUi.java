@@ -113,6 +113,9 @@ public class StartUi {
         }
         System.out.println();
 
+        Tree<User> tree1 = new Tree<>(bob);
+        tree1.add(bob, bill);
+
 /*
         System.out.println();
         ArrayDeque<User> stack = new ArrayDeque<>();
