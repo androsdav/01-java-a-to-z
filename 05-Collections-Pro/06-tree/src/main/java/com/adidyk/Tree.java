@@ -59,14 +59,14 @@ class Tree<E extends Comparable<E>> implements SimpleTree<E> {
 
     /**
      * add - adds new child to the parent. Implementation is next:
-     * -> if tree is empty ( doesn`t have any elements) @param parent is becoming first element
+     * -> if tree is empty ( doesn`t have any elements) parent is becoming first element
      *    (@param this.root) in tree and if parent (@param parent) isn`t equals child (@param child)
      *    the child added to parent (@param this.root);
      * -> if tree isn`t empty, method looks for the entered parent (@param parent) and adds entered child
      *    (@param child) to parent if entered child isn`t duplicate in tree.
      * @param parent - is parent (is generic type <E>).
      * @param child  - child that is added to parent (is generic type <E>).
-     * @return returns true if child search your parent or false if child don`t search your parent.
+     * @return returns true if child added to tree or returns false if child isn`t to tree.
      */
     @Override
     public boolean add(E parent, E child) {
@@ -87,9 +87,12 @@ class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     }
 
     /**
-     * @param parent parent.
-     * @param child child.
-     * @return true or false.
+     * addRoot - if tree is empty ( doesn`t have any elements) parent is becoming first element
+     * (@param this.root) in tree and if parent (@param parent) isn`t equals child (@param child)
+     * the child added to parent (@param this.root).
+     * @param parent - is parent (is generic type <E>).
+     * @param child  - child that is added to parent (is generic type <E>).
+     * @return returns true if child added to tree or returns false if child isn`t to tree.
      */
     private boolean addRoot(E parent, E child) {
         boolean addTrue = false;
@@ -104,9 +107,12 @@ class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     }
 
     /**
+     * addChildToRoot - if entered parent is first element of tree (root), method searches for duplicates of child
+     * entered in tree. If duplicate is found, search stops and child isn`t added to tree, else child added to tree (to
+     * first element of tree, @param this.root).
      * @param child child.
      * @param root root.
-     * @return true or false.
+     * @return returns true if child added to tree or returns false if child isn`t to tree.
      */
     private boolean addChildToRoot(E child, Node<E> root) {
         boolean childDouble = false;
