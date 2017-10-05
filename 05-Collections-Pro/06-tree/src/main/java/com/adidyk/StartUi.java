@@ -1,6 +1,7 @@
 package com.adidyk;
 
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 
 /**
  * Class "StartUi" for create Map and puts key = user and value = new Object().
@@ -113,8 +114,11 @@ public class StartUi {
         }
         System.out.println();
 
-        Tree<User> tree1 = new Tree<>(bob);
-        tree1.add(bob, bill);
+        Iterator<User> it = tree.iterator();
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
+
 
 /*
         System.out.println();

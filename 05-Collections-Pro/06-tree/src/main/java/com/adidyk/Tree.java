@@ -239,11 +239,91 @@ class Tree<E extends Comparable<E>> implements SimpleTree<E> {
 
 
     /**
-     * @return null now while method iterator don`t have your realisation.
+     * iterator - returns new iterator for tree.
+     * @return returns new iterator for tree.
      */
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new SimpleIterator(this.root);
+    }
+
+    /**
+     * Class SimpleIterator.
+     */
+    private class SimpleIterator implements Iterator<E> {
+
+        /**
+         * @param root - is first element of tree.
+         */
+        private Node<E> root;
+
+        /**
+         * @param order - is deque.
+         */
+        private ArrayDeque<Node<E>> order;
+
+        /**
+         * @param list - is list all element of tree.
+         */
+        private ArrayDeque<E> list;
+
+        /**
+         * @param root - is first element of tree.
+         */
+        SimpleIterator(Node<E> root) {
+            this.init(root);
+        }
+
+        /**
+         * @param root - is first element of tree.
+         */
+        private void init(Node<E> root) {
+            this.order = new ArrayDeque<>();
+            this.list = new ArrayDeque<>();
+            this.root = root;
+            this.list.addLast(this.root.value);
+            this.order.addLast(this.root);
+            this.addChildToOrder();
+        }
+
+        /**
+         * addChildToOrder - adds children to deque.
+         */
+        private void addChildToOrder() {
+            do {
+                Node<E> listChild = order.pollFirst();
+                for (Node<E> node : listChild.child) {
+                    list.addLast(node.value);
+                    if (node.child.size() != 0) {
+                        order.addLast(node);
+                    }
+                }
+            } while (!order.isEmpty());
+        }
+
+        /**
+         * @return true.
+         */
+        @Override
+        public boolean hasNext() {
+            return !this.list.isEmpty();
+        }
+
+        /**
+         *
+         * @return true.
+         */
+        @Override
+        public E next() {
+            return this.list.pollFirst();
+        }
+
+        /**
+         * returns true.
+         */
+        @Override
+        public void remove() {
+        }
     }
 
     /**

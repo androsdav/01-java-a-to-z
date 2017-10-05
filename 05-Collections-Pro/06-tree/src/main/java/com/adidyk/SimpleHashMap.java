@@ -6,7 +6,7 @@ import java.util.Iterator;
  * ------------------------------------------------------------------------------------------------------------
  * Class SimpleHashMap is HashTable structure by analogy as in Java. SimpleHashMap is implemented on arrays where
  * each cell of the array can contain linked list object Node. Object of class Node has next parameters:
-  * -> hash  - hash value by key;
+ * -> hash  - hash value by key;
  * -> key   - key its generic type <K>;
  * -> prev  - link on previous object of class Node;
  * -> value - value its generic type <V>;
@@ -187,7 +187,6 @@ class SimpleHashMap<K, V> implements SimpleMap<K, V> {
     private int bucket(int hash) {
         return hash & (this.table.length - 1);
     }
-
 
     /**
      * Iterator - override Iterator.
