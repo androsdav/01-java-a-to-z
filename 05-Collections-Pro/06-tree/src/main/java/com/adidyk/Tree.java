@@ -237,7 +237,6 @@ class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         return this.size;
     }
 
-
     /**
      * iterator - returns new iterator for tree.
      * @return returns new iterator for tree.

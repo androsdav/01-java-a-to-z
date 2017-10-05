@@ -68,56 +68,39 @@ public class StartUi {
         User frank = new User("Frank", 4, new GregorianCalendar(1242, 4, 5));
         User will = new User("Will", 4, new GregorianCalendar(1242, 4, 5));
         User karl = new User("Karl", 1, new GregorianCalendar(1442, 7, 8));
-
+        User silver = new User("Silver", 2, new GregorianCalendar(1422, 27, 85));
+        User tramp = new User("Tramp", 21, new GregorianCalendar(1442, 2, 8));
 
         Tree<User> tree = new Tree<>();
         System.out.println("true: " + tree.add(bob, bill));
         System.out.println("true: " + tree.add(bob, amanda));
         System.out.println("true: " + tree.add(bill, dilan));
+        System.out.println("true: " + tree.add(bill, tramp));
         System.out.println("true: " + tree.add(bill, adolf));
         System.out.println("true: " + tree.add(amanda, adler));
         System.out.println("true: " + tree.add(amanda, smith));
         System.out.println("true: " + tree.add(amanda, nik));
         System.out.println("true: " + tree.add(adler, frank));
         System.out.println("true: " + tree.add(adler, will));
+        System.out.println("true: " + tree.add(adler, silver));
         System.out.println("true: " + tree.add(frank, karl));
-
-        //System.out.println("true: " + tree.add(bob, dilan));
-        //System.out.println("true: " + tree.add(nik, will));
         System.out.println(tree.size());
-        /*
-        System.out.println("true: " + tree.add(bob, bob));
-        System.out.println("true: " + tree.add(bob, bill));
-        System.out.println("true: " + tree.add(bob, amanda));
-        System.out.println("true: " + tree.add(bob, nik));
-        System.out.println("false: " + tree.add(bob, bob));
-        System.out.println("true: " + tree.add(bob, frank));
-        System.out.println("true: " + tree.add(bill, dilan));
-        System.out.println("true: " + tree.add(bill, adolf));
-        System.out.println("true: " + tree.add(amanda, adler));
-        System.out.println("true: " + tree.add(amanda, smith));
-        System.out.println("false: " + tree.add(dilan, nik));
-        System.out.println("false: " + tree.add(dilan, frank));
-        System.out.println("true: " + tree.add(dilan, will));
-        System.out.println("false: " + tree.add(adolf, amanda));
-        System.out.println("false: " + tree.add(adolf, frank));
-        System.out.println("false: " + tree.add(adolf, bob));
-        System.out.println("false: " + tree.add(adolf, nik));
-        System.out.println("false: " + tree.add(smith, nik));
-        System.out.println("false: " + tree.add(smith, bob));
-        */
         System.out.println();
-
         System.out.print("Adler : ");
         for (Object node : tree.get(bob)) {
             System.out.print(" " + node);
         }
-        System.out.println();
-
+        System.out.println("Iterator:");
         Iterator<User> it = tree.iterator();
         while (it.hasNext()) {
             System.out.println(it.next());
         }
+        System.out.println("for-Each");
+        for (User user : tree) {
+            System.out.println(user);
+        }
+
+
 
 
 /*
