@@ -60,10 +60,10 @@ class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     /**
      * add - adds new child to parent. Implementation is next:
      * -> if tree is empty ( doesn`t have any elements) parent is becoming first element
-     *    (@param this.root) in tree and if parent (@param parent) isn`t equals child (@param child)
-     *    the child added to parent (@param this.root);
-     * -> if tree isn`t empty, method looks for the entered parent (@param parent) and adds entered child
-     *    (@param child) to parent if entered child isn`t duplicate in tree.
+     *    (this.root) in tree and if parent (@param parent) isn`t equals child (child)
+     *    the child added to parent (this.root);
+     * -> if tree isn`t empty, method looks for the entered parent (parent) and adds entered child
+     *    (child) to parent if entered child isn`t duplicate in tree.
      * @param parent - is parent (is generic type <E>).
      * @param child  - child that is added to parent (is generic type <E>).
      * @return returns true if child added to tree or returns false if child isn`t to tree.
@@ -87,9 +87,9 @@ class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     }
 
     /**
-     * addRoot - if tree is empty ( doesn`t have any elements) parent is becoming first element
-     * (@param this.root) in tree and if parent (@param parent) isn`t equals child (@param child)
-     * the child added to parent (@param this.root).
+     * addRoot - if tree is empty (doesn`t have any elements) parent is becoming first element
+     * (this.root) in tree and if parent (parent) isn`t equals child (child) the child added
+     * to parent (this.root).
      * @param parent - is parent (is generic type <E>).
      * @param child  - child that is added to root-parent (is generic type <E>).
      * @return returns true if child added to tree or returns false if child isn`t to tree.
@@ -180,8 +180,10 @@ class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     }
 
     /**
-     * @param parent sucks.
-     * @return root.
+     * get - searches entered parent and if parent is element of tree returns list children.
+     * if entered parent isn`t element of tree return null.
+     * @param parent - is parent (is generic type <E>).
+     * @return returns list children if entered parent is element of tree.
      */
     @Override
     public List<Node<E>> get(E parent) {
@@ -197,9 +199,11 @@ class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     }
 
     /**
-     * @param parent parent.
-     * @param root root.
-     * @return sucks.
+     * getChildrenToParent - searches entered parent and if parent is element of tree returns list children.
+     * if entered parent isn`t element of tree return null.
+     * @param parent - is parent (is generic type <E>).
+     * @param root   - is first element in tree (root).
+     * @return returns list children if entered parent is element of tree.
      */
     private List<Node<E>> getChildrenToParent(E parent, Node<E> root) {
         boolean listSearch = false;
@@ -224,6 +228,10 @@ class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         return childList;
     }
 
+    /**
+     * size - returns numbers of elements in tree.
+     * @return returns numbers of elements in tree.
+     */
     @Override
     public int size() {
         return this.size;
