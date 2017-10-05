@@ -272,17 +272,8 @@ class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         }
 
         /**
-         *
-         * @param children add children to parent.
-         */
-        private void addChildren(Node<E> children) {
-            this.child.add(children);
-        }
-
-        /*
-        /**
-         * Task bank do not tell me
-         * @return all information for parent.
+         * toString - returns string format.
+         * @return all information for element of tree.
          */
         @Override
         public String toString() {
