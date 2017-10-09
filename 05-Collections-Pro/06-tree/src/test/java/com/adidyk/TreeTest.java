@@ -2,6 +2,7 @@ package com.adidyk;
 
 import org.junit.Before;
 import org.junit.Test;
+
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 
@@ -89,7 +90,7 @@ public class TreeTest {
     /**
      * it - iterator.
      */
-    private Iterator it = this.tree.iterator();
+    private Iterator<User> it;
 
 
     /**
@@ -109,6 +110,7 @@ public class TreeTest {
         this.tree.add(this.adler, this.will);
         this.tree.add(this.adler, this.silver);
         this.tree.add(this.frank, this.karl);
+        this.it = this.tree.iterator();
     }
 
     /**
@@ -162,6 +164,16 @@ public class TreeTest {
         this.it.next();
         this.it.next();
         this.it.next();
+        this.it.next();
+        this.it.next();
+        this.it.next();
+        this.it.next();
+        this.it.next();
+        this.it.next();
+        this.it.next();
+        this.it.next();
+        this.it.next();
+        this.it.next();
         assertThat(false, is(this.it.hasNext()));
     }
 
@@ -171,11 +183,9 @@ public class TreeTest {
     @Test
     public void nextTest() {
         this.it.next();
-        assertThat(this.it.next(), is( new User("Bill", 3, new GregorianCalendar(1982, 2, 2))));
+        assertThat(this.it.next(), is(new User("Bill", 3, new GregorianCalendar(1982, 2, 2))));
         this.it.next();
         assertThat(this.it.next(), is(new User("Dilan", 42, new GregorianCalendar(1241, 4, 5))));
     }
-
-
 
 }
