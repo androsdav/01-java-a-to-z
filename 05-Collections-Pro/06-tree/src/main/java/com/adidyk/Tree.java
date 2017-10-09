@@ -359,4 +359,5 @@ class Tree<E extends Comparable<E>> implements SimpleTree<E> {
             return String.format("%s", this.value);
         }
     }
+
 }
