@@ -32,4 +32,9 @@ interface SimpleTree<E extends Comparable<E>> extends Iterable<E> {
      */
     int size();
 
+    /**
+     * isBinary - defines tree is binary or tree isn`t binary.
+     * @return returns true if tree is binary or returns false if tree isn`t binary.
+     */
+    boolean isBinary();
 }

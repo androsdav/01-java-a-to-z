@@ -221,6 +221,27 @@ class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     }
 
     /**
+     * isBinary - defines tree is binary or tree isn`t binary.
+     * @return returns true if tree is binary or returns false if tree isn`t binary.
+     */
+    @Override
+    public boolean isBinary() {
+        boolean treeBinary = true;
+        ArrayDeque<Node<E>> order = new ArrayDeque<>();
+        order.addLast(this.root);
+        do {
+            Node<E> listChild = order.pollFirst();
+            if (listChild.child.size() <= 2) {
+                listChild.child.stream().filter(node -> 0 < node.child.size()).forEach(order::addLast);
+            } else {
+                treeBinary = false;
+                break;
+            }
+        } while (!order.isEmpty());
+        return treeBinary;
+    }
+
+    /**
      * iterator - returns new iterator for tree.
      * @return returns new iterator for tree.
      */

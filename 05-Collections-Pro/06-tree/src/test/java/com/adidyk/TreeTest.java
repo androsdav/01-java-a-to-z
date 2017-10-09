@@ -145,6 +145,30 @@ public class TreeTest {
     }
 
     /**
+     * isTrueBinary - tests method isBinary of class Tree when tree is binary.
+     */
+    @Test
+    public void isBinaryTrueTest() {
+        assertThat(false, is(this.tree.isBinary()));
+        Tree<User> treeBinary = new Tree<>();
+        treeBinary.add(this.bob, this.bill);
+        treeBinary.add(this.bob, this.amanda);
+        treeBinary.add(this.bill, this.dilan);
+        treeBinary.add(this.bill, this.adolf);
+        treeBinary.add(this.amanda, this.adler);
+        treeBinary.add(this.amanda, this.smith);
+        assertThat(true, is(treeBinary.isBinary()));
+    }
+
+    /**
+     * isTrueBinary - tests method isBinary of class Tree when tree is binary.
+     */
+    @Test
+    public void isBinaryFalseTest() {
+        assertThat(false, is(this.tree.isBinary()));
+    }
+
+    /**
      * hasNextTrue - test method hasNext when next of class Tree.
      */
     @Test
