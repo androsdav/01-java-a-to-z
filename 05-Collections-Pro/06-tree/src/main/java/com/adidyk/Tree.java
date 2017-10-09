@@ -6,10 +6,9 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * * Interface SimpleTree for create elementary structure Tree.
- * * This is container don`t has duplicate elements.
  * ------------------------------------------------------------------------------------------------------------
  * Class Tree is Tree elementary structure by "analogy" as in Java.
+ * This is container Tree don`t have duplicate elements.
  * Container of Tree is implemented on elementary structure tree where each element (parent -
  * object of static class Node<E>) of structure can contain ArrayList object Node<E> (children).
  * Object of class Node<E> has next parameters:
@@ -40,22 +39,6 @@ class Tree<E extends Comparable<E>> implements SimpleTree<E> {
      * @param size - number of elements in the tree.
      */
     private int size;
-
-    /**
-     * Constructor - sets null for the root.
-     */
-    Tree() {
-        this.root = null;
-    }
-
-    /**
-     * Constructor - sets first parent (this.root) in the tree.
-     * @param parent - is parent.
-     */
-    Tree(E parent) {
-        this.root = new Node<>(parent);
-        this.size++;
-    }
 
     /**
      * add - adds new child to parent. Implementation is next:
@@ -309,8 +292,8 @@ class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         }
 
         /**
-         *
-         * @return true.
+         * next - returns next element from Tree.
+         * @return returns next element from Tree.
          */
         @Override
         public E next() {
@@ -318,11 +301,12 @@ class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         }
 
         /**
-         * returns true.
+         * remove - isn`t nothing.
          */
         @Override
         public void remove() {
         }
+
     }
 
     /**
@@ -332,7 +316,7 @@ class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     private static class Node<E> {
 
         /**
-         * <E> - its class.
+         * @param parent - is parent (is generic type <E>).
          */
         private E value;
 
@@ -358,6 +342,7 @@ class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         public String toString() {
             return String.format("%s", this.value);
         }
+
     }
 
 }

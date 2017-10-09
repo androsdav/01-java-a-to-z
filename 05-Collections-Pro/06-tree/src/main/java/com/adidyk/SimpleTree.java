@@ -9,7 +9,7 @@ import java.util.List;
  * @version 1.0.
  * @param <E> the type element of container for structure Tree.
  */
-public interface SimpleTree<E extends Comparable<E>> extends Iterable<E> {
+interface SimpleTree<E extends Comparable<E>> extends Iterable<E> {
 
     /**
      * add - adds a new child (elements of tree structure) to the parent.

@@ -68,21 +68,21 @@ class User implements Comparable<User> {
     }
 
     /**
-     * @return int this.children - number of children of user.
+     * @return returns children - number of children of user.
     **/
     int getChildren() {
         return this.children;
     }
 
     /**
-     * @return this.birthday - user birthday.
+     * @return returns birthday - user birthday.
      */
     Calendar getBirthday() {
         return this.birthday;
     }
 
     /**
-     * @return int result - hashCode for user.
+     * @return returns hashCode for user.
      **/
     @Override
     public int hashCode() {
@@ -111,21 +111,8 @@ class User implements Comparable<User> {
     /**
      * @return all param for User
      */
-    /*
     @Override
     public String toString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-        return String.format("%s%s%s%s%s%s%s%s", "User{", "name=", name, ", children=", children, ", birthday=",
-                sdf.format(this.getBirthday().getTime()), '}');
-    }
-    */
-
-    /**
-     * @return all param for User
-     */
-    @Override
-    public String toString() {
-//        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         return String.format("%s", this.name);
     }
 

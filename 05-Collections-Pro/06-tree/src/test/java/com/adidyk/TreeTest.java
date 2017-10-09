@@ -2,7 +2,9 @@ package com.adidyk;
 
 import org.junit.Before;
 import org.junit.Test;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
+import java.util.Iterator;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -195,8 +197,8 @@ public class TreeTest {
         treeActual.add(new User("Bill", 3, new GregorianCalendar(1982, 2, 2)));
         treeActual.add(new User("Amanda", 4, new GregorianCalendar(1242, 4, 5)));
         treeActual.add(new User("Dilan", 42, new GregorianCalendar(1241, 4, 5)));
-        treeActual.add(new User("Adolf", 3, new GregorianCalendar(1982, 2, 2)));
         treeActual.add(new User("Tramp", 21, new GregorianCalendar(1442, 2, 8)));
+        treeActual.add(new User("Adolf", 3, new GregorianCalendar(1982, 2, 2)));
         treeActual.add(new User("Adler", 2, new GregorianCalendar(1932, 1, 4)));
         treeActual.add(new User("Smith", 4, new GregorianCalendar(1242, 4, 5)));
         treeActual.add(new User("Nik", 4, new GregorianCalendar(1242, 4, 5)));
