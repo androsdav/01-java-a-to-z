@@ -2,10 +2,7 @@ package com.adidyk;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.GregorianCalendar;
-import java.util.Iterator;
-
+import java.util.*;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -186,6 +183,32 @@ public class TreeTest {
         assertThat(this.it.next(), is(new User("Bill", 3, new GregorianCalendar(1982, 2, 2))));
         this.it.next();
         assertThat(this.it.next(), is(new User("Dilan", 42, new GregorianCalendar(1241, 4, 5))));
+    }
+
+    /**
+     * loopTest - test iterator (forEach) of class Tree (iterator).
+     */
+    @Test
+    public void loopTest() {
+        ArrayList<User> treeActual = new ArrayList<>();
+        treeActual.add(new User("Bob", 2, new GregorianCalendar(1932, 1, 4)));
+        treeActual.add(new User("Bill", 3, new GregorianCalendar(1982, 2, 2)));
+        treeActual.add(new User("Amanda", 4, new GregorianCalendar(1242, 4, 5)));
+        treeActual.add(new User("Dilan", 42, new GregorianCalendar(1241, 4, 5)));
+        treeActual.add(new User("Adolf", 3, new GregorianCalendar(1982, 2, 2)));
+        treeActual.add(new User("Tramp", 21, new GregorianCalendar(1442, 2, 8)));
+        treeActual.add(new User("Adler", 2, new GregorianCalendar(1932, 1, 4)));
+        treeActual.add(new User("Smith", 4, new GregorianCalendar(1242, 4, 5)));
+        treeActual.add(new User("Nik", 4, new GregorianCalendar(1242, 4, 5)));
+        treeActual.add(new User("Frank", 4, new GregorianCalendar(1242, 4, 5)));
+        treeActual.add(new User("Will", 4, new GregorianCalendar(1242, 4, 5)));
+        treeActual.add(new User("Silver", 2, new GregorianCalendar(1422, 27, 85)));
+        treeActual.add(new User("Karl", 1, new GregorianCalendar(1442, 7, 8)));
+        int position = 0;
+        while (this.it.hasNext()) {
+            assertThat(this.it.next(), is(treeActual.get(position)));
+            position++;
+        }
     }
 
 }
