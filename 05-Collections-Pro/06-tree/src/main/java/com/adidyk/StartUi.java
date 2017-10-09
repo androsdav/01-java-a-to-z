@@ -28,7 +28,7 @@ public class StartUi {
 
         Iterator<Integer> it = tree.iterator();
         while (it.hasNext()) {
-            System.out.println(it.next());
+            System.out.println(it.next().toString());
         }
 
     }

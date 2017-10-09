@@ -110,7 +110,6 @@ class TreeBinary<E extends Comparable<E>> implements SimpleTreeBinary<E> {
             this.order = new ArrayDeque<>();
             this.list = new ArrayDeque<>();
             this.root = root;
-            this.list.addLast(this.root.value);
             this.order.addLast(this.root);
             this.addChildToOrder();
         }
@@ -121,6 +120,7 @@ class TreeBinary<E extends Comparable<E>> implements SimpleTreeBinary<E> {
         private void addChildToOrder() {
             do {
                 Node<E> node = order.pollFirst();
+                this.list.addLast(node.value);
                 if (node.left != null) {
                     this.order.addLast(node.left);
                 }
