@@ -12,9 +12,8 @@ interface SimpleTreeBinary<E extends Comparable<E>> extends Iterable<E> {
     /**
      * add - adds new element to Tree-binary.
      * @param node - is generic type <E>.
-     * @return true or false.
      */
-    boolean add(E node);
+    void add(E node);
 
 
 }

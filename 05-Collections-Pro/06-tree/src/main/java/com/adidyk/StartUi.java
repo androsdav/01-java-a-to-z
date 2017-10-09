@@ -1,5 +1,7 @@
 package com.adidyk;
 
+import java.util.Iterator;
+
 /**
  * Class "StartUi" for create jar file.
  * @author Didyk Andrey (androsdav@bigmir.net).
@@ -23,7 +25,12 @@ public class StartUi {
         tree.add(15);
         tree.add(5);
         tree.add(12);
-        System.out.println(tree);
+
+        Iterator<Integer> it = tree.iterator();
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
+
     }
 
 }

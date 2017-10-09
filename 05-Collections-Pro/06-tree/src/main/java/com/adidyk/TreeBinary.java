@@ -1,5 +1,6 @@
 package com.adidyk;
 
+import java.util.ArrayDeque;
 import java.util.Iterator;
 
 /**
@@ -25,48 +26,42 @@ import java.util.Iterator;
  * @version 1.0.
  * ------------------------------------------------------------------------------------------------------------
  */
-public class TreeBinary<E extends Comparable<E>> implements SimpleTreeBinary<E> {
+class TreeBinary<E extends Comparable<E>> implements SimpleTreeBinary<E> {
 
     /**
-     * @param root - first element (root) in the tree.
+     * @param root - first element (root) in the tree-binary.
      */
     private Node<E> root;
 
     /**
      * add - adds new value to tree.
      * @param value - is generic type <E>.
-     * @return returns true.
      */
     @Override
-    public boolean add(E value) {
-        boolean addTrue = false;
+    public void add(E value) {
         if (this.root == null) {
             this.root = new Node<>(null, value, null);
         } else {
-            this.addTest(this.root, value);
+            this.addTo(this.root, value);
         }
-
-        return addTrue;
     }
-
 
     /**
      * @param node - is node.
      * @param value - is value.
      */
-    private void addTest(Node<E> node, E value) {
-        boolean addTrue = false;
+    private void addTo(Node<E> node, E value) {
         if (value.compareTo(node.value) < 0) {
             if (node.left == null) {
                 node.left = new Node<>(null, value, null);
             } else {
-                this.addTest(node.left, value);
+                this.addTo(node.left, value);
             }
         } else if (value.compareTo(node.value) > 0) {
             if (node.right == null) {
                 node.right = new Node<>(null, value, null);
             } else {
-                this.addTest(node.right, value);
+                this.addTo(node.right, value);
             }
         }
     }
@@ -77,7 +72,88 @@ public class TreeBinary<E extends Comparable<E>> implements SimpleTreeBinary<E> 
      */
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new SimpleIterator(this.root);
+    }
+
+    /**
+     * Class SimpleIterator is iterator.
+     */
+    private class SimpleIterator implements Iterator<E> {
+
+        /**
+         * @param root - is first element of tree.
+         */
+        private Node<E> root;
+
+        /**
+         * @param order - is deque.
+         */
+        private ArrayDeque<Node<E>> order;
+
+        /**
+         * @param list - is deque all element of tree for iterator.
+         */
+        private ArrayDeque<E> list;
+
+        /**
+         *
+         * @param root is root.
+         */
+        SimpleIterator(Node<E> root) {
+            this.init(root);
+        }
+
+        /**
+         * @param root - is first element of tree.
+         */
+        private void init(Node<E> root) {
+            this.order = new ArrayDeque<>();
+            this.list = new ArrayDeque<>();
+            this.root = root;
+            this.list.addLast(this.root.value);
+            this.order.addLast(this.root);
+            this.addChildToOrder();
+        }
+
+        /**
+         * addChildToOrder - adds children to deque.
+         */
+        private void addChildToOrder() {
+            do {
+                Node<E> node = order.pollFirst();
+                if (node.left != null) {
+                    this.order.addLast(node.left);
+                }
+                if (node.right != null) {
+                    this.order.addLast(node.right);
+                }
+            } while (!order.isEmpty());
+        }
+
+        /**
+         *
+         * @return true.
+         */
+        @Override
+        public boolean hasNext() {
+            return !this.list.isEmpty();
+        }
+
+        /**
+         *
+         * @return true.
+         */
+        @Override
+        public E next() {
+            return this.list.pollFirst();
+        }
+
+        /**
+         * not realisation.
+         */
+        @Override
+        public void remove() {
+        }
     }
 
     /**
