@@ -1,6 +1,5 @@
 package com.adidyk;
 
-import java.util.ArrayDeque;
 import java.util.Iterator;
 
 /**
@@ -10,7 +9,7 @@ import java.util.Iterator;
  * Container of Tree is implemented on elementary structure tree where each element (parent -
  * object of static class Node<E>) of structure can contain ArrayList object Node<E> (children).
  * Object of class Node<E> has next parameters:
- * -> value - value its generic type <E>;
+ * -> value - value its generic type <E>.
  * -> child - link on ArrayList object of class Node<E> (List<Node<E>).
  * ------------------------------------------------------------------------------------------------------------
  * Class Tree has next method:
@@ -36,42 +35,40 @@ public class TreeBinary<E extends Comparable<E>> implements SimpleTreeBinary<E> 
     /**
      * add - adds new value to tree.
      * @param value - is generic type <E>.
+     * @return returns true.
      */
     @Override
     public boolean add(E value) {
         boolean addTrue = false;
         if (this.root == null) {
-            this.addRoot(value);
+            this.root = new Node<>(null, value, null);
         } else {
-            this.addTest(value);
-
+            this.addTest(this.root, value);
         }
 
         return addTrue;
     }
 
-    /**
-     * add - adds root.
-     * @param value - is value.
-     */
-    private void addRoot(E value) {
-        this.root = new Node<>(null, value, null);
-    }
 
     /**
-     *
+     * @param node - is node.
      * @param value - is value.
      */
-    private void addTest(E value) {
-        ArrayDeque<E> order = new ArrayDeque<>();
-        order.addLast(value);
-        do {
-            if (value.compareTo(order.pollFirst()) > 0) {
-
-
+    private void addTest(Node<E> node, E value) {
+        boolean addTrue = false;
+        if (value.compareTo(node.value) < 0) {
+            if (node.left == null) {
+                node.left = new Node<>(null, value, null);
+            } else {
+                this.addTest(node.left, value);
             }
-        } while (!order.isEmpty());
-
+        } else if (value.compareTo(node.value) > 0) {
+            if (node.right == null) {
+                node.right = new Node<>(null, value, null);
+            } else {
+                this.addTest(node.right, value);
+            }
+        }
     }
 
     /**

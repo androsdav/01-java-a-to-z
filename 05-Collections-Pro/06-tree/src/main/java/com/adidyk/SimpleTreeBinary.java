@@ -7,11 +7,12 @@ package com.adidyk;
  * @version 1.0.
  * @param <E> the type element of container for structure Tree-binary.
  */
-public interface SimpleTreeBinary<E extends Comparable<E>> extends Iterable<E> {
+interface SimpleTreeBinary<E extends Comparable<E>> extends Iterable<E> {
 
     /**
-     * add - adds new
+     * add - adds new element to Tree-binary.
      * @param node - is generic type <E>.
+     * @return true or false.
      */
     boolean add(E node);
 

@@ -14,6 +14,16 @@ public class StartUi {
      */
     public static void main(String[] arg) {
         System.out.println("Tree");
+        TreeBinary<Integer> tree = new TreeBinary<>();
+        tree.add(10);
+        tree.add(12);
+        tree.add(5);
+        tree.add(11);
+        tree.add(13);
+        tree.add(15);
+        tree.add(5);
+        tree.add(12);
+        System.out.println(tree);
     }
 
 }
