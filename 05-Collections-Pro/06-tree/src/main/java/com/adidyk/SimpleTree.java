@@ -27,7 +27,7 @@ interface SimpleTree<E extends Comparable<E>> extends Iterable<E> {
     List<?> get(E parent);
 
     /**
-     *
+     * size - returns numbers of elements in tree.
      * @return returns number of elements in the tree.
      */
     int size();

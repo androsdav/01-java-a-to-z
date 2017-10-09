@@ -14,15 +14,15 @@ import java.util.List;
  * Object of class Node<E> has next parameters:
  * -> value - value its generic type <E>;
  * -> child - link on ArrayList object of class Node<E> (List<Node<E>).
- *------------------------------------------------------------------------------------------------------------
+ * ------------------------------------------------------------------------------------------------------------
  * Class Tree has next method:
  * -> add  - adds new child to the parent;
  * -> get  - returns list all child for inputted parent;
  * -> size - returns number of elements in the tree.
- *------------------------------------------------------------------------------------------------------------
+ * ------------------------------------------------------------------------------------------------------------
  * Class Tree can use method for-each and method iterator.
  * @param <E> - the type of element maintained by this tree.
- *------------------------------------------------------------------------------------------------------------
+ * ------------------------------------------------------------------------------------------------------------
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 30.08.2017.
  * @version 1.0.
@@ -245,7 +245,7 @@ class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         private ArrayDeque<Node<E>> order;
 
         /**
-         * @param list - is list all element of tree.
+         * @param list - is deque all element of tree for iterator.
          */
         private ArrayDeque<E> list;
 
@@ -284,6 +284,7 @@ class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         }
 
         /**
+         * hasNext - returns true if next element is in Tree or returns false if next element isn`t in Tree.
          * @return true.
          */
         @Override
@@ -310,18 +311,23 @@ class Tree<E extends Comparable<E>> implements SimpleTree<E> {
     }
 
     /**
-     *
-     * @param <E> - the type of class.
+     * ------------------------------------------------------------------------------------------------------------
+     * Object of class Node<E> has next parameters:
+     * -> value - value its generic type <E>;
+     * -> child - link on ArrayList object of class Node<E> (List<Node<E>).
+     * ------------------------------------------------------------------------------------------------------------
+     * @param <E> - the type of element maintained by this tree.
+     * ------------------------------------------------------------------------------------------------------------
      */
     private static class Node<E> {
 
         /**
-         * @param parent - is parent (is generic type <E>).
+         * @param value - is parent (is generic type <E>).
          */
         private E value;
 
         /**
-         * <E> - its class.
+         * @param child - child that is added to parent (is generic type <E>).
          */
         private List<Node<E>> child;
 

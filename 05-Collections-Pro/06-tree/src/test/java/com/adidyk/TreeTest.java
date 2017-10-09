@@ -87,7 +87,7 @@ public class TreeTest {
     private User tramp = new User("Tramp", 21, new GregorianCalendar(1442, 2, 8));
 
     /**
-     * it - iterator.
+     * @param it - is iterator.
      */
     private Iterator<User> it;
 
