@@ -5,20 +5,21 @@ import java.util.Iterator;
 
 /**
  * ------------------------------------------------------------------------------------------------------------
- * Class Tree is Tree elementary structure by "analogy" as in Java.
- * This is container Tree don`t have duplicate elements.
- * Container of Tree is implemented on elementary structure tree where each element (parent -
- * object of static class Node<E>) of structure can contain ArrayList object Node<E> (children).
+ * Class TreeBinary is search binary tree. This is container TreeBinary don`t have duplicate elements.
+ * Root element has only two children elements: left and right. Element to left of root is less than root,
+ * and right is greater than root.
+ * Container of Tree is implemented on elementary search binary tree tree where each element (parent -
+ * object of static class Node<E>) of structure can contain two object Node<E> (left and right).
  * Object of class Node<E> has next parameters:
- * -> value - value its generic type <E>.
- * -> child - link on ArrayList object of class Node<E> (List<Node<E>).
+ * -> left  - link on object of class Node<E>;
+ * -> value - value its generic type <E>;
+ * -> right - link on object of class Node<E>.
  * ------------------------------------------------------------------------------------------------------------
  * Class Tree has next method:
- * -> add  - adds new child to the parent;
- * -> get  - returns list all child for inputted parent;
- * -> size - returns number of elements in the tree.
+ * -> add  - adds new element to tree-binary;
+ * -> iterator - returns next element from tree-binary.
  * ------------------------------------------------------------------------------------------------------------
- * Class Tree can use method for-each and method iterator.
+ * Class TreeBinary can use method for-each and method iterator.
  * @param <E> - the type of element maintained by this tree.
  * ------------------------------------------------------------------------------------------------------------
  * @author Didyk Andrey (androsdav@bigmir.net).
@@ -34,8 +35,8 @@ class TreeBinary<E extends Comparable<E>> implements SimpleTreeBinary<E> {
     private Node<E> root;
 
     /**
-     * add - adds new value to tree.
-     * @param value - is generic type <E>.
+     * add - adds new element to tree-binary.
+     * @param value - is generic type <E> and new added element.
      */
     @Override
     public void add(E value) {
@@ -47,8 +48,9 @@ class TreeBinary<E extends Comparable<E>> implements SimpleTreeBinary<E> {
     }
 
     /**
-     * @param node - is node.
-     * @param value - is value.
+     * addTo - adds new element to tree-binary.
+     * @param node - is first element from tree-binary.
+     * @param value - is generic type <E> and new added element.
      */
     private void addTo(Node<E> node, E value) {
         if (value.compareTo(node.value) < 0) {
@@ -67,8 +69,8 @@ class TreeBinary<E extends Comparable<E>> implements SimpleTreeBinary<E> {
     }
 
     /**
-     *
-     * @return null now.
+     * iterator - create new object of class SimpleIterator and returns it.
+     * @return returns new object of class SimpleIterator.
      */
     @Override
     public Iterator<E> iterator() {
@@ -76,28 +78,28 @@ class TreeBinary<E extends Comparable<E>> implements SimpleTreeBinary<E> {
     }
 
     /**
-     * Class SimpleIterator is iterator.
+     * Class SimpleIterator.
      */
     private class SimpleIterator implements Iterator<E> {
 
         /**
-         * @param root - is first element of tree.
+         * @param root - is first element of tree-binary.
          */
         private Node<E> root;
 
         /**
-         * @param order - is deque.
+         * @param order - is deque where all elements tree-binary arrive.
          */
         private ArrayDeque<Node<E>> order;
 
         /**
-         * @param list - is deque all element of tree for iterator.
+         * @param list - is deque where all elements tree-binary arrive for iterator.
          */
         private ArrayDeque<E> list;
 
         /**
          *
-         * @param root is root.
+         * @param root - is first element of tree-binary.
          */
         SimpleIterator(Node<E> root) {
             this.init(root);
