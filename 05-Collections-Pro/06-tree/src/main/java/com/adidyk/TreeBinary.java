@@ -12,7 +12,7 @@ import java.util.Iterator;
  * object of static class Node<E>) of structure can contain two object Node<E> (left and right).
  * Object of class Node<E> has next parameters:
  * -> left  - link on object of class Node<E>;
- * -> value - value its generic type <E>;
+ * -> value - value is generic type <E>;
  * -> right - link on object of class Node<E>.
  * ------------------------------------------------------------------------------------------------------------
  * Class Tree has next method:
@@ -69,7 +69,8 @@ class TreeBinary<E extends Comparable<E>> implements SimpleTreeBinary<E> {
     }
 
     /**
-     * iterator - create new object of class SimpleIterator and returns it.
+     * iterator - create new object of class SimpleIterator and returns it and
+     * implements breadth-first search.
      * @return returns new object of class SimpleIterator.
      */
     @Override
@@ -106,6 +107,7 @@ class TreeBinary<E extends Comparable<E>> implements SimpleTreeBinary<E> {
         }
 
         /**
+         * init - initialisation all params.
          * @param root - is first element of tree.
          */
         private void init(Node<E> root) {
@@ -117,7 +119,7 @@ class TreeBinary<E extends Comparable<E>> implements SimpleTreeBinary<E> {
         }
 
         /**
-         * addChildToOrder - adds children to deque.
+         * addChildToOrder - adds children to order and list.
          */
         private void addChildToOrder() {
             do {
@@ -133,8 +135,10 @@ class TreeBinary<E extends Comparable<E>> implements SimpleTreeBinary<E> {
         }
 
         /**
-         *
-         * @return true.
+         * hasNext - returns true if next element is in list (this.list), and returns false if next
+         * element isn`t in list (this.list).
+         * @return returns true if next element is in list (this.list), and returns false if next
+         * element isn`t in list (this.list).
          */
         @Override
         public boolean hasNext() {
@@ -142,8 +146,8 @@ class TreeBinary<E extends Comparable<E>> implements SimpleTreeBinary<E> {
         }
 
         /**
-         *
-         * @return true.
+         * next - returns next element from list (this.list) if next element is in list (this.list).
+         * @return returns next element.
          */
         @Override
         public E next() {
@@ -151,7 +155,7 @@ class TreeBinary<E extends Comparable<E>> implements SimpleTreeBinary<E> {
         }
 
         /**
-         * not realisation.
+         * remove - without realisation.
          */
         @Override
         public void remove() {
@@ -161,8 +165,9 @@ class TreeBinary<E extends Comparable<E>> implements SimpleTreeBinary<E> {
     /**
      * ------------------------------------------------------------------------------------------------------------
      * Object of class Node<E> has next parameters:
-     * -> value - value its generic type <E>;
-     * -> child - link on ArrayList object of class Node<E> (List<Node<E>).
+     * -> left  - link on object of class Node<E>;
+     * -> value - value is generic type <E>;
+     * -> right - link on object of class Node<E>.
      * ------------------------------------------------------------------------------------------------------------
      * @param <E> - the type of element maintained by this tree.
      * ------------------------------------------------------------------------------------------------------------
@@ -170,25 +175,25 @@ class TreeBinary<E extends Comparable<E>> implements SimpleTreeBinary<E> {
     private static class Node<E> {
 
         /**
-         * @param value - is parent (is generic type <E>).
-         */
-        private E value;
-
-        /**
-         * @param left - child that is added to parent (is generic type <E>).
+         * @param left - link on object of class Node<E>.
          */
         private Node<E> left;
 
         /**
-         * @param child - child that is added to parent (is generic type <E>).
+         * @param value - value is generic type <E>.
+         */
+        private E value;
+
+        /**
+         * @param child - link on object of class Node<E>.
          */
         private Node<E> right;
 
         /**
          * Constructor.
-         * @param left is value.
-         * @param value is value.
-         * @param right is value.
+         * @param left  - link on object of class Node<E>.
+         * @param value - value is generic type <E>.
+         * @param right - link on object of class Node<E>.
          */
         Node(Node<E> left, E value,  Node<E> right) {
             this.left = left;
@@ -198,7 +203,7 @@ class TreeBinary<E extends Comparable<E>> implements SimpleTreeBinary<E> {
 
         /**
          * toString - returns string format.
-         * @return all information for element of tree.
+         * @return all information for element of tree-binary.
          */
         @Override
         public String toString() {
