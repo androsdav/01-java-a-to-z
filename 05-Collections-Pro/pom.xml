@@ -22,6 +22,7 @@
                   <module>04-set</module>
                   <module>05-map</module>
                   <module>06-tree</module>
+                  <module>06-order-book</module>
          </modules>
 
 </project>
