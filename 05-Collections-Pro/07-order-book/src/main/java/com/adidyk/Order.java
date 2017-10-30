@@ -33,6 +33,20 @@ public class Order {
      */
     private int id;
 
-
+    /**
+     * Constructor - is constructor.
+     * @param book is book.
+     * @param operation is operation.
+     * @param price is price.
+     * @param volume is volume.
+     * @param id is id.
+     */
+    Order(String book, String operation, double price, int volume, int id) {
+        this.book = book;
+        this.operation = operation;
+        this.price = price;
+        this.volume = volume;
+        this.id = id;
+    }
 
 }
