@@ -51,6 +51,14 @@ public class Order {
 
     /**
      *
+     * @param line is line
+     */
+    public void purse(String line) {
+
+    }
+
+    /**
+     *
      * @return all param for Order
      */
     @Override
