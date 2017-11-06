@@ -13,7 +13,9 @@ public class StartUi {
      * @param arg nothing.
      */
     public static void main(String[] arg) {
-        System.out.println("Tree and TreeBinary");
+        System.out.println("Order-book");
+        Order order = new Order("book-1", "buy", 100, 200, 1);
+        System.out.println(order);
     }
 
 }

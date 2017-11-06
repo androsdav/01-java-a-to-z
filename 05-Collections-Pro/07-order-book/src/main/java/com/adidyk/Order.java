@@ -49,4 +49,14 @@ public class Order {
         this.id = id;
     }
 
+    /**
+     *
+     * @return all param for Order
+     */
+    @Override
+    public String toString() {
+        return String.format("%s%s%s%s%s%s%s%s%s%s%s%s", "Order{", "book=", this.book, ", operation=", this.operation,
+                ", price=", this.price, ", volume=", this.volume, ", id=", this.id, "}");
+    }
+
 }
