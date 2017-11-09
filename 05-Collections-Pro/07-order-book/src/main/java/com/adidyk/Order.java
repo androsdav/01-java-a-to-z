@@ -54,9 +54,16 @@ public class Order {
      * @param string is string.
      */
     public void purse(String string) {
+        char[] book;
+        String[] order = new String[5];
+        int position = 0;
         for (int index = 0; index < string.length(); index++) {
             char ch = string.charAt(index);
-            System.out.print(ch);
+            if (ch == '"') {
+                System.out.println("true");
+                order[position] = Character.toString(ch);
+            }
+            //System.out.print(ch);
         }
     }
 
