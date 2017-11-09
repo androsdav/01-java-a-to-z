@@ -57,14 +57,28 @@ public class Order {
         char[] book;
         String[] order = new String[5];
         int position = 0;
+        boolean start = false;
+        boolean end = false;
         for (int index = 0; index < string.length(); index++) {
             char ch = string.charAt(index);
-            if (ch == '"') {
-                System.out.println("true");
-                order[position] = Character.toString(ch);
+            if (string.charAt(index) == '"') {
+                //int pos = index++;
+                //while (string.charAt(pos) != '"') {
+                //    order[position] = "".concat(Character.toString(string.charAt(pos)));
+                //    System.out.print(order[0]);
+                //    pos++;
+                //}
+                //index = pos;
+                start = true;
             }
-            //System.out.print(ch);
+            if (start && string.charAt(index++) == '"') {
+                start = false;
+            }
+            if (start) {
+                order[position] = "trueeeeeeeeeeeee";
+            }
         }
+        System.out.print("" +order[0]);
     }
 
     /**

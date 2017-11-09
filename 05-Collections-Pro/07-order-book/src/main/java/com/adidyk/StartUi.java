@@ -19,6 +19,16 @@ public class StartUi {
         Order order = new Order("book-1", "buy", 100, 200, 1);
         String string = "<AddOrder book=\"book-3\" operation=\"BUY\" price=\" 99.50\" volume=\"86\" orderId=\"2\" />";
         order.purse(string);
+
+        String test = "" + 's' + 'd' + 'a';
+        System.out.println(test);
+
+        char ch = 'U';
+        char ch1 = 'F';
+        String str = "" + ch + ch1;
+        System.out.println("Converting Char to String using String concatenation: " + str);
+
+
         //System.out.println(order);
         //Book book = new Book();
         //book.readerXML(new File("orders.xml"));
