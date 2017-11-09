@@ -1,6 +1,6 @@
 package com.adidyk;
 
-import java.io.File;
+//import java.io.File;
 
 /**
  * Class "StartUi" for create jar file.
@@ -17,9 +17,11 @@ public class StartUi {
     public static void main(String[] arg) {
         System.out.println("Order-book");
         Order order = new Order("book-1", "buy", 100, 200, 1);
+        String string = "<AddOrder book=\"book-3\" operation=\"BUY\" price=\" 99.50\" volume=\"86\" orderId=\"2\" />";
+        order.purse(string);
         //System.out.println(order);
-        Book book = new Book();
-        book.readerXML(new File("orders.xml"));
+        //Book book = new Book();
+        //book.readerXML(new File("orders.xml"));
     }
 
 }

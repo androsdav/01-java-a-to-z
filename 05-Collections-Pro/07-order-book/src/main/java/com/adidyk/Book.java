@@ -20,12 +20,11 @@ public class Book {
         try (BufferedReader br = new BufferedReader(new FileReader(orders))) {
             String line;
             while ((line = br.readLine()) != null) {
-                //System.out.println(line);
-                if (line.startsWith("<Add")) {
+                System.out.println(line);
+                if (line.startsWith("<A")) {
                     System.out.println("order");
                 }
             }
-
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

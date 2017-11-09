@@ -51,10 +51,13 @@ public class Order {
 
     /**
      *
-     * @param line is line
+     * @param string is string.
      */
-    public void purse(String line) {
-
+    public void purse(String string) {
+        for (int index = 0; index < string.length(); index++) {
+            char ch = string.charAt(index);
+            System.out.print(ch);
+        }
     }
 
     /**
