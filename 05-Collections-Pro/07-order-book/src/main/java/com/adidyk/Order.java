@@ -54,31 +54,37 @@ public class Order {
      * @param string is string.
      */
     public void purse(String string) {
+        /*
         char[] book;
         String[] order = new String[5];
         int position = 0;
+        int pos1 = 0;
+        int pos2 = 0;
         boolean start = false;
         boolean end = false;
         for (int index = 0; index < string.length(); index++) {
             char ch = string.charAt(index);
             if (string.charAt(index) == '"') {
+                pos1 = index;
                 //int pos = index++;
-                //while (string.charAt(pos) != '"') {
-                //    order[position] = "".concat(Character.toString(string.charAt(pos)));
-                //    System.out.print(order[0]);
-                //    pos++;
-                //}
+                do {
+                    pos2 = index;
+                } while (string.charAt(++index) != '"');// {
+                order[position] = string.substring(pos1, pos2);
+
+//                    order[position] = "".concat(Character.toString(string.charAt(pos)));
+//                    System.out.print(order[0]);
+//                }
                 //index = pos;
                 start = true;
             }
-            if (start && string.charAt(index++) == '"') {
-                start = false;
-            }
-            if (start) {
-                order[position] = "trueeeeeeeeeeeee";
-            }
+//            if (start && string.charAt(index++) == '"') {
+//                pos2 = index;
+//                start = false;
+            //}
         }
         System.out.print("" +order[0]);
+        */
     }
 
     /**
