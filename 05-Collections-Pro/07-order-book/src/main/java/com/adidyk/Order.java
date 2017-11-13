@@ -21,7 +21,7 @@ public class Order {
     /**
      * price - is price.
      */
-    private double price;
+    private Double price;
 
     /**
      * volume - is volume of application, how many lots(shares) to buy / sell.
@@ -31,7 +31,7 @@ public class Order {
     /**
      * id - is id.
      */
-    private int id;
+    private String id;
 
     /**
      * Constructor - is constructor.
@@ -41,12 +41,92 @@ public class Order {
      * @param volume is volume.
      * @param id is id.
      */
-    Order(String book, String operation, double price, int volume, int id) {
+    Order(String book, String operation, double price, int volume, String id) {
         this.book = book;
         this.operation = operation;
         this.price = price;
         this.volume = volume;
         this.id = id;
+    }
+
+    /**
+     *
+     * @param book is set.
+     */
+    public void setBook(String book) {
+        this.book = book;
+    }
+
+    /**
+     *
+     * @param operation is set.
+     */
+    public void setOperation(String operation) {
+        this.operation = operation;
+    }
+
+    /**
+     *
+     * @param price is set.
+     */
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    /**
+     *
+     * @param volume is set.
+     */
+    public void setVolume(int volume) {
+        this.volume = volume;
+    }
+
+    /**
+     *
+     * @param id is set.
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     *
+     * @return is get.
+     */
+    public String getBook() {
+        return book;
+    }
+
+    /**
+     *
+     * @return is get.
+     */
+    public String getOperation() {
+        return operation;
+    }
+
+    /**
+     *
+     * @return is get.
+     */
+    public Double getPrice() {
+        return price;
+    }
+
+    /**
+     *
+     * @return is get.
+     */
+    public int getVolume() {
+        return volume;
+    }
+
+    /**
+     *
+     * @return is get.
+     */
+    public String getId() {
+        return id;
     }
 
     /**

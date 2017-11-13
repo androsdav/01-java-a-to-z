@@ -16,7 +16,7 @@ public class Book {
     /**
      * @param order - is order.
      */
-    private HashMap<String, Order> order = new HashMap<>();
+    private HashMap<String, Order> orders = new HashMap<>();
 //    private Order order = new Order("book-1", "buy", 100, 200, 1);
 
     /**
@@ -27,9 +27,8 @@ public class Book {
         try (BufferedReader br = new BufferedReader(new FileReader(orders))) {
             String string;
             while ((string = br.readLine()) != null) {
- //               System.out.println(line);
                 if (string.startsWith("<A")) {
-                    this.purse(string);
+                    this.addOrder(string);
                 }
             }
         } catch (Exception ex) {
@@ -42,6 +41,8 @@ public class Book {
      * @param string is string.
      */
     private void addOrder(String string) {
+        Order order = this.purse(string);
+        this.orders.put(order.getId(), this.purse(string));
     }
 
     /**
@@ -54,12 +55,13 @@ public class Book {
     /**
      *
      * @param string is string.
+     * @return is object by class Order.
      */
-    private void purse(String string) {
+    private Order purse(String string) {
         int start = 0;
         int end;
         boolean add = false;
-        String[] order = new String[5];
+        String[] value = new String[5];
         int position = 0;
         for (int index = 0; index < string.length(); index++) {
             if (!add && string.charAt(index) == '"') {
@@ -69,13 +71,32 @@ public class Book {
             if (add && string.charAt(index + 1) == '"') {
                 add = false;
                 end = index + 1;
-                order[position++] = string.substring(start, end).trim();
+                value[position++] = string.substring(start, end).trim();
                 index++;
             }
         }
-        for (String anOrder : order) {
+        for (String anOrder : value) {
             System.out.println(anOrder);
         }
         System.out.println();
+        return new Order(value[0], value[1], Double.valueOf(value[2]), Integer.valueOf(value[3]), value[4]);
+    }
+
+    /**
+     *
+     * @return is size.
+     */
+    int getSize() {
+        return this.orders.size();
+    }
+
+
+    /**
+     *
+     * @return is string.
+     */
+    @Override
+    public String toString() {
+        return String.format("%s%s%s%s", "Book{", "orders=", this.orders, "}");
     }
 }
