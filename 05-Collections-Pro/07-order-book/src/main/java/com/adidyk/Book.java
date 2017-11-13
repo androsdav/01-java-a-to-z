@@ -32,7 +32,6 @@ public class Book {
                 }
                 if (string.startsWith("<D")) {
                     this.delOrder(string);
-
                 }
             }
         } catch (Exception ex) {
@@ -41,11 +40,11 @@ public class Book {
     }
 
     /**
-     *
      * @param string is string.
      */
     private void addOrder(String string) {
-        Order order = this.purse(string);
+        String[] value = this.purse(string);
+        Order order = new Order(value[0], value[1], Double.valueOf(value[2]), Integer.valueOf(value[3]), value[4]);
         this.orders.put(order.getId(), order);
     }
 
@@ -54,8 +53,8 @@ public class Book {
      * @param string is string.
      */
     private void delOrder(String string) {
-        Order order = this.purse(string);
-        this.orders.remove(order.getId());
+        String[] value = this.purse(string);
+        this.orders.remove(value[1]);
     }
 
     /**
@@ -63,7 +62,7 @@ public class Book {
      * @param string is string.
      * @return is object by class Order.
      */
-    private Order purse(String string) {
+    private String[] purse(String string) {
         int start = 0;
         int end;
         boolean add = false;
@@ -85,7 +84,16 @@ public class Book {
             System.out.println(anOrder);
         }
         System.out.println();
-        return new Order(value[0], value[1], Double.valueOf(value[2]), Integer.valueOf(value[3]), value[4]);
+        //return new Order(value[0], value[1], Double.valueOf(value[2]), Integer.valueOf(value[3]), value[4]);
+        return value;
+    }
+
+    /**
+     *
+     * @param string is string.
+     */
+    private void purseDel(String string) {
+
     }
 
     /**
