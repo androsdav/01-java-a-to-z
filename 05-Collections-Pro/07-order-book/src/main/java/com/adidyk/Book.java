@@ -30,6 +30,10 @@ public class Book {
                 if (string.startsWith("<A")) {
                     this.addOrder(string);
                 }
+                if (string.startsWith("<D")) {
+                    this.delOrder(string);
+
+                }
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -42,7 +46,7 @@ public class Book {
      */
     private void addOrder(String string) {
         Order order = this.purse(string);
-        this.orders.put(order.getId(), this.purse(string));
+        this.orders.put(order.getId(), order);
     }
 
     /**
@@ -50,6 +54,8 @@ public class Book {
      * @param string is string.
      */
     private void delOrder(String string) {
+        Order order = this.purse(string);
+        this.orders.remove(order.getId());
     }
 
     /**
