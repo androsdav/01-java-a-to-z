@@ -23,9 +23,11 @@ public class StartUi {
 //        String string = "<AddOrder book=\"book-3\" operation=\"BUY\" price=\" 99.50\" volume=\"86\" orderId=\"2\" />";
         Book book = new Book();
         book.readerXML(new File("orders.xml"));
-        System.out.println(book);
+//        System.out.println(book);
+        book.view();
         System.out.println(book.getSize());
-
+        String temp = "<AddOrder test";
+        System.out.println("TETS : " + temp.startsWith("<A"));
 
        // String test = "" + 's' + 'd' + 'a';
        // System.out.println(test);

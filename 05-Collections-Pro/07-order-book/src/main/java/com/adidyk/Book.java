@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Class User for create user (object) with params: name, children and birthday.
@@ -58,7 +59,6 @@ public class Book {
     }
 
     /**
-     *
      * @param string is string.
      * @return is object by class Order.
      */
@@ -80,20 +80,7 @@ public class Book {
                 index++;
             }
         }
-        for (String anOrder : value) {
-            System.out.println(anOrder);
-        }
-        System.out.println();
-        //return new Order(value[0], value[1], Double.valueOf(value[2]), Integer.valueOf(value[3]), value[4]);
         return value;
-    }
-
-    /**
-     *
-     * @param string is string.
-     */
-    private void purseDel(String string) {
-
     }
 
     /**
@@ -102,6 +89,15 @@ public class Book {
      */
     int getSize() {
         return this.orders.size();
+    }
+
+    /**
+     * view is view.
+     */
+    void view() {
+        for (Map.Entry<String, Order> item : this.orders.entrySet()) {
+            System.out.println(item.getKey() + " " + item.getValue());
+        }
     }
 
 
