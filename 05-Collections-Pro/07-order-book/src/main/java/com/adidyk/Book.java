@@ -17,7 +17,12 @@ public class Book {
     /**
      * @param order - is order.
      */
-    private HashMap<String, Order> orders = new HashMap<>();
+    private HashMap<Integer, Order> orders = new HashMap<>();
+
+    /**
+     * @param book is book.
+     */
+    private HashMap<String, HashMap<Integer, Order>> book = new HashMap<>();
 
     /**
      *
@@ -45,6 +50,7 @@ public class Book {
     private void addOrder(String string) {
         Order order = this.purse(string, true);
         this.orders.put(order.getId(), order);
+        this.book.put(order.getBook(), this.orders);
     }
 
     /**
@@ -64,24 +70,23 @@ public class Book {
     private Order purse(String string, boolean addTrue) {
         int start = 0;
         int position = 0;
-        boolean startAdd = false;
+        boolean addStart = false;
         String[] value = new String[5];
         for (int index = 0; index < string.length(); index++) {
-            if (!startAdd && string.charAt(index) == '"') {
-                startAdd = true;
+            if (!addStart && string.charAt(index) == '"') {
+                addStart = true;
                 start = index + 1;
             }
-            if (startAdd && string.charAt(index + 1) == '"') {
-                startAdd = false;
+            if (addStart && string.charAt(index + 1) == '"') {
+                addStart = false;
                 value[position++] = string.substring(start, index + 1).trim();
                 index++;
             }
-
         }
         if (addTrue) {
-            return new Order(value[0], value[1], Double.valueOf(value[2]), Integer.valueOf(value[3]), value[4]);
+            return new Order(value[0], value[1], Double.valueOf(value[2]), Integer.valueOf(value[3]), Integer.valueOf(value[4]));
         } else {
-            return new Order(value[0], null, 0, 0,  value[1]);
+            return new Order(value[0], null, 0, 0,  Integer.valueOf(value[1]));
         }
     }
 
@@ -97,9 +102,17 @@ public class Book {
      * view is view.
      */
     void view() {
-        for (Map.Entry<String, Order> item : this.orders.entrySet()) {
+        for (Map.Entry<Integer, Order> item : this.orders.entrySet()) {
             System.out.println(item.getKey() + " " + item.getValue());
         }
+    }
+
+    /**
+     * view is view.
+     */
+    void view1() {
+        System.out.println();
+        System.out.println(this.book.get("book-2"));
     }
 
 

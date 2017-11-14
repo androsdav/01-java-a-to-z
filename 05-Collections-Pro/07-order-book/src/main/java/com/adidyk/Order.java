@@ -31,7 +31,7 @@ public class Order {
     /**
      * id - is id.
      */
-    private String id;
+    private Integer id;
 
     /**
      * Constructor - is constructor.
@@ -41,7 +41,7 @@ public class Order {
      * @param volume is volume.
      * @param id is id.
      */
-    Order(String book, String operation, double price, int volume, String id) {
+    Order(String book, String operation, double price, int volume, int id) {
         this.book = book;
         this.operation = operation;
         this.price = price;
@@ -85,7 +85,7 @@ public class Order {
      *
      * @param id is set.
      */
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -125,7 +125,7 @@ public class Order {
      *
      * @return is get.
      */
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
