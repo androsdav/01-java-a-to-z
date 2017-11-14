@@ -48,8 +48,20 @@ public class Book {
      * @param string is string.
      */
     private void addOrder(String string) {
+        // true
         Order order = this.purse(string, true);
-        this.orders.put(order.getId(), order);
+        this.book.get(order.getBook()).put(order.getId(), order);
+        // false
+        if (this.book.get(order.getBook()) == null) {
+
+        }
+
+        this.book.put(order.getBook(), orders);
+        if (this.book.get(order.getBook()) == null) {
+            HashMap<Integer, Order> orders = new HashMap<>();
+            this.book.put(order.getBook(), orders);
+        }
+        //this.orders.put(order.getId(), order);
         this.book.put(order.getBook(), this.orders);
     }
 
