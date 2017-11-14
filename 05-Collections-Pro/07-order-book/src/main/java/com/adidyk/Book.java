@@ -18,7 +18,6 @@ public class Book {
      * @param order - is order.
      */
     private HashMap<String, Order> orders = new HashMap<>();
-//    private Order order = new Order("book-1", "buy", 100, 200, 1);
 
     /**
      *
@@ -44,8 +43,7 @@ public class Book {
      * @param string is string.
      */
     private void addOrder(String string) {
-        String[] value = this.purse(string);
-        Order order = new Order(value[0], value[1], Double.valueOf(value[2]), Integer.valueOf(value[3]), value[4]);
+        Order order = this.purse(string, true);
         this.orders.put(order.getId(), order);
     }
 
@@ -54,33 +52,37 @@ public class Book {
      * @param string is string.
      */
     private void delOrder(String string) {
-        String[] value = this.purse(string);
-        this.orders.remove(value[1]);
+        Order order = this.purse(string, false);
+        this.orders.remove(order.getId());
     }
 
     /**
      * @param string is string.
+     * @param addTrue is true or false.
      * @return is object by class Order.
      */
-    private String[] purse(String string) {
+    private Order purse(String string, boolean addTrue) {
         int start = 0;
-        int end;
-        boolean add = false;
-        String[] value = new String[5];
         int position = 0;
+        boolean startAdd = false;
+        String[] value = new String[5];
         for (int index = 0; index < string.length(); index++) {
-            if (!add && string.charAt(index) == '"') {
-                add = true;
+            if (!startAdd && string.charAt(index) == '"') {
+                startAdd = true;
                 start = index + 1;
             }
-            if (add && string.charAt(index + 1) == '"') {
-                add = false;
-                end = index + 1;
-                value[position++] = string.substring(start, end).trim();
+            if (startAdd && string.charAt(index + 1) == '"') {
+                startAdd = false;
+                value[position++] = string.substring(start, index + 1).trim();
                 index++;
             }
+
         }
-        return value;
+        if (addTrue) {
+            return new Order(value[0], value[1], Double.valueOf(value[2]), Integer.valueOf(value[3]), value[4]);
+        } else {
+            return new Order(value[0], null, 0, 0,  value[1]);
+        }
     }
 
     /**
