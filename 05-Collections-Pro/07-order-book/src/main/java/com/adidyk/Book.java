@@ -48,21 +48,11 @@ public class Book {
      * @param string is string.
      */
     private void addOrder(String string) {
-        // true
         Order order = this.purse(string, true);
+        if (this.book.get(order.getBook()) == null) {
+            this.book.put(order.getBook(), new HashMap<>());
+        }
         this.book.get(order.getBook()).put(order.getId(), order);
-        // false
-        if (this.book.get(order.getBook()) == null) {
-
-        }
-
-        this.book.put(order.getBook(), orders);
-        if (this.book.get(order.getBook()) == null) {
-            HashMap<Integer, Order> orders = new HashMap<>();
-            this.book.put(order.getBook(), orders);
-        }
-        //this.orders.put(order.getId(), order);
-        this.book.put(order.getBook(), this.orders);
     }
 
     /**
@@ -110,12 +100,17 @@ public class Book {
         return this.orders.size();
     }
 
+
     /**
      * view is view.
      */
     void view() {
-        for (Map.Entry<Integer, Order> item : this.orders.entrySet()) {
-            System.out.println(item.getKey() + " " + item.getValue());
+        for (Map.Entry<String, HashMap<Integer, Order>> iBook : this.book.entrySet()) {
+            System.out.println(iBook.getKey());
+            for (Map.Entry<Integer, Order> iOrder : iBook.getValue().entrySet()) {
+                System.out.println(iOrder);
+            }
+            System.out.println();
         }
     }
 
@@ -123,17 +118,19 @@ public class Book {
      * view is view.
      */
     void view1() {
-        System.out.println();
+        System.out.println("book-1");
+        System.out.println(this.book.get("book-1"));
+        System.out.println("book-2");
         System.out.println(this.book.get("book-2"));
+        System.out.println("book-3");
+        System.out.println(this.book.get("book-3"));
     }
 
-
     /**
-     *
      * @return is string.
      */
     @Override
     public String toString() {
-        return String.format("%s%s%s%s", "Book{", "orders=", this.orders, "}");
+        return String.format("%s", this.book);
     }
 }
