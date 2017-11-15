@@ -43,7 +43,7 @@ public class Book {
             System.out.println(ex.getMessage());
         }
         long end = System.nanoTime();
-        System.out.println("Productivity:" + (end - start));
+            System.out.println("Productivity:" + (end - start));
     }
 
     /**
@@ -51,9 +51,7 @@ public class Book {
      */
     private void addOrder(String string) {
         Order order = this.purse(string, true);
-        if (this.book.get(order.getBook()) == null) {
-            this.book.put(order.getBook(), new HashMap<>());
-        }
+        this.book.computeIfAbsent(order.getBook(), k -> new HashMap<>());
         this.book.get(order.getBook()).put(order.getId(), order);
     }
 
