@@ -135,8 +135,7 @@ public class Order {
      */
     @Override
     public String toString() {
-        return String.format("%s%s%s%s%s%s%s%s%s%s%s%s", "Order{", "book=", this.book, ", operation=", this.operation,
-                ", price=", this.price, ", volume=", this.volume, ", id=", this.id, "}");
+        return String.format("%7s%10s%5s", this.operation, this.price, this.volume);
     }
 
 }

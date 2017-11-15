@@ -29,19 +29,21 @@ public class Book {
      * @param orders is orders
      */
     void readerXML(File orders) {
+        long start = System.nanoTime();
         try (BufferedReader br = new BufferedReader(new FileReader(orders))) {
             String string;
             while ((string = br.readLine()) != null) {
                 if (string.startsWith("<A")) {
                     this.addOrder(string);
-                }
-                if (string.startsWith("<D")) {
+                } else if (string.startsWith("<D")) {
                     this.delOrder(string);
                 }
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
+        long end = System.nanoTime();
+        System.out.println("Productivity:" + (end - start));
     }
 
     /**
@@ -61,7 +63,7 @@ public class Book {
      */
     private void delOrder(String string) {
         Order order = this.purse(string, false);
-        this.orders.remove(order.getId());
+        this.book.get(order.getBook()).remove(order.getId());
     }
 
     /**
@@ -108,22 +110,10 @@ public class Book {
         for (Map.Entry<String, HashMap<Integer, Order>> iBook : this.book.entrySet()) {
             System.out.println(iBook.getKey());
             for (Map.Entry<Integer, Order> iOrder : iBook.getValue().entrySet()) {
-                System.out.println(iOrder);
+                System.out.println(String.format("%s%8s%s", "id:", iOrder.getKey(), iOrder.getValue()));
             }
             System.out.println();
         }
-    }
-
-    /**
-     * view is view.
-     */
-    void view1() {
-        System.out.println("book-1");
-        System.out.println(this.book.get("book-1"));
-        System.out.println("book-2");
-        System.out.println(this.book.get("book-2"));
-        System.out.println("book-3");
-        System.out.println(this.book.get("book-3"));
     }
 
     /**
@@ -133,4 +123,5 @@ public class Book {
     public String toString() {
         return String.format("%s", this.book);
     }
+
 }
