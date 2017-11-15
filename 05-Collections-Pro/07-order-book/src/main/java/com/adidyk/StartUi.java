@@ -22,10 +22,10 @@ public class StartUi {
 //        Order order = new Order("book-1", "buy", 100, 200, 1);
 //        String string = "<AddOrder book=\"book-3\" operation=\"BUY\" price=\" 99.50\" volume=\"86\" orderId=\"2\" />";
         Book book = new Book();
-        book.readerXML(new File("orders1.xml"));
+        book.readerXML(new File("orders.xml"));
 //        System.out.println(book);
 //        System.out.println("!!!!!!!!!!! END !!!!!!!!!");
-//        book.view();
+        book.view();
       //  book.view1();
         //System.out.println(book.getSize());
         //String temp = "<AddOrder test";
