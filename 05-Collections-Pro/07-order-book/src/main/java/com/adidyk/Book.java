@@ -25,7 +25,7 @@ public class Book {
     private HashMap<String, HashMap<Integer, Order>> book = new HashMap<>();
 
     /**
-     *
+     * Is may first git huk in new ubuntu.
      * @param orders is orders
      */
     void readerXML(File orders) {
