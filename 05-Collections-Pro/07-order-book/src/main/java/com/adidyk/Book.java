@@ -58,8 +58,9 @@ public class Book {
             this.book.put(order.getBook(), new HashMap<>());
         }
         if (this.book.get(order.getBook()).get(order.getOperation()) == null) {
-            //TreeSet<Order> orders = new TreeSet<Order>(this.comparator);
-            this.book.get(order.getBook()).put(order.getOperation(), new TreeMap<Integer, Order>(new Comparator());
+            TreeMap<Integer, Order> orders = new TreeMap<>();
+            Comparator comp = orders.comparator();
+            this.book.get(order.getBook()).put(order.getOperation(), new TreeMap<>(comp));
         }
         this.book.get(order.getBook()).get(order.getOperation()).put(order.getId(), order);
 

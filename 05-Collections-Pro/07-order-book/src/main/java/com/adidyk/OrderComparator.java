@@ -1,7 +1,6 @@
 package com.adidyk;
 
 import java.util.Comparator;
-import java.util.Map;
 
 /**
  * Class User for create user (object) with params: name, children and birthday.
