@@ -15,20 +15,21 @@ import java.util.Map;
 public class Book {
 
 
-    /**
-     * @param operation is operation.
-     */
-    private HashMap<Integer, Order> operation = new HashMap<>();
-
-    /**
+     /**
      * @param order - is order.
      */
     private HashMap<Integer, Order> orders = new HashMap<>();
 
     /**
-     * @param book is book.
+     * @param operation is operation.
      */
-    private HashMap<String, HashMap<Integer, Order>> book = new HashMap<>();
+    private HashMap<Integer, HashMap<Integer, Order>> operation = new HashMap<>();
+
+
+    /**
+     * @param book is book. book and operation
+     */
+    private HashMap<String, HashMap<String, HashMap<Integer, Order>>> book = new HashMap<>();
 
     /**
      * Is may first git huk in new ubuntu.
@@ -57,10 +58,20 @@ public class Book {
      */
     private void addOrder(String string) {
         Order order = this.purse(string, true);
+
         if (this.book.get(order.getBook()) == null) {
             this.book.put(order.getBook(), new HashMap<>());
+        } else if (this.book.get(order.getBook()).get(order.getOperation()) == null) {
+            this.book.get(order.getBook()).put(order.getOperation(), new HashMap<>());
         }
-        this.book.get(order.getBook()).put(order.getId(), order);
+        this.book.get(order.getBook()).get(order.getOperation()).put(order.getId(), order);
+
+
+
+        //if (this.book.get(order.getBook()) == null) {
+        //    this.book.put(order.getBook(), new HashMap<>());
+        //}
+        //this.book.get(order.getBook()).put(order.getId(), order);
         //this.book.computeIfAbsent(order.getBook(), k -> new HashMap<>());
         //this.book.get(order.getBook()).put(order.getId(), order);
     }
@@ -70,8 +81,8 @@ public class Book {
      * @param string is string.
      */
     private void delOrder(String string) {
-        Order order = this.purse(string, false);
-        this.book.get(order.getBook()).remove(order.getId());
+        //Order order = this.purse(string, false);
+        //this.book.get(order.getBook()).remove(order.getId());
     }
 
     /**
@@ -115,10 +126,13 @@ public class Book {
      * view is view.
      */
     void view() {
-        for (Map.Entry<String, HashMap<Integer, Order>> iBook : this.book.entrySet()) {
+        for (Map.Entry<String, HashMap<String, HashMap<Integer, Order>>> iBook : this.book.entrySet()) {
             System.out.println(iBook.getKey());
-            for (Map.Entry<Integer, Order> iOrder : iBook.getValue().entrySet()) {
-                System.out.println(String.format("%s%8s%s", "id:", iOrder.getKey(), iOrder.getValue()));
+            for (Map.Entry<String, HashMap<Integer, Order>> iOrder : iBook.getValue().entrySet()) {
+                System.out.println(iOrder.getKey());
+                for (Map.Entry<Integer, Order> i : iOrder.getValue().entrySet()) {
+                    System.out.println(String.format("%s%8s%s", "id:", iOrder.getKey(), iOrder.getValue()));
+                }
             }
             System.out.println();
         }
