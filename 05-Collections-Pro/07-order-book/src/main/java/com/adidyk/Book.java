@@ -14,6 +14,12 @@ import java.util.Map;
  */
 public class Book {
 
+
+    /**
+     * @param operation is operation.
+     */
+    private HashMap<Integer, Order> operation = new HashMap<>();
+
     /**
      * @param order - is order.
      */
@@ -51,8 +57,12 @@ public class Book {
      */
     private void addOrder(String string) {
         Order order = this.purse(string, true);
-        this.book.computeIfAbsent(order.getBook(), k -> new HashMap<>());
+        if (this.book.get(order.getBook()) == null) {
+            this.book.put(order.getBook(), new HashMap<>());
+        }
         this.book.get(order.getBook()).put(order.getId(), order);
+        //this.book.computeIfAbsent(order.getBook(), k -> new HashMap<>());
+        //this.book.get(order.getBook()).put(order.getId(), order);
     }
 
     /**
