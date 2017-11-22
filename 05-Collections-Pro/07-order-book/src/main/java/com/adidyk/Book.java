@@ -41,16 +41,18 @@ public class Book {
             String string;
             while ((string = br.readLine()) != null) {
                 if (string.startsWith("<A")) {
+                    System.out.println("add");
                     this.addOrder(string);
-                } else if (string.startsWith("<D")) {
-                    this.delOrder(string);
                 }
+                //else if (string.startsWith("<D")) {
+                //    this.delOrder(string);
+                //}
             }
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            System.out.println("Hello");
         }
         long end = System.nanoTime();
-            System.out.println("Productivity:" + (end - start));
+            //System.out.println("Productivity:" + (end - start));
     }
 
     /**
@@ -58,10 +60,10 @@ public class Book {
      */
     private void addOrder(String string) {
         Order order = this.purse(string, true);
-
         if (this.book.get(order.getBook()) == null) {
             this.book.put(order.getBook(), new HashMap<>());
-        } else if (this.book.get(order.getBook()).get(order.getOperation()) == null) {
+        }
+        if (this.book.get(order.getBook()).get(order.getOperation()) == null) {
             this.book.get(order.getBook()).put(order.getOperation(), new HashMap<>());
         }
         this.book.get(order.getBook()).get(order.getOperation()).put(order.getId(), order);
@@ -128,9 +130,9 @@ public class Book {
     void view() {
         for (Map.Entry<String, HashMap<String, HashMap<Integer, Order>>> iBook : this.book.entrySet()) {
             System.out.println(iBook.getKey());
-            for (Map.Entry<String, HashMap<Integer, Order>> iOrder : iBook.getValue().entrySet()) {
-                System.out.println(iOrder.getKey());
-                for (Map.Entry<Integer, Order> i : iOrder.getValue().entrySet()) {
+            for (Map.Entry<String, HashMap<Integer, Order>> iOperation : iBook.getValue().entrySet()) {
+                System.out.println(iOperation.getKey());
+                for (Map.Entry<Integer, Order> iOrder : iOperation.getValue().entrySet()) {
                     System.out.println(String.format("%s%8s%s", "id:", iOrder.getKey(), iOrder.getValue()));
                 }
             }
