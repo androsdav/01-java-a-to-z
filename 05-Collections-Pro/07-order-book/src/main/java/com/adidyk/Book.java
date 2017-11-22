@@ -3,8 +3,11 @@ package com.adidyk;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
+
 
 /**
  * Class User for create user (object) with params: name, children and birthday.
@@ -14,45 +17,36 @@ import java.util.Map;
  */
 public class Book {
 
-
-     /**
-     * @param order - is order.
-     */
-    private HashMap<Integer, Order> orders = new HashMap<>();
-
     /**
-     * @param operation is operation.
+     *
      */
-    private HashMap<Integer, HashMap<Integer, Order>> operation = new HashMap<>();
-
-
+    private OrderComparator comparator = new OrderComparator();
     /**
      * @param book is book. book and operation
      */
-    private HashMap<String, HashMap<String, HashMap<Integer, Order>>> book = new HashMap<>();
+    private HashMap<String, HashMap<String, TreeMap<Integer, Order>>> book = new HashMap<>();
 
     /**
      * Is may first git huk in new ubuntu.
      * @param orders is orders
      */
     void readerXML(File orders) {
-        long start = System.nanoTime();
+        //long start = System.nanoTime();
         try (BufferedReader br = new BufferedReader(new FileReader(orders))) {
             String string;
             while ((string = br.readLine()) != null) {
                 if (string.startsWith("<A")) {
                     System.out.println("add");
                     this.addOrder(string);
+                } else if (string.startsWith("<D")) {
+                    this.delOrder(string);
                 }
-                //else if (string.startsWith("<D")) {
-                //    this.delOrder(string);
-                //}
             }
         } catch (Exception ex) {
-            System.out.println("Hello");
+            System.out.println(ex.getMessage());
         }
-        long end = System.nanoTime();
-            //System.out.println("Productivity:" + (end - start));
+        //long end = System.nanoTime();
+        // System.out.println("Productivity:" + (end - start));
     }
 
     /**
@@ -64,11 +58,10 @@ public class Book {
             this.book.put(order.getBook(), new HashMap<>());
         }
         if (this.book.get(order.getBook()).get(order.getOperation()) == null) {
-            this.book.get(order.getBook()).put(order.getOperation(), new HashMap<>());
+            //TreeSet<Order> orders = new TreeSet<Order>(this.comparator);
+            this.book.get(order.getBook()).put(order.getOperation(), new TreeMap<Integer, Order>(new Comparator());
         }
         this.book.get(order.getBook()).get(order.getOperation()).put(order.getId(), order);
-
-
 
         //if (this.book.get(order.getBook()) == null) {
         //    this.book.put(order.getBook(), new HashMap<>());
@@ -79,12 +72,14 @@ public class Book {
     }
 
     /**
-     *
      * @param string is string.
      */
     private void delOrder(String string) {
-        //Order order = this.purse(string, false);
-        //this.book.get(order.getBook()).remove(order.getId());
+        Order order = this.purse(string, false);
+        //this.book.get(order.getBook()).get(order.getOperation()).remove(order.getId());
+        //this.book.get(order.getBook()).get(order.getOperation()).remove(order.getId());
+        this.book.get(order.getBook()).get("SELL").remove(order.getId());
+        this.book.get(order.getBook()).get("BUY").remove(order.getId());
     }
 
     /**
@@ -116,21 +111,12 @@ public class Book {
     }
 
     /**
-     *
-     * @return is size.
-     */
-    int getSize() {
-        return this.orders.size();
-    }
-
-
-    /**
      * view is view.
      */
     void view() {
-        for (Map.Entry<String, HashMap<String, HashMap<Integer, Order>>> iBook : this.book.entrySet()) {
+        for (Map.Entry<String, HashMap<String, TreeMap<Integer, Order>>> iBook : this.book.entrySet()) {
             System.out.println(iBook.getKey());
-            for (Map.Entry<String, HashMap<Integer, Order>> iOperation : iBook.getValue().entrySet()) {
+            for (Map.Entry<String, TreeMap<Integer, Order>> iOperation : iBook.getValue().entrySet()) {
                 System.out.println(iOperation.getKey());
                 for (Map.Entry<Integer, Order> iOrder : iOperation.getValue().entrySet()) {
                     System.out.println(String.format("%s%8s%s", "id:", iOrder.getKey(), iOrder.getValue()));
