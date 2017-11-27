@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-
 /**
  * Class User for create user (object) with params: name, children and birthday.
  * @author Didyk Andrey (androsdav@bigmir.net).
@@ -18,13 +17,9 @@ import java.util.TreeMap;
 public class Book {
 
     /**
-     *
-     */
-    private OrderComparator comparator = new OrderComparator();
-    /**
      * @param book is book. book and operation
      */
-    private HashMap<String, HashMap<String, TreeMap<Integer, Order>>> book = new HashMap<>();
+    private HashMap<String, HashMap<String, HashMap<Integer, Order>>> book = new HashMap<>();
 
     /**
      * Is may first git huk in new ubuntu.
@@ -36,7 +31,7 @@ public class Book {
             String string;
             while ((string = br.readLine()) != null) {
                 if (string.startsWith("<A")) {
-                    System.out.println("add");
+                   // System.out.println("add");
                     this.addOrder(string);
                 } else if (string.startsWith("<D")) {
                     this.delOrder(string);
@@ -46,7 +41,7 @@ public class Book {
             System.out.println(ex.getMessage());
         }
         //long end = System.nanoTime();
-        // System.out.println("Productivity:" + (end - start));
+        //System.out.println("Productivity:" + (end - start));
     }
 
     /**
@@ -60,7 +55,7 @@ public class Book {
         if (this.book.get(order.getBook()).get(order.getOperation()) == null) {
             TreeMap<Integer, Order> orders = new TreeMap<>();
             Comparator comp = orders.comparator();
-            this.book.get(order.getBook()).put(order.getOperation(), new TreeMap<>(comp));
+            this.book.get(order.getBook()).put(order.getOperation(), new HashMap<>());
         }
         this.book.get(order.getBook()).get(order.getOperation()).put(order.getId(), order);
 
@@ -115,9 +110,9 @@ public class Book {
      * view is view.
      */
     void view() {
-        for (Map.Entry<String, HashMap<String, TreeMap<Integer, Order>>> iBook : this.book.entrySet()) {
+        for (Map.Entry<String, HashMap<String, HashMap<Integer, Order>>> iBook : this.book.entrySet()) {
             System.out.println(iBook.getKey());
-            for (Map.Entry<String, TreeMap<Integer, Order>> iOperation : iBook.getValue().entrySet()) {
+            for (Map.Entry<String, HashMap<Integer, Order>> iOperation : iBook.getValue().entrySet()) {
                 System.out.println(iOperation.getKey());
                 for (Map.Entry<Integer, Order> iOrder : iOperation.getValue().entrySet()) {
                     System.out.println(String.format("%s%8s%s", "id:", iOrder.getKey(), iOrder.getValue()));
