@@ -14,24 +14,31 @@ import java.util.TreeMap;
  * @since 21.07.2017.
  * @version 1.0.
  */
-public class Book {
+public class BookContainer {
 
     /**
-     * @param book is book. book and operation
+     * book is book. book and operation.
      */
-    private HashMap<String, HashMap<String, HashMap<Integer, Order>>> book = new HashMap<>();
+    private HashMap<String, HashMap<String, HashMap<Integer, Order>>> book;
+
+    /**
+     * BookContainer is constructor.
+     */
+    BookContainer() {
+        this.book = new HashMap<>();
+    }
 
     /**
      * Is may first git huk in new ubuntu.
      * @param orders is orders
      */
     void readerXML(File orders) {
-        //long start = System.nanoTime();
+        //long start = this.start();
+        long start = System.nanoTime();
         try (BufferedReader br = new BufferedReader(new FileReader(orders))) {
             String string;
             while ((string = br.readLine()) != null) {
                 if (string.startsWith("<A")) {
-                   // System.out.println("add");
                     this.addOrder(string);
                 } else if (string.startsWith("<D")) {
                     this.delOrder(string);
@@ -40,8 +47,25 @@ public class Book {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-        //long end = System.nanoTime();
-        //System.out.println("Productivity:" + (end - start));
+        //long end = this.end();
+        long end = System.nanoTime();
+        System.out.println("Productivity:" + (end - start));
+    }
+
+    /**
+     * start is start.
+     * @return start.
+     */
+    private long start() {
+        return System.nanoTime();
+    }
+
+    /**
+     * end is ned.
+     * @return end.
+     */
+    private  long end() {
+        return System.nanoTime();
     }
 
     /**
