@@ -25,7 +25,7 @@ public class StartUi {
         book.readerXML(new File("orders.xml"));
 //        System.out.println(book);
 //        System.out.println("!!!!!!!!!!! END !!!!!!!!!");
-        book.view();
+   //     book.view();
       //  book.view1();
         //System.out.println(book.getSize());
         //String temp = "<AddOrder test";

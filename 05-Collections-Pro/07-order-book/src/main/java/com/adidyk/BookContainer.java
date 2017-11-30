@@ -48,24 +48,9 @@ public class BookContainer {
             System.out.println(ex.getMessage());
         }
         //long end = this.end();
+        new BookCalculate(this.book);
         long end = System.nanoTime();
         System.out.println("Productivity:" + (end - start));
-    }
-
-    /**
-     * start is start.
-     * @return start.
-     */
-    private long start() {
-        return System.nanoTime();
-    }
-
-    /**
-     * end is ned.
-     * @return end.
-     */
-    private  long end() {
-        return System.nanoTime();
     }
 
     /**
