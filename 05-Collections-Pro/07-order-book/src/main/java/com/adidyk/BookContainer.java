@@ -48,7 +48,7 @@ public class BookContainer {
             System.out.println(ex.getMessage());
         }
         //long end = this.end();
-        new BookCalculate(this.book);
+        //new BookCalculate(this.book);
         long end = System.nanoTime();
         System.out.println("Productivity:" + (end - start));
     }
@@ -63,7 +63,7 @@ public class BookContainer {
         }
         if (this.book.get(order.getBook()).get(order.getOperation()) == null) {
             TreeMap<Integer, Order> orders = new TreeMap<>();
-            Comparator comp = orders.comparator();
+            //Comparator comp = orders.comparator();
             this.book.get(order.getBook()).put(order.getOperation(), new HashMap<>());
         }
         this.book.get(order.getBook()).get(order.getOperation()).put(order.getId(), order);
