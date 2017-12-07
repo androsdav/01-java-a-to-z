@@ -3,7 +3,7 @@ package com.adidyk;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.Comparator;
+//import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -48,7 +48,7 @@ public class BookContainer {
             System.out.println(ex.getMessage());
         }
         //long end = this.end();
-        //new BookCalculate(this.book);
+        new BookCalculate(this.book);
         long end = System.nanoTime();
         System.out.println("Productivity:" + (end - start));
     }

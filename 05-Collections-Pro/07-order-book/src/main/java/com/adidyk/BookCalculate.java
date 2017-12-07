@@ -46,7 +46,13 @@ public class BookCalculate {
                     this.list.get(iBook.getKey()).put(iOperation.getKey(), new TreeMap<>());
                 }
                 for (Map.Entry<Integer, Order> iOrder : iOperation.getValue().entrySet()) {
-                    this.list.get(iBook.getKey()).get(iOperation.getKey()).put(iOrder.getValue().getPrice(), iOrder.getValue());
+                    if (this.list.get(iBook.getKey()).get(iOperation.getKey()).containsKey(iOrder.getValue().getPrice())) {
+                        Order order = this.list.get(iBook.getKey()).get(iOperation.getKey()).get(iOrder.getKey());
+                        order.setVolume(order.getVolume() + iOrder.getValue().getVolume());
+                    } else {
+                        this.list.get(iBook.getKey()).get(iOperation.getKey()).put(iOrder.getValue().getPrice(), iOrder.getValue());
+                    }
+
                 }
             }
         }
@@ -61,7 +67,7 @@ public class BookCalculate {
             for (Map.Entry<String, TreeMap<Double, Order>> iOperation : iBook.getValue().entrySet()) {
                 System.out.println(iOperation.getKey());
                 for (Map.Entry<Double, Order> iOrder : iOperation.getValue().entrySet()) {
-                    System.out.println(String.format("%s%8s%s", "id:", iOrder.getKey(), iOrder.getValue()));
+                    System.out.println(String.format("%s%8s%s", "price:", iOrder.getKey(), iOrder.getValue()));
                 }
             }
         }
