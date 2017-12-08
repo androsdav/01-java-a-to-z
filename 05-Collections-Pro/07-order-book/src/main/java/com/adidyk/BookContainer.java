@@ -47,7 +47,7 @@ public class BookContainer {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-        //long end = this.end();
+        System.out.println();
         new BookCalculate(this.book);
         long end = System.nanoTime();
         System.out.println("Productivity:" + (end - start));
@@ -119,6 +119,7 @@ public class BookContainer {
      * view is view.
      */
     void view() {
+        System.out.println("---------------BOOK---------------");
         for (Map.Entry<String, HashMap<String, HashMap<Integer, Order>>> iBook : this.book.entrySet()) {
             System.out.println(iBook.getKey());
             for (Map.Entry<String, HashMap<Integer, Order>> iOperation : iBook.getValue().entrySet()) {

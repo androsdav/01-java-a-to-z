@@ -8,7 +8,8 @@ import java.util.Comparator;
  * @since 21.07.2017.
  * @version 1.0.
  */
-public class OrderComparator implements Comparator<Order> {
+
+public class OrderBuyComparator implements Comparator<Double> {
 
     /**
      *
@@ -17,7 +18,7 @@ public class OrderComparator implements Comparator<Order> {
      * @return result.
      */
     @Override
-    public int compare(Order o1, Order o2) {
-        return o1.getPrice().compareTo(o2.getPrice());
+    public int compare(Double o1, Double o2) {
+        return o2.compareTo(o1);
     }
 }

@@ -13,6 +13,16 @@ import java.util.TreeMap;
 public class BookCalculate {
 
     /**
+     * sell is sell.
+     */
+    private OrderSellComparator sell = new OrderSellComparator();
+
+    /**
+     * buy is buy.
+     */
+    private OrderBuyComparator buy = new OrderBuyComparator();
+
+    /**
      * book is book. book and operation.
      */
     private HashMap<String, HashMap<String, TreeMap<Double, Order>>> list = new HashMap<>();
@@ -40,14 +50,17 @@ public class BookCalculate {
             if (this.list.get(iBook.getKey()) == null) {
                 this.list.put(iBook.getKey(), new HashMap<>());
             }
-
             for (Map.Entry<String, HashMap<Integer, Order>> iOperation : iBook.getValue().entrySet()) {
                 if (this.list.get(iBook.getKey()).get(iOperation.getKey()) == null) {
-                    this.list.get(iBook.getKey()).put(iOperation.getKey(), new TreeMap<>());
+                    if (iOperation.getKey().equals("SELL")) {
+                        this.list.get(iBook.getKey()).put(iOperation.getKey(), new TreeMap<>(sell));
+                    } else if (iOperation.getKey().equals("BUY")) {
+                        this.list.get(iBook.getKey()).put(iOperation.getKey(), new TreeMap<>(buy));
+                    }
                 }
                 for (Map.Entry<Integer, Order> iOrder : iOperation.getValue().entrySet()) {
                     if (this.list.get(iBook.getKey()).get(iOperation.getKey()).containsKey(iOrder.getValue().getPrice())) {
-                        Order order = this.list.get(iBook.getKey()).get(iOperation.getKey()).get(iOrder.getKey());
+                        Order order = this.list.get(iBook.getKey()).get(iOperation.getKey()).get(iOrder.getValue().getPrice());
                         order.setVolume(order.getVolume() + iOrder.getValue().getVolume());
                     } else {
                         this.list.get(iBook.getKey()).get(iOperation.getKey()).put(iOrder.getValue().getPrice(), iOrder.getValue());
@@ -62,6 +75,7 @@ public class BookCalculate {
      * view is view.
      */
     private void view() {
+        System.out.println("---------------LIST---------------");
         for (Map.Entry<String, HashMap<String, TreeMap<Double, Order>>> iBook : this.list.entrySet()) {
             System.out.println(iBook.getKey());
             for (Map.Entry<String, TreeMap<Double, Order>> iOperation : iBook.getValue().entrySet()) {

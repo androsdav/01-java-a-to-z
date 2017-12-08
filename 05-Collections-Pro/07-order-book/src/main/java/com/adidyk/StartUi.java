@@ -17,15 +17,15 @@ public class StartUi {
      * @param arg nothing.
      */
     public static void main(String[] arg) {
-        System.out.println("Order-book");
+        //System.out.println("Order-book");
         System.out.println();
 //        Order order = new Order("book-1", "buy", 100, 200, 1);
 //        String string = "<AddOrder book=\"book-3\" operation=\"BUY\" price=\" 99.50\" volume=\"86\" orderId=\"2\" />";
         BookContainer book = new BookContainer();
         book.readerXML(new File("orders.xml"));
 //        System.out.println(book);
-//        System.out.println("!!!!!!!!!!! END !!!!!!!!!");
-        book.view();
+//    //    System.out.println("!!!!!!!!!!! END !!!!!!!!!");
+      //  book.view();
       //  book.view1();
         //System.out.println(book.getSize());
         //String temp = "<AddOrder test";
