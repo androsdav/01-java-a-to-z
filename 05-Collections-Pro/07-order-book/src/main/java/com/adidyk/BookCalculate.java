@@ -127,6 +127,9 @@ public class BookCalculate {
         }
 
         for (int i = 0; i < array; i++) {
+            if (this.buy.get(i).setVolume();) {
+
+            }
 
                 //System.out.println();
 
