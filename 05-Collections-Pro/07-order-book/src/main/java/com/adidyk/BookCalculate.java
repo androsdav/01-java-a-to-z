@@ -1,8 +1,14 @@
 package com.adidyk;
 
+//import sun.reflect.generics.tree.Tree;
+
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.LinkedList;
+
+//import java.util.*;
 
 /**
  * Class User for create user (object) with params: name, children and birthday.
@@ -12,15 +18,28 @@ import java.util.TreeMap;
  */
 public class BookCalculate {
 
+
+    /**
+     *  sell is sell.
+     */
+    private LinkedList<Order> sell;
+    //private TreeMap<Double, Order> sell = new TreeMap<>();
+
+    /**
+     *  buy is buy.
+     */
+    private LinkedList<Order> buy;
+
+
     /**
      * sell is sell.
      */
-    private OrderSellComparator sell = new OrderSellComparator();
+    private OrderSellComparator sellComp = new OrderSellComparator();
 
     /**
      * buy is buy.
      */
-    private OrderBuyComparator buy = new OrderBuyComparator();
+    private OrderBuyComparator buyComp = new OrderBuyComparator();
 
     /**
      * book is book. book and operation.
@@ -39,6 +58,7 @@ public class BookCalculate {
     BookCalculate(HashMap<String, HashMap<String, HashMap<Integer, Order>>> book) {
         this.book = book;
         this.addTree();
+        this.glass();
         this.view();
     }
 
@@ -53,9 +73,9 @@ public class BookCalculate {
             for (Map.Entry<String, HashMap<Integer, Order>> iOperation : iBook.getValue().entrySet()) {
                 if (this.list.get(iBook.getKey()).get(iOperation.getKey()) == null) {
                     if (iOperation.getKey().equals("SELL")) {
-                        this.list.get(iBook.getKey()).put(iOperation.getKey(), new TreeMap<>(sell));
+                        this.list.get(iBook.getKey()).put(iOperation.getKey(), new TreeMap<>(sellComp));
                     } else if (iOperation.getKey().equals("BUY")) {
-                        this.list.get(iBook.getKey()).put(iOperation.getKey(), new TreeMap<>(buy));
+                        this.list.get(iBook.getKey()).put(iOperation.getKey(), new TreeMap<>(buyComp));
                     }
                 }
                 for (Map.Entry<Integer, Order> iOrder : iOperation.getValue().entrySet()) {
@@ -69,6 +89,49 @@ public class BookCalculate {
                 }
             }
         }
+    }
+
+    /**
+     * glass is glass.
+     */
+    private void glass() {
+        System.out.println("--------------GLASS-------------");
+        for (Map.Entry<String, HashMap<String, TreeMap<Double, Order>>> iBook : this.list.entrySet()) {
+            for (Map.Entry<String, TreeMap<Double, Order>> iOperation : iBook.getValue().entrySet()) {
+                if (iOperation.getKey().equals("SELL")) {
+                    sell = (LinkedList<Order>) iOperation.getValue().values();
+                    // for (Object order : sell) {
+                    //     System.out.println(order);
+                } else if (iOperation.getKey().equals("BUY")) {
+                    buy = (LinkedList<Order>) iOperation.getValue().values();
+                    //  for (Object order : buy) {
+                    //      System.out.println(order);
+                    //  }
+                }
+                //for (Map.Entry<Double, Order> iOrder : iOperation.getValue().values()) {
+                //}
+            }
+        }
+    }
+
+    /**
+     * temp is temp.
+     */
+    private void temp() {
+
+        int array;
+        if (this.sell.size() > this.buy.size()) {
+            array = this.sell.size();
+        } else {
+            array = this.buy.size();
+        }
+
+        for (int i = 0; i < array; i++) {
+
+                //System.out.println();
+
+        }
+
     }
 
     /**
