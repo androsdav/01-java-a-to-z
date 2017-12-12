@@ -58,8 +58,8 @@ public class BookCalculate {
     BookCalculate(HashMap<String, HashMap<String, HashMap<Integer, Order>>> book) {
         this.book = book;
         this.addTree();
-        this.glass();
         this.view();
+        //this.glass();
     }
 
     /**
@@ -158,13 +158,14 @@ public class BookCalculate {
      * view is view.
      */
     private void view() {
-        System.out.println("---------------LIST---------------");
+        System.out.println(" ----------------- LIST -----------------");
         for (Map.Entry<String, HashMap<String, TreeMap<Double, Order>>> iBook : this.list.entrySet()) {
-            System.out.println(iBook.getKey());
+            System.out.println(" " + iBook.getKey());
             for (Map.Entry<String, TreeMap<Double, Order>> iOperation : iBook.getValue().entrySet()) {
-                System.out.println(iOperation.getKey());
+                System.out.println("  " + iOperation.getKey());
+                System.out.println(String.format("   %8s%9s%9s", "id", "   V", "  P"));
                 for (Map.Entry<Double, Order> iOrder : iOperation.getValue().entrySet()) {
-                    System.out.println(String.format("%s%8s%s", "price:", iOrder.getKey(), iOrder.getValue()));
+                    System.out.println(String.format("   %8s%s", iOrder.getValue().getId(), iOrder.getValue()));
                 }
             }
         }

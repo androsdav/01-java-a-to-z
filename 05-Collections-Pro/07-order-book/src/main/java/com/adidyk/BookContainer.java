@@ -3,10 +3,8 @@ package com.adidyk;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-//import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * Class User for create user (object) with params: name, children and birthday.
@@ -33,7 +31,6 @@ public class BookContainer {
      * @param orders is orders
      */
     void readerXML(File orders) {
-        //long start = this.start();
         long start = System.nanoTime();
         try (BufferedReader br = new BufferedReader(new FileReader(orders))) {
             String string;
@@ -47,10 +44,11 @@ public class BookContainer {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-        System.out.println();
+        long parse = System.nanoTime();
+        System.out.println(" ------------ TIME FOR PARSE ------------");
+        System.out.println(" time purse: " + (parse - start) + " ns\n");
+        this.view();
         new BookCalculate(this.book);
-        long end = System.nanoTime();
-        System.out.println("Productivity:" + (end - start));
     }
 
     /**
@@ -58,22 +56,9 @@ public class BookContainer {
      */
     private void addOrder(String string) {
         Order order = this.purse(string, true);
-        if (this.book.get(order.getBook()) == null) {
-            this.book.put(order.getBook(), new HashMap<>());
-        }
-        if (this.book.get(order.getBook()).get(order.getOperation()) == null) {
-            TreeMap<Integer, Order> orders = new TreeMap<>();
-            //Comparator comp = orders.comparator();
-            this.book.get(order.getBook()).put(order.getOperation(), new HashMap<>());
-        }
+        this.book.computeIfAbsent(order.getBook(), k -> new HashMap<>());
+        this.book.get(order.getBook()).computeIfAbsent(order.getOperation(), k -> new HashMap<>());
         this.book.get(order.getBook()).get(order.getOperation()).put(order.getId(), order);
-
-        //if (this.book.get(order.getBook()) == null) {
-        //    this.book.put(order.getBook(), new HashMap<>());
-        //}
-        //this.book.get(order.getBook()).put(order.getId(), order);
-        //this.book.computeIfAbsent(order.getBook(), k -> new HashMap<>());
-        //this.book.get(order.getBook()).put(order.getId(), order);
     }
 
     /**
@@ -81,8 +66,6 @@ public class BookContainer {
      */
     private void delOrder(String string) {
         Order order = this.purse(string, false);
-        //this.book.get(order.getBook()).get(order.getOperation()).remove(order.getId());
-        //this.book.get(order.getBook()).get(order.getOperation()).remove(order.getId());
         this.book.get(order.getBook()).get("SELL").remove(order.getId());
         this.book.get(order.getBook()).get("BUY").remove(order.getId());
     }
@@ -118,17 +101,17 @@ public class BookContainer {
     /**
      * view is view.
      */
-    void view() {
-        System.out.println("---------------BOOK---------------");
+    private void view() {
+        System.out.println(" ----------------- BOOK -----------------");
         for (Map.Entry<String, HashMap<String, HashMap<Integer, Order>>> iBook : this.book.entrySet()) {
-            System.out.println(iBook.getKey());
+            System.out.println(" " + iBook.getKey());
             for (Map.Entry<String, HashMap<Integer, Order>> iOperation : iBook.getValue().entrySet()) {
-                System.out.println(iOperation.getKey());
+                System.out.println("  " + iOperation.getKey());
+                System.out.println(String.format("   %8s%9s%9s", "id", "   V", "  P"));
                 for (Map.Entry<Integer, Order> iOrder : iOperation.getValue().entrySet()) {
-                    System.out.println(String.format("%s%8s%s", "id:", iOrder.getKey(), iOrder.getValue()));
+                    System.out.println(String.format("   %8s%s", iOrder.getKey(), iOrder.getValue()));
                 }
             }
-            System.out.println();
         }
     }
 
