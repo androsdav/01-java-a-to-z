@@ -1,14 +1,15 @@
 package com.adidyk;
 
 //import sun.reflect.generics.tree.Tree;
-
-import java.util.Collection;
+//import javax.swing.*;
+//import java.util.Collection;
+//import java.util.*;
+//import java.util.*;
+//import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.LinkedList;
-
-//import java.util.*;
 
 /**
  * Class User for create user (object) with params: name, children and birthday.
@@ -17,7 +18,6 @@ import java.util.LinkedList;
  * @version 1.0.
  */
 public class BookCalculate {
-
 
     /**
      *  sell is sell.
@@ -99,26 +99,43 @@ public class BookCalculate {
         for (Map.Entry<String, HashMap<String, TreeMap<Double, Order>>> iBook : this.list.entrySet()) {
             for (Map.Entry<String, TreeMap<Double, Order>> iOperation : iBook.getValue().entrySet()) {
                 if (iOperation.getKey().equals("SELL")) {
-                    sell = (LinkedList<Order>) iOperation.getValue().values();
-                    // for (Object order : sell) {
-                    //     System.out.println(order);
-                } else if (iOperation.getKey().equals("BUY")) {
-                    buy = (LinkedList<Order>) iOperation.getValue().values();
-                    //  for (Object order : buy) {
-                    //      System.out.println(order);
-                    //  }
+                    sell = new LinkedList<>(iOperation.getValue().values());
+                    //System.out.println(sell.pollFirst());
+                    //for (Object order : sell) {
+                    //    System.out.println(order);
+                    //}
+                    } else if (iOperation.getKey().equals("BUY")) {
+                    buy = new LinkedList<>(iOperation.getValue().values());
+                    //for (Object order : buy) {
+                    //    System.out.println(order);
+                    //}
                 }
-                //for (Map.Entry<Double, Order> iOrder : iOperation.getValue().values()) {
-                //}
+                    //this.temp(sell, buy);
+                    //for (Map.Entry<Double, Order> iOrder : iOperation.getValue().values()) {
+                    //}
             }
+            this.temp(sell, buy);
         }
     }
 
     /**
      * temp is temp.
+     * @param sellList is List.
+     * @param buyList is List.
      */
-    private void temp() {
+    private void temp(LinkedList<Order> sellList, LinkedList<Order> buyList) {
+        Order sell = sellList.pollFirst();
+        Order buy = buyList.pollFirst();
+        System.out.println();
+        System.out.println(String.format("%s%s", sell, buy));
+    }
+        /*
+        do {
 
+        } while (!sell.isEmpty() && !buy.isEmpty());
+        */
+
+/*
         int array;
         if (this.sell.size() > this.buy.size()) {
             array = this.sell.size();
@@ -136,7 +153,7 @@ public class BookCalculate {
         }
 
     }
-
+*/
     /**
      * view is view.
      */
