@@ -107,9 +107,9 @@ public class BookContainer {
             System.out.println(" " + iBook.getKey());
             for (Map.Entry<String, HashMap<Integer, Order>> iOperation : iBook.getValue().entrySet()) {
                 System.out.println("  " + iOperation.getKey());
-                System.out.println(String.format("   %8s%9s%9s", "id", "   V", "  P"));
+                System.out.println(String.format("   %9s%9s%9s", "id", "   V", "  P"));
                 for (Map.Entry<Integer, Order> iOrder : iOperation.getValue().entrySet()) {
-                    System.out.println(String.format("   %8s%s", iOrder.getKey(), iOrder.getValue()));
+                    System.out.println(String.format("   %9s%s", iOrder.getKey(), iOrder.getValue()));
                 }
             }
         }
