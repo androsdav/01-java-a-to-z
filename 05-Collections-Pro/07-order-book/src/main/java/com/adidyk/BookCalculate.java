@@ -59,7 +59,7 @@ public class BookCalculate {
         this.book = book;
         this.addTree();
         this.view();
-        //this.glass();
+        this.glass();
     }
 
     /**
@@ -124,10 +124,44 @@ public class BookCalculate {
      * @param buyList is List.
      */
     private void temp(LinkedList<Order> sellList, LinkedList<Order> buyList) {
+        System.out.println(String.format("   %9s%9s%9s%9s", "   V", "  P", "   V", "  P"));
         Order sell = sellList.pollFirst();
         Order buy = buyList.pollFirst();
-        System.out.println();
-        System.out.println(String.format("%s%s", sell, buy));
+        //System.out.println(String.format("   %9s%s", buy, sell));
+        boolean work = true;
+        boolean pair = true;
+        do {
+            if (sell != null && buy != null) {
+                if (buy.getPrice() >= sell.getPrice()) {
+                    if (buy.getVolume() > sell.getVolume()) {
+                        buy.setVolume(buy.getVolume() - sell.getVolume());
+                        sell = sellList.pollFirst();
+                    } else if (buy.getVolume() < sell.getVolume()) {
+                        sell.setVolume(sell.getVolume() - buy.getVolume());
+                        buy = buyList.pollFirst();
+                    }
+                } else {
+                    System.out.println(String.format("   %9s%s", buy, sell));
+                    sell = sellList.pollFirst();
+                    buy = buyList.pollFirst();
+                }
+            } else if (sell == null && buy != null) {
+                System.out.println(String.format("   %9s%s", buy, "------"));
+                buy = buyList.pollFirst();
+            } else if (sell != null && buy == null) {
+                System.out.println(String.format("   %9s%s", "------", sell));
+                sell = sellList.pollFirst();
+            } else if (sell == null && buy == null) {
+                work = false;
+            }
+        } while (work);
+        //else {
+            //System.out.println(String.format("%s%s", sell, buy));
+        //}
+        //System.out.println(String.format("   %9s%9s%9s%9s", "   V", "  P", "   V", "  P"));
+        //System.out.println(String.format("   %9s%s", buy, sell));
+        //System.out.println();
+        //System.out.println(String.format("%s%s", sell, buy));
     }
         /*
         do {

@@ -27,4 +27,6 @@
 <AddOrder book="book-2" operation="SELL" price="100.30" volume="12" orderId="25" />
 <AddOrder book="book-1" operation="SELL" price="100.10" volume="71" orderId="26" />
 <AddOrder book="book-3" operation="SELL" price="100.00" volume="22" orderId="27" />
+<AddOrder book="book-3" operation="BUY" price="99.00" volume="99" orderId="28" />
+<AddOrder book="book-3" operation="BUY" price="88.00" volume="88" orderId="29" />
 </Orders>
