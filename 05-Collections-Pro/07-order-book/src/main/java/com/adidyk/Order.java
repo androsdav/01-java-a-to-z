@@ -77,7 +77,7 @@ public class Order {
      *
      * @param volume is set.
      */
-    public void setVolume(int volume) {
+    void setVolume(int volume) {
         this.volume = volume;
     }
 
@@ -93,7 +93,7 @@ public class Order {
      *
      * @return is get.
      */
-    public String getBook() {
+    String getBook() {
         return book;
     }
 
@@ -101,7 +101,7 @@ public class Order {
      *
      * @return is get.
      */
-    public String getOperation() {
+    String getOperation() {
         return operation;
     }
 
@@ -109,7 +109,7 @@ public class Order {
      *
      * @return is get.
      */
-    public Double getPrice() {
+    Double getPrice() {
         return price;
     }
 
@@ -117,7 +117,7 @@ public class Order {
      *
      * @return is get.
      */
-    public int getVolume() {
+    int getVolume() {
         return volume;
     }
 
@@ -125,7 +125,7 @@ public class Order {
      *
      * @return is get.
      */
-    public Integer getId() {
+    Integer getId() {
         return id;
     }
 

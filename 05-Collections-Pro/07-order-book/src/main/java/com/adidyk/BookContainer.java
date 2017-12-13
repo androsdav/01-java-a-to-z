@@ -17,14 +17,7 @@ public class BookContainer {
     /**
      * book is book. book and operation.
      */
-    private HashMap<String, HashMap<String, HashMap<Integer, Order>>> book;
-
-    /**
-     * BookContainer is constructor.
-     */
-    BookContainer() {
-        this.book = new HashMap<>();
-    }
+    private final HashMap<String, HashMap<String, HashMap<Integer, Order>>> book = new HashMap<>();
 
     /**
      * Is may first git huk in new ubuntu.
@@ -44,11 +37,10 @@ public class BookContainer {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-        long parse = System.nanoTime();
-        System.out.println(" ------------ TIME FOR PARSE ------------");
-        System.out.println(" time purse: " + (parse - start) + " ns\n");
         this.view();
         new BookCalculate(this.book);
+        long finish = System.nanoTime();
+        System.out.printf(String.format("%s%4.7s%s%n", " Time for program execution: ", (finish - start) / Math.pow(10, 9), " [ s ]"));
     }
 
     /**

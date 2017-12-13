@@ -58,7 +58,7 @@ public class BookCalculate {
     BookCalculate(HashMap<String, HashMap<String, HashMap<Integer, Order>>> book) {
         this.book = book;
         this.addTree();
-        this.view();
+        //this.view();
         this.glass();
     }
 

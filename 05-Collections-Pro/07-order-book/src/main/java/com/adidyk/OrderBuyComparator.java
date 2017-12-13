@@ -8,7 +8,6 @@ import java.util.Comparator;
  * @since 21.07.2017.
  * @version 1.0.
  */
-
 public class OrderBuyComparator implements Comparator<Double> {
 
     /**
