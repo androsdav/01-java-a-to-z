@@ -1,11 +1,5 @@
 package com.adidyk;
 
-//import sun.reflect.generics.tree.Tree;
-//import javax.swing.*;
-//import java.util.Collection;
-//import java.util.*;
-//import java.util.*;
-//import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -23,7 +17,6 @@ public class BookCalculate {
      *  sell is sell.
      */
     private LinkedList<Order> sell;
-    //private TreeMap<Double, Order> sell = new TreeMap<>();
 
     /**
      *  buy is buy.
@@ -100,19 +93,9 @@ public class BookCalculate {
             for (Map.Entry<String, TreeMap<Double, Order>> iOperation : iBook.getValue().entrySet()) {
                 if (iOperation.getKey().equals("SELL")) {
                     sell = new LinkedList<>(iOperation.getValue().values());
-                    //System.out.println(sell.pollFirst());
-                    //for (Object order : sell) {
-                    //    System.out.println(order);
-                    //}
                     } else if (iOperation.getKey().equals("BUY")) {
                     buy = new LinkedList<>(iOperation.getValue().values());
-                    //for (Object order : buy) {
-                    //    System.out.println(order);
-                    //}
                 }
-                    //this.temp(sell, buy);
-                    //for (Map.Entry<Double, Order> iOrder : iOperation.getValue().values()) {
-                    //}
             }
             this.temp(sell, buy);
         }
@@ -127,9 +110,7 @@ public class BookCalculate {
         System.out.println(String.format("   %9s%9s%9s%9s", "   V", "  P", "   V", "  P"));
         Order sell = sellList.pollFirst();
         Order buy = buyList.pollFirst();
-        //System.out.println(String.format("   %9s%s", buy, sell));
         boolean work = true;
-        boolean pair = true;
         do {
             if (sell != null && buy != null) {
                 if (buy.getPrice() >= sell.getPrice()) {
@@ -155,39 +136,8 @@ public class BookCalculate {
                 work = false;
             }
         } while (work);
-        //else {
-            //System.out.println(String.format("%s%s", sell, buy));
-        //}
-        //System.out.println(String.format("   %9s%9s%9s%9s", "   V", "  P", "   V", "  P"));
-        //System.out.println(String.format("   %9s%s", buy, sell));
-        //System.out.println();
-        //System.out.println(String.format("%s%s", sell, buy));
     }
-        /*
-        do {
 
-        } while (!sell.isEmpty() && !buy.isEmpty());
-        */
-
-/*
-        int array;
-        if (this.sell.size() > this.buy.size()) {
-            array = this.sell.size();
-        } else {
-            array = this.buy.size();
-        }
-
-        for (int i = 0; i < array; i++) {
-            if (this.buy.get(i).setVolume();) {
-
-            }
-
-                //System.out.println();
-
-        }
-
-    }
-*/
     /**
      * view is view.
      */
@@ -204,6 +154,5 @@ public class BookCalculate {
             }
         }
     }
-
 
 }
