@@ -7,25 +7,45 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Class User for create user (object) with params: name, children and birthday.
+ * --------------------------------------------------------------------------------------------------------------
+ * Class BookContainer contains a container for storing orders.
+ * Container is HashMap that contains books. Each book contains two HashMap - sell and buy.
+ * HashMap sell and buy contains object of class Order (value) and key, where key is id of object of class Order.
+ * Class BookContainer contains structure following order storage structure:
+ * -> HashMap<String, HashMap<String, HashMap<Integer, Order>>> book
+ * Class BookContainer read xml-file,
+ * --------------------------------------------------------------------------------------------------------------
+ * Class BookContainer has next method:
+ * -> readerXML - reads first line (one order) from file and calls method to addOrder or delOrder
+ *                depending on the type order, after that reads second line (one order) and loop is repeated
+ *                while lines will not finished;
+ * -> addOrder  - do searches needed book (book-1 or book-2 or book-3) in map, after that do searches needed operation
+ *                (SELL or BUY) in map and adds new order to map by id order;
+ * -> delOrder  - do searches needed book (book-1 or book-2 or book-3) in map, after that do searches needed operation
+ *                (SELL or BUY) in map and remove order from map by id order.
+ * -> purse     - purse one string? creates new object of class Order and returns new object.
+ * -> show      - shows all orders off map.
+ * book
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 21.07.2017.
  * @version 1.0.
  */
-public class BookContainer {
+class BookContainer {
 
     /**
-     * book is book. book and operation.
+     * @param book is link variable on container HashMap<String, HashMap<String, HashMap<Integer, Order>>>.
      */
     private final HashMap<String, HashMap<String, HashMap<Integer, Order>>> book = new HashMap<>();
 
     /**
-     * Is may first git huk in new ubuntu.
-     * @param orders is orders
+     * readerXML - reads first line (one order) from file and calls method to addOrder or delOrder
+     * depending on the type order, after that reads second line (one order) and loop is repeated
+     * while lines will not finished.
+     * @param file is pathname to file in format xml.
      */
-    void readerXML(File orders) {
+    void readerXML(File file) {
         long start = System.nanoTime();
-        try (BufferedReader br = new BufferedReader(new FileReader(orders))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String string;
             while ((string = br.readLine()) != null) {
                 if (string.startsWith("<A")) {
@@ -37,7 +57,6 @@ public class BookContainer {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-        this.view();
         new BookCalculate(this.book);
         long finish = System.nanoTime();
         System.out.println("\n\n --------------- TIME FOR PROGRAM EXECUTION ---------------");
@@ -94,7 +113,7 @@ public class BookContainer {
     /**
      * view is view.
      */
-    private void view() {
+    private void showAllOrder() {
         System.out.println("\n\n ------------------- ORDERS BOOK STEP #1 -------------------");
         for (Map.Entry<String, HashMap<String, HashMap<Integer, Order>>> iBook : this.book.entrySet()) {
             System.out.println(String.format("%n %s", iBook.getKey()));
@@ -106,14 +125,6 @@ public class BookContainer {
                 }
             }
         }
-    }
-
-    /**
-     * @return is string.
-     */
-    @Override
-    public String toString() {
-        return String.format("%s", this.book);
     }
 
 }

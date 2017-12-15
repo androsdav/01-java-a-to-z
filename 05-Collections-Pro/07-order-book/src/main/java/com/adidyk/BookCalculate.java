@@ -60,15 +60,13 @@ public class BookCalculate {
      */
     private void addTree() {
         for (Map.Entry<String, HashMap<String, HashMap<Integer, Order>>> iBook : this.book.entrySet()) {
-            if (this.list.get(iBook.getKey()) == null) {
-                this.list.put(iBook.getKey(), new HashMap<>());
-            }
+            this.list.computeIfAbsent(iBook.getKey(), k -> new HashMap<>());
             for (Map.Entry<String, HashMap<Integer, Order>> iOperation : iBook.getValue().entrySet()) {
                 if (this.list.get(iBook.getKey()).get(iOperation.getKey()) == null) {
                     if (iOperation.getKey().equals("SELL")) {
-                        this.list.get(iBook.getKey()).put(iOperation.getKey(), new TreeMap<>(sellComp));
+                        this.list.get(iBook.getKey()).put(iOperation.getKey(), new TreeMap<>(this.sellComp));
                     } else if (iOperation.getKey().equals("BUY")) {
-                        this.list.get(iBook.getKey()).put(iOperation.getKey(), new TreeMap<>(buyComp));
+                        this.list.get(iBook.getKey()).put(iOperation.getKey(), new TreeMap<>(this.buyComp));
                     }
                 }
                 for (Map.Entry<Integer, Order> iOrder : iOperation.getValue().entrySet()) {
@@ -78,7 +76,6 @@ public class BookCalculate {
                     } else {
                         this.list.get(iBook.getKey()).get(iOperation.getKey()).put(iOrder.getValue().getPrice(), iOrder.getValue());
                     }
-
                 }
             }
         }
@@ -92,12 +89,12 @@ public class BookCalculate {
         for (Map.Entry<String, HashMap<String, TreeMap<Double, Order>>> iBook : this.list.entrySet()) {
             for (Map.Entry<String, TreeMap<Double, Order>> iOperation : iBook.getValue().entrySet()) {
                 if (iOperation.getKey().equals("SELL")) {
-                    sell = new LinkedList<>(iOperation.getValue().values());
+                    this.sell = new LinkedList<>(iOperation.getValue().values());
                     } else if (iOperation.getKey().equals("BUY")) {
-                    buy = new LinkedList<>(iOperation.getValue().values());
+                    this.buy = new LinkedList<>(iOperation.getValue().values());
                 }
             }
-            this.temp(iBook.getKey(), sell, buy);
+            this.temp(iBook.getKey(), this.sell, this.buy);
         }
     }
 
@@ -137,10 +134,10 @@ public class BookCalculate {
             } else if (sell == null && buy != null) {
                 System.out.println(String.format(" %9s%21s", buy, "- - - - -    - - -"));
                 buy = buyList.pollFirst();
-            } else if (sell != null && buy == null) {
+            } else if (sell != null) {
                 System.out.println(String.format(" %9s%21s", "- - - - -    - - -", sell));
                 sell = sellList.pollFirst();
-            } else if (sell == null && buy == null) {
+            } else {
                 work = false;
             }
         } while (work);
