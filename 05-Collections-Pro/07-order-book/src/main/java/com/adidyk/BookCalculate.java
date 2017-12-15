@@ -11,7 +11,7 @@ import java.util.LinkedList;
  * @since 21.07.2017.
  * @version 1.0.
  */
-public class BookCalculate {
+class BookCalculate {
 
     /**
      *  sell is sell.
@@ -23,18 +23,7 @@ public class BookCalculate {
      */
     private LinkedList<Order> buy;
 
-
-    /**
-     * sell is sell.
-     */
-    private OrderSellComparator sellComp = new OrderSellComparator();
-
-    /**
-     * buy is buy.
-     */
-    private OrderBuyComparator buyComp = new OrderBuyComparator();
-
-    /**
+      /**
      * book is book. book and operation.
      */
     private HashMap<String, HashMap<String, TreeMap<Double, Order>>> list = new HashMap<>();
@@ -64,9 +53,9 @@ public class BookCalculate {
             for (Map.Entry<String, HashMap<Integer, Order>> iOperation : iBook.getValue().entrySet()) {
                 if (this.list.get(iBook.getKey()).get(iOperation.getKey()) == null) {
                     if (iOperation.getKey().equals("SELL")) {
-                        this.list.get(iBook.getKey()).put(iOperation.getKey(), new TreeMap<>(this.sellComp));
+                        this.list.get(iBook.getKey()).put(iOperation.getKey(), new TreeMap<>(new OrderSellComparator()));
                     } else if (iOperation.getKey().equals("BUY")) {
-                        this.list.get(iBook.getKey()).put(iOperation.getKey(), new TreeMap<>(this.buyComp));
+                        this.list.get(iBook.getKey()).put(iOperation.getKey(), new TreeMap<>(new OrderBuyComparator()));
                     }
                 }
                 for (Map.Entry<Integer, Order> iOrder : iOperation.getValue().entrySet()) {
