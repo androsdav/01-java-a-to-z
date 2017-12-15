@@ -64,7 +64,9 @@ class BookContainer {
     }
 
     /**
-     * @param string is string.
+     * addOrder - do searches needed book (book-1 or book-2 or book-3) in map, after that do
+     * searches needed operation (SELL or BUY) in map and adds new order to map by id order.
+     * @param string is one string from xml-file.
      */
     private void addOrder(String string) {
         Order order = this.purse(string, true);
@@ -74,7 +76,9 @@ class BookContainer {
     }
 
     /**
-     * @param string is string.
+     * delOrder  - do searches needed book (book-1 or book-2 or book-3) in map, after that do
+     * searches needed operation (SELL or BUY) in map and remove order from map by id order.
+     * @param string is one string from xml-file.
      */
     private void delOrder(String string) {
         Order order = this.purse(string, false);
@@ -83,8 +87,9 @@ class BookContainer {
     }
 
     /**
-     * @param string is string.
-     * @param addTrue is true or false.
+     * purse - purse one string? creates new object of class Order and returns new object.
+     * @param string is string from xml-file.
+     * @param addTrue if need to adds in map - addTrue = true, if need to remove from map addTrue = false.
      * @return is object by class Order.
      */
     private Order purse(String string, boolean addTrue) {
@@ -111,7 +116,7 @@ class BookContainer {
     }
 
     /**
-     * view is view.
+     * show - shows all orders off map.
      */
     private void showAllOrder() {
         System.out.println("\n\n ------------------- ORDERS BOOK STEP #1 -------------------");
