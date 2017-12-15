@@ -51,7 +51,7 @@ public class BookCalculate {
     BookCalculate(HashMap<String, HashMap<String, HashMap<Integer, Order>>> book) {
         this.book = book;
         this.addTree();
-        //this.view();
+        this.view();
         this.glass();
     }
 
@@ -88,7 +88,7 @@ public class BookCalculate {
      * glass is glass.
      */
     private void glass() {
-        System.out.println("--------------GLASS-------------");
+        System.out.println("\n\n ------------------- ORDERS BOOK STEP #3 -------------------");
         for (Map.Entry<String, HashMap<String, TreeMap<Double, Order>>> iBook : this.list.entrySet()) {
             for (Map.Entry<String, TreeMap<Double, Order>> iOperation : iBook.getValue().entrySet()) {
                 if (iOperation.getKey().equals("SELL")) {
@@ -97,7 +97,7 @@ public class BookCalculate {
                     buy = new LinkedList<>(iOperation.getValue().values());
                 }
             }
-            this.temp(sell, buy);
+            this.temp(iBook.getKey(), sell, buy);
         }
     }
 
@@ -105,9 +105,14 @@ public class BookCalculate {
      * temp is temp.
      * @param sellList is List.
      * @param buyList is List.
+     * @param iBook is book.
      */
-    private void temp(LinkedList<Order> sellList, LinkedList<Order> buyList) {
-        System.out.println(String.format("   %9s%9s%9s%9s", "   V", "  P", "   V", "  P"));
+    private void temp(String iBook, LinkedList<Order> sellList, LinkedList<Order> buyList) {
+        System.out.println(String.format("%n %s", iBook));
+        System.out.println(String.format("%n  %s%22s", "BUY", "SELL"));
+        System.out.println(String.format(" %27s", "-------------------  -------------------"));
+        System.out.println(String.format(" %9s%9s%12s%9s", "V", "   P", "  V", "  P"));
+        System.out.println(String.format(" %27s", "-------------------  -------------------"));
         Order sell = sellList.pollFirst();
         Order buy = buyList.pollFirst();
         boolean work = true;
@@ -120,17 +125,20 @@ public class BookCalculate {
                     } else if (buy.getVolume() < sell.getVolume()) {
                         sell.setVolume(sell.getVolume() - buy.getVolume());
                         buy = buyList.pollFirst();
+                    } else if (buy.getVolume() == sell.getVolume()) {
+                        sell = sellList.pollFirst();
+                        buy = buyList.pollFirst();
                     }
                 } else {
-                    System.out.println(String.format("   %9s%s", buy, sell));
+                    System.out.println(String.format(" %9s%21s", buy, sell));
                     sell = sellList.pollFirst();
                     buy = buyList.pollFirst();
                 }
             } else if (sell == null && buy != null) {
-                System.out.println(String.format("   %9s%s", buy, "------"));
+                System.out.println(String.format(" %9s%21s", buy, "- - - - -    - - -"));
                 buy = buyList.pollFirst();
             } else if (sell != null && buy == null) {
-                System.out.println(String.format("   %9s%s", "------", sell));
+                System.out.println(String.format(" %9s%21s", "- - - - -    - - -", sell));
                 sell = sellList.pollFirst();
             } else if (sell == null && buy == null) {
                 work = false;
@@ -142,14 +150,14 @@ public class BookCalculate {
      * view is view.
      */
     private void view() {
-        System.out.println(" ----------------- LIST -----------------");
+        System.out.println("\n\n ------------------- ORDERS BOOK STEP #2 -------------------");
         for (Map.Entry<String, HashMap<String, TreeMap<Double, Order>>> iBook : this.list.entrySet()) {
-            System.out.println(" " + iBook.getKey());
+            System.out.println(String.format("%n %s", iBook.getKey()));
             for (Map.Entry<String, TreeMap<Double, Order>> iOperation : iBook.getValue().entrySet()) {
-                System.out.println("  " + iOperation.getKey());
-                System.out.println(String.format("   %9s%9s", "   V", "  P"));
+                System.out.println(String.format("%n  %s%n %19s", iOperation.getKey(), "-------------------"));
+                System.out.println(String.format(" %9s%9s%n %19s", "   V", "  P", "-------------------"));
                 for (Map.Entry<Double, Order> iOrder : iOperation.getValue().entrySet()) {
-                    System.out.println(String.format("   %9s", iOrder.getValue()));
+                    System.out.println(String.format(" %9s", iOrder.getValue()));
                 }
             }
         }

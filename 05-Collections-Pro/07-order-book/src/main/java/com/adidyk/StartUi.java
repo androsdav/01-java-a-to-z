@@ -17,9 +17,8 @@ public class StartUi {
      * @param arg nothing.
      */
     public static void main(String[] arg) {
-        System.out.println();
         BookContainer book = new BookContainer();
-        book.readerXML(new File("orders1.xml"));
+        book.readerXML(new File("orders.xml"));
     }
 
 }

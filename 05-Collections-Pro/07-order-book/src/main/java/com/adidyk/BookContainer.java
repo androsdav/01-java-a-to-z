@@ -40,7 +40,8 @@ public class BookContainer {
         this.view();
         new BookCalculate(this.book);
         long finish = System.nanoTime();
-        System.out.printf(String.format("%s%4.7s%s%n", " Time for program execution: ", (finish - start) / Math.pow(10, 9), " [ s ]"));
+        System.out.println("\n\n --------------- TIME FOR PROGRAM EXECUTION ---------------");
+        System.out.printf(String.format("%n %s%4.7s%s%n", "t = ", (finish - start) / Math.pow(10, 9), " [s]"));
     }
 
     /**
@@ -94,14 +95,14 @@ public class BookContainer {
      * view is view.
      */
     private void view() {
-        System.out.println(" ----------------- BOOK -----------------");
+        System.out.println("\n\n ------------------- ORDERS BOOK STEP #1 -------------------");
         for (Map.Entry<String, HashMap<String, HashMap<Integer, Order>>> iBook : this.book.entrySet()) {
-            System.out.println(" " + iBook.getKey());
+            System.out.println(String.format("%n %s", iBook.getKey()));
             for (Map.Entry<String, HashMap<Integer, Order>> iOperation : iBook.getValue().entrySet()) {
-                System.out.println("  " + iOperation.getKey());
-                System.out.println(String.format("   %9s%9s%9s", "id", "   V", "  P"));
+                System.out.println(String.format("%n  %s%n %27s", iOperation.getKey(), "----------------------------"));
+                System.out.println(String.format(" %9s%9s%9s%n %27s", "id", "   V", "  P", "----------------------------"));
                 for (Map.Entry<Integer, Order> iOrder : iOperation.getValue().entrySet()) {
-                    System.out.println(String.format("   %9s%s", iOrder.getKey(), iOrder.getValue()));
+                    System.out.println(String.format(" %9s%s", iOrder.getKey(), iOrder.getValue()));
                 }
             }
         }
