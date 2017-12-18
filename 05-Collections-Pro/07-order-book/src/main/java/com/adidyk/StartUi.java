@@ -11,9 +11,9 @@ import java.io.File;
 public class StartUi {
 
     /**
-     * @param book is link variable on object of class BookContainer.
+     * @param book is link variable on object of class Book.
      */
-    private final BookContainer book;
+    private final Book book;
 
     /**
      * @param file is pathname to file in format xml.
@@ -22,10 +22,10 @@ public class StartUi {
 
     /**
      *
-     * @param book is link variable on object of class BookContainer.
+     * @param book is link variable on object of class Book.
      * @param file is pathname to file in format xml.
      */
-    private StartUi(BookContainer book, File file) {
+    private StartUi(Book book, File file) {
         this.book = book;
         this.file = file;
 
@@ -43,7 +43,7 @@ public class StartUi {
      * @param arg is nothing.
      */
     public static void main(String[] arg) {
-        final BookContainer book = new BookContainer();
+        final Book book = new Book();
         final File orders = new File("orders.xml");
         new StartUi(book, orders).start();
     }

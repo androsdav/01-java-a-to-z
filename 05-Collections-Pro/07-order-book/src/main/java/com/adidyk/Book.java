@@ -8,14 +8,11 @@ import java.util.Map;
 
 /**
  * --------------------------------------------------------------------------------------------------------------
- * Class BookContainer contains a container for storing orders.
+ * Class Book contains a container for storing orders.
  * Container is HashMap that contains books. Each book contains two HashMap - sell and buy.
  * HashMap sell and buy contains object of class Order (value) and key, where key is id of object of class Order.
- * Class BookContainer contains structure following order storage structure:
- * -> HashMap<String, HashMap<String, HashMap<Integer, Order>>> book
- * Class BookContainer read xml-file,
  * --------------------------------------------------------------------------------------------------------------
- * Class BookContainer has next method:
+ * Class Book has next method:
  * -> readerXML - reads first line (one order) from file and calls method to addOrder or delOrder
  *                depending on the type order, after that reads second line (one order) and loop is repeated
  *                while lines will not finished;
@@ -30,7 +27,7 @@ import java.util.Map;
  * @since 21.07.2017.
  * @version 1.0.
  */
-class BookContainer {
+class Book {
 
     /**
      * @param book is link variable on container HashMap<String, HashMap<String, HashMap<Integer, Order>>>.
@@ -57,7 +54,7 @@ class BookContainer {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-        new BookCalculate(this.book);
+        new OrderBook(this.book).calculate();
         long finish = System.nanoTime();
         System.out.println("\n\n --------------- TIME FOR PROGRAM EXECUTION ---------------");
         System.out.printf(String.format("%n %s%4.7s%s%n", "t = ", (finish - start) / Math.pow(10, 9), " [s]"));
@@ -118,8 +115,8 @@ class BookContainer {
     /**
      * show - shows all orders off map.
      */
-    private void showAllOrder() {
-        System.out.println("\n\n ------------------- ORDERS BOOK STEP #1 -------------------");
+    private void show() {
+        System.out.println("\n\n ------------------- ORDER BOOK STEP #1 -------------------");
         for (Map.Entry<String, HashMap<String, HashMap<Integer, Order>>> iBook : this.book.entrySet()) {
             System.out.println(String.format("%n %s", iBook.getKey()));
             for (Map.Entry<String, HashMap<Integer, Order>> iOperation : iBook.getValue().entrySet()) {
