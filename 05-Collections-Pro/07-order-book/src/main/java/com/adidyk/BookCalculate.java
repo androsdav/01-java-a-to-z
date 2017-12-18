@@ -39,15 +39,19 @@ class BookCalculate {
      */
     BookCalculate(HashMap<String, HashMap<String, HashMap<Integer, Order>>> book) {
         this.book = book;
-        this.addTree();
-        this.view();
-        this.glass();
+        //this.addTree();
+        //this.view();
+        //this.glass();
+    }
+
+    public void calculate() {
+
     }
 
     /**
      * addTree is new tree container.
      */
-    private void addTree() {
+    private void addOrder() {
         for (Map.Entry<String, HashMap<String, HashMap<Integer, Order>>> iBook : this.book.entrySet()) {
             this.list.computeIfAbsent(iBook.getKey(), k -> new HashMap<>());
             for (Map.Entry<String, HashMap<Integer, Order>> iOperation : iBook.getValue().entrySet()) {
@@ -75,15 +79,17 @@ class BookCalculate {
      */
     private void glass() {
         System.out.println("\n\n ------------------- ORDERS BOOK STEP #3 -------------------");
+        LinkedList<Order> sellList = null;
+        LinkedList<Order> buyList = null;
         for (Map.Entry<String, HashMap<String, TreeMap<Double, Order>>> iBook : this.list.entrySet()) {
             for (Map.Entry<String, TreeMap<Double, Order>> iOperation : iBook.getValue().entrySet()) {
                 if (iOperation.getKey().equals("SELL")) {
-                    this.sell = new LinkedList<>(iOperation.getValue().values());
+                    sellList = new LinkedList<>(iOperation.getValue().values());
                     } else if (iOperation.getKey().equals("BUY")) {
-                    this.buy = new LinkedList<>(iOperation.getValue().values());
+                    buyList = new LinkedList<>(iOperation.getValue().values());
                 }
             }
-            this.temp(iBook.getKey(), this.sell, this.buy);
+            this.temp(iBook.getKey(), sellList, buyList);
         }
     }
 
