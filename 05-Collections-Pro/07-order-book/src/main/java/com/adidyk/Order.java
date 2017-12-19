@@ -1,7 +1,7 @@
 package com.adidyk;
 
 /**
- * Class User for create user (object) with params: name, children and birthday.
+ * Class Order for create order (object) with params: book, operation, price, volume, id.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 21.07.2017.
  * @version 1.0.
@@ -9,37 +9,37 @@ package com.adidyk;
 public class Order {
 
     /**
-     * book - is identification action.
+     * book - identification action.
      */
     private String book;
 
     /**
-     * operation - is type operation: buy or sell.
+     * operation - type operation: buy or sell.
      */
     private String operation;
 
     /**
-     * price - is price.
+     * price - price order.
      */
     private Double price;
 
     /**
-     * volume - is volume of application, how many lots(shares) to buy / sell.
+     * volume - volume of application, how many lots(shares) to buy / sell.
      */
     private int volume;
 
     /**
-     * id - is id.
+     * id - id order.
      */
     private Integer id;
 
     /**
-     * Constructor - is constructor.
-     * @param book is book.
-     * @param operation is operation.
-     * @param price is price.
-     * @param volume is volume.
-     * @param id is id.
+     * Constructor - constructor.
+     * @param book - book number.
+     * @param operation - operation: sell or buy order.
+     * @param price - price order.
+     * @param volume - volume order.
+     * @param id - id order.
      */
     Order(String book, String operation, double price, int volume, int id) {
         this.book = book;
@@ -50,23 +50,23 @@ public class Order {
     }
 
     /**
-     *
-     * @param book is set.
+     * setBook - sets book number.
+     * @param book book number.
      */
     public void setBook(String book) {
         this.book = book;
     }
 
     /**
-     *
-     * @param operation is set.
+     * setOperation - sets operation order.
+     * @param operation sell or buy order.
      */
     public void setOperation(String operation) {
         this.operation = operation;
     }
 
     /**
-     *
+     * setPrice - sets price order.
      * @param price is set.
      */
     public void setPrice(Double price) {
@@ -74,7 +74,7 @@ public class Order {
     }
 
     /**
-     *
+     * setVolume - sets volume order.
      * @param volume is set.
      */
     void setVolume(int volume) {
@@ -82,48 +82,48 @@ public class Order {
     }
 
     /**
-     *
-     * @param id is set.
+     * setId - sets id order.
+     * @param id id order.
      */
     public void setId(Integer id) {
         this.id = id;
     }
 
     /**
-     *
-     * @return is get.
+     * getBook - gets book number.
+     * @return book number.
      */
     String getBook() {
         return book;
     }
 
     /**
-     *
-     * @return is get.
+     * getOperation - gets operation order.
+     * @return operation order.
      */
     String getOperation() {
         return operation;
     }
 
     /**
-     *
-     * @return is get.
+     * getPrice - gets price order.
+     * @return price order.
      */
     Double getPrice() {
         return price;
     }
 
     /**
-     *
-     * @return is get.
+     * getVolume - gets volume order.
+     * @return volume order.
      */
     int getVolume() {
         return volume;
     }
 
     /**
-     *
-     * @return is get.
+     * getId - gets id order.
+     * @return id order.
      */
     Integer getId() {
         return id;

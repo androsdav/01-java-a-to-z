@@ -22,7 +22,7 @@ import java.util.Map;
  *                (SELL or BUY) in map and remove order from map by id order.
  * -> purse     - purse one string? creates new object of class Order and returns new object.
  * -> show      - shows all orders off map.
- * book
+ * --------------------------------------------------------------------------------------------------------------
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 21.07.2017.
  * @version 1.0.
@@ -54,7 +54,8 @@ class Book {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-        new OrderBook(this.book).calculate();
+        //this.show();
+        new OrderBook(this.book);
         long finish = System.nanoTime();
         System.out.println("\n\n --------------- TIME FOR PROGRAM EXECUTION ---------------");
         System.out.printf(String.format("%n %s%4.7s%s%n", "t = ", (finish - start) / Math.pow(10, 9), " [s]"));

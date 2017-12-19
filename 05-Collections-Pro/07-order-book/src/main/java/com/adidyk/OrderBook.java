@@ -16,12 +16,15 @@ import java.util.LinkedList;
  *                    depending on the type order, after that reads second line (one order) and loop is repeated
  *                    while lines will not finished;
  * -> addOrderBook  - do searches needed book (book-1 or book-2 or book-3) in map, after that do searches needed
- *                    operation (SELL or BUY) in map and adds new order to map by price order;
- * -> getOrderBook  - delOrder  - do searches needed book (book-1 or book-2 or book-3) in map, after that do searches needed operation
+ *                    operation (SELL or BUY) in map and adds new order to map by price order. If the card already
+ *                    has order with the same price, then the existing order increases volume by the amount of the
+ *                    order to be added.
+ * -> getOrderBook - is returns list sell-order and buy-order for each book. for building and output list order-book.
  *                    (SELL or BUY) in map and remove order from map by id order.
- * -> showOrderBook - purse one string? creates new object of class Order and returns new object.
- * -> show          - shows all orders off map.
- * -> showInfo      - book
+ * -> showOrderBook - is building and output (show) list order-book for each book.
+ * -> show          - show sell-order and buy-order for each book.
+ * -> showInfo      - showInfo - output to console static information for each book.
+ * --------------------------------------------------------------------------------------------------------------
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 21.07.2017.
  * @version 1.0.
@@ -29,28 +32,22 @@ import java.util.LinkedList;
 class OrderBook {
 
     /**
-     * book is book. book and operation.
+     * @param book is book. book and operation.
      */
     private HashMap<String, HashMap<String, HashMap<Integer, Order>>> book;
 
     /**
-     * book is book. book and operation.
+     * @param orderBook is book. book and operation.
      */
     private HashMap<String, HashMap<String, TreeMap<Double, Order>>> orderBook;
 
     /**
-     * Book is constructor.
-     * @param book is book.
+     * OrderBook is constructor.
+     * @param book is link variable on container HashMap<String, HashMap<String, HashMap<Integer, Order>>>.
      */
     OrderBook(HashMap<String, HashMap<String, HashMap<Integer, Order>>> book) {
         this.book = book;
         this.orderBook = new HashMap<>();
-    }
-
-    /**
-     * is calculate.
-     */
-    void calculate() {
         this.addOrderBook();
         this.show();
         this.getOrderBook();
@@ -59,7 +56,8 @@ class OrderBook {
     /**
      * addOrderBook  - do searches needed book (book-1 or book-2 or book-3) in map, after that do searches needed
      * operation (SELL or BUY) in map and adds new order to map by price order. If the card already has order with
-     * the same price, then the existing order increases volume by the amount of the order to be added.
+     * the same price, then the existing order increases volume by the amount of the order to be added. Also all sales
+     * orders are sorted by price increase and all buys orders are sorted by price reduction.
      */
     private void addOrderBook() {
         for (Map.Entry<String, HashMap<String, HashMap<Integer, Order>>> iBook : this.book.entrySet()) {
@@ -104,7 +102,7 @@ class OrderBook {
     }
 
     /**
-     * showOrderBook - is building and output list order=book for each book.
+     * showOrderBook - is building and output (show) list order-book for each book.
      * @param sellList consist only from sell-order.
      * @param buyList consist only from buy-order.
      * @param iBook book number.
@@ -145,7 +143,7 @@ class OrderBook {
     }
 
     /**
-     * view is view.
+     * show sell-order and buy-order for each book.
      */
     private void show() {
         System.out.println("\n\n ------------------- ORDER BOOK STEP #2 -------------------");
@@ -162,8 +160,8 @@ class OrderBook {
     }
 
     /**
-     *
-     * @param iBook is string.
+     * showInfo - output to console static information for each book.
+     * @param iBook book number.
      */
     private void showInfo(String iBook) {
         System.out.println(String.format("%n %s", iBook));
