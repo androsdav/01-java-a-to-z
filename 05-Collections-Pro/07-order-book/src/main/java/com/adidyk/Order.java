@@ -51,7 +51,7 @@ public class Order {
 
     /**
      * setBook - sets book number.
-     * @param book book number.
+     * @param book - book number.
      */
     public void setBook(String book) {
         this.book = book;
@@ -59,7 +59,7 @@ public class Order {
 
     /**
      * setOperation - sets operation order.
-     * @param operation sell or buy order.
+     * @param operation - sell or buy order.
      */
     public void setOperation(String operation) {
         this.operation = operation;
@@ -67,7 +67,7 @@ public class Order {
 
     /**
      * setPrice - sets price order.
-     * @param price is set.
+     * @param price - price order.
      */
     public void setPrice(Double price) {
         this.price = price;
@@ -75,7 +75,7 @@ public class Order {
 
     /**
      * setVolume - sets volume order.
-     * @param volume is set.
+     * @param volume - volume order.
      */
     void setVolume(int volume) {
         this.volume = volume;
@@ -83,7 +83,7 @@ public class Order {
 
     /**
      * setId - sets id order.
-     * @param id id order.
+     * @param id - id order.
      */
     public void setId(Integer id) {
         this.id = id;
@@ -91,7 +91,7 @@ public class Order {
 
     /**
      * getBook - gets book number.
-     * @return book number.
+     * @return - returns book number.
      */
     String getBook() {
         return book;
@@ -99,7 +99,7 @@ public class Order {
 
     /**
      * getOperation - gets operation order.
-     * @return operation order.
+     * @return - returns operation order.
      */
     String getOperation() {
         return operation;
@@ -107,7 +107,7 @@ public class Order {
 
     /**
      * getPrice - gets price order.
-     * @return price order.
+     * @return - returns price order.
      */
     Double getPrice() {
         return price;
@@ -115,7 +115,7 @@ public class Order {
 
     /**
      * getVolume - gets volume order.
-     * @return volume order.
+     * @return - returns volume order.
      */
     int getVolume() {
         return volume;
@@ -123,7 +123,7 @@ public class Order {
 
     /**
      * getId - gets id order.
-     * @return id order.
+     * @return - returns id order.
      */
     Integer getId() {
         return id;
@@ -131,7 +131,36 @@ public class Order {
 
     /**
      *
-     * @return all param for Order
+     * @param o
+     * @return
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Order order = (Order) o;
+
+        if (volume != order.volume) return false;
+        if (!book.equals(order.book)) return false;
+        if (!operation.equals(order.operation)) return false;
+        if (!price.equals(order.price)) return false;
+        return id.equals(order.id);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = book.hashCode();
+        result = 31 * result + operation.hashCode();
+        result = 31 * result + price.hashCode();
+        result = 31 * result + volume;
+        result = 31 * result + id.hashCode();
+        return result;
+    }
+
+    /**
+     * toString - returns string format.
+     * @return - returns all information for order.
      */
     @Override
     public String toString() {

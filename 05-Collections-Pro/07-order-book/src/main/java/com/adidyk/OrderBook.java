@@ -54,7 +54,7 @@ class OrderBook {
     }
 
     /**
-     * addOrderBook  - do searches needed book (book-1 or book-2 or book-3) in map, after that do searches needed
+     * addOrderBook - do searches needed book (book-1 or book-2 or book-3) in map, after that do searches needed
      * operation (SELL or BUY) in map and adds new order to map by price order. If the card already has order with
      * the same price, then the existing order increases volume by the amount of the order to be added. Also all sales
      * orders are sorted by price increase and all buys orders are sorted by price reduction.

@@ -44,7 +44,7 @@ public class StartUi {
      */
     public static void main(String[] arg) {
         final Book book = new Book();
-        final File orders = new File("orders1.xml");
+        final File orders = new File("orders.xml");
         new StartUi(book, orders).start();
     }
 
