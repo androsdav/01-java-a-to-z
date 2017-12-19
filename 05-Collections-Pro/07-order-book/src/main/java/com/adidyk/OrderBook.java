@@ -12,11 +12,11 @@ import java.util.LinkedList;
  * HashMap sell and buy contains object of class Order (value) and key, where key is price of object of class Order.
  * --------------------------------------------------------------------------------------------------------------
  * Class Book has next method:
- * -> calculate     - reads first line (one order) from file and calls method to addOrder or delOrder
+ * -> calculate     - runs reads first line (one order) from file and calls method to addOrder or delOrder
  *                    depending on the type order, after that reads second line (one order) and loop is repeated
  *                    while lines will not finished;
- * -> addOrderBook  - do searches needed book (book-1 or book-2 or book-3) in map, after that do searches needed operation
- *                    (SELL or BUY) in map and adds new order to map by id order;
+ * -> addOrderBook  - do searches needed book (book-1 or book-2 or book-3) in map, after that do searches needed
+ *                    operation (SELL or BUY) in map and adds new order to map by price order;
  * -> getOrderBook  - delOrder  - do searches needed book (book-1 or book-2 or book-3) in map, after that do searches needed operation
  *                    (SELL or BUY) in map and remove order from map by id order.
  * -> showOrderBook - purse one string? creates new object of class Order and returns new object.
@@ -57,7 +57,9 @@ class OrderBook {
     }
 
     /**
-     * addTree is new tree container.
+     * addOrderBook  - do searches needed book (book-1 or book-2 or book-3) in map, after that do searches needed
+     * operation (SELL or BUY) in map and adds new order to map by price order. If the card already has order with
+     * the same price, then the existing order increases volume by the amount of the order to be added.
      */
     private void addOrderBook() {
         for (Map.Entry<String, HashMap<String, HashMap<Integer, Order>>> iBook : this.book.entrySet()) {
@@ -83,7 +85,7 @@ class OrderBook {
     }
 
     /**
-     * glass is glass.
+     * getOrderBook - is returns list sell-order and buy-order for each book. for building and output list order-book.
      */
     private void getOrderBook() {
         System.out.println("\n\n ------------------- ORDER BOOK STEP #3 -------------------");
@@ -102,10 +104,10 @@ class OrderBook {
     }
 
     /**
-     * temp is temp.
-     * @param sellList is List.
-     * @param buyList is List.
-     * @param iBook is book.
+     * showOrderBook - is building and output list order=book for each book.
+     * @param sellList consist only from sell-order.
+     * @param buyList consist only from buy-order.
+     * @param iBook book number.
      */
     private void showOrderBook(String iBook, LinkedList<Order> sellList, LinkedList<Order> buyList) {
         this.showInfo(iBook);
