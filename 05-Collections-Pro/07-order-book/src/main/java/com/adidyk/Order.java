@@ -130,22 +130,33 @@ public class Order {
     }
 
     /**
-     *
-     * @param o
-     * @return
-     */
+     * equals -
+     * @param obj - object of class Order.
+     * @return - returns boolean result "true" if name and number of children and birthday
+     * users is same, and return "false" if all params users isn`t same.
+     **/
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Order order = (Order) o;
-
-        if (volume != order.volume) return false;
-        if (!book.equals(order.book)) return false;
-        if (!operation.equals(order.operation)) return false;
-        if (!price.equals(order.price)) return false;
-        return id.equals(order.id);
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Order order = (Order) obj;
+        if (this.volume != order.volume) {
+            return false;
+        }
+        if (!this.book.equals(order.book)) {
+            return false;
+        }
+        if (!this.operation.equals(order.operation)) {
+            return false;
+        }
+        if (!this.price.equals(order.price)) {
+            return false;
+        }
+        return this.id.equals(order.id);
     }
 
     @Override
