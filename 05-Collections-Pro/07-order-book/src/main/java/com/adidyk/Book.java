@@ -30,7 +30,7 @@ import java.util.Map;
 class Book {
 
     /**
-     * @param book is link variable on container HashMap<String, HashMap<String, HashMap<Integer, Order>>>.
+     * @param book - link variable on container HashMap<String, HashMap<String, HashMap<Integer, Order>>>.
      */
     private final HashMap<String, HashMap<String, HashMap<Integer, Order>>> book = new HashMap<>();
 

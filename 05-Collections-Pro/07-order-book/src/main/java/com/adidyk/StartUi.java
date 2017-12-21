@@ -21,7 +21,6 @@ public class StartUi {
     private final File file;
 
     /**
-     *
      * @param book is link variable on object of class Book.
      * @param file is pathname to file in format xml.
      */

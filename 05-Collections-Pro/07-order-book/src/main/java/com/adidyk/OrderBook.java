@@ -32,18 +32,21 @@ import java.util.LinkedList;
 class OrderBook {
 
     /**
-     * @param book is book. book and operation.
+     * @param book - link variable on container HashMap<String, HashMap<String, HashMap<Integer, Order>>>
+     * (key = book -> key = operation -> <key = id, value = order>).
      */
     private HashMap<String, HashMap<String, HashMap<Integer, Order>>> book;
 
     /**
-     * @param orderBook is book. book and operation.
+     * @param orderBook - link variable on container HashMap<String, HashMap<String, HashMap<Integer, Order>>>
+     * (key = book -> key = operation ->, <key = price, value = order>).
      */
     private HashMap<String, HashMap<String, TreeMap<Double, Order>>> orderBook;
 
     /**
-     * OrderBook is constructor.
-     * @param book is link variable on container HashMap<String, HashMap<String, HashMap<Integer, Order>>>.
+     * OrderBook - constructor.
+     * @param book  - link variable on container HashMap<String, HashMap<String, HashMap<Integer, Order>>>.
+     * (key = book -> key = operation -> <key = id, value = order>).
      */
     OrderBook(HashMap<String, HashMap<String, HashMap<Integer, Order>>> book) {
         this.book = book;

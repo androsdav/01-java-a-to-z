@@ -53,7 +53,7 @@ public class Order {
      * setBook - sets book number.
      * @param book - book number.
      */
-    public void setBook(String book) {
+    void setBook(String book) {
         this.book = book;
     }
 
@@ -61,7 +61,7 @@ public class Order {
      * setOperation - sets operation order.
      * @param operation - sell or buy order.
      */
-    public void setOperation(String operation) {
+    void setOperation(String operation) {
         this.operation = operation;
     }
 
@@ -69,7 +69,7 @@ public class Order {
      * setPrice - sets price order.
      * @param price - price order.
      */
-    public void setPrice(Double price) {
+    void setPrice(Double price) {
         this.price = price;
     }
 
@@ -85,7 +85,7 @@ public class Order {
      * setId - sets id order.
      * @param id - id order.
      */
-    public void setId(Integer id) {
+    void setId(Integer id) {
         this.id = id;
     }
 
@@ -130,7 +130,7 @@ public class Order {
     }
 
     /**
-     * equals -
+     * equals - returns boolean result.
      * @param obj - object of class Order.
      * @return - returns boolean result "true" if name and number of children and birthday
      * users is same, and return "false" if all params users isn`t same.
@@ -159,6 +159,10 @@ public class Order {
         return this.id.equals(order.id);
     }
 
+    /**
+     * hashCode - returns hashCode for order.
+     * @return - returns hashCode for order.
+     */
     @Override
     public int hashCode() {
         int result = book.hashCode();

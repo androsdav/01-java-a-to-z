@@ -3,7 +3,7 @@ package com.adidyk;
 import java.util.Comparator;
 
 /**
- * Class User for create user (object) with params: name, children and birthday.
+ * Class OrderBuyComparator sorts buy-order by price reduction.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 21.07.2017.
  * @version 1.0.
@@ -11,13 +11,13 @@ import java.util.Comparator;
 public class OrderBuyComparator implements Comparator<Double> {
 
     /**
-     *
-     * @param o1 is order one.
-     * @param o2 is order too.
+     * @param obj1 is order one.
+     * @param obj2 is order too.
      * @return result.
      */
     @Override
-    public int compare(Double o1, Double o2) {
-        return o2.compareTo(o1);
+    public int compare(Double obj1, Double obj2) {
+        return obj2.compareTo(obj1);
     }
+
 }
