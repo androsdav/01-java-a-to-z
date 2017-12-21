@@ -46,7 +46,6 @@ class OrderBook {
     /**
      * OrderBook - constructor.
      * @param book  - link variable on container HashMap<String, HashMap<String, HashMap<Integer, Order>>>.
-     * (key = book -> key = operation -> <key = id, value = order>).
      */
     OrderBook(HashMap<String, HashMap<String, HashMap<Integer, Order>>> book) {
         this.book = book;
