@@ -5,7 +5,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
-
+import static com.adidyk.Constant.SELL;
+import static com.adidyk.Constant.BUY;
+import static com.adidyk.Constant.ADD;
+import static com.adidyk.Constant.DEL;
+import static com.adidyk.Constant.TAG;
 /**
  * --------------------------------------------------------------------------------------------------------------
  * Class Book contains a container for storing orders.
@@ -45,9 +49,9 @@ class Book {
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String string;
             while ((string = br.readLine()) != null) {
-                if (string.startsWith("<A")) {
+                if (string.startsWith(ADD)) {
                     this.addOrder(string);
-                } else if (string.startsWith("<D")) {
+                } else if (string.startsWith(DEL)) {
                     this.delOrder(string);
                 }
             }
@@ -80,8 +84,8 @@ class Book {
      */
     private void delOrder(String string) {
         Order order = this.purse(string, false);
-        this.book.get(order.getBook()).get("SELL").remove(order.getId());
-        this.book.get(order.getBook()).get("BUY").remove(order.getId());
+        this.book.get(order.getBook()).get(SELL).remove(order.getId());
+        this.book.get(order.getBook()).get(BUY).remove(order.getId());
     }
 
     /**
@@ -96,11 +100,11 @@ class Book {
         boolean addStart = false;
         String[] value = new String[5];
         for (int index = 0; index < string.length(); index++) {
-            if (!addStart && string.charAt(index) == '"') {
+            if (!addStart && string.charAt(index) == TAG) {
                 addStart = true;
                 start = index + 1;
             }
-            if (addStart && string.charAt(index + 1) == '"') {
+            if (addStart && string.charAt(index + 1) == TAG) {
                 addStart = false;
                 value[position++] = string.substring(start, index + 1).trim();
                 index++;
@@ -118,12 +122,12 @@ class Book {
      */
     private void show() {
         System.out.println("\n\n ------------------- ORDER BOOK STEP #1 -------------------");
-        for (Map.Entry<String, HashMap<String, HashMap<Integer, Order>>> iBook : this.book.entrySet()) {
-            System.out.println(String.format("%n %s", iBook.getKey()));
-            for (Map.Entry<String, HashMap<Integer, Order>> iOperation : iBook.getValue().entrySet()) {
-                System.out.println(String.format("%n  %s%n %27s", iOperation.getKey(), "----------------------------"));
+        for (Map.Entry<String, HashMap<String, HashMap<Integer, Order>>> book : this.book.entrySet()) {
+            System.out.println(String.format("%n %s", book.getKey()));
+            for (Map.Entry<String, HashMap<Integer, Order>> operation : book.getValue().entrySet()) {
+                System.out.println(String.format("%n  %s%n %27s", operation.getKey(), "----------------------------"));
                 System.out.println(String.format(" %9s%9s%9s%n %27s", "id", "   V", "  P", "----------------------------"));
-                for (Map.Entry<Integer, Order> iOrder : iOperation.getValue().entrySet()) {
+                for (Map.Entry<Integer, Order> iOrder : operation.getValue().entrySet()) {
                     System.out.println(String.format(" %9s%s", iOrder.getKey(), iOrder.getValue()));
                 }
             }

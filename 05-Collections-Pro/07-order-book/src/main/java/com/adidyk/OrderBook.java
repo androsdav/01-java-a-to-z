@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.LinkedList;
+import static com.adidyk.Constant.SELL;
+import static com.adidyk.Constant.BUY;
 
 /**
  * --------------------------------------------------------------------------------------------------------------
@@ -62,22 +64,22 @@ class OrderBook {
      * orders are sorted by price increase and all buys orders are sorted by price reduction.
      */
     private void addOrderBook() {
-        for (Map.Entry<String, HashMap<String, HashMap<Integer, Order>>> iBook : this.book.entrySet()) {
-            this.orderBook.computeIfAbsent(iBook.getKey(), k -> new HashMap<>());
-            for (Map.Entry<String, HashMap<Integer, Order>> iOperation : iBook.getValue().entrySet()) {
-                if (this.orderBook.get(iBook.getKey()).get(iOperation.getKey()) == null) {
-                    if (iOperation.getKey().equals("SELL")) {
-                        this.orderBook.get(iBook.getKey()).put(iOperation.getKey(), new TreeMap<>(new OrderSellComparator()));
-                    } else if (iOperation.getKey().equals("BUY")) {
-                        this.orderBook.get(iBook.getKey()).put(iOperation.getKey(), new TreeMap<>(new OrderBuyComparator()));
+        for (Map.Entry<String, HashMap<String, HashMap<Integer, Order>>> book : this.book.entrySet()) {
+            this.orderBook.computeIfAbsent(book.getKey(), k -> new HashMap<>());
+            for (Map.Entry<String, HashMap<Integer, Order>> operation : book.getValue().entrySet()) {
+                if (this.orderBook.get(book.getKey()).get(operation.getKey()) == null) {
+                    if (SELL.equals(operation.getKey())) {
+                        this.orderBook.get(book.getKey()).put(operation.getKey(), new TreeMap<>(new OrderSellComparator()));
+                    } else if (BUY.equals(operation.getKey())) {
+                        this.orderBook.get(book.getKey()).put(operation.getKey(), new TreeMap<>(new OrderBuyComparator()));
                     }
                 }
-                for (Map.Entry<Integer, Order> iOrder : iOperation.getValue().entrySet()) {
-                    if (this.orderBook.get(iBook.getKey()).get(iOperation.getKey()).containsKey(iOrder.getValue().getPrice())) {
-                        Order order = this.orderBook.get(iBook.getKey()).get(iOperation.getKey()).get(iOrder.getValue().getPrice());
-                        order.setVolume(order.getVolume() + iOrder.getValue().getVolume());
+                for (Map.Entry<Integer, Order> order : operation.getValue().entrySet()) {
+                    if (this.orderBook.get(book.getKey()).get(operation.getKey()).containsKey(order.getValue().getPrice())) {
+                        Order newOrder = this.orderBook.get(book.getKey()).get(operation.getKey()).get(order.getValue().getPrice());
+                        newOrder.setVolume(newOrder.getVolume() + order.getValue().getVolume());
                     } else {
-                        this.orderBook.get(iBook.getKey()).get(iOperation.getKey()).put(iOrder.getValue().getPrice(), iOrder.getValue());
+                        this.orderBook.get(book.getKey()).get(operation.getKey()).put(order.getValue().getPrice(), order.getValue());
                     }
                 }
             }
@@ -91,26 +93,26 @@ class OrderBook {
         System.out.println("\n\n ------------------- ORDER BOOK STEP #3 -------------------");
         LinkedList<Order> sellList = null;
         LinkedList<Order> buyList = null;
-        for (Map.Entry<String, HashMap<String, TreeMap<Double, Order>>> iBook : this.orderBook.entrySet()) {
-            for (Map.Entry<String, TreeMap<Double, Order>> iOperation : iBook.getValue().entrySet()) {
-                if (iOperation.getKey().equals("SELL")) {
-                    sellList = new LinkedList<>(iOperation.getValue().values());
-                    } else if (iOperation.getKey().equals("BUY")) {
-                    buyList = new LinkedList<>(iOperation.getValue().values());
+        for (Map.Entry<String, HashMap<String, TreeMap<Double, Order>>> book : this.orderBook.entrySet()) {
+            for (Map.Entry<String, TreeMap<Double, Order>> operation : book.getValue().entrySet()) {
+                if (SELL.equals(operation.getKey())) {
+                    sellList = new LinkedList<>(operation.getValue().values());
+                    } else if (BUY.equals(operation.getKey())) {
+                    buyList = new LinkedList<>(operation.getValue().values());
                 }
             }
-            this.showOrderBook(iBook.getKey(), sellList, buyList);
+            this.showOrderBook(book.getKey(), sellList, buyList);
         }
     }
 
     /**
      * showOrderBook - is building and output (show) list order-book for each book.
-     * @param sellList consist only from sell-order.
-     * @param buyList consist only from buy-order.
-     * @param iBook book number.
+     * @param sellList - consist only from sell-order.
+     * @param buyList - consist only from buy-order.
+     * @param book - book number.
      */
-    private void showOrderBook(String iBook, LinkedList<Order> sellList, LinkedList<Order> buyList) {
-        this.showInfo(iBook);
+    private void showOrderBook(String book, LinkedList<Order> sellList, LinkedList<Order> buyList) {
+        this.showInfo(book);
         Order sell = sellList.pollFirst();
         Order buy = buyList.pollFirst();
         boolean work = true;
@@ -145,17 +147,17 @@ class OrderBook {
     }
 
     /**
-     * show sell-order and buy-order for each book.
+     * show - sell-order and buy-order for each book.
      */
     private void show() {
         System.out.println("\n\n ------------------- ORDER BOOK STEP #2 -------------------");
-        for (Map.Entry<String, HashMap<String, TreeMap<Double, Order>>> iBook : this.orderBook.entrySet()) {
-            System.out.println(String.format("%n %s", iBook.getKey()));
-            for (Map.Entry<String, TreeMap<Double, Order>> iOperation : iBook.getValue().entrySet()) {
-                System.out.println(String.format("%n  %s%n %19s", iOperation.getKey(), "-------------------"));
+        for (Map.Entry<String, HashMap<String, TreeMap<Double, Order>>> book : this.orderBook.entrySet()) {
+            System.out.println(String.format("%n %s", book.getKey()));
+            for (Map.Entry<String, TreeMap<Double, Order>> operation : book.getValue().entrySet()) {
+                System.out.println(String.format("%n  %s%n %19s", operation.getKey(), "-------------------"));
                 System.out.println(String.format(" %9s%9s%n %19s", "   V", "  P", "-------------------"));
-                for (Map.Entry<Double, Order> iOrder : iOperation.getValue().entrySet()) {
-                    System.out.println(String.format(" %9s", iOrder.getValue()));
+                for (Map.Entry<Double, Order> order : operation.getValue().entrySet()) {
+                    System.out.println(String.format(" %9s", order.getValue()));
                 }
             }
         }
@@ -163,11 +165,11 @@ class OrderBook {
 
     /**
      * showInfo - output to console static information for each book.
-     * @param iBook book number.
+     * @param book book number.
      */
-    private void showInfo(String iBook) {
-        System.out.println(String.format("%n %s", iBook));
-        System.out.println(String.format("%n  %s%22s", "BUY", "SELL"));
+    private void showInfo(String book) {
+        System.out.println(String.format("%n %s", book));
+        System.out.println(String.format("%n  %s%22s", BUY, SELL));
         System.out.println(String.format(" %27s", "-------------------  -------------------"));
         System.out.println(String.format(" %9s%9s%12s%9s", "V", "   P", "  V", "  P"));
         System.out.println(String.format(" %27s", "-------------------  -------------------"));
