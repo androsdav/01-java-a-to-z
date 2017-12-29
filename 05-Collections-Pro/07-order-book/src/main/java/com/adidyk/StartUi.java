@@ -49,7 +49,7 @@ public class StartUi {
         final File orders = new File("orders.xml");
         //new StartUi(book, orders).start();
         try {
-            File inputFile = new File("orders-test.xml");
+            File inputFile = new File("orders.xml");
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser saxParser = factory.newSAXParser();
             UserHandler userhandler = new UserHandler();

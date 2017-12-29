@@ -20,7 +20,7 @@ public class StartUiTest {
     public static void main(String[] args) {
 
         try {
-            File inputFile = new File("orders-test.txt");
+            File inputFile = new File("orders-test.xml");
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser saxParser = factory.newSAXParser();
             UserHandler1 userhandler = new UserHandler1();
@@ -100,7 +100,7 @@ class UserHandler1 extends DefaultHandler {
      * @throws SAXException is.
      */
     @Override
-    public void characters(char ch[], int start, int length) throws SAXException {
+    public void characters(char[] ch, int start, int length) throws SAXException {
         if (bFirstName) {
             System.out.println("First Name: " + new String(ch, start, length));
             bFirstName = false;
