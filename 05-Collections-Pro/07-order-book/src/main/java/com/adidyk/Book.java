@@ -1,5 +1,7 @@
 package com.adidyk;
 
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -37,6 +39,18 @@ class Book {
      * @param book - link variable on container HashMap<String, HashMap<String, HashMap<Integer, Order>>>.
      */
     private final HashMap<String, HashMap<String, HashMap<Integer, Order>>> book = new HashMap<>();
+
+    void purseSAX(File file) {
+        try {
+            File inputFile = new File("orders.xml");
+            SAXParserFactory factory = SAXParserFactory.newInstance();
+            SAXParser saxParser = factory.newSAXParser();
+            UserHandler userhandler = new UserHandler();
+            saxParser.parse(inputFile, userhandler);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * readerXML - reads first line (one order) from file and calls method to addOrder or delOrder

@@ -37,7 +37,9 @@ public class StartUi {
      * start - run program.
      */
     private void start() {
-        this.book.readerXML(this.file);
+        //this.book.readerXML(this.file);
+        this.book.purseSAX(this.file);
+
     }
 
     /**
@@ -47,7 +49,8 @@ public class StartUi {
     public static void main(String[] arg) {
         final Book book = new Book();
         final File orders = new File("orders.xml");
-        //new StartUi(book, orders).start();
+        new StartUi(book, orders).start();
+        /*
         try {
             File inputFile = new File("orders.xml");
             SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -57,6 +60,7 @@ public class StartUi {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        */
     }
 
 }
