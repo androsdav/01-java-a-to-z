@@ -53,7 +53,7 @@ class OrderBook {
         this.book = book;
         this.orderBook = new HashMap<>();
         this.addOrderBook();
-        this.show();
+        //this.show();
         this.getOrderBook();
     }
 

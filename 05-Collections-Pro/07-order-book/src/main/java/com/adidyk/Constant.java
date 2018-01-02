@@ -41,10 +41,27 @@ class Constant {
      */
     static final String ADD = "<A";
 
+    /*
+    /**
+     * @param AddOrder is added.
+     */
+    /*
+    static final String AddOrder = "AddOrder";
+    */
+
     /**
      * @param DEL is delete.
      */
-    static final  String DEL = "<D";
+    static final String DEL = "<D";
+
+    /*
+    /**
+     * @param DeleteOrder is delete.
+     */
+    /*
+    static final String DeleteOrder = "DeleteOrder";
+    */
+
 
     /**
      * @param TAG is tag.

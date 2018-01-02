@@ -2,8 +2,8 @@ package com.adidyk;
 
 import java.io.File;
 
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
+//import javax.xml.parsers.SAXParser;
+//import javax.xml.parsers.SAXParserFactory;
 
 /**
  * Class StartUi for create jar file and run program.
@@ -37,8 +37,8 @@ public class StartUi {
      * start - run program.
      */
     private void start() {
-        //this.book.readerXML(this.file);
-        this.book.purseSAX(this.file);
+        this.book.readerXML(this.file);
+        this.book.readerSAX(this.file);
 
     }
 

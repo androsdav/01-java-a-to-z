@@ -1,7 +1,11 @@
 package com.adidyk;
 
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
+//import org.xml.sax.Attributes;
+//import org.xml.sax.SAXException;
+//import org.xml.sax.helpers.DefaultHandler;
+
+//import javax.xml.parsers.SAXParser;
+//import javax.xml.parsers.SAXParserFactory;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -12,6 +16,8 @@ import static com.adidyk.Constant.BUY;
 import static com.adidyk.Constant.ADD;
 import static com.adidyk.Constant.DEL;
 import static com.adidyk.Constant.TAG;
+//import static com.adidyk.Constant.AddOrder;
+//import static com.adidyk.Constant.DeleteOrder;
 /**
  * --------------------------------------------------------------------------------------------------------------
  * Class Book contains a container for storing orders.
@@ -38,18 +44,21 @@ class Book {
     /**
      * @param book - link variable on container HashMap<String, HashMap<String, HashMap<Integer, Order>>>.
      */
-    private final HashMap<String, HashMap<String, HashMap<Integer, Order>>> book = new HashMap<>();
+    private HashMap<String, HashMap<String, HashMap<Integer, Order>>> book = new HashMap<>();
 
-    void purseSAX(File file) {
-        try {
-            File inputFile = new File("orders.xml");
-            SAXParserFactory factory = SAXParserFactory.newInstance();
-            SAXParser saxParser = factory.newSAXParser();
-            UserHandler userhandler = new UserHandler();
-            saxParser.parse(inputFile, userhandler);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    /**
+     * reader SAX is SAX.
+     * @param file is file name.
+     */
+    void readerSAX(File file) {
+        long start = System.nanoTime();
+        UserHandler userHandler = new UserHandler(file);
+        userHandler.purserSAX();
+        this.book = userHandler.getOrder();
+        new OrderBook(this.book);
+        long finish = System.nanoTime();
+        System.out.println("\n\n --------------- TIME FOR PROGRAM EXECUTION ---------------");
+        System.out.printf(String.format("%n %s%4.7s%s%n", "t = ", (finish - start) / Math.pow(10, 9), " [s]"));
     }
 
     /**
