@@ -53,7 +53,6 @@ class OrderBook {
         this.book = book;
         this.orderBook = new HashMap<>();
         this.addOrderBook();
-        //this.show();
         this.getOrderBook();
     }
 
@@ -90,7 +89,6 @@ class OrderBook {
      * getOrderBook - is returns list sell-order and buy-order for each book. for building and output list order-book.
      */
     private void getOrderBook() {
-        System.out.println("\n\n ------------------- ORDER BOOK STEP #3 -------------------");
         LinkedList<Order> sellList = null;
         LinkedList<Order> buyList = null;
         for (Map.Entry<String, HashMap<String, TreeMap<Double, Order>>> book : this.orderBook.entrySet()) {
@@ -147,8 +145,22 @@ class OrderBook {
     }
 
     /**
+     * showInfo - output to console static information for each book.
+     * @param book book number.
+     */
+    private void showInfo(String book) {
+        System.out.println(String.format("%n %s", book));
+        System.out.println(String.format("%n  %s%22s", BUY, SELL));
+        System.out.println(String.format(" %27s", "-------------------  -------------------"));
+        System.out.println(String.format(" %9s%9s%12s%9s", "V", "   P", "  V", "  P"));
+        System.out.println(String.format(" %27s", "-------------------  -------------------"));
+    }
+
+    /*
+    /**
      * show - sell-order and buy-order for each book.
      */
+    /*
     private void show() {
         System.out.println("\n\n ------------------- ORDER BOOK STEP #2 -------------------");
         for (Map.Entry<String, HashMap<String, TreeMap<Double, Order>>> book : this.orderBook.entrySet()) {
@@ -162,17 +174,6 @@ class OrderBook {
             }
         }
     }
-
-    /**
-     * showInfo - output to console static information for each book.
-     * @param book book number.
-     */
-    private void showInfo(String book) {
-        System.out.println(String.format("%n %s", book));
-        System.out.println(String.format("%n  %s%22s", BUY, SELL));
-        System.out.println(String.format(" %27s", "-------------------  -------------------"));
-        System.out.println(String.format(" %9s%9s%12s%9s", "V", "   P", "  V", "  P"));
-        System.out.println(String.format(" %27s", "-------------------  -------------------"));
-    }
+    */
 
 }

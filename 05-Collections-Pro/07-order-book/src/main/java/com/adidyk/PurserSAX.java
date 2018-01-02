@@ -3,24 +3,19 @@ package com.adidyk;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
-
-//import javax.xml.parsers.SAXParser;
-//import javax.xml.parsers.SAXParserFactory;
-//import java.io.File;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
 import java.util.HashMap;
-
-//import static com.adidyk.Constant.AddOrder;
-//import static com.adidyk.Constant.DeleteOrder;
 import static com.adidyk.Constant.BUY;
 import static com.adidyk.Constant.SELL;
+import static com.adidyk.Constant.ADDORDER;
+import static com.adidyk.Constant.DELETEORDER;
 
 /**
  * Class UserHandle.
  */
-public class UserHandler extends DefaultHandler {
+public class PurserSAX extends DefaultHandler {
 
     /**
      * @param book - link variable on container HashMap<String, HashMap<String, HashMap<Integer, Order>>>.
@@ -33,10 +28,10 @@ public class UserHandler extends DefaultHandler {
     private final File file;
 
     /**
-     *
+     * UserHandle - constructor.
      * @param file is file.
      */
-    UserHandler(File file) {
+    PurserSAX(File file) {
         this.file = file;
     }
 
@@ -45,7 +40,6 @@ public class UserHandler extends DefaultHandler {
      */
     void purserSAX() {
         try {
-            //File inputFile = new File("orders.xml");
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser saxParser = factory.newSAXParser();
             saxParser.parse(this.file, this);
@@ -63,25 +57,22 @@ public class UserHandler extends DefaultHandler {
      */
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-        if ("AddOrder".equals(qName)) {
+        if (ADDORDER.equals(qName)) {
             String book = attributes.getValue("book");
             String operation = attributes.getValue("operation");
             Double price = Double.valueOf(attributes.getValue("price"));
             Integer volume = Integer.valueOf(attributes.getValue("volume"));
             Integer orderId = Integer.valueOf(attributes.getValue("orderId"));
             final Order order = new Order(book, operation, price, volume, orderId);
-            //System.out.println(order);
             this.addOrder(order);
         }
-        if ("DeleteOrder".equals(qName)) {
+        if (DELETEORDER.equals(qName)) {
             String book = attributes.getValue("book");
             Integer orderId = Integer.valueOf(attributes.getValue("orderId"));
             final Order order = new Order(book, null, 0, 0, orderId);
-            //System.out.println(order);
             this.delOrder(order);
         }
     }
-
 
     /**
      * addOrder - do searches needed book (book-1 or book-2 or book-3) in map, after that do
@@ -112,37 +103,4 @@ public class UserHandler extends DefaultHandler {
         return this.book;
     }
 
-
-   /* /**
-     * @param uri is.
-     * @param localName is.
-     * @param qName is.
-     * @throws SAXException is.
-     */
-   /*
-    @Override
-    public void endElement(String uri, String localName, String qName) throws SAXException {
-        if ("AddOrder".equals(qName)) {
-            System.out.println("End Element :" + qName);
-        }
-    }
-    */
-
-   /*
-    /**
-     * @param ch is.
-     * @param start is.
-     * @param length is.
-     * //@throws SAXException is.
-     */
-   /*
-    @Override
-    public void characters(char[] ch, int start, int length) {
-        if (this.addOrder) {
-            System.out.println("First Name: " + new String(ch, start, length));
-        }
-    }
-    */
-
 }
-
