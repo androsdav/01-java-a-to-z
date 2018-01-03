@@ -14,20 +14,20 @@ import static com.adidyk.Constant.DELETE_ORDER;
 
 /**
  * --------------------------------------------------------------------------------------------------------------
- * Class PurserSAXr contains a container for storing orders.
+ * Class PurserSAX contains a container for storing orders.
  * Container is HashMap that contains books. Each book contains two HashMap - sell and buy.
  * HashMap sell and buy contains object of class Order (value) and key, where key is id of object of class Order.
  * --------------------------------------------------------------------------------------------------------------
- * Class PurserUser has next method:
- * -> purserUser - reads first line (one order) from file and calls method to addOrder or delOrder
- *                 depending on the type order, after that reads second line (one order) and loop is repeated
- *                 while lines will not finished;
- * -> addOrder   - do searches needed book (book-1 or book-2 or book-3) in map, after that do searches needed operation
- *                 (SELL or BUY) in map and adds new order to map by id order;
- * -> delOrder   - do searches needed book (book-1 or book-2 or book-3) in map, after that do searches needed operation
- *                 (SELL or BUY) in map and remove order from map by id order.
- * -> purse      - purse one string, creates new object of class Order and returns new object.
- * -> getBook    - returns reference variable to book.
+ * Class PurserSAX has next method:
+ * -> purserSAX    - reads first line (one order) from file and calls method to addOrder or delOrder
+ *                   depending on the type order, after that reads second line (one order) and loop is repeated
+ *                   while lines will not finished;
+ * -> startElement - override method from class DefaultHandler. Read all tags (add or delete) and tag
+ *                   attributes for each tag, added or delete tag;
+ * -> addOrder     - do searches needed book (book-1 or book-2 or book-3) in map, after that do
+ *                   searches needed operation (SELL or BUY) in map and adds new order to map by id order.
+ * -> delOrder     - do searches needed book (book-1 or book-2 or book-3) in map, after that do searches needed operation
+ * -> getBook      - returns reference variable to book.
  * --------------------------------------------------------------------------------------------------------------
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 21.07.2017.
@@ -119,7 +119,7 @@ public class PurserSAX extends DefaultHandler {
      * getBook - returns reference variable to book.
      * @return - returns reference variable to book.
      */
-    public HashMap<String, HashMap<String, HashMap<Integer, Order>>> getOrder() {
+    public HashMap<String, HashMap<String, HashMap<Integer, Order>>> getBook() {
         return this.book;
     }
 

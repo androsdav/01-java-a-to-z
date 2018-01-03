@@ -13,10 +13,7 @@ import static com.adidyk.Constant.BUY;
  * Container is HashMap that contains books. Each book contains two HashMap - sell and buy.
  * HashMap sell and buy contains object of class Order (value) and key, where key is price of object of class Order.
  * --------------------------------------------------------------------------------------------------------------
- * Class Book has next method:
- * -> calculate     - runs reads first line (one order) from file and calls method to addOrder or delOrder
- *                    depending on the type order, after that reads second line (one order) and loop is repeated
- *                    while lines will not finished;
+ * Class OrderBook has next method:
  * -> addOrderBook  - do searches needed book (book-1 or book-2 or book-3) in map, after that do searches needed
  *                    operation (SELL or BUY) in map and adds new order to map by price order. If the card already
  *                    has order with the same price, then the existing order increases volume by the amount of the

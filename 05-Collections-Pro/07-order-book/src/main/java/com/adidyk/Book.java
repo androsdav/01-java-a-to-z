@@ -34,7 +34,7 @@ class Book {
         long start = System.nanoTime();
         PurserSAX purser = new PurserSAX(file);
         purser.purserSAX();
-        this.book = purser.getOrder();
+        this.book = purser.getBook();
         new OrderBook(this.book);
         long finish = System.nanoTime();
         System.out.println("\n\n ----------- TIME FOR PURSER -----------");
