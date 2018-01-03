@@ -10,15 +10,9 @@ import java.util.HashMap;
  * HashMap sell and buy contains object of class Order (value) and key, where key is id of object of class Order.
  * --------------------------------------------------------------------------------------------------------------
  * Class Book has next method:
- * -> readerXML - reads first line (one order) from file and calls method to addOrder or delOrder
- *                depending on the type order, after that reads second line (one order) and loop is repeated
- *                while lines will not finished;
- * -> addOrder  - do searches needed book (book-1 or book-2 or book-3) in map, after that do searches needed operation
- *                (SELL or BUY) in map and adds new order to map by id order;
- * -> delOrder  - do searches needed book (book-1 or book-2 or book-3) in map, after that do searches needed operation
- *                (SELL or BUY) in map and remove order from map by id order.
- * -> purse     - purse one string? creates new object of class Order and returns new object.
- * -> show      - shows all orders off map.
+ * -> readerSAX  - reads all information from xml-file using SAX-purser;
+ * -> readerUser - reads all information from xml-file using User-purser;
+ * -> show       - shows all orders off map.
  * --------------------------------------------------------------------------------------------------------------
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 21.07.2017.
@@ -32,8 +26,8 @@ class Book {
     private HashMap<String, HashMap<String, HashMap<Integer, Order>>> book = new HashMap<>();
 
     /**
-     * reader SAX is SAX.
-     * @param file is file name.
+     * readerSAX - reads all information from xml-file using SAX-purser.
+     * @param file - is pathname to file in format xml.
      */
     void readerSAX(File file) {
         System.out.println("\n\n -============{ SAX PURSER }============-");
@@ -48,17 +42,15 @@ class Book {
     }
 
     /**
-     * readerXML - reads first line (one order) from file and calls method to addOrder or delOrder
-     * depending on the type order, after that reads second line (one order) and loop is repeated
-     * while lines will not finished.
-     * @param file is pathname to file in format xml.
+     * readerUser - reads all information from xml-file using User-purser.
+     * @param file - is pathname to file in format xml.
      */
-    void readerXML(File file) {
+    void readerUser(File file) {
         System.out.println("\n\n -============{ USER PURSER }============-");
         long start = System.nanoTime();
         PurserUser purser = new PurserUser(file);
         purser.purseUser();
-        this.book = purser.getOrder();
+        this.book = purser.getBook();
         new OrderBook(this.book);
         long finish = System.nanoTime();
         System.out.println("\n\n ----------- TIME FOR PURSER -----------");

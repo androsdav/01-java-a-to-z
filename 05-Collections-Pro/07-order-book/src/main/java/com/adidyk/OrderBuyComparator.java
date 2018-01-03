@@ -11,9 +11,10 @@ import java.util.Comparator;
 public class OrderBuyComparator implements Comparator<Double> {
 
     /**
-     * @param obj1 is order one.
-     * @param obj2 is order too.
-     * @return result.
+     * compare - compares two object.
+     * @param obj1 - is order one.
+     * @param obj2 - is order too.
+     * @return - returns -1 or 1.
      */
     @Override
     public int compare(Double obj1, Double obj2) {

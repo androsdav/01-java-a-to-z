@@ -9,27 +9,27 @@ package com.adidyk;
 public class Order {
 
     /**
-     * book - identification action.
+     * @param book - identification action.
      */
     private String book;
 
     /**
-     * operation - type operation: buy or sell.
+     * @param operation - type operation: buy or sell.
      */
     private String operation;
 
     /**
-     * price - price order.
+     * @param price - price order.
      */
     private Double price;
 
     /**
-     * volume - volume of application, how many lots(shares) to buy / sell.
+     * @param volume - volume of application, how many lots(shares) to buy / sell.
      */
     private int volume;
 
     /**
-     * id - id order.
+     * @param id - id order.
      */
     private Integer id;
 

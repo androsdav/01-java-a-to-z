@@ -9,11 +9,29 @@ import java.io.File;
 import java.util.HashMap;
 import static com.adidyk.Constant.BUY;
 import static com.adidyk.Constant.SELL;
-import static com.adidyk.Constant.ADDORDER;
-import static com.adidyk.Constant.DELETEORDER;
+import static com.adidyk.Constant.ADD_ORDER;
+import static com.adidyk.Constant.DELETE_ORDER;
 
 /**
- * Class UserHandle.
+ * --------------------------------------------------------------------------------------------------------------
+ * Class PurserSAXr contains a container for storing orders.
+ * Container is HashMap that contains books. Each book contains two HashMap - sell and buy.
+ * HashMap sell and buy contains object of class Order (value) and key, where key is id of object of class Order.
+ * --------------------------------------------------------------------------------------------------------------
+ * Class PurserUser has next method:
+ * -> purserUser - reads first line (one order) from file and calls method to addOrder or delOrder
+ *                 depending on the type order, after that reads second line (one order) and loop is repeated
+ *                 while lines will not finished;
+ * -> addOrder   - do searches needed book (book-1 or book-2 or book-3) in map, after that do searches needed operation
+ *                 (SELL or BUY) in map and adds new order to map by id order;
+ * -> delOrder   - do searches needed book (book-1 or book-2 or book-3) in map, after that do searches needed operation
+ *                 (SELL or BUY) in map and remove order from map by id order.
+ * -> purse      - purse one string, creates new object of class Order and returns new object.
+ * -> getBook    - returns reference variable to book.
+ * --------------------------------------------------------------------------------------------------------------
+ * @author Didyk Andrey (androsdav@bigmir.net).
+ * @since 21.07.2017.
+ * @version 1.0.
  */
 public class PurserSAX extends DefaultHandler {
 
@@ -23,20 +41,20 @@ public class PurserSAX extends DefaultHandler {
     private final HashMap<String, HashMap<String, HashMap<Integer, Order>>> book = new HashMap<>();
 
     /**
-     * @param file is pathname to file in format xml.
+     * @param file - is pathname to file in format xml.
      */
     private final File file;
 
     /**
-     * UserHandle - constructor.
-     * @param file is file.
+     * PurserSAX - constructor.
+     * @param file - is pathname to file in format xml.
      */
     PurserSAX(File file) {
         this.file = file;
     }
 
     /**
-     * reader SAX is SAX.
+     * purserSAX - reads all information from xml-file using SAX-purser.
      */
     void purserSAX() {
         try {
@@ -49,15 +67,17 @@ public class PurserSAX extends DefaultHandler {
     }
 
     /**
-     * @param uri is uri.
-     * @param localName is localName.
-     * @param qName is qName.
-     * @param attributes is attributes.
-     * @throws SAXException is return exception.
+     * startElement - override method from class DefaultHandler. Read all tags (add or delete) and tag
+     * attributes for each tag, added or delete tag.
+     * @param uri - is uri (don`t use).
+     * @param localName - is local name (don`t use).
+     * @param qName - is name xml-file.
+     * @param attributes - is attributes xml-file (don`t use).
+     * @throws SAXException - exception SAX-purser.
      */
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-        if (ADDORDER.equals(qName)) {
+        if (ADD_ORDER.equals(qName)) {
             String book = attributes.getValue("book");
             String operation = attributes.getValue("operation");
             Double price = Double.valueOf(attributes.getValue("price"));
@@ -66,7 +86,7 @@ public class PurserSAX extends DefaultHandler {
             final Order order = new Order(book, operation, price, volume, orderId);
             this.addOrder(order);
         }
-        if (DELETEORDER.equals(qName)) {
+        if (DELETE_ORDER.equals(qName)) {
             String book = attributes.getValue("book");
             Integer orderId = Integer.valueOf(attributes.getValue("orderId"));
             final Order order = new Order(book, null, 0, 0, orderId);
@@ -77,7 +97,7 @@ public class PurserSAX extends DefaultHandler {
     /**
      * addOrder - do searches needed book (book-1 or book-2 or book-3) in map, after that do
      * searches needed operation (SELL or BUY) in map and adds new order to map by id order.
-     * @param order is one string from xml-file.
+     * @param order - is one object of class Order from one tag from xml-file.
      */
     private void addOrder(Order order) {
         this.book.computeIfAbsent(order.getBook(), k -> new HashMap<>());
@@ -86,9 +106,9 @@ public class PurserSAX extends DefaultHandler {
     }
 
     /**
-     * delOrder  - do searches needed book (book-1 or book-2 or book-3) in map, after that do
+     * delOrder - do searches needed book (book-1 or book-2 or book-3) in map, after that do
      * searches needed operation (SELL or BUY) in map and remove order from map by id order.
-     * @param order is one string from xml-file.
+     * @param order - is one object of class Order from one tag from xml-file.
      */
     private void delOrder(Order order) {
         this.book.get(order.getBook()).get(SELL).remove(order.getId());
@@ -96,8 +116,8 @@ public class PurserSAX extends DefaultHandler {
     }
 
     /**
-     * getBook - returns book.
-     * @return is book.
+     * getBook - returns reference variable to book.
+     * @return - returns reference variable to book.
      */
     public HashMap<String, HashMap<String, HashMap<Integer, Order>>> getOrder() {
         return this.book;

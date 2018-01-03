@@ -11,7 +11,25 @@ import static com.adidyk.Constant.BUY;
 import static com.adidyk.Constant.TAG;
 
 /**
- * PurserUser - is purser file.
+ * --------------------------------------------------------------------------------------------------------------
+ * Class PurserUser contains a container for storing orders.
+ * Container is HashMap that contains books. Each book contains two HashMap - sell and buy.
+ * HashMap sell and buy contains object of class Order (value) and key, where key is id of object of class Order.
+ * --------------------------------------------------------------------------------------------------------------
+ * Class PurserUser has next method:
+ * -> purserUser - reads first line (one order) from file and calls method to addOrder or delOrder
+ *                 depending on the type order, after that reads second line (one order) and loop is repeated
+ *                 while lines will not finished;
+ * -> addOrder   - do searches needed book (book-1 or book-2 or book-3) in map, after that do searches needed operation
+ *                 (SELL or BUY) in map and adds new order to map by id order;
+ * -> delOrder   - do searches needed book (book-1 or book-2 or book-3) in map, after that do searches needed operation
+ *                 (SELL or BUY) in map and remove order from map by id order.
+ * -> purse      - purse one string, creates new object of class Order and returns new object.
+ * -> getBook    - returns reference variable to book.
+ * --------------------------------------------------------------------------------------------------------------
+ * @author Didyk Andrey (androsdav@bigmir.net).
+ * @since 21.07.2017.
+ * @version 1.0.
  */
 public class PurserUser {
 
@@ -21,20 +39,20 @@ public class PurserUser {
     private final HashMap<String, HashMap<String, HashMap<Integer, Order>>> book = new HashMap<>();
 
     /**
-     * @param file is pathname to file in format xml.
+     * @param file - is pathname to file in format xml.
      */
     private final File file;
 
     /**
-     * UserHandle - constructor.
-     * @param file is file.
+     * PurserUser - constructor.
+     * @param file is pathname file in format xml.
      */
     PurserUser(File file) {
         this.file = file;
     }
 
     /**
-     * readerXML - reads first line (one order) from file and calls method to addOrder or delOrder
+     * purserUser - reads first line (one order) from file and calls method to addOrder or delOrder
      * depending on the type order, after that reads second line (one order) and loop is repeated
      * while lines will not finished.
      */
@@ -56,7 +74,7 @@ public class PurserUser {
     /**
      * addOrder - do searches needed book (book-1 or book-2 or book-3) in map, after that do
      * searches needed operation (SELL or BUY) in map and adds new order to map by id order.
-     * @param string is one string from xml-file.
+     * @param string - is one string from xml-file.
      */
     private void addOrder(String string) {
         Order order = this.purse(string, true);
@@ -68,7 +86,7 @@ public class PurserUser {
     /**
      * delOrder  - do searches needed book (book-1 or book-2 or book-3) in map, after that do
      * searches needed operation (SELL or BUY) in map and remove order from map by id order.
-     * @param string is one string from xml-file.
+     * @param string - is one string from xml-file.
      */
     private void delOrder(String string) {
         Order order = this.purse(string, false);
@@ -77,10 +95,10 @@ public class PurserUser {
     }
 
     /**
-     * purse - purse one string? creates new object of class Order and returns new object.
-     * @param string is string from xml-file.
-     * @param addTrue if need to adds in map - addTrue = true, if need to remove from map addTrue = false.
-     * @return is object by class Order.
+     * purse - purse one string creates new object of class Order and returns new object.
+     * @param string - is string from xml-file.
+     * @param addTrue - if need to adds in map - addTrue = true, if need to remove from map addTrue = false.
+     * @return - returns new object by class Order.
      */
     private Order purse(String string, boolean addTrue) {
         int start = 0;
@@ -106,10 +124,10 @@ public class PurserUser {
     }
 
     /**
-     * getBook - returns book.
-     * @return is book.
+     * getBook - returns reference variable to book.
+     * @return - returns reference variable to book.
      */
-    public HashMap<String, HashMap<String, HashMap<Integer, Order>>> getOrder() {
+    public HashMap<String, HashMap<String, HashMap<Integer, Order>>> getBook() {
         return this.book;
     }
 
