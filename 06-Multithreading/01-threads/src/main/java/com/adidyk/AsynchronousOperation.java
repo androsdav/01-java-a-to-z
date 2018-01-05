@@ -46,21 +46,18 @@ public class AsynchronousOperation {
      * @param arg is nothing.
      */
     public static void main(String[] arg) {
-        new Thread() {
-            @Override
-            public void run() {
-                System.out.println("start");
-                new Thread(new Calculate("thread 1")).start();
-                new Thread(new Calculate("thread 2")).start();
-                new Thread() {
-                    @Override
-                    public void run() {
-                        System.out.println("Tread anon asynchronous");
-                    }
-                }.start();
-                System.out.println("finish");
-            }
-        }.start();
+        String string = " dasd asd asd as asd  sd 11111 1 11111111 1 1 12    ";
+        new Thread(new CounterSpace("thread 1", string)).start();
+        new Thread(new CounterWord("thread 2", string)).start();
+       /*
+        new Thread(() -> {
+            System.out.println("start");
+            new Thread(new Calculate("thread 1")).start();
+            new Thread(new Calculate("thread 2")).start();
+            new Thread(() -> System.out.println("Tread anon asynchronous")).start();
+            System.out.println("finish");
+        }).start();
+        */
 
 
 
