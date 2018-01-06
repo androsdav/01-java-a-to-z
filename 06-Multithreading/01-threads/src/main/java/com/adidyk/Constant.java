@@ -28,4 +28,10 @@ class Constant {
      */
     static final String NAME_THREAD_COUNT_WORD = "thread count word :";
 
+    /**
+     * @param MAIN_THREAD - is name of main thread.
+     */
+    static final String MAIN_THREAD = "thread main :";
+
+
 }
