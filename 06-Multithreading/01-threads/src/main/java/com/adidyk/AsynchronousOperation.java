@@ -2,6 +2,7 @@ package com.adidyk;
 
 import static com.adidyk.Constant.NAME_THREAD_COUNT_SPACES;
 import static com.adidyk.Constant.NAME_THREAD_COUNT_WORD;
+import static com.adidyk.Constant.MAIN_THREAD;
 import static com.adidyk.Constant.STRING;
 
 /**
@@ -13,38 +14,18 @@ import static com.adidyk.Constant.STRING;
 public class AsynchronousOperation {
 
     /**
-     * @param string - is string.
-     */
-    private final String string;
-
-    /**
-     * @param space - is name of thread that does to count number of space in line.
-     */
-    private final String space;
-
-    /**
-     * @param word - is name of thread that does to count number of word in line.
-     */
-    private final String word;
-
-    /**
-     * AsynchronousOperation - constructor.
-     * @param string - is string.
-     * @param space - is name of thread that does to count number of space in line.
-     * @param word - is name of thread that does to count number of word in line.
-     */
-    private AsynchronousOperation(final String string, final String space, final String word) {
-        this.string = string;
-        this.space = space;
-        this.word = word;
-    }
-
-    /**
-     * start - run program.
+     * start - run program, run Main-thread and CounterSpace-thread and CounterWord-thread.
      */
     private void start() {
-        new Thread(new CounterSpace(this.space, this.string)).start();
-        new Thread(new CounterWord(this.word, this.string)).start();
+        System.out.println("START");
+        Thread thread = new Thread(new MainThread(MAIN_THREAD));
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("FINISH");
     }
 
     /**
@@ -52,7 +33,49 @@ public class AsynchronousOperation {
      * @param arg - is nothing.
      */
     public static void main(String[] arg) {
-        new AsynchronousOperation(STRING, NAME_THREAD_COUNT_SPACES, NAME_THREAD_COUNT_WORD).start();
+        new AsynchronousOperation().start();
+    }
+
+    /**
+     * Class MainThread is main thread.
+     * @author Didyk Andrey (androsdav@bigmir.net).
+     * @since 06.01.2017.
+     * @version 1.0.
+     */
+    public static final class MainThread implements Runnable {
+
+        /**
+         * @param name - is name thread.
+         */
+        private final String name;
+
+        /**
+         * MAinThread - constructor.
+         * @param name - is name thread.
+         */
+        MainThread(final String name) {
+            this.name = name;
+        }
+
+        /**
+         * run - starts two threads:
+         * thread -> counts number of space in line;
+         * thread -> counts number of word in line.
+         */
+        @Override
+        public void run() {
+            new Thread(new CounterSpace(NAME_THREAD_COUNT_SPACES, STRING)).start();
+            new Thread(new CounterWord(NAME_THREAD_COUNT_WORD, STRING)).start();
+        }
+
+        /**
+         * view - outputs result (number of space in line) to console.
+         * @param count - is number of space in line.
+         */
+        private void view(int count) {
+            System.out.println(String.format("%s %s %s", this.name, count, "[space]"));
+        }
+
     }
 
 }
