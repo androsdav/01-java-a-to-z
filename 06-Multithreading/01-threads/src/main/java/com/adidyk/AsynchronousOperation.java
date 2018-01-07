@@ -17,7 +17,7 @@ public class AsynchronousOperation {
      * start - run program, run Main-thread and CounterSpace-thread and CounterWord-thread.
      */
     private void start() {
-        System.out.println("START");
+        //System.out.println("START");
         Thread thread = new Thread(new MainThread(MAIN_THREAD));
         thread.start();
         try {
@@ -25,7 +25,7 @@ public class AsynchronousOperation {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("FINISH");
+        //System.out.println("FINISH");
     }
 
     /**
@@ -64,8 +64,15 @@ public class AsynchronousOperation {
          */
         @Override
         public void run() {
-            new Thread(new CounterSpace(NAME_THREAD_COUNT_SPACES, STRING)).start();
-            new Thread(new CounterWord(NAME_THREAD_COUNT_WORD, STRING)).start();
+            System.out.println("start:" + this.name);
+            Thread space = new Thread(new CounterSpace(NAME_THREAD_COUNT_SPACES, STRING));
+            Thread word = new Thread(new CounterWord(NAME_THREAD_COUNT_WORD, STRING));
+            try {
+                word.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("finish:" + this.name);
         }
 
         /**
