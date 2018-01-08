@@ -67,11 +67,19 @@ public class AsynchronousOperation {
             System.out.println("start main");
             Thread space = new Thread(new CounterSpace(NAME_THREAD_COUNT_SPACES, STRING));
             Thread word = new Thread(new CounterWord(NAME_THREAD_COUNT_WORD, STRING));
-           // try {
-           //     word.join();
-           // } catch (InterruptedException e) {
-           //     e.printStackTrace();
-           // }
+            space.start();
+            try {
+                space.join();
+                word.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            word.start();
+            try {
+                word.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             System.out.println("finish main");
         }
 
