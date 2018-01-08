@@ -64,15 +64,15 @@ public class AsynchronousOperation {
          */
         @Override
         public void run() {
-            System.out.println("start:" + this.name);
+            System.out.println("start main");
             Thread space = new Thread(new CounterSpace(NAME_THREAD_COUNT_SPACES, STRING));
             Thread word = new Thread(new CounterWord(NAME_THREAD_COUNT_WORD, STRING));
-            try {
-                word.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            System.out.println("finish:" + this.name);
+           // try {
+           //     word.join();
+           // } catch (InterruptedException e) {
+           //     e.printStackTrace();
+           // }
+            System.out.println("finish main");
         }
 
         /**

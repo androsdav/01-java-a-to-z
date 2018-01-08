@@ -34,9 +34,9 @@ public class CounterWord implements Runnable {
      */
     @Override
     public void run() {
-        System.out.println("start thread:" + this.name);
+        System.out.println("start word");
         this.counter(this.string);
-        System.out.println("finish thread:" + this.name);
+        System.out.println("finish word");
     }
 
     /**

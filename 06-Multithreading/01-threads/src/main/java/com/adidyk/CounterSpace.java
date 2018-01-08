@@ -35,9 +35,9 @@ public class CounterSpace implements Runnable {
      */
     @Override
     public void run() {
-        System.out.println("start thread:" + this.name);
+        System.out.println("start space");
         this.counter(this.string);
-        System.out.println("finish thread:" + this.name);
+        System.out.println("finish space");
     }
 
     /**
