@@ -33,5 +33,4 @@ class Constant {
      */
     static final String INFO = "[INFO]:";
 
-
 }
