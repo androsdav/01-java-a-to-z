@@ -29,6 +29,11 @@ class Constant {
     static final String NAME_THREAD_COUNT_WORD = "words-thread";
 
     /**
+     * @param NAME_THREAD_MAIN - is name of thread that do to count number of word in line.
+     */
+    static final String NAME_THREAD_MAIN = "main -thread";
+
+    /**
      * @param INFO - is name of thread that do to count number of word in line.
      */
     static final String INFO = "[INFO]:";

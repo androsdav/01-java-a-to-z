@@ -16,6 +16,8 @@
 
          <modules>
                   <module>01-counter</module>
+                  <module>02-counter-wait</module>
+                  <module>03-counter-stop</module>
          </modules>
 
 </project>
