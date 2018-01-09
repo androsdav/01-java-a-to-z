@@ -1,9 +1,12 @@
 package com.adidyk;
 
+import static com.adidyk.Constant.INFO;
+import static com.adidyk.Constant.SPACE;
+
 /**
- * Class StartUi for create jar file and run program.
+ * Class CounterSpace counts number of space in line.
  * @author Didyk Andrey (androsdav@bigmir.net).
- * @since 03.01.2017.
+ * @since 03.01.2018.
  * @version 1.0.
  */
 public class CounterSpace implements Runnable {
@@ -19,7 +22,7 @@ public class CounterSpace implements Runnable {
     private final String string;
 
     /**
-     *
+     * CounterSpace - constructor.
      * @param name - is name thread.
      * @param string - is name string.
      */
@@ -29,25 +32,34 @@ public class CounterSpace implements Runnable {
     }
 
     /**
-     * run - run program.
+     * run - run Thread-space.
      */
-    @Override
     public void run() {
+        System.out.println(String.format("%s %s %s", INFO, this.name, "-> start"));
         this.counter(this.string);
-
+        System.out.println(String.format("%s %s %s", INFO, this.name, "<- finish"));
     }
 
     /**
-     * counter - is counter space.
+     * counter - is counter that counts number of space in line.
      * @param string - is string.
      */
     private void counter(String string) {
         int count = 0;
         for (int index = 0; index < string.length(); index++) {
-            if (string.charAt(index) == ' ') {
+            if (string.charAt(index) == SPACE) {
                 count++;
             }
         }
-        System.out.println(String.format("%s%s %s", "Count of space: ", count, this.name));
+        this.view(count);
     }
+
+    /**
+     * view - outputs result (number of space in line) to console.
+     * @param count - is number of space in line.
+     */
+    private void view(int count) {
+        System.out.println(String.format("        %s = %s %s", this.name, count, "[space]"));
+    }
+
 }
