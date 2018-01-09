@@ -3,7 +3,7 @@ package com.adidyk;
 /**
  * Class Constant contains constant.
  * @author Didyk Andrey (androsdav@bigmir.net).
- * @since 03.01.2018.
+ * @since 09.01.2018.
  * @version 1.0.
  */
 class Constant {
@@ -16,7 +16,7 @@ class Constant {
     /**
      * @param STRING - is string.
      */
-    static final String STRING = "  a manner   of  speaking that is natural to native  speakers     of  a  language  ";
+    static final String STRING = "  a manner  of  speaking that is natural to native  speakers   of  a  language  ";
 
     /**
      * @param NAME_THREAD_COUNT_SPACES - is name of thread that do to count number of space in line.

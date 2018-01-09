@@ -4,9 +4,9 @@ import static com.adidyk.Constant.INFO;
 import static com.adidyk.Constant.SPACE;
 
 /**
- * Class CounterWord counts number of word in line.
+ * Class CounterWord counts number of word in line (Thread-words).
  * @author Didyk Andrey (androsdav@bigmir.net).
- * @since 03.01.2018.
+ * @since 09.01.2018.
  * @version 1.0.
  */
 public class CounterWord implements Runnable {

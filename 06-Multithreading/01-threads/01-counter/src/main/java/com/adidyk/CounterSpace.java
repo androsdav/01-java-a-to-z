@@ -4,9 +4,9 @@ import static com.adidyk.Constant.INFO;
 import static com.adidyk.Constant.SPACE;
 
 /**
- * Class CounterSpace counts number of space in line.
+ * Class CounterSpace counts number of space in line (Thread-space).
  * @author Didyk Andrey (androsdav@bigmir.net).
- * @since 03.01.2018.
+ * @since 09.01.2018.
  * @version 1.0.
  */
 public class CounterSpace implements Runnable {

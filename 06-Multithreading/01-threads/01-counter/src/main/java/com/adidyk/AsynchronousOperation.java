@@ -5,9 +5,9 @@ import static com.adidyk.Constant.NAME_THREAD_COUNT_WORD;
 import static com.adidyk.Constant.STRING;
 
 /**
- * Class AsynchronousOperation for create jar file and run program.
+ * Class AsynchronousOperation for create jar file and run program (Thread-space and Thread-words).
  * @author Didyk Andrey (androsdav@bigmir.net).
- * @since 03.01.2018.
+ * @since 09.01.2018.
  * @version 1.0.
  */
 public class AsynchronousOperation {
