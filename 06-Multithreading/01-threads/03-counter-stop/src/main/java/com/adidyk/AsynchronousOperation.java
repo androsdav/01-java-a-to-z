@@ -6,7 +6,7 @@ import static com.adidyk.Constant.STRING;
 import static com.adidyk.Constant.TIME;
 
 /**
- * Class AsynchronousOperation for create jar file and run program (Thread-space and Thread-words).
+ * Class AsynchronousOperation for create jar file and run program (Thread-time and Thread-char).
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 11.01.2018.
  * @version 1.0.
@@ -14,7 +14,7 @@ import static com.adidyk.Constant.TIME;
 public class AsynchronousOperation {
 
     /**
-     * start - run program, run Thread-space and Thread-word.
+     * start - run program, run Thread-time and Thread-char.
      */
     private void start() {
         Thread countChar = new Thread(new CountChar(NAME_THREAD_COUNT_CHAR, STRING));
