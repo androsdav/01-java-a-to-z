@@ -3,7 +3,7 @@ package com.adidyk;
 import static com.adidyk.Constant.INFO;
 
 /**
- * Class Time  checks total execution time of program.
+ * Class CountChar counts number of symbol.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 11.01.2018.
  * @version 1.0.
@@ -12,7 +12,7 @@ import static com.adidyk.Constant.INFO;
 public class CountChar implements Runnable {
 
     /**
-     * @param name - is ame thread.
+     * @param name - is name thread.
      */
     private final String name;
 
@@ -32,7 +32,7 @@ public class CountChar implements Runnable {
     }
 
     /**
-     * run - run Thread-time check total execution time of program.
+     * run - run Thread-char that counts number of symbol.
      */
     @Override
     public void run() {
@@ -42,7 +42,7 @@ public class CountChar implements Runnable {
     }
 
     /**
-     * counter - is counter that counts number of symbol in line.
+     * counter - is counter that counts number of symbol.
      */
     private void counter() {
         long count = 0;
@@ -55,8 +55,8 @@ public class CountChar implements Runnable {
     }
 
     /**
-     * view - outputs result (number of space in line) to console.
-     * @param count - is number of space in line.
+     * view - outputs result (number of symbol) to console.
+     * @param count - is number of symbol.
      */
     private void view(long count) {
         System.out.println(String.format("        %s = %s %s", this.name, count, "[symbol]"));
