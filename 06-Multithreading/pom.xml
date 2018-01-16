@@ -17,6 +17,7 @@
 
          <modules>
                   <module>01-threads</module>
+                  <module>02-jmm</module>
          </modules>
 
 </project>
