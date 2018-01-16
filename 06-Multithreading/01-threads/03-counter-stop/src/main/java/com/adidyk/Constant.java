@@ -31,6 +31,6 @@ class Constant {
     /**
      * @param TIME - is time for execution of program.
      */
-    static final int TIME = 1000;
+    static final int TIME = 1500;
 
 }
