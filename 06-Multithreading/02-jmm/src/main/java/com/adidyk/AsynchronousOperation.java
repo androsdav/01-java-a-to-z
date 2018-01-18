@@ -1,23 +1,23 @@
 package com.adidyk;
 
-import static com.adidyk.Constant.NAME_THREAD_COUNT_SPACES;
-import static com.adidyk.Constant.NAME_THREAD_COUNT_WORD;
-import static com.adidyk.Constant.STRING;
-
 /**
- * Class AsynchronousOperation for create jar file and run program (Thread-space and Thread-words).
+ * Class AsynchronousOperation for create jar file and run program (CounterThread).
  * @author Didyk Andrey (androsdav@bigmir.net).
- * @since 09.01.2018.
+ * @since 18.01.2018.
  * @version 1.0.
  */
 public class AsynchronousOperation {
 
     /**
-     * start - run program, run Thread-space and Thread-word.
+     * start - run program, create many threads.
      */
     private void start() {
-        new Thread(new CounterSpace(NAME_THREAD_COUNT_SPACES, STRING)).start();
-        new Thread(new CounterWord(NAME_THREAD_COUNT_WORD, STRING)).start();
+        Counter count = new Counter();
+        for (int index = 0; index < 1000; index++) {
+            Thread thread = new Thread(new CounterThread(count));
+            thread.start();
+        }
+        System.out.println("Counter result: " + count.getCounter());
     }
 
     /**
