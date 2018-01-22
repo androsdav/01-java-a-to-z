@@ -14,8 +14,13 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
         </dependency>
-    </dependencies>
 
+        <dependency>
+            <groupId>net.jcip</groupId>
+            <artifactId>jcip-annotations</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
     <parent>
         <groupId>com.adidyk.06-Multithreading.03-monitore-synchronizy</groupId>
         <artifactId>03-monitore-synchronizy</artifactId>
