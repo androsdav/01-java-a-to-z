@@ -22,9 +22,7 @@ class Counter {
      * addCounter - increments counter by one.
      */
     synchronized void addCounter() {
-        synchronized (Counter.class) {
             this.counter++;
-        }
     }
 
     /**
@@ -32,9 +30,7 @@ class Counter {
      * @return - get result of counter.
      */
     synchronized int getCounter() {
-        synchronized (Counter.class) {
             return this.counter;
-        }
     }
 
 }

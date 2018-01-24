@@ -55,6 +55,8 @@ public class CounterTest {
         first.start();
         second.start();
         third.start();
+        first.join();
+        second.join();
         third.join();
         assertThat(counter.getCounter(), is(3));
     }
