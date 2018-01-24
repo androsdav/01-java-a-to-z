@@ -16,7 +16,6 @@
 
          <modules>
                   <module>01-counter</module>
-                  <module>02-user-storage</module>
          </modules>
 
 </project>
