@@ -26,7 +26,7 @@ public class CounterTest {
         private final Counter counter;
 
         /**
-         * ThreadCount - constructor
+         * ThreadCount - constructor.
          * @param counter - is counter (link variable to object of class Counter).
          */
         private ThreadCount(Counter counter) {
