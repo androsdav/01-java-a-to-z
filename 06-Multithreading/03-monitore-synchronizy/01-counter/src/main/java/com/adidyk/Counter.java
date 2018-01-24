@@ -4,9 +4,9 @@ import net.jcip.annotations.GuardedBy;
 import net.jcip.annotations.ThreadSafe;
 
 /**
- * Class Counter.
+ * Class Counter this is counter.
  * @author Didyk Andrey (androsdav@bigmir.net).
- * @since 18.01.2018.
+ * @since 24.01.2018.
  * @version 1.0.
  */
 @ThreadSafe
@@ -28,8 +28,8 @@ class Counter {
     }
 
     /**
-     * getCounter - get counter.
-     * @return - get counter.
+     * getCounter - return result of counter.
+     * @return - get result of counter.
      */
     synchronized int getCounter() {
         synchronized (Counter.class) {
