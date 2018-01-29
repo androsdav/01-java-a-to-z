@@ -9,7 +9,7 @@ import net.jcip.annotations.ThreadSafe;
  * @version 1.0.
 */
 @ThreadSafe
-public class User {
+class User {
 
     /**
      * @param id - user id.
@@ -37,7 +37,7 @@ public class User {
      * setId - sets id for user.
      * @param id - user ud.
      */
-    public  synchronized void setId(int id) {
+    synchronized void setId(int id) {
         this.id = id;
     }
 
@@ -45,7 +45,7 @@ public class User {
      * setAmount - sets amount for user.
      * @param amount - user amount.
      */
-    public synchronized void setAmount(int amount) {
+    synchronized void setAmount(int amount) {
         this.amount = amount;
     }
 
@@ -53,7 +53,7 @@ public class User {
      * getId - get id for user.
      * @return - returns id for user.
      */
-    public synchronized int getid() {
+    synchronized int getId() {
         return this.id;
     }
 
@@ -61,8 +61,34 @@ public class User {
      * getAmount - gets amount for user.
      * @return - returns amount for user.
      */
-    public synchronized int getAmount() {
+    synchronized int getAmount() {
         return this.amount;
+    }
+
+    /**
+     *
+     * @param obj is object.
+     * @return true.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof User)) {
+            return false;
+        }
+        User user = (User) obj;
+        return getId() == user.getId();
+    }
+
+    /**
+     *
+     * @return id object user.
+     */
+    @Override
+    public int hashCode() {
+        return getId();
     }
 
 }
