@@ -1,6 +1,6 @@
 package com.adidyk;
 
-import static java.lang.Math.round;
+//import static java.lang.Math.round;
 
 /** Class User for create user (object) with params: id, amount.
  * @param <E> - is generic.
@@ -60,12 +60,14 @@ public class UserStorage<E> {
         this.objects[this.index++] = object;
     }
 
+    /*
     /**
      * searchDuplicateByBinary - search duplicate by hash code and uses a binary search algorithm
      * and return true if object is duplicate in Set-Array, false - if object not duplicate in Set-Array.
      * @param object - is object.
      * @return true.
      */
+    /*
     private boolean searchDuplicateByBinary(E object) {
         boolean sameObject = false;
         int left = 0;
@@ -88,9 +90,11 @@ public class UserStorage<E> {
      * @param index - is index.
      * @return - returns object.
      */
+    /*
     public E get(int index) {
         return (E) this.objects[index];
     }
+    */
 
 
 

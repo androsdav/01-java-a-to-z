@@ -30,8 +30,8 @@ public class UserTest {
      * setAmountTest - tests method setId class User.
      */
     @Test
-    public void setAmountTest() {
-        this.user.setAmount(54321);
+    public void addAmountTest() {
+        this.user.addAmount(54321);
         assertThat(54321, is(this.user.getAmount()));
     }
 

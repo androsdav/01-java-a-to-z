@@ -45,8 +45,16 @@ class User {
      * setAmount - sets amount for user.
      * @param amount - user amount.
      */
-    synchronized void setAmount(int amount) {
-        this.amount = amount;
+    synchronized void addAmount(int amount) {
+        this.amount = this.amount + amount;
+    }
+
+    /**
+     * subAmount - sets amount for user.
+     * @param amount - is amount.
+     */
+    synchronized void subAmount(int amount) {
+        this.amount = this.amount - amount;
     }
 
     /**
