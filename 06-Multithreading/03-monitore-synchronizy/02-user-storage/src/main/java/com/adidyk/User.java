@@ -74,7 +74,7 @@ class User {
     }
 
     /**
-     *
+     * equals - is method.
      * @param obj is object.
      * @return true.
      */
@@ -91,12 +91,21 @@ class User {
     }
 
     /**
-     *
+     * hashCode - is method.
      * @return id object user.
      */
     @Override
     public int hashCode() {
         return getId();
+    }
+
+    /**
+     *
+     * @return - is string.
+     */
+    @Override
+    public String toString() {
+        return String.format("%s%s%s%s%s%s", "User{", "id=", this.id, ", amount=", this.amount, '}');
     }
 
 }

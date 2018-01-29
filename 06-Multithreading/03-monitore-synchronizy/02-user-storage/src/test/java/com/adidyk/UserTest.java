@@ -13,17 +13,22 @@ import static org.junit.Assert.assertThat;
 public class UserTest {
 
     /**
-     * @param user - is user.
+     * @param first - is first user.
      */
-    private final User user = new User(135, 12345);
+    private final User first = new User(10, 1000);
+
+    /**
+     * @param second - is second user.
+     */
+    private final User second = new User(11, 2000);
 
     /**
      * setIdTest - tests method setId class User.
      */
     @Test
     public void setIdTest() {
-        this.user.setId(123);
-        assertThat(123, is(this.user.getId()));
+        this.first.setId(9);
+        assertThat(9, is(this.first.getId()));
     }
 
     /**
@@ -31,8 +36,17 @@ public class UserTest {
      */
     @Test
     public void addAmountTest() {
-        this.user.addAmount(54321);
-        assertThat(54321, is(this.user.getAmount()));
+        this.first.addAmount(12);
+        assertThat(1012, is(this.first.getAmount()));
+    }
+
+    /**
+     * subAmountTest - tests method subAmount class User.
+     */
+    @Test
+    public void subAmountTest() {
+        this.first.subAmount(500);
+        assertThat(500, is(this.first.getAmount()));
     }
 
     /**
@@ -40,7 +54,8 @@ public class UserTest {
      */
     @Test
     public void getIdTest() {
-        assertThat(135, is(this.user.getId()));
+        this.first.setId(11);
+        assertThat(this.first, is(this.second));
     }
 
     /**
@@ -48,7 +63,7 @@ public class UserTest {
      */
     @Test
     public void getAmountTest() {
-        assertThat(12345, is(this.user.getAmount()));
+        assertThat(2000, is(this.second.getAmount()));
     }
 
 }

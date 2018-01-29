@@ -2,6 +2,8 @@ package com.adidyk;
 
 //import static java.lang.Math.round;
 
+import java.util.Arrays;
+
 /** Class User for create user (object) with params: id, amount.
  * @param <E> - is generic.
  * @author Didyk Andrey (androsdav@bigmir.net).
@@ -38,13 +40,17 @@ public class UserStorage<E> {
     /**
      * add - adds object to array of objects.
      * @param object - is object.
+     * @return - is true.
      */
-    public boolean add(E object) {
+    boolean add(E object) {
         boolean isAdded = true;
-        if (this.objects.length == 0) {
+        if (this.index == 0) {
             this.addObject(object);
-        }  else if(isAdded = !this.searchDuplicateByBinary(object)) {
-            this.addObject(object);
+        } else {
+            isAdded = !this.searchDuplicate(object);
+            if (isAdded) {
+                this.addObject(object);
+            }
         }
         return isAdded;
     }
@@ -54,21 +60,31 @@ public class UserStorage<E> {
      * @param object - is object.
      */
     private void addObject(E object) {
-        Object[] objectsTemp = new Object[this.objects.length + 1];
-        System.arraycopy(this.objects, 0, objectsTemp, 0, this.objects.length);
-        this.objects = objectsTemp;
+        //Object[] objectsTemp = new Object[this.objects.length + 1];
+        //System.arraycopy(this.objects, 0, objectsTemp, 0, this.objects.length);
+        //this.objects = objectsTemp;
         this.objects[this.index++] = object;
     }
 
-    /*
     /**
      * searchDuplicateByBinary - search duplicate by hash code and uses a binary search algorithm
      * and return true if object is duplicate in Set-Array, false - if object not duplicate in Set-Array.
      * @param object - is object.
      * @return true.
      */
-    /*
-    private boolean searchDuplicateByBinary(E object) {
+    private boolean searchDuplicate(E object) {
+        boolean duplicate = false;
+        for (Object obj : this.objects) {
+            if (obj != null) {
+                if (obj.equals(object)) {
+                    duplicate = true;
+                    break;
+                }
+            }
+        }
+        return duplicate;
+    }
+        /*
         boolean sameObject = false;
         int left = 0;
         int right = this.objects.length - 1;
@@ -83,20 +99,19 @@ public class UserStorage<E> {
                 left = index + 1;
         } while((index != left && index != right ) && !sameObject);
         return sameObject;
-    }
+        */
 
     /**
      * get - returns object by index from array of objects.
      * @param index - is index.
      * @return - returns object.
      */
-    /*
     public E get(int index) {
         return (E) this.objects[index];
     }
-    */
 
-
-
-
+    @Override
+    public String toString() {
+        return String.format("%s%s%s%s%s%s", "UserStorage{", "objects=", Arrays.toString(objects), ", index=", index, '}');
+    }
 }
