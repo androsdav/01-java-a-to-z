@@ -1,8 +1,8 @@
 package com.adidyk;
 
 //import static java.lang.Math.round;
-
 import java.util.Arrays;
+import static java.lang.Math.round;
 
 /** Class User for create user (object) with params: id, amount.
  * @param <E> - is generic.
@@ -56,13 +56,43 @@ public class UserStorage<E> {
     }
 
     /**
+     * update - update user.
+     * @param object - is object.
+     * @return true.
+     */
+    boolean update(E object) {
+        return true;
+    }
+
+    /**
+     * remove - deletes object by object from array of objects, and shifts array of objects to left by one position,
+     * starting with the index of set object.
+     * @param object - is object.
+     * @return true.
+     */
+    boolean delete(E object) {
+        boolean isDeleted = false;
+        for (int index = 0; index < this.index; index++) {
+            if (this.objects[index].equals(object)) {
+                System.arraycopy(this.objects, index + 1, this.objects, index, this.objects.length - 1 - index);
+                this.index--;
+                isDeleted = true;
+                break;
+            }
+        }
+        return isDeleted;
+    }
+
+    /**
      * addObject - adds object to Set-Array container.
      * @param object - is object.
      */
     private void addObject(E object) {
-        //Object[] objectsTemp = new Object[this.objects.length + 1];
-        //System.arraycopy(this.objects, 0, objectsTemp, 0, this.objects.length);
-        //this.objects = objectsTemp;
+        if (this.index == this.objects.length) {
+            Object[] objectsTemp = new Object[(int) round(1.5 * this.objects.length)];
+            System.arraycopy(this.objects, 0, objectsTemp, 0, this.objects.length);
+            this.objects = objectsTemp;
+        }
         this.objects[this.index++] = object;
     }
 
@@ -74,18 +104,19 @@ public class UserStorage<E> {
      */
     private boolean searchDuplicate(E object) {
         boolean duplicate = false;
-        for (Object obj : this.objects) {
-            if (obj != null) {
-                if (obj.equals(object)) {
-                    duplicate = true;
-                    break;
-                }
+        for (int index = 0; index < this.index; index++) {
+            if (object.equals(this.objects[index])) {
+                duplicate = true;
+                break;
             }
         }
         return duplicate;
     }
-        /*
-        boolean sameObject = false;
+
+
+
+
+/*        boolean sameObject = false;
         int left = 0;
         int right = this.objects.length - 1;
         int index;

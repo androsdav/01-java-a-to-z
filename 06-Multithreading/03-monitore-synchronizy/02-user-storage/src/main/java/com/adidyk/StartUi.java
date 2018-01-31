@@ -20,12 +20,15 @@ public class StartUi {
         User second = new User(2, 200);
         System.out.println("result: " + first);
         System.out.println("result: " + second);
-        UserStorage<User> storage = new UserStorage<>();
+        UserStorage<User> storage = new UserStorage<>(3);
         System.out.println(" " + storage.add(new User(1, 10)));
         System.out.println(" " + storage.add(new User(2, 20)));
         System.out.println(" " + storage.add(new User(3, 30)));
+        System.out.println(storage);
         System.out.println(" " + storage.add(new User(4, 40)));
         System.out.println(" " + storage.add(new User(3, 30)));
+        System.out.println(storage);
+        System.out.println(storage.delete(new User(4, 40)));
         System.out.println(storage);
     }
 
