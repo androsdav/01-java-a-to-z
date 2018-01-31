@@ -1,6 +1,7 @@
 package com.adidyk;
 
-//import static java.lang.Math.round;
+import net.jcip.annotations.GuardedBy;
+import net.jcip.annotations.ThreadSafe;
 import java.util.Arrays;
 import static java.lang.Math.round;
 
@@ -10,16 +11,19 @@ import static java.lang.Math.round;
  * @since 26.07.2017.
  * @version 1.0.
  */
+@ThreadSafe
 public class UserStorage<E> {
 
     /**
      * @param objects - is objects.
      */
+    @GuardedBy("this")
     private Object[] objects;
 
     /**
      * @param index - is index.
      */
+    @GuardedBy("this")
     private int index = 0;
 
     /**
@@ -42,7 +46,7 @@ public class UserStorage<E> {
      * @param object - is object.
      * @return - is true.
      */
-    boolean add(E object) {
+    synchronized boolean add(E object) {
         boolean isAdded = true;
         if (this.index == 0) {
             this.addObject(object);
@@ -60,8 +64,16 @@ public class UserStorage<E> {
      * @param object - is object.
      * @return true.
      */
-    boolean update(E object) {
-        return true;
+    synchronized boolean update(E object) {
+        boolean isUpdate = false;
+        for (int index = 0; index < this.index; index++) {
+            if (object.equals(this.objects[index])) {
+                this.objects[index] = object;
+                isUpdate = true;
+                break;
+            }
+        }
+        return isUpdate;
     }
 
     /**
@@ -70,7 +82,7 @@ public class UserStorage<E> {
      * @param object - is object.
      * @return true.
      */
-    boolean delete(E object) {
+    synchronized boolean delete(E object) {
         boolean isDeleted = false;
         for (int index = 0; index < this.index; index++) {
             if (this.objects[index].equals(object)) {
@@ -87,7 +99,7 @@ public class UserStorage<E> {
      * addObject - adds object to Set-Array container.
      * @param object - is object.
      */
-    private void addObject(E object) {
+    private synchronized void addObject(E object) {
         if (this.index == this.objects.length) {
             Object[] objectsTemp = new Object[(int) round(1.5 * this.objects.length)];
             System.arraycopy(this.objects, 0, objectsTemp, 0, this.objects.length);
@@ -102,7 +114,7 @@ public class UserStorage<E> {
      * @param object - is object.
      * @return true.
      */
-    private boolean searchDuplicate(E object) {
+    private synchronized boolean searchDuplicate(E object) {
         boolean duplicate = false;
         for (int index = 0; index < this.index; index++) {
             if (object.equals(this.objects[index])) {
@@ -113,36 +125,29 @@ public class UserStorage<E> {
         return duplicate;
     }
 
-
-
-
-/*        boolean sameObject = false;
-        int left = 0;
-        int right = this.objects.length - 1;
-        int index;
-        do {
-            index = (right + left) / 2;
-            if (this.objects[index].hashCode() == object.hashCode())
-                sameObject = true;
-            else if (this.objects[index].hashCode() > object.hashCode() && right - left != 0)
-                right = index - 1;
-            else if (right - left != 0)
-                left = index + 1;
-        } while((index != left && index != right ) && !sameObject);
-        return sameObject;
-        */
-
     /**
      * get - returns object by index from array of objects.
      * @param index - is index.
      * @return - returns object.
      */
-    public E get(int index) {
+    synchronized E get(int index) {
         return (E) this.objects[index];
     }
 
+    /**
+     *
+     * @return size.
+     */
+    synchronized int size() {
+        return this.index;
+    }
+
+    /**
+     * @return string.
+     */
     @Override
-    public String toString() {
+    public synchronized String toString() {
         return String.format("%s%s%s%s%s%s", "UserStorage{", "objects=", Arrays.toString(objects), ", index=", index, '}');
     }
+
 }

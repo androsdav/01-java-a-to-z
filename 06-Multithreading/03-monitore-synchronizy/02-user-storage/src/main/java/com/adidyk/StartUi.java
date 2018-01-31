@@ -1,7 +1,5 @@
 package com.adidyk;
 
-//import java.awt.*;
-
 /** Class User for create user (object) with params: id, amount.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 26.07.2017.
@@ -29,7 +27,25 @@ public class StartUi {
         System.out.println(" " + storage.add(new User(3, 30)));
         System.out.println(storage);
         System.out.println(storage.delete(new User(4, 40)));
+        System.out.println(storage.delete(new User(4, 40)));
         System.out.println(storage);
+        System.out.println(storage.delete(new User(1, 10)));
+        System.out.println(storage);
+        System.out.println(" " + storage.add(new User(5, 50)));
+        System.out.println(storage);
+        System.out.println();
+        System.out.println("FOR - loop");
+        for (int index = 0; index < storage.size(); index++) {
+            System.out.println(storage.get(index));
+        }
+        System.out.println(" " + storage.update(new User(3, 333)));
+        for (int index = 0; index < storage.size(); index++) {
+            System.out.println(storage.get(index));
+        }
+        System.out.println(" " + storage.update(new User(31, 678)));
+        for (int index = 0; index < storage.size(); index++) {
+            System.out.println(storage.get(index));
+        }
     }
 
 }

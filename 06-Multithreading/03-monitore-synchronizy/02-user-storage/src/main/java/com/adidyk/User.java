@@ -87,7 +87,7 @@ class User {
             return false;
         }
         User user = (User) obj;
-        return getId() == user.getId();
+        return this.getId() == user.getId();
     }
 
     /**
@@ -96,7 +96,7 @@ class User {
      */
     @Override
     public int hashCode() {
-        return getId();
+        return this.getId();
     }
 
     /**
@@ -104,7 +104,7 @@ class User {
      * @return - is string.
      */
     @Override
-    public String toString() {
+    public synchronized String toString() {
         return String.format("%s%s%s%s%s%s", "User{", "id=", this.id, ", amount=", this.amount, '}');
     }
 
