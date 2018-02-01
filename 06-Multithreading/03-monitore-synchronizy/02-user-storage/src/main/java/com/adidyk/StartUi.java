@@ -18,7 +18,7 @@ public class StartUi {
         User second = new User(2, 200);
         System.out.println("result: " + first);
         System.out.println("result: " + second);
-        UserStorage<User> storage = new UserStorage<>(3);
+        UserStorage storage = new UserStorage(3);
         System.out.println(" " + storage.add(new User(1, 10)));
         System.out.println(" " + storage.add(new User(2, 20)));
         System.out.println(" " + storage.add(new User(3, 30)));
@@ -43,6 +43,11 @@ public class StartUi {
             System.out.println(storage.get(index));
         }
         System.out.println(" " + storage.update(new User(31, 678)));
+        for (int index = 0; index < storage.size(); index++) {
+            System.out.println(storage.get(index));
+        }
+        storage.transfer(2, 5, 311);
+        System.out.println("Transfer: ");
         for (int index = 0; index < storage.size(); index++) {
             System.out.println(storage.get(index));
         }

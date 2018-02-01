@@ -5,23 +5,22 @@ import net.jcip.annotations.ThreadSafe;
 import java.util.Arrays;
 import static java.lang.Math.round;
 
-/** Class User for create user (object) with params: id, amount.
- * @param <E> - is generic.
+/** UserStorage class is container based on an array in which objects of class User are stored.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 26.07.2017.
  * @version 1.0.
  */
 @ThreadSafe
-public class UserStorage<E> {
+public class UserStorage {
 
     /**
-     * @param objects - is objects.
+     * @param users - is reference variable to array.
      */
     @GuardedBy("this")
-    private Object[] objects;
+    private User[] users;
 
     /**
-     * @param index - is index.
+     * @param index - is index to cell of array.
      */
     @GuardedBy("this")
     private int index = 0;
@@ -30,45 +29,45 @@ public class UserStorage<E> {
      * UserStorage - constructor.
      */
     UserStorage() {
-        this.objects = new Object[10];
+        this.users = new User[10];
     }
 
     /**
      * UserStorage - constructor.
-     * @param size - is size.
+     * @param size - is size of array.
      */
     UserStorage(int size) {
-        this.objects = new Object[size];
+        this.users = new User[size];
     }
 
     /**
-     * add - adds object to array of objects.
-     * @param object - is object.
-     * @return - is true.
+     * add - adds user to array.
+     * @param user - is object of class User.
+     * @return - returns true if user is added and returns false if user isn`t added.
      */
-    synchronized boolean add(E object) {
+    synchronized boolean add(User user) {
         boolean isAdded = true;
         if (this.index == 0) {
-            this.addObject(object);
+            this.addObject(user);
         } else {
-            isAdded = !this.searchDuplicate(object);
+            isAdded = !this.searchDuplicate(user);
             if (isAdded) {
-                this.addObject(object);
+                this.addObject(user);
             }
         }
         return isAdded;
     }
 
     /**
-     * update - update user.
-     * @param object - is object.
-     * @return true.
+     * update - update parameter (amount) for user by id.
+     * @param user - is object user.
+     * @return - returns true if user is updated and returns false if user in`t updated.
      */
-    synchronized boolean update(E object) {
+    synchronized boolean update(User user) {
         boolean isUpdate = false;
         for (int index = 0; index < this.index; index++) {
-            if (object.equals(this.objects[index])) {
-                this.objects[index] = object;
+            if (user.equals(this.users[index])) {
+                this.users[index] = user;
                 isUpdate = true;
                 break;
             }
@@ -76,19 +75,40 @@ public class UserStorage<E> {
         return isUpdate;
     }
 
-    synchronized
+    /**
+     * transfer - transfers amount from one user another by id.
+     * @param fromId - is Id.
+     * @param toId - is Id.
+     * @param amount - is amount.
+     */
+    synchronized void transfer(int fromId, int toId, int amount) {
+        User  fromUser = null;
+        User toUser = null;
+        for (int index = 0; index < this.index; index++) {
+            if (this.users[index].getId() == fromId) {
+                fromUser = this.users[index];
+            } else if (this.users[index].getId() == toId) {
+                toUser = this.users[index];
+            }
+            if (fromUser != null && toUser != null) {
+                fromUser.subAmount(amount);
+                toUser.addAmount(amount);
+                break;
+            }
+        }
+    }
 
     /**
      * remove - deletes object by object from array of objects, and shifts array of objects to left by one position,
      * starting with the index of set object.
-     * @param object - is object.
+     * @param user - is object.
      * @return true.
      */
-    synchronized boolean delete(E object) {
+    synchronized boolean delete(User user) {
         boolean isDeleted = false;
         for (int index = 0; index < this.index; index++) {
-            if (this.objects[index].equals(object)) {
-                System.arraycopy(this.objects, index + 1, this.objects, index, this.objects.length - 1 - index);
+            if (this.users[index].equals(user)) {
+                System.arraycopy(this.users, index + 1, this.users, index, this.users.length - 1 - index);
                 this.index--;
                 isDeleted = true;
                 break;
@@ -97,31 +117,29 @@ public class UserStorage<E> {
         return isDeleted;
     }
 
-
-
     /**
      * addObject - adds object to Set-Array container.
-     * @param object - is object.
+     * @param user - is object.
      */
-    private synchronized void addObject(E object) {
-        if (this.index == this.objects.length) {
-            Object[] objectsTemp = new Object[(int) round(1.5 * this.objects.length)];
-            System.arraycopy(this.objects, 0, objectsTemp, 0, this.objects.length);
-            this.objects = objectsTemp;
+    private synchronized void addObject(User user) {
+        if (this.index == this.users.length) {
+            User[] usersTemp = new User[(int) round(1.5 * this.users.length)];
+            System.arraycopy(this.users, 0, usersTemp, 0, this.users.length);
+            this.users = usersTemp;
         }
-        this.objects[this.index++] = object;
+        this.users[this.index++] = user;
     }
 
     /**
      * searchDuplicateByBinary - search duplicate by hash code and uses a binary search algorithm
      * and return true if object is duplicate in Set-Array, false - if object not duplicate in Set-Array.
-     * @param object - is object.
+     * @param user - is object.
      * @return true.
      */
-    private synchronized boolean searchDuplicate(E object) {
+    private synchronized boolean searchDuplicate(User user) {
         boolean duplicate = false;
         for (int index = 0; index < this.index; index++) {
-            if (object.equals(this.objects[index])) {
+            if (user.equals(this.users[index])) {
                 duplicate = true;
                 break;
             }
@@ -134,8 +152,8 @@ public class UserStorage<E> {
      * @param index - is index.
      * @return - returns object.
      */
-    synchronized E get(int index) {
-        return (E) this.objects[index];
+    synchronized User get(int index) {
+        return this.users[index];
     }
 
     /**
@@ -151,7 +169,7 @@ public class UserStorage<E> {
      */
     @Override
     public synchronized String toString() {
-        return String.format("%s%s%s%s%s%s", "UserStorage{", "objects=", Arrays.toString(objects), ", index=", index, '}');
+        return String.format("%s%s%s%s%s%s", "UserStorage{", "objects=", Arrays.toString(users), ", index=", index, '}');
     }
 
 }

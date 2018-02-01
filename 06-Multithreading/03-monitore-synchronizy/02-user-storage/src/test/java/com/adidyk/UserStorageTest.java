@@ -24,7 +24,7 @@ public class UserStorageTest {
         /**
          * @param counter - is counter (link variable to object of class Counter).
          */
-        private final UserStorage<User> storage;
+        private final UserStorage storage;
 
         /**
          * @param id - is id.
@@ -35,7 +35,7 @@ public class UserStorageTest {
          * ThreadCount - constructor.
          * @param storage - is counter (link variable to object of class Counter).
          */
-        private Add(UserStorage<User> storage) {
+        private Add(UserStorage storage) {
             this.storage = storage;
         }
 
@@ -59,13 +59,13 @@ public class UserStorageTest {
         /**
          * @param counter - is counter (link variable to object of class Counter).
          */
-        private final UserStorage<User> storage;
+        private final UserStorage storage;
 
         /**
          * ThreadCount - constructor.
          * @param storage - is counter (link variable to object of class Counter).
          */
-        private Get(UserStorage<User> storage) {
+        private Get(UserStorage storage) {
             this.storage = storage;
         }
 
@@ -95,7 +95,7 @@ public class UserStorageTest {
      */
     @Test
     public void whenExecute3ThreadThen3() throws InterruptedException {
-        UserStorage<User> storage = new UserStorage<>(3);
+        UserStorage storage = new UserStorage(3);
         Thread add1 = new Add(storage);
         Thread add2 = new Add(storage);
         Thread get1 = new Get(storage);
