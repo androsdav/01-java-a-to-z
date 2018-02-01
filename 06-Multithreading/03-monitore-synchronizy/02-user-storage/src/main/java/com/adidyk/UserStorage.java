@@ -95,6 +95,8 @@ public class UserStorage<E> {
         return isDeleted;
     }
 
+
+
     /**
      * addObject - adds object to Set-Array container.
      * @param object - is object.
