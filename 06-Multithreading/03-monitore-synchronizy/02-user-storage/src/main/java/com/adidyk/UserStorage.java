@@ -76,6 +76,8 @@ public class UserStorage<E> {
         return isUpdate;
     }
 
+    synchronized
+
     /**
      * remove - deletes object by object from array of objects, and shifts array of objects to left by one position,
      * starting with the index of set object.
