@@ -1,6 +1,8 @@
 package com.adidyk;
 
 import org.junit.Test;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * UserStorageTest does testing of class UserStorage.
@@ -19,92 +21,61 @@ public class UserStorageTest {
     private class Add extends Thread {
 
         /**
-         * @param storage - is storage (link variable to object of class Counter).
+         * @param storage - is storage (link variable to object of class UserStorage).
          */
         private final UserStorage storage;
 
         /**
-         * @param id - is id.
+         * @param id - user id.
          */
-        private int id = 1;
+        private int id;
+
+        /**
+         * @param amount - user amount.
+         */
+        private int amount;
 
         /**
          * ThreadCount - constructor.
-         * @param storage - is counter (link variable to object of class Counter).
+         * @param storage - is storage (link variable to object of class UserSorage).
+         * @param id - is user id.
+         * @param amount - is user amount.
          */
-        private Add(UserStorage storage) {
+        private Add(UserStorage storage, int id, int amount) {
             this.storage = storage;
+            this.id = id;
+            this.amount = amount;
         }
 
         /**
-         * run - runs thread and increase counter by one.
+         * run - runs thread and adds new user to storage (array).
          */
         @Override
         public void run() {
-            this.storage.add(new User(this.id++, 10));
+            this.storage.add(new User(this.id, this.amount));
         }
     }
 
     /**
-     * ThreadCount is thread that uses object of class Counter.
-     * @author Didyk Andrey (androsdav@bigmir.net).
-     * @since 24.01.2018.
-     * @version 1.0.
-     */
-    private class Get extends Thread {
-
-        /**
-         * @param counter - is counter (link variable to object of class Counter).
-         */
-        private final UserStorage storage;
-
-        /**
-         * ThreadCount - constructor.
-         * @param storage - is counter (link variable to object of class Counter).
-         */
-        private Get(UserStorage storage) {
-            this.storage = storage;
-        }
-
-        /**
-         * run - runs thread and increase counter by one.
-         */
-        @Override
-        public void run() {
-            //this.storage.add(new User(1, 10));
-            this.view();
-        }
-
-        /**
-         * view - is view.
-         */
-        void view() {
-            System.out.println();
-            System.out.println();
-            System.out.println(this.storage.get(0));
-            System.out.println();
-        }
-    }
-
-    /**
-     * whenExecute3ThreadThen3 - test class Counter.
+     * amountThreadTest - test class UserStorage.
      * @throws InterruptedException - is interrupted exception.
      */
     @Test
-    public void whenExecute3ThreadThen3() throws InterruptedException {
+    public void amountThreadTest() throws InterruptedException {
         UserStorage storage = new UserStorage(3);
-        Thread add1 = new Add(storage);
-        Thread add2 = new Add(storage);
-        Thread get1 = new Get(storage);
+        Thread add1 = new Add(storage, 1, 10);
+        Thread add2 = new Add(storage, 2, 20);
+        Thread add3 = new Add(storage, 3, 30);
         add1.start();
+        add1.join();
         add2.start();
-        get1.start();
-        //System.out.println();
-        //System.out.println(get1.get(0));
-       // System.out.println();
-//        assertThat(counter.getCounter(), is(3));
+        add2.join();
+        add3.start();
+        add3.join();
+        storage.transfer(1, 2, 4);
+        assertThat(6, is(storage.get(0).getAmount()));
+        assertThat(24, is(storage.get(1).getAmount()));
+        assertThat(30, is(storage.get(2).getAmount()));
     }
-
-
 
 }

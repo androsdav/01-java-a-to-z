@@ -164,6 +164,32 @@ public class UserStorage {
     }
 
     /**
+     * equals - returns boolean result.
+     * @param obj - object of class UserStorage.
+     * @return - returns boolean result "true" or "false".
+     */
+    @Override
+    public synchronized boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        UserStorage that = (UserStorage) obj;
+        return Arrays.equals(users, that.users);
+    }
+
+    /**
+     * hashCode - returns hashCode for UserStorage.
+     * @return - returns hashCode for UserStorage.
+     */
+    @Override
+    public synchronized int hashCode() {
+        return Arrays.hashCode(users);
+    }
+
+    /**
      * toString - returns string format.
      * @return - returns all information for UserStorage.
      */
