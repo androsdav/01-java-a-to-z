@@ -2,7 +2,7 @@ package com.adidyk;
 
 /** Class User for create user (object) with params: id, amount.
  * @author Didyk Andrey (androsdav@bigmir.net).
- * @since 26.07.2017.
+ * @since 24.01.2018.
  * @version 1.0.
  */
 public class StartUi {

@@ -5,7 +5,7 @@ import net.jcip.annotations.ThreadSafe;
 
 /** Class User for create user (object) with params: id, amount.
  * @author Didyk Andrey (androsdav@bigmir.net).
- * @since 26.07.2017.
+ * @since 24.01.2018.
  * @version 1.0.
 */
 @ThreadSafe
@@ -74,9 +74,9 @@ class User {
     }
 
     /**
-     * equals - is method.
-     * @param obj is object.
-     * @return true.
+     * equals - return boolean result.
+     * @param obj - object of class User.
+     * @return - returns boolean result "true" if id of user is same, and  returns "false" - isn`t same.
      */
     @Override
     public boolean equals(Object obj) {
@@ -91,8 +91,8 @@ class User {
     }
 
     /**
-     * hashCode - is method.
-     * @return id object user.
+     * hashCode - returns hashCode for user.
+     * @return - returns hashCode for user.
      */
     @Override
     public int hashCode() {
@@ -100,8 +100,8 @@ class User {
     }
 
     /**
-     *
-     * @return - is string.
+     * toString - returns string format.
+     * @return - returns all information for user.
      */
     @Override
     public synchronized String toString() {

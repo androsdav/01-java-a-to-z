@@ -2,11 +2,8 @@ package com.adidyk;
 
 import org.junit.Test;
 
-//import static org.hamcrest.CoreMatchers.is;
-//import static org.junit.Assert.assertThat;
-
 /**
- * CounterTest does testing of class Counter.
+ * UserStorageTest does testing of class UserStorage.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 24.01.2018.
  * @version 1.0.
@@ -14,7 +11,7 @@ import org.junit.Test;
 public class UserStorageTest {
 
     /**
-     * ThreadCount is thread that uses object of class Counter.
+     * Add is thread that uses object of class UserStorage.
      * @author Didyk Andrey (androsdav@bigmir.net).
      * @since 24.01.2018.
      * @version 1.0.
@@ -22,7 +19,7 @@ public class UserStorageTest {
     private class Add extends Thread {
 
         /**
-         * @param counter - is counter (link variable to object of class Counter).
+         * @param storage - is storage (link variable to object of class Counter).
          */
         private final UserStorage storage;
 
@@ -102,7 +99,6 @@ public class UserStorageTest {
         add1.start();
         add2.start();
         get1.start();
-        //add2.start();
         //System.out.println();
         //System.out.println(get1.get(0));
        // System.out.println();

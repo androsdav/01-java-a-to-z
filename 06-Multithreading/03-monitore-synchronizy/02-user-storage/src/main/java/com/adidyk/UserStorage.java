@@ -7,7 +7,7 @@ import static java.lang.Math.round;
 
 /** UserStorage class is container based on an array in which objects of class User are stored.
  * @author Didyk Andrey (androsdav@bigmir.net).
- * @since 26.07.2017.
+ * @since 24.01.2018.
  * @version 1.0.
  */
 @ThreadSafe
@@ -61,7 +61,7 @@ public class UserStorage {
     /**
      * update - update parameter (amount) for user by id.
      * @param user - is object user.
-     * @return - returns true if user is updated and returns false if user in`t updated.
+     * @return - returns true if user is updated and returns false if user isn`t updated.
      */
     synchronized boolean update(User user) {
         boolean isUpdate = false;
@@ -77,8 +77,8 @@ public class UserStorage {
 
     /**
      * transfer - transfers amount from one user another by id.
-     * @param fromId - is Id.
-     * @param toId - is Id.
+     * @param fromId - is id of user who sends amount.
+     * @param toId - is id of user who gets amount.
      * @param amount - is amount.
      */
     synchronized void transfer(int fromId, int toId, int amount) {
@@ -99,10 +99,10 @@ public class UserStorage {
     }
 
     /**
-     * remove - deletes object by object from array of objects, and shifts array of objects to left by one position,
-     * starting with the index of set object.
-     * @param user - is object.
-     * @return true.
+     * remove - deletes user by id from array, and shifts array of objects to left by one position,
+     * starting with the index of object.
+     * @param user - is object user.
+     * @return - returns true if user is deleted and returns false if user  isn`t deleted.
      */
     synchronized boolean delete(User user) {
         boolean isDeleted = false;
@@ -118,8 +118,8 @@ public class UserStorage {
     }
 
     /**
-     * addObject - adds object to Set-Array container.
-     * @param user - is object.
+     * addObject - adds user to array.
+     * @param user - is object of class User.
      */
     private synchronized void addObject(User user) {
         if (this.index == this.users.length) {
@@ -131,10 +131,9 @@ public class UserStorage {
     }
 
     /**
-     * searchDuplicateByBinary - search duplicate by hash code and uses a binary search algorithm
-     * and return true if object is duplicate in Set-Array, false - if object not duplicate in Set-Array.
-     * @param user - is object.
-     * @return true.
+     * searchDuplicate - search duplicate by user in array.
+     * @param user - is object of class User.
+     * @return - returns true if array contains entered user and returns false if array does not entered user.
      */
     private synchronized boolean searchDuplicate(User user) {
         boolean duplicate = false;
@@ -150,22 +149,23 @@ public class UserStorage {
     /**
      * get - returns object by index from array of objects.
      * @param index - is index.
-     * @return - returns object.
+     * @return - returns object by index from array of objects.
      */
     synchronized User get(int index) {
         return this.users[index];
     }
 
     /**
-     *
-     * @return size.
+     * size - returns numbers of elements in array.
+     * @return - returns numbers of elements in array.
      */
     synchronized int size() {
         return this.index;
     }
 
     /**
-     * @return string.
+     * toString - returns string format.
+     * @return - returns all information for UserStorage.
      */
     @Override
     public synchronized String toString() {
