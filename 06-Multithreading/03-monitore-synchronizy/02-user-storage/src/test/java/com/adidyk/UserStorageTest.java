@@ -67,7 +67,7 @@ public class UserStorageTest {
 
         /**
          * ThreadCount - constructor.
-         * @param storage - is storage (link variable to object of class UserSorage).
+         * @param storage - is storage (link variable to object of class UserStorage).
          * @param id - is user id.
          * @param amount - is user amount.
          */
