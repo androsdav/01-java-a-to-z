@@ -82,7 +82,7 @@ public class UserStorage {
      * @param amount - is amount.
      */
     synchronized void transfer(int fromId, int toId, int amount) {
-        User  fromUser = null;
+        User fromUser = null;
         User toUser = null;
         for (int index = 0; index < this.index; index++) {
             if (this.users[index].getId() == fromId) {
