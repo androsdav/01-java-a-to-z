@@ -101,8 +101,6 @@ public class UserStorage {
         }
     }
 
-
-
     /**
      * remove - deletes user by id from array, and shifts array of objects to left by one position,
      * starting with the index of object.
