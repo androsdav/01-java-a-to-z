@@ -35,7 +35,7 @@ class User {
 
     /**
      * setId - sets id for user.
-     * @param id - user ud.
+     * @param id - user id.
      */
     synchronized void setId(int id) {
         this.id = id;
@@ -79,7 +79,7 @@ class User {
      * @return - returns boolean result "true" if id of user is same, and  returns "false" - isn`t same.
      */
     @Override
-    public boolean equals(Object obj) {
+    public synchronized boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
@@ -95,7 +95,7 @@ class User {
      * @return - returns hashCode for user.
      */
     @Override
-    public int hashCode() {
+    public synchronized int hashCode() {
         return this.getId();
     }
 

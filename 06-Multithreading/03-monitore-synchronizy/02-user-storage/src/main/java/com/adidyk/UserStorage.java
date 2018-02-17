@@ -64,14 +64,14 @@ public class UserStorage {
      * @return - returns true if user is updated and returns false if user isn`t updated.
      */
     synchronized boolean update(User user) {
-        boolean isUpdate = false;
-        for (int index = 0; index < this.index; index++) {
-            if (user.equals(this.users[index])) {
-                this.users[index] = user;
-                isUpdate = true;
-                break;
+            boolean isUpdate = false;
+            for (int index = 0; index < this.index; index++) {
+                if (user.equals(this.users[index])) {
+                    this.users[index] = user;
+                    isUpdate = true;
+                    break;
+                }
             }
-        }
         return isUpdate;
     }
 
@@ -81,22 +81,27 @@ public class UserStorage {
      * @param toId - is id of user who gets amount.
      * @param amount - is amount.
      */
-    synchronized void transfer(int fromId, int toId, int amount) {
-        User fromUser = null;
-        User toUser = null;
-        for (int index = 0; index < this.index; index++) {
-            if (this.users[index].getId() == fromId) {
-                fromUser = this.users[index];
-            } else if (this.users[index].getId() == toId) {
-                toUser = this.users[index];
-            }
-            if (fromUser != null && toUser != null) {
-                fromUser.subAmount(amount);
-                toUser.addAmount(amount);
-                break;
+    void transfer(int fromId, int toId, int amount) {
+        User fromUser = this.searchUserById(fromId);
+        User toUser = this.searchUserById(toId);
+        if (fromUser != null && toUser != null) {
+            if (fromUser.getId() < toUser.getId()) {
+                synchronized (fromUser) {
+                    synchronized (toUser) {
+                        doTransfer(fromUser, toUser, amount);
+                    }
+                }
+            } else {
+                synchronized (toUser) {
+                    synchronized (fromUser) {
+                        doTransfer(fromUser, toUser, amount);
+                    }
+                }
             }
         }
     }
+
+
 
     /**
      * remove - deletes user by id from array, and shifts array of objects to left by one position,
@@ -107,7 +112,7 @@ public class UserStorage {
     synchronized boolean delete(User user) {
         boolean isDeleted = false;
         for (int index = 0; index < this.index; index++) {
-            if (this.users[index].equals(user)) {
+            if (user.equals(this.users[index])) {
                 System.arraycopy(this.users, index + 1, this.users, index, this.users.length - 1 - index);
                 this.index--;
                 isDeleted = true;
@@ -144,6 +149,35 @@ public class UserStorage {
             }
         }
         return duplicate;
+    }
+
+    /**
+     * searchUserById - searches user by id in array.
+     * @param id - user id.
+     * @return - returns user by id.
+     */
+    private User searchUserById(int id) {
+        User user = null;
+        synchronized (this) {
+            for (int index = 0; index < this.index; index++) {
+                if (this.users[index].getId() == id) {
+                    user = this.users[index];
+                    break;
+                }
+            }
+        }
+        return user;
+    }
+
+    /**
+     * doTransfer - transfers amount from one user another.
+     * @param fromUser - user who sends amount.
+     * @param toUser - user who gets amount.
+     * @param amount - is amount.
+     */
+    private void doTransfer(User fromUser, User toUser, int amount) {
+        fromUser.subAmount(amount);
+        toUser.addAmount(amount);
     }
 
     /**

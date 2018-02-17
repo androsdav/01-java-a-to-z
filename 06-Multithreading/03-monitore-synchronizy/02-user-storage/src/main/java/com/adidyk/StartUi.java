@@ -12,7 +12,7 @@ public class StartUi {
      * @param arg - is nothing.
      */
     public static void main(String[] arg) {
-        System.out.println("");
+        System.out.println("UserStorage");
     }
 
 }
