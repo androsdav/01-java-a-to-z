@@ -2,29 +2,36 @@ package com.adidyk;
 
 import net.jcip.annotations.GuardedBy;
 import net.jcip.annotations.ThreadSafe;
-
 import java.util.Arrays;
 import java.util.Iterator;
 import static java.lang.Math.round;
 
 /**
- * SimpleArrayList is conteayner.
- * @param <E> - is generic.
+ * SimpleArrayList is container based on an array (dynamic container).
+ * @param <E> - is type objects (generic).
+ * @author Didyk Andrey (androsdav@bigmir.net).
+ * @since 17.02.2018.
+ * @version 1.0.
  */
 @ThreadSafe
 public class SimpleArrayList<E> implements SimpleList<E> {
 
     /**
-     * @param objects - is objects.
+     * @param objects - is reference variable to container.
      */
     @GuardedBy("this")
     private Object[] objects;
 
     /**
-     * @param index - is index.
+     * @param index - is index to cell of array.
      */
     @GuardedBy("this")
     private int index = 0;
+
+    /**
+     * @param modCount - counter of number modification.
+     */
+    private int modCount = 0;
 
     /**
      * SimpleArrayList - constructor.
@@ -42,43 +49,45 @@ public class SimpleArrayList<E> implements SimpleList<E> {
     }
 
     /**
-     * add - adds object to array of objects.
-     * @param object - is object
+     * add - adds object to container.
+     * @param object - is object.
      */
-    public synchronized void add(E object) {
+    public synchronized void add(final E object) {
         if (this.index == this.objects.length) {
             Object[] objectsTemp = new Object[(int) round(1.5 * this.objects.length)];
             System.arraycopy(this.objects, 0, objectsTemp, 0, this.objects.length);
             this.objects = objectsTemp;
         }
         this.objects[this.index++] = object;
+        this.modCount++;
     }
 
     /**
      * get - returns object from collections by index.
-     * @param index - is index in collection that have inputted object.
-     * @return - returns object from collection by index.
+     * @param index - index in the container for which the object is returned from the cell.
+     * @return - returns object from container by index.
      */
     public synchronized E get(int index) {
         return (E) this.objects[index];
+    }
+
+
+    /**
+     * size - returns length of array of objects without null.
+     * @return - returns length of array of objects without null.
+     */
+    synchronized int size() {
+        return this.index;
     }
 
     /**
      * getAll - create collection without null and returns array.
      * @return - returns array of objects without null.
      */
-    public synchronized Object[] getAll() {
+    private synchronized Object[] getAll() {
         Object[] objectTemp = new Object[this.index];
-        System.arraycopy(objects, 0, objectTemp, 0, this.index);
+        System.arraycopy(this.objects, 0, objectTemp, 0, this.index);
         return objectTemp;
-    }
-
-    /**
-     * size - returns length of array of objects without null.
-     * @return - returns length of array of objects without null.
-     */
-    public int size() {
-        return this.index;
     }
 
     /**
@@ -87,7 +96,7 @@ public class SimpleArrayList<E> implements SimpleList<E> {
      * @return true or false.
      */
     @Override
-    public boolean equals(Object obj) {
+    public synchronized boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
@@ -95,7 +104,7 @@ public class SimpleArrayList<E> implements SimpleList<E> {
             return false;
         }
         SimpleArrayList<?> that = (SimpleArrayList<?>) obj;
-        return Arrays.equals(objects, that.objects);
+        return Arrays.equals(this.objects, that.objects);
     }
 
     /**
@@ -103,8 +112,8 @@ public class SimpleArrayList<E> implements SimpleList<E> {
      * @return - returns hashcode.
      */
     @Override
-    public int hashCode() {
-        return Arrays.hashCode(objects);
+    public synchronized int hashCode() {
+        return Arrays.hashCode(this.objects);
     }
 
     /**
@@ -118,12 +127,12 @@ public class SimpleArrayList<E> implements SimpleList<E> {
     }
 
     /**
-     * iterator - iterator.
-     * @return - returns iterator.
+     * iterator - returns new iterator for container.
+     * @return - returns new iterator for container.
      */
     @Override
     public Iterator<E> iterator() {
-        return new SimpleIterator(this.getAll());
+        return new SimpleIterator(this.getAll(), this.modCount);
     }
 
     /**
@@ -133,28 +142,35 @@ public class SimpleArrayList<E> implements SimpleList<E> {
     private class SimpleIterator implements Iterator<E> {
 
         /**
-         * @param objects - is objects.
+         * @param objects - is reference variable to container.
          */
         @GuardedBy("this")
         private Object[] objects;
 
         /**
-         * @param index - is index.
+         * @param index - is index to cell of array.
          */
         @GuardedBy("this")
         private int index = 0;
 
         /**
-         * SimpleIterator - iterator.
-         * @param objects - is objects.
+         * @param expectedModCount - expected number of modification.
          */
-        SimpleIterator(Object[] objects) {
+        private int expectedModCount;
+
+        /**
+         * SimpleIterator - constructor.
+         * @param objects - is reference variable to container.
+         * @param expectedModCount - expected number of modification.
+         */
+        SimpleIterator(Object[] objects, int expectedModCount) {
             this.objects = objects;
+            this.expectedModCount = expectedModCount;
         }
 
         /**
-         * hasNext - returns true or false.
-         * @return - returns true or false.
+         * hasNext - returns true if next element is in container or returns false if next element isn`t in container.
+         * @return - returns true if next element is in container or returns false if next element isn`t in container.
          */
         @Override
         public synchronized boolean hasNext() {
@@ -167,11 +183,14 @@ public class SimpleArrayList<E> implements SimpleList<E> {
          */
         @Override
         public synchronized E next() {
+            if (this.expectedModCount != modCount) {
+                throw new ConcurrentModificationException("ConcurrentModificationException");
+            }
             return (E) this.objects[this.index++];
         }
 
         /**
-         * remove - is nothing.
+         * remove - isn`t nothing.
          */
         @Override
         public void remove() {

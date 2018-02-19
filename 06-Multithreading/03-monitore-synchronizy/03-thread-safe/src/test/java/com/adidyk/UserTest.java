@@ -1,69 +1,68 @@
 package com.adidyk;
 
 import org.junit.Test;
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 /**
- * CounterTest does testing of class Counter.
+ * Class UserTest does testing of class User.
  * @author Didyk Andrey (androsdav@bigmir.net).
- * @since 24.01.2018.
+ * @since 17.02.2018.
  * @version 1.0.
  */
 public class UserTest {
 
     /**
-     * @param first - is first user.
+     * @param girl - is object of class user.
      */
-    private final User first = new User(10, 1000);
+    private final User girl = new User("111", "Matilda", 18);
+
 
     /**
-     * @param second - is second user.
+     * setNameTest - tests method setName class User.
+     * @throws Exception - exception.
      */
-    private final User second = new User(11, 2000);
+    @Test
+    public void setNameTest() throws Exception {
+        this.girl.setName("Lola");
+        assertThat(new User("111", "Lola", 18), is(this.girl));
+    }
+
+    /**
+     * setAgeTest - tests method setAge class User.
+     * @throws Exception - exception.
+     */
+    @Test
+    public void setAgeTest() throws Exception {
+        this.girl.setAge(55);
+        assertThat(new User("111", "Matilda", 55), is(this.girl));
+    }
 
     /**
      * setIdTest - tests method setId class User.
+     * @throws Exception - exception.
      */
     @Test
-    public void setIdTest() {
-        this.first.setId(9);
-        assertThat(9, is(this.first.getId()));
+    public void getIdTest() throws Exception {
+        assertThat("111", is(this.girl.getId()));
     }
 
     /**
-     * setAmountTest - tests method setId class User.
+     * getNameTest - tests method getName class User.
+     * @throws Exception - exception.
      */
     @Test
-    public void addAmountTest() {
-        this.first.addAmount(12);
-        assertThat(1012, is(this.first.getAmount()));
+    public void getNameTest() throws Exception {
+        assertThat("Matilda", is(this.girl.getName()));
     }
 
     /**
-     * subAmountTest - tests method subAmount class User.
+     * getAgeTest - tests method getAge class User.
+     * @throws Exception - exception.
      */
     @Test
-    public void subAmountTest() {
-        this.first.subAmount(500);
-        assertThat(500, is(this.first.getAmount()));
-    }
-
-    /**
-     * getIdTest - tests method setId class User.
-     */
-    @Test
-    public void getIdTest() {
-        this.first.setId(11);
-        assertThat(this.first, is(this.second));
-    }
-
-    /**
-     * getAmountTest - tests method setId class User.
-     */
-    @Test
-    public void getAmountTest() {
-        assertThat(2000, is(this.second.getAmount()));
+    public void getAgeTest() throws Exception {
+        assertThat(18, is(this.girl.getAge()));
     }
 
 }
