@@ -84,7 +84,7 @@ public class SimpleArrayList<E> implements SimpleList<E> {
      * getAll - create collection without null and returns array.
      * @return - returns array of objects without null.
      */
-    private synchronized Object[] getAll() {
+    synchronized Object[] getAll() {
         Object[] objectTemp = new Object[this.index];
         System.arraycopy(this.objects, 0, objectTemp, 0, this.index);
         return objectTemp;
@@ -182,7 +182,7 @@ public class SimpleArrayList<E> implements SimpleList<E> {
          * @return - returns next element from collection.
          */
         @Override
-        public synchronized E next() {
+        public synchronized E next() throws ConcurrentModificationException {
             if (this.expectedModCount != modCount) {
                 throw new ConcurrentModificationException("ConcurrentModificationException");
             }
