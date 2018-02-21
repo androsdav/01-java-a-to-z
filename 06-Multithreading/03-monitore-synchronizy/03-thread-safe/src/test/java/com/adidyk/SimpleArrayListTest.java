@@ -1,9 +1,10 @@
 package com.adidyk;
 
 import org.junit.Before;
-import org.junit.Rule;
+//import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
+//import org.junit.matchers.JUnitMatchers;
+//import org.junit.rules.ExpectedException;
 
 import java.util.Iterator;
 import static org.hamcrest.core.Is.is;
@@ -110,6 +111,8 @@ public class SimpleArrayListTest {
         new NewIteratorTest().hasNextTrue();
         new NewIteratorTest().hasNextFalse();
         new NewIteratorTest().loopTest();
+        //new NewIteratorTest().modCountTest();
+        //new NewIteratorTest().testTest();
     }
 
     /**
@@ -177,11 +180,41 @@ public class SimpleArrayListTest {
             assertThat(resultActual, is(resultExpected));
         }
 
+        /*
+        /**
+         * @param exception - exception.
+         */
+        /*
         @Rule
         public ExpectedException exception = ExpectedException.none();
 
-
+        /**
+         * modCountTest - test.
+         */
+        /*
+        @Test
+        private void modCountTest() {
+            exception.expect(ConcurrentModificationException.class);
+            exception.expectMessage("ConcurrentModificationException");
+            list.add(new User("55", "Abigael", 17));
+            this.it.next();
+        }
+        */
     }
 
+    /**
+     * Test.
+     */
+    @Test
+    public void testTest() {
+        Iterator<User> it = this.list.iterator();
+        try {
+            this.list.add(new User("11", "Anton", 123));
+            it.next();
+        } catch (ConcurrentModificationException exception) {
+            assertThat(exception.getMessage(), is("ConcurrentModificationException"));
+        }
+
+    }
 
 }
