@@ -179,27 +179,6 @@ public class SimpleArrayListTest {
             }
             assertThat(resultActual, is(resultExpected));
         }
-
-        /*
-        /**
-         * @param exception - exception.
-         */
-        /*
-        @Rule
-        public ExpectedException exception = ExpectedException.none();
-
-        /**
-         * modCountTest - test.
-         */
-        /*
-        @Test
-        private void modCountTest() {
-            exception.expect(ConcurrentModificationException.class);
-            exception.expectMessage("ConcurrentModificationException");
-            list.add(new User("55", "Abigael", 17));
-            this.it.next();
-        }
-        */
     }
 
     /**
