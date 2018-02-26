@@ -1,11 +1,7 @@
 package com.adidyk;
 
 import org.junit.Before;
-//import org.junit.Rule;
 import org.junit.Test;
-//import org.junit.matchers.JUnitMatchers;
-//import org.junit.rules.ExpectedException;
-
 import java.util.Iterator;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -21,7 +17,7 @@ public class SimpleArrayListTest {
     /**
      * @param list - is reference variable to object of class SimpleArrayList.
      */
-    private SimpleArrayList<User> list = new SimpleArrayList<>();
+    private SimpleArrayList<User> list = new SimpleArrayList<>(10);
 
     /**
      * @param tom - is reference variable to object of class User.
@@ -38,7 +34,12 @@ public class SimpleArrayListTest {
     private User bob;
 
     /**
-     * init - initialisation all parameters  and adds new user to container list.
+     * @param it - is reference variable to object of class Iterator.
+     */
+    private Iterator it;
+
+    /**
+     * init - initialisation all parameters and adds new user to container list.
      */
     @Before
     public void init() {
@@ -48,6 +49,7 @@ public class SimpleArrayListTest {
         this.list.add(new User("1", "Tom", 17));
         this.list.add(new User("2", "Bill", 18));
         this.list.add(new User("3", "Bob", 20));
+        this.it = list.iterator();
     }
 
     /**
@@ -68,7 +70,7 @@ public class SimpleArrayListTest {
     }
 
     /**
-     * getAllTest - tests method getaAll of class SimpleArrayList.
+     * getAllTest - tests method getAll of class SimpleArrayList.
      */
     @Test
     public void getAllTest() {
@@ -99,101 +101,66 @@ public class SimpleArrayListTest {
             resultExpected[index++] = user;
         }
         assertThat(resultActual, is(resultExpected));
-
     }
 
     /**
-     * iteratorTest.
+     * nextTest - it tests method next for iterator when next element from container is true.
      */
     @Test
-    public void iteratorTest() {
-        new NewIteratorTest().nextTest();
-        new NewIteratorTest().hasNextTrue();
-        new NewIteratorTest().hasNextFalse();
-        new NewIteratorTest().loopTest();
-        //new NewIteratorTest().modCountTest();
-        //new NewIteratorTest().testTest();
+    public void nextTest() {
+        this.it.next();
+        assertThat(new User("2", "Bill", 18), is(this.it.next()));
     }
 
     /**
-     * test.
-     */
-    private class NewIteratorTest {
-
-        /**
-         * test.
-         */
-        private Iterator<User> it = list.iterator();
-
-        /**
-         * test.
-         */
-        @Before
-        public void init() {
-            init();
-        }
-
-        /**
-         * test.
-         */
-        @Test
-        private void nextTest() {
-            this.it.next();
-            assertThat(new User("2", "Bill", 18), is(this.it.next()));
-        }
-
-        /**
-         * test.
-         */
-        @Test
-        private void hasNextTrue() {
-            this.it.next();
-            this.it.next();
-            this.it.hasNext();
-            assertThat(true, is(this.it.hasNext()));
-        }
-
-        /**
-         * test.
-         */
-        @Test
-        private void hasNextFalse() {
-            this.it.next();
-            this.it.next();
-            this.it.next();
-            this.it.hasNext();
-            assertThat(false, is(this.it.hasNext()));
-        }
-
-        /**
-         * test.
-         */
-        @Test
-        private void loopTest() {
-            Object[] resultActual = new Object[] {new User("1", "Tom", 17),
-                    new User("2", "Bill", 18), new User("3", "Bob", 20)};
-            Object[] resultExpected = new Object[3];
-            int index = 0;
-            while (this.it.hasNext()) {
-                resultExpected[index++] = this.it.next();
-            }
-            assertThat(resultActual, is(resultExpected));
-        }
-    }
-
-    /**
-     * Test.
+     * hasNextTest - it tests method hasNext for iterator when next element from container is true.
      */
     @Test
-    public void testTest() {
-        Iterator<User> it = this.list.iterator();
+    public void hasNextTrue() {
+        this.it.next();
+        this.it.next();
+        this.it.hasNext();
+        assertThat(true, is(this.it.hasNext()));
+    }
+
+    /**
+     * hasNextTest - it tests method hasNext for iterator when next element from container is false.
+     */
+    @Test
+    public void hasNextFalse() {
+        this.it.next();
+        this.it.next();
+        this.it.next();
+        this.it.hasNext();
+        assertThat(false, is(this.it.hasNext()));
+    }
+
+    /**
+     * loopTest - it test loop for iterator.
+     */
+    @Test
+    public void loopTest() {
+        Object[] resultActual = new Object[] {new User("1", "Tom", 17),
+                new User("2", "Bill", 18), new User("3", "Bob", 20)};
+        Object[] resultExpected = new Object[3];
+        int index = 0;
+        while (this.it.hasNext()) {
+            resultExpected[index++] = this.it.next();
+        }
+        assertThat(resultActual, is(resultExpected));
+    }
+
+    /**
+     * modCount - it tests concurrent modification exception.
+     */
+    @Test
+    public void modCount() {
         try {
             this.list.add(new User("11", "Anton", 123));
             it.next();
         } catch (ConcurrentModificationException exception) {
             assertThat(exception.getMessage(), is("ConcurrentModificationException"));
         }
-
     }
 
 }

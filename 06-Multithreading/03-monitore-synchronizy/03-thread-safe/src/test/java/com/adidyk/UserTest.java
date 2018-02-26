@@ -25,7 +25,8 @@ public class UserTest {
     @Test
     public void setNameTest() throws Exception {
         this.girl.setName("Lola");
-        assertThat(new User("111", "Lola", 18), is(this.girl));
+        this.girl.setName("Lolita");
+        assertThat(new User("111", "Lolita", 18), is(this.girl));
     }
 
     /**
@@ -35,7 +36,8 @@ public class UserTest {
     @Test
     public void setAgeTest() throws Exception {
         this.girl.setAge(55);
-        assertThat(new User("111", "Matilda", 55), is(this.girl));
+        this.girl.setAge(123);
+        assertThat(new User("111", "Matilda", 123), is(this.girl));
     }
 
     /**

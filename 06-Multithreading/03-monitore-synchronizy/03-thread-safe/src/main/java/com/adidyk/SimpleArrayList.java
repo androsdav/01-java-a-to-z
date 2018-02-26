@@ -63,14 +63,13 @@ public class SimpleArrayList<E> implements SimpleList<E> {
     }
 
     /**
-     * get - returns object from collections by index.
+     * get - returns object from container by index.
      * @param index - index in the container for which the object is returned from the cell.
      * @return - returns object from container by index.
      */
     public synchronized E get(int index) {
         return (E) this.objects[index];
     }
-
 
     /**
      * size - returns length of array of objects without null.
@@ -91,12 +90,12 @@ public class SimpleArrayList<E> implements SimpleList<E> {
     }
 
     /**
-     * equals - equals.
-     * @param obj - is object.
-     * @return true or false.
+     * equals - return boolean result.
+     * @param obj - object of class User.
+     * @return - returns boolean result "true" if container is same, and returns "false" - isn`t same.
      */
     @Override
-    public synchronized boolean equals(Object obj) {
+    public synchronized boolean equals(final Object obj) {
         if (this == obj) {
             return true;
         }
@@ -108,8 +107,8 @@ public class SimpleArrayList<E> implements SimpleList<E> {
     }
 
     /**
-     * hashCode - returns hashCode.
-     * @return - returns hashcode.
+     * hashCode - returns hashCode for container.
+     * @return - returns hashcode for container.
      */
     @Override
     public synchronized int hashCode() {
@@ -131,7 +130,7 @@ public class SimpleArrayList<E> implements SimpleList<E> {
      * @return - returns new iterator for container.
      */
     @Override
-    public Iterator<E> iterator() {
+    public synchronized Iterator<E> iterator() {
         return new SimpleIterator(this.getAll(), this.modCount);
     }
 
@@ -156,6 +155,7 @@ public class SimpleArrayList<E> implements SimpleList<E> {
         /**
          * @param expectedModCount - expected number of modification.
          */
+        @GuardedBy("this")
         private int expectedModCount;
 
         /**
@@ -182,7 +182,7 @@ public class SimpleArrayList<E> implements SimpleList<E> {
          * @return - returns next element from collection.
          */
         @Override
-        public synchronized E next() throws ConcurrentModificationException {
+        public synchronized E next() {
             if (this.expectedModCount != modCount) {
                 throw new ConcurrentModificationException("ConcurrentModificationException");
             }

@@ -88,7 +88,7 @@ public class User {
      * @return - returns boolean result "true" if id of user is same, and returns "false" - isn`t same.
      */
     @Override
-    public boolean equals(Object obj) {
+    public synchronized boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
@@ -104,7 +104,7 @@ public class User {
      * @return - returns hashCode for user.
      */
     @Override
-    public int hashCode() {
+    public synchronized int hashCode() {
         return getId().hashCode();
     }
 
@@ -113,7 +113,7 @@ public class User {
      * @return - returns all information for user.
      */
     @Override
-    public String toString() {
+    public synchronized String toString() {
         return String.format("%s%s%s%s%s%s%s%s",
                 " User {", "id=", this.getId(), "; name=", this.getName(), "; age=", this.getAge(), "}");
     }
