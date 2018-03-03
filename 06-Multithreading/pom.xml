@@ -19,6 +19,7 @@
                   <module>01-threads</module>
                   <module>02-jmm</module>
                   <module>03-monitore-synchronizy</module>
+                  <module>04-wait-notify</module>
          </modules>
 
 </project>
