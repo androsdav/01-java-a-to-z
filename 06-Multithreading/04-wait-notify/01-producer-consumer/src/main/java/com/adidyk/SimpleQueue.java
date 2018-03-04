@@ -12,24 +12,23 @@ import java.util.Iterator;
 public class SimpleQueue<E> implements StackAndQueue<E> {
 
     /**
-     * @param first - is.
+     * @param first - is first element in queue.
      */
     private Node<E> first;
 
     /**
-     * @param last - is.
+     * @param last - is last element in queue.
      */
     private Node<E> last;
 
     /**
-     * @param size - is.
+     * @param size - number of element in queue.
      */
     private int size;
 
-    // empty  - returns true if Queue is empty, and false if Stack is not empty
     /**
-     * empty - is.
-     * @return is.
+     * empty - returns true if queue is empty, and returns false if queue is not empty.
+     * @return - returns true if queue is empty, and returns false if queue is not empty.
      */
     public boolean empty() {
         boolean queueEmpty = false;
@@ -39,40 +38,10 @@ public class SimpleQueue<E> implements StackAndQueue<E> {
         return queueEmpty;
     }
 
-    // peek - returns first object from Queue
     /**
-     * peek - is.
-     * @return is.
-     */
-    public E peek() {
-        final Node<E> object = this.first;
-        if (object == null) {
-            throw new HasNotFirstElementException("Queue has not object ... ");
-        }
-        return object.item;
-    }
-
-    // pop - returns first object and remove this object from Queue
-    /**
-     * pop - is.
-     * @return is.
-     */
-    public E pop() {
-        if (this.first == null) {
-            throw new HasNotFirstElementException("Queue has not object ... ");
-        }
-        final Node<E> object = new Node<>(this.first.prev, this.first.item, this.first.next);
-        this.first = null;
-        this.first = object.next;
-        this.size--;
-        return object.item;
-    }
-
-    // push - adds object to beginning of Queue
-    /**
-     * push - is.
-     * @param object - is.
-     * @return is.
+     * push - adds object to end of queue.
+     * @param object - is object.
+     * @return - returns added object..
      */
     public E push(E object) {
         Node<E> oldNode = this.last;
@@ -87,6 +56,33 @@ public class SimpleQueue<E> implements StackAndQueue<E> {
         return object;
     }
 
+    /**
+     * peek - returns first element (object) from queue.
+     * @return - returns first element (object) from queue.
+     */
+    public E peek() {
+        final Node<E> object = this.first;
+        if (object == null) {
+            throw new HasNotFirstElementException("Queue has not object ... ");
+        }
+        return object.item;
+    }
+
+
+    /**
+     * pop - returns first element (object) from queue and remove this object from queue.
+     * @return - returns first element (object) from queue. and remove this object from queue.
+     */
+    public E pop() {
+        if (this.first == null) {
+            throw new HasNotFirstElementException("Queue has not object ... ");
+        }
+        final Node<E> object = new Node<>(this.first.prev, this.first.item, this.first.next);
+        this.first = null;
+        this.first = object.next;
+        this.size--;
+        return object.item;
+    }
     // search - searches item in Queue and returns to needed count method pop, if search item false returns -1
     /**
      * search - is.
@@ -113,7 +109,6 @@ public class SimpleQueue<E> implements StackAndQueue<E> {
     }
 
     // size - return size queue
-
     /**
      * size - is.
      * @return is.

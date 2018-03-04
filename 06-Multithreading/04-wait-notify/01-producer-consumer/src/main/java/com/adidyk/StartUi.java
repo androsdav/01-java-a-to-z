@@ -1,5 +1,7 @@
 package com.adidyk;
 
+import java.util.LinkedList;
+
 /** Class StartUi for create jar file.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 17.02.2018.
