@@ -15,47 +15,36 @@ public class StartUi {
      */
     public static void main(String[] arg) {
         System.out.println("SimpleArrayList, SimpleLinkedList - thread safe");
-        SimpleQueue<User> queue = new SimpleQueue<>();
-        queue.push(new User("1", "Tom", 10));
-        queue.push(new User("2", "Bob", 20));
-        queue.push(new User("3", "Bil", 30));
-        queue.push(new User("4", "Ben", 40));
-        for (User user : queue) {
-            System.out.println(user);
+        SimpleBlockingQueue<Product> temp = new SimpleBlockingQueue<>(5);
+        temp.add(new Product("1", "car"));
+        temp.add(new Product("2", "book"));
+        temp.add(new Product("3", "pan"));
+        temp.add(new Product("4", "table"));
+        temp.add(new Product("5", "cat"));
+        //temp.add(new Product("6", "dog"));
+        System.out.println(temp.get());
+        System.out.println(temp.get());
+        System.out.println(temp.get());
+        System.out.println(temp.get());
+        System.out.println(temp.get());
+        System.out.println(temp.get());
+        System.out.println("finish");
+        //temp.add(new Product("7", "bag"));
+        //temp.add(new Product("8", "animal"));
+        //temp.add(new Product("8", "animal"));
+        //temp.add(new Product("8", "animal"));
+        //temp.add(new Product("8", "animal"));
+        /*
+        System.out.println(temp.get());
+        System.out.println(temp.get());
+        System.out.println(temp.get());
+        */
+        /*
+        for (Product product : temp.getAll()) {
+            System.out.println(product);
         }
-        System.out.println();
-        System.out.println("First user: " + queue.peek());
-        System.out.println();
-        System.out.println("First user pop: " + queue.pop());
-        for (User user : queue) {
-            System.out.println(user);
-        }
-        System.out.println();
-        System.out.println("First user pop: " + queue.pop());
-        for (User user : queue) {
-            System.out.println(user);
-        }
-        System.out.println();
-        System.out.println("First user pop: " + queue.pop());
-        for (User user : queue) {
-            System.out.println(user);
-        }
-        System.out.println();
-        System.out.println("First user pop: " + queue.pop());
-        for (User user : queue) {
-            System.out.println(user + "test");
-        }
-        SimpleBlockingQueue<String> temp = new SimpleBlockingQueue<>();
-        temp.push("1", 2);
-        temp.push("2", 3);
+        */
 
-
-        for (String anTemp : temp) {
-            System.out.println(anTemp);
-        }
-
-        Product product = new Product("1", "phone");
-        System.out.println(product);
     }
 
 }

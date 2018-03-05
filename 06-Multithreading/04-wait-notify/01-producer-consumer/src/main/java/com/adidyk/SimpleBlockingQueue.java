@@ -15,14 +15,76 @@ class SimpleBlockingQueue<E> {
     private SimpleQueue<E> queue = new SimpleQueue<>();
 
     /**
-     * push - adds object to end of queue.
-     * @param object - is object.
-     * @param i - is.
+     * @param lock - lock.
      */
-    void push(E object, int i) {
-        System.out.println(i);
-        queue.push(object);
+    private final Object lock = new Object();
 
+    /**
+     * @param size - is.
+     */
+    private final int size;
+
+    /**
+     * @param counter - is counter..
+     */
+    private int counter;
+
+    /**
+     * SimpleBlockingQueue - constructor.
+     * @param size - is.
+     */
+    SimpleBlockingQueue(final int size) {
+        this.size = size;
     }
+
+    /**
+     * add - adds object to end of queue.
+     * @param object - is object.
+     */
+    void add(E object) {
+        synchronized (this.lock) {
+            while (this.counter >= this.size) {
+                try {
+                    this.lock.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            this.queue.push(object);
+            this.counter++;
+            this.lock.notify();
+        }
+    }
+
+    /**
+     * get - get.
+     * @return - returns.
+     */
+    E get() {
+        final E result;
+        synchronized (this.lock) {
+            while (this.queue.empty()) {
+                try {
+                    this.lock.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            result = this.queue.pop();
+            this.counter--;
+            this.lock.notify();
+        }
+        return result;
+    }
+
+    /**
+     *
+     * @return - returns.
+     */
+    SimpleQueue<E> getAll() {
+        return this.queue;
+    }
+
+
 
 }
