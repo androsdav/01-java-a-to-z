@@ -1,10 +1,10 @@
 package com.adidyk;
 
-import java.util.LinkedList;
+//import java.util.LinkedList;
 
 /** Class StartUi for create jar file.
  * @author Didyk Andrey (androsdav@bigmir.net).
- * @since 17.02.2018.
+ * @since 03.03.2018.
  * @version 1.0.
  */
 public class StartUi {
@@ -45,6 +45,17 @@ public class StartUi {
         for (User user : queue) {
             System.out.println(user + "test");
         }
+        SimpleBlockingQueue<String> temp = new SimpleBlockingQueue<>();
+        temp.push("1", 2);
+        temp.push("2", 3);
+
+
+        for (String anTemp : temp) {
+            System.out.println(anTemp);
+        }
+
+        Product product = new Product("1", "phone");
+        System.out.println(product);
     }
 
 }

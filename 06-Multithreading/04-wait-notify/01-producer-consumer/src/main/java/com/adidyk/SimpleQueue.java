@@ -9,7 +9,7 @@ import java.util.Iterator;
  * @since 17.02.2018.
  * @version 1.0.
  */
-public class SimpleQueue<E> implements StackAndQueue<E> {
+class SimpleQueue<E> implements StackAndQueue<E> {
 
     /**
      * @param first - is first element in queue.
@@ -83,6 +83,7 @@ public class SimpleQueue<E> implements StackAndQueue<E> {
         this.size--;
         return object.item;
     }
+
     // search - searches item in Queue and returns to needed count method pop, if search item false returns -1
     /**
      * search - is.
