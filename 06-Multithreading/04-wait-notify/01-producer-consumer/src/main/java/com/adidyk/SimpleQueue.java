@@ -30,7 +30,7 @@ class SimpleQueue<E> implements StackAndQueue<E> {
      * empty - returns true if queue is empty, and returns false if queue is not empty.
      * @return - returns true if queue is empty, and returns false if queue is not empty.
      */
-    public boolean empty() {
+    public synchronized boolean empty() {
         boolean queueEmpty = false;
         if (this.first == null) {
             queueEmpty = true;
@@ -43,7 +43,7 @@ class SimpleQueue<E> implements StackAndQueue<E> {
      * @param object - is object.
      * @return - returns added object..
      */
-    public E push(E object) {
+    public synchronized E push(E object) {
         Node<E> oldNode = this.last;
         Node<E> newNode = new Node<>(oldNode, object, null);
         this.last = newNode;
@@ -60,7 +60,7 @@ class SimpleQueue<E> implements StackAndQueue<E> {
      * peek - returns first element (object) from queue.
      * @return - returns first element (object) from queue.
      */
-    public E peek() {
+    public synchronized E peek() {
         final Node<E> object = this.first;
         if (object == null) {
             throw new HasNotFirstElementException("Queue has not object ... ");
@@ -73,21 +73,29 @@ class SimpleQueue<E> implements StackAndQueue<E> {
      * pop - returns first element (object) from queue and remove this object from queue.
      * @return - returns first element (object) from queue. and remove this object from queue.
      */
-    public E pop() {
+    public synchronized E pop() {
         if (this.first == null) {
             throw new HasNotFirstElementException("Queue has not object ... ");
         }
         final Node<E> object = new Node<>(this.first.prev, this.first.item, this.first.next);
         this.first = null;
         this.first = object.next;
+        if (this.first != null) {
+            this.first.prev = null;
+        }
         this.size--;
+        if (this.size == 0) {
+            this.last = null;
+        }
         return object.item;
     }
 
     // search - searches item in Queue and returns to needed count method pop, if search item false returns -1
     /**
      * search - is.
-     * @param item - is.
+     * @param item
+     *
+     * - is.
      * @return is.
      */
     public int search(E item) {

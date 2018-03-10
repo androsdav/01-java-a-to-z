@@ -45,6 +45,7 @@ class SimpleBlockingQueue<E> {
         synchronized (this.lock) {
             while (this.counter >= this.size) {
                 try {
+                    System.out.println("Queue is full ... ");
                     this.lock.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -52,6 +53,7 @@ class SimpleBlockingQueue<E> {
             }
             this.queue.push(object);
             this.counter++;
+            System.out.println("add: " + object + " count = " + this.counter);
             this.lock.notify();
         }
     }
@@ -61,8 +63,8 @@ class SimpleBlockingQueue<E> {
      * @return - returns.
      */
     E get() {
-        final E result;
         synchronized (this.lock) {
+            final E result;
             while (this.queue.empty()) {
                 try {
                     this.lock.wait();
@@ -72,9 +74,10 @@ class SimpleBlockingQueue<E> {
             }
             result = this.queue.pop();
             this.counter--;
+            System.out.println("get: " + result + " count = " + this.counter);
             this.lock.notify();
+            return result;
         }
-        return result;
     }
 
     /**
@@ -84,7 +87,5 @@ class SimpleBlockingQueue<E> {
     SimpleQueue<E> getAll() {
         return this.queue;
     }
-
-
 
 }
