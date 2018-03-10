@@ -130,32 +130,28 @@ public class SimpleArrayList<E> implements SimpleList<E> {
      * @return - returns new iterator for container.
      */
     @Override
-    public synchronized Iterator<E> iterator() {
+    public Iterator<E> iterator() {
         return new SimpleIterator(this.getAll(), this.modCount);
     }
 
     /**
      * SimpleIterator class iterator.
      */
-    @ThreadSafe
     private class SimpleIterator implements Iterator<E> {
 
         /**
          * @param objects - is reference variable to container.
          */
-        @GuardedBy("this")
         private Object[] objects;
 
         /**
          * @param index - is index to cell of array.
          */
-        @GuardedBy("this")
         private int index = 0;
 
         /**
          * @param expectedModCount - expected number of modification.
          */
-        @GuardedBy("this")
         private int expectedModCount;
 
         /**
@@ -173,7 +169,7 @@ public class SimpleArrayList<E> implements SimpleList<E> {
          * @return - returns true if next element is in container or returns false if next element isn`t in container.
          */
         @Override
-        public synchronized boolean hasNext() {
+        public boolean hasNext() {
             return this.index < this.objects.length;
         }
 
@@ -182,7 +178,7 @@ public class SimpleArrayList<E> implements SimpleList<E> {
          * @return - returns next element from collection.
          */
         @Override
-        public synchronized E next() {
+        public E next() {
             if (this.expectedModCount != modCount) {
                 throw new ConcurrentModificationException("ConcurrentModificationException");
             }

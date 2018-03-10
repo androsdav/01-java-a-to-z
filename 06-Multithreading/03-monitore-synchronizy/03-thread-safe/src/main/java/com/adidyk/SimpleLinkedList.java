@@ -180,37 +180,31 @@ public class SimpleLinkedList<E> implements SimpleList<E> {
     /**
      * SimpleIterator class iterator.
      */
-    @ThreadSafe
     private class SimpleIterator implements Iterator<E> {
 
         /**
          * @param object - is first element in container (linked list).
          */
-        @GuardedBy("this")
         private Node<E> object;
 
         /**
          * @param result - is returned element by iterator.
          */
-        @GuardedBy("this")
         private E result;
 
         /**
          * @param size - is number of element in container (linked list).
          */
-        @GuardedBy("this")
         private int size;
 
         /**
          * @param index - is index.
          */
-        @GuardedBy("this")
         private int index;
 
         /**
          * @param expectedModCount - expected number of modification.
          */
-        @GuardedBy("this")
         private int expectedModCount;
 
         /**
@@ -229,8 +223,7 @@ public class SimpleLinkedList<E> implements SimpleList<E> {
          * hasNext - returns true if next element is in container or returns false if next element isn`t in container.
          * @return - returns true if next element is in container or returns false if next element isn`t in container.
          */
-        @Override
-        public synchronized boolean hasNext() {
+        public boolean hasNext() {
             return (this.index < this.size);
         }
 
@@ -238,8 +231,7 @@ public class SimpleLinkedList<E> implements SimpleList<E> {
          * next - returns next element from collection.
          * @return - returns next element from collection.
          */
-        @Override
-        public synchronized E next() {
+        public E next() {
             if (this.expectedModCount == modCount) {
                 this.result = this.object.value;
                 this.object = this.object.next;
@@ -253,7 +245,6 @@ public class SimpleLinkedList<E> implements SimpleList<E> {
         /**
          * remove - isn`t nothing.
          */
-        @Override
         public void remove() {
         }
 
