@@ -74,18 +74,14 @@ class SimpleBlockingQueue<E> {
             }
             result = this.queue.pop();
             this.counter--;
-            System.out.println("get: " + result + " count = " + this.counter);
+            //System.out.println("get: " + result + " count = " + this.counter);
             this.lock.notify();
             return result;
         }
     }
 
-    /**
-     *
-     * @return - returns.
-     */
-    SimpleQueue<E> getAll() {
-        return this.queue;
-    }
+    //private String infoAdd() {
+    //    return String.format("%s", "add: -> ", );
+    //}
 
 }

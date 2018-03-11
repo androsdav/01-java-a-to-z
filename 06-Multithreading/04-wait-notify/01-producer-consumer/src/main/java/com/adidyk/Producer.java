@@ -25,17 +25,11 @@ public class Producer implements Runnable {
      */
     @Override
     public void run() {
-        for (int index = 0; index < 1000; index++) {
+        for (int index = 0; index < 20; index++) {
             String id = String.valueOf(index);
             String name = String.valueOf("book" + index);
             this.queue.add(new Product(id, name));
         }
-        //this.queue.add(new Product("1", "book1"));
-        //this.queue.add(new Product("2", "book2"));
-        //this.queue.add(new Product("3", "book3"));
-        //this.queue.add(new Product("4", "book4"));
-        //this.queue.add(new Product("5", "book5"));
-        //this.queue.add(new Product("6", "book6"));
     }
 
 }

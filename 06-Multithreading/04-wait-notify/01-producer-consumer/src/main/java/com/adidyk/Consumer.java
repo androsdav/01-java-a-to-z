@@ -25,8 +25,9 @@ public class Consumer implements Runnable {
      */
     @Override
     public void run() {
-        for (int index = 0; index < 1000; index++) {
-            this.queue.get();
+        for (int index = 0; index < 20; index++) {
+            //System.out.println("get: " + result + " count = " + this.counter);
+            System.out.println("get: " + this.queue.get());
         }
     }
 
