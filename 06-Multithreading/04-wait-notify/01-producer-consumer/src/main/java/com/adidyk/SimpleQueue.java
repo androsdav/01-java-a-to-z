@@ -3,10 +3,10 @@ package com.adidyk;
 import java.util.Iterator;
 
 /**
- * SimpleArrayList is container based on an array (dynamic container).
+ * SimpleQueue is container based on an queue.
  * @param <E> - is type objects (generic).
  * @author Didyk Andrey (androsdav@bigmir.net).
- * @since 17.02.2018.
+ * @since 03.03.2018.
  * @version 1.0.
  */
 class SimpleQueue<E> implements StackAndQueue<E> {
@@ -30,7 +30,7 @@ class SimpleQueue<E> implements StackAndQueue<E> {
      * empty - returns true if queue is empty, and returns false if queue is not empty.
      * @return - returns true if queue is empty, and returns false if queue is not empty.
      */
-    public synchronized boolean empty() {
+    public boolean empty() {
         boolean queueEmpty = false;
         if (this.first == null) {
             queueEmpty = true;
@@ -41,9 +41,9 @@ class SimpleQueue<E> implements StackAndQueue<E> {
     /**
      * push - adds object to end of queue.
      * @param object - is object.
-     * @return - returns added object..
+     * @return - returns added object.
      */
-    public synchronized E push(E object) {
+    public E push(E object) {
         Node<E> oldNode = this.last;
         Node<E> newNode = new Node<>(oldNode, object, null);
         this.last = newNode;
@@ -60,7 +60,7 @@ class SimpleQueue<E> implements StackAndQueue<E> {
      * peek - returns first element (object) from queue.
      * @return - returns first element (object) from queue.
      */
-    public synchronized E peek() {
+    public E peek() {
         final Node<E> object = this.first;
         if (object == null) {
             throw new HasNotFirstElementException("Queue has not object ... ");
@@ -68,12 +68,11 @@ class SimpleQueue<E> implements StackAndQueue<E> {
         return object.item;
     }
 
-
     /**
      * pop - returns first element (object) from queue and remove this object from queue.
-     * @return - returns first element (object) from queue. and remove this object from queue.
+     * @return - returns first element (object) from queue and remove this object from queue.
      */
-    public synchronized E pop() {
+    public E pop() {
         if (this.first == null) {
             throw new HasNotFirstElementException("Queue has not object ... ");
         }
@@ -90,13 +89,10 @@ class SimpleQueue<E> implements StackAndQueue<E> {
         return object.item;
     }
 
-    // search - searches item in Queue and returns to needed count method pop, if search item false returns -1
     /**
-     * search - is.
-     * @param item
-     *
-     * - is.
-     * @return is.
+     * search - searches item in queue and returns to needed count method pop, if search item false returns -1.
+     * @param item - is object.
+     * @return - returns to needed count method pop, if search item false return -1.
      */
     public int search(E item) {
         Node<E> object = this.first;
@@ -117,59 +113,61 @@ class SimpleQueue<E> implements StackAndQueue<E> {
         return count;
     }
 
-    // size - return size queue
     /**
-     * size - is.
-     * @return is.
+     * size - returns number of element of queue.
+     * @return - returns number of element of queue.
      */
-    public int size() {
+    int size() {
         return this.size;
     }
 
     /**
-     *
-     * @param o is.
-     * @return is.
+     * equals - return boolean result.
+     * @param obj - object of class Object.
+     * @return - returns boolean result "true" if container is same, and returns "false" - isn`t same.
      */
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
         }
-        if (!(o instanceof SimpleQueue)) {
+        if (!(obj instanceof SimpleQueue)) {
             return false;
         }
-        SimpleQueue<?> that = (SimpleQueue<?>) o;
+        SimpleQueue<?> that = (SimpleQueue<?>) obj;
         if (size != that.size) {
             return false;
         }
-        return first.equals(that.first);
+        if (!first.equals(that.first)) {
+            return false;
+        }
+        return last.equals(that.last);
     }
 
     /**
-     *
-     * @return is.
+     * hashCode - returns hashCode for container.
+     * @return - returns hashcode for container.
      */
     @Override
     public int hashCode() {
         int result = first.hashCode();
+        result = 31 * result + last.hashCode();
         result = 31 * result + size;
         return result;
     }
 
     /**
-     *
-     * @return is.
+     * toString - returns string format.
+     * @return - returns all information in string format.
      */
     @Override
     public String toString() {
         return String.format("%s%s%s%s%s%s", "SimpleQueue{", "first=", this.first, ", size=", this.size, "}");
     }
 
-
     /**
-     *
-     * @return is.
+     * iterator - returns new iterator for container.
+     * @return - returns new iterator for container.
      */
     @Override
     public Iterator<E> iterator() {
@@ -177,34 +175,34 @@ class SimpleQueue<E> implements StackAndQueue<E> {
     }
 
     /**
-     * is.
+     * SimpleIterator class iterator.
      */
     private class SimpleIterator implements Iterator<E> {
 
         /**
-         * is.
+         * @param object - is first element in container (linked list).
          */
         private Node<E> object;
 
         /**
-         * is.
+         * @param result - is returned element by iterator.
          */
         private E result;
 
         /**
-         *
+         * @param size - is number of element in container (queue).
          */
         private int size;
 
         /**
-         * is.
+         * @param index - is index.
          */
         private int index;
 
         /**
-         *
-         * @param first is.
-         * @param size is.
+         * SimpleIterator - constructor.
+         * @param first - is first element in container (queue).
+         * @param size - is number of element in container (queue).
          */
         SimpleIterator(Node<E> first, int size) {
             this.object = first;
@@ -212,8 +210,8 @@ class SimpleQueue<E> implements StackAndQueue<E> {
         }
 
         /**
-         *
-         * @return is.
+         * hasNext - returns true if next element is in container or returns false if next element isn`t in container.
+         * @return - returns true if next element is in container or returns false if next element isn`t in container.
          */
         @Override
         public boolean hasNext() {
@@ -221,8 +219,8 @@ class SimpleQueue<E> implements StackAndQueue<E> {
         }
 
         /**
-         *
-         * @return is.
+         * next - returns next element from collection.
+         * @return - returns next element from collection.
          */
         @Override
         public E next() {
@@ -233,7 +231,7 @@ class SimpleQueue<E> implements StackAndQueue<E> {
         }
 
         /**
-         * is.
+         * remove - isn`t nothing.
          */
         @Override
         public void remove() {
@@ -242,36 +240,66 @@ class SimpleQueue<E> implements StackAndQueue<E> {
     }
 
     /**
-     *
-     * @param <E> is.
+     * Node class using for created object of class Node in container (queue). Object of class Node
+     * has next parameters:
+     * -> prev  - link on previous object of class Node;
+     * -> value - value its generic type <E>;
+     * -> next  - link on next object of class Node.
+     * @param <E> - is type objects (generic).
      */
     private static class Node<E> {
 
         /**
-         * is.
+         * @param prev - link on previous object of class Node.
          */
         private Node<E> prev;
 
         /**
-         * is.
+         * @param item - value its generic type <E>.
          */
         private E item;
 
-        /***
-         * is.
+        /**
+         * @param next - link on next object of class Node.
          */
         private Node<E> next;
 
         /**
-         *
-         * @param prev is.
-         * @param item is.
-         * @param next is.
+         * Node - constructor.
+         * @param prev - link on previous object of class Node.
+         * @param item - value its generic type <E>.
+         * @param next - link on next object of class Node.
          */
         Node(Node<E> prev, E item, Node<E> next) {
             this.prev = prev;
             this.item = item;
             this.next = next;
+        }
+
+        /**
+         * equals - return boolean result.
+         * @param obj - object of class Object.
+         * @return - returns boolean result "true" if object of class Node is same, and returns "false" - isn`t same.
+         */
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (!(obj instanceof Node)) {
+                return false;
+            }
+            Node<?> node = (Node<?>) obj;
+            return item.equals(node.item);
+        }
+
+        /**
+         * hashCode - returns hashCode for container.
+         * @return - returns hashcode for container.
+         */
+        @Override
+        public int hashCode() {
+            return item.hashCode();
         }
 
     }

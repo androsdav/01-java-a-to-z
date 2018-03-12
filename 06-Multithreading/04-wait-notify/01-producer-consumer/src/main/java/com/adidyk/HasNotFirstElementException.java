@@ -3,7 +3,7 @@ package com.adidyk;
 /**
  * Class HasNotFirstElementException generate exception.
  * @author Didyk Andrey (androsdav@bigmir.net).
- * @since 17.02.2018.
+ * @since 03.03.2018.
  * @version 1.0.
  */
 class HasNotFirstElementException extends RuntimeException {
