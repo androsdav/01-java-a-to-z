@@ -7,7 +7,6 @@ package com.adidyk;
  */
 public class ThreadWork extends Thread {
 
-
     /**
      * run - is run.
      */
@@ -15,6 +14,5 @@ public class ThreadWork extends Thread {
     public void run() {
         System.out.println("thread start ...");
         System.out.println("thread finish ...");
-
     }
 }

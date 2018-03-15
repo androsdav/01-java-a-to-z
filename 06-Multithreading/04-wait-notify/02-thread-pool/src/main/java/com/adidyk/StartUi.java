@@ -16,6 +16,8 @@ public class StartUi {
     public static void main(String[] arg) {
         int core = Runtime.getRuntime().availableProcessors();
         System.out.println(core);
+        ThreadPool pool = new ThreadPool();
+        pool.execute();
     }
 
 }

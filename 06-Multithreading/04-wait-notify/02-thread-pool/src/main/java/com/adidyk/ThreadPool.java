@@ -5,7 +5,7 @@ package com.adidyk;
  * @since 13.03.2018.
  * @version 1.0.
  */
-public class ThreadPool {
+class ThreadPool {
 
     /**
      * @param - is thread.
@@ -15,14 +15,17 @@ public class ThreadPool {
     /**
      * ThreadPoll - constructor.
      */
-    public ThreadPool() {
-        thread = new ThreadWork();
+    ThreadPool() {
+        this.thread = new ThreadWork();
     }
 
     /**
      * execute - is execute.
      */
-    public void execute() {
-        this.thread
+    void execute() {
+        for (int index = 0; index < 10; index++) {
+            this.thread.start();
+        }
     }
+
 }
