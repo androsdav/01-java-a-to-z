@@ -1,0 +1,20 @@
+package com.adidyk;
+
+/** Class StartUi for create jar file and run program (Producer-Consumer).
+ * @author Didyk Andrey (androsdav@bigmir.net).
+ * @since 13.03.2018.
+ * @version 1.0.
+ */
+public class ThreadWork extends Thread {
+
+
+    /**
+     * run - is run.
+     */
+    @Override
+    public void run() {
+        System.out.println("thread start ...");
+        System.out.println("thread finish ...");
+
+    }
+}
