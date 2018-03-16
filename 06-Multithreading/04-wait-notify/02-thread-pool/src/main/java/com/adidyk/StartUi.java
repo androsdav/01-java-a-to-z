@@ -1,7 +1,5 @@
 package com.adidyk;
 
-//import java.util.concurrent.ThreadPoolExecutor;
-
 /** Class StartUi for create jar file and run program (Producer-Consumer).
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 13.03.2018.
@@ -15,9 +13,13 @@ public class StartUi {
      */
     public static void main(String[] arg) {
         int core = Runtime.getRuntime().availableProcessors();
-        System.out.println(core);
-        ThreadPool pool = new ThreadPool();
-        pool.execute();
-    }
+        //System.out.println(core);
+        ThreadPool pool = new ThreadPool(5);
+        for (int index = 0; index < 20; index++) {
+            pool.add("work" + index);
+        }
+
+//        pool.threadInterapted();
+        }
 
 }
