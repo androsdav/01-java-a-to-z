@@ -38,7 +38,7 @@ class ThreadPool {
      */
     private void start() {
         for (int index = 0; index < this.quantity; index++) {
-            this.thread[index] = new Thread(new ThreadWork(this.queue, "thread" + index));
+            this.thread[index] = new Thread(new ThreadWork(this.queue, "thread-" + index));
             this.thread[index].start();
         }
     }
@@ -58,7 +58,16 @@ class ThreadPool {
      * threadIntercepted - is.
      */
     void finish() {
+        System.out.println("finish.... ");
+        /*
         synchronized (this.queue) {
+            for (int index = 0; index < this.quantity; index++) {
+                this.thread[index].interrupt();
+            }
+            this.queue.notifyAll();
+        }
+            //System.out.println("notifyAll finish ... ");
+            /*
             while (!this.queue.empty()) {
                 try {
                     this.queue.wait();
@@ -66,8 +75,8 @@ class ThreadPool {
                     e.printStackTrace();
                 }
             }
+            */
 
-        }
 
       //  this.thread.interrupt();
     }

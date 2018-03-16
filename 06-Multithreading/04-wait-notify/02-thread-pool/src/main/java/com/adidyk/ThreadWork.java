@@ -42,8 +42,9 @@ public class ThreadWork implements Runnable {
                     }
                 }
                 String result = this.queue.pop();
-                System.out.println(this.name + " - > " + result);
+                System.out.println(this.name + " -> " + result);
             }
         }
     }
+
 }

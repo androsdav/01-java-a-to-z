@@ -14,10 +14,18 @@ public class StartUi {
     public static void main(String[] arg) {
         int core = Runtime.getRuntime().availableProcessors();
         //System.out.println(core);
-        ThreadPool pool = new ThreadPool(5);
+        ThreadPool pool = new ThreadPool(3);
         for (int index = 0; index < 20; index++) {
-            pool.add("work" + index);
+            pool.add("work-" + index);
         }
+        /*
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        */
+        pool.finish();
 
 //        pool.threadInterapted();
         }
