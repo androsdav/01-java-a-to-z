@@ -23,9 +23,7 @@ class ThreadPool {
      * execute - is execute.
      */
     void execute() {
-        for (int index = 0; index < 10; index++) {
-            this.thread.start();
-        }
+        this.thread.start();
     }
 
 }
