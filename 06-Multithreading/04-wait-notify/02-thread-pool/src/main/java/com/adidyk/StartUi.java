@@ -1,6 +1,6 @@
 package com.adidyk;
 
-/** Class StartUi for create jar file and run program (Producer-Consumer).
+/** Class StartUi for create jar file and run program (Thread-Pool).
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 13.03.2018.
  * @version 1.0.
@@ -8,26 +8,16 @@ package com.adidyk;
 public class StartUi {
 
     /**
-     * main - run program, create Producer-Thread and Consumer-Thread.
+     * main - runs program, creates Thread-Pool by number core of processor and adds work to queue,
+     * after this completes work.
      * @param arg - is nothing.
      */
     public static void main(String[] arg) {
-        int core = Runtime.getRuntime().availableProcessors();
-        //System.out.println(core);
-        ThreadPool pool = new ThreadPool(3);
-        for (int index = 0; index < 20; index++) {
-            pool.add("work-" + index);
+        ThreadPool pool = new ThreadPool(Runtime.getRuntime().availableProcessors());
+        for (int index = 0; index < 200; index++) {
+            pool.add(new Work(index + 1, "work"));
         }
-        /*
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        */
-        pool.finish();
-
-//        pool.threadInterapted();
-        }
+        pool.shutdown();
+    }
 
 }

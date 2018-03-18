@@ -1,6 +1,7 @@
 package com.adidyk;
 
-/** Class StartUi for create jar file and run program (Producer-Consumer).
+/** Class ThreadPool creates thread poll by number core of processor
+ * and starts thread pool.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 13.03.2018.
  * @version 1.0.
@@ -8,19 +9,24 @@ package com.adidyk;
 class ThreadPool {
 
     /**
-     * @param - is thread.
+     * @param - is link variable to array thread.
      */
     private Thread[] thread;
 
     /**
      * @param queue - is.
      */
-    private final SimpleQueue<String> queue;
+    private final SimpleQueue<Work> queue;
 
     /**
      * @param quantity - is.
      */
     private int quantity;
+
+    /**
+     * @param isRunning =- is running.
+     */
+    private volatile boolean isRunning = true;
 
     /**
      * ThreadPoll - constructor.
@@ -38,47 +44,71 @@ class ThreadPool {
      */
     private void start() {
         for (int index = 0; index < this.quantity; index++) {
-            this.thread[index] = new Thread(new ThreadWork(this.queue, "thread-" + index));
+            this.thread[index] = new Thread(new ThreadWork("thread-" + index));
             this.thread[index].start();
         }
     }
 
     /**
      * add - is add.
-     * @param string - is string.
+     * @param work - is string.
      */
-    void add(String string) {
-        synchronized (this.queue) {
-            this.queue.push(string);
-            this.queue.notifyAll();
+    void add(Work work) {
+        if (this.isRunning) {
+            synchronized (this.queue) {
+                this.queue.push(work);
+                this.queue.notifyAll();
+            }
         }
     }
 
     /**
      * threadIntercepted - is.
      */
-    void finish() {
-        System.out.println("finish.... ");
-        /*
-        synchronized (this.queue) {
-            for (int index = 0; index < this.quantity; index++) {
-                this.thread[index].interrupt();
-            }
-            this.queue.notifyAll();
+    void shutdown() {
+        this.isRunning = false;
+    }
+
+    /** Class StartUi for create jar file and run program (Producer-Consumer).
+     * @author Didyk Andrey (androsdav@bigmir.net).
+     * @since 13.03.2018.
+     * @version 1.0.
+     */
+    private class ThreadWork implements Runnable {
+
+        /**
+         * @param name - is name.
+         */
+        private final String name;
+
+        /**
+         * ThreadWork - constructor.
+         * @param name - is string.
+         */
+        ThreadWork(String name) {
+            this.name = name;
         }
-            //System.out.println("notifyAll finish ... ");
-            /*
-            while (!this.queue.empty()) {
-                try {
-                    this.queue.wait();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+
+        /**
+         * run - is run.
+         */
+        @Override
+        public void run() {
+            while (isRunning) {
+                synchronized (queue) {
+                    while (queue.empty() && isRunning) {
+                        try {
+                            queue.wait();
+                        } catch (InterruptedException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                    if (!queue.empty()) {
+                        System.out.println(this.name + " -> " + queue.pop().toString());
+                    }
                 }
             }
-            */
-
-
-      //  this.thread.interrupt();
+        }
     }
 
 }
