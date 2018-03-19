@@ -40,7 +40,7 @@ class ThreadPool {
     }
 
     /**
-     * start - is run.
+     * start - is run. haltura
      */
     private void start() {
         for (int index = 0; index < this.quantity; index++) {
