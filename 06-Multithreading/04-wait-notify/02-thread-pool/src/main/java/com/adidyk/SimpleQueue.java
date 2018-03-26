@@ -6,7 +6,7 @@ import java.util.Iterator;
  * SimpleQueue is container based on an queue.
  * @param <E> - is type objects (generic).
  * @author Didyk Andrey (androsdav@bigmir.net).
- * @since 03.03.2018.
+ * @since 13.03.2018.
  * @version 1.0.
  */
 class SimpleQueue<E> implements StackAndQueue<E> {
@@ -135,13 +135,7 @@ class SimpleQueue<E> implements StackAndQueue<E> {
             return false;
         }
         SimpleQueue<?> that = (SimpleQueue<?>) obj;
-        if (size != that.size) {
-            return false;
-        }
-        if (!first.equals(that.first)) {
-            return false;
-        }
-        return last.equals(that.last);
+        return this.size == that.size && this.first.equals(that.first) && this.last.equals(that.last);
     }
 
     /**
@@ -240,8 +234,8 @@ class SimpleQueue<E> implements StackAndQueue<E> {
     }
 
     /**
-     * Node class using for created object of class Node in container (queue). Object of class Node
-     * has next parameters:
+     * Node class using for created object of class Node in container (queue).
+     * Object of class Node has next parameters:
      * -> prev  - link on previous object of class Node;
      * -> value - value its generic type <E>;
      * -> next  - link on next object of class Node.
@@ -290,7 +284,7 @@ class SimpleQueue<E> implements StackAndQueue<E> {
                 return false;
             }
             Node<?> node = (Node<?>) obj;
-            return item.equals(node.item);
+            return this.item.equals(node.item);
         }
 
         /**
@@ -299,7 +293,7 @@ class SimpleQueue<E> implements StackAndQueue<E> {
          */
         @Override
         public int hashCode() {
-            return item.hashCode();
+            return this.item.hashCode();
         }
 
     }
