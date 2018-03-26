@@ -18,6 +18,7 @@
          <modules>
                   <module>01-producer-consumer</module>
                   <module>02-thread-pool</module>
+                  <module>03-lock</module>
          </modules>
 
 </project>
