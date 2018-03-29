@@ -1,10 +1,5 @@
 package com.adidyk;
 
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-
 /** Class StartUi for create jar file and run program (Thread-Pool).
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 26.03.2018.
@@ -16,41 +11,24 @@ public class StartUi {
      * main - runs program, creates Thread-Pool by number core of processor and adds work to queue,
      * after this completes work.
      * @param arg - is nothing.
+     * @throws InterruptedException -is.
      */
-    public static void main(String[] arg) {
+    public static void main(String[] arg) throws InterruptedException {
         System.out.println("Lock ...");
+        MyLock lock = new MyLock();
+        Thread first = new Thread(new MyThread("first", lock));
+        Thread second = new Thread(new MyThread("second", lock));
+        // test
+        first.start();
+        lock.lock();
+        //lock.unlock();
+        //second.start();
+        //lock.unlock();
+//        second.start();
+
+
         //Lock lock = new ReentrantLock();
-        Lock lock = new Lock() {
-            @Override
-            public void lock() {
 
-            }
-
-            @Override
-            public void lockInterruptibly() throws InterruptedException {
-
-            }
-
-            @Override
-            public boolean tryLock() {
-                return false;
-            }
-
-            @Override
-            public boolean tryLock(long time, TimeUnit unit) throws InterruptedException {
-                return false;
-            }
-
-            @Override
-            public void unlock() {
-
-            }
-
-            @Override
-            public Condition newCondition() {
-                return null;
-            }
-        }
         /*
         public class Lock {
 
