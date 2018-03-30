@@ -42,8 +42,8 @@ public class MyThreadSecond implements Runnable {
         try {
             System.out.println(" Thread-" + this.name + " -> start ...   ");
             //this.lock.lock(this.name);
-            this.lock.unlock(this.name);
-            Thread.sleep(1500);
+            Thread.sleep(5);
+            //this.lock.unlock(this.name);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
