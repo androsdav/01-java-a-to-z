@@ -20,24 +20,26 @@ class MyLock {
     /**
      * lock - is lock.
      * @throws InterruptedException - is.
+     * @param name - is name.
      */
-    synchronized void lock() throws InterruptedException {
-        //while (isLocked) {
-            System.out.println("lock start");
+    synchronized void lock(String name) throws InterruptedException {
+        while (this.isLocked) {
+            System.out.println(" - [info]: Thread-" + name + " object is lock, wait ...");
             wait();
-            System.out.println("lock finish");
-        //}
+            //System.out.println(" - [info]: Thread-" + name + " object is not lock, go ...");
+        }
+        System.out.println(" - [info]: Thread-" + name + " object is not lock, go ...");
         isLocked = true;
     }
 
     /**
      * unlock - is unlock.
+     * @param name - is name.
      */
-    synchronized void unlock() {
+    synchronized void unlock(String name) {
         isLocked = false;
-        System.out.println("unlock start");
+        System.out.println(" - [info]: Thread-" + name + " lock finish ...");
         notify();
-        System.out.println("unlock finish");
     }
 
 }

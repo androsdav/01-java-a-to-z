@@ -16,11 +16,16 @@ public class StartUi {
     public static void main(String[] arg) throws InterruptedException {
         System.out.println("Lock ...");
         MyLock lock = new MyLock();
-        Thread first = new Thread(new MyThread("first", lock));
-        Thread second = new Thread(new MyThread("second", lock));
+        Counter counter = new Counter();
+        Thread first = new Thread(new MyThreadFirst("first", lock, counter));
+        Thread second = new Thread(new MyThreadSecond("second", lock, counter));
         // test
+        //lock.lock();
         first.start();
-        lock.lock();
+        second.start();
+        Thread.sleep(5000);
+        System.out.println(counter.getCounter());
+        //lock.unlock();
         //lock.unlock();
         //second.start();
         //lock.unlock();
