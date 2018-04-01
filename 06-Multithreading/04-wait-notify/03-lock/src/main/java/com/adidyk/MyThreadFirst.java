@@ -8,14 +8,14 @@ package com.adidyk;
 public class MyThreadFirst implements Runnable {
 
     /**
-     * @param name - is name.
+     * @param thread - is name.
      */
-    private String name;
+    private Thread thread;
 
     /**
      * @param lock - is lock.
      */
-    private MyLock lock;
+    private Locker locker;
 
     /**
      * @param count - is.
@@ -24,13 +24,11 @@ public class MyThreadFirst implements Runnable {
 
     /**
      * NyThread - constructor.
-     * @param name - is name thread.
-     * @param lock - is lock.
+     * @param locker - is lock.
      * @param counter - is lock.
      */
-    MyThreadFirst(String name, MyLock lock, Counter counter) {
-        this.name = name;
-        this.lock = lock;
+    MyThreadFirst(Locker locker, Counter counter) {
+        this.locker = locker;
         this.counter = counter;
     }
 
@@ -39,6 +37,24 @@ public class MyThreadFirst implements Runnable {
      */
     @Override
     public void run() {
+        System.out.println(" " + Thread.currentThread().getName() + " -> start ...");
+        try {
+            this.locker.lock();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        this.counter.addCounter();
+        /*
+        try {
+            this.locker.lock();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        */
+        this.counter.addCounter();
+        this.locker.unlock();
+        System.out.println(" " + Thread.currentThread().getName() + " <- finish ...");
+        /*
         try {
             System.out.println(" Thread-" + this.name + " -> start ...   ");
             this.lock.lock(this.name);
@@ -52,7 +68,7 @@ public class MyThreadFirst implements Runnable {
         //this.counter.addCounter();
         //this.lock.unlock(this.name);
         System.out.println(" Thread-" + this.name + " <- finish ...");
+        */
     }
-
 
 }

@@ -8,14 +8,9 @@ package com.adidyk;
 public class MyThreadSecond implements Runnable {
 
     /**
-     * @param name - is name.
-     */
-    private String name;
-
-    /**
      * @param lock - is lock.
      */
-    private MyLock lock;
+    private Locker locker;
 
     /**
      * @param count - is.
@@ -24,13 +19,11 @@ public class MyThreadSecond implements Runnable {
 
     /**
      * NyThread - constructor.
-     * @param name - is name thread.
-     * @param lock - is lock.
+     * @param locker - is lock.
      * @param counter - is lock.
      */
-    MyThreadSecond(String name, MyLock lock, Counter counter) {
-        this.name = name;
-        this.lock = lock;
+    MyThreadSecond(Locker locker, Counter counter) {
+        this.locker = locker;
         this.counter = counter;
     }
 
@@ -39,17 +32,29 @@ public class MyThreadSecond implements Runnable {
      */
     @Override
     public void run() {
+        System.out.println(" " + Thread.currentThread().getName() + " -> start ...");
         try {
-            System.out.println(" Thread-" + this.name + " -> start ...   ");
-            //this.lock.lock(this.name);
-            Thread.sleep(5);
-            //this.lock.unlock(this.name);
+            this.locker.unlock();
+            this.locker.lock();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        //this.counter.addCounter();
+        this.counter.addCounter();
+        this.locker.unlock();
+        System.out.println(" " + Thread.currentThread().getName() + " <- finish ...");
+        /*
+        try {
+            System.out.println(" Thread-" + this.name + " -> start ...   ");
+            this.lock.lock(this.name);
+            Thread.sleep(500);
+            this.lock.unlock(this.name);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+            this.counter.addCounter();
         //this.lock.unlock(this.name);
         System.out.println(" Thread-" + this.name + " <- finish ...");
+        */
     }
 
 }

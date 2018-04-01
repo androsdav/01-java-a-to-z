@@ -14,17 +14,24 @@ public class StartUi {
      * @throws InterruptedException -is.
      */
     public static void main(String[] arg) throws InterruptedException {
-        System.out.println("Lock ...");
-        MyLock lock = new MyLock();
+        System.out.println(" Lock ...");
+        System.out.println();
+        Locker locker = new Locker();
         Counter counter = new Counter();
-        Thread first = new Thread(new MyThreadFirst("first", lock, counter));
-        Thread second = new Thread(new MyThreadSecond("second", lock, counter));
+        Thread first0 = new Thread(new MyThreadFirst(locker, counter));
+        first0.setName("thread-first-0");
+        Thread first1 = new Thread(new MyThreadFirst(locker, counter));
+        first1.setName("thread-first-1");
+        Thread second = new Thread(new MyThreadSecond(locker, counter));
+        second.setName("thread-second-0");
         // test
         //lock.lock();
-        first.start();
-        second.start();
-        Thread.sleep(5000);
-        System.out.println(counter.getCounter());
+        first0.start();
+        //first1.start();
+        //second.start();
+        Thread.sleep(3000);
+        System.out.println();
+        System.out.println(" result: " + counter.getCounter());
         //lock.unlock();
         //lock.unlock();
         //second.start();
