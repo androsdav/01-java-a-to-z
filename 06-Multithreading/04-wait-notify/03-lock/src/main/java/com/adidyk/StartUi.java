@@ -28,7 +28,7 @@ public class StartUi {
         //lock.lock();
         first0.start();
         //first1.start();
-        //second.start();
+        second.start();
         Thread.sleep(3000);
         System.out.println();
         System.out.println(" result: " + counter.getCounter());

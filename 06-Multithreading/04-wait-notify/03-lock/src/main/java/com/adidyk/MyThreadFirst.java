@@ -52,7 +52,7 @@ public class MyThreadFirst implements Runnable {
         }
         */
         this.counter.addCounter();
-        this.locker.unlock();
+        //this.locker.unlock();
         System.out.println(" " + Thread.currentThread().getName() + " <- finish ...");
         /*
         try {
