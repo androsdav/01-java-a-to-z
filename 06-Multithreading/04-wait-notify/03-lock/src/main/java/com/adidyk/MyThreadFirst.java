@@ -44,6 +44,7 @@ public class MyThreadFirst implements Runnable {
             e.printStackTrace();
         }
         this.counter.addCounter();
+        this.locker.unlock();
         /*
         try {
             this.locker.lock();
@@ -51,7 +52,7 @@ public class MyThreadFirst implements Runnable {
             e.printStackTrace();
         }
         */
-        this.counter.addCounter();
+        //this.counter.addCounter();
         //this.locker.unlock();
         System.out.println(" " + Thread.currentThread().getName() + " <- finish ...");
         /*
