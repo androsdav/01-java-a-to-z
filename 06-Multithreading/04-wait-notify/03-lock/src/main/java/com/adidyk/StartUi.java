@@ -22,13 +22,13 @@ public class StartUi {
         first0.setName("thread-first-0");
         Thread first1 = new Thread(new MyThreadFirst(locker, counter));
         first1.setName("thread-first-1");
-        //Thread second = new Thread(new MyThreadSecond(locker, counter));
-        //second.setName("thread-second-0");
+        Thread second = new Thread(new MyThreadSecond(locker, counter));
+        second.setName("thread-second-0");
         // test
         //lock.lock();
         first0.start();
-        first1.start();
-        //second.start();
+        //first1.start();
+        second.start();
         Thread.sleep(3000);
         System.out.println();
         System.out.println(" result: " + counter.getCounter());

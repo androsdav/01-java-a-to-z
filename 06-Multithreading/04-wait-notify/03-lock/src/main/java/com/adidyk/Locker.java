@@ -28,7 +28,7 @@ class Locker {
      */
     synchronized void lock() throws InterruptedException {
         Thread thread = Thread.currentThread();
-        while (this.isLocked) {
+        while (this.isLocked && this.threadLock != thread) {
             System.out.println("  - [info]: " + thread.getName() + " is lock, wait ...");
             wait();
         }
@@ -42,9 +42,11 @@ class Locker {
      */
     synchronized void unlock() {
         Thread thread = Thread.currentThread();
-        this.isLocked = false;
-        System.out.println("  - [info]: " + thread.getName() + " unlock ...");
-        notify();
+        if (this.threadLock == thread) {
+            this.isLocked = false;
+            System.out.println("  - [info]: " + thread.getName() + " unlock ...");
+            notify();
+        }
     }
 
 }
