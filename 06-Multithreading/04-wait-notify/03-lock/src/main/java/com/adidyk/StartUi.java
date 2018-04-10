@@ -32,14 +32,6 @@ public class StartUi {
         Thread.sleep(3000);
         System.out.println();
         System.out.println(" result: " + counter.getCounter());
-        //lock.unlock();
-        //lock.unlock();
-        //second.start();
-        //lock.unlock();
-//        second.start();
-
-
-        //Lock lock = new ReentrantLock();
 
         /*
         public class Lock {

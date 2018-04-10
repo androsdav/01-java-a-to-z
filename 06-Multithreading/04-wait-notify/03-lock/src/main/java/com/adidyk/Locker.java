@@ -18,11 +18,6 @@ class Locker {
     private Thread threadLock = null;
 
     /**
-     * @param object - is object.
-     */
-    private Object object = new Object();
-
-    /**
      * lock - is lock.
      * @throws InterruptedException - is.
      */
