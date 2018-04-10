@@ -1,22 +1,23 @@
 package com.adidyk;
 
-/** Class StartUi for create jar file and run program (Locker).
+import org.junit.Test;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
+
+/**
+ * Class LockerTest does testing of class Locker.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 26.03.2018.
  * @version 1.0.
  */
-public class StartUi {
+public class LockerTest {
 
     /**
-     * main - runs program, creates three thread: one thread of class MyThreadFirst and two thread
-     * of class MyThreadSecond.
-     * @param arg - is nothing.
+     * lockAndUnlockTest - test methods lock and unlock of class Lock.
      * @throws InterruptedException - is interrupted exception.
      */
-    public static void main(String[] arg) throws InterruptedException {
-        System.out.println();
-        System.out.println(" Locker ...");
-        System.out.println();
+    @Test
+    public void lockAndUnlockTest() throws InterruptedException {
         Locker locker = new Locker();
         Counter counter = new Counter();
         Thread first0 = new Thread(new MyThreadFirst(locker, counter));
@@ -29,8 +30,7 @@ public class StartUi {
         first1.start();
         second.start();
         Thread.sleep(3000);
-        System.out.println();
-        System.out.println(" result: " + counter.getCounter());
+        assertThat(3, is(counter.getCounter()));
     }
 
 }

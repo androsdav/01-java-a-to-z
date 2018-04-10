@@ -1,6 +1,6 @@
 package com.adidyk;
 
-/** Class StartUi for create jar file and run program (Thread-Pool).
+/** Class MyThreadSecond creates thread and grabs lock if lock is free.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 26.03.2018.
  * @version 1.0.
@@ -8,19 +8,19 @@ package com.adidyk;
 public class MyThreadSecond implements Runnable {
 
     /**
-     * @param lock - is lock.
+     * @param locker - is link variable to object of class Locker (locker).
      */
     private Locker locker;
 
     /**
-     * @param count - is.
+     * @param counter - is link variable to object of class Counter (counter).
      */
     private Counter counter;
 
     /**
-     * NyThread - constructor.
-     * @param locker - is lock.
-     * @param counter - is lock.
+     * MyThreadSecond - constructor.
+     * @param locker - is link variable to object of class Locker (locker).
+     * @param counter - is link variable to object of class Counter (counter).
      */
     MyThreadSecond(Locker locker, Counter counter) {
         this.locker = locker;
@@ -28,13 +28,13 @@ public class MyThreadSecond implements Runnable {
     }
 
     /**
-     * run - is run.
+     * run - starts thread, grabs lock if lock is free and increases value
+     * of counter by one, after that frees lock.
      */
     @Override
     public void run() {
         System.out.println(" " + Thread.currentThread().getName() + " -> start ...");
         try {
-            this.locker.unlock();
             this.locker.lock();
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -42,19 +42,6 @@ public class MyThreadSecond implements Runnable {
         this.counter.addCounter();
         this.locker.unlock();
         System.out.println(" " + Thread.currentThread().getName() + " <- finish ...");
-        /*
-        try {
-            System.out.println(" Thread-" + this.name + " -> start ...   ");
-            this.lock.lock(this.name);
-            Thread.sleep(500);
-            this.lock.unlock(this.name);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-            this.counter.addCounter();
-        //this.lock.unlock(this.name);
-        System.out.println(" Thread-" + this.name + " <- finish ...");
-        */
     }
 
 }

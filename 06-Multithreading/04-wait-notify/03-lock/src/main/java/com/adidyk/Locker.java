@@ -1,6 +1,6 @@
 package com.adidyk;
 
-/** Class StartUi for create jar file and run program (Thread-Pool).
+/** Class Locker blocks lock if lock is free and unlock lock if thread has lock.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 26.03.2018.
  * @version 1.0.
@@ -8,18 +8,19 @@ package com.adidyk;
 class Locker {
 
     /**
-     * @param is locked - is.
+     * @param isLocked - if thread has lock isLocked true (used method lock),
+     * if thread has not lock isLocked false (used method unlock).
      */
     private boolean isLocked = false;
 
     /**
-     * @param threadLock - is lock.
+     * @param threadLock - is thread that grabs lock.
      */
     private Thread threadLock = null;
 
     /**
-     * lock - is lock.
-     * @throws InterruptedException - is.
+     * lock - thread grabs lock if lock is free.
+     * @throws InterruptedException - is interrupted exception.
      */
     synchronized void lock() throws InterruptedException {
         Thread thread = Thread.currentThread();
@@ -33,7 +34,7 @@ class Locker {
     }
 
     /**
-     * unlock - is unlock.
+     * unlock - if thread has lock then lock is released.
      */
     synchronized void unlock() {
         Thread thread = Thread.currentThread();
