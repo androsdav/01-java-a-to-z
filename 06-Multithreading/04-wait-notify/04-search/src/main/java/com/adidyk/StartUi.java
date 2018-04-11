@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.attribute.BasicFileAttributes;
+//import java.nio.file.attribute.BasicFileAttributes;
 
 /** Class StartUi for create jar file and run program (Locker).
  * @author Didyk Andrey (androsdav@bigmir.net).
@@ -24,10 +24,15 @@ public class StartUi {
         System.out.println();
         System.out.println(" Searches ...");
         System.out.println();
-        MyFileVisitor visitor = new MyFileVisitor();
-        Path file = Paths.get("root/1/pub");
-        BasicFileAttributes attr = Files.readAttributes(file, BasicFileAttributes.class);
-        visitor.visitFile(file, attr);
+        Path path = Paths.get("root");
+        try {
+            Files.walkFileTree(path, new MyFileVisitor());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        //BasicFileAttributes attr = Files.readAttributes(file, BasicFileAttributes.class);
+        //visitor.visitFile(file, attr);
         /*
         Counter counter = new Counter();
         counter.addCounter();
