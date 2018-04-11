@@ -1,5 +1,11 @@
 package com.adidyk;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.attribute.BasicFileAttributes;
+
 /** Class StartUi for create jar file and run program (Locker).
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 11.04.2018.
@@ -12,17 +18,24 @@ public class StartUi {
      * of class MyThreadSecond.
      * @param arg - is nothing.
      * @throws InterruptedException - is interrupted exception.
+     * @throws IOException - is interrupted exception.
      */
-    public static void main(String[] arg) throws InterruptedException {
+    public static void main(String[] arg) throws InterruptedException, IOException {
         System.out.println();
-        System.out.println(" Locker ...");
+        System.out.println(" Searches ...");
         System.out.println();
+        MyFileVisitor visitor = new MyFileVisitor();
+        Path file = Paths.get("root/1/pub");
+        BasicFileAttributes attr = Files.readAttributes(file, BasicFileAttributes.class);
+        visitor.visitFile(file, attr);
+        /*
         Counter counter = new Counter();
         counter.addCounter();
         counter.addCounter();
         counter.addCounter();
         System.out.println();
         System.out.println(" result: " + counter.getCounter());
+        */
     }
 
 }
