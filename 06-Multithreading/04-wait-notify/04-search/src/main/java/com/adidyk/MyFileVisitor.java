@@ -7,6 +7,9 @@ import java.nio.file.FileVisitResult;
 import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.ArrayList;
+import java.util.List;
+
 import static java.nio.file.FileVisitResult.CONTINUE;
 
 /** Class StartUi for create jar file and run program (Locker).
@@ -17,6 +20,11 @@ import static java.nio.file.FileVisitResult.CONTINUE;
 public class MyFileVisitor extends SimpleFileVisitor<Path> {
 
     /**
+     * @list -is list.
+     */
+    private List<String> list = new ArrayList<>();
+
+    /**
      *
      * @param file - is.
      * @param attr - is.
@@ -24,6 +32,7 @@ public class MyFileVisitor extends SimpleFileVisitor<Path> {
      */
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attr) {
+        /*
         if (attr.isSymbolicLink()) {
             System.out.format("Symbolic link: %s ", file);
         } else if (attr.isRegularFile()) {
@@ -31,7 +40,11 @@ public class MyFileVisitor extends SimpleFileVisitor<Path> {
         } else {
             System.out.format("Other: %s ", file);
         }
-        System.out.println("(" + attr.size() + "bytes)");
+        */
+        System.out.println(file.getFileName());
+        //file.getFileName();
+        //this.list = file.;
+        System.out.println("(" + attr.size() + "bytes)" + attr.lastModifiedTime());
         return CONTINUE;
     }
 
