@@ -42,9 +42,11 @@ public class MyFileVisitor extends SimpleFileVisitor<Path> {
         }
         */
         System.out.println(file.getFileName());
+        String temp = String.valueOf(file.getFileName());
+        System.out.println(temp);
         //file.getFileName();
         //this.list = file.;
-        System.out.println("(" + attr.size() + "bytes)" + attr.lastModifiedTime());
+        //System.out.println("(" + attr.size() + "bytes)" + attr.lastModifiedTime());
         return CONTINUE;
     }
 
