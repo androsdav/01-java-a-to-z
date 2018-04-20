@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 //import java.nio.file.attribute.BasicFileAttributes;
 
 /** Class StartUi for create jar file and run program (Locker).
@@ -25,11 +27,17 @@ public class StartUi {
         System.out.println(" Searches ...");
         System.out.println();
         Path path = Paths.get("root");
+        /*
         try {
             Files.walkFileTree(path, new MyFileVisitor());
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+        */
+        List<String> extension = new ArrayList<>();
+        extension.add("txt");
+        ParallelSearch parallelSearch = new ParallelSearch(String.valueOf(path), "test", extension);
+        parallelSearch.init();
 
         //BasicFileAttributes attr = Files.readAttributes(file, BasicFileAttributes.class);
         //visitor.visitFile(file, attr);

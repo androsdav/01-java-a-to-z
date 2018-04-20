@@ -1,5 +1,7 @@
 package com.adidyk;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 
 /** Class StartUi for create jar file and run program (Locker).
@@ -25,7 +27,7 @@ public class ParallelSearch {
     private List<String> extension;
 
     /**
-     * ParallelSearch -
+     * ParallelSearch - constructor.
      * @param root - path to folder from which needs to search.
      * @param text - search text.
      * @param extension - extensions of files in which needs to do a search.
@@ -34,6 +36,11 @@ public class ParallelSearch {
         this.root = root;
         this.text = text;
         this.extension = extension;
+    }
+
+    public void init() {
+        Thread search = new Thread(new Search());
+        search.start();
     }
 
     /** Class StartUi for create jar file and run program (Locker).
@@ -48,6 +55,11 @@ public class ParallelSearch {
          */
         @Override
         public void run() {
+            try {
+                Files.walkFileTree(root, new MyFileVisitor());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
 
         }
     }
