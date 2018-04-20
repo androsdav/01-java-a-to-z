@@ -48,12 +48,12 @@ public class MyFileVisitor extends SimpleFileVisitor<Path> {
      */
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attr) {
-        for (String item : this.list) {
-            PathMatcher matcher = FileSystems.getDefault().getPathMatcher(item);
+       // for (String item : this.list) {
+            PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:*.java");
             if (matcher.matches(file.getFileName())) {
                 System.out.println("Java file: " + file.getFileName());
             }
-        }
+       // }
 
         /*
         if (attr.isSymbolicLink()) {

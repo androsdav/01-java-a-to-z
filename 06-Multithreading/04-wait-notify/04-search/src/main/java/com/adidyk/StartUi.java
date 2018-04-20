@@ -29,7 +29,7 @@ public class StartUi {
         System.out.println(" Searches ...");
         System.out.println();
         String root = "root";
-        String text = "text";
+        String text = "glob:*.java";
         List<String> extension = new ArrayList<>();
         extension.add("txt");
         ParallelSearch parallelSearch = new ParallelSearch(root, text, extension);
