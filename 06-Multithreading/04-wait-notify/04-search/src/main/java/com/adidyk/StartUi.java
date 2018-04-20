@@ -1,11 +1,13 @@
 package com.adidyk;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+//import java.nio.file.Files;
+//import java.nio.file.Path;
+//import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+//import java.util.ArrayList;
+//import java.util.List;
 //import java.nio.file.attribute.BasicFileAttributes;
 
 /** Class StartUi for create jar file and run program (Locker).
@@ -26,7 +28,22 @@ public class StartUi {
         System.out.println();
         System.out.println(" Searches ...");
         System.out.println();
-        Path path = Paths.get("root");
+        String root = "root";
+        String text = "text";
+        List<String> extension = new ArrayList<>();
+        extension.add("txt");
+        ParallelSearch parallelSearch = new ParallelSearch(root, text, extension);
+        parallelSearch.init();
+
+        //Path path = Paths.get("D:\\Books\\Kapital\\cover.jpg");
+        //System.out.println("0. path:" + path);
+        //System.out.println("1. getFileName:" + path.getFileName());
+        //System.out.println("2. getNameCount:" + path.getNameCount());
+        //System.out.println("3. getName:" + path.getName(2));
+        //System.out.println("3. getName:" + path.getName(2));
+        //String string = "test";
+        //Path test = Paths.get(string);
+
         /*
         try {
             Files.walkFileTree(path, new MyFileVisitor());
@@ -34,6 +51,7 @@ public class StartUi {
             ex.printStackTrace();
         }
         */
+        /*
         List<String> extension = new ArrayList<>();
         extension.add("txt");
         ParallelSearch parallelSearch = new ParallelSearch(String.valueOf(path), "test", extension);
