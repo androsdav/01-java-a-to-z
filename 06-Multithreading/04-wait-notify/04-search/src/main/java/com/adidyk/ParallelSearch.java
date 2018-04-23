@@ -1,13 +1,16 @@
 package com.adidyk;
 
-//import java.io.IOException;
-//import java.nio.file.Files;
-//import java.nio.file.Path;
 import java.io.IOException;
 import java.nio.file.Files;
-//import java.nio.file.Path;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.FileVisitResult;
+import java.nio.file.FileSystems;
+import java.nio.file.PathMatcher;
 import java.util.List;
+import static java.nio.file.FileVisitResult.CONTINUE;
 
 /** Class StartUi for create jar file and run program (Locker).
  * @author Didyk Andrey (androsdav@bigmir.net).
@@ -29,18 +32,18 @@ class ParallelSearch {
     /**
      * @param extension - extensions of files in which needs to do a search.
      */
-    private List<String> extension;
+    private List<String> extensions;
 
     /**
      * ParallelSearch - constructor.
      * @param root - path to folder from which needs to search.
      * @param text - search text.
-     * @param extension - extensions of files in which needs to do a search.
+     * @param extensions - extensions of files in which needs to do a search.
      */
-    ParallelSearch(String root, String text, List<String> extension) {
+    ParallelSearch(String root, String text, List<String> extensions) {
         this.root = root;
         this.text = text;
-        this.extension = extension;
+        this.extensions = extensions;
     }
 
     /**
@@ -64,11 +67,39 @@ class ParallelSearch {
         @Override
         public void run() {
             try {
-                Files.walkFileTree(Paths.get(root), new MyFileVisitor(extension));
+                Files.walkFileTree(Paths.get(root), new MyFileVisitor());
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         }
     }
+
+    /** Class StartUi for create jar file and run program (Locker).
+     * @author Didyk Andrey (androsdav@bigmir.net).
+     * @since 11.04.2018.
+     * @version 1.0.
+     */
+    public class MyFileVisitor extends SimpleFileVisitor<Path> {
+
+         /**
+         *
+         * @param file - is.
+         * @param attr - is.
+         * @return - is.
+         */
+        @Override
+        public FileVisitResult visitFile(Path file, BasicFileAttributes attr) {
+            for (String extension : extensions) {
+                PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:*." + extension);
+                if (matcher.matches(file.getFileName())) {
+                    System.out.println("Java file: " + file.getFileName());
+                    System.out.println("Java file: " + file);
+                }
+            }
+            return CONTINUE;
+        }
+    }
+
+
 
 }

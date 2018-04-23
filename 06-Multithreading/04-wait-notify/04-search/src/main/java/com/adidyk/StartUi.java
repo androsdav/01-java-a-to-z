@@ -30,9 +30,9 @@ public class StartUi {
         System.out.println();
         String root = "root";
         String text = "glob:*.java";
-        List<String> extension = new ArrayList<>();
-        extension.add("txt");
-        ParallelSearch parallelSearch = new ParallelSearch(root, text, extension);
+        List<String> extensions = new ArrayList<>();
+        extensions.add("txt");
+        ParallelSearch parallelSearch = new ParallelSearch(root, text, extensions);
         parallelSearch.init();
 
         //Path path = Paths.get("D:\\Books\\Kapital\\cover.jpg");
