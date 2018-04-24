@@ -92,7 +92,7 @@ class ParallelSearch {
             for (String extension : extensions) {
                 PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:*." + extension);
                 if (matcher.matches(file.getFileName())) {
-                    System.out.println("Java file: " + file.getFileName());
+                    //System.out.println("Java file: " + file.getFileName());
                     System.out.println("Java file: " + file);
                 }
             }

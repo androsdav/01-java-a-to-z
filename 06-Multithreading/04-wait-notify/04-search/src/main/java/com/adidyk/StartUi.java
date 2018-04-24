@@ -31,7 +31,8 @@ public class StartUi {
         String root = "root";
         String text = "glob:*.java";
         List<String> extensions = new ArrayList<>();
-        extensions.add("txt");
+        extensions.add("java");
+        extensions.add("xml");
         ParallelSearch parallelSearch = new ParallelSearch(root, text, extensions);
         parallelSearch.init();
 
