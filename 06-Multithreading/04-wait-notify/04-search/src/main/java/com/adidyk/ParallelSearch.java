@@ -35,6 +35,11 @@ class ParallelSearch {
     private List<String> extensions;
 
     /**
+     * @param paths - is paths.
+     */
+    private SimpleQueue<Path> paths = new SimpleQueue<>();
+
+    /**
      * ParallelSearch - constructor.
      * @param root - path to folder from which needs to search.
      * @param text - search text.
@@ -52,6 +57,14 @@ class ParallelSearch {
     void init() {
         Thread search = new Thread(new Search());
         search.start();
+    }
+
+    /**
+     *
+     * @return path.
+     */
+    SimpleQueue<Path> getPaths() {
+        return this.paths;
     }
 
     /** Class StartUi for create jar file and run program (Locker).
@@ -79,10 +92,10 @@ class ParallelSearch {
      * @since 11.04.2018.
      * @version 1.0.
      */
-    public class MyFileVisitor extends SimpleFileVisitor<Path> {
+    private class MyFileVisitor extends SimpleFileVisitor<Path> {
 
          /**
-         *
+         * visitFile - is.
          * @param file - is.
          * @param attr - is.
          * @return - is.
@@ -92,8 +105,9 @@ class ParallelSearch {
             for (String extension : extensions) {
                 PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:*." + extension);
                 if (matcher.matches(file.getFileName())) {
-                    //System.out.println("Java file: " + file.getFileName());
+                    paths.push(file);
                     System.out.println("Java file: " + file);
+                    //System.out.println("Java file: " + file);
                 }
             }
             return CONTINUE;

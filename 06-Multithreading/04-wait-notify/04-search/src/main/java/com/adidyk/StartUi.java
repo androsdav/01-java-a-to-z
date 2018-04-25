@@ -1,12 +1,13 @@
 package com.adidyk;
 
 import java.io.IOException;
+
 //import java.nio.file.Files;
 //import java.nio.file.Path;
 //import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-//import java.util.ArrayList;
 //import java.util.List;
 //import java.nio.file.attribute.BasicFileAttributes;
 
@@ -35,6 +36,13 @@ public class StartUi {
         extensions.add("xml");
         ParallelSearch parallelSearch = new ParallelSearch(root, text, extensions);
         parallelSearch.init();
+        Thread.sleep(1000);
+        SimpleQueue<Path> result = parallelSearch.getPaths();
+        System.out.println(result);
+
+        for (Path path : parallelSearch.getPaths()) {
+            System.out.println("Path: " + path);
+        }
 
         //Path path = Paths.get("D:\\Books\\Kapital\\cover.jpg");
         //System.out.println("0. path:" + path);
