@@ -49,7 +49,7 @@ class ParallelSearch {
     /**
      * @param finish - is finish.
      */
-    private boolean finish = false;
+    private boolean isRunning = true;
 
     /**
      * ParallelSearch - constructor.
@@ -100,7 +100,10 @@ class ParallelSearch {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            finish = true;
+            synchronized (paths) {
+                isRunning = false;
+                paths.notifyAll();
+            }
         }
     }
 
@@ -116,14 +119,16 @@ class ParallelSearch {
          */
         @Override
         public void run() {
-            while (true) {
+            while (isRunning) {
                 synchronized (paths) {
-                    while (paths.empty()) {
+                    while (paths.empty() && isRunning) {
                         try {
                             paths.wait();
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
+                    }
+                    if (!paths.empty()) {
                         String file = String.valueOf(paths.pop());
                         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
                             System.out.println("path: " + file);
@@ -154,6 +159,7 @@ class ParallelSearch {
          * @param file - is.
          * @param attr - is.
          * @return - is.
+          *
          */
         @Override
         public FileVisitResult visitFile(Path file, BasicFileAttributes attr) {
@@ -164,7 +170,6 @@ class ParallelSearch {
                         paths.push(file);
                         paths.notifyAll();
                     }
-//                    System.out.println("Search result: " + file);
                 }
             }
             return CONTINUE;
