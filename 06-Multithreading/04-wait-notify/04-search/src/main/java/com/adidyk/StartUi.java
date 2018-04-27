@@ -36,47 +36,6 @@ public class StartUi {
         extensions.add("xml");
         ParallelSearch parallelSearch = new ParallelSearch(root, text, extensions);
         parallelSearch.init();
-        //Thread.sleep(1000);
-        /*
-        SimpleQueue<Path> result = parallelSearch.getPaths();
-        System.out.println(result);
-
-        for (Path path : parallelSearch.getPaths()) {
-            System.out.println("Path: " + path);
-        }
-
-        //Path path = Paths.get("D:\\Books\\Kapital\\cover.jpg");
-        //System.out.println("0. path:" + path);
-        //System.out.println("1. getFileName:" + path.getFileName());
-        //System.out.println("2. getNameCount:" + path.getNameCount());
-        //System.out.println("3. getName:" + path.getName(2));
-        //System.out.println("3. getName:" + path.getName(2));
-        //String string = "test";
-        //Path test = Paths.get(string);
-
-        /*
-        try {
-            Files.walkFileTree(path, new MyFileVisitor());
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        */
-        /*
-        List<String> extension = new ArrayList<>();
-        extension.add("txt");
-        ParallelSearch parallelSearch = new ParallelSearch(String.valueOf(path), "test", extension);
-        parallelSearch.init();
-
-        //BasicFileAttributes attr = Files.readAttributes(file, BasicFileAttributes.class);
-        //visitor.visitFile(file, attr);
-        /*
-        Counter counter = new Counter();
-        counter.addCounter();
-        counter.addCounter();
-        counter.addCounter();
-        System.out.println();
-        System.out.println(" result: " + counter.getCounter());
-        */
     }
 
 }
