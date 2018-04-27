@@ -1,6 +1,6 @@
 package com.adidyk;
 
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -56,7 +56,10 @@ class ParallelSearch {
      */
     void init() {
         Thread search = new Thread(new Search());
+        //Thread read = new Thread(new Read());
         search.start();
+        //Thread.sleep();
+        //read.start();
     }
 
     /**
@@ -89,6 +92,31 @@ class ParallelSearch {
 
     /** Class StartUi for create jar file and run program (Locker).
      * @author Didyk Andrey (androsdav@bigmir.net).
+     * @since 20.04.2018.
+     * @version 1.0.
+     */
+    private class Read implements Runnable {
+
+        /**
+         * run - is run.
+         */
+        @Override
+        public void run() {
+            try (BufferedReader br = new BufferedReader(new FileReader(new File(String.valueOf(paths.pop()))))) {
+                String string;
+                while ((string = br.readLine()) != null) {
+                    if (text.contains(string)) {
+                        System.out.println("Result search:" + string);
+                    }
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    /** Class StartUi for create jar file and run program (Locker).
+     * @author Didyk Andrey (androsdav@bigmir.net).
      * @since 11.04.2018.
      * @version 1.0.
      */
@@ -106,8 +134,7 @@ class ParallelSearch {
                 PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:*." + extension);
                 if (matcher.matches(file.getFileName())) {
                     paths.push(file);
-                    System.out.println("Java file: " + file);
-                    //System.out.println("Java file: " + file);
+                    System.out.println("Search result: " + file);
                 }
             }
             return CONTINUE;
