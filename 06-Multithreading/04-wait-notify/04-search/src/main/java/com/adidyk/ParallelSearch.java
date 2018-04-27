@@ -116,7 +116,7 @@ class ParallelSearch {
          */
         @Override
         public void run() {
-            while (!finish) {
+            while (true) {
                 synchronized (paths) {
                     while (paths.empty()) {
                         try {
@@ -124,8 +124,9 @@ class ParallelSearch {
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        try (BufferedReader br = new BufferedReader(new FileReader(new File(String.valueOf(paths.pop()))))) {
-                            System.out.println("path: " + paths);
+                        String file = String.valueOf(paths.pop());
+                        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+                            System.out.println("path: " + file);
                             String string;
                             while ((string = br.readLine()) != null) {
                                 if (string.contains(text)) {
