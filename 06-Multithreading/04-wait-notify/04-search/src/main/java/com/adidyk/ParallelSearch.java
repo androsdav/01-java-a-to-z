@@ -9,6 +9,8 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.FileVisitResult;
 import java.nio.file.FileSystems;
 import java.nio.file.PathMatcher;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import static java.nio.file.FileVisitResult.CONTINUE;
 
@@ -40,6 +42,11 @@ class ParallelSearch {
     private SimpleQueue<Path> paths = new SimpleQueue<>();
 
     /**
+     * @param files - result.
+     */
+    private List<Path> files = new ArrayList<>();
+
+    /**
      * ParallelSearch - constructor.
      * @param root - path to folder from which needs to search.
      * @param text - search text.
@@ -53,13 +60,14 @@ class ParallelSearch {
 
     /**
      * init - initialisation.
+     * @throws InterruptedException - is exception.
      */
-    void init() {
+    void init() throws InterruptedException {
         Thread search = new Thread(new Search());
-        //Thread read = new Thread(new Read());
+        Thread read = new Thread(new Read());
         search.start();
-        //Thread.sleep();
-        //read.start();
+        Thread.sleep(4000);
+        read.start();
     }
 
     /**
@@ -105,7 +113,8 @@ class ParallelSearch {
             try (BufferedReader br = new BufferedReader(new FileReader(new File(String.valueOf(paths.pop()))))) {
                 String string;
                 while ((string = br.readLine()) != null) {
-                    if (text.contains(string)) {
+                    //System.out.println(string);
+                    if (string.contains(text)) {
                         System.out.println("Result search:" + string);
                     }
                 }

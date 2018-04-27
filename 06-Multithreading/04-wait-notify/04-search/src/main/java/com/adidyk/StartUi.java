@@ -5,7 +5,7 @@ import java.io.IOException;
 //import java.nio.file.Files;
 //import java.nio.file.Path;
 //import java.nio.file.Paths;
-import java.nio.file.Path;
+//import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 //import java.util.List;
@@ -30,13 +30,14 @@ public class StartUi {
         System.out.println(" Searches ...");
         System.out.println();
         String root = "root";
-        String text = "glob:*.java";
+        String text = "andros";
         List<String> extensions = new ArrayList<>();
         extensions.add("java");
         extensions.add("xml");
         ParallelSearch parallelSearch = new ParallelSearch(root, text, extensions);
         parallelSearch.init();
-        Thread.sleep(1000);
+        //Thread.sleep(1000);
+        /*
         SimpleQueue<Path> result = parallelSearch.getPaths();
         System.out.println(result);
 
