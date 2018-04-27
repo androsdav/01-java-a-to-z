@@ -10,7 +10,7 @@ import java.nio.file.FileVisitResult;
 import java.nio.file.FileSystems;
 import java.nio.file.PathMatcher;
 import java.util.ArrayList;
-import java.util.LinkedList;
+//import java.util.LinkedList;
 import java.util.List;
 import static java.nio.file.FileVisitResult.CONTINUE;
 
@@ -39,12 +39,17 @@ class ParallelSearch {
     /**
      * @param paths - is paths.
      */
-    private SimpleQueue<Path> paths = new SimpleQueue<>();
+    private final SimpleQueue<Path> paths = new SimpleQueue<>();
 
     /**
      * @param files - result.
      */
     private List<Path> files = new ArrayList<>();
+
+    /**
+     * @param finish - is finish.
+     */
+    private boolean finish = false;
 
     /**
      * ParallelSearch - constructor.
@@ -66,7 +71,7 @@ class ParallelSearch {
         Thread search = new Thread(new Search());
         Thread read = new Thread(new Read());
         search.start();
-        Thread.sleep(4000);
+        //Thread.sleep(4000);
         read.start();
     }
 
@@ -95,6 +100,7 @@ class ParallelSearch {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
+            finish = true;
         }
     }
 
@@ -110,16 +116,27 @@ class ParallelSearch {
          */
         @Override
         public void run() {
-            try (BufferedReader br = new BufferedReader(new FileReader(new File(String.valueOf(paths.pop()))))) {
-                String string;
-                while ((string = br.readLine()) != null) {
-                    //System.out.println(string);
-                    if (string.contains(text)) {
-                        System.out.println("Result search:" + string);
+            while (!finish) {
+                synchronized (paths) {
+                    while (paths.empty()) {
+                        try {
+                            paths.wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        try (BufferedReader br = new BufferedReader(new FileReader(new File(String.valueOf(paths.pop()))))) {
+                            System.out.println("path: " + paths);
+                            String string;
+                            while ((string = br.readLine()) != null) {
+                                if (string.contains(text)) {
+                                    System.out.println("    string:" + string);
+                                }
+                            }
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
                     }
                 }
-            } catch (Exception ex) {
-                ex.printStackTrace();
             }
         }
     }
@@ -142,8 +159,11 @@ class ParallelSearch {
             for (String extension : extensions) {
                 PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:*." + extension);
                 if (matcher.matches(file.getFileName())) {
-                    paths.push(file);
-                    System.out.println("Search result: " + file);
+                    synchronized (paths) {
+                        paths.push(file);
+                        paths.notifyAll();
+                    }
+//                    System.out.println("Search result: " + file);
                 }
             }
             return CONTINUE;

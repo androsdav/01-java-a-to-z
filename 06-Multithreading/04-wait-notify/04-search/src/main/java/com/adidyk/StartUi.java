@@ -30,7 +30,7 @@ public class StartUi {
         System.out.println(" Searches ...");
         System.out.println();
         String root = "root";
-        String text = "andros";
+        String text = "heroes";
         List<String> extensions = new ArrayList<>();
         extensions.add("java");
         extensions.add("xml");
