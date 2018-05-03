@@ -1,8 +1,6 @@
 package com.adidyk;
 
 import java.io.IOException;
-//import java.util.ArrayList;
-
 import static com.adidyk.Constant.*;
 
 /** Class StartUi for create jar file and run program (Locker).
@@ -22,7 +20,7 @@ public class StartUi {
     public static void main(String[] arg) throws InterruptedException, IOException {
         Constant.initialization();
         ParallelSearch parallelSearch = new ParallelSearch(ROOT, TEXT, EXTENSIONS);
-        parallelSearch.init();
+        parallelSearch.initialization();
         for (String item : parallelSearch.get()) {
             System.out.println(item);
         }

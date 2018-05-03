@@ -68,12 +68,11 @@ class ParallelSearch {
      * init - initialisation.
      * @throws InterruptedException - is exception.
      */
-    void init() throws InterruptedException {
+    void initialization() throws InterruptedException {
         Thread searchFile = new Thread(new SearchFile());
         Thread searchText = new Thread(new SearchText());
         searchFile.start();
         searchText.start();
-        //Thread.sleep(4000);
     }
 
     /**

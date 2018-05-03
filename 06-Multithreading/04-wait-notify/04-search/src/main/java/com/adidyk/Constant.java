@@ -49,13 +49,14 @@ class Constant {
         EXTENSIONS.add(JAVA);
         EXTENSIONS.add(XML);
         System.out.println();
-        System.out.println(" Searches to path: " + ROOT);
-        System.out.println(" Searches text: " + TEXT);
-        System.out.print(" Extension: ");
+        System.out.println(" ------------------- SEARCH TEXT IN FILE -------------------");
+        System.out.println(" root - " + ROOT);
+        System.out.println(" text - " + TEXT);
+        System.out.print(" exts -");
         for (String item : EXTENSIONS) {
             System.out.print(" " + item);
         }
-        System.out.println("\n");
+        System.out.println("\n -----------------------------------------------------------\n");
     }
 
 }
