@@ -12,6 +12,8 @@ import java.nio.file.PathMatcher;
 import java.util.ArrayList;
 //import java.util.LinkedList;
 import java.util.List;
+
+import static com.adidyk.Constant.PATTERN;
 import static java.nio.file.FileVisitResult.CONTINUE;
 
 /** Class StartUi for create jar file and run program (Locker).
@@ -68,11 +70,11 @@ class ParallelSearch {
      * @throws InterruptedException - is exception.
      */
     void init() throws InterruptedException {
-        Thread search = new Thread(new Search());
-        Thread read = new Thread(new Read());
-        search.start();
+        Thread searchFile = new Thread(new SearchFile());
+        Thread searchText = new Thread(new SearchText());
+        searchFile.start();
+        searchText.start();
         //Thread.sleep(4000);
-        read.start();
     }
 
     /**
@@ -88,7 +90,7 @@ class ParallelSearch {
      * @since 20.04.2018.
      * @version 1.0.
      */
-    private class Search implements Runnable {
+    private class SearchFile implements Runnable {
 
         /**
          * run - search all files when has task extensions.
@@ -112,7 +114,7 @@ class ParallelSearch {
      * @since 20.04.2018.
      * @version 1.0.
      */
-    private class Read implements Runnable {
+    private class SearchText implements Runnable {
 
         /**
          * run - is run.
@@ -164,7 +166,7 @@ class ParallelSearch {
         @Override
         public FileVisitResult visitFile(Path file, BasicFileAttributes attr) {
             for (String extension : extensions) {
-                PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:*." + extension);
+                PathMatcher matcher = FileSystems.getDefault().getPathMatcher(PATTERN + extension);
                 if (matcher.matches(file.getFileName())) {
                     synchronized (paths) {
                         paths.push(file);

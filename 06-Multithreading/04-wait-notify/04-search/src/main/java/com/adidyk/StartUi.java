@@ -1,15 +1,9 @@
 package com.adidyk;
 
 import java.io.IOException;
-
-//import java.nio.file.Files;
-//import java.nio.file.Path;
-//import java.nio.file.Paths;
-//import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.List;
-//import java.util.List;
-//import java.nio.file.attribute.BasicFileAttributes;
+
+import static com.adidyk.Constant.*;
 
 /** Class StartUi for create jar file and run program (Locker).
  * @author Didyk Andrey (androsdav@bigmir.net).
@@ -29,13 +23,21 @@ public class StartUi {
         System.out.println();
         System.out.println(" Searches ...");
         System.out.println();
-        String root = "root";
-        String text = "heroes";
-        List<String> extensions = new ArrayList<>();
+        //String root = "root";
+        //String text = "heroes";
+        //List<String> extensions = new ArrayList<>();
+        //extensions.add("java");
+        //extensions.add("xml");
+        ArrayList<String> extensions = new ArrayList<>();
         extensions.add("java");
         extensions.add("xml");
-        ParallelSearch parallelSearch = new ParallelSearch(root, text, extensions);
+        ParallelSearch parallelSearch = new ParallelSearch(ROOT, TEXT, extensions);
         parallelSearch.init();
+        /*
+        for (String item : EXTENSIONS) {
+            System.out.println(item);
+        }
+        */
     }
 
 }
