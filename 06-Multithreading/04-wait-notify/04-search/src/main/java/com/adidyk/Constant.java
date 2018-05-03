@@ -45,9 +45,17 @@ class Constant {
     /**
      * Constant - constructor.
      */
-    Constant() {
+    static void initialization() {
         EXTENSIONS.add(JAVA);
         EXTENSIONS.add(XML);
+        System.out.println();
+        System.out.println(" Searches to path: " + ROOT);
+        System.out.println(" Searches text: " + TEXT);
+        System.out.print(" Extension: ");
+        for (String item : EXTENSIONS) {
+            System.out.print(" " + item);
+        }
+        System.out.println("\n");
     }
 
 }

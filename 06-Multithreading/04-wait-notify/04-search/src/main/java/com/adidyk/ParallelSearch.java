@@ -10,7 +10,6 @@ import java.nio.file.FileVisitResult;
 import java.nio.file.FileSystems;
 import java.nio.file.PathMatcher;
 import java.util.ArrayList;
-//import java.util.LinkedList;
 import java.util.List;
 
 import static com.adidyk.Constant.PATTERN;
@@ -46,7 +45,7 @@ class ParallelSearch {
     /**
      * @param files - result.
      */
-    private List<Path> files = new ArrayList<>();
+    private final List<String> files = new ArrayList<>();
 
     /**
      * @param finish - is finish.
@@ -81,8 +80,17 @@ class ParallelSearch {
      *
      * @return path.
      */
-    SimpleQueue<Path> getPaths() {
-        return this.paths;
+    List<String> get() {
+        while (isRunning) {
+            synchronized (files) {
+                try {
+                    files.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+               }
+            }
+        }
+        return this.files;
     }
 
     /** Class StartUi for create jar file and run program (Locker).
@@ -121,30 +129,40 @@ class ParallelSearch {
          */
         @Override
         public void run() {
-            while (isRunning) {
+            while (!paths.empty() || isRunning) {
                 synchronized (paths) {
-                    while (paths.empty() && isRunning) {
-                        try {
-                            paths.wait();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    if (!paths.empty()) {
-                        String file = String.valueOf(paths.pop());
-                        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-                            System.out.println("path: " + file);
-                            String string;
-                            while ((string = br.readLine()) != null) {
-                                if (string.contains(text)) {
-                                    System.out.println("    string:" + string);
-                                }
+                    synchronized (files) {
+                        while (paths.empty() && isRunning) {
+                            try {
+                                paths.wait();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
                             }
-                        } catch (Exception ex) {
-                            ex.printStackTrace();
+                        }
+                        if (!paths.empty()) {
+                            String file = String.valueOf(paths.pop());
+                            try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+                                System.out.println(" @ " + file);
+                                String string;
+                                boolean searchTrue = false;
+                                while ((string = br.readLine()) != null) {
+                                    if (string.contains(text)) {
+                                        searchTrue = true;
+                                        System.out.println(" -> " + string);
+                                    }
+                                }
+                                if (searchTrue) {
+                                    files.add(file);
+                                }
+                            } catch (Exception ex) {
+                                ex.printStackTrace();
+                            }
                         }
                     }
                 }
+            }
+            synchronized (files) {
+                files.notifyAll();
             }
         }
     }

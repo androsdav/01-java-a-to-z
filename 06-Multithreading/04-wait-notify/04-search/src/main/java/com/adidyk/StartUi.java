@@ -1,7 +1,7 @@
 package com.adidyk;
 
 import java.io.IOException;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 import static com.adidyk.Constant.*;
 
@@ -20,24 +20,11 @@ public class StartUi {
      * @throws IOException - is interrupted exception.
      */
     public static void main(String[] arg) throws InterruptedException, IOException {
-        System.out.println();
-        System.out.println(" Searches ...");
-        System.out.println();
-        //String root = "root";
-        //String text = "heroes";
-        //List<String> extensions = new ArrayList<>();
-        //extensions.add("java");
-        //extensions.add("xml");
-        ArrayList<String> extensions = new ArrayList<>();
-        extensions.add("java");
-        extensions.add("xml");
-        ParallelSearch parallelSearch = new ParallelSearch(ROOT, TEXT, extensions);
+        Constant.initialization();
+        ParallelSearch parallelSearch = new ParallelSearch(ROOT, TEXT, EXTENSIONS);
         parallelSearch.init();
-        /*
-        for (String item : EXTENSIONS) {
+        for (String item : parallelSearch.get()) {
             System.out.println(item);
         }
-        */
     }
-
 }
