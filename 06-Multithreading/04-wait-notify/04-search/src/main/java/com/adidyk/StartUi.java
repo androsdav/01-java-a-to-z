@@ -3,7 +3,8 @@ package com.adidyk;
 import java.io.IOException;
 import static com.adidyk.Constant.*;
 
-/** Class StartUi for create jar file and run program (Locker).
+/**
+ * Class StartUi for create jar file and run program (Parallel Search).
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 11.04.2018.
  * @version 1.0.
@@ -11,38 +12,39 @@ import static com.adidyk.Constant.*;
 public class StartUi {
 
     /**
-     * @param parallelSearch - is.
+     * @param parallelSearch - is link variable to object of class ParallelSearch.
      */
     private ParallelSearch parallelSearch;
 
     /**
-     *
-     * @throws InterruptedException - is.
+     * start - runs program: initializations static parameters, starts parallel search
+     * and outputs result search.
+     * @throws InterruptedException - is interrupted exception.
      */
     private void start() throws InterruptedException {
         this.initialization();
-        this.search();
+        this.parallelSearch();
         this.result();
     }
 
     /**
-     *
+     * initialization - initializations static parameters.
      */
     private void initialization() {
         Constant.initialization();
     }
 
     /**
-     *
-     * @throws InterruptedException - is.
+     * parallelSearch - starts parallel search.
+     * @throws InterruptedException - is interrupted exception.
      */
-    private void search() throws InterruptedException {
+    private void parallelSearch() throws InterruptedException {
         this.parallelSearch = new ParallelSearch(ROOT, TEXT, EXTENSIONS);
         this.parallelSearch.initialization();
     }
 
     /**
-     *
+     * result - outputs result search.
      */
     private void result() {
         for (String item : this.parallelSearch.get()) {
@@ -52,13 +54,13 @@ public class StartUi {
     }
 
     /**
-     * main - runs program, creates three thread: one thread of class MyThreadFirst and two thread
-     * of class MyThreadSecond.
+     * main - runs program.
      * @param arg - is nothing.
      * @throws InterruptedException - is interrupted exception.
-     * @throws IOException - is interrupted exception.
+     * @throws IOException - is io exception.
      */
     public static void main(String[] arg) throws InterruptedException, IOException {
         new StartUi().start();
     }
+
 }

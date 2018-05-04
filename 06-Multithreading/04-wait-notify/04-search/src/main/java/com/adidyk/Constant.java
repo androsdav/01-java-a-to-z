@@ -12,48 +12,47 @@ import java.util.List;
 class Constant {
 
     /**
-     * @param ROOT - root.
+     * @param ROOT - path to folder from which needs to search.
      */
     static final String ROOT = "root";
 
     /**
-     * @param TEXT - root.
+     * @param TEXT - search text.
      */
-    static final String TEXT = "hulk";
+    static final String TEXT = "marvel";
 
     /**
-     * @param JAVA - java.
+     * @param JAVA - extensions of file.
      */
     private static final String JAVA = "java";
 
     /**
-     * @param XML - xml.
+     * @param XML - extensions of file.
      */
     private static final String XML = "xml";
 
     /**
-     * @param EXTENSIONS - extensions.
+     * @param EXTENSIONS - extensions of files in which needs to do a search.
      */
     static final List<String> EXTENSIONS = new ArrayList<>();
 
     /**
-     * @param PATTERN - extensions.
+     * @param PATTERN - glob pattern.
      */
     static final String PATTERN = "glob:*.";
 
     /**
-     * @param LINE - is line.
+     * @param LINE - is decor.
      */
     static final String LINE = " -----------------------------------------------------------------\n";
 
     /**
-     * @param ALL_FOUND_FILE - is line.
+     * @param ALL_FOUND_FILE - is decor.
      */
     static final String ALL_FOUND_FILE = " ------------------------ ALL FOUND FILES ------------------------";
 
-
     /**
-     * Constant - constructor.
+     * initialization - adds extensions to list and outputs static decor information.
      */
     static void initialization() {
         EXTENSIONS.add(JAVA);

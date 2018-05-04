@@ -1,20 +1,20 @@
 package com.adidyk;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.SimpleFileVisitor;
+import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.nio.file.FileVisitResult;
-import java.nio.file.FileSystems;
-import java.nio.file.PathMatcher;
 import java.util.ArrayList;
 import java.util.List;
 import static java.nio.file.FileVisitResult.CONTINUE;
 import static com.adidyk.Constant.*;
 
-/** Class StartUi for create jar file and run program (Locker).
+/**
+ * Class ParallelSearch runs two threads, where:
+ * first thread - searches for all files with specified extensions and adds them to queue.
+ * second thread - second thread takes found files from the queue and looks for specified
+ * text in them, if the text is found, the path to the file is added to the list.
+ * second thread - StartUi for create jar file and run program (Locker).
+ * Also Class ParallelSearch returns result search.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 20.04.2018.
  * @version 1.0.
@@ -37,17 +37,19 @@ class ParallelSearch {
     private List<String> extensions;
 
     /**
-     * @param paths - is paths.
+     * @param paths - link variable to object of class SimpleQueue where are
+     * located found files by specified extensions.
      */
     private final SimpleQueue<Path> paths = new SimpleQueue<>();
 
     /**
-     * @param files - result.
+     * @param files - link variable to object of class ArrayList where are
+     * located found files by specified text.
      */
     private final List<String> files = new ArrayList<>();
 
     /**
-     * @param finish - is finish.
+     * @param isRunning - if searches is finish isRunning = false.
      */
     private boolean isRunning = true;
 
@@ -64,8 +66,8 @@ class ParallelSearch {
     }
 
     /**
-     * init - initialisation.
-     * @throws InterruptedException - is exception.
+     * initialisation - start two threads: searchFile and searchText.
+     * @throws InterruptedException - is interrupted exception.
      */
     void initialization() throws InterruptedException {
         Thread searchFile = new Thread(new SearchFile());
@@ -75,8 +77,8 @@ class ParallelSearch {
     }
 
     /**
-     *
-     * @return path.
+     * get - returns result search.
+     * @return - returns result search.
      */
     List<String> get() {
         while (isRunning) {
@@ -93,7 +95,9 @@ class ParallelSearch {
         return this.files;
     }
 
-    /** Class StartUi for create jar file and run program (Locker).
+    /**
+     * Class SearchFile run thread for searches for all files with specified
+     * extensions and adds them to queue.
      * @author Didyk Andrey (androsdav@bigmir.net).
      * @since 20.04.2018.
      * @version 1.0.
@@ -101,7 +105,7 @@ class ParallelSearch {
     private class SearchFile implements Runnable {
 
         /**
-         * run - search all files when has task extensions.
+         * run - searches for all files with specified extensions and adds them to queue.
          */
         @Override
         public void run() {
@@ -117,7 +121,9 @@ class ParallelSearch {
         }
     }
 
-    /** Class StartUi for create jar file and run program (Locker).
+    /**
+     * Class SearchText run thread, takes found files from the queue and looks for
+     * specified text in them, if the text is found, the path to the file is added to the list.
      * @author Didyk Andrey (androsdav@bigmir.net).
      * @since 20.04.2018.
      * @version 1.0.
@@ -125,7 +131,8 @@ class ParallelSearch {
     private class SearchText implements Runnable {
 
         /**
-         * run - is run.
+         * run - takes found files from the queue and looks for specified text in them,
+         * if the text is found, the path to the file is added to the list..
          */
         @Override
         public void run() {
@@ -167,7 +174,8 @@ class ParallelSearch {
         }
     }
 
-    /** Class StartUi for create jar file and run program (Locker).
+    /**
+     * Class MyFileVisitor StartUi for create jar file and run program (Locker).
      * @author Didyk Andrey (androsdav@bigmir.net).
      * @since 11.04.2018.
      * @version 1.0.
@@ -175,11 +183,10 @@ class ParallelSearch {
     private class MyFileVisitor extends SimpleFileVisitor<Path> {
 
          /**
-         * visitFile - is.
-         * @param file - is.
-         * @param attr - is.
-         * @return - is.
-          *
+         * visitFile - walks through the tree and also searches for files with the specified extensions.
+         * @param file - link variable to object of class ArrayList where are located found files by specified text.
+         * @param attr - basic file attributes.
+         * @return - returns CONTINUE.
          */
         @Override
         public FileVisitResult visitFile(Path file, BasicFileAttributes attr) {
