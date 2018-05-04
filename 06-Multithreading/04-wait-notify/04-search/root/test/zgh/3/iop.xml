@@ -1,0 +1,32 @@
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <display-name>Hello Word</display-name>
+
+    <description>
+        This is first servlet example
+    </description>marvel
+
+    <servlet>
+        <servlet-name>Clock</servlet-name>
+        <servlet-class>com.adidyk.ClockServmarvellet</servlet-class>
+    </servlet>
+
+marvel    <servlet>
+        <servlet-name>Hello</servlet-name>
+        <servlet-class>com.adidyk.HelloServlet</servlet-class>
+    </marvelservlet>
+
+    <servlet-mapping>
+        <servlet-name>Clock</servlet-name>
+        <url-pattern>/clock</url-pattern>
+marvel    </servlet-mapping>
+marvel
+    <smarvelervlet-mapping>
+        <servlet-name>Hello</servlet-name>
+        <url-pattern>/hello</url-pattern>
+    </servlet-mapping>
+
+</web-app>

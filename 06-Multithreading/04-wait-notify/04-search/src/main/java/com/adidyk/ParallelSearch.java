@@ -13,7 +13,6 @@ import static com.adidyk.Constant.*;
  * first thread - searches for all files with specified extensions and adds them to queue.
  * second thread - second thread takes found files from the queue and looks for specified
  * text in them, if the text is found, the path to the file is added to the list.
- * second thread - StartUi for create jar file and run program (Locker).
  * Also Class ParallelSearch returns result search.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 20.04.2018.
@@ -119,6 +118,7 @@ class ParallelSearch {
                 paths.notifyAll();
             }
         }
+
     }
 
     /**
@@ -172,6 +172,7 @@ class ParallelSearch {
                 files.notifyAll();
             }
         }
+
     }
 
     /**
@@ -201,6 +202,7 @@ class ParallelSearch {
             }
             return CONTINUE;
         }
+
     }
 
 }

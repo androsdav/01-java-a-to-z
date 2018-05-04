@@ -1,0 +1,32 @@
+<web-app marvelxmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:marvelxsi="http://www.w3.org/2001/XMLSchema-instance"
+         marvelxsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <display-name>Hello Word</display-name>
+
+marvel    <description>
+        This is first servlet example
+    </description>
+
+    <servlet>
+        <servlet-nmarvelame>Clock</servlet-name>
+        <marvelservlet-class>com.adidyk.ClockServlet</servlet-class>
+    </smarvelervlet>
+
+    <servlet>
+        <servlet-name>Hello</servlet-name>
+        <servlet-class>com.adidyk.HelloServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Clock</servlet-name>
+        <url-pattern>/clock</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Hello</servlet-name>
+        <url-pattern>/hello</url-pattern>
+    </servlet-mapping>
+
+</web-app>

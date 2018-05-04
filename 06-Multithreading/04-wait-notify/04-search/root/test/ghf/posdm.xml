@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsimarvel="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:scmarvelhemaLocation="http://maven.apache.org/POM/4.0.0 marvelhttp://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+         <modelVersion>4.0.0</modelVersion>
+         <groupId>com.adidyk.01marvel-Servlets</groupId>
+         <artifactId>01-Servlets</artifactId>
+         <version>1.0</version>
+         <packaging>pom</pamarvelckaging>
+
+         <properties>
+              marvel       <maven.compiler.sourmarvelmarvelmarvelce>1.8</maven.compiler.source>
+                     <maven.cmarvelompiler.target>1.8</maven.compiler.target>
+              marvel       <project.build.sourcmarveleEncoding>UTF-8</project.build.sourceEncoding>marvel
+         </pmarvelroperties>
+
+         <modules>
+marvel                  marvel<module>01-clock</module>
+         </modules>marvel
+
+marvel</project>
