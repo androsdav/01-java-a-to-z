@@ -11,9 +11,8 @@ import java.nio.file.FileSystems;
 import java.nio.file.PathMatcher;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.adidyk.Constant.PATTERN;
 import static java.nio.file.FileVisitResult.CONTINUE;
+import static com.adidyk.Constant.*;
 
 /** Class StartUi for create jar file and run program (Locker).
  * @author Didyk Andrey (androsdav@bigmir.net).
@@ -89,6 +88,8 @@ class ParallelSearch {
                }
             }
         }
+        System.out.println(LINE);
+        System.out.println(ALL_FOUND_FILE);
         return this.files;
     }
 
@@ -141,13 +142,13 @@ class ParallelSearch {
                         if (!paths.empty()) {
                             String file = String.valueOf(paths.pop());
                             try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-                                System.out.println(" @ " + file);
+                                System.out.println(" file: " + file);
                                 String string;
                                 boolean searchTrue = false;
                                 while ((string = br.readLine()) != null) {
                                     if (string.contains(text)) {
                                         searchTrue = true;
-                                        System.out.println(" -> " + string);
+                                        System.out.println("  - line: " + string);
                                     }
                                 }
                                 if (searchTrue) {

@@ -19,7 +19,7 @@ class Constant {
     /**
      * @param TEXT - root.
      */
-    static final String TEXT = "heroes";
+    static final String TEXT = "hulk";
 
     /**
      * @param JAVA - java.
@@ -41,6 +41,16 @@ class Constant {
      */
     static final String PATTERN = "glob:*.";
 
+    /**
+     * @param LINE - is line.
+     */
+    static final String LINE = " -----------------------------------------------------------------\n";
+
+    /**
+     * @param ALL_FOUND_FILE - is line.
+     */
+    static final String ALL_FOUND_FILE = " ------------------------ ALL FOUND FILES ------------------------";
+
 
     /**
      * Constant - constructor.
@@ -49,14 +59,15 @@ class Constant {
         EXTENSIONS.add(JAVA);
         EXTENSIONS.add(XML);
         System.out.println();
-        System.out.println(" ------------------- SEARCH TEXT IN FILE -------------------");
+        System.out.println(" ------------------- INITIAL SEARCH PARAMETERS -------------------");
         System.out.println(" root - " + ROOT);
         System.out.println(" text - " + TEXT);
         System.out.print(" exts -");
         for (String item : EXTENSIONS) {
             System.out.print(" " + item);
         }
-        System.out.println("\n -----------------------------------------------------------\n");
+        System.out.println("\n -----------------------------------------------------------------\n");
+        System.out.println(" -------- ALL FOUND FILES, AS WELL ASS LINE WITH A MATCH ---------");
     }
 
 }
