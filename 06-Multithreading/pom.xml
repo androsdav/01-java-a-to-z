@@ -20,6 +20,7 @@
                   <module>02-jmm</module>
                   <module>03-monitore-synchronizy</module>
                   <module>04-wait-notify</module>
+                  <module>05-non-blocking-algoritm</module>
          </modules>
 
 </project>
