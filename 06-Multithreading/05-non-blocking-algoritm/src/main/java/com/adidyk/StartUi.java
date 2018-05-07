@@ -1,5 +1,8 @@
 package com.adidyk;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * Class StartUi for create jar file and run program (Parallel Search).
  * @author Didyk Andrey (androsdav@bigmir.net).
@@ -15,6 +18,12 @@ public class StartUi {
      */
     public static void main(String[] arg) {
         System.out.println("Non blocking algoritm");
+        ConcurrentHashMap<String, String> map = new ConcurrentHashMap<>();
+        map.put("1", "First");
+        map.put("2", "Second");
+        for (Map.Entry temp : SetE) {
+
+        }
     }
 
 }
