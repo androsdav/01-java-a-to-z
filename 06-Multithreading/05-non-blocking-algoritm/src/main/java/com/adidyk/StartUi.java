@@ -21,7 +21,8 @@ public class StartUi {
         ConcurrentHashMap<String, String> map = new ConcurrentHashMap<>();
         map.put("1", "First");
         map.put("2", "Second");
-        for (Map.Entry temp : SetE) {
+        for (Map.Entry<String, String> temp : map.entrySet()) {
+            System.out.println(temp.getKey() + temp.getValue());
 
         }
     }
