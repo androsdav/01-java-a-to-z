@@ -36,7 +36,7 @@ public class Cache<K, V> {
     }
 
     /**
-     *
+     * today a do not write anething kodeblock.
      * @param key - is key.
      */
     public void delete(K key) {
