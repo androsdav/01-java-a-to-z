@@ -11,7 +11,6 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class StartUi {
 
-
     /**
      * main - runs program.
      * @param arg - is nothing.
@@ -22,7 +21,7 @@ public class StartUi {
         map.add("1", "first");
         map.add("2", "second");
         map.add("3", "third");
-        ConcurrentHashMap<String, String> result = map.get();
+        ConcurrentHashMap<String, String> result = map.getAll();
         for (Map.Entry<String, String> item : result.entrySet()) {
             System.out.println("key: " + item.getKey() + "value:  " + item.getValue());
         }

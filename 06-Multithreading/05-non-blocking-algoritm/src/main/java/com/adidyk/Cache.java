@@ -56,7 +56,7 @@ public class Cache<K, V> {
     }
 
     /**
-     * @param V - is.
+     * @return resuult.
      */
     V get() {
         V result = null;
