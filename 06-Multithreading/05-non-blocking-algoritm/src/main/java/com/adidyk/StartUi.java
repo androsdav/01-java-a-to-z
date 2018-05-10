@@ -18,6 +18,20 @@ public class StartUi {
      */
     public static void main(String[] arg) {
         System.out.println("Non blocking algoritm");
+        Cache<String, String> map = new Cache<>();
+        map.add("1", "first");
+        map.add("2", "second");
+        map.add("3", "third");
+        ConcurrentHashMap<String, String> result = map.get();
+        for (Map.Entry<String, String> item : result.entrySet()) {
+            System.out.println("key: " + item.getKey() + "value:  " + item.getValue());
+        }
+        User user = new User(1, "Adam", "operator");
+        System.out.println(user);
+        user.setRole("administrator");
+        System.out.println(user);
+
+        /*
         ConcurrentHashMap<String, String> map = new ConcurrentHashMap<>();
         map.put("1", "First");
         map.put("2", "Second");
@@ -25,6 +39,7 @@ public class StartUi {
             System.out.println(temp.getKey() + temp.getValue());
 
         }
+        */
     }
 
 }

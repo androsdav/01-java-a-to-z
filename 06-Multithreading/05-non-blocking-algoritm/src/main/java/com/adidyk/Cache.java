@@ -18,12 +18,20 @@ public class Cache<K, V> {
     private ConcurrentHashMap<K, V> map = new ConcurrentHashMap<>();
 
     /**
-     *
+     * @param key - is key.
+     * @param value - is value.
      * add - is add.
+     * @return - true.
      */
-    public void add(K key, V value) {
-        this.map.put(key, value);
+    boolean add(K key, V value) {
+        boolean result = true;
+        if (this.map.containsKey(key)) {
+            result = false;
 
+        } else {
+            this.map.put(key, value);
+        }
+        return result;
     }
 
     /**
@@ -32,6 +40,10 @@ public class Cache<K, V> {
      * @param value - is value.
      */
     public void update(K key, V value) {
+        if (this.map.containsKey(key)) {
+            this.map.put(key, value);
+
+        }
 
     }
 
@@ -41,6 +53,25 @@ public class Cache<K, V> {
      */
     public void delete(K key) {
         this.map.remove(key);
+    }
+
+    /**
+     * @param V - is.
+     */
+    V get() {
+        V result = null;
+        if (this.map.put()) {
+
+        }
+        return result;
+    }
+
+    /**
+     *
+     * @return - is.
+     */
+    ConcurrentHashMap<K, V> getAll() {
+        return this.map;
     }
 
 }
