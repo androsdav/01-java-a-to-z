@@ -1,7 +1,7 @@
 package com.adidyk;
 
 //import java.util.Iterator;
-import java.util.Map;
+//import java.util.Map;
 //import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -18,30 +18,37 @@ public class StartUi {
      */
     public static void main(String[] arg) {
         System.out.println("Non blocking algoritm");
-        Cache<Integer, User> map = new Cache<>();
-        System.out.println(map.add(1, new User(1, "Bob", "operator")));
-        System.out.println(map.add(2, new User(2, "Adam", "animal")));
-        System.out.println(map.add(3, new User(3, "Dilan", "administrator")));
-        System.out.println(map.add(4, new User(4, "Amanda", "doc")));
-        System.out.println(map.add(5, new User(5, "Bil", "actor")));
-        System.out.println(map.add(6, new User(6, "Tom", "murder")));
-        System.out.println(map.add(7, new User(7, "Adolf", "cop")));
-        System.out.println(map.add(8, new User(8, "Kruger", "kok")));
-        System.out.println(map.add(4, new User(4, "Amanda", "doc")));
-        System.out.println(map.add(7, new User(7, "Adolf", "cop")));
-        System.out.println();
-        System.out.println(map.delete(4));
-        System.out.println(map.delete(1));
-        System.out.println(map.delete(8));
-        System.out.println(map.delete(9));
-        System.out.println();
-        System.out.println(map.get(5));
-        System.out.println();
-        for (Map.Entry<Integer, User> item : map.getAll().entrySet()) {
+        Cache cache = new Cache();
+        System.out.println(cache.add(1, new User(1, "Bob", "operator")));
+        System.out.println(cache.add(2, new User(2, "Adam", "animal")));
+        System.out.println(cache.add(3, new User(3, "Dilan", "administrator")));
+        System.out.println(cache.add(4, new User(4, "Amanda", "doc")));
+        System.out.println(cache.add(5, new User(5, "Bil", "actor")));
+        System.out.println(cache.add(6, new User(6, "Tom", "murder")));
+        System.out.println(cache.add(7, new User(7, "Adolf", "cop")));
+        System.out.println(cache.add(8, new User(8, "Kruger", "kok")));
+        System.out.println(cache.add(4, new User(4, "Amanda", "doc")));
+        System.out.println(cache.add(7, new User(7, "Adolf", "cop")));
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Thread first = new Thread(new MyThreadFirst(cache));
+        Thread second = new Thread(new MyThreadSecond(cache));
+        first.start();
+        second.start();
+        /*
+        for (Map.Entry<Integer, User> item : cache.getAll().entrySet()) {
             System.out.println("key: " + item.getKey() + " value:  " + item.getValue());
         }
         System.out.println();
-        User user = map.get(1);
+        System.out.println();
+        System.out.println(cache.get(5));
+        System.out.println(cache.update(5, "test"));
+        System.out.println(cache.get(5));
+        //User temp = cache.get(5);
+        //System.out.println(temp.getName());
         //user.
         /*
         Cache<String, String> map = new Cache<>();

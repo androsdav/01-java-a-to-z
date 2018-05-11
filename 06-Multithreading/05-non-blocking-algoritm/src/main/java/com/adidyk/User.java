@@ -61,7 +61,7 @@ class User {
      * @return - is.
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
@@ -69,7 +69,7 @@ class User {
      * @return - is.
      */
     public String getRole() {
-        return role;
+        return this.role;
     }
 
     /**
@@ -77,7 +77,7 @@ class User {
      * @return - is.
      */
     public int getVersion() {
-        return version;
+        return this.version;
     }
 
     /**

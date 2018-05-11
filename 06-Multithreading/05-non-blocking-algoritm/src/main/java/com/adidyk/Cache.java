@@ -4,13 +4,11 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Class StartUi for create jar file and run program (Parallel Search).
- * @param <Integer> - is.
- * @param <User> - is.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 05.05.2018.
  * @version 1.0.
  */
-public class Cache<Integer, User> {
+class Cache {
 
     /**
      * @param map - is.
@@ -35,28 +33,23 @@ public class Cache<Integer, User> {
     /**
      *
      * @param key - is key.
+     * @param role - is key.
      * @return - is.
      */
-    public boolean update(Integer key) {
+    boolean update(Integer key, String role) {
         boolean result = false;
         if (this.map.containsKey(key)) {
-            //User user = this.map.get(key);
-            //user.
-            //user.
-            result = true;
+            User user = this.map.get(key);
+                System.out.println(user.getVersion());
+                System.out.println(this.map.get(key).getVersion());
+                if (user.getVersion() == this.map.get(key).getVersion()) {
+                    user.setRole(role);
+                    result = true;
+                } else {
+                    throw new OptimisticException("optimistic exception");
+                }
         }
-        //User user = this.map.get(key);
-        //user.
-        //User user = this.get(key);
-        //user.setRole();
         return result;
-
-
-        //if (this.map.containsKey(key)) {
-        //    this.map.put(key, value);
-
-        //}
-
     }
 
     /**
