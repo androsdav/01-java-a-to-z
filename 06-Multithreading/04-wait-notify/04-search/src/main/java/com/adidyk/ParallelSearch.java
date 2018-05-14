@@ -50,7 +50,7 @@ class ParallelSearch {
     /**
      * @param isRunning - if searches is finish isRunning = false.
      */
-    private boolean isRunning = true;
+    private volatile boolean isRunning = true;
 
     /**
      * ParallelSearch - constructor.
@@ -136,9 +136,9 @@ class ParallelSearch {
          */
         @Override
         public void run() {
-            while (!paths.empty() || isRunning) {
-                synchronized (paths) {
-                    synchronized (files) {
+            synchronized (paths) {
+                synchronized (files) {
+                    while (!paths.empty() || isRunning) {
                         while (paths.empty() && isRunning) {
                             try {
                                 paths.wait();
@@ -166,10 +166,8 @@ class ParallelSearch {
                             }
                         }
                     }
+                    files.notifyAll();
                 }
-            }
-            synchronized (files) {
-                files.notifyAll();
             }
         }
 
