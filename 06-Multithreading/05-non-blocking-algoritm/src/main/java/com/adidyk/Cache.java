@@ -16,6 +16,11 @@ class Cache {
     private ConcurrentHashMap<Integer, User> map = new ConcurrentHashMap<>();
 
     /**
+     * @param version - is.
+     */
+    private int version;
+
+    /**
      * @param key - is key.
      * @param value - is value.
      * add - is add.
@@ -40,14 +45,12 @@ class Cache {
         boolean result = false;
         if (this.map.containsKey(key)) {
             User user = this.map.get(key);
-                System.out.println(user.getVersion());
-                System.out.println(this.map.get(key).getVersion());
-                if (user.getVersion() == this.map.get(key).getVersion()) {
-                    user.setRole(role);
-                    result = true;
-                } else {
-                    throw new OptimisticException("optimistic exception");
-                }
+            if (user.getVersion() == this.map.get(key).getVersion()) {
+                user.setRole(role);
+                result = true;
+            } else {
+                throw new OptimisticException("optimistic exception");
+            }
         }
         return result;
     }
@@ -84,6 +87,28 @@ class Cache {
      */
     ConcurrentHashMap<Integer, User> getAll() {
         return this.map;
+    }
+
+    /**
+     *
+     */
+    private class Model {
+
+        /**
+         * @param version - is.
+         */
+        private int version;
+
+        /**
+         * Model - constructor.
+         * @param version - is.
+         */
+        Model(int version) {
+            this.version = version;
+        }
+
+
+
     }
 
 }
