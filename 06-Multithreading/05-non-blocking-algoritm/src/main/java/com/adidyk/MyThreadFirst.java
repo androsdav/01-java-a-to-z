@@ -28,6 +28,7 @@ public class MyThreadFirst implements Runnable {
     @Override
     public void run() {
         System.out.println(" " + Thread.currentThread().getName() + " -> start ...");
+        /*
         cache.update(1, "test");
         cache.update(1, "test");
         cache.update(1, "test");
@@ -38,6 +39,7 @@ public class MyThreadFirst implements Runnable {
             e.printStackTrace();
         }
         //System.out.println(this.cache.get(1));
+        */
         System.out.println(" " + Thread.currentThread().getName() + " <- finish ...");
     }
 

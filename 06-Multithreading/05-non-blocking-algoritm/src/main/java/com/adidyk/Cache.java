@@ -21,28 +21,36 @@ class Cache {
     private int version;
 
     /**
-     * @param key - is key.
-     * @param value - is value.
+     * @param model - is.
+     */
+    private Model model = new Model();
+
+    /**
+     * @param user - is user.
      * add - is add.
      * @return - true.
      */
-    boolean add(Integer key, User value) {
+    boolean add(User user) {
         boolean result = false;
-        if (!this.map.containsKey(key)) {
-            this.map.put(key, value);
-            result = true;
+        if (this.model.versionControl()) {
+            if (!this.map.containsKey(user.getId())) {
+                this.map.put(user.getId(), user);
+                result = true;
+            }
+            this.version++;
+            model.modification = this.version;
         }
         return result;
     }
 
     /**
      *
-     * @param key - is key.
-     * @param role - is key.
+     * @param user - is key.
      * @return - is.
      */
-    boolean update(Integer key, String role) {
+    boolean update(User user) {
         boolean result = false;
+        /*
         if (this.map.containsKey(key)) {
             User user = this.map.get(key);
             if (user.getVersion() == this.map.get(key).getVersion()) {
@@ -52,18 +60,19 @@ class Cache {
                 throw new OptimisticException("optimistic exception");
             }
         }
+        */
         return result;
     }
 
     /**
      * today a do not write anething kodeblock.
-     * @param key - is key.
+     * @param user - is key.
      * @return - is.
      */
-    boolean delete(Integer key) {
+    boolean delete(User user) {
         boolean result = false;
-        if (this.map.containsKey(key)) {
-            this.map.remove(key);
+        if (this.map.containsKey(user.getId())) {
+            this.map.remove(user.getId());
             result = true;
         }
         return result;
@@ -97,17 +106,20 @@ class Cache {
         /**
          * @param version - is.
          */
-        private int version;
+        private int modification;
 
         /**
-         * Model - constructor.
-         * @param version - is.
+         *
          */
-        Model(int version) {
-            this.version = version;
+        private boolean versionControl() {
+            boolean result = false;
+            if (version == modification) {
+                result = true;
+            } else {
+                throw new OptimisticException("optimistic exception");
+            }
+            return result;
         }
-
-
 
     }
 
