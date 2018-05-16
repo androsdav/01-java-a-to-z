@@ -1,5 +1,6 @@
 package com.adidyk;
 
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -13,34 +14,15 @@ class Cache {
     /**
      * @param map - is.
      */
-    private ConcurrentHashMap<Integer, User> map = new ConcurrentHashMap<>();
-
-    /**
-     * @param version - is.
-     */
-    private int version;
-
-    /**
-     * @param model - is.
-     */
-    private Model model = new Model();
+    private Map<Integer, User> cache = new ConcurrentHashMap<>();
 
     /**
      * @param user - is user.
      * add - is add.
      * @return - true.
      */
-    boolean add(User user) {
-        boolean result = false;
-        if (this.model.versionControl()) {
-            if (!this.map.containsKey(user.getId())) {
-                this.map.put(user.getId(), user);
-                result = true;
-            }
-            this.version++;
-            model.modification = this.version;
-        }
-        return result;
+    User add(User user) {
+        return cache.computeIfAbsent(user.getId(), key -> user);
     }
 
     /**
@@ -50,17 +32,15 @@ class Cache {
      */
     boolean update(User user) {
         boolean result = false;
-        /*
-        if (this.map.containsKey(key)) {
-            User user = this.map.get(key);
-            if (user.getVersion() == this.map.get(key).getVersion()) {
-                user.setRole(role);
+        if (this.cache.containsKey(user.getId())) {
+            User oldUser = this.cache.get(user.getId());
+            if (oldUser.getVersion() == this.cache.get(user.getId()).getVersion()) {
+                oldUser.setRole(user.getRole());
                 result = true;
             } else {
                 throw new OptimisticException("optimistic exception");
             }
         }
-        */
         return result;
     }
 
@@ -70,12 +50,7 @@ class Cache {
      * @return - is.
      */
     boolean delete(User user) {
-        boolean result = false;
-        if (this.map.containsKey(user.getId())) {
-            this.map.remove(user.getId());
-            result = true;
-        }
-        return result;
+        return cache.remove(user.getId(), user);
     }
 
     /**
@@ -84,8 +59,8 @@ class Cache {
      */
     User get(Integer key) {
         User result = null;
-        if (this.map.containsKey(key)) {
-            result = this.map.get(key);
+        if (this.cache.containsKey(key)) {
+            result = this.cache.get(key);
         }
         return result;
     }
@@ -94,33 +69,8 @@ class Cache {
      *
      * @return - is.
      */
-    ConcurrentHashMap<Integer, User> getAll() {
-        return this.map;
-    }
-
-    /**
-     *
-     */
-    private class Model {
-
-        /**
-         * @param version - is.
-         */
-        private int modification;
-
-        /**
-         *
-         */
-        private boolean versionControl() {
-            boolean result = false;
-            if (version == modification) {
-                result = true;
-            } else {
-                throw new OptimisticException("optimistic exception");
-            }
-            return result;
-        }
-
+    Map<Integer, User> getAll() {
+        return this.cache;
     }
 
 }

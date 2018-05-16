@@ -28,6 +28,7 @@ public class MyThreadFirst implements Runnable {
     @Override
     public void run() {
         System.out.println(" " + Thread.currentThread().getName() + " -> start ...");
+        this.cache.update(new User(2, "Adam", "NEW_animal_thread1"));
         /*
         cache.update(1, "test");
         cache.update(1, "test");

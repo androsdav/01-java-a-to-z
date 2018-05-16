@@ -26,7 +26,7 @@ class User {
     /**
      * @param version - is version.
      */
-    private int version;
+    private volatile int version;
 
     /**
      * @param id - name user.
@@ -43,7 +43,7 @@ class User {
      *
      * @param role - is role.
      */
-    void setRole(String role) {
+    synchronized void setRole(String role) {
         this.role = role;
         this.version++;
     }
@@ -52,7 +52,7 @@ class User {
      *
      * @return - is.
      */
-    public int getId() {
+    int getId() {
         return id;
     }
 
@@ -68,7 +68,7 @@ class User {
      *
      * @return - is.
      */
-    public String getRole() {
+    String getRole() {
         return this.role;
     }
 
@@ -76,7 +76,7 @@ class User {
      *
      * @return - is.
      */
-    public int getVersion() {
+    public synchronized int getVersion() {
         return this.version;
     }
 

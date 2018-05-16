@@ -33,7 +33,8 @@ public class MyThreadSecond implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println(this.cache.get(1));
+        this.cache.update(new User(2, "Adam", "NEW_animal_thread2"));
+        System.out.println(this.cache.get(2));
         System.out.println(" " + Thread.currentThread().getName() + " <- finish ...");
     }
 
