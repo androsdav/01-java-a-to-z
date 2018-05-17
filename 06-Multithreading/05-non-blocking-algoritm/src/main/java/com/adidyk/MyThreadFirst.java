@@ -1,5 +1,7 @@
 package com.adidyk;
 
+//import java.util.Map;
+
 /**
  * Class MyThreadFirst creates thread and grabs lock if lock is free.
  * @author Didyk Andrey (androsdav@bigmir.net).
@@ -28,7 +30,18 @@ public class MyThreadFirst implements Runnable {
     @Override
     public void run() {
         System.out.println(" " + Thread.currentThread().getName() + " -> start ...");
+        for (int index = 0; index < 1000; index++) {
+            this.cache.update(new User(2, "Adam", "test-" + index));
+        }
+        /*
         this.cache.update(new User(2, "Adam", "NEW_animal_thread1"));
+        this.cache.update(new User(2, "Adam", "NEW_animal_thread2"));
+        this.cache.update(new User(2, "Adam", "NEW_animal_thread3"));
+        this.cache.update(new User(2, "Adam", "NEW_animal_thread4"));
+        /*
+        for (Map.Entry<Integer, User> item : cache.getAll().entrySet()) {
+            System.out.println("key: " + item.getKey() + " value: " + item.getValue());
+        }
         /*
         try {
             Thread.sleep(4000);

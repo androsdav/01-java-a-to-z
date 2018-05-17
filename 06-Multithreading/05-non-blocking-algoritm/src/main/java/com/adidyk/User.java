@@ -50,6 +50,14 @@ class User {
 
     /**
      *
+     * @param version - is version.
+     */
+    void setVersion(int version) {
+        this.version = version;
+    }
+
+    /**
+     *
      * @return - is.
      */
     int getId() {
@@ -60,7 +68,7 @@ class User {
      *
      * @return - is.
      */
-    public String getName() {
+    String getName() {
         return this.name;
     }
 

@@ -6,6 +6,8 @@ package com.adidyk;
 
 //import java.util.Map;
 
+import java.util.Map;
+
 /**
  * Class StartUi for create jar file and run program (Parallel Search).
  * @author Didyk Andrey (androsdav@bigmir.net).
@@ -24,22 +26,15 @@ public class StartUi {
         System.out.println(cache.add(new User(1, "Bob", "operator")));
         System.out.println(cache.add(new User(2, "Adam", "animal")));
         System.out.println(cache.add(new User(3, "Dilan", "administrator")));
-        //System.out.println(cache.add(new User(3, "Test", "role-test")));
-        //System.out.println(cache.add(new User(1, "123", "456")));
-        System.out.println();
-        //System.out.println(cache.delete(new User(4, "Adam", "animal")));
-        System.out.println();
-        //System.out.println(cache.update(new User(2, "Adam", "NEW-animal")));
         Thread first = new Thread(new MyThreadFirst(cache));
+        Thread second = new Thread(new MyThreadSecond(cache));
+        second.start();
         first.start();
         try {
-            Thread.sleep(1000);
+            Thread.sleep(4000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        //Thread second = new Thread(new MyThreadSecond(cache));
-        //second.start();
-        /*
         for (Map.Entry<Integer, User> item : cache.getAll().entrySet()) {
             System.out.println("key: " + item.getKey() + " value: " + item.getValue());
         }

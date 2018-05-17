@@ -35,7 +35,8 @@ class Cache {
         if (this.cache.containsKey(user.getId())) {
             User oldUser = this.cache.get(user.getId());
             User updateUser = new User(oldUser.getId(), oldUser.getName(), oldUser.getRole());
-            if (oldUser == null || oldUser.getVersion() == updateUser.getVersion()) {
+            updateUser.setVersion(oldUser.getVersion());
+            if (oldUser.getVersion() == updateUser.getVersion()) {
                 oldUser.setRole(user.getRole());
             } else {
                 throw new OptimisticException("optimistic exception");
