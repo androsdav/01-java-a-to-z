@@ -34,7 +34,7 @@ public class MyThreadSecond implements Runnable {
             e.printStackTrace();
         }
         this.cache.update(new User(2, "Adam", "NEW_animal_thread2"));
-        System.out.println(this.cache.get(2));
+        //System.out.println(this.cache.get(2));
         System.out.println(" " + Thread.currentThread().getName() + " <- finish ...");
     }
 

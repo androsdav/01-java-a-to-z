@@ -34,12 +34,20 @@ class Cache {
         boolean result = false;
         if (this.cache.containsKey(user.getId())) {
             User oldUser = this.cache.get(user.getId());
+            User updateUser = new User(oldUser.getId(), oldUser.getName(), oldUser.getRole());
+            if (oldUser == null || oldUser.getVersion() == updateUser.getVersion()) {
+                oldUser.setRole(user.getRole());
+            } else {
+                throw new OptimisticException("optimistic exception");
+            }
+            /*
             if (oldUser.getVersion() == this.cache.get(user.getId()).getVersion()) {
                 oldUser.setRole(user.getRole());
                 result = true;
             } else {
                 throw new OptimisticException("optimistic exception");
             }
+            */
         }
         return result;
     }
