@@ -30,7 +30,7 @@ public class MyThreadFirst implements Runnable {
     @Override
     public void run() {
         System.out.println(" " + Thread.currentThread().getName() + " -> start ...");
-        for (int index = 0; index < 1000; index++) {
+        for (int index = 0; index < 3000; index++) {
             this.cache.update(new User(2, "Adam", "test-" + index));
         }
         /*
