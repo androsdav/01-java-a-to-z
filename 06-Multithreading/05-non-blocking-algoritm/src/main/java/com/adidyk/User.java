@@ -52,7 +52,7 @@ class User {
      *
      * @param version - is version.
      */
-    void setVersion(int version) {
+    synchronized void setVersion(int version) {
         this.version = version;
     }
 
@@ -60,7 +60,7 @@ class User {
      *
      * @return - is.
      */
-    int getId() {
+    synchronized int getId() {
         return id;
     }
 
@@ -68,7 +68,7 @@ class User {
      *
      * @return - is.
      */
-    String getName() {
+    synchronized String getName() {
         return this.name;
     }
 
@@ -76,7 +76,7 @@ class User {
      *
      * @return - is.
      */
-    String getRole() {
+    synchronized String getRole() {
         return this.role;
     }
 
@@ -84,7 +84,7 @@ class User {
      *
      * @return - is.
      */
-    public synchronized int getVersion() {
+    synchronized int getVersion() {
         return this.version;
     }
 
@@ -94,7 +94,7 @@ class User {
      * @return - returns.
      */
     @Override
-    public boolean equals(Object o) {
+    public synchronized boolean equals(Object o) {
         if (this == o) {
             return true;
         }
@@ -110,7 +110,7 @@ class User {
      * @return - is returns id.
      */
     @Override
-    public int hashCode() {
+    public synchronized int hashCode() {
         return id;
     }
 
@@ -119,7 +119,7 @@ class User {
      * @return - is.
      */
     @Override
-    public String toString() {
+    public synchronized String toString() {
         return String.format("%s%s%s%s%s%s%s%s%s%s%s", "User{", "id=", this.id, ", name=", this.name, ", ",
                 "role=", this.role, ", version=", this.version, "}");
     }

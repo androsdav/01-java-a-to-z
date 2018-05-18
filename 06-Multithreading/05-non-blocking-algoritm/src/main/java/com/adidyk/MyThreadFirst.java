@@ -30,14 +30,17 @@ public class MyThreadFirst implements Runnable {
     @Override
     public void run() {
         System.out.println(" " + Thread.currentThread().getName() + " -> start ...");
-        for (int index = 0; index < 3000; index++) {
+        for (int index = 0; index < 100; index++) {
             this.cache.update(new User(2, "Adam", "test-" + index));
         }
         /*
-        this.cache.update(new User(2, "Adam", "NEW_animal_thread1"));
-        this.cache.update(new User(2, "Adam", "NEW_animal_thread2"));
-        this.cache.update(new User(2, "Adam", "NEW_animal_thread3"));
-        this.cache.update(new User(2, "Adam", "NEW_animal_thread4"));
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        */
+        //System.out.println(this.cache.update(new User(2, "Adam", "NEW_animal_thread1")));
         /*
         for (Map.Entry<Integer, User> item : cache.getAll().entrySet()) {
             System.out.println("key: " + item.getKey() + " value: " + item.getValue());

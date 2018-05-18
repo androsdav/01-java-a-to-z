@@ -23,13 +23,14 @@ public class StartUi {
     public static void main(String[] arg) {
         System.out.println("Non blocking algoritm");
         Cache cache = new Cache();
-        System.out.println(cache.add(new User(1, "Bob", "operator")));
+        System.out.println(cache.add(new User(1, "Bob1", "operator1")));
+        System.out.println(cache.add(new User(1, "NewBob", "NewOperator")));
         System.out.println(cache.add(new User(2, "Adam", "animal")));
         System.out.println(cache.add(new User(3, "Dilan", "administrator")));
         Thread first = new Thread(new MyThreadFirst(cache));
         Thread second = new Thread(new MyThreadSecond(cache));
-        second.start();
         first.start();
+        second.start();
         try {
             Thread.sleep(4000);
         } catch (InterruptedException e) {

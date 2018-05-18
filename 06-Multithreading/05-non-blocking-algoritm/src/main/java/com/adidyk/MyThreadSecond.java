@@ -11,7 +11,7 @@ package com.adidyk;
 public class MyThreadSecond implements Runnable {
 
     /**
-     * @param cache - is link variable to object of class Counter (counter).
+     * @param cache - is link variable to object of class Cache (counter).
      */
     private Cache cache;
 
@@ -30,9 +30,17 @@ public class MyThreadSecond implements Runnable {
     @Override
     public void run() {
         System.out.println(" " + Thread.currentThread().getName() + " -> start ...");
-        for (int index = 0; index < 3000; index++) {
+        //this.cache.delete(new User(2, "Adam", "NEW_animal_thread5"));
+        /*
+        this.cache.update(new User(2, "Adam", "NEW_animal_thread5"));
+        this.cache.update(new User(2, "Adam", "NEW_animal_thread6"));
+        this.cache.update(new User(2, "Adam", "NEW_animal_thread7"));
+        this.cache.update(new User(2, "Adam", "NEW_animal_thread8"));
+        */
+        for (int index = 0; index < 100; index++) {
             this.cache.update(new User(2, "Adam", "test-" + index));
         }
+        System.out.println(" " + Thread.currentThread().getName() + " <- finish ...");
     }
 
         /*
