@@ -1,7 +1,7 @@
 package com.adidyk;
 
 /**
- * Class User for create user (object) with params: name, children and birthday.
+ * Class User for create user (object) with params: id, name, role and version.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 21.07.2017.
  * @version 1.0.
@@ -9,7 +9,7 @@ package com.adidyk;
 class User {
 
     /**
-     * @param id - is id.
+     * @param id - user id.
      */
     private int id;
 
@@ -19,19 +19,20 @@ class User {
     private String name;
 
     /**
-     * @param id - number of children for the user.
+     * @param role - user role.
      */
     private String role;
 
     /**
-     * @param version - is version.
+     * @param version - user version.
      */
     private volatile int version;
 
     /**
-     * @param id - name user.
-     * @param name -  name user.
-     * @param role - name user.
+     * User - constructor.
+     * @param id - user id.
+     * @param name -  user name.
+     * @param role - user role.
      **/
     User(int id, String name, String role) {
         this.id = id;
@@ -40,8 +41,8 @@ class User {
     }
 
     /**
-     *
-     * @param role - is role.
+     * setRole - sets role for user and change role.
+     * @param role - user role.
      */
     synchronized void setRole(String role) {
         this.role = role;
@@ -49,7 +50,7 @@ class User {
     }
 
     /**
-     *
+     * setVersion - sets version for user.
      * @param version - is version.
      */
     synchronized void setVersion(int version) {
@@ -57,57 +58,57 @@ class User {
     }
 
     /**
-     *
-     * @return - is.
+     * getId - returns id for user.
+     * @return - returns id for user.
      */
     synchronized int getId() {
         return id;
     }
 
     /**
-     *
-     * @return - is.
+     * getName - returns name for user.
+     * @return - returns name for user.
      */
     synchronized String getName() {
         return this.name;
     }
 
     /**
-     *
-     * @return - is.
+     * getRole - returns role for user.
+     * @return - returns role for user.
      */
     synchronized String getRole() {
         return this.role;
     }
 
     /**
-     *
-     * @return - is.
+     * getVersion - returns version for user.
+     * @return - returns version for user.
      */
     synchronized int getVersion() {
         return this.version;
     }
 
     /**
-     *
-     * @param o - is object.
-     * @return - returns.
+     * equals - return boolean result.
+     * @param obj - object of class User.
+     * @return - returns boolean result "true" if id of user is same, and returns "false" - isn`t same.
      */
     @Override
-    public synchronized boolean equals(Object o) {
-        if (this == o) {
+    public synchronized boolean equals(Object obj) {
+        if (this == obj) {
             return true;
         }
-        if (!(o instanceof User)) {
+        if (!(obj instanceof User)) {
             return false;
         }
-        User user = (User) o;
+        User user = (User) obj;
         return id == user.id;
     }
 
     /**
-     *
-     * @return - is returns id.
+     * hashCode - returns hashCode for user.
+     * @return - returns hashCode for user.
      */
     @Override
     public synchronized int hashCode() {
@@ -115,12 +116,13 @@ class User {
     }
 
     /**
-     *
-     * @return - is.
+     * toString - returns string format.
+     * @return - returns all information for user.
      */
     @Override
     public synchronized String toString() {
         return String.format("%s%s%s%s%s%s%s%s%s%s%s", "User{", "id=", this.id, ", name=", this.name, ", ",
                 "role=", this.role, ", version=", this.version, "}");
     }
+
 }

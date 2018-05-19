@@ -43,6 +43,7 @@ class Cache {
             } else {
                 throw new OptimisticException("optimistic exception");
             }
+            result = true;
         }
         return result;
     }
