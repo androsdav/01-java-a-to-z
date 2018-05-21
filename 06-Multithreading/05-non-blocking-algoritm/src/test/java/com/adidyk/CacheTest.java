@@ -75,22 +75,27 @@ public class CacheTest {
     public void updateOptimisticExceptionTest() {
         Thread first = new Thread(new ThreadFirst(this.cache));
         first.start();
-        System.out.println("exit");
-        /*
+        //System.out.println("exit");
         new Thread(() -> {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            this.cache.update(new User(1, "Bob", "operator"));
-            /*
+            //this.cache.update(new User(1, "Bob", "operator"));
             try {
                 cache.update(new User(1, "Bob", "operator"));
+                System.out.println(this.cache.get(1));
             } catch (OptimisticException ex) {
+                System.out.println("Thread 2: exception");
                 assertThat(ex.getMessage(), is("optimistic exceptio"));
             }
-        }).start();*/
+        }).start();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -145,15 +150,14 @@ public class CacheTest {
          */
         @Override
         public void run() {
-            System.out.println("STARTTTTTTTTTTTTTTTTttttttttttttttttt");
             this.cache.update(new User(1, "bob", "operator"));
+            System.out.println("Thread1: " + this.cache.get(1));
             try {
                 Thread.sleep(3000);
-                System.out.println(this.cache.get(1));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println(this.cache.get(1));
+            //System.out.println(this.cache.get(1));
         }
 
     }
@@ -185,16 +189,23 @@ public class CacheTest {
          */
         @Override
         public void run() {
+            /*
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            */
             try {
                 this.cache.update(new User(1, "Bob", "operator"));
             } catch (OptimisticException ex) {
                 System.out.println("---------EXCEPTION---------");
                 assertThat(ex.getMessage(), is("optimistic exceptio"));
+            }
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
