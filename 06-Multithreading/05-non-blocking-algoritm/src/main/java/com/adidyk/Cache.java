@@ -38,8 +38,6 @@ class Cache {
         boolean result = false;
         if (this.cache.containsKey(user.getId())) {
             int version = this.cache.get(user.getId()).getVersion();
-            System.out.println("version: " + version);
-            System.out.println("version: " + this.cache.get(user.getId()).getVersion());
             if (version == this.cache.get(user.getId()).getVersion()) {
                 this.cache.get(user.getId()).setRole(user.getRole());
             } else {
@@ -72,14 +70,6 @@ class Cache {
             result = this.cache.get(key);
         }
         return result;
-    }
-
-    /**
-     * getAll - gets link variable to container.
-     * @return - returns gets link to container.
-     */
-    Map<Integer, User> getAll() {
-        return this.cache;
     }
 
 }

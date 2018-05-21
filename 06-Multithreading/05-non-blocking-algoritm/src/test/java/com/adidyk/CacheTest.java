@@ -19,12 +19,12 @@ public class CacheTest {
     private final User bob = new User(1, "Bob", "operator");
 
     /**
-     * @param bob - link variable to object of class user.
+     * @param adam - link variable to object of class user.
      */
     private final User adam = new User(2, "Adam", "administrator");
 
     /**
-     * @param bob - link variable to object of class user.
+     * @param dilan - link variable to object of class user.
      */
     private final User dilan = new User(3, "Dilan", "god");
 
@@ -70,32 +70,16 @@ public class CacheTest {
     /**
      * updateOptimisticExceptionTest - tests method update when appears
      * optimistic exception when multithreading.
+     * @exception InterruptedException - is interrupted exception.
      */
     @Test
-    public void updateOptimisticExceptionTest() {
+    public void updateOptimisticExceptionTest() throws InterruptedException {
         Thread first = new Thread(new ThreadFirst(this.cache));
+        Thread second = new Thread(new ThreadSecond(this.cache));
         first.start();
-        //System.out.println("exit");
-        new Thread(() -> {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            //this.cache.update(new User(1, "Bob", "operator"));
-            try {
-                cache.update(new User(1, "Bob", "operator"));
-                System.out.println(this.cache.get(1));
-            } catch (OptimisticException ex) {
-                System.out.println("Thread 2: exception");
-                assertThat(ex.getMessage(), is("optimistic exceptio"));
-            }
-        }).start();
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        second.start();
+        first.join();
+        second.join();
     }
 
     /**
@@ -121,9 +105,8 @@ public class CacheTest {
         assertThat(0, is(result.getVersion()));
     }
 
-
     /**
-     * Class MyThreadFirst creates thread and grabs lock if lock is free.
+     * Class ThreadFirst creates thread.
      * @author Didyk Andrey (androsdav@bigmir.net).
      * @since 12.05.2018.
      * @version 1.0.
@@ -131,39 +114,38 @@ public class CacheTest {
     private class ThreadFirst implements Runnable {
 
         /**
-         * @param cache - is link variable to object of class Counter (counter).
+         * @param cache - is link variable to object of class Cache.
          */
         private Cache cache;
 
         /**
-         * MyThreadFirst - constructor.
+         * ThreadFirst - constructor.
          *
-         * @param cache - is link variable to object of class Locker (locker).
+         * @param cache - is link variable to object of class Cache.
          */
         ThreadFirst(Cache cache) {
             this.cache = cache;
         }
 
         /**
-         * run - starts thread, grabs lock if lock is free and increases value
-         * of counter by one, after that frees lock.
+         * run - starts thread.
          */
         @Override
         public void run() {
-            this.cache.update(new User(1, "bob", "operator"));
-            System.out.println("Thread1: " + this.cache.get(1));
             try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                for (int index = 0; index < 2000; index++) {
+                    this.cache.update(new User(1, "bob", "operator" + index));
+                }
+            } catch (OptimisticException ex) {
+                assertThat(ex.getMessage(), is("optimistic exception"));
+                System.out.println("[info]: 'optimistic exception' testing was successful");
             }
-            //System.out.println(this.cache.get(1));
         }
 
     }
 
     /**
-     * Class MyThreadSecond creates thread and grabs lock if lock is free.
+     * Class ThreadSecond creates thread.
      * @author Didyk Andrey (androsdav@bigmir.net).
      * @since 12.05.2018.
      * @version 1.0.
@@ -171,42 +153,33 @@ public class CacheTest {
     public class ThreadSecond implements Runnable {
 
         /**
-         * @param cache - is link variable to object of class Cache (counter).
+         * @param cache - is link variable to object of class Cache.
          */
         private Cache cache;
 
         /**
-         * MyThreadSecond - constructor.
-         * @param cache - is link variable to object of class Locker (locker).
+         * ThreadSecond - constructor.
+         * @param cache - is link variable to object of class Cache.
          */
         ThreadSecond(Cache cache) {
             this.cache = cache;
         }
 
         /**
-         * run - starts thread, grabs lock if lock is free and increases value
-         * of counter by one, after that frees lock.
+         * run - starts thread.
          */
         @Override
         public void run() {
-            /*
             try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            */
-            try {
-                this.cache.update(new User(1, "Bob", "operator"));
+                for (int index = 0; index < 2000; index++) {
+                    this.cache.update(new User(1, "bob", "administrator" + index));
+                }
             } catch (OptimisticException ex) {
-                System.out.println("---------EXCEPTION---------");
-                assertThat(ex.getMessage(), is("optimistic exceptio"));
-            }
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                assertThat(ex.getMessage(), is("optimistic exception"));
+                System.out.println("[info]: 'optimistic exception' testing was successful");
             }
         }
+
     }
+
 }
