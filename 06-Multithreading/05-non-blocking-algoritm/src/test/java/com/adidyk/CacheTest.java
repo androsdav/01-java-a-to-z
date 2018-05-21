@@ -68,7 +68,7 @@ public class CacheTest {
     }
 
     /**
-     * updateOptimisticExceptionTest - tests method update when appears
+     * updateOptimisticExceptionTest - tests method update of class Cache when appears
      * optimistic exception when multithreading.
      * @exception InterruptedException - is interrupted exception.
      */
