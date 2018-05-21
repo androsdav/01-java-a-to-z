@@ -61,7 +61,7 @@ class User {
      * getId - returns id for user.
      * @return - returns id for user.
      */
-    synchronized int getId() {
+    int getId() {
         return id;
     }
 
@@ -69,7 +69,7 @@ class User {
      * getName - returns name for user.
      * @return - returns name for user.
      */
-    synchronized String getName() {
+    String getName() {
         return this.name;
     }
 
@@ -77,7 +77,7 @@ class User {
      * getRole - returns role for user.
      * @return - returns role for user.
      */
-    synchronized String getRole() {
+    String getRole() {
         return this.role;
     }
 
@@ -85,7 +85,7 @@ class User {
      * getVersion - returns version for user.
      * @return - returns version for user.
      */
-    synchronized int getVersion() {
+    int getVersion() {
         return this.version;
     }
 
@@ -95,7 +95,7 @@ class User {
      * @return - returns boolean result "true" if id of user is same, and returns "false" - isn`t same.
      */
     @Override
-    public synchronized boolean equals(Object obj) {
+    public boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
@@ -111,7 +111,7 @@ class User {
      * @return - returns hashCode for user.
      */
     @Override
-    public synchronized int hashCode() {
+    public int hashCode() {
         return id;
     }
 
@@ -120,7 +120,7 @@ class User {
      * @return - returns all information for user.
      */
     @Override
-    public synchronized String toString() {
+    public String toString() {
         return String.format("%s%s%s%s%s%s%s%s%s%s%s", "User{", "id=", this.id, ", name=", this.name, ", ",
                 "role=", this.role, ", version=", this.version, "}");
     }
