@@ -18,10 +18,15 @@ public class StartUi {
         cache.add(new User(1, "Tom", "operator"));
         cache.add(new User(2, "Bob", "administrator"));
         cache.add(new User(3, "Bill", "admin"));
-        User user = cache.updateNew(new User(2, "Amanda", "bitch"));
+        boolean user = cache.update(new User(2, "Amanda", "bitch"));
+        System.out.println(user);
         System.out.println(cache.get(2));
-        User user1 = cache.updateNew(new User(4, "Merlin", "demon"));
+        boolean user1 = cache.update(new User(2, "Blablabla", "bitch2"));
         System.out.println(user1);
+        System.out.println(cache.get(2));
+        //System.out.println(cache.get(2));
+        boolean user2 = cache.update(new User(4, "Merlin", "demon"));
+        System.out.println(user2);
     }
 
 }

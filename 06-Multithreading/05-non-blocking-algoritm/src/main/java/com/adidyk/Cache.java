@@ -34,25 +34,32 @@ class Cache {
      * @param user - is link variable to object of class User.
      * @return - returns true if user update role, returns false if user not update role..
      */
-    User updateNew(User user) {
-        boolean updateTrue = false;
-        User result = this.cache.computeIfPresent(user.getId(), (key, value) -> {
-            this.cache.get(user.getId()).setRole(user.getRole());
-            return user;
+    boolean update(User user) {
+        boolean result = false;
+        User newRole = this.cache.computeIfPresent(user.getId(), (Integer key, User value) -> {
+            if (this.cache.containsKey(user.getId())) {
+                int version = this.cache.get(user.getId()).getVersion();
+                if (version == this.cache.get(user.getId()).getVersion()) {
+                    this.cache.get(user.getId()).setRole(user.getRole());
+                } else {
+                    throw new OptimisticException("optimistic exception");
+                }
+            }
+            return value;
         });
-        if (result != null) {
-            updateTrue = true;
+        if (newRole != null) {
+            result = true;
         }
         return result;
     }
 
-
-
-    /**
+    /*
+        /**
      * update - update user role by key, if container has input key (where key is id user).
      * @param user - is link variable to object of class User.
      * @return - returns true if user update role, returns false if user not update role..
      */
+    /*
     boolean update(User user) {
         boolean result = false;
         if (this.cache.containsKey(user.getId())) {
@@ -66,6 +73,7 @@ class Cache {
         }
         return result;
     }
+    */
 
     /**
      * delete - removes user from container by key (where key is id user) if

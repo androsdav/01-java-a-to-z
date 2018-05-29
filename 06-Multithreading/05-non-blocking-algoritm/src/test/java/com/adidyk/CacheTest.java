@@ -133,8 +133,9 @@ public class CacheTest {
         @Override
         public void run() {
             try {
-                for (int index = 0; index < 2000; index++) {
+                for (int index = 0; index < 200; index++) {
                     this.cache.update(new User(1, "bob", "operator" + index));
+                    //System.out.println(this.cache.get(1));
                 }
             } catch (OptimisticException ex) {
                 assertThat(ex.getMessage(), is("optimistic exception"));
@@ -171,8 +172,9 @@ public class CacheTest {
         @Override
         public void run() {
             try {
-                for (int index = 0; index < 2000; index++) {
+                for (int index = 0; index < 200; index++) {
                     this.cache.update(new User(1, "bob", "administrator" + index));
+                    System.out.println(this.cache.get(1));
                 }
             } catch (OptimisticException ex) {
                 assertThat(ex.getMessage(), is("optimistic exception"));
