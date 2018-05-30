@@ -46,6 +46,7 @@ class Cache {
                     this.cache.get(user.getId()).setRole(user.getRole());
                 } else {
                     //throw new OptimisticException("optimistic exception");
+                    System.out.println("exception");
 
                 }
             }
