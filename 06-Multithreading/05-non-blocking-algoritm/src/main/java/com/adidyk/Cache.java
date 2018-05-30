@@ -45,7 +45,8 @@ class Cache {
                 if (version == this.cache.get(user.getId()).getVersion()) {
                     this.cache.get(user.getId()).setRole(user.getRole());
                 } else {
-                    throw new OptimisticException("optimistic exception");
+                    //throw new OptimisticException("optimistic exception");
+
                 }
             }
 
