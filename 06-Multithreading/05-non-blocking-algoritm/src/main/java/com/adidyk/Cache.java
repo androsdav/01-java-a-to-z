@@ -36,10 +36,23 @@ class Cache {
      */
     boolean update(User user) {
         boolean result = false;
-        User newRole = this.cache.computeIfPresent(user.getId(), (Integer key, User value) -> {
+        //User temp = this.cache.get(user.getId());
+        //User oldUser = new User(temp.getId(), temp.getName(), temp.getRole());
+        //oldUser.setRole(temp.getRole());
+        User newRole = this.cache.computeIfPresent(user.getId(), (key, value) -> {
             if (this.cache.containsKey(user.getId())) {
-                int version = this.cache.get(user.getId()).getVersion();
-                if (version == this.cache.get(user.getId()).getVersion()) {
+                User oldUser = new User(this.cache.get(user.getId()).getId(), this.cache.get(user.getId()).getName(),
+                        this.cache.get(user.getId()).getRole());
+                oldUser.setVersion(this.cache.get(user.getId()).getVersion());
+                //System.out.println(oldUser);
+                //System.out.println(this.cache.get(user.getId()));
+                //int version = this.cache.get(user.getId()).getVersion();
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if (oldUser.getVersion() == this.cache.get(user.getId()).getVersion()) {
                     this.cache.get(user.getId()).setRole(user.getRole());
                 } else {
                     throw new OptimisticException("optimistic exception");
