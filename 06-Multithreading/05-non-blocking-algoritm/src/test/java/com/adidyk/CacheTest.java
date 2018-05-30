@@ -84,8 +84,9 @@ public class CacheTest {
         Thread second = new Thread(new ThreadSecond(this.cache));
         first.start();
         second.start();
-        first.join();
-        second.join();
+        Thread.sleep(3000);
+       // first.join();
+        //second.join();
     }
 
     /**
@@ -138,8 +139,9 @@ public class CacheTest {
          */
         @Override
         public void run() {
+            /*
             try {
-                this.cache.update(new User(2, "Bob", "administrator"));
+                this.cache.updateNew(new User(2, "Bob", "administrator"));
             } catch (OptimisticException ex) {
                 assertThat(ex.getMessage(), is("optimistic exception"));
             }
@@ -155,17 +157,15 @@ public class CacheTest {
                 e.printStackTrace();
             }
             */
-            /*
             try {
-                for (int index = 0; index < 20000; index++) {
+                for (int index = 0; index < 2000; index++) {
                     this.cache.update(new User(1, "bob", "operator" + index));
-                    System.out.println("[threadFirst]: " + this.cache.get(1));
+                    //System.out.println("[threadFirst]: " + this.cache.get(1));
                 }
             } catch (OptimisticException ex) {
                 assertThat(ex.getMessage(), is("optimistic exception"));
-                //System.out.println("[info]: 'optimistic exception' testing was successful");
+                System.out.println("[info]: 'optimistic exception' testing was successful");
             }
-            */
 
         }
 
@@ -197,35 +197,27 @@ public class CacheTest {
          */
         @Override
         public void run() {
+            /*
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             try {
-                this.cache.update(new User(2, "Bob", "administrator"));
+                this.cache.updateNew(new User(2, "Bob", "administrator"));
             } catch (OptimisticException ex) {
                 assertThat(ex.getMessage(), is("optimistic exception"));
             }
-            /*
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
             */
-            //System.out.println("second: " + this.cache.get(2));
-            /*
             try {
-                for (int index = 0; index < 20; index++) {
+                for (int index = 0; index < 2000; index++) {
                     this.cache.update(new User(1, "bob", "administrator" + index));
-                    System.out.println("[threadSecond]: " + this.cache.get(1));
+  //                  System.out.println("[threadSecond]: " + this.cache.get(1));
                 }
             } catch (OptimisticException ex) {
                 assertThat(ex.getMessage(), is("optimistic exception"));
                 System.out.println("[info]: 'optimistic exception' testing was successful");
             }
-            */
         }
 
     }
