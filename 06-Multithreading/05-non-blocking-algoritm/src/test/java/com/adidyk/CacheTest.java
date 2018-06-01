@@ -59,12 +59,12 @@ public class CacheTest {
      */
     @Test
     public void updateTest() {
-        //boolean resultTrue = this.cache.update(new User(1, "Bob", "advanced"));
-        //boolean resultFalse = this.cache.update(new User(6, "Bob", "advanced"));
-        //assertThat(true, is(resultTrue));
-        //assertThat(false, is(resultFalse));
-        //assertThat(1, is(this.cache.get(1).getVersion()));
-        //assertThat("advanced", is(this.cache.get(1).getRole()));
+        boolean resultTrue = this.cache.update(new User(1, "Bob", "advanced"));
+        boolean resultFalse = this.cache.update(new User(6, "Bob", "advanced"));
+        assertThat(true, is(resultTrue));
+        assertThat(false, is(resultFalse));
+        assertThat(1, is(this.cache.get(1).getVersion()));
+        assertThat("advanced", is(this.cache.get(1).getRole()));
     }
 
     /**
@@ -74,19 +74,12 @@ public class CacheTest {
      */
     @Test
     public void updateOptimisticExceptionTest() throws InterruptedException {
-        /*
-        for (int index = 0; index < 100; index++) {
-            new Thread(new ThreadFirst(this.cache)).start();
-        }
-        Thread.sleep(4000);
-        */
         Thread first = new Thread(new ThreadFirst(this.cache));
         Thread second = new Thread(new ThreadSecond(this.cache));
         first.start();
         second.start();
-        Thread.sleep(3000);
-       // first.join();
-        //second.join();
+        first.join();
+        second.join();
     }
 
     /**
@@ -127,7 +120,6 @@ public class CacheTest {
 
         /**
          * ThreadFirst - constructor.
-         *
          * @param cache - is link variable to object of class Cache.
          */
         ThreadFirst(Cache cache) {
@@ -139,34 +131,14 @@ public class CacheTest {
          */
         @Override
         public void run() {
-            /*
             try {
-                this.cache.updateNew(new User(2, "Bob", "administrator"));
-            } catch (OptimisticException ex) {
-                assertThat(ex.getMessage(), is("optimistic exception"));
-            }
-            //this.cache.add(new User(1, "Tom", "operator"));
-            //this.cache.add(new User(2, "Bob", "administrator"));
-            //this.cache.add(new User(3, "Bill", "admin"));
-
-            //System.out.println("first: " + this.cache.get(2));
-            /*
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            */
-            try {
-                for (int index = 0; index < 2000; index++) {
+                for (int index = 0; index < 4000; index++) {
                     this.cache.update(new User(1, "bob", "operator" + index));
-                    //System.out.println("[threadFirst]: " + this.cache.get(1));
                 }
             } catch (OptimisticException ex) {
                 assertThat(ex.getMessage(), is("optimistic exception"));
                 System.out.println("[info]: 'optimistic exception' testing was successful");
             }
-
         }
 
     }
@@ -177,7 +149,7 @@ public class CacheTest {
      * @since 12.05.2018.
      * @version 1.0.
      */
-    public class ThreadSecond implements Runnable {
+    private class ThreadSecond implements Runnable {
 
         /**
          * @param cache - is link variable to object of class Cache.
@@ -197,22 +169,9 @@ public class CacheTest {
          */
         @Override
         public void run() {
-            /*
             try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            try {
-                this.cache.updateNew(new User(2, "Bob", "administrator"));
-            } catch (OptimisticException ex) {
-                assertThat(ex.getMessage(), is("optimistic exception"));
-            }
-            */
-            try {
-                for (int index = 0; index < 2000; index++) {
+                for (int index = 0; index < 4000; index++) {
                     this.cache.update(new User(1, "bob", "administrator" + index));
-  //                  System.out.println("[threadSecond]: " + this.cache.get(1));
                 }
             } catch (OptimisticException ex) {
                 assertThat(ex.getMessage(), is("optimistic exception"));

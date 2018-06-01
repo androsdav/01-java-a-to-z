@@ -36,43 +36,15 @@ class Cache {
      */
     boolean update(User user) {
         boolean result = false;
-        //User temp = this.cache.get(user.getId());
-        //User oldUser = new User(temp.getId(), temp.getName(), temp.getRole());
-        //oldUser.setRole(temp.getRole());
         User newRole = this.cache.computeIfPresent(user.getId(), (key, value) -> {
             if (this.cache.containsKey(user.getId())) {
                 int version = this.cache.get(user.getId()).getVersion();
                 if (version == this.cache.get(user.getId()).getVersion()) {
                     this.cache.get(user.getId()).setRole(user.getRole());
                 } else {
-                    //throw new OptimisticException("optimistic exception");
-                    System.out.println("exception");
-
-                }
-            }
-
-
-            /*
-            if (this.cache.containsKey(user.getId())) {
-                User oldUser = new User(this.cache.get(user.getId()).getId(), this.cache.get(user.getId()).getName(),
-                        this.cache.get(user.getId()).getRole());
-                oldUser.setVersion(this.cache.get(user.getId()).getVersion());
-                //System.out.println(oldUser);
-                //System.out.println(this.cache.get(user.getId()));
-                //int version = this.cache.get(user.getId()).getVersion();
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                if (oldUser.getVersion() == this.cache.get(user.getId()).getVersion()) {
-                    this.cache.get(user.getId()).setRole(user.getRole());
-                } else {
                     throw new OptimisticException("optimistic exception");
                 }
             }
-            */
-
             return value;
         });
         if (newRole != null) {
@@ -80,67 +52,6 @@ class Cache {
         }
         return result;
     }
-
-    /**
-     * update - update user role by key, if container has input key (where key is id user).
-     * @param user - is link variable to object of class User.
-     * @return - returns true if user update role, returns false if user not update role..
-     */
-    boolean updateNew(User user) {
-        boolean result = false;
-        if (this.cache.containsKey(user.getId())) {
-            int version = this.cache.get(user.getId()).getVersion();
-            if (version == this.cache.get(user.getId()).getVersion()) {
-                this.cache.get(user.getId()).setRole(user.getRole());
-            } else {
-                throw new OptimisticException("optimistic exception");
-            }
-            result = true;
-        }
-        return result;
-        /*
-        boolean result = false;
-        if (this.cache.containsKey(user.getId())) {
-            User oldUser = new User(this.cache.get(user.getId()).getId(), this.cache.get(user.getId()).getName(),
-                    this.cache.get(user.getId()).getRole());
-            oldUser.setVersion(this.cache.get(user.getId()).getVersion());
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            if (oldUser.getVersion() == this.cache.get(user.getId()).getVersion()) {
-                this.cache.get(user.getId()).setRole(user.getRole());
-                result = true;
-            } else {
-                throw new OptimisticException("optimistic exception");
-            }
-        }
-        return result;
-        */
-    }
-
-    /*
-        /**
-     * update - update user role by key, if container has input key (where key is id user).
-     * @param user - is link variable to object of class User.
-     * @return - returns true if user update role, returns false if user not update role..
-     */
-    /*
-    boolean update(User user) {
-        boolean result = false;
-        if (this.cache.containsKey(user.getId())) {
-            int version = this.cache.get(user.getId()).getVersion();
-            if (version == this.cache.get(user.getId()).getVersion()) {
-                this.cache.get(user.getId()).setRole(user.getRole());
-            } else {
-                throw new OptimisticException("optimistic exception");
-            }
-            result = true;
-        }
-        return result;
-    }
-    */
 
     /**
      * delete - removes user from container by key (where key is id user) if
