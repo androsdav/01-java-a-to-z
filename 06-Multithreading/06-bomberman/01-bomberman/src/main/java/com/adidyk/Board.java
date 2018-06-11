@@ -20,7 +20,7 @@ public class Board {
      * addHeroes - is hero.
      * @param bomber - is hero.
     */
-    public void addHeroes(BomberMan bomber) {
+    void addHeroes(BomberMan bomber) {
         int positionX = bomber.getCell().getPositionX();
         int positionY = bomber.getCell().getPositionY();
         this.board[positionX][positionY].lock();
@@ -33,6 +33,6 @@ public class Board {
      * @return true or false.
      */
     public boolean move(Cell source, Cell dist) {
-
+        return true;
     }
 }
