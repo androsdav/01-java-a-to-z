@@ -62,6 +62,14 @@ public class BomberMan {
     }
 
     /**
+     * getCell - get cell.
+     * @return return ce..
+     */
+    Cell getCell() {
+        return this.cell;
+    }
+
+    /**
      *
      * @return - is.
      */
