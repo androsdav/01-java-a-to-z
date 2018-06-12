@@ -20,10 +20,13 @@ public class BoardLock implements Runnable {
      */
     private final Board board;
 
+    /**
+     * @param locker - is locker.
+     */
     private final ReentrantLock locker = new ReentrantLock();
 
     /**
-     *
+     * @param board - is board.
      * @param bomber - is bomber.
      */
     public BoardLock(Board board, BomberMan bomber) {
@@ -36,6 +39,8 @@ public class BoardLock implements Runnable {
      */
     @Override
     public void run() {
+        int direction = (int) (Math.random() * 5);
+        bomber.move(direction);
         this.board.addHeroes(this.bomber);
     }
 

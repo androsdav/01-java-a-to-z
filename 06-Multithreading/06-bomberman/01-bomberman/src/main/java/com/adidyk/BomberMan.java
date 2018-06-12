@@ -9,6 +9,28 @@ package com.adidyk;
 public class BomberMan {
 
     /**
+     * @param UP - is up.
+     */
+    private static final int UP = 1;
+
+    /**
+     * @param RIGHT - is up.
+     */
+    private static final int RIGHT = 2;
+
+    /**
+     * @param DOWN - is up.
+     */
+    private static final int DOWN = 3;
+
+    /**
+     * @param LEFT - is up.
+     */
+    private static final int LEFT = 4;
+
+
+
+    /**
      * @param cell - is.
      */
     private Cell cell;
@@ -34,30 +56,46 @@ public class BomberMan {
     }
 
     /**
+     * direction - is direction.
+     * @param number - is nuber.
+     */
+    void move(int number) {
+        if (number == UP) {
+            this.moveUp();
+        } else if (number == RIGHT) {
+            this.moveRight();
+        } else if (number == DOWN) {
+            this.moveDown();
+        } else if (number == LEFT) {
+            this.moveLeft();
+        }
+    }
+
+    /**
      * moveUp - is.
      */
-    void moveUp() {
+    private void moveUp() {
         this.cell = new Cell(this.cell.getPositionX(), this.cell.getPositionY() + this.step);
     }
 
     /**
      * moveUp - is.
      */
-    void moveDown() {
+    private void moveDown() {
         this.cell = new Cell(this.cell.getPositionX(), this.cell.getPositionY() - this.step);
     }
 
     /**
      * moveRight - is.
      */
-    void moveRight() {
+    private void moveRight() {
         this.cell = new Cell(this.cell.getPositionX() + step, this.cell.getPositionY());
     }
 
     /**
      * moveLeft - is.
      */
-    void moveLeft() {
+    private void moveLeft() {
         this.cell = new Cell(this.cell.getPositionX() - step, this.cell.getPositionY());
     }
 

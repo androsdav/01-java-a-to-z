@@ -13,8 +13,20 @@ public class Board {
     /**
      * @param board - board.
      */
-    ReentrantLock [][] board = new ReentrantLock[5][5];
+    private ReentrantLock[][] board = new ReentrantLock[5][5];
 
+    /**
+     * @param bomber - is bomber.
+     */
+    private BomberMan bomber;
+
+    /**
+     *
+     * @param bomber - is bomber.
+     */
+    Board(BomberMan bomber) {
+        this.bomber = bomber;
+    }
 
     /**
      * addHeroes - is hero.
@@ -33,6 +45,7 @@ public class Board {
      * @return true or false.
      */
     public boolean move(Cell source, Cell dist) {
+
         return true;
     }
 }

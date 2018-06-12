@@ -14,12 +14,16 @@ public class StartUi {
      */
     public static void main(String[] arg) {
         System.out.println("BOMBER");
+        int direction = 1 + (int) (Math.random() * 4);
+        System.out.println(direction);
+        /*
         Cell cell = new Cell(1, 2);
         System.out.println(cell);
         BomberMan bomber = new BomberMan(new Cell(4, 6), "bomber");
         System.out.println(bomber);
         bomber.moveDown();
         System.out.println(bomber);
+        */
     }
 
 }
