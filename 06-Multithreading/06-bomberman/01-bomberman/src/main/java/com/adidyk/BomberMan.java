@@ -28,8 +28,6 @@ public class BomberMan {
      */
     private static final int LEFT = 4;
 
-
-
     /**
      * @param cell - is.
      */
@@ -74,28 +72,28 @@ public class BomberMan {
     /**
      * moveUp - is.
      */
-    private void moveUp() {
+    void moveUp() {
         this.cell = new Cell(this.cell.getPositionX(), this.cell.getPositionY() + this.step);
     }
 
     /**
      * moveUp - is.
      */
-    private void moveDown() {
+    void moveDown() {
         this.cell = new Cell(this.cell.getPositionX(), this.cell.getPositionY() - this.step);
     }
 
     /**
      * moveRight - is.
      */
-    private void moveRight() {
+    void moveRight() {
         this.cell = new Cell(this.cell.getPositionX() + step, this.cell.getPositionY());
     }
 
     /**
      * moveLeft - is.
      */
-    private void moveLeft() {
+    void moveLeft() {
         this.cell = new Cell(this.cell.getPositionX() - step, this.cell.getPositionY());
     }
 

@@ -11,6 +11,26 @@ import java.util.concurrent.locks.ReentrantLock;
 public class Board {
 
     /**
+     * @param UP - is up.
+     */
+    private static final int UP = 1;
+
+    /**
+     * @param RIGHT - is up.
+     */
+    private static final int RIGHT = 2;
+
+    /**
+     * @param DOWN - is up.
+     */
+    private static final int DOWN = 3;
+
+    /**
+     * @param LEFT - is up.
+     */
+    private static final int LEFT = 4;
+
+    /**
      * @param board - board.
      */
     private ReentrantLock[][] board = new ReentrantLock[5][5];
@@ -45,7 +65,26 @@ public class Board {
      * @return true or false.
      */
     public boolean move(Cell source, Cell dist) {
+        boolean moveTrue = false;
+        int positionX = source.getPositionX();
+        int positionY = source.getPositionY();
+        if (positionX == this.bomber.getCell().getPositionX() && positionY == this.bomber.getCell().getPositionY()) {
+            int direction = 1 + (int) (Math.random() * 4);
+            if (direction == UP) {
+                if () {
+                    this.bomber.moveUp();
+                }
+            } else if (direction == RIGHT) {
+                this.bomber.moveRight();
+            } else if (direction == DOWN) {
+                this.bomber.moveDown();
+            } else if (direction == LEFT) {
+                this.bomber.moveLeft();
+            }
 
+
+
+        }
         return true;
     }
 }
