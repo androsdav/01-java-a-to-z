@@ -23,7 +23,7 @@ public class StartUi {
         Board board = new Board();
         board.addHeroes(bomber1);
         board.addHeroes(bomber2);
-        boolean result = board.move(bomber1.getCell(), new Cell(2, 2));
+        boolean result = board.move(bomber1.getCell(), new Cell(1, 2));
         System.out.println(result);
         //System.out.println("BOMBER");
         //int direction = 1 + (int) (Math.random() * 4);
