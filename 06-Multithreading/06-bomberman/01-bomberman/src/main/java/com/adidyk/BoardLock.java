@@ -43,27 +43,16 @@ public class BoardLock implements Runnable {
     @Override
     public void run() {
         System.out.println("Thread start");
-        //System.out.println(Thread.holdsLock(bomber));
         lock.lock();
         try {
-            //System.out.println(Thread.holdsLock(bomber));
             this.bomber.move(1);
-            //System.out.println(Thread.holdsLock(bomber));
             Thread.sleep(4000);
-            //System.out.println(Thread.holdsLock(bomber));
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
             lock.unlock();
         }
-        //System.out.println(Thread.holdsLock(bomber));
         System.out.println("Thread finish");
-
-        /*
-        int direction = (int) (Math.random() * 5);
-        bomber.move(direction);
-        this.board.addHeroes(this.bomber);
-        */
     }
 
 }
