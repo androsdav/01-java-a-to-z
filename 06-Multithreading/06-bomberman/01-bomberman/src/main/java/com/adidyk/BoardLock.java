@@ -15,22 +15,25 @@ public class BoardLock implements Runnable {
      */
     private final BomberMan bomber;
 
+    /*
     /**
      * @param board - board.
      */
+    /*
     private final Board board;
+     */
 
     /**
      * @param locker - is locker.
      */
-    private final ReentrantLock locker = new ReentrantLock();
+    private final ReentrantLock lock;
 
     /**
-     * @param board - is board.
+     * @param lock - is board.
      * @param bomber - is bomber.
      */
-    public BoardLock(Board board, BomberMan bomber) {
-        this.board = board;
+    BoardLock(ReentrantLock lock, BomberMan bomber) {
+        this.lock = lock;
         this.bomber = bomber;
     }
 
@@ -39,9 +42,28 @@ public class BoardLock implements Runnable {
      */
     @Override
     public void run() {
+        System.out.println("Thread start");
+        //System.out.println(Thread.holdsLock(bomber));
+        lock.lock();
+        try {
+            //System.out.println(Thread.holdsLock(bomber));
+            this.bomber.move(1);
+            //System.out.println(Thread.holdsLock(bomber));
+            Thread.sleep(4000);
+            //System.out.println(Thread.holdsLock(bomber));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            lock.unlock();
+        }
+        //System.out.println(Thread.holdsLock(bomber));
+        System.out.println("Thread finish");
+
+        /*
         int direction = (int) (Math.random() * 5);
         bomber.move(direction);
         this.board.addHeroes(this.bomber);
+        */
     }
 
 }

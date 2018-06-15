@@ -8,7 +8,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * @since 11.06.2018.
  * @version 1.0.
  */
-public class Board {
+class Board {
 
     /**
      * @param UP - is up.
@@ -33,20 +33,7 @@ public class Board {
     /**
      * @param board - board.
      */
-    private ReentrantLock[][] board = new ReentrantLock[5][5];
-
-    /**
-     * @param bomber - is bomber.
-     */
-    private BomberMan bomber;
-
-    /**
-     *
-     * @param bomber - is bomber.
-     */
-    Board(BomberMan bomber) {
-        this.bomber = bomber;
-    }
+    private ReentrantLock[][] board = new ReentrantLock[5][6];
 
     /**
      * addHeroes - is hero.
@@ -55,6 +42,7 @@ public class Board {
     void addHeroes(BomberMan bomber) {
         int positionX = bomber.getCell().getPositionX();
         int positionY = bomber.getCell().getPositionY();
+        this.board[positionX][positionY] = new ReentrantLock();
         this.board[positionX][positionY].lock();
     }
 
@@ -64,7 +52,21 @@ public class Board {
      * @param dist - is dist.
      * @return true or false.
      */
-    public boolean move(Cell source, Cell dist) {
+    boolean move(Cell source, Cell dist) {
+        boolean wayIsFree = false;
+        int positionX = dist.getPositionX();
+        int positionY = dist.getPositionY();
+        if (!this.board[positionX][positionY].isLocked()) {
+            wayIsFree = true;
+        }
+        return wayIsFree;
+    }
+        /*
+        if () {
+
+        }
+
+        /*
         boolean moveTrue = false;
         int positionX = source.getPositionX();
         int positionY = source.getPositionY();
@@ -85,6 +87,6 @@ public class Board {
 
 
         }
-        return true;
-    }
+        */
+
 }

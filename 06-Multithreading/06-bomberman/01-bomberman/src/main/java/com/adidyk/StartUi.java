@@ -1,5 +1,7 @@
 package com.adidyk;
 
+//import java.util.concurrent.locks.ReentrantLock;
+
 /**
  * Class StartUi for create jar file and run program (Parallel Search).
  * @author Didyk Andrey (androsdav@bigmir.net).
@@ -13,9 +15,40 @@ public class StartUi {
      * @param arg - is nothing.
      */
     public static void main(String[] arg) {
-        System.out.println("BOMBER");
-        int direction = 1 + (int) (Math.random() * 4);
-        System.out.println(direction);
+        int[][] array = new int[5][5];
+        array[1][2] = 3;
+        System.out.println(array[1][2]);
+        BomberMan bomber1 = new BomberMan(new Cell(3, 2), "bomber1");
+        BomberMan bomber2 = new BomberMan(new Cell(2, 2), "bomber2");
+        Board board = new Board();
+        board.addHeroes(bomber1);
+        board.addHeroes(bomber2);
+        boolean result = board.move(bomber1.getCell(), new Cell(2, 2));
+        System.out.println(result);
+        //System.out.println("BOMBER");
+        //int direction = 1 + (int) (Math.random() * 4);
+        //System.out.println(direction);
+        /*
+        ReentrantLock lock = new ReentrantLock();
+        BomberMan bomber = new BomberMan(new Cell(5, 5), "bomber");
+        Thread board = new Thread(new BoardLock(lock, bomber));
+        board.start();
+        System.out.println((lock.isLocked()));
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println((lock.isLocked()));
+        /*
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        */
+        //System.out.println(Thread.holdsLock(bomber));
+
         /*
         Cell cell = new Cell(1, 2);
         System.out.println(cell);
