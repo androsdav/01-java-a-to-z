@@ -20,14 +20,15 @@ public class StartUi {
         System.out.println(array[1][2]);
         BomberMan bomber1 = new BomberMan(new Cell(3, 2), "bomber1");
         BomberMan bomber2 = new BomberMan(new Cell(2, 2), "bomber2");
-        Board board = new Board();
-        board.addHeroes(bomber1);
-        board.addHeroes(bomber2);
-        boolean result = board.move(bomber1.getCell(), new Cell(1, 2));
+        Board board = new Board(6, 5);
+        board.lockCell(bomber1.getCell());
+        board.lockCell(bomber2.getCell());
+        boolean result = board.move(bomber1.getCell(), new Cell(5, 4));
         System.out.println(result);
-        boolean result1 = board.move(bomber1.getCell(), new Cell(1, 2));
-        System.out.println(result1);
-        //System.out.println("BOMBER");
+        int[][] test = new int[30][5];
+        System.out.println(test.length);
+        System.out.println(test[29].length);
+                //System.out.println("BOMBER");
         //int direction = 1 + (int) (Math.random() * 4);
         //System.out.println(direction);
         /*

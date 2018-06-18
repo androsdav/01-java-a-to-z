@@ -11,36 +11,18 @@ import java.util.concurrent.locks.ReentrantLock;
 class Board {
 
     /**
-     * @param UP - is up.
-     */
-    private static final int UP = 1;
-
-    /**
-     * @param RIGHT - is up.
-     */
-    private static final int RIGHT = 2;
-
-    /**
-     * @param DOWN - is up.
-     */
-    private static final int DOWN = 3;
-
-    /**
-     * @param LEFT - is up.
-     */
-    private static final int LEFT = 4;
-
-    /**
      * @param board - board.
      */
     private ReentrantLock[][] board;
 
     /**
      * ReentrantLock - constructor.
+     * @param lengthX - is.
+     * @param lengthY - is.
      */
     Board(int lengthX, int lengthY) {
         this.board = new ReentrantLock[lengthX][lengthY];
-
+        this.init();
     }
 
     /**
@@ -48,7 +30,7 @@ class Board {
      */
     private void init() {
         for (int indexX = 0; indexX < this.board.length; indexX++) {
-            for (int indexY = 0; indexY < this.board.length; indexY++) {
+            for (int indexY = 0; indexY < this.board[indexX].length; indexY++) {
                 this.board[indexX][indexY] = new ReentrantLock();
             }
         }
@@ -56,12 +38,10 @@ class Board {
 
     /**
      * addHeroes - is hero.
-     * @param bomber - is hero.
+     * @param cell - is cell.
     */
-    void addHeroes(BomberMan bomber) {
-        int positionX = bomber.getCell().getPositionX();
-        int positionY = bomber.getCell().getPositionY();
-        this.board[positionX][positionY].lock();
+    void lockCell(Cell cell) {
+        this.board[cell.getPositionX()][cell.getPositionY()].lock();
     }
 
     /**
@@ -71,40 +51,15 @@ class Board {
      * @return true or false.
      */
     boolean move(Cell source, Cell dist) {
-        boolean wayIsFree = false;
-        int positionX = dist.getPositionX();
-        int positionY = dist.getPositionY();
-        if (!this.board[positionX][positionY].isLocked()) {
-            wayIsFree = true;
-        }
-        return wayIsFree;
-    }
-        /*
-        if () {
-
-        }
-
-        /*
-        boolean moveTrue = false;
-        int positionX = source.getPositionX();
-        int positionY = source.getPositionY();
-        if (positionX == this.bomber.getCell().getPositionX() && positionY == this.bomber.getCell().getPositionY()) {
-            int direction = 1 + (int) (Math.random() * 4);
-            if (direction == UP) {
-                if () {
-                    this.bomber.moveUp();
+        boolean cellIsFree = false;
+        if (0 <= dist.getPositionX() && dist.getPositionX() < this.board.length) {
+            if (0 <= dist.getPositionY() && dist.getPositionY() < this.board[source.getPositionX()].length) {
+                if (!this.board[dist.getPositionX()][dist.getPositionY()].isLocked()) {
+                    cellIsFree = true;
                 }
-            } else if (direction == RIGHT) {
-                this.bomber.moveRight();
-            } else if (direction == DOWN) {
-                this.bomber.moveDown();
-            } else if (direction == LEFT) {
-                this.bomber.moveLeft();
             }
-
-
-
         }
-        */
+        return cellIsFree;
+    }
 
 }
