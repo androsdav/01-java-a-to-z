@@ -41,7 +41,7 @@ public class BomberMan {
     /**
      * @param step - step.
      */
-    private final int step = 1;
+    private static final int STEP = 1;
 
     /**
      * BomberMan - constructor.
@@ -55,46 +55,48 @@ public class BomberMan {
 
     /**
      * direction - is direction.
-     * @param number - is nuber.
      */
-    void move(int number) {
-        if (number == UP) {
-            this.moveUp();
-        } else if (number == RIGHT) {
-            this.moveRight();
-        } else if (number == DOWN) {
-            this.moveDown();
-        } else if (number == LEFT) {
-            this.moveLeft();
+    Cell way(Cell dist) {
+        Cell higWay = null;
+        int direction = 1 + (int) (Math.random() * 4);
+        if (direction == UP) {
+            higWay = this.moveUp();
+        } else if (direction == RIGHT) {
+            higWay = this.moveRight();
+        } else if (direction == DOWN) {
+            higWay = this.moveDown();
+        } else if (direction == LEFT) {
+            higWay = this.moveLeft();
         }
+        return higWay;
     }
 
     /**
      * moveUp - is.
      */
-    void moveUp() {
-        this.cell = new Cell(this.cell.getPositionX(), this.cell.getPositionY() + this.step);
+    private Cell moveUp() {
+        return new Cell(this.cell.getPositionX(), this.cell.getPositionY() + STEP);
     }
 
     /**
      * moveUp - is.
      */
-    void moveDown() {
-        this.cell = new Cell(this.cell.getPositionX(), this.cell.getPositionY() - this.step);
+    private Cell moveDown() {
+        return new Cell(this.cell.getPositionX(), this.cell.getPositionY() - STEP);
     }
 
     /**
      * moveRight - is.
      */
-    void moveRight() {
-        this.cell = new Cell(this.cell.getPositionX() + step, this.cell.getPositionY());
+    private Cell moveRight() {
+        return new Cell(this.cell.getPositionX() + STEP, this.cell.getPositionY());
     }
 
     /**
      * moveLeft - is.
      */
-    void moveLeft() {
-        this.cell = new Cell(this.cell.getPositionX() - step, this.cell.getPositionY());
+    private Cell moveLeft() {
+        return new Cell(this.cell.getPositionX() - STEP, this.cell.getPositionY());
     }
 
     /**

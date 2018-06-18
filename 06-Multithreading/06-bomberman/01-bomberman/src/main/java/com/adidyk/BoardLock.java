@@ -11,9 +11,34 @@ import java.util.concurrent.locks.ReentrantLock;
 public class BoardLock implements Runnable {
 
     /**
+     * @param UP - is up.
+     */
+    private static final int UP = 1;
+
+    /**
+     * @param RIGHT - is up.
+     */
+    private static final int RIGHT = 2;
+
+    /**
+     * @param DOWN - is up.
+     */
+    private static final int DOWN = 3;
+
+    /**
+     * @param LEFT - is up.
+     */
+    private static final int LEFT = 4;
+
+    /**
      * @param bomber - is bomber.
      */
     private final BomberMan bomber;
+
+    /**
+     * @param step - step.
+     */
+    private static final int STEP = 1;
 
     /*
     /**
@@ -26,14 +51,14 @@ public class BoardLock implements Runnable {
     /**
      * @param locker - is locker.
      */
-    private final ReentrantLock lock;
+    private final Board board;
 
     /**
-     * @param lock - is board.
+     * @param board - is board.
      * @param bomber - is bomber.
      */
-    BoardLock(ReentrantLock lock, BomberMan bomber) {
-        this.lock = lock;
+    BoardLock(Board board, BomberMan bomber) {
+        this.board = board;
         this.bomber = bomber;
     }
 
@@ -43,6 +68,12 @@ public class BoardLock implements Runnable {
     @Override
     public void run() {
         System.out.println("Thread start");
+        this.bomber.way(1 + (int) (Math.random() * 4));
+
+        if () {
+
+        }
+        /*
         lock.lock();
         try {
             this.bomber.move(1);
@@ -52,7 +83,9 @@ public class BoardLock implements Runnable {
         } finally {
             lock.unlock();
         }
+        */
         System.out.println("Thread finish");
     }
+
 
 }
