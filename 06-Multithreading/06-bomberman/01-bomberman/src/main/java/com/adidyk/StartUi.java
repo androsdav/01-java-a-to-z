@@ -25,6 +25,8 @@ public class StartUi {
         board.addHeroes(bomber2);
         boolean result = board.move(bomber1.getCell(), new Cell(1, 2));
         System.out.println(result);
+        boolean result1 = board.move(bomber1.getCell(), new Cell(1, 2));
+        System.out.println(result1);
         //System.out.println("BOMBER");
         //int direction = 1 + (int) (Math.random() * 4);
         //System.out.println(direction);

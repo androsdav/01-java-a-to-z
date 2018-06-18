@@ -33,12 +33,20 @@ class Board {
     /**
      * @param board - board.
      */
-    private ReentrantLock[][] board = new ReentrantLock[5][6];
+    private ReentrantLock[][] board;
 
     /**
      * ReentrantLock - constructor.
      */
-    Board() {
+    Board(int lengthX, int lengthY) {
+        this.board = new ReentrantLock[lengthX][lengthY];
+
+    }
+
+    /**
+     * init - init board.
+     */
+    private void init() {
         for (int indexX = 0; indexX < this.board.length; indexX++) {
             for (int indexY = 0; indexY < this.board.length; indexY++) {
                 this.board[indexX][indexY] = new ReentrantLock();
