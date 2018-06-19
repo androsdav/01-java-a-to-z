@@ -55,8 +55,9 @@ public class BomberMan {
 
     /**
      * direction - is direction.
+     * @return cell.
      */
-    Cell way(Cell dist) {
+    Cell way() {
         Cell higWay = null;
         int direction = 1 + (int) (Math.random() * 4);
         if (direction == UP) {
@@ -73,6 +74,7 @@ public class BomberMan {
 
     /**
      * moveUp - is.
+     * @return cell.
      */
     private Cell moveUp() {
         return new Cell(this.cell.getPositionX(), this.cell.getPositionY() + STEP);
@@ -80,6 +82,7 @@ public class BomberMan {
 
     /**
      * moveUp - is.
+     * @return cell.
      */
     private Cell moveDown() {
         return new Cell(this.cell.getPositionX(), this.cell.getPositionY() - STEP);
@@ -87,6 +90,7 @@ public class BomberMan {
 
     /**
      * moveRight - is.
+     * @return cell.
      */
     private Cell moveRight() {
         return new Cell(this.cell.getPositionX() + STEP, this.cell.getPositionY());
@@ -94,6 +98,7 @@ public class BomberMan {
 
     /**
      * moveLeft - is.
+     * @return cell.
      */
     private Cell moveLeft() {
         return new Cell(this.cell.getPositionX() - STEP, this.cell.getPositionY());
@@ -101,7 +106,7 @@ public class BomberMan {
 
     /**
      * getCell - get cell.
-     * @return return ce..
+     * @return return cell.
      */
     Cell getCell() {
         return this.cell;

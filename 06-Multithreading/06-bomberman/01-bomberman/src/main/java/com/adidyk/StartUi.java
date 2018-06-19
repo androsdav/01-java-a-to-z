@@ -15,6 +15,11 @@ public class StartUi {
      * @param arg - is nothing.
      */
     public static void main(String[] arg) {
+        BomberMan bomber = new BomberMan(new Cell(0, 0), "bomber1");
+        Board board = new Board(5, 6);
+        Thread bomberThread = new Thread(new BomberManMove(board, bomber));
+        bomberThread.start();
+        /*
         int[][] array = new int[5][5];
         array[1][2] = 3;
         System.out.println(array[1][2]);
@@ -34,7 +39,7 @@ public class StartUi {
         /*
         ReentrantLock lock = new ReentrantLock();
         BomberMan bomber = new BomberMan(new Cell(5, 5), "bomber");
-        Thread board = new Thread(new BoardLock(lock, bomber));
+        Thread board = new Thread(new BomberManMove(lock, bomber));
         board.start();
         System.out.println((lock.isLocked()));
         try {

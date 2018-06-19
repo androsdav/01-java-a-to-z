@@ -1,6 +1,6 @@
 package com.adidyk;
 
-import java.util.concurrent.locks.ReentrantLock;
+//import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Class StartUi for create jar file and run program (Parallel Search).
@@ -8,7 +8,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * @since 11.06.2018.
  * @version 1.0.
  */
-public class BoardLock implements Runnable {
+public class BomberManMove implements Runnable {
 
     /**
      * @param UP - is up.
@@ -57,9 +57,10 @@ public class BoardLock implements Runnable {
      * @param board - is board.
      * @param bomber - is bomber.
      */
-    BoardLock(Board board, BomberMan bomber) {
+    BomberManMove(Board board, BomberMan bomber) {
         this.board = board;
         this.bomber = bomber;
+        this.board.lockCell(this.bomber.getCell());
     }
 
     /**
@@ -67,24 +68,19 @@ public class BoardLock implements Runnable {
      */
     @Override
     public void run() {
-        System.out.println("Thread start");
-        this.bomber.way(1 + (int) (Math.random() * 4));
-
-        if () {
-
+        System.out.println(" -> BomberMan move start");
+        while (true) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Cell dist = this.bomber.way();
+            //this.board.move(this.bomber.getCell(), dist);
+            System.out.println("Bomber source: " + this.bomber.getCell());
+            System.out.println("Bomber dist  : " + dist);
         }
-        /*
-        lock.lock();
-        try {
-            this.bomber.move(1);
-            Thread.sleep(4000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } finally {
-            lock.unlock();
-        }
-        */
-        System.out.println("Thread finish");
+     //   System.out.println(" <- BomberMan move finish");
     }
 
 
