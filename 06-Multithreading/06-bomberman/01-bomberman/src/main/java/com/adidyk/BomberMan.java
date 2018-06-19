@@ -54,6 +54,13 @@ public class BomberMan {
     }
 
     /**
+     * @param dist - position.
+     */
+    public void clone(Cell dist) {
+        this.cell = dist;
+    }
+
+    /**
      * direction - is direction.
      * @return cell.
      */
@@ -69,6 +76,7 @@ public class BomberMan {
         } else if (direction == LEFT) {
             higWay = this.moveLeft();
         }
+        System.out.println("direction: " + direction);
         return higWay;
     }
 
