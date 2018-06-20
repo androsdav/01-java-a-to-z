@@ -1,5 +1,6 @@
 package com.adidyk;
 
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -45,6 +46,29 @@ class Board {
     }
 
     /**
+     * tryLockCell - cell.
+     * @param source - is cell.
+     * @param dist - is dist.
+     * @return true.
+     */
+    private boolean tryLockCell(Cell source, Cell dist) {
+        boolean tryLock = false;
+        try {
+            if (this.board[dist.getPositionX()][dist.getPositionY()].tryLock(1, TimeUnit.MILLISECONDS)) {
+                try {
+                    this.board[source.getPositionX()][source.getPositionY()].unlock();
+                    tryLock = true;
+                } finally {
+                    this.board[source.getPositionX()][source.getPositionY()].unlock();
+                }
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return tryLock;
+    }
+
+    /**
      *
      * @param source - is source.
      * @param dist - is dist.
@@ -55,7 +79,9 @@ class Board {
         if (0 <= dist.getPositionX() && dist.getPositionX() < this.board.length) {
             if (0 <= dist.getPositionY() && dist.getPositionY() < this.board[source.getPositionX()].length) {
                 if (!this.board[dist.getPositionX()][dist.getPositionY()].isLocked()) {
-                    cellIsFree = true;
+                    if (this.tryLockCell(source, dist)) {
+                        cellIsFree = true;
+                    }
                 }
             }
         }

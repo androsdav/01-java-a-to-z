@@ -15,7 +15,7 @@ public class StartUi {
      * @param arg - is nothing.
      */
     public static void main(String[] arg) {
-        BomberMan bomber = new BomberMan(new Cell(0, 0), "bomber1");
+        BomberMan bomber = new BomberMan(new Cell(2, 2), "bomber1");
         Board board = new Board(5, 6);
         Thread bomberThread = new Thread(new BomberManMove(board, bomber));
         bomberThread.start();

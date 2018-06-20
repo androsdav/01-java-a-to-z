@@ -75,8 +75,9 @@ public class BomberManMove implements Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            Cell source = this.bomber.getCell();
             Cell dist = this.bomber.way();
-            if (this.board.move(this.bomber.getCell(), dist)) {
+            if (this.board.move(source, dist)) {
                 this.bomber.clone(dist);
             } else {
                 System.out.println("cell is lock ...");
