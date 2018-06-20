@@ -46,6 +46,14 @@ class Board {
     }
 
     /**
+     *
+     * @param cell - is cell.
+     */
+    void unlock(Cell cell) {
+        this.board[cell.getPositionX()][cell.getPositionY()].unlock();
+    }
+
+    /**
      * tryLockCell - cell.
      * @param source - is cell.
      * @param dist - is dist.
@@ -55,12 +63,9 @@ class Board {
         boolean tryLock = false;
         try {
             if (this.board[dist.getPositionX()][dist.getPositionY()].tryLock(1, TimeUnit.MILLISECONDS)) {
-                try {
-                    this.board[source.getPositionX()][source.getPositionY()].unlock();
-                    tryLock = true;
-                } finally {
-                    this.board[source.getPositionX()][source.getPositionY()].unlock();
-                }
+                tryLock = true;
+                this.unlock(source);
+                //this.board[source.getPositionX()][source.getPositionY()].lock();
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
