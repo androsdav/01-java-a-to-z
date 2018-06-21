@@ -63,8 +63,9 @@ class Board {
         boolean tryLock = false;
         try {
             if (this.board[dist.getPositionX()][dist.getPositionY()].tryLock(1, TimeUnit.MILLISECONDS)) {
+                System.out.println("tryLock true... ");
                 tryLock = true;
-                this.unlock(source);
+                //this.unlock(source);
                 //this.board[source.getPositionX()][source.getPositionY()].lock();
             }
         } catch (InterruptedException e) {

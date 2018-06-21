@@ -79,10 +79,10 @@ public class BomberManMove implements Runnable {
             Cell dist = this.bomber.way();
             if (this.board.move(source, dist)) {
                 this.bomber.clone(dist);
+                System.out.println("Bomber source: " + this.bomber.getCell());
             } else {
                 System.out.println("cell is lock ...");
             }
-            System.out.println("Bomber source: " + this.bomber.getCell());
         }
      //   System.out.println(" <- BomberMan move finish");
     }
