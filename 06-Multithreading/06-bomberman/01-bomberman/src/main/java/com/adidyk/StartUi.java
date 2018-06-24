@@ -13,6 +13,9 @@ public class StartUi {
      * @param arg - is nothing.
      */
     public static void main(String[] arg) {
+        Test test = new Test(5);
+        System.out.println(test.x);
+        /*
         BomberMan bomber = new BomberMan(new Cell(0, 0), "bomber1");
         BomberMan bomber1 = new BomberMan(new Cell(1, 1), "bomber1");
         Board board = new Board(2, 2);
@@ -25,6 +28,7 @@ public class StartUi {
             e.printStackTrace();
         }
         bomberMove.finish();
+        */
     }
 
 }

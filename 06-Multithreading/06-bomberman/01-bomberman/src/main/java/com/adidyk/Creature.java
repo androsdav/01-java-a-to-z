@@ -15,8 +15,8 @@ public interface Creature {
     void clone(Cell dist);
 
     /**
-     * moveUp - is.
-     * @return cell.
+     * way - returns cell for each step.
+     * @return - returns cell.
      */
     Cell way();
 

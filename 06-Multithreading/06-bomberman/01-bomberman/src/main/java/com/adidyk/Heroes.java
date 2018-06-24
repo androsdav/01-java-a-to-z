@@ -6,17 +6,17 @@ package com.adidyk;
  * @since 24.05.2018.
  * @version 1.0.
  */
-abstract class Heroes implements Creature {
+public abstract class Heroes {
 
     /**
      * @param cell - is link variable to object of class Cell.
      */
-    Cell cell;
+    private Cell cell;
 
     /**
      *  @param name - is name bomber-man.
      */
-    String name;
+    private String name;
 
     /**
      * BomberMan - constructor.
@@ -41,5 +41,20 @@ abstract class Heroes implements Creature {
      */
     public abstract Cell way();
 
+    /**
+     * cell - returns cell for hero.
+     * @return - returns cell for hero.
+     */
+    Cell cell() {
+        return this.cell;
+    }
+
+    /**
+     * name - returns name for hero.
+     * @return - returns name for hero.
+     */
+    String name() {
+        return this.name;
+    }
 
 }
