@@ -62,11 +62,12 @@ class Board {
     private boolean tryLockCell(Cell source, Cell dist) {
         boolean tryLock = false;
         try {
-            if (this.board[dist.getPositionX()][dist.getPositionY()].tryLock(1, TimeUnit.MILLISECONDS)) {
-                System.out.println("tryLock true... ");
+            if (this.board[dist.getPositionX()][dist.getPositionY()].tryLock(500, TimeUnit.MILLISECONDS)) {
+                System.out.println("[info]: tryLock true... ");
                 tryLock = true;
-                //this.unlock(source);
-                //this.board[source.getPositionX()][source.getPositionY()].lock();
+                this.board[source.getPositionX()][source.getPositionY()].unlock();
+            } else {
+                System.out.println("[info]: tryLock false... ");
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -75,21 +76,26 @@ class Board {
     }
 
     /**
-     *
+     * move - is move.
      * @param source - is source.
      * @param dist - is dist.
      * @return true or false.
      */
     boolean move(Cell source, Cell dist) {
         boolean cellIsFree = false;
-        if (0 <= dist.getPositionX() && dist.getPositionX() < this.board.length) {
-            if (0 <= dist.getPositionY() && dist.getPositionY() < this.board[source.getPositionX()].length) {
-                if (!this.board[dist.getPositionX()][dist.getPositionY()].isLocked()) {
-                    if (this.tryLockCell(source, dist)) {
-                        cellIsFree = true;
-                    }
+        if ((0 <= dist.getPositionX() && dist.getPositionX() < this.board.length) &&
+                (0 <= dist.getPositionY() && dist.getPositionY() < this.board[source.getPositionX()].length)) {
+            if (!this.board[dist.getPositionX()][dist.getPositionY()].isLocked()) {
+                if (this.tryLockCell(source, dist)) {
+                    cellIsFree = true;
+                } else {
+                    System.out.println("[info]: tryLock false... ");
                 }
+            } else {
+                System.out.println("[info]: tryLock false... ");
             }
+        } else {
+            System.out.println("[info]: border...");
         }
         return cellIsFree;
     }

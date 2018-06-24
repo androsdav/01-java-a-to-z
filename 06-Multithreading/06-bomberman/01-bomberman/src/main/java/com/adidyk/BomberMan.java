@@ -1,5 +1,7 @@
 package com.adidyk;
 
+import static com.adidyk.Constant.*;
+
 /**
  * Class Cell for create jar file and run program (Parallel Search).
  * @author Didyk Andrey (androsdav@bigmir.net).
@@ -7,26 +9,6 @@ package com.adidyk;
  * @version 1.0.
  */
 public class BomberMan {
-
-    /**
-     * @param UP - is up.
-     */
-    private static final int UP = 1;
-
-    /**
-     * @param RIGHT - is up.
-     */
-    private static final int RIGHT = 2;
-
-    /**
-     * @param DOWN - is up.
-     */
-    private static final int DOWN = 3;
-
-    /**
-     * @param LEFT - is up.
-     */
-    private static final int LEFT = 4;
 
     /**
      * @param cell - is.
@@ -37,11 +19,6 @@ public class BomberMan {
      *  @param name - is name of hero.
      */
     private final String name;
-
-    /**
-     * @param step - step.
-     */
-    private static final int STEP = 1;
 
     /**
      * BomberMan - constructor.
@@ -56,7 +33,7 @@ public class BomberMan {
     /**
      * @param dist - position.
      */
-    public void clone(Cell dist) {
+    void clone(Cell dist) {
         this.cell = dist;
     }
 
@@ -76,7 +53,7 @@ public class BomberMan {
         } else if (direction == LEFT) {
             higWay = this.moveLeft();
         }
-        System.out.println("direction: " + direction);
+        System.out.println("[info]: direction: " + direction);
         return higWay;
     }
 

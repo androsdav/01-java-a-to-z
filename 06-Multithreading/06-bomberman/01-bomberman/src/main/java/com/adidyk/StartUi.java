@@ -1,7 +1,5 @@
 package com.adidyk;
 
-//import java.util.concurrent.locks.ReentrantLock;
-
 /**
  * Class StartUi for create jar file and run program (Parallel Search).
  * @author Didyk Andrey (androsdav@bigmir.net).
@@ -15,56 +13,18 @@ public class StartUi {
      * @param arg - is nothing.
      */
     public static void main(String[] arg) {
-        BomberMan bomber = new BomberMan(new Cell(3, 3), "bomber1");
-        Board board = new Board(10, 10);
-        Thread bomberThread = new Thread(new BomberManMove(board, bomber));
-        bomberThread.start();
-        /*
-        int[][] array = new int[5][5];
-        array[1][2] = 3;
-        System.out.println(array[1][2]);
-        BomberMan bomber1 = new BomberMan(new Cell(3, 2), "bomber1");
-        BomberMan bomber2 = new BomberMan(new Cell(2, 2), "bomber2");
-        Board board = new Board(6, 5);
+        BomberMan bomber = new BomberMan(new Cell(0, 0), "bomber1");
+        BomberMan bomber1 = new BomberMan(new Cell(1, 1), "bomber1");
+        Board board = new Board(2, 2);
         board.lockCell(bomber1.getCell());
-        board.lockCell(bomber2.getCell());
-        boolean result = board.move(bomber1.getCell(), new Cell(5, 4));
-        System.out.println(result);
-        int[][] test = new int[30][5];
-        System.out.println(test.length);
-        System.out.println(test[29].length);
-                //System.out.println("BOMBER");
-        //int direction = 1 + (int) (Math.random() * 4);
-        //System.out.println(direction);
-        /*
-        ReentrantLock lock = new ReentrantLock();
-        BomberMan bomber = new BomberMan(new Cell(5, 5), "bomber");
-        Thread board = new Thread(new BomberManMove(lock, bomber));
-        board.start();
-        System.out.println((lock.isLocked()));
+        BomberManMove bomberMove = new BomberManMove(board, bomber);
+        bomberMove.start();
         try {
-            Thread.sleep(1000);
+            Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println((lock.isLocked()));
-        /*
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        */
-        //System.out.println(Thread.holdsLock(bomber));
-
-        /*
-        Cell cell = new Cell(1, 2);
-        System.out.println(cell);
-        BomberMan bomber = new BomberMan(new Cell(4, 6), "bomber");
-        System.out.println(bomber);
-        bomber.moveDown();
-        System.out.println(bomber);
-        */
+        bomberMove.finish();
     }
 
 }
