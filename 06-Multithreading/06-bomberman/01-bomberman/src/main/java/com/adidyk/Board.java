@@ -46,14 +46,6 @@ class Board {
     }
 
     /**
-     *
-     * @param cell - is cell.
-     */
-    void unlock(Cell cell) {
-        this.board[cell.getPositionX()][cell.getPositionY()].unlock();
-    }
-
-    /**
      * tryLockCell - cell.
      * @param source - is cell.
      * @param dist - is dist.
@@ -91,7 +83,7 @@ class Board {
                     System.out.println("[info]: tryLock false... ");
                 }
             } else {
-                System.out.println("[info]: tryLock false... ");
+                System.out.println("[info]: cell is locked ... ");
             }
         } else {
             System.out.println("[info]: border...");

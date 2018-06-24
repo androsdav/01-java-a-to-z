@@ -6,7 +6,7 @@ package com.adidyk;
  * @since 24.05.2018.
  * @version 1.0.
  */
-public abstract class Heroes {
+public abstract class Heroes implements Creature {
 
     /**
      * @param cell - is link variable to object of class Cell.

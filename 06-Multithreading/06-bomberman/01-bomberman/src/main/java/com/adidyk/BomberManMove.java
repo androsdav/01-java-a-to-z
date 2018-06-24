@@ -56,7 +56,7 @@ public class BomberManMove extends Thread {
      * lock - is lock.
      */
     private void lock() {
-        this.board.lockCell(this.bomber.getCell());
+        this.board.lockCell(this.bomber.cell());
     }
 
     /**
@@ -69,11 +69,11 @@ public class BomberManMove extends Thread {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            Cell source = this.bomber.getCell();
+            Cell source = this.bomber.cell();
             Cell dist = this.bomber.way();
             if (this.board.move(source, dist)) {
                 this.bomber.clone(dist);
-                System.out.println("Bomber source: " + this.bomber.getCell());
+                System.out.println(" " + this.bomber);
             }
         }
     }

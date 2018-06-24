@@ -20,41 +20,39 @@ public class BomberMan extends Heroes {
     }
 
     /**
-     * direction - is direction.
-     * @return cell.
+     * way - randomly selects direction of travel (up, right, down, left) and
+     * returns new cell for bomber-man.
+     * @return - returns new cell for bomber-man.
      */
     @Override
     public Cell way() {
         Cell higWay = null;
+        String direct = null;
         int direction = 1 + (int) (Math.random() * 4);
         if (direction == UP) {
             higWay = new Cell(cell().getPositionX(), cell().getPositionY() + STEP);
+            direct = "UP";
         } else if (direction == RIGHT) {
             higWay = new Cell(cell().getPositionX() + STEP, cell().getPositionY());
+            direct = "RIGHT";
         } else if (direction == DOWN) {
             higWay = new Cell(cell().getPositionX(), cell().getPositionY() - STEP);
+            direct = "DOWN";
         } else if (direction == LEFT) {
             higWay = new Cell(cell().getPositionX() - STEP, cell().getPositionY());
+            direct = "LEFT";
         }
-        System.out.println("[info]: direction: " + direction);
+        System.out.println("[info]: direction: " + direct);
         return higWay;
     }
 
     /**
-     * getCell - get cell.
-     * @return return cell.
-     */
-    Cell getCell() {
-        return cell();
-    }
-
-    /**
-     * toString -
-     * @return - is.
+     * toString - returns string format.
+     * @return - returns all information for cell.
      */
     @Override
     public String toString() {
-        return String.format("%s%s%s%s%s", "BomberMan{", "name='", name(), ", ", cell());
+        return String.format("%s%s%s%s%s", "BomberMan{", "name=", name(), ", ", cell());
     }
 
 }

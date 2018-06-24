@@ -78,7 +78,7 @@ public class Cell {
      */
     @Override
     public String toString() {
-        return String.format("%s%s%s%s%s%s", "Cell{", "positionX=", this.positionX, ", positionY=", this.positionY, "}");
+        return String.format("%s%s%s%s", "positionX=", this.positionX, ", positionY=", this.positionY);
     }
 
 }
