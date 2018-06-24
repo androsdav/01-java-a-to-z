@@ -83,8 +83,7 @@ class Board {
      */
     boolean move(Cell source, Cell dist) {
         boolean cellIsFree = false;
-        if ((0 <= dist.getPositionX() && dist.getPositionX() < this.board.length) &&
-                (0 <= dist.getPositionY() && dist.getPositionY() < this.board[source.getPositionX()].length)) {
+        if ((0 <= dist.getPositionX() && dist.getPositionX() < this.board.length) && (0 <= dist.getPositionY() && dist.getPositionY() < this.board[source.getPositionX()].length)) {
             if (!this.board[dist.getPositionX()][dist.getPositionY()].isLocked()) {
                 if (this.tryLockCell(source, dist)) {
                     cellIsFree = true;

@@ -3,37 +3,26 @@ package com.adidyk;
 import static com.adidyk.Constant.*;
 
 /**
- * Class Cell for create jar file and run program (Parallel Search).
+ * Class BomberMan for create bomber-man (object) with params: cell, name.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 24.05.2018.
  * @version 1.0.
  */
-public class BomberMan {
-
-    /**
-     * @param cell - is.
-     */
-    private Cell cell;
-
-    /**
-     *  @param name - is name of hero.
-     */
-    private final String name;
+public class BomberMan extends Heroes {
 
     /**
      * BomberMan - constructor.
-     * @param cell - is.
-     * @param name - is.
+     * @param cell - is start position of bomber-man (link variable).
+     * @param name - is name bomber-man.
      */
     BomberMan(Cell cell, String name) {
-        this.cell = cell;
-        this.name = name;
+        super(cell, name);
     }
 
     /**
      * @param dist - position.
      */
-    void clone(Cell dist) {
+    public void clone(Cell dist) {
         this.cell = dist;
     }
 
@@ -41,52 +30,20 @@ public class BomberMan {
      * direction - is direction.
      * @return cell.
      */
-    Cell way() {
+    public Cell way() {
         Cell higWay = null;
         int direction = 1 + (int) (Math.random() * 4);
         if (direction == UP) {
-            higWay = this.moveUp();
+            higWay = new Cell(this.cell.getPositionX(), this.cell.getPositionY() + STEP);
         } else if (direction == RIGHT) {
-            higWay = this.moveRight();
+            higWay = new Cell(this.cell.getPositionX() + STEP, this.cell.getPositionY());
         } else if (direction == DOWN) {
-            higWay = this.moveDown();
+            higWay = new Cell(this.cell.getPositionX(), this.cell.getPositionY() - STEP);
         } else if (direction == LEFT) {
-            higWay = this.moveLeft();
+            higWay = new Cell(this.cell.getPositionX() - STEP, this.cell.getPositionY());
         }
         System.out.println("[info]: direction: " + direction);
         return higWay;
-    }
-
-    /**
-     * moveUp - is.
-     * @return cell.
-     */
-    private Cell moveUp() {
-        return new Cell(this.cell.getPositionX(), this.cell.getPositionY() + STEP);
-    }
-
-    /**
-     * moveUp - is.
-     * @return cell.
-     */
-    private Cell moveDown() {
-        return new Cell(this.cell.getPositionX(), this.cell.getPositionY() - STEP);
-    }
-
-    /**
-     * moveRight - is.
-     * @return cell.
-     */
-    private Cell moveRight() {
-        return new Cell(this.cell.getPositionX() + STEP, this.cell.getPositionY());
-    }
-
-    /**
-     * moveLeft - is.
-     * @return cell.
-     */
-    private Cell moveLeft() {
-        return new Cell(this.cell.getPositionX() - STEP, this.cell.getPositionY());
     }
 
     /**
@@ -105,4 +62,5 @@ public class BomberMan {
     public String toString() {
         return String.format("%s%s%s%s%s", "BomberMan{", "name='", this.name, ", ", this.cell);
     }
+
 }
