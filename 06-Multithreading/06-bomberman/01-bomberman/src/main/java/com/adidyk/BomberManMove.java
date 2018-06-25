@@ -1,7 +1,7 @@
 package com.adidyk;
 
 /**
- * Class StartUi for create jar file and run program (Parallel Search).
+ * Class BomberManMove create thread for move bomber-man.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 11.06.2018.
  * @version 1.0.
@@ -9,23 +9,24 @@ package com.adidyk;
 public class BomberManMove extends Thread {
 
     /**
-     * @param bomber - is bomber.
+     * @param bomber - is link variable to object of class BomberMan.
      */
     private final BomberMan bomber;
 
     /**
-     * @param locker - is locker.
+     * @param border - is link variable to object of class Board.
      */
     private final Board board;
 
     /**
-     * @param isRunning - is running.
+     * @param isRunning - is check for finishes of bomber-man move.
      */
     private volatile boolean isRunning = true;
 
     /**
-     * @param board - is board.
-     * @param bomber - is bomber.
+     * BomberManMove - constructor.
+     * @param board - is link variable to object of class Board.
+     * @param bomber - is link variable to object of class BomberMan.
      */
     BomberManMove(Board board, BomberMan bomber) {
         this.board = board;
@@ -33,7 +34,7 @@ public class BomberManMove extends Thread {
     }
 
     /**
-     * stop - is stop.
+     * finish - change variable isRunning to false - finishes move bomber-man.
      */
     void finish() {
         this.isRunning = false;
@@ -51,7 +52,7 @@ public class BomberManMove extends Thread {
     }
 
     /**
-     * lock - is lock.
+     * lock - locks cell in the begin game.
      */
     private void lock() {
         this.board.lockCell(this.bomber.cell());
@@ -81,14 +82,14 @@ public class BomberManMove extends Thread {
      * infoStart - information that the bomber-man begins to run.
      */
     private void infoStart() {
-        System.out.println(String.format("%s%s%s", " ->", this.bomber.name()," move start ... "));
+        System.out.println(String.format("%s%s%s", " -> ", this.bomber.name(), " move start ... "));
     }
 
     /**
      * infoFinish - information that the bomber-man finish to run.
      */
     private void infoFinish() {
-        System.out.println(String.format("%s%s%s", " ->", this.bomber.name()," move finish ... "));
+        System.out.println(String.format("%s%s%s", " -> ", this.bomber.name(), " move finish ... "));
     }
 
 }

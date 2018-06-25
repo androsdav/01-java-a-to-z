@@ -1,12 +1,12 @@
 package com.adidyk;
 
 /**
- * Class Cell for create jar file and run program (Parallel Search).
+ * Class Heroes is abstract class.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 24.05.2018.
  * @version 1.0.
  */
-public abstract class Heroes implements Creature {
+public abstract class Heroes {
 
     /**
      * @param cell - is link variable to object of class Cell.
@@ -14,14 +14,14 @@ public abstract class Heroes implements Creature {
     private Cell cell;
 
     /**
-     *  @param name - is name bomber-man.
+     *  @param name - is name hero.
      */
     private String name;
 
     /**
      * BomberMan - constructor.
-     * @param cell - is start position of bomber-man (link variable).
-     * @param name - is name bomber-man.
+     * @param cell - is start position of hero (link variable).
+     * @param name - is name hero.
      */
     Heroes(Cell cell, String name) {
         this.cell = cell;
@@ -29,15 +29,16 @@ public abstract class Heroes implements Creature {
     }
 
     /**
+     * clone - sets new cell for hero.
      * @param dist - position.
      */
-    public void clone(Cell dist) {
+    void clone(Cell dist) {
         this.cell = dist;
     }
 
     /**
-     *  way - returns cell for each step.
-     * @return - returns cell.
+     *  way - returns new cell for each step for hero.
+     * @return - returns new cell for each step for hero.
      */
     public abstract Cell way();
 
@@ -55,6 +56,34 @@ public abstract class Heroes implements Creature {
      */
     String name() {
         return this.name;
+    }
+
+    /**
+     * equals - returns boolean result.
+     * @param obj - object of class Heroes.
+     * @return - returns boolean result "true" if name and cell of hero is same, and returns "false" - isn`t same.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Heroes)) {
+            return false;
+        }
+        Heroes hero = (Heroes) obj;
+        return this.cell.equals(hero.cell) && this.name.equals(hero.name);
+    }
+
+    /**
+     * hashCode - returns hashCode for hero.
+     * @return - returns hashCode for hero.
+     */
+    @Override
+    public int hashCode() {
+        int result = this.cell.hashCode();
+        result = 31 * result + this.name.hashCode();
+        return result;
     }
 
 }

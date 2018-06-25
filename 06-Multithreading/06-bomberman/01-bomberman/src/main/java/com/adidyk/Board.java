@@ -28,7 +28,7 @@ class Board {
     }
 
     /**
-     * init - init board.
+     * init - initialization all cells of board - new ReentrantLock().
      */
     private void init() {
         for (int indexX = 0; indexX < this.board.length; indexX++) {
@@ -48,7 +48,7 @@ class Board {
 
     /**
      * move - verifies the possibility of the hero moving from the source cell to the destination cell.
-     * If the destination cell is not locked then hero try locked destination cell in the 500 millisecond time.
+     * If the destination cell is not locked then hero try locked destination cell in the 500 ms. time.
      * If hero block destination cell, then source cell is unlocking and method returns true, if hero don`t block
      * destination cell, then source cell isn`t unlocking and method returns false.
      * @param source - is source cell.

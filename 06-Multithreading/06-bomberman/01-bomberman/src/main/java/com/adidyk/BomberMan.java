@@ -30,16 +30,16 @@ public class BomberMan extends Heroes {
         String direct = null;
         int direction = 1 + (int) (Math.random() * 4);
         if (direction == UP) {
-            higWay = new Cell(cell().getPositionX(), cell().getPositionY() + STEP);
+            higWay = new Cell(cell().getPositionX() - STEP, cell().getPositionY());
             direct = "up";
         } else if (direction == RIGHT) {
-            higWay = new Cell(cell().getPositionX() + STEP, cell().getPositionY());
+            higWay = new Cell(cell().getPositionX(), cell().getPositionY() + STEP);
             direct = "right";
         } else if (direction == DOWN) {
-            higWay = new Cell(cell().getPositionX(), cell().getPositionY() - STEP);
+            higWay = new Cell(cell().getPositionX() + STEP, cell().getPositionY());
             direct = "down";
         } else if (direction == LEFT) {
-            higWay = new Cell(cell().getPositionX() - STEP, cell().getPositionY());
+            higWay = new Cell(cell().getPositionX(), cell().getPositionY() - STEP);
             direct = "left";
         }
         System.out.println(" [info]: direction: " + direct);
@@ -52,7 +52,7 @@ public class BomberMan extends Heroes {
      */
     @Override
     public String toString() {
-        return String.format("%s%s%s%s%s", " ", name(), ": {", cell(), "}");
+        return String.format("%s%s%s%s", name(), ": {", cell(), "}");
     }
 
 }

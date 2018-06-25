@@ -47,7 +47,7 @@ public class Cell {
     /**
      * equals - returns boolean result.
      * @param obj - object of class Cell.
-     * @return - returns boolean result "true" if positionX and positionY is same< and returns "false" - isn`t same.
+     * @return - returns boolean result "true" if positionX and positionY is same, and returns "false" - isn`t same.
      */
     @Override
     public boolean equals(Object obj) {
