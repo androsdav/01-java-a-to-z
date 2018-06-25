@@ -1,7 +1,5 @@
 package com.adidyk;
 
-//import java.util.concurrent.locks.ReentrantLock;
-
 /**
  * Class StartUi for create jar file and run program (Parallel Search).
  * @author Didyk Andrey (androsdav@bigmir.net).

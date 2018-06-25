@@ -4,7 +4,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * Class StartUi for create jar file and run program (Parallel Search).
+ * Class Board create playing board where every cell is object of class ReentrantLock.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 11.06.2018.
  * @version 1.0.
@@ -12,14 +12,15 @@ import java.util.concurrent.locks.ReentrantLock;
 class Board {
 
     /**
-     * @param board - board.
+     * @param board - playing board.
      */
     private ReentrantLock[][] board;
 
     /**
      * ReentrantLock - constructor.
-     * @param lengthX - is.
-     * @param lengthY - is.
+     * Sets size of playing board and initializations all cells of board - new ReentrantLock().
+     * @param lengthX - number of lines of playing board.
+     * @param lengthY - number of columns of playing board.
      */
     Board(int lengthX, int lengthY) {
         this.board = new ReentrantLock[lengthX][lengthY];
@@ -38,57 +39,76 @@ class Board {
     }
 
     /**
-     * addHeroes - is hero.
-     * @param cell - is cell.
+     * lockCell - locks cell in the begin game.
+     * @param cell - is cell that is blocked in the begin game (begin position for unit).
     */
     void lockCell(Cell cell) {
         this.board[cell.getPositionX()][cell.getPositionY()].lock();
     }
 
     /**
-     * tryLockCell - cell.
-     * @param source - is cell.
-     * @param dist - is dist.
-     * @return true.
+     * move - verifies the possibility of the hero moving from the source cell to the destination cell.
+     * If the destination cell is not locked then hero try locked destination cell in the 500 millisecond time.
+     * If hero block destination cell, then source cell is unlocking and method returns true, if hero don`t block
+     * destination cell, then source cell isn`t unlocking and method returns false.
+     * @param source - is source cell.
+     * @param dist - is distance cell.
+     * @return - returns true if hero block destination cell or returns false if returns false if hero don`t block
+     * destination cell.
      */
-    private boolean tryLockCell(Cell source, Cell dist) {
+    boolean move(Cell source, Cell dist) {
         boolean tryLock = false;
-        try {
-            if (this.board[dist.getPositionX()][dist.getPositionY()].tryLock(500, TimeUnit.MILLISECONDS)) {
-                System.out.println("[info]: tryLock true... ");
+        if (this.checkBorder(source, dist)) {
+            if (this.tryLockCell(source, dist)) {
                 tryLock = true;
-                this.board[source.getPositionX()][source.getPositionY()].unlock();
+                System.out.println(" [info]: tryLock true ... ");
             } else {
-                System.out.println("[info]: tryLock false... ");
+                System.out.println(" [info]: tryLock false ... ");
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        } else {
+            System.out.println(" [info]: border...");
         }
         return tryLock;
     }
 
     /**
-     * move - is move.
-     * @param source - is source.
-     * @param dist - is dist.
-     * @return true or false.
+     * checkBorder - check border of paying board.
+     * @param source - is source cell.
+     * @param dist - is distance cell.
+     * @return - returns true if destination cell is limit borders of playing board or returns false id
+     * destination cell is out borders of playing board.
      */
-    boolean move(Cell source, Cell dist) {
-        boolean cellIsFree = false;
-        if ((0 <= dist.getPositionX() && dist.getPositionX() < this.board.length) && (0 <= dist.getPositionY() && dist.getPositionY() < this.board[source.getPositionX()].length)) {
-            if (!this.board[dist.getPositionX()][dist.getPositionY()].isLocked()) {
-                if (this.tryLockCell(source, dist)) {
-                    cellIsFree = true;
-                } else {
-                    System.out.println("[info]: tryLock false... ");
-                }
-            } else {
-                System.out.println("[info]: cell is locked ... ");
+
+    private boolean checkBorder(Cell source, Cell dist) {
+        boolean border = false;
+        if (0 <= dist.getPositionX() && dist.getPositionX() < this.board.length) {
+            if (0 <= dist.getPositionY() && dist.getPositionY() < this.board[source.getPositionX()].length) {
+                border = true;
             }
-        } else {
-            System.out.println("[info]: border...");
         }
-        return cellIsFree;
+        return border;
+    }
+
+    /**
+     * tryLockCell - if the destination cell is not locked then hero try locked destination cell in the 500 millisecond
+     * time, if hero block destination cell, then source cell is unlocking and method returns true, if hero don`t block
+     * destination cell, then source cell isn`t unlocking and method returns false.
+     * @param source - is source cell.
+     * @param dist - is distance.
+     * @return - returns true if hero block destination cell or returns false if returns false if hero don`t block
+     * destination cell.
+     */
+    private boolean tryLockCell(Cell source, Cell dist) {
+        boolean tryLock = false;
+        try {
+            if (this.board[dist.getPositionX()][dist.getPositionY()].tryLock(500, TimeUnit.MILLISECONDS)) {
+                tryLock = true;
+                this.board[source.getPositionX()][source.getPositionY()].unlock();
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return tryLock;
     }
 
 }
