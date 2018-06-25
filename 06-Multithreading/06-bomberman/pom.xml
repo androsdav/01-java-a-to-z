@@ -17,6 +17,7 @@
 
          <modules>
                   <module>01-bomberman</module>
+                  <module>02-bomberman</module>
          </modules>
 
 </project>
