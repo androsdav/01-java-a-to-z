@@ -40,14 +40,14 @@ public class BomberManMove extends Thread {
     }
 
     /**
-     * run - is run.
+     * run - runs thread for move bomber-man.
      */
     @Override
     public void run() {
-        System.out.println(" -> BomberMan move start");
+        this.infoStart();
         this.lock();
         this.move();
-        System.out.println(" -> BomberMan move start");
+        this.infoFinish();
     }
 
     /**
@@ -58,7 +58,8 @@ public class BomberManMove extends Thread {
     }
 
     /**
-     * move - is move.
+     * move - hero moves every second to a new cell. When moving, hero try take a new cell - tryLock.
+     * If it does not work for 500 ms. then change the movement to another cell.
      */
     private void move() {
         while (this.isRunning) {
@@ -74,6 +75,20 @@ public class BomberManMove extends Thread {
                 System.out.println(" " + this.bomber);
             }
         }
+    }
+
+    /**
+     * infoStart - information that the bomber-man begins to run.
+     */
+    private void infoStart() {
+        System.out.println(String.format("%s%s%s", " ->", this.bomber.name()," move start ... "));
+    }
+
+    /**
+     * infoFinish - information that the bomber-man finish to run.
+     */
+    private void infoFinish() {
+        System.out.println(String.format("%s%s%s", " ->", this.bomber.name()," move finish ... "));
     }
 
 }
