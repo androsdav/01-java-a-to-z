@@ -33,4 +33,14 @@ class Constant {
      */
     static final int STEP = 1;
 
+    /**
+     * @param DOWN - move in down.
+     */
+    static final int VERTICAL = 1;
+
+    /**
+     * @param LEFT - move in left.
+     */
+    static final int HORIZONTAL = 2;
+
 }

@@ -13,6 +13,7 @@ public class StartUi {
      * @param arg - is nothing.
      */
     public static void main(String[] arg) {
+        /*
         Board board = new Board(10, 10);
         BomberMan bomber = new BomberMan(new Cell(4, 4), "bomber");
         BomberMan rock = new BomberMan(new Cell(3, 4), "rock");
@@ -29,6 +30,10 @@ public class StartUi {
             e.printStackTrace();
         }
         bomberMove.finish();
+        */
+        int direction = 1 + (int) (Math.random() * 2);
+        System.out.println(direction);
+        Monster monster = new Monster(new Cell(1, 1), "monster");
     }
 
 }
