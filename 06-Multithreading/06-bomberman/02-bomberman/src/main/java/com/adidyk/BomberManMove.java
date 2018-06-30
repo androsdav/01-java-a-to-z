@@ -52,6 +52,13 @@ public class BomberManMove extends Thread {
     }
 
     /**
+     * infoStart - information that the bomber-man begins to run.
+     */
+    private void infoStart() {
+        System.out.println(String.format("%s%s%s", " -> ", this.bomber.name(), " move start ... "));
+    }
+
+    /**
      * lock - locks cell in the begin game.
      */
     private void lock() {
@@ -76,13 +83,6 @@ public class BomberManMove extends Thread {
                 System.out.println(" " + this.bomber);
             }
         }
-    }
-
-    /**
-     * infoStart - information that the bomber-man begins to run.
-     */
-    private void infoStart() {
-        System.out.println(String.format("%s%s%s", " -> ", this.bomber.name(), " move start ... "));
     }
 
     /**

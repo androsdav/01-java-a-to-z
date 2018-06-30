@@ -31,10 +31,28 @@ public class StartUi {
         }
         bomberMove.finish();
         */
-        Board board = new Board(5, 5);
-        Monster monster = new Monster(new Cell(1, 1), "monster");
-        MonsterMove monsterMove = new MonsterMove(board, monster);
-        monsterMove.start();
+        Board board = new Board(9, 7);
+        Monster rock1 = new Monster(new Cell(1, 4), "rock1");
+        Monster rock2 = new Monster(new Cell(7, 4), "rock2");
+        Monster rock3 = new Monster(new Cell(4, 1), "rock3");
+        Monster rock4 = new Monster(new Cell(4, 6), "rock1");
+        board.lockCell(rock1.cell());
+        board.lockCell(rock2.cell());
+        board.lockCell(rock3.cell());
+        board.lockCell(rock4.cell());
+        Monster monster1 = new Monster(new Cell(4, 4), "monster1");
+        MonsterMove monsterMove1 = new MonsterMove(board, monster1);
+        Monster monster2 = new Monster(new Cell(5, 5), "monster2");
+        MonsterMove monsterMove2 = new MonsterMove(board, monster2);
+        monsterMove1.start();
+        monsterMove2.start();
+        try {
+            Thread.sleep(30000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        monsterMove1.finish();
+        monsterMove2.finish();
     }
 
 }
