@@ -43,4 +43,10 @@ class Constant {
      */
     static final int HORIZONTAL = 2;
 
+    /**
+     * @param FORWARD - is.
+     */
+    static final int FORWARD = -1;
+
+
 }

@@ -9,11 +9,15 @@ import static com.adidyk.Constant.*;
  * @version 1.0.
  */
 public class Monster extends Heroes {
-
     /**
      * @param direction - is direction.
      */
-    private String direction = null;
+    private int direction;
+
+    /**
+     * @param step - is step.
+     */
+    private int step;
 
     /**
      * BomberMan - constructor.
@@ -22,6 +26,7 @@ public class Monster extends Heroes {
      */
     Monster(Cell cell, String name) {
         super(cell, name);
+        this.step = FORWARD;
         this.setDirection();
     }
 
@@ -31,88 +36,38 @@ public class Monster extends Heroes {
     private void setDirection() {
         int direction = 1 + (int) (Math.random() * 2);
         if (direction == VERTICAL) {
-            this.direction = "vertical";
+            this.direction = VERTICAL;
         } else if (direction == HORIZONTAL) {
-            this.direction = "horizontal";
+            this.direction = HORIZONTAL;
         }
-    }
-
-    /**
-     *
-     */
-    public String getDirection() {
-        return this.direction;
-    }
-
-    /**
-     *
-     */
-    public void vertical() {
-
-    }
-
-    /**
-     * up - is.
-     * @return - is.
-     */
-    public Cell up() {
-        return new Cell(cell().getPositionX() - STEP, cell().getPositionY());
-    }
-
-    /**
-     * right - is.
-     * @return - is.
-     */
-    public Cell right() {
-        return new Cell(cell().getPositionX(), cell().getPositionY() + STEP);
-    }
-
-    /**
-     * down - is.
-     * @return - is.
-     */
-    public Cell down() {
-        return new Cell(cell().getPositionX() + STEP, cell().getPositionY());
-    }
-
-    /**
-     * left - is.
-     * @return - is.
-     */
-    public Cell left() {
-        return new Cell(cell().getPositionX(), cell().getPositionY() - STEP);
-    }
-
-    /*
-
-     */
-    public void horizontal() {
-
     }
 
     @Override
     public Cell way() {
-        if (this.direction.equals("vertical")) {
-            higWay = new Cell(cell().getPositionX() - STEP, cell().getPositionY());
-            direct = "up";
-        } else if ("horizontal".equals(this.direction)) {
-            higWay = new Cell(cell().getPositionX(), cell().getPositionY() + STEP);
-            direct = "right";
-        } else if (direction == DOWN) {
-            higWay = new Cell(cell().getPositionX() + STEP, cell().getPositionY());
-            direct = "down";
-        } else if (direction == LEFT) {
-            higWay = new Cell(cell().getPositionX(), cell().getPositionY() - STEP);
-            direct = "left";
+        Cell highWay = null;
+        if (this.direction == VERTICAL) {
+            highWay = new Cell(cell().getPositionX() + this.step, cell().getPositionY()); // down - up
+        } else if (this.direction == HORIZONTAL) {
+            highWay = new Cell(cell().getPositionX(), cell().getPositionY() + this.step); // right - left
         }
-        System.out.println(" [info]: direction: " + direct);
-        return null;
+        return highWay;
     }
 
-    /*
-    private void moveLine() {
-    */
-        return null;
-
+    /**
+     * setVector - is.
+     */
+    void setStep() {
+        this.step = this.step * FORWARD;
     }
+
+    /**
+     * toString - returns string format.
+     * @return - returns all information for cell.
+     */
+    @Override
+    public String toString() {
+        return String.format("%s%s%s%s", name(), ": {", cell(), "}");
+    }
+
+
 }

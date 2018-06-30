@@ -34,18 +34,21 @@ public class MonsterMove extends Thread {
      */
     @Override
     public void run() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        Cell source = this.monster.cell();
-        if (this.monster.getDirection().equals("vertical")) {
-            Cell dist = this.monster.right();
-        }
-        if (this.board.move(source, dist)) {
-            this.monster.clone(dist);
-            System.out.println(" " + this.monster);
+        this.board.lockCell(this.monster.cell());
+        while (true) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Cell source = this.monster.cell();
+            Cell dist = this.monster.way();
+            if (this.board.move(source, dist)) {
+                this.monster.clone(dist);
+                System.out.println(" " + this.monster);
+            } else {
+                this.monster.setStep();
+            }
         }
     }
 

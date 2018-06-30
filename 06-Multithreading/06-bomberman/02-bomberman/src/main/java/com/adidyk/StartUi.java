@@ -31,9 +31,10 @@ public class StartUi {
         }
         bomberMove.finish();
         */
-        int direction = 1 + (int) (Math.random() * 2);
-        System.out.println(direction);
+        Board board = new Board(5, 5);
         Monster monster = new Monster(new Cell(1, 1), "monster");
+        MonsterMove monsterMove = new MonsterMove(board, monster);
+        monsterMove.start();
     }
 
 }
