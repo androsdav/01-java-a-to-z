@@ -42,6 +42,11 @@ public class Monster extends Heroes {
         }
     }
 
+    /**
+     * way - randomly selects direction of travel (up, right, down, left) and
+     * returns new cell for bomber-man.
+     * @return - returns new cell for bomber-man.
+     */
     @Override
     public Cell way() {
         Cell highWay = null;
