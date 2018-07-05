@@ -34,7 +34,7 @@ public class StartUi {
         threadPool.add(new Monster(new Cell(5, 5), "monster2"));
         threadPool.start();
         try {
-            Thread.sleep(10000);
+            Thread.sleep(100000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

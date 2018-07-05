@@ -3,25 +3,25 @@ package com.adidyk;
 import static com.adidyk.Constant.*;
 
 /**
- * Class BomberMan for create bomber-man (object) with params: cell, name.
+ * Class Monster for create monster (object) with params: cell, name.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 25.06.2018.
  * @version 1.0.
  */
 public class Monster extends Heroes {
     /**
-     * @param direction - is direction.
+     * @param direction - is direction of move.
      */
     private int direction;
 
     /**
-     * @param step - is step.
+     * @param step - is step by one cell.
      */
     private int step;
 
     /**
-     * BomberMan - constructor.
-     * @param cell - is start position of hero (link variable).
+     * Monster - constructor.
+     * @param cell - is start position of monster (link variable).
      * @param name - is name hero.
      */
     Monster(Cell cell, String name) {
@@ -31,7 +31,7 @@ public class Monster extends Heroes {
     }
 
     /**
-     * direct - direct.
+     * setDirection - choice of direction of movement of monster by vertical or by horizontal.
      */
     private void setDirection() {
         int direction = 1 + (int) (Math.random() * 2);
@@ -43,8 +43,9 @@ public class Monster extends Heroes {
     }
 
     /**
-     * way - randomly selects direction of travel (up, right, down, left) and
-     * returns new cell for bomber-man.
+     * way - returns new cell for monster by vertical or by horizontal.
+     * Direction Vertical: monster move auto by down or by up.
+     * Direction horizontal: monster move auto by right - left.
      * @return - returns new cell for bomber-man.
      */
     @Override
