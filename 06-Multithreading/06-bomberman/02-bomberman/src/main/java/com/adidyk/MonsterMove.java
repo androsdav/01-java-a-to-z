@@ -36,7 +36,7 @@ public class MonsterMove extends Thread {
     /**
      * finish - change variable isRunning to false - finishes move bomber-man.
      */
-    void finish() {
+    void shutdown() {
         this.isRunning = false;
     }
 

@@ -1,9 +1,9 @@
 package com.adidyk;
 
 //import java.util.concurrent.Executor;
-import java.util.ArrayList;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+//import java.util.ArrayList;
+//import java.util.concurrent.ExecutorService;
+//import java.util.concurrent.Executors;
 //import java.util.concurrent.TimeUnit;
 //import java.util.concurrent.ThreadPoolExecutor;
 
@@ -20,24 +20,6 @@ public class StartUi {
      * @param arg - is nothing.
      */
     public static void main(String[] arg) {
-        /*
-        Board board = new Board(10, 10);
-        BomberMan bomber = new BomberMan(new Cell(4, 4), "bomber");
-        BomberMan rock = new BomberMan(new Cell(3, 4), "rock");
-        BomberMan block = new BomberMan(new Cell(4, 5), "block");
-        BomberMan wall = new BomberMan(new Cell(4, 3), "wall");
-        board.lockCell(rock.cell());
-        board.lockCell(block.cell());
-        board.lockCell(wall.cell());
-        BomberManMove bomberMove = new BomberManMove(board, bomber);
-        bomberMove.start();
-        try {
-            Thread.sleep(30000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        bomberMove.finish();
-        */
         Board board = new Board(9, 7);
         Block rock1 = new Block(new Cell(1, 4), "rock1");
         Block rock2 = new Block(new Cell(7, 4), "rock2");
@@ -47,6 +29,16 @@ public class StartUi {
         board.lockCell(rock2.cell());
         board.lockCell(rock3.cell());
         board.lockCell(rock4.cell());
+        ThreadPool threadPool = new ThreadPool(board, 2);
+        threadPool.add(new Monster(new Cell(4, 4), "monster1"));
+        threadPool.add(new Monster(new Cell(5, 5), "monster2"));
+        threadPool.start();
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        threadPool.shutdown();
         //Monster monster1 = new Monster(new Cell(4, 4), "monster1");
         //MonsterMove monsterMove1 = new MonsterMove(board, monster1);
         //Monster monster2 = new Monster(new Cell(5, 5), "monster2");
@@ -59,6 +51,9 @@ public class StartUi {
         //    e.printStackTrace();
         //}
         //monsterMove1.finish();
+        //
+        //
+        /*
         ArrayList<MonsterMove> list = new ArrayList<>();
         list.add(new MonsterMove(board, new Monster(new Cell(1, 1), "monster1")));
         list.add(new MonsterMove(board, new Monster(new Cell(2, 2), "monster2")));
@@ -81,6 +76,10 @@ public class StartUi {
             e.printStackTrace();
         }
         executor.shutdownNow();
+        */
+        //
+        //
+        //
         /*
         try {
             System.out.println("attempt to shutdown executor");
