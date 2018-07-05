@@ -48,7 +48,7 @@ public class BomberMan extends Heroes {
 
     /**
      * toString - returns string format.
-     * @return - returns all information for cell.
+     * @return - returns all information for bomber-man.
      */
     @Override
     public String toString() {

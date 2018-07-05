@@ -75,7 +75,7 @@ class Board {
      * checkBorder - check border of paying board.
      * @param source - is source cell.
      * @param dist - is distance cell.
-     * @return - returns true if destination cell is limit borders of playing board or returns false id
+     * @return - returns true if destination cell is limit borders of playing board or returns false if
      * destination cell is out borders of playing board.
      */
 
@@ -95,7 +95,7 @@ class Board {
      * destination cell, then source cell isn`t unlocking and method returns false.
      * @param source - is source cell.
      * @param dist - is distance.
-     * @return - returns true if hero block destination cell or returns false if returns false if hero don`t block
+     * @return - returns true if hero block destination cell or returns false if hero don`t block
      * destination cell.
      */
     private boolean tryLockCell(Cell source, Cell dist) {

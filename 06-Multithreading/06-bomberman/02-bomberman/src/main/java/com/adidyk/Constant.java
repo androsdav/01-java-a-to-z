@@ -34,19 +34,18 @@ class Constant {
     static final int STEP = 1;
 
     /**
-     * @param DOWN - move in down.
+     * @param VERTICAL - vertical motion for monster.
      */
     static final int VERTICAL = 1;
 
     /**
-     * @param LEFT - move in left.
+     * @param HORIZONTAL - horizontal motion for monster.
      */
     static final int HORIZONTAL = 2;
 
     /**
-     * @param FORWARD - is.
+     * @param FORWARD - direction of move.
      */
     static final int FORWARD = -1;
-
 
 }

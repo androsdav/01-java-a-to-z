@@ -1,7 +1,7 @@
 package com.adidyk;
 
 /**
- * Class Monster create thread for move monster.
+ * Class MonsterMove create thread for move monster.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 11.06.2018.
  * @version 1.0.
@@ -9,7 +9,7 @@ package com.adidyk;
 public class MonsterMove extends Thread {
 
     /**
-     * @param bomber - is link variable to object of class Monster.
+     * @param monster - is link variable to object of class Monster.
      */
     private final Monster monster;
 
@@ -19,12 +19,12 @@ public class MonsterMove extends Thread {
     private final Board board;
 
     /**
-     * @param isRunning - is check for finishes of bomber-man move.
+     * @param isRunning - is check for finishes of monster move.
      */
     private volatile boolean isRunning = true;
 
     /**
-     * BomberManMove - constructor.
+     * MonsterMove - constructor.
      * @param board - is link variable to object of class Board.
      * @param monster - is link variable to object of class Monster.
      */
@@ -34,7 +34,7 @@ public class MonsterMove extends Thread {
     }
 
     /**
-     * finish - change variable isRunning to false - finishes move bomber-man.
+     * shutdown - change variable isRunning to false - finishes move monster.
      */
     void shutdown() {
         this.isRunning = false;
@@ -52,22 +52,23 @@ public class MonsterMove extends Thread {
     }
 
     /**
-     * infoStart - information that the bomber-man begins to run.
+     * infoStart - information that the monster begins to run.
      */
     private void infoStart() {
         System.out.println(String.format("%s%s%s", " -> ", this.monster.name(), " move start ... "));
     }
 
     /**
-     * lock - locks cell in the begin game.
+     * lock - locks cell of board in the begin game.
      */
     private void lock() {
         this.board.lockCell(this.monster.cell());
     }
 
     /**
-     * move - hero moves every second to a new cell. When moving, hero try take a new cell - tryLock.
-     * If it does not work for 500 ms. then change the movement to another cell.
+     * move - monster moves every second to a new cell by vertical or horizontal.
+     * When moving, monster try take a new cell - tryLock. If it does not work for 500 ms.,
+     * then change the movement to opposite direction.
      */
     private void move() {
         while (this.isRunning) {
@@ -85,11 +86,10 @@ public class MonsterMove extends Thread {
                 this.monster.setStep();
             }
         }
-
     }
 
     /**
-     * infoFinish - information that the bomber-man finish to run.
+     * infoFinish - information that the monster finish to run.
      */
     private void infoFinish() {
         System.out.println(String.format("%s%s%s", " -> ", this.monster.name(), " move finish ... "));

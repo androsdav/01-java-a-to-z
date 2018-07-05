@@ -22,7 +22,7 @@ public class Monster extends Heroes {
     /**
      * Monster - constructor.
      * @param cell - is start position of monster (link variable).
-     * @param name - is name hero.
+     * @param name - is name hero (monster).
      */
     Monster(Cell cell, String name) {
         super(cell, name);
@@ -43,24 +43,25 @@ public class Monster extends Heroes {
     }
 
     /**
-     * way - returns new cell for monster by vertical or by horizontal.
-     * Direction Vertical: monster move auto by down or by up.
-     * Direction horizontal: monster move auto by right - left.
-     * @return - returns new cell for bomber-man.
+     * way - returns new cell for monster by vertical if direction - vertical, or returns new cell
+     * for monster by horizontal if direction - horizontal.
+     * Direction vertical   -> move up and move down.
+     * Direction horizontal -> move right and move left.
+     * @return - returns new cell for monster.
      */
     @Override
     public Cell way() {
         Cell highWay = null;
         if (this.direction == VERTICAL) {
-            highWay = new Cell(cell().getPositionX() + this.step, cell().getPositionY()); // down - up
+            highWay = new Cell(cell().getPositionX() + this.step, cell().getPositionY());
         } else if (this.direction == HORIZONTAL) {
-            highWay = new Cell(cell().getPositionX(), cell().getPositionY() + this.step); // right - left
+            highWay = new Cell(cell().getPositionX(), cell().getPositionY() + this.step);
         }
         return highWay;
     }
 
     /**
-     * setVector - is.
+     * setStep - changes direction of move if next cell is locked.
      */
     void setStep() {
         this.step = this.step * FORWARD;
@@ -68,7 +69,7 @@ public class Monster extends Heroes {
 
     /**
      * toString - returns string format.
-     * @return - returns all information for cell.
+     * @return - returns all information for monster.
      */
     @Override
     public String toString() {
