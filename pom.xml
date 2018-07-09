@@ -16,6 +16,7 @@
                   <module>05-Collections-Lite</module>
                   <module>05-Collections-Pro</module>
                   <module>06-Multithreading</module>
+                  <module>07-SQL-JDBS</module>
          </modules>
 
 </project>
