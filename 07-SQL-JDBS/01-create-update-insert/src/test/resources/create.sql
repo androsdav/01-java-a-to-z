@@ -1,3 +1,7 @@
--- create user: andros, password: admin
-CREATE ROLE zerg WITH SUPERUSER LOGIN CREATEROLE CREATEDB  REPLICATION PASSWORD 'admin' ;
+-- create table
+CREATE TABLE  author (
+  id SERIAL PRIMARY KEY ,
+  name VARCHAR(200)
+);
 
+SELECT * FROM author;
