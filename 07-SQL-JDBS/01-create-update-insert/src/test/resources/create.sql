@@ -1,12 +1,9 @@
+
 DROP TABLE music_lover_compose;
 DROP TABLE music_lover;
 DROP TABLE compose;
 DROP TABLE author;
-
-
-
-
-
+--/
 -- create table author
 CREATE TABLE  author (
   id SERIAL PRIMARY KEY,
