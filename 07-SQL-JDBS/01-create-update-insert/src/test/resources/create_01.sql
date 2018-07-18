@@ -1,6 +1,2 @@
--- create new data base
-SELECT
-VERSION(),
-SIN(45),
-PI()
-;
+-- create new database for storage item
+CREATE DATABASE
