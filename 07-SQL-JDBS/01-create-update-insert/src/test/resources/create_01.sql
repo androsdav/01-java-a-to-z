@@ -42,4 +42,42 @@ CREATE TABLE category (
   name VARCHAR(50) NOT NULL CHECK (name IN('sport', 'work', 'life','study', 'hobby'))
 );
 
---
+-- create table item
+CREATE TABLE item (
+  id SERIAL PRIMARY KEY,
+  user_id INT REFERENCES "user" (id) ON DELETE SET NULL,
+  state_id INT REFERENCES state(id) ON DELETE SET NULL,
+  category_id INT REFERENCES category(id) ON DELETE SET NULL
+);
+
+-- create table comments
+CREATE TABLE comments (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(2000) NOT NULL,
+  item_id INT REFERENCES item(id) ON DELETE CASCADE,
+  user_id INT REFERENCES "user"(id) ON DELETE SET NULL
+);
+
+-- create table attaches
+CREATE TABLE attaches (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(2000) NOT NULL,
+  item_id INT REFERENCES item(id) ON DELETE CASCADE,
+  user_id INT REFERENCES "user"(id) ON DELETE SET NULL
+);
+
+-- add to role
+INSERT INTO role (name) VALUES ('user');
+INSERT INTO role (name) VALUES ('superuser');
+INSERT INTO role (name) VALUES ('admin');
+INSERT INTO role (name) VALUES ('root');
+
+-- add to rules
+INSERT INTO rules (name) VALUES ('add_user');
+INSERT INTO rules (name) VALUES ('ban_user');
+INSERT INTO rules (name) VALUES ('delete_user');
+INSERT INTO rules (name) VALUES ('add_item');
+INSERT INTO rules (name) VALUES ('delete_item');
+INSERT INTO rules (name) VALUES ('add_comment');
+INSERT INTO rules (name) VALUES ('delete_comment');
+
