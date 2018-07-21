@@ -45,6 +45,7 @@ CREATE TABLE category (
 -- create table item
 CREATE TABLE item (
   id SERIAL PRIMARY KEY,
+  name VARCHAR(2000) NOT NULL,
   user_id INT REFERENCES "user" (id) ON DELETE SET NULL,
   state_id INT REFERENCES state(id) ON DELETE SET NULL,
   category_id INT REFERENCES category(id) ON DELETE SET NULL
@@ -81,3 +82,74 @@ INSERT INTO rules (name) VALUES ('delete_item');
 INSERT INTO rules (name) VALUES ('add_comment');
 INSERT INTO rules (name) VALUES ('delete_comment');
 
+-- add to role_rules for user: add_item, add_comment
+INSERT INTO role_rules (role_id, rules_id) VALUES (
+  (SELECT id FROM role WHERE name = 'user'),
+  (SELECT id FROM rules WHERE name = 'add_item')
+);
+INSERT INTO role_rules (role_id, rules_id) VALUES (
+  (SELECT id FROM role WHERE name = 'user'),
+  (SELECT id FROM rules WHERE name = 'add_comment')
+);
+-- add to role_rules for admin: add_item, add_comment, delete_item, delete_comment
+INSERT INTO role_rules (role_id, rules_id) VALUES (
+  (SELECT id FROM role WHERE name = 'admin'),
+  (SELECT id FROM rules WHERE name = 'add_item')
+);
+INSERT INTO role_rules (role_id, rules_id) VALUES (
+  (SELECT id FROM role WHERE name = 'admin'),
+  (SELECT id FROM rules WHERE name = 'add_comment')
+);
+INSERT INTO role_rules (role_id, rules_id) VALUES (
+  (SELECT id FROM role WHERE name = 'admin'),
+  (SELECT id FROM rules WHERE name = 'delete_item')
+);
+INSERT INTO role_rules (role_id, rules_id) VALUES (
+  (SELECT id FROM role WHERE name = 'admin'),
+  (SELECT id FROM rules WHERE name = 'delete_comment')
+);
+INSERT INTO role_rules (role_id, rules_id) VALUES (
+  (SELECT id FROM role WHERE name = 'admin'),
+  (SELECT id FROM rules WHERE name = 'ban_user')
+);
+
+-- add to user 3 users
+INSERT INTO "user" (name, role_id) VALUES (
+  'David', (SELECT id FROM role WHERE name = 'user')
+);
+INSERT INTO "user" (name, role_id) VALUES (
+  'Robert', (SELECT id FROM role WHERE name = 'user')
+);
+INSERT INTO "user" (name, role_id) VALUES (
+  'Edward', (SELECT id FROM role WHERE name = 'user')
+);
+INSERT INTO "user" (name, role_id) VALUES (
+  'Steven', (SELECT id FROM role WHERE name = 'user')
+);
+INSERT INTO "user" (name, role_id) VALUES (
+  'Thomas', (SELECT id FROM role WHERE name = 'user')
+);
+INSERT INTO "user" (name, role_id) VALUES (
+  'Richard', (SELECT id FROM role WHERE name = 'admin')
+);
+-- add state
+INSERT INTO state (name) VALUES ('active');
+INSERT INTO state (name) VALUES ('not_active');
+INSERT INTO state (name) VALUES ('open');
+INSERT INTO state (name) VALUES ('closed');
+INSERT INTO state (name) VALUES ('removed');
+
+-- add category
+INSERT INTO category (name) VALUES ('sport');
+INSERT INTO category (name) VALUES ('work');
+INSERT INTO category (name) VALUES ('life');
+INSERT INTO category (name) VALUES ('study');
+INSERT INTO category (name) VALUES ('hobby');
+
+-- add item
+INSERT INTO item (name, user_id, state_id, category_id) VALUES (
+  'selling laptop',
+  (SELECT id FROM "user" WHERE name = 'David'),
+  (SELECT id FROM state WHERE name = 'active'),
+  (SELECT id FROM category WHERE name = 'life')
+);
