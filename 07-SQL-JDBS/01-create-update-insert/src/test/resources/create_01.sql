@@ -153,3 +153,50 @@ INSERT INTO item (name, user_id, state_id, category_id) VALUES (
   (SELECT id FROM state WHERE name = 'active'),
   (SELECT id FROM category WHERE name = 'life')
 );
+INSERT INTO item (name, user_id, state_id, category_id) VALUES (
+  'buy bicycle',
+  (SELECT id FROM "user" WHERE name = 'Edward'),
+  (SELECT id FROM state WHERE name = 'open'),
+  (SELECT id FROM category WHERE name = 'sport')
+);
+INSERT INTO item (name, user_id, state_id, category_id) VALUES (
+  'locking for job',
+  (SELECT id FROM "user" WHERE name = 'Thomas'),
+  (SELECT id FROM state WHERE name = 'active'),
+  (SELECT id FROM category WHERE name = 'work')
+);
+-- add comment
+INSERT INTO comments (name, item_id, user_id) VALUES (
+  'Not bad laptop',
+  (SELECT id FROM item WHERE item.name = 'selling laptop'),
+  (SELECT id FROM "user" WHERE name = 'Thomas')
+);
+INSERT INTO comments (name, item_id, user_id) VALUES (
+  'Your laptop is trash',
+  (SELECT id FROM item WHERE item.name = 'selling laptop'),
+  (SELECT id FROM "user" WHERE name = 'Edward')
+);
+INSERT INTO comments (name, item_id, user_id) VALUES (
+  'I want to buy, discuss ?',
+  (SELECT id FROM item WHERE item.name = 'selling laptop'),
+  (SELECT id FROM "user" WHERE name = 'Steven')
+);
+INSERT INTO comments (name, item_id, user_id) VALUES (
+  'Ok Steven, talk to me me about this now !!!',
+  (SELECT id FROM item WHERE name = 'selling laptop'),
+  (SELECT id FROM "user" WHERE name = 'David')
+);
+INSERT INTO comments (name, item_id, user_id) VALUES (
+  'good bike',
+  (SELECT id FROM item WHERE name = 'buy bicycle'),
+  (SELECT id FROM "user" WHERE name = 'David')
+);
+INSERT INTO comments (name, item_id, user_id) VALUES (
+  'bad bike',
+  (SELECT id FROM item WHERE name = 'buy bicycle'),
+  (SELECT id FROM "user" WHERE name = 'Richard')
+);
+
+
+
+
