@@ -11,6 +11,3 @@ SELECT comments.name,
   FROM comments
   WHERE item_id = (SELECT item.id FROM item WHERE item.name = 'selling laptop')
 ;
-
-
-

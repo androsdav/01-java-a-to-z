@@ -1,56 +1,68 @@
+-- create new database for storage item
+CREATE DATABASE base_item;
 
-DROP TABLE music_lover_compose;
-DROP TABLE music_lover;
-DROP TABLE compose;
-DROP TABLE author;
---/
--- create table author
-CREATE TABLE  author (
+-- create table role
+CREATE TABLE role (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(200)
+  name VARCHAR(50) NOT NULL CHECK (name IN ('user', 'superuser', 'admin', 'root'))
 );
 
--- create table compose
-CREATE TABLE compose (
+-- create table rules
+CREATE TABLE rules (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(200),
-  author_id INT REFERENCES author(id)
+  name VARCHAR(50) NOT NULL CHECK (name IN(
+    'add_user', 'ban_user', 'delete_user',
+    'add_item', 'delete_item',
+    'add_comment', 'delete_comment'))
 );
 
-CREATE TABLE music_lover (
+-- create table user
+CREATE TABLE "user" (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(200)
+  name VARCHAR(50) NOT NULL,
+  role_id INT REFERENCES role(id) ON DELETE SET NULL
 );
 
-CREATE TABLE music_lover_compose (
+-- create table role_rules
+CREATE TABLE role_rules (
   id SERIAL PRIMARY KEY,
-  music_lover_id INT REFERENCES music_lover(id),
-  compose_id INT REFERENCES compose(id)
+  role_id INT REFERENCES role(id) ON DELETE SET NULL,
+  rules_id INT REFERENCES rules(id) ON DELETE SET NULL
 );
 
-INSERT INTO author (name) VALUES
-  ('Jackson');
-INSERT INTO author (name) VALUES
-  ('Sting');
-INSERT INTO author (name) VALUES
-  ('Nirvana');
-INSERT INTO author (name) VALUES
-  ('Metallica');
-
-INSERT INTO compose (name, author_id) VALUES
-  ('Thriller', (SELECT id FROM author WHERE name = 'Jackson'));
-
-INSERT INTO music_lover (name) VALUES
-  ('meloman1');
-
-INSERT INTO music_lover_compose (music_lover_id, compose_id) VALUES
-((SELECT id FROM music_lover WHERE name = 'meloman1'),
- (SELECT id FROM compose WHERE name = 'Thriller')
-
+-- create table state
+CREATE  TABLE state (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(50) NOT NULL CHECK (name IN('active', 'not_active', 'open', 'closed','removed'))
 );
 
-SELECT * FROM author;
-SELECT * FROM compose;
-SELECT * FROM music_lover;
-SELECT compose.name, music_lover.name, music_lover_compose.* FROM music_lover_compose, compose, music_lover
-WHERE compose.id = music_lover_compose.compose_id AND music_lover.id = music_lover_compose.music_lover_id;
+-- create table category
+CREATE TABLE category (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(50) NOT NULL CHECK (name IN('sport', 'work', 'life','study', 'hobby'))
+);
+
+-- create table item
+CREATE TABLE item (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(2000) NOT NULL,
+  user_id INT REFERENCES "user" (id) ON DELETE SET NULL,
+  state_id INT REFERENCES state(id) ON DELETE SET NULL,
+  category_id INT REFERENCES category(id) ON DELETE SET NULL
+);
+
+-- create table comments
+CREATE TABLE comments (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(2000) NOT NULL,
+  item_id INT REFERENCES item(id) ON DELETE CASCADE,
+  user_id INT REFERENCES "user"(id) ON DELETE SET NULL
+);
+
+-- create table attaches
+CREATE TABLE attaches (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(2000) NOT NULL,
+  item_id INT REFERENCES item(id) ON DELETE CASCADE,
+  user_id INT REFERENCES "user"(id) ON DELETE SET NULL
+);
