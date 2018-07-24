@@ -1,5 +1,9 @@
 package com.adidyk;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 /**
  * Class StartUi for create jar file and run program (CounterThread).
  * @author Didyk Andrey (androsdav@bigmir.net).
@@ -13,8 +17,16 @@ public class StartUi {
      * @param arg - is nothing.
      */
     public static void main(String[] arg) {
-        new DBWorker();
-
+        String HOST = "jdbc:postgresql://localhost:5432/base_item";
+        String USERNAME = "postgres";
+        String PASSWORD = "admin";
+        Connection connection;
+        try {
+            connection = DriverManager.getConnection(HOST, USERNAME, PASSWORD);
+            System.out.println("database " + connection.getCatalog() + " connect ...");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }
