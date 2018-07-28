@@ -1,3 +1,16 @@
+-- select
+SELECT * FROM type;
+SELECT * FROM product;
+
+SELECT * FROM product,
+  WHERE type_id = (SELECT type.id FROM type WHERE type.name = 'cheese')
+;
+
+SELECT * FROM product
+  WHERE name = '%ice%cream%'
+;
+
+
 -- select all item
 SELECT item.id, item.name,
   (SELECT "user".name FROM "user" WHERE "user".id = item.user_id),

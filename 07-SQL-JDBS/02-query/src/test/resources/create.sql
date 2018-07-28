@@ -13,5 +13,5 @@ CREATE TABLE product (
   name VARCHAR(200) NOT NULL UNIQUE,
   type_id INT REFERENCES type(id) ON DELETE SET NULL,
   expired_date DATE,
-  price FLOAT(2) NOT NULL
+  price FLOAT(2) NOT NULL CHECK (price > 0)
 );
