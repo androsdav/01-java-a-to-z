@@ -7,7 +7,7 @@ import java.sql.SQLException;
 /**
  * Class StartUi for create jar file and connect to data base..
  * @author Didyk Andrey (androsdav@bigmir.net).
- * @since 25.07.2018.
+ * @since 28.07.2018.
  * @version 1.0.
  */
 public class StartUi {
@@ -17,7 +17,7 @@ public class StartUi {
      * @param arg - is nothing.
      */
     public static void main(String[] arg) {
-        String HOST = "jdbc:postgresql://localhost:5432/base_item";
+        String HOST = "jdbc:postgresql://localhost:5432/base_product";
         String USERNAME = "postgres";
         String PASSWORD = "admin";
         Connection connection;

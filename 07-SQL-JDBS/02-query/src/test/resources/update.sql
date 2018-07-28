@@ -276,31 +276,31 @@ INSERT INTO product(name, type_id, expired_date, price) VALUES (
 -- inserts product milk
 INSERT INTO product(name, type_id, expired_date, price) VALUES (
   'Vitamin D Milk',
-  (SELECT id FROM type WHERE type.name = 'butter'),
+  (SELECT id FROM type WHERE type.name = 'milk'),
   '25-09-2018',
   '6.90'
 );
 INSERT INTO product(name, type_id, expired_date, price) VALUES (
   'Whole Milk',
-  (SELECT id FROM type WHERE type.name = 'butter'),
+  (SELECT id FROM type WHERE type.name = 'milk'),
   '25-10-2018',
   '10.03'
 );
 INSERT INTO product(name, type_id, expired_date, price) VALUES (
   'Organic Lowfat Milk',
-  (SELECT id FROM type WHERE type.name = 'butter'),
+  (SELECT id FROM type WHERE type.name = 'milk'),
   '25-08-2018',
   '5.03'
 );
 INSERT INTO product(name, type_id, expired_date, price) VALUES (
   'Fat Free Milk',
-  (SELECT id FROM type WHERE type.name = 'butter'),
+  (SELECT id FROM type WHERE type.name = 'milk'),
   '25-09-2018',
   '8.03'
 );
 INSERT INTO product(name, type_id, expired_date, price) VALUES (
   'Instant Nonfat Dry Milk',
-  (SELECT id FROM type WHERE type.name = 'butter'),
+  (SELECT id FROM type WHERE type.name = 'milk'),
   '02-10-2018',
   '6.03'
 );
