@@ -18,6 +18,7 @@
          <modules>
                   <module>01-create-update-insert</module>
                   <module>02-query</module>
+                  <module>03-outer-join</module>
          </modules>
 
 </project>
