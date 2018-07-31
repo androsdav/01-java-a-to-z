@@ -1,3 +1,23 @@
+
+--body
+sedan
+universalis
+hatchback
+coupe
+limousine
+minivan
+hardtop
+liftback
+-- engine
+VEE
+INLINE
+STRAIGHT
+VR and W
+BOXER
+ROTARY
+
+
+
 -- inserts data to table type of product
 INSERT INTO type(name) VALUES ('bread');
 INSERT INTO type(name) VALUES ('sausage');
