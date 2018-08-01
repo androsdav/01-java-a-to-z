@@ -4,10 +4,43 @@ SELECT car.id, car.name, car.body_id, car.transmission_id, car.engine_id, engine
   WHERE car.engine_id = engine.id
 ;
 -- INNER JOIN
-SELECT car.id, car.name, car.body_id, car.transmission_id, car.engine_id, engine.name AS engine
-  FROM car
-  INNER JOIN engine ON (car.engine_id = engine.id)
+SELECT c.id, c.name, b.name AS body, e.name AS engine, t.name AS transmission FROM car AS c
+  INNER JOIN body AS b ON (b.id = c.body_id)
+  INNER JOIN engine AS e ON (c.engine_id = e.id)
+  INNER JOIN transmission AS t ON (c.transmission_id = t.id)
 ;
+
+-- not use type body
+SELECT body.id, body.name FROM body
+  LEFT OUTER JOIN car ON car.body_id = body.id WHERE car.id IS NULL
+;
+
+-- not use type body
+SELECT engine.id, engine.name FROM engine
+  LEFT OUTER JOIN car ON car.engine_id = engine.id WHERE car.id IS NULL
+;
+
+SELECT transmission.id, transmission.name FROM transmission
+  LEFt OUTER JOIN car ON car.transmission_id = transmission.id WHERE car.id IS NULL
+;
+
+
+
+-- LEFT OUTER JOIN body
+SELECT c.id, c.name, b.name AS body, e.name AS engine, t.name AS transmission FROM car AS c
+  LEFT OUTER JOIN body AS b ON (b.id = c.body_id)
+  LEFT OUTER JOIN engine AS e ON (c.engine_id = e.id)
+  LEFT OUTER JOIN transmission AS t ON (c.transmission_id = t.id)
+;
+
+-- RIGHT OUTER JOIN
+SELECT c.id, c.name, b.name AS body, e.name AS engine, t.name AS transmission FROM car AS c
+  RIGHT OUTER JOIN body AS b ON (b.id = c.body_id)
+  RIGHT OUTER JOIN engine AS e ON (c.engine_id = e.id)
+  RIGHT OUTER JOIN transmission AS t ON (c.transmission_id = t.id)
+;
+
+
 -- LEFT OUTER JOIN
 SELECT car.id, car.name, car.body_id, car.transmission_id, car.engine_id, engine.name AS engine
   FROM car
