@@ -1,3 +1,57 @@
+-- select
+SELECT car.id, car.name, car.body_id, car.transmission_id, car.engine_id, engine.name AS engine
+  FROM car, engine
+  WHERE car.engine_id = engine.id
+;
+-- INNER JOIN
+SELECT car.id, car.name, car.body_id, car.transmission_id, car.engine_id, engine.name AS engine
+  FROM car
+  INNER JOIN engine ON (car.engine_id = engine.id)
+;
+-- LEFT OUTER JOIN
+SELECT car.id, car.name, car.body_id, car.transmission_id, car.engine_id, engine.name AS engine
+  FROM car
+  LEFT OUTER JOIN engine ON (car.engine_id = engine.id)
+;
+
+-- RIGHT OUTER JOIN
+SELECT car.id, car.name, car.body_id, car.transmission_id, car.engine_id, engine.name AS engine
+  FROM car
+  RIGHT OUTER JOIN engine ON (car.engine_id = engine.id)
+;
+
+-- FULL OUTER JOIN
+SELECT car.id, car.name, car.body_id, car.transmission_id, car.engine_id, engine.name AS engine
+FROM car
+  FULL OUTER JOIN engine ON (car.engine_id = engine.id)
+;
+
+-- CROSS JOIN
+SELECT car.id, car.name, car.body_id, car.transmission_id, car.engine_id, engine.name AS engine
+FROM car
+  CROSS JOIN engine
+;
+
+
+
+-- RIGHT OUTER JOIN
+SELECT car.id, car.name, car.body_id, car.transmission_id, car.engine_id, body.name AS engine
+  FROM car
+  RIGHT OUTER JOIN body ON (car.body_id = body.id)
+;
+
+
+
+-- INNER JOIN
+SELECT engine.id, engine.name, car.name AS car
+  FROM engine
+  INNER JOIN car ON (car.engine_id = engine.id)
+;
+
+
+
+
+
 -- selects all product by type of product cheese
 SELECT product.id, product.name, product.type_id, product.expired_date, product.price,
   (SELECT type.name AS type FROM type WHERE type.name = 'cheese')
