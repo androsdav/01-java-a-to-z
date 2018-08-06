@@ -1,6 +1,10 @@
 package com.adidyk;
 
-import java.sql.*;
+import com.adidyk.models.Item;
+
+import java.util.Date;
+
+//import java.sql.*;
 
 /**
  * Class StartUi for create jar file and connect to data base..
@@ -19,6 +23,9 @@ public class StartUi {
      * @param arg - is nothing.
      */
     public static void main(String[] arg) {
+        Item item = new Item("task0", "desc0", new Date().getTime());
+        System.out.println(item);
+        /*
         String url = "jdbc:postgresql://localhost:5432/base_tracker";
         String userName = "postgres";
         String password = "admin";
@@ -36,7 +43,7 @@ public class StartUi {
                     e.printStackTrace();
                 }
             }
-        }
+        }*/
     }
 
 }

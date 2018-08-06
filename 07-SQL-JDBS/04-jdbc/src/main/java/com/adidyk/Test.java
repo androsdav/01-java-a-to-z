@@ -18,6 +18,7 @@ class Test {
     /**
      *
      * @param connection - is connection.
+     * @throws SQLException - is SQL exception.
      */
     Test(Connection connection) throws SQLException {
         this.connection = connection;
