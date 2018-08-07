@@ -1,7 +1,9 @@
 package com.adidyk.start;
 
 import com.adidyk.models.*;
-import java.util.*;
+
+import java.sql.*;
+//import java.time.Instant;
 
 /**
  * Class StartUi for create jar file and connect to data base..
@@ -9,16 +11,57 @@ import java.util.*;
  * @since 06.08.2018.
  * @version 1.0.
  */
-class Tracker {
+public class Tracker {
+
+	/**
+	 * @param connect - is connect.
+	 */
+	private Connection connect;
+
+	/**
+	 *
+	 * @param connect - is connect.
+	 */
+	public Tracker(Connection connect) {
+		this.connect = connect;
+	}
 
 	/**
 	 *
 	 * @param item - is item.
 	 * @return - is item.
+	 * @throws SQLException - is SQL exception.
 	 */
-	Item additem(Item item) {
+	public Item addItem(Item item) throws SQLException {
+		PreparedStatement st = this.connect.prepareStatement("INSERT INTO item(name, description, create_date) VALUES (?, ?, ?)");
+		st.setString(1, item.getName());
+		st.setString(2, item.getDescription());
+		st.setDate(3, new Date(item.getCreate()));
+		st.executeUpdate();
+		st.close();
+		return item;
+	}
 
-		return null;
+	/**
+	 * @param id - is id.
+	 * @return - is item.
+	 * @throws SQLException - is SQL exception.
+	 */
+	public Item searchItemById(String id) throws SQLException {
+		Item item = null;
+		PreparedStatement st = this.connect.prepareStatement("SELECT * FROM item WHERE id = ?");
+		st.setInt(1, Integer.parseInt(id));
+		ResultSet rs = st.executeQuery();
+		while (rs.next()) {
+			String name = rs.getString("name");
+			String description = rs.getString("description");
+			Date create = rs.getDate("create_date");
+			item = new Item(name, description, create.getTime());
+			item.setId(String.valueOf(rs.getInt("id")));
+		}
+		st.close();
+		rs.close();
+		return item;
 	}
 
 }

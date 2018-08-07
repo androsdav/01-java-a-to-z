@@ -1,8 +1,14 @@
 package com.adidyk;
 
 import com.adidyk.models.Item;
+//import com.sun.demo.jvmti.hprof.Tracker;
+//import com.sun.demo.jvmti.hprof.Tracker;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Date;
+import com.adidyk.start.*;
 
 //import java.sql.*;
 
@@ -23,16 +29,25 @@ public class StartUi {
      * @param arg - is nothing.
      */
     public static void main(String[] arg) {
-        Item item = new Item("task0", "desc0", new Date().getTime());
-        System.out.println(item);
-        /*
+        Item item0 = new Item("task0", "desc0", new Date().getTime());
+        Item item1 = new Item("task1", "desc1", new Date().getTime());
+        System.out.println(item0);
+        System.out.println(item1);
+
+
+
         String url = "jdbc:postgresql://localhost:5432/base_tracker";
         String userName = "postgres";
         String password = "admin";
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(url, userName, password);
-            new Test(connection);
+            //new Test(connection);
+            Tracker tracker = new Tracker(connection);
+            //tracker.addItem(item0);
+            //tracker.addItem(item1);
+            System.out.println();
+            System.out.println(tracker.searchItemById("1"));
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -43,7 +58,7 @@ public class StartUi {
                     e.printStackTrace();
                 }
             }
-        }*/
+        }
     }
 
 }

@@ -14,6 +14,12 @@ public class Item {
     /**
      *
      */
+    private String id;
+
+
+    /**
+     *
+     */
     private String name;
 
     /**
@@ -26,10 +32,6 @@ public class Item {
      */
     private long create;
 
-    /**
-     *
-     */
-    private String id;
 
     //private Comment[] comment = new Comment[10];
 
@@ -86,7 +88,7 @@ public class Item {
      *
      * @return string.
      */
-    String getDescription() {
+    public String getDescription() {
         return this.description;
     }
 
@@ -94,7 +96,7 @@ public class Item {
      *
      * @return long.
      */
-    long getCreate() {
+    public long getCreate() {
         return this.create;
     }
 
@@ -110,7 +112,7 @@ public class Item {
      *
      * @return string.
      */
-    String getName() {
+    public String getName() {
         return this.name;
     }
 
@@ -165,7 +167,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return (" - [name]: " + getName() + " [desc]: " + getDescription() + " [create]: " + this.dateFormat.format(getCreate()) + " [id]: " + getId());
+        return (" - [name]: " + getName() + " [desc]: " + getDescription() + " [create]: " + this.dateFormat.format(this.getCreate()) + " [id]: " + this.getId());
     }
 
 }
