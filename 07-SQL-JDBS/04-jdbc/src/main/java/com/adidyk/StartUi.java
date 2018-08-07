@@ -47,7 +47,7 @@ public class StartUi {
             //tracker.addItem(item0);
             //tracker.addItem(item1);
             System.out.println();
-            System.out.println(tracker.searchItemById("1"));
+            System.out.println(tracker.searchItemById("3"));
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

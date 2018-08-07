@@ -6,6 +6,8 @@ INSERT INTO item (name, description, create_date) VALUES (
 ;
 
 
+UPDATE item SET name = 'task_test', description = 'desc_test', create_date = '10-09-2008' WHERE id = 1;
+
 
 
 -- add item 'buy bicycle'

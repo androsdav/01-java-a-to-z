@@ -49,7 +49,7 @@ public class Tracker {
 	 */
 	public Item searchItemById(String id) throws SQLException {
 		Item item = null;
-		PreparedStatement st = this.connect.prepareStatement("SELECT * FROM item WHERE id = ?");
+		PreparedStatement st = this.connect.prepareStatement("SELECT * FROM item WHERE id IN(?)");
 		st.setInt(1, Integer.parseInt(id));
 		ResultSet rs = st.executeQuery();
 		while (rs.next()) {
@@ -62,6 +62,15 @@ public class Tracker {
 		st.close();
 		rs.close();
 		return item;
+	}
+
+	/**
+	 *
+	 * @param item - is item.
+	 */
+	public void updateItemById(Item item) throws SQLException {
+		PreparedStatement st = this.connect.prepareStatement("UPDATE item SET name = ?, description = ?, create_date = ? WHERE id = ?");
+
 	}
 
 }
