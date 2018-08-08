@@ -3,6 +3,7 @@ package com.adidyk.start;
 import com.adidyk.models.*;
 
 import java.sql.*;
+import java.util.ArrayList;
 //import java.time.Instant;
 
 /**
@@ -36,7 +37,7 @@ public class Tracker {
 		PreparedStatement st = this.connect.prepareStatement("INSERT INTO item(name, description, create_date) VALUES (?, ?, ?)");
 		st.setString(1, item.getName());
 		st.setString(2, item.getDescription());
-		st.setDate(3, new Date(item.getCreate()));
+		st.setTimestamp(3, new Timestamp(item.getCreate()));
 		st.executeUpdate();
 		st.close();
 		return item;
@@ -53,10 +54,8 @@ public class Tracker {
 		st.setInt(1, Integer.parseInt(id));
 		ResultSet rs = st.executeQuery();
 		while (rs.next()) {
-			String name = rs.getString("name");
-			String description = rs.getString("description");
-			Date create = rs.getDate("create_date");
-			item = new Item(name, description, create.getTime());
+			item = new Item(
+					rs.getString("name"), rs.getString("description"), rs.getTimestamp("create_date").getTime());
 			item.setId(String.valueOf(rs.getInt("id")));
 		}
 		st.close();
@@ -67,13 +66,55 @@ public class Tracker {
 	/**
 	 *
 	 * @param item - is item.
+	 * @throws SQLException - is SQL exception.
 	 */
 	public void updateItemById(Item item) throws SQLException {
 		PreparedStatement st = this.connect.prepareStatement("UPDATE item SET name = ?, description = ?, create_date = ? WHERE id = ?");
-
+		st.setString(1, item.getName());
+		st.setString(2, item.getDescription());
+		st.setTimestamp(3, new Timestamp(item.getCreate()));
+		st.setInt(4, Integer.parseInt(item.getId()));
+		st.executeUpdate();
+		st.close();
 	}
 
+	/**
+	 *
+	 * @param id - is id.
+	 * @throws SQLException - is SQL exception.
+	 */
+	public void removeItemById(String id) throws SQLException {
+		PreparedStatement st = this.connect.prepareStatement("DELETE FROM item WHERE id = ?");
+		st.setInt(1, Integer.parseInt(id));
+		st.executeUpdate();
+		st.close();
+	}
+
+	/**
+	 *
+	 * @throws SQLException - is SQL exception.
+	 * @return all item.
+	 */
+	public ArrayList<Item> getAllItem() throws SQLException {
+		ArrayList<Item> items = new ArrayList<>();
+		PreparedStatement st = this.connect.prepareStatement("SELECT * FROM item");
+		ResultSet rs = st.executeQuery();
+		while (rs.next()) {
+			System.out.println(String.format("%s %s %s", rs.getInt("id"), rs.getString("name"), rs.getString("description")));
+			Item item = new Item(
+					rs.getString("name"),
+					rs.getString("description"),
+					rs.getTimestamp("create_date").getTime()
+			);
+			item.setId(String.valueOf(rs.getInt("id")));
+			items.add(item);
+		}
+		rs.close();
+		st.close();
+		return items;
+	}
 }
+
 
 	/*
 	private Item[] item = new Item[1];

@@ -104,7 +104,7 @@ public class Item {
      *
      * @return string.
      */
-    String getId() {
+    public String getId() {
         return this.id;
     }
 
