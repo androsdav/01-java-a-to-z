@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @since 06.08.2018.
  * @version 1.0.
  */
-public class Tracker {
+class Tracker {
 
 	/**
 	 * @param connect - is connect.
@@ -21,7 +21,7 @@ public class Tracker {
 	 *
 	 * @param connect - is connect.
 	 */
-	public Tracker(Connection connect) {
+	Tracker(Connection connect) {
 		this.connect = connect;
 	}
 
@@ -31,7 +31,7 @@ public class Tracker {
 	 * @return - is item.
 	 * @throws SQLException - is SQL exception.
 	 */
-	public Item addItem(Item item) throws SQLException {
+	Item addItem(Item item) throws SQLException {
 		PreparedStatement st = this.connect.prepareStatement("INSERT INTO item(name, description, create_date) VALUES (?, ?, ?)");
 		st.setString(1, item.getName());
 		st.setString(2, item.getDescription());
@@ -46,7 +46,7 @@ public class Tracker {
 	 * @return - is item.
 	 * @throws SQLException - is SQL exception.
 	 */
-	public Item searchItemById(String id) throws SQLException {
+	Item searchItemById(String id) throws SQLException {
 		Item item = null;
 		PreparedStatement st = this.connect.prepareStatement("SELECT * FROM item WHERE id IN(?)");
 		st.setInt(1, Integer.parseInt(id));
@@ -66,7 +66,7 @@ public class Tracker {
 	 * @param item - is item.
 	 * @throws SQLException - is SQL exception.
 	 */
-	public void updateItemById(Item item) throws SQLException {
+	void updateItemById(Item item) throws SQLException {
 		PreparedStatement st = this.connect.prepareStatement("UPDATE item SET name = ?, description = ?, create_date = ? WHERE id = ?");
 		st.setString(1, item.getName());
 		st.setString(2, item.getDescription());
@@ -81,7 +81,7 @@ public class Tracker {
 	 * @param id - is id.
 	 * @throws SQLException - is SQL exception.
 	 */
-	public void removeItemById(String id) throws SQLException {
+	void removeItemById(String id) throws SQLException {
 		PreparedStatement st = this.connect.prepareStatement("DELETE FROM item WHERE id = ?");
 		st.setInt(1, Integer.parseInt(id));
 		st.executeUpdate();
@@ -93,7 +93,7 @@ public class Tracker {
 	 * @throws SQLException - is SQL exception.
 	 * @return all item.
 	 */
-	public ArrayList<Item> getAllItem() throws SQLException {
+	ArrayList<Item> getAllItem() throws SQLException {
 		ArrayList<Item> items = new ArrayList<>();
 		PreparedStatement st = this.connect.prepareStatement("SELECT * FROM item");
 		ResultSet rs = st.executeQuery();

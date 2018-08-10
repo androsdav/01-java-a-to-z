@@ -23,39 +23,51 @@ public class StartUi {
     //private static final Logger log = LoggerFactory.getLogger(StartUi.class);
     //private static final Logger log = LoggerFactory.getLogger(StartUi.class);
 
+    private Input input;
+    private Tracker track;
+
+    private StartUi(Input input) {
+        this.input = input;
+        this.track = new Tracker();
+        this.track.addItem(new Item("task0", "desc0", new Date().getTime()));
+        this.track.addItem(new Item("task1", "desc1", new Date().getTime()));
+        this.track.addItem(new Item("task2", "desc2", new Date().getTime()));
+        this.track.addItem(new Item("task3", "desc3", new Date().getTime()));
+    }
+
+    // init - initialization and start work
+    private void init() {
+        MenuTracker menu = new MenuTracker(this.input, this.track);
+        menu.fillAction();
+        while(true) {
+            menu.show();
+            int key = this.input.ask(" Choose key: ", menu.getIndexActions());
+            menu.select(key);
+            if (key == 9) break;
+        }
+    }
+
     /**
      * main - is for create jar file and run program.
      * @param arg - is nothing.
      */
     public static void main(String[] arg) {
+
+        Input input = new ValidateInput();
+        new StartUi(input).init();
+
         Item item0 = new Item("task0", "desc0", new Date().getTime());
         Item item1 = new Item("task1", "desc1", new Date().getTime());
         Item item2 = new Item("task2", "desc2", new Date().getTime());
         Item item3 = new Item("task3", "desc3", new Date().getTime());
-        //System.out.println(item0);
-        //System.out.println(item1);
+
         String url = "jdbc:postgresql://localhost:5432/base_tracker";
         String userName = "postgres";
         String password = "admin";
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(url, userName, password);
-            //new Test(connection);
             Tracker tracker = new Tracker(connection);
-            //tracker.addItem(item0);
-            //tracker.addItem(item1);
-            //tracker.addItem(item2);
-            //tracker.addItem(item3);
-            System.out.println();
-            System.out.println(tracker.searchItemById("16"));
-            Item item4 = new Item("update", "update", new Date().getTime());
-            item4.setId("15");
-            tracker.updateItemById(item4);
-            //tracker.removeItemById("9");
-            //tracker.getAllItem();
-            for (Item item : tracker.getAllItem()) {
-                System.out.println(item);
-            }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
