@@ -1,4 +1,4 @@
-package com.adidyk;
+package com.adidyk.start;
 
 import com.adidyk.models.Item;
 //import com.sun.demo.jvmti.hprof.Tracker;
@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Date;
-import com.adidyk.start.*;
 
 //import java.sql.*;
 

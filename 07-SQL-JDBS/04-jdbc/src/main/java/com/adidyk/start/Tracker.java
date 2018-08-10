@@ -1,10 +1,8 @@
 package com.adidyk.start;
 
 import com.adidyk.models.*;
-
 import java.sql.*;
 import java.util.ArrayList;
-//import java.time.Instant;
 
 /**
  * Class StartUi for create jar file and connect to data base..
