@@ -24,37 +24,84 @@ public class StartUi {
     //private static final Logger log = LoggerFactory.getLogger(StartUi.class);
 
     private Input input;
-    private Tracker track;
+    private Tracker tracker;
 
-    private StartUi(Input input) {
+    private String url = "jdbc:postgresql://localhost:5432/base_tracker";
+    private String userName = "postgres";
+    private String password = "admin";
+    private Connection connect = null;
+    private MenuTracker menu;
+
+    private StartUi(Input input) throws SQLException {
         this.input = input;
+        /*
         this.track = new Tracker();
         this.track.addItem(new Item("task0", "desc0", new Date().getTime()));
         this.track.addItem(new Item("task1", "desc1", new Date().getTime()));
         this.track.addItem(new Item("task2", "desc2", new Date().getTime()));
         this.track.addItem(new Item("task3", "desc3", new Date().getTime()));
+        */
     }
 
-    // init - initialization and start work
+    private void start() throws SQLException {
+        this.connect();
+        this.init();
+        this.work();
+        this.disconnect();
+    }
+
+     private void connect() {
+         try {
+             this.connect = DriverManager.getConnection(this.url, this.userName, this.password);
+         } catch (SQLException e) {
+             e.printStackTrace();
+         }
+     }
+
     private void init() {
-        MenuTracker menu = new MenuTracker(this.input, this.track);
-        menu.fillAction();
+        this.tracker = new Tracker(this.connect);
+        this.menu = new MenuTracker(this.input, this.tracker);
+
+    }
+
+
+
+    // init - initialization and start work
+    private void work() throws SQLException {
+        this.menu.fillAction();
         while(true) {
-            menu.show();
+            this.menu.show();
             int key = this.input.ask(" Choose key: ", menu.getIndexActions());
-            menu.select(key);
+            this.menu.select(key);
             if (key == 9) break;
         }
+    }
+
+    private void disconnect() {
+        if (this.connect != null) {
+            try {
+                this.connect.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+
+    private void dataBaseDisconnect() throws SQLException {
+        this.connect.close();
     }
 
     /**
      * main - is for create jar file and run program.
      * @param arg - is nothing.
      */
-    public static void main(String[] arg) {
+    public static void main(String[] arg) throws SQLException {
 
         Input input = new ValidateInput();
-        new StartUi(input).init();
+        new StartUi(input).start();
+        /*
 
         Item item0 = new Item("task0", "desc0", new Date().getTime());
         Item item1 = new Item("task1", "desc1", new Date().getTime());
@@ -79,6 +126,7 @@ public class StartUi {
                 }
             }
         }
+        */
     }
 
 }

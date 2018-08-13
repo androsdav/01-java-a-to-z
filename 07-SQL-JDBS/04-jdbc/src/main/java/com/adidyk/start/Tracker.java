@@ -98,7 +98,7 @@ class Tracker {
 		PreparedStatement st = this.connect.prepareStatement("SELECT * FROM item");
 		ResultSet rs = st.executeQuery();
 		while (rs.next()) {
-			System.out.println(String.format("%s %s %s", rs.getInt("id"), rs.getString("name"), rs.getString("description")));
+			//System.out.println(String.format("%s %s %s", rs.getInt("id"), rs.getString("name"), rs.getString("description")));
 			Item item = new Item(
 					rs.getString("name"),
 					rs.getString("description"),

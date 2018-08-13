@@ -66,14 +66,18 @@ class MenuTracker {
         }
         // execute - show all item, key = 1
         public void execute(Input input, Tracker track) throws SQLException {
+            System.out.print(String.format(" %4s%s%8s%5s%5s%s%s%n",
+                    "id", " |", "name", " | ", "description", " | ", "data_create"));
+            System.out.println(" ---+-----------+-------------+-----------");
             for (Item item : track.getAllItem()) {
-                System.out.println(item);
+                System.out.println(String.format("%4s%10s%10s", item.getId(), item.getName(), item.getDescription()));
                 /*
                 for (Comment comm : item.getAllComment()) {
                     System.out.println(comm);
                 }
                 */
             }
+            //System.out.println(" |---|-----------|----------|---------|");
         }
     }
 
