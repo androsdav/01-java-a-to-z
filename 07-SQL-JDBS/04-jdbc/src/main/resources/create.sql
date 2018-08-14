@@ -6,15 +6,12 @@ CREATE TABLE item (
   id SERIAL PRIMARY KEY,
   name VARCHAR(200) NOT NULL,
   description VARCHAR(2000) NOT NULL,
-  create_date pg_catalog.DATE NOT NULL
+  date_create DATA NOT NULL
 );
 
-
--- create table comments
+-- create table comments, don`t adds comments wait
 CREATE TABLE comments (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(200) NOT NULL,
-  description VARCHAR(2000) NOT NULL,
-  create_date DATE,
+  name VARCHAR(2000) NOT NULL,
   item_id INT REFERENCES item(id) ON DELETE CASCADE
 );
