@@ -192,7 +192,9 @@ class MenuTracker {
                     */
                 }
             }
-            if (!flagResult) {System.out.println(" Not result by description");}
+            if (!flagResult) {
+                System.out.println(" Not result by description");
+            }
         }
     }
 
