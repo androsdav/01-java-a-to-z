@@ -30,6 +30,7 @@ SELECT CURRENT_TIMESTAMP(0);
 
 SELECT DATE_TRUNC('second', TIMESTAMP '2016-06-12 20:11:45');
 
+
 SELECT date_trunc('month', timestamp '2010-06-12 20:11');
 SELECT date_trunc('week', timestamp '2010-06-12 20:11');
 
