@@ -167,7 +167,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return (" - [name]: " + getName() + " [desc]: " + getDescription() + " [create]: " + this.dateFormat.format(this.getCreate()) + " [id]: " + this.getId());
+        return String.format("%7s%2s %-18s%2s %-38s%2s %s", this.getId(), "|", this.getName(), "|", this.getDescription(), "|", this.dateFormat.format(this.getCreate()));
     }
 
 }
