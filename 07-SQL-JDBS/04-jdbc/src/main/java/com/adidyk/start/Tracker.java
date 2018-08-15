@@ -4,6 +4,8 @@ import com.adidyk.models.*;
 import java.sql.*;
 import java.util.ArrayList;
 
+import static com.adidyk.setup.Constant.SEARCH_ITEM_BY_ID;
+
 /**
  * Class StartUi for create jar file and connect to data base..
  * @author Didyk Andrey (androsdav@bigmir.net).
@@ -48,7 +50,7 @@ class Tracker {
 	 */
 	Item searchItemById(String id) throws SQLException {
 		Item item = null;
-		PreparedStatement st = this.connect.prepareStatement("SELECT * FROM item WHERE id IN(?)");
+		PreparedStatement st = this.connect.prepareStatement(SEARCH_ITEM_BY_ID);
 		st.setInt(1, Integer.parseInt(id));
 		ResultSet rs = st.executeQuery();
 		while (rs.next()) {

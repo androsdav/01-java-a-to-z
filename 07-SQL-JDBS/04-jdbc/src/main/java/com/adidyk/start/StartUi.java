@@ -1,11 +1,17 @@
 package com.adidyk.start;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import com.adidyk.setup.*;
+import static com.adidyk.setup.Constant.*;
+
 
 /**
- * Class StartUi for create jar file and connect to data base..
+ * Class StartUi for create jar file and connect to data base.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 03.08.2018.
  * @version 1.0.
@@ -25,21 +31,6 @@ public class StartUi {
     /**
      *
      */
-    private String url = "jdbc:postgresql://localhost:5432/base_tracker";
-
-    /**
-     *
-     */
-    private String userName = "postgres";
-
-    /**
-     *
-     */
-    private String password = "admin";
-
-    /**
-     *
-     */
     private Connection connect = null;
 
     /**
@@ -48,7 +39,7 @@ public class StartUi {
     private MenuTracker menu;
 
     /**
-     *
+     * StartUi - constructor.
      * @param input - is input.
      * @throws SQLException - is exception.
      */
@@ -57,29 +48,47 @@ public class StartUi {
     }
 
     /**
-     *
+     * start  - is start.
      * @throws SQLException - is exception.
      */
-    private void start() throws SQLException {
+    private void start() throws SQLException, IOException {
+        this.loadConfig();
         this.connect();
         this.init();
         this.work();
         this.disconnect();
     }
 
+    // loadConfig - loading settings from file "app.properties"
+
     /**
-     *
+     * loadConfig - is config.
+     * @throws IOException - is io exception.
+     */
+    private void loadConfig() throws IOException {
+        Settings setting = new Settings();
+        ClassLoader loader = Settings.class.getClassLoader();
+        try (InputStream is = loader.getResourceAsStream("app.properties")) {
+            setting.load(is);
+            new Constant(setting);
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * connect - is connect.
      */
      private void connect()  {
          try {
-             this.connect = DriverManager.getConnection(this.url, this.userName, this.password);
+             this.connect = DriverManager.getConnection(URL, NAME, PASSWORD);
          } catch (SQLException e) {
              e.printStackTrace();
          }
      }
 
     /**
-     *
+     * init - is init.
      */
     private void init() {
         this.tracker = new Tracker(this.connect);
@@ -88,7 +97,7 @@ public class StartUi {
     }
 
     /**
-     *
+     * work - is work.
      * @throws SQLException - is exception.
      */
     private void work() throws SQLException {
@@ -102,7 +111,7 @@ public class StartUi {
     }
 
     /**
-     *
+     * disconnect - is disconnect.
      */
     private void disconnect() {
         if (this.connect != null) {
@@ -118,8 +127,7 @@ public class StartUi {
      * main - is for create jar file and run program.
      * @param arg - is nothing.
      */
-    public static void main(String[] arg) throws SQLException {
-
+    public static void main(String[] arg) throws SQLException, IOException {
         Input input = new ValidateInput();
         new StartUi(input).start();
     }
