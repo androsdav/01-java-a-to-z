@@ -3,8 +3,7 @@ package com.adidyk.start;
 import com.adidyk.models.*;
 import java.sql.*;
 import java.util.ArrayList;
-
-import static com.adidyk.setup.Constant.SEARCH_ITEM_BY_ID;
+import static com.adidyk.setup.Constant.*;
 
 /**
  * Class StartUi for create jar file and connect to data base..
@@ -20,7 +19,7 @@ class Tracker {
 	private Connection connect;
 
 	/**
-	 *
+	 * Tracker - constructor.
 	 * @param connect - is connect.
 	 */
 	Tracker(Connection connect) {
@@ -28,13 +27,13 @@ class Tracker {
 	}
 
 	/**
-	 *
+	 * addItem - is add item.
 	 * @param item - is item.
 	 * @return - is item.
 	 * @throws SQLException - is SQL exception.
 	 */
 	Item addItem(Item item) throws SQLException {
-		PreparedStatement st = this.connect.prepareStatement("INSERT INTO item(name, description, create_date) VALUES (?, ?, ?)");
+		PreparedStatement st = this.connect.prepareStatement(ADD_ITEM);
 		st.setString(1, item.getName());
 		st.setString(2, item.getDescription());
 		st.setTimestamp(3, new Timestamp(item.getCreate()));
@@ -44,6 +43,7 @@ class Tracker {
 	}
 
 	/**
+	 * searchItemById - is searchItemById.
 	 * @param id - is id.
 	 * @return - is item.
 	 * @throws SQLException - is SQL exception.
@@ -64,12 +64,12 @@ class Tracker {
 	}
 
 	/**
-	 *
+	 * updateItemById - is updateItemById.
 	 * @param item - is item.
 	 * @throws SQLException - is SQL exception.
 	 */
 	void updateItemById(Item item) throws SQLException {
-		PreparedStatement st = this.connect.prepareStatement("UPDATE item SET name = ?, description = ?, create_date = ? WHERE id = ?");
+		PreparedStatement st = this.connect.prepareStatement(UPDATE_ITEM_BY_ID);
 		st.setString(1, item.getName());
 		st.setString(2, item.getDescription());
 		st.setTimestamp(3, new Timestamp(item.getCreate()));
@@ -79,25 +79,25 @@ class Tracker {
 	}
 
 	/**
-	 *
+	 * removeItemById - is removeItemById.
 	 * @param id - is id.
 	 * @throws SQLException - is SQL exception.
 	 */
 	void removeItemById(String id) throws SQLException {
-		PreparedStatement st = this.connect.prepareStatement("DELETE FROM item WHERE id = ?");
+		PreparedStatement st = this.connect.prepareStatement(REMOVE_ITEM_BY_ID);
 		st.setInt(1, Integer.parseInt(id));
 		st.executeUpdate();
 		st.close();
 	}
 
 	/**
-	 *
+	 * getAllItem - is getAllItem
 	 * @throws SQLException - is SQL exception.
 	 * @return all item.
 	 */
 	ArrayList<Item> getAllItem() throws SQLException {
 		ArrayList<Item> items = new ArrayList<>();
-		PreparedStatement st = this.connect.prepareStatement("SELECT * FROM item");
+		PreparedStatement st = this.connect.prepareStatement(GET_ALL_ITEM);
 		ResultSet rs = st.executeQuery();
 		while (rs.next()) {
 			//System.out.println(String.format("%s %s %s", rs.getInt("id"), rs.getString("name"), rs.getString("description")));
@@ -112,6 +112,30 @@ class Tracker {
 		rs.close();
 		st.close();
 		return items;
+	}
+
+	/**
+	 * addCommentById - is getAllItem
+	 * @throws SQLException - is SQL exception.
+	 * @return all item.
+	 */
+	void addCommentById(String id, Comment comment) throws SQLException {
+		PreparedStatement st = this.connect.prepareStatement("INSERT INTO comments(name, description, create_date, item_id) VALUES (?, ?, ?, ?)");
+		st.setString(1, comment.getName());
+		st.setString(2, comment.getDescription());
+		st.setTimestamp(3, new Timestamp(comment.getCreate()));
+		st.setString(3, id);
+		st.executeUpdate();
+		st.close();
+		}
+
+		/*
+		for (Item item : this.item)
+			if (item != null && item.getId().equals(id)) {
+				item.addComment(comment);
+				break;
+			}
+			*/
 	}
 }
 

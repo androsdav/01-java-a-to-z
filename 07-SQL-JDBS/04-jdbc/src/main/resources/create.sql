@@ -13,5 +13,7 @@ CREATE TABLE item (
 CREATE TABLE comments (
   id SERIAL PRIMARY KEY,
   name VARCHAR(2000) NOT NULL,
+  description VARCHAR(2000) NOT NULL,
+  create_date DATE NOT NULL,
   item_id INT REFERENCES item(id) ON DELETE CASCADE
 );

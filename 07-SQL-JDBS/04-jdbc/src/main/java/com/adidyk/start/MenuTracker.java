@@ -1,6 +1,7 @@
 package com.adidyk.start;
 
 //import com.adidyk.models.Comment;
+import com.adidyk.models.Comment;
 import com.adidyk.models.Item;
 
 import java.sql.SQLException;
@@ -260,16 +261,15 @@ class MenuTracker {
             return 8;
         }
         // execute - add comment by id, key = 8
-        public void execute(Input input, Tracker track) {
-            /*
+        public void execute(Input input, Tracker tracker) throws SQLException {
             String id = input.ask(" Input id: ");
-            if (track.searchItemById(id) != null) {
-                Comment comment = new Comment(input.ask(" Input comment: "));
-                track.addCommentById(id, comment);
+            if (tracker.searchItemById(id) != null) {
+                String name = input.ask(" [action] input name comment: ");
+                String desc = input.ask(" [action] input desc comment: ");
+                tracker.addCommentById(id, new Comment(name, desc, new Date().getTime()));
             } else {
                 System.out.println(" Not result by id");
             }
-            */
         }
     }
 
