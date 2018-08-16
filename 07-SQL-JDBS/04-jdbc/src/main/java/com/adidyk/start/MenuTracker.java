@@ -81,10 +81,19 @@ class MenuTracker {
          */
         public void execute(Input input, Tracker tracker) throws SQLException {
             System.out.print(String.format(" %5s%3s %12s%8s %26s%14s %12s %n",
-                    "id", "|", "name", "|", "description", "|", "data_create"));
+                    "id", "|", "item name", "|", "description", "|", "data_create"));
             System.out.println(" -------+--------------------+----------------------------------------+---------------");
             for (Item item : tracker.getAllItem()) {
                 System.out.println(item);
+                if (tracker.searchCommentByItemId(item.getId()).size() != 0) {
+                    System.out.print(String.format("\n        %5s%3s %12s%8s %26s%14s %12s %n",
+                            "id", "|", "comment name", "|", "description", "|", "data_create"));
+                    System.out.println("        -------+--------------------+----------------------------------------+---------------");
+                    for (Comment comment : tracker.searchCommentByItemId(item.getId())) {
+                        System.out.println(comment);
+                    }
+                    System.out.println();
+                }
             }
         }
     }

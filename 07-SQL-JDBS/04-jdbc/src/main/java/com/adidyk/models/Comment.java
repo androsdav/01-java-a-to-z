@@ -130,6 +130,6 @@ public class Comment {
 
     @Override
     public String toString() {
-        return String.format("%7s%2s %-18s%2s %-38s%2s %s", this.getId(), "|", this.getName(), "|", this.getDescription(), "|", this.dateFormat.format(this.getCreate()));
+        return String.format("     %7s%2s %-18s%2s %-38s%2s %s", this.getId(), "|", this.getName(), "|", this.getDescription(), "|", this.dateFormat.format(this.getCreate()));
     }
 }

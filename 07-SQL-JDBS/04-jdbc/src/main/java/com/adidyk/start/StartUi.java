@@ -132,12 +132,12 @@ public class StartUi {
      * @param arg - is nothing.
      */
     public static void main(String[] arg) throws SQLException, IOException {
-        /*
         Input input = new ValidateInput();
         new StartUi(input).start();
-        */
+        /*
         Comment comment = new Comment("comment", "comment1",  new Date().getTime());
         System.out.println(comment);
+        */
     }
 
 }

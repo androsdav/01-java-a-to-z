@@ -117,17 +117,41 @@ class Tracker {
 	/**
 	 * addCommentById - is getAllItem
 	 * @throws SQLException - is SQL exception.
-	 * @return all item.
 	 */
 	void addCommentById(String id, Comment comment) throws SQLException {
 		PreparedStatement st = this.connect.prepareStatement("INSERT INTO comments(name, description, create_date, item_id) VALUES (?, ?, ?, ?)");
 		st.setString(1, comment.getName());
 		st.setString(2, comment.getDescription());
 		st.setTimestamp(3, new Timestamp(comment.getCreate()));
-		st.setString(3, id);
+		st.setInt(4, Integer.parseInt(id));
 		st.executeUpdate();
 		st.close();
+	}
+
+	/**
+	 *
+	 * @param id - id.
+	 * @return - list comment.
+	 */
+	ArrayList<Comment> searchCommentByItemId(String id) throws SQLException {
+		ArrayList<Comment> comments = new ArrayList<>();
+		PreparedStatement st = this.connect.prepareStatement("SELECT * FROM comments WHERE item_id IN(?)");
+		st.setInt(1, Integer.parseInt(id));
+		ResultSet rs = st.executeQuery();
+		while (rs.next()) {
+			Comment comment = new Comment(
+					rs.getString("name"),
+					rs.getString("description"),
+					rs.getTimestamp("create_date").getTime()
+			);
+			comment.setId(String.valueOf(rs.getInt("id")));
+			comments.add(comment);
 		}
+		rs.close();
+		st.close();
+		return comments;
+
+	}
 
 		/*
 		for (Item item : this.item)
@@ -136,7 +160,6 @@ class Tracker {
 				break;
 			}
 			*/
-	}
 }
 
 
