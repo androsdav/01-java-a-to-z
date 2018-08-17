@@ -22,14 +22,15 @@ class MenuTracker {
     // fillAction - array action
     void fillAction() {
         this.actions.add(0, new ShowAllItem());
-        this.actions.add(1, new AddItem());
-        this.actions.add(2, new SearchItemById());
-        this.actions.add(3, new SearchItemByName());
-        this.actions.add(4, new SearchItemByDescription());
-        this.actions.add(5, new RemoveItemById());
-        this.actions.add(6, new UpdateItemById());
-        this.actions.add(7, new AddCommentById());
-        this.actions.add(8, new Exit());
+        this.actions.add(1, new ShowAllItemWithComments());
+        this.actions.add(2, new AddItem());
+        this.actions.add(3, new SearchItemById());
+        this.actions.add(4, new SearchItemByName());
+        this.actions.add(5, new SearchItemByDescription());
+        this.actions.add(6, new RemoveItemById());
+        this.actions.add(7, new UpdateItemById());
+        this.actions.add(8, new AddCommentById());
+        this.actions.add(9, new Exit());
     }
 
     // select - select action
@@ -56,10 +57,20 @@ class MenuTracker {
         return range;
     }
 
+    public void outputAllItem() {
+        System.out.println(String.format(" %s%6s%3s %12s%8s %32s%17s %13s%3s",
+                "|", "id", "|", "ITEM", "|", "DESCRIPTION", "|", "DATA_CREATE", "|"));
+        System.out.println(" |--------|--------------------|-------------------------------------------------|----------------|");
+        for (Item item : tracker.getAllItem()) {
+            System.out.println(item);
+            System.out.println(" |--------|--------------------|-------------------------------------------------|----------------|");
+        }
+    }
+
      /**
      * Class ShowAllItem.
      */
-    private class ShowAllItem extends BaseAction {
+    private class  ShowAllItem extends BaseAction {
         /**
          * Constructor.
          */
@@ -80,20 +91,46 @@ class MenuTracker {
          * @throws SQLException - is exception.
          */
         public void execute(Input input, Tracker tracker) throws SQLException {
-            System.out.print(String.format(" %5s%3s %12s%8s %26s%14s %12s %n",
-                    "id", "|", "item name", "|", "description", "|", "data_create"));
-            System.out.println(" -------+--------------------+----------------------------------------+---------------");
+            System.out.println(String.format(" %s%6s%3s %12s%8s %32s%17s %13s%3s",
+                    "|", "id", "|", "ITEM", "|", "DESCRIPTION", "|", "DATA_CREATE", "|"));
+            System.out.println(" |--------|--------------------|-------------------------------------------------|----------------|");
             for (Item item : tracker.getAllItem()) {
                 System.out.println(item);
-                if (tracker.searchCommentByItemId(item.getId()).size() != 0) {
-                    System.out.print(String.format("\n        %5s%3s %12s%8s %26s%14s %12s %n",
-                            "id", "|", "comment name", "|", "description", "|", "data_create"));
-                    System.out.println("        -------+--------------------+----------------------------------------+---------------");
-                    for (Comment comment : tracker.searchCommentByItemId(item.getId())) {
-                        System.out.println(comment);
-                    }
-                    System.out.println();
-                }
+                System.out.println(" |--------|--------------------|-------------------------------------------------|----------------|");
+            }
+        }
+    }
+
+    /**
+     * Class ShowAllItem.
+     */
+    private class ShowAllItemWithComments extends BaseAction {
+        /**
+         * Constructor.
+         */
+        private ShowAllItemWithComments() {
+            super(" Show all item with comments.");
+        }
+        /**
+         * key - returns key.
+         * @return - returns key.
+         */
+        public int key() {
+            return 2;
+        }
+        /**
+         * execute - return all item, show all item.
+         * @param input - is input.
+         * @param tracker - is track.
+         * @throws SQLException - is exception.
+         */
+        public void execute(Input input, Tracker tracker) throws SQLException {
+            System.out.println(String.format(" %s%6s%3s %12s%8s %32s%17s %13s%3s",
+                    "|", "id", "|", "ITEM", "|", "DESCRIPTION", "|", "DATA_CREATE", "|"));
+            System.out.println(" |--------|--------------------|-------------------------------------------------|----------------|");
+            for (Item item : tracker.getAllItem()) {
+                System.out.println(item);
+                System.out.println(" |--------|--------------------|-------------------------------------------------|----------------|");
             }
         }
     }
@@ -105,23 +142,22 @@ class MenuTracker {
         AddItem() {
             super(" Add new item.");
         }
-
         /**
          * key - is key.
          * @return key.
          */
         public int key() {
-            return 2;
+            return 3;
         }
         /**
-         *
+         * execute - execute.
          * @param input - is input.
          * @param tracker - is tracker.
          * @throws SQLException - is exception.
          */
         public void execute(Input input, Tracker tracker) throws SQLException {
             String name = input.ask(" [action] input name item: ");
-            String desc = input.ask(" [action] input description item: ");
+            String desc = input.ask(" [action] input desc item: ");
             tracker.addItem(new Item(name, desc,  new Date().getTime()));
         }
     }
@@ -133,17 +169,31 @@ class MenuTracker {
         }
         // key = 3
         public int key() {
-            return 3;
+            return 4;
         }
         // execute - search item by id, key = 3
         public void execute(Input input, Tracker track) throws SQLException {
             String id = input.ask(" [action] input id: ");
             Item item = track.searchItemById(id);
             if (item != null) {
-                System.out.print(String.format(" %5s%3s %12s%8s %26s%14s %12s %n",
-                        "id", "|", "name", "|", "description", "|", "data_create"));
-                System.out.println(" -------+--------------------+----------------------------------------+---------------");
+                System.out.println(String.format(" %s%6s%3s %12s%8s %32s%17s %13s%3s",
+                        "|", "id", "|", "ITEM", "|", "DESCRIPTION", "|", "DATA_CREATE", "|"));
+                System.out.println(" |--------|--------------------|-------------------------------------------------|----------------|");
                 System.out.println(item);
+                System.out.println(" |--------|--------------------|-------------------------------------------------|----------------|");
+                //
+                if (tracker.searchCommentByItemId(item.getId()).size() != 0) {
+                    System.out.println("");
+                    System.out.println(String.format(" %10s%6s%3s %12s%8s %26s%14s %13s%3s",
+                            "|", "id", "|", "COMMENT", "|", "DESCRIPTION", "|", "DATA_CREATE", "|"));
+                    System.out.println("          |--------|--------------------|----------------------------------------|----------------|");
+                    for (Comment comment : tracker.searchCommentByItemId(item.getId())) {
+                        System.out.println(comment);
+                        System.out.println("          |--------|--------------------|----------------------------------------|----------------|");
+                    }
+                    System.out.println();
+                }
+                //
             } else {
                 System.out.println(" [info] there isn`t result for entered id ...");
             }
@@ -157,7 +207,7 @@ class MenuTracker {
         }
         // key = 4
         public int key() {
-            return 4;
+            return 5;
         }
         // execute - search item by name, key = 4
         public void execute(Input input, Tracker track) throws SQLException {
@@ -185,7 +235,7 @@ class MenuTracker {
         }
         // key = 5
         public int key() {
-            return 5;
+            return 6;
         }
         // execute - search item by description, key = 5
         public void execute(Input input, Tracker track) throws SQLException {
@@ -215,7 +265,7 @@ class MenuTracker {
         }
         // key = 6
         public int key() {
-            return 6;
+            return 7;
         }
         // execute - remove item by id, key = 6
         public void execute(Input input, Tracker track) throws SQLException {
@@ -235,7 +285,7 @@ class MenuTracker {
         }
         // key = 7
         public int key() {
-            return 7;
+            return 8;
         }
         // execute - update item by id, key = 7
         public void execute(Input input, Tracker track) throws SQLException {
@@ -267,7 +317,7 @@ class MenuTracker {
         }
         // key = 8
         public int key() {
-            return 8;
+            return 9;
         }
         // execute - add comment by id, key = 8
         public void execute(Input input, Tracker tracker) throws SQLException {
@@ -289,7 +339,7 @@ class MenuTracker {
         }
         // key = 9
         public int key() {
-            return 9;
+            return 10;
         }
         // execute - exit, key = 9
         public void execute(Input input, Tracker track) {

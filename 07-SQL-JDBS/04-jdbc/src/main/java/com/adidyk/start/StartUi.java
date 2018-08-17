@@ -110,7 +110,7 @@ public class StartUi {
             this.menu.show();
             int key = this.input.ask(" Choose key: ", this.menu.getIndexActions());
             this.menu.select(key);
-            if (key == 9) break;
+            if (key == 10) break;
         }
     }
 
