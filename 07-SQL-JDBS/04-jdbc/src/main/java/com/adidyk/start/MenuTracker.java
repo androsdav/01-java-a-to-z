@@ -57,14 +57,45 @@ class MenuTracker {
         return range;
     }
 
-    public void outputAllItem() {
+
+    /**
+     * @param tracker  - is tracker.
+     * @throws SQLException - is exception.
+     */
+    private void outputAllItem(Tracker tracker) throws SQLException {
+        itemHeadTable();
+        for (Item item : tracker.getAllItem()) {
+            System.out.println(item);
+            itemSeparatorTable();
+        }
+    }
+
+    private void outputAllComments(Tracker tracker, Item item) throws SQLException {
+        System.out.println("");
+        System.out.println(String.format(" %10s%6s%3s %12s%8s %26s%14s %13s%3s",
+                "|", "id", "|", "COMMENT", "|", "DESCRIPTION", "|", "DATA_CREATE", "|"));
+        System.out.println("          |--------|--------------------|----------------------------------------|----------------|");
+        for (Comment comment : tracker.searchCommentByItemId(item.getId())) {
+            System.out.println(comment);
+            System.out.println("          |--------|--------------------|----------------------------------------|----------------|");
+        }
+        System.out.println();
+    }
+
+    /**
+     * itemHeadTable - is.
+     */
+    private void itemHeadTable() {
         System.out.println(String.format(" %s%6s%3s %12s%8s %32s%17s %13s%3s",
                 "|", "id", "|", "ITEM", "|", "DESCRIPTION", "|", "DATA_CREATE", "|"));
         System.out.println(" |--------|--------------------|-------------------------------------------------|----------------|");
-        for (Item item : tracker.getAllItem()) {
-            System.out.println(item);
-            System.out.println(" |--------|--------------------|-------------------------------------------------|----------------|");
-        }
+    }
+
+    /**
+     * itemSeparatorTable - is.
+     */
+    private void itemSeparatorTable() {
+        System.out.println(" |--------|--------------------|-------------------------------------------------|----------------|");
     }
 
      /**
@@ -91,13 +122,7 @@ class MenuTracker {
          * @throws SQLException - is exception.
          */
         public void execute(Input input, Tracker tracker) throws SQLException {
-            System.out.println(String.format(" %s%6s%3s %12s%8s %32s%17s %13s%3s",
-                    "|", "id", "|", "ITEM", "|", "DESCRIPTION", "|", "DATA_CREATE", "|"));
-            System.out.println(" |--------|--------------------|-------------------------------------------------|----------------|");
-            for (Item item : tracker.getAllItem()) {
-                System.out.println(item);
-                System.out.println(" |--------|--------------------|-------------------------------------------------|----------------|");
-            }
+            outputAllItem(tracker);
         }
     }
 
@@ -125,12 +150,13 @@ class MenuTracker {
          * @throws SQLException - is exception.
          */
         public void execute(Input input, Tracker tracker) throws SQLException {
-            System.out.println(String.format(" %s%6s%3s %12s%8s %32s%17s %13s%3s",
-                    "|", "id", "|", "ITEM", "|", "DESCRIPTION", "|", "DATA_CREATE", "|"));
-            System.out.println(" |--------|--------------------|-------------------------------------------------|----------------|");
+            itemHeadTable();
             for (Item item : tracker.getAllItem()) {
                 System.out.println(item);
-                System.out.println(" |--------|--------------------|-------------------------------------------------|----------------|");
+                itemSeparatorTable();
+                if (tracker.searchCommentByItemId(item.getId()).size() != 0) {
+                    outputAllComments(tracker, item);
+                }
             }
         }
     }
@@ -172,26 +198,15 @@ class MenuTracker {
             return 4;
         }
         // execute - search item by id, key = 3
-        public void execute(Input input, Tracker track) throws SQLException {
+        public void execute(Input input, Tracker tracker) throws SQLException {
             String id = input.ask(" [action] input id: ");
-            Item item = track.searchItemById(id);
+            Item item = tracker.searchItemById(id);
             if (item != null) {
-                System.out.println(String.format(" %s%6s%3s %12s%8s %32s%17s %13s%3s",
-                        "|", "id", "|", "ITEM", "|", "DESCRIPTION", "|", "DATA_CREATE", "|"));
-                System.out.println(" |--------|--------------------|-------------------------------------------------|----------------|");
+                itemHeadTable();
                 System.out.println(item);
-                System.out.println(" |--------|--------------------|-------------------------------------------------|----------------|");
-                //
+                itemSeparatorTable();
                 if (tracker.searchCommentByItemId(item.getId()).size() != 0) {
-                    System.out.println("");
-                    System.out.println(String.format(" %10s%6s%3s %12s%8s %26s%14s %13s%3s",
-                            "|", "id", "|", "COMMENT", "|", "DESCRIPTION", "|", "DATA_CREATE", "|"));
-                    System.out.println("          |--------|--------------------|----------------------------------------|----------------|");
-                    for (Comment comment : tracker.searchCommentByItemId(item.getId())) {
-                        System.out.println(comment);
-                        System.out.println("          |--------|--------------------|----------------------------------------|----------------|");
-                    }
-                    System.out.println();
+                    outputAllComents(tracker, item);
                 }
                 //
             } else {
