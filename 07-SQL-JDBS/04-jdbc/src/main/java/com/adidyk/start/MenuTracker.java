@@ -1,12 +1,13 @@
 package com.adidyk.start;
 
-//import com.adidyk.models.Comment;
 import com.adidyk.models.Comment;
 import com.adidyk.models.Item;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+
+import static com.adidyk.setup.Constant.*;
 
 class MenuTracker {
 
@@ -40,12 +41,11 @@ class MenuTracker {
 
     // show - show all menu
     void show() {
-        System.out.println();
-        System.out.println(" -----------TRACKER-MENU-------------");
+        menuTable();
         for (UserAction action: this.actions) {
             System.out.println(action.info());
         }
-        System.out.println(" -------------------------------------");
+        menuSeparator();
     }
 
     // getIndexActions - get all index ranges key
@@ -62,40 +62,26 @@ class MenuTracker {
      * @param tracker  - is tracker.
      * @throws SQLException - is exception.
      */
-    private void outputAllItem(Tracker tracker) throws SQLException {
-        itemHeadTable();
+    private void outputAllItem(Tracker tracker, boolean getComments) throws SQLException {
+        itemTable();
         for (Item item : tracker.getAllItem()) {
             System.out.println(item);
-            itemSeparatorTable();
+            itemSeparator();
+            if (getComments) {
+                if (tracker.searchCommentByItemId(item.getId()).size() != 0) {
+                    this.outputAllComments(tracker, item);
+                }
+            }
         }
     }
 
     private void outputAllComments(Tracker tracker, Item item) throws SQLException {
-        System.out.println("");
-        System.out.println(String.format(" %10s%6s%3s %12s%8s %26s%14s %13s%3s",
-                "|", "id", "|", "COMMENT", "|", "DESCRIPTION", "|", "DATA_CREATE", "|"));
-        System.out.println("          |--------|--------------------|----------------------------------------|----------------|");
+        commentTable();
         for (Comment comment : tracker.searchCommentByItemId(item.getId())) {
             System.out.println(comment);
-            System.out.println("          |--------|--------------------|----------------------------------------|----------------|");
+            commentSeparator();
         }
         System.out.println();
-    }
-
-    /**
-     * itemHeadTable - is.
-     */
-    private void itemHeadTable() {
-        System.out.println(String.format(" %s%6s%3s %12s%8s %32s%17s %13s%3s",
-                "|", "id", "|", "ITEM", "|", "DESCRIPTION", "|", "DATA_CREATE", "|"));
-        System.out.println(" |--------|--------------------|-------------------------------------------------|----------------|");
-    }
-
-    /**
-     * itemSeparatorTable - is.
-     */
-    private void itemSeparatorTable() {
-        System.out.println(" |--------|--------------------|-------------------------------------------------|----------------|");
     }
 
      /**
@@ -122,7 +108,7 @@ class MenuTracker {
          * @throws SQLException - is exception.
          */
         public void execute(Input input, Tracker tracker) throws SQLException {
-            outputAllItem(tracker);
+            outputAllItem(tracker, false);
         }
     }
 
@@ -150,14 +136,7 @@ class MenuTracker {
          * @throws SQLException - is exception.
          */
         public void execute(Input input, Tracker tracker) throws SQLException {
-            itemHeadTable();
-            for (Item item : tracker.getAllItem()) {
-                System.out.println(item);
-                itemSeparatorTable();
-                if (tracker.searchCommentByItemId(item.getId()).size() != 0) {
-                    outputAllComments(tracker, item);
-                }
-            }
+            outputAllItem(tracker, true);
         }
     }
 
@@ -202,13 +181,12 @@ class MenuTracker {
             String id = input.ask(" [action] input id: ");
             Item item = tracker.searchItemById(id);
             if (item != null) {
-                itemHeadTable();
+                itemTable();
                 System.out.println(item);
-                itemSeparatorTable();
+                itemSeparator();
                 if (tracker.searchCommentByItemId(item.getId()).size() != 0) {
-                    outputAllComents(tracker, item);
+                    outputAllComments(tracker, item);
                 }
-                //
             } else {
                 System.out.println(" [info] there isn`t result for entered id ...");
             }
@@ -226,20 +204,19 @@ class MenuTracker {
         }
         // execute - search item by name, key = 4
         public void execute(Input input, Tracker track) throws SQLException {
-            String name = input.ask(" Input name: ");
-            boolean flagResult = false;
+            String name = input.ask(" [action] input name item: ");
+            boolean search = false;
             for (Item item : track.getAllItem()) {
                 if (item.getName().equals(name)) {
-                    flagResult = true;
+                    search = true;
+                    itemTable();
                     System.out.println(item);
-                    /*
-                    for (Comment comm : item.getAllComment()) {
-                        System.out.println(comm);
-                    }
-                    */
+                    itemSeparator();
                 }
             }
-            if(!flagResult) {System.out.println(" Not result by name");}
+            if(!search) {
+                System.out.println(" [info] not result by name ...");
+            }
         }
     }
 
@@ -254,21 +231,18 @@ class MenuTracker {
         }
         // execute - search item by description, key = 5
         public void execute(Input input, Tracker track) throws SQLException {
-            String desc = input.ask(" Input description: ");
-            boolean flagResult = false;
+            String desc = input.ask(" [action] input desc item: ");
+            boolean search = false;
             for (Item item : track.getAllItem()) {
                 if (item.getDescription().contains(desc)) {
-                    flagResult =true;
+                    search = true;
+                    itemTable();
                     System.out.println(item);
-                    /*
-                    for (Comment comm : item.getAllComment()) {
-                        System.out.println(comm);
-                    }
-                    */
                 }
+                itemSeparator();
             }
-            if (!flagResult) {
-                System.out.println(" Not result by description");
+            if (!search) {
+                System.out.println(" [info] Not result by description");
             }
         }
     }
@@ -283,10 +257,10 @@ class MenuTracker {
             return 7;
         }
         // execute - remove item by id, key = 6
-        public void execute(Input input, Tracker track) throws SQLException {
+        public void execute(Input input, Tracker tracker) throws SQLException {
             String id = input.ask(" Input id: ");
-            if (track.searchItemById(id) != null) {
-                track.removeItemById(id);
+            if (tracker.searchItemById(id) != null) {
+                tracker.removeItemById(id);
             } else {
                 System.out.println(" Not result by id");
             }

@@ -2,15 +2,43 @@ package com.adidyk.setup;
 
 public class Constant {
 
+    /**
+     *
+      */
     public static String URL;
+    /**
+     *
+     */
     public static String NAME;
+    /**
+     *
+     */
     public static String PASSWORD;
+    /**
+     *
+     */
     public static String SEARCH_ITEM_BY_ID;
+    /**
+     *
+     */
     public static String UPDATE_ITEM_BY_ID;
+    /**
+     *
+     */
     public static String ADD_ITEM;
+    /**
+     *
+     */
     public static String REMOVE_ITEM_BY_ID;
+    /**
+     *
+     */
     public static String GET_ALL_ITEM;
 
+    /**
+     *
+     * @param set - is set.
+     */
     public Constant(Settings set) {
         URL = set.getValue("app.url");
         NAME = set.getValue("app.name");
@@ -22,8 +50,50 @@ public class Constant {
         GET_ALL_ITEM = set.getValue("app.getAllItem");
     }
 
-    public static void head() {
+    /**
+     *
+     */
+    public static void menuTable() {
+        System.out.println("\n -----------TRACKER-MENU-------------");
+    }
 
+    /**
+     *
+     */
+    public static void menuSeparator() {
+        System.out.println(" ------------------------------------");
+    }
+
+    /**
+     *
+     */
+    public static void itemTable() {
+        System.out.println(String.format("\n %s%6s%3s %12s%8s %32s%17s %13s%3s",
+                "|", "ID", "|", "ITEM", "|", "DESCRIPTION", "|", "DATA_CREATE", "|"));
+        System.out.println(" |--------|--------------------|-------------------------------------------------|----------------|");
+    }
+
+    /**
+     *
+     */
+    public static void commentTable() {
+        System.out.println(String.format("\n %10s%6s%3s %12s%8s %26s%14s %13s%3s",
+                "|", "ID", "|", "COMMENT", "|", "DESCRIPTION", "|", "DATA_CREATE", "|"));
+        System.out.println("          |--------|--------------------|----------------------------------------|----------------|");
+    }
+
+    /**
+     *
+     */
+    public static void itemSeparator() {
+        System.out.println(" |--------|--------------------|-------------------------------------------------|----------------|");
+    }
+
+    /**
+     *
+     */
+    public static void commentSeparator() {
+        System.out.println("          |--------|--------------------|----------------------------------------|----------------|");
     }
 
 }
