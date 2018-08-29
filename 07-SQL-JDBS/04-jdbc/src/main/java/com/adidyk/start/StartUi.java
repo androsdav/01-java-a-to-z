@@ -69,7 +69,7 @@ public class StartUi {
      * loadConfig - is config.
      * @throws IOException - is io exception.
      */
-    private void loadConfig() throws IOException {
+    private static void loadConfig() throws IOException {
         Settings setting = new Settings();
         ClassLoader loader = Settings.class.getClassLoader();
         try (InputStream is = loader.getResourceAsStream("app.properties")) {
@@ -131,9 +131,14 @@ public class StartUi {
      * main - is for create jar file and run program.
      * @param arg - is nothing.
      */
-    public static void main(String[] arg) throws SQLException, IOException {
+    public static void main(String[] arg) throws SQLException, IOException, ClassNotFoundException {
+        /*
         Input input = new ValidateInput();
         new StartUi(input).start();
+        */
+        loadConfig();
+        CreateDB createDB = new CreateDB();
+        createDB.createDB();
     }
 
 }
