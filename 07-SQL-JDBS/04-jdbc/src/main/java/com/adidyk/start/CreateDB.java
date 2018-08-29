@@ -19,18 +19,19 @@ class CreateDB {
     void createDB() throws ClassNotFoundException, SQLException {
         Connection connect;
         Statement st;
+        boolean base = false;
         connect = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", NAME, PASSWORD);
         st = connect.createStatement();
-        ResultSet rs = st.executeQuery("SELECT datname FROM pg_database WHERE datname = 'base01'");
+        ResultSet rs = st.executeQuery("SELECT datname FROM pg_database WHERE datname = 'base_trackr'");
         while (rs.next()) {
+            if ("base_tracker".equals(rs.getString("datname"))) {
+                base = true;
+            }
+        }
+        System.out.println(base);
 
-        }
         //System.out.println(result);
-        if (result) {
-            System.out.println("data base is exists ...");
-        } else {
-            System.out.println("data base is not exists ...");
-        }
+        rs.close();
         st.close();
         connect.close();
         /*
