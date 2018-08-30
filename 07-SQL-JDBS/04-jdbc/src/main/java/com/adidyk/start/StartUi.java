@@ -85,7 +85,7 @@ public class StartUi {
      */
      private void connect()  {
          try {
-             this.connect = DriverManager.getConnection(URL, NAME, PASSWORD);
+             this.connect = DriverManager.getConnection(URL_BASE_TRACKER, NAME, PASSWORD);
          } catch (SQLException e) {
              e.printStackTrace();
          }
@@ -137,8 +137,9 @@ public class StartUi {
         new StartUi(input).start();
         */
         loadConfig();
-        CreateDB createDB = new CreateDB();
-        createDB.createDB();
+        ConfigDataBase config = new ConfigDataBase();
+        System.out.println(config.searchDataBase());
+        //createDB.createDB();
     }
 
 }

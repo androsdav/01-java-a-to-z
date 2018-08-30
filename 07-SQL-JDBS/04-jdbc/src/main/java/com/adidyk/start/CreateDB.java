@@ -16,13 +16,14 @@ class CreateDB {
     //static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     //static final String USER = "ВАШЕ_ИМЯ_ПОЛЬЗОВАТЕЛЯ";
     //static final String PASSWORD = "ВАШ_ПАРОЛЬ";
+    /*
     void createDB() throws ClassNotFoundException, SQLException {
         Connection connect;
         Statement st;
         boolean base = false;
         connect = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", NAME, PASSWORD);
         st = connect.createStatement();
-        ResultSet rs = st.executeQuery("SELECT datname FROM pg_database WHERE datname = 'base_trackr'");
+        ResultSet rs = st.executeQuery("SELECT datname FROM pg_database WHERE datname = 'base_tracker'");
         while (rs.next()) {
             if ("base_tracker".equals(rs.getString("datname"))) {
                 base = true;
@@ -67,5 +68,5 @@ class CreateDB {
 
         }
         */
-    }
+   // }
 }

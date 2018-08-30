@@ -5,7 +5,13 @@ public class Constant {
     /**
      *
       */
-    public static String URL;
+    public static String URL_BASE_TRACKER;
+
+    /**
+     *
+     */
+    public static String URL_BASE_POSTGRES;
+
     /**
      *
      */
@@ -34,13 +40,18 @@ public class Constant {
      *
      */
     public static String GET_ALL_ITEM;
+    /**
+     *
+     */
+    public static String SEARCH_DATA_BASE;
 
     /**
      *
      * @param set - is set.
      */
     public Constant(Settings set) {
-        URL = set.getValue("app.url");
+        URL_BASE_TRACKER = set.getValue("app.urlBaseTracker");
+        URL_BASE_POSTGRES = set.getValue("app.urlBasePostgres");
         NAME = set.getValue("app.name");
         PASSWORD = set.getValue("app.password");
         ADD_ITEM = set.getValue("app.addItem");
@@ -48,6 +59,7 @@ public class Constant {
         UPDATE_ITEM_BY_ID = set.getValue("app.updateItemById");
         REMOVE_ITEM_BY_ID = set.getValue("app.removeItemById");
         GET_ALL_ITEM = set.getValue("app.getAllItem");
+        SEARCH_DATA_BASE = set.getValue("app.searchDataBase");
     }
 
     /**
