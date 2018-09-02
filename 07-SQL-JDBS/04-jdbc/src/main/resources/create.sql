@@ -17,3 +17,5 @@ CREATE TABLE comments (
   create_date DATE NOT NULL,
   item_id INT REFERENCES item(id) ON DELETE CASCADE
 );
+
+SELECT * FROM item;

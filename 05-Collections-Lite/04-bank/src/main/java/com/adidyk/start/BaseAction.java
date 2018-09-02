@@ -4,7 +4,7 @@ public abstract class BaseAction implements UserAction {
 
    private String name;
 
-   public BaseAction(String name) {
+   BaseAction(String name) {
        this.name = name;
    }
 

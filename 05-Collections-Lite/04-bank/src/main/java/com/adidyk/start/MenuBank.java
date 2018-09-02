@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class MenuBank {
+class MenuBank {
 
     private Input input;
     private Bank bank;
@@ -19,7 +19,7 @@ public class MenuBank {
     }
 
     // fillAction - fill action
-    public void fillAction() {
+    void fillAction() {
         this.actions.add(0, new ShowAllUser());
         this.actions.add(1, new AddUser());
         this.actions.add(2, new DeleteUser());
@@ -32,13 +32,13 @@ public class MenuBank {
     }
 
     // select - select action
-    public void select(int key) {
+    void select(int key) {
         System.out.println();
         this.actions.get(key - 1).execute(this.input, this.bank);
     }
 
     // show - shows all action
-    public void show() {
+    void show() {
         System.out.println();
         System.out.println(" ----------------BANK-MENU---------------");
         for (UserAction action : this.actions) {
@@ -48,12 +48,18 @@ public class MenuBank {
     }
 
     // getIndexActions - return size ArrayList<userAction> actions
-    public int[] getIndexActions() {
+    int[] getIndexActions() {
         int [] range = new int[this.actions.size()];
         for (int index = 0; index < this.actions.size(); index++) {
             range[index] = index + 1;
         }
         return range;
+    }
+
+    private User getUserInfo() {
+        String name = input.ask(" [action] enter user name: ");
+        String passport = input.ask(" [action] enter user passport: ");
+        return new User(name, passport);
     }
 
     // ShowAllUser - shows all user from collection
@@ -93,9 +99,7 @@ public class MenuBank {
         }
         // execute - add new user to collection
         public void execute(Input input, Bank bank) {
-            String name = input.ask(" [action] enter user name: ");
-            String passport = input.ask(" [action] enter user passport: ");
-            bank.addUser(new User(name, passport));
+            bank.addUser(getUserInfo());
         }
     }
 
@@ -111,9 +115,7 @@ public class MenuBank {
         }
         // execute - delete user from collection
         public void execute(Input input, Bank bank) {
-            String name = input.ask(" [action] enter user name: ");
-            String passport = input.ask(" [action] enter user passport: ");
-            User user = new User(name, passport);
+            User user = getUserInfo();
             if (bank.getUsers().containsKey(user)) {
                 bank.deleteUser(user);
             } else {
@@ -134,9 +136,7 @@ public class MenuBank {
         }
         // execute - add account to user
         public void execute(Input input, Bank bank) {
-            String name = input.ask(" [action] enter user name: ");
-            String passport = input.ask(" [action] enter user passport: ");
-            User user = new User(name, passport);
+            User user = getUserInfo();
             if(bank.getUsers().containsKey(user)) {
                 String requisites = input.ask(" [action] enter user requisites: ");
                 bank.addAccountToUser(user, new Account(requisites));
@@ -158,9 +158,7 @@ public class MenuBank {
         }
         // execute - replenish account to user
         public void execute(Input input, Bank bank) {
-            String name = input.ask(" [action] enter user name: ");
-            String passport = input.ask(" [action] enter user passport: ");
-            User user = new User(name, passport);
+            User user = getUserInfo();
             if(bank.getUsers().containsKey(user)) {
                 String requisites = input.ask(" [action] enter user requisites: ");
                 List<Account> accounts = bank.getUserAccounts(user);
@@ -192,9 +190,7 @@ public class MenuBank {
         }
         // execute - delete account from user
         public void execute(Input input, Bank bank) {
-            String name = input.ask(" [action] enter user name: ");
-            String passport = input.ask(" [action] enter user passport: ");
-            User user = new User(name, passport);
+            User user = getUserInfo();
             if (bank.getUsers().containsKey(user)) {
                 String requisites = input.ask(" [action] enter user requisites: ");
                 Account account = new Account(requisites);
@@ -221,10 +217,8 @@ public class MenuBank {
         }
         // execute - get user account
         public void execute(Input input, Bank bank) {
-            String name = input.ask(" [action] enter user name: ");
-            String passport = input.ask(" [action] enter user passport: ");
+            User user = getUserInfo();
             System.out.println();
-            User user = new User(name, passport);
             if (bank.getUsers().containsKey(user)) {
                 if (!bank.getUserAccounts(user).isEmpty()) {
                     System.out.print(String.format(" %s%s%s%8s%5s%5s%s%s%s%n",
@@ -236,7 +230,7 @@ public class MenuBank {
                                 "|", number1, item.getKey(), item.getValue().size(), "|"));
                         number1++;
                         if (item.getKey().equals(user)) {
-                            System.out.println("");
+                            System.out.println();
                             System.out.print(String.format("     %s%s%s%9s%4s%10s%7s%n",
                                     "| ", "#", " |", "ACCOUNT", " | ", "VALUE", " | "));
                             int number2 = 1;

@@ -7,31 +7,31 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Bank {
+class Bank {
 
     private Map<User, List<Account>> user = new HashMap<>();
 
-    public void addUser(User user) {
+    void addUser(User user) {
         this.user.put(user, new ArrayList<Account>());
     }
 
-    public void deleteUser(User user) {
+    void deleteUser(User user) {
         this.user.remove(user);
     }
 
-    public void addAccountToUser(User user, Account account) {
+    void addAccountToUser(User user, Account account) {
         this.user.get(user).add(account);
     }
 
-    public void deleteAccountFromUser(User user, Account account) {
+    void deleteAccountFromUser(User user, Account account) {
         this.user.get(user).remove(account);
     }
 
-    public List<Account> getUserAccounts(User user) {
+    List<Account> getUserAccounts(User user) {
         return this.user.get(user);
     }
 
-    public boolean transferMoney(User srcUser, Account srcAccount, User dstUser, Account dstAccount, double amount) {
+    boolean transferMoney(User srcUser, Account srcAccount, User dstUser, Account dstAccount, double amount) {
         boolean transfer = true;
         List <Account> srcList = this.user.get(srcUser);
         List <Account> dstList = this.user.get(dstUser);
@@ -48,7 +48,7 @@ public class Bank {
         return transfer;
     }
 
-    public Map<User, List<Account>> getUsers() {
+    Map<User, List<Account>> getUsers() {
         return this.user;
     }
 
