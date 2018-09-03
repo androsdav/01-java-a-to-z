@@ -18,22 +18,30 @@ public class ConfigDataBase {
      * @return true or false.
      */
     public boolean searchDataBase() throws ClassNotFoundException, SQLException {
-        //Connection connect;
-        //Statement st;
         boolean result = false;
         Connection connect = DriverManager.getConnection(URL_BASE_POSTGRES, NAME, PASSWORD);
         Statement st = connect.createStatement();
         ResultSet rs = st.executeQuery(SEARCH_DATA_BASE);
         while (rs.next()) {
-            if ("base_tracker".equals(rs.getString("datname"))) {
+            if ("base_tracker_1".equals(rs.getString("datname"))) {
                 result = true;
             }
         }
-        //System.out.println(result);
         rs.close();
         st.close();
         connect.close();
         return result;
+    }
+
+    /**
+     *
+     * @throws SQLException - is exception.
+     */
+    public void createDataBase() throws SQLException {
+        Connection connect = DriverManager.getConnection(URL_BASE_POSTGRES, NAME, PASSWORD);
+        //System.out.println("new_base_2 create ...");
+        connect.createStatement().executeUpdate(CREATE_DATA_BASE);
+        connect.close();
     }
 
 }

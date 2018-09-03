@@ -69,7 +69,7 @@ public class StartUi {
      * loadConfig - is config.
      * @throws IOException - is io exception.
      */
-    private static void loadConfig() throws IOException {
+    private void loadConfig() throws IOException {
         Settings setting = new Settings();
         ClassLoader loader = Settings.class.getClassLoader();
         try (InputStream is = loader.getResourceAsStream("app.properties")) {
@@ -85,7 +85,7 @@ public class StartUi {
      */
      private void connect()  {
          try {
-             this.connect = DriverManager.getConnection(URL_BASE_TRACKER, NAME, PASSWORD);
+             this.connect = DriverManager.getConnection(URL_BASE_TRACKER, NAME_BASE_TRACKER, PASSWORD);
          } catch (SQLException e) {
              e.printStackTrace();
          }
@@ -132,13 +132,21 @@ public class StartUi {
      * @param arg - is nothing.
      */
     public static void main(String[] arg) throws SQLException, IOException, ClassNotFoundException {
-        /*
+
         Input input = new ValidateInput();
         new StartUi(input).start();
-        */
+
+        /*
         loadConfig();
         ConfigDataBase config = new ConfigDataBase();
-        System.out.println(config.searchDataBase());
+        //System.out.println(config.searchDataBase());
+        if (!config.searchDataBase()) {
+            System.out.println("[info]: create database ...");
+            config.createDataBase();
+        } else {
+            System.out.println("[info]: database already created ...");
+        }
+        */
         //createDB.createDB();
     }
 
