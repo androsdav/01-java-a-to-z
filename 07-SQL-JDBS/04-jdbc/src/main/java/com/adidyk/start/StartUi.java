@@ -55,21 +55,20 @@ public class StartUi {
      * start  - is start.
      * @throws SQLException - is exception.
      */
-    private void start() throws SQLException, IOException {
-        this.loadConfig();
+    private void start() throws SQLException, IOException, ClassNotFoundException {
+        this.loadSetting();
+        this.configDataBase();
         this.connect();
         this.init();
         this.work();
         this.disconnect();
     }
 
-    // loadConfig - loading settings from file "app.properties"
-
     /**
      * loadConfig - is config.
      * @throws IOException - is io exception.
      */
-    private void loadConfig() throws IOException {
+    private void loadSetting() throws IOException {
         Settings setting = new Settings();
         ClassLoader loader = Settings.class.getClassLoader();
         try (InputStream is = loader.getResourceAsStream("app.properties")) {
@@ -81,11 +80,45 @@ public class StartUi {
     }
 
     /**
+     *
+     * @throws SQLException - is.
+     * @throws ClassNotFoundException - is.
+     */
+    private void configDataBase() throws SQLException, ClassNotFoundException {
+        this.checkDataBase();
+        this.checkTables();
+    }
+
+    /**
+     *
+     * @throws SQLException - is.
+     * @throws ClassNotFoundException - is.
+     */
+    private void checkDataBase() throws SQLException, ClassNotFoundException {
+        ConfigDataBase config = new ConfigDataBase();
+        if (!config.searchDataBase()) {
+            config.createDataBase();
+        }
+    }
+
+    /**
+     *
+     * @throws SQLException - is.
+     */
+    private void checkTables() throws SQLException {
+        ConfigDataBase config = new ConfigDataBase();
+        if (!config.searchTables()) {
+            config.createTableItem();
+            config.createTableComments();
+        }
+    }
+
+    /**
      * connect - is connect.
      */
      private void connect()  {
          try {
-             this.connect = DriverManager.getConnection(URL_BASE_TRACKER, NAME_BASE_TRACKER, PASSWORD);
+             this.connect = DriverManager.getConnection(URL_BASE_TRACKER, NAME, PASSWORD);
          } catch (SQLException e) {
              e.printStackTrace();
          }
@@ -97,7 +130,6 @@ public class StartUi {
     private void init() {
         this.tracker = new Tracker(this.connect);
         this.menu = new MenuTracker(this.input, this.tracker);
-
     }
 
     /**
@@ -110,7 +142,7 @@ public class StartUi {
             this.menu.show();
             int key = this.input.ask(" Choose key: ", this.menu.getIndexActions());
             this.menu.select(key);
-            if (key == 10) break;
+            if (key == this.menu.getIndexActions().length) break;
         }
     }
 
@@ -132,22 +164,8 @@ public class StartUi {
      * @param arg - is nothing.
      */
     public static void main(String[] arg) throws SQLException, IOException, ClassNotFoundException {
-
         Input input = new ValidateInput();
         new StartUi(input).start();
-
-        /*
-        loadConfig();
-        ConfigDataBase config = new ConfigDataBase();
-        //System.out.println(config.searchDataBase());
-        if (!config.searchDataBase()) {
-            System.out.println("[info]: create database ...");
-            config.createDataBase();
-        } else {
-            System.out.println("[info]: database already created ...");
-        }
-        */
-        //createDB.createDB();
     }
 
 }

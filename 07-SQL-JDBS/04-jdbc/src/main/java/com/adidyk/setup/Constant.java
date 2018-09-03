@@ -15,11 +15,7 @@ public class Constant {
     /**
      *
      */
-    public static String NAME_BASE_TRACKER;
-    /**
-     *
-     */
-    public static String NAME_BASE_POSTGRES;
+    public static String NAME;
 
     /**
      *
@@ -50,10 +46,16 @@ public class Constant {
      */
     public static String SEARCH_DATA_BASE;
 
+    public static String SEARCH_TABLE;
+
     /**
      *
      */
     public static String CREATE_DATA_BASE;
+
+    public static String CREATE_TABLE_ITEM;
+
+    public static String CREATE_TABLE_COMMENTS;
 
     /**
      *
@@ -62,8 +64,7 @@ public class Constant {
     public Constant(Settings set) {
         URL_BASE_TRACKER = set.getValue("app.urlBaseTracker");
         URL_BASE_POSTGRES = set.getValue("app.urlBasePostgres");
-        NAME_BASE_TRACKER = set.getValue("app.nameBaseTracker");
-        NAME_BASE_POSTGRES = set.getValue("app.nameBasePostgres");
+        NAME = set.getValue("app.name");
         PASSWORD = set.getValue("app.password");
         ADD_ITEM = set.getValue("app.addItem");
         SEARCH_ITEM_BY_ID = set.getValue("app.searchItemById");
@@ -71,7 +72,10 @@ public class Constant {
         REMOVE_ITEM_BY_ID = set.getValue("app.removeItemById");
         GET_ALL_ITEM = set.getValue("app.getAllItem");
         SEARCH_DATA_BASE = set.getValue("app.searchDataBase");
+        SEARCH_TABLE = set.getValue("app.searchTable");
         CREATE_DATA_BASE = set.getValue("app.createDataBase");
+        CREATE_TABLE_ITEM = set.getValue("app.createTableItem");
+        CREATE_TABLE_COMMENTS = set.getValue("app.createTableComments");
     }
 
     /**

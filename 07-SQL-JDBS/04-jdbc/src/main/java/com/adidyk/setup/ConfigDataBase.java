@@ -1,7 +1,6 @@
 package com.adidyk.setup;
 
 import java.sql.*;
-
 import static com.adidyk.setup.Constant.*;
 
 /**
@@ -35,12 +34,50 @@ public class ConfigDataBase {
 
     /**
      *
+     * @return - is.
+     * @throws SQLException - is.
+     */
+    public boolean searchTables() throws SQLException {
+        boolean result = false;
+        Connection connect = DriverManager.getConnection(URL_BASE_TRACKER, NAME, PASSWORD);
+        Statement st = connect.createStatement();
+        ResultSet rs = st.executeQuery(SEARCH_TABLE);
+        while (rs.next()) {
+            if ("item".equals(rs.getString("table_name"))) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
+    /**
+     *
      * @throws SQLException - is exception.
      */
     public void createDataBase() throws SQLException {
         Connection connect = DriverManager.getConnection(URL_BASE_POSTGRES, NAME, PASSWORD);
-        //System.out.println("new_base_2 create ...");
         connect.createStatement().executeUpdate(CREATE_DATA_BASE);
+        connect.close();
+    }
+
+    /**
+     * createTableItem - creates table item.
+     * @throws SQLException - is sql exception.
+     */
+    public void createTableItem() throws SQLException {
+        Connection connect = DriverManager.getConnection(URL_BASE_TRACKER, NAME, PASSWORD);
+        connect.createStatement().executeUpdate(CREATE_TABLE_ITEM);
+        connect.close();
+    }
+
+    /**
+     * createTableItem - creates table item.
+     * @throws SQLException - is sql exception.
+     */
+    public void createTableComments() throws SQLException {
+        Connection connect = DriverManager.getConnection(URL_BASE_TRACKER, NAME, PASSWORD);
+        connect.createStatement().executeUpdate(CREATE_TABLE_COMMENTS);
         connect.close();
     }
 
