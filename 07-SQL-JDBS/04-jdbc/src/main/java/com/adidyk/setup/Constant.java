@@ -1,44 +1,50 @@
 package com.adidyk.setup;
 
+/**
+ * Class Constant for create all constants from whited all information from file app.properties.
+ * @author Didyk Andrey (androsdav@bigmir.net).
+ * @since 06.08.2018.
+ * @version 1.0.
+ */
 public class Constant {
 
     /**
-     * @param URL_BASE_TRACKER - url to database base_tracker.
+     * @param URL_BASE_TRACKER - url to database base_tracker (from app.properties).
      */
     public static String URL_BASE_TRACKER;
 
     /**
-     * @param URL_BASE_POSTGRES - url to database postgres.
+     * @param URL_BASE_POSTGRES - url to database postgres (from app.properties).
      */
     static String URL_BASE_POSTGRES;
 
     /**
-     * @param NAME - user name.
+     * @param NAME - user name (from app.properties).
      */
     public static String NAME;
 
     /**
-     * @param NAME_DATA_BASE - is name database.
+     * @param NAME_DATA_BASE - is name database (from app.properties).
      */
     static String NAME_DATA_BASE;
 
     /**
-     *
+     * @param PASSWORD - password user (from app.properties).
      */
     public static String PASSWORD;
 
     /**
-     *
+     * @param SEARCH_ITEM_BY_ID - sql format: search item by id (from app.properties).
      */
     public static String SEARCH_ITEM_BY_ID;
 
     /**
-     *
+     * @param UPDATE_ITEM_BY_ID - sql format: update item by id (from app.properties).
      */
     public static String UPDATE_ITEM_BY_ID;
 
     /**
-     *
+     * @param ADD_ITEM - sql constant: add item (from app.properties).
      */
     public static String ADD_ITEM;
 
@@ -55,27 +61,27 @@ public class Constant {
     /**
      *
      */
-    public static String SEARCH_DATA_BASE;
+    static String SEARCH_DATA_BASE;
 
     /**
      *
      */
-    public static String SEARCH_TABLE;
+    static String SEARCH_TABLE;
 
     /**
      *
      */
-    public static String CREATE_DATA_BASE;
+    static String CREATE_DATA_BASE;
 
     /**
      *
      */
-    public static String CREATE_TABLE_ITEM;
+    static String CREATE_TABLE_ITEM;
 
     /**
      *
      */
-    public static String CREATE_TABLE_COMMENTS;
+    static String CREATE_TABLE_COMMENTS;
 
     /**
      * Constant - constructor (create all constants).

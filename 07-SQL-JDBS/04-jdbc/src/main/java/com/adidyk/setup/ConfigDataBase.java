@@ -22,7 +22,7 @@ public class ConfigDataBase {
         Statement st = connect.createStatement();
         ResultSet rs = st.executeQuery(SEARCH_DATA_BASE);
         while (rs.next()) {
-            if ("base_tracker_1".equals(rs.getString("datname"))) {
+            if (NAME_DATA_BASE.equals(rs.getString("datname"))) {
                 result = true;
             }
         }
