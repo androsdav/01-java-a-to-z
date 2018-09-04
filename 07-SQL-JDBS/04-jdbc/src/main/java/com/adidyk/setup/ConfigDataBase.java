@@ -12,9 +12,11 @@ import static com.adidyk.setup.Constant.*;
 public class ConfigDataBase {
 
     /**
-     * @throws ClassNotFoundException - is.
-     * @throws SQLException - is.
-     * @return true or false.
+     * searchDataBase - searches database (query sql) NAME_DATA_BASE (base_tracker). If database base_tracker exists
+     * then method returns true, if database base_tracker does not exists then method returns false.
+     * @throws ClassNotFoundException - class not found exception.
+     * @throws SQLException - sql exception.
+     * @return - returns true if database base_tracker exists, false - does not exists.
      */
     public boolean searchDataBase() throws ClassNotFoundException, SQLException {
         boolean result = false;
@@ -33,9 +35,10 @@ public class ConfigDataBase {
     }
 
     /**
-     *
-     * @return - is.
-     * @throws SQLException - is.
+     * searchTable - searches table (query sql) ITEM (item). If table item exists then method returns true,
+     * if table item does not exists then method returns false.
+     * @throws SQLException - sql exception.
+     * @return - returns true if table item exists, false - does not exists..
      */
     public boolean searchTables() throws SQLException {
         boolean result = false;
