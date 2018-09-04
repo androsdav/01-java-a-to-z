@@ -16,7 +16,6 @@ public class Item {
      */
     private String id;
 
-
     /**
      * @param name - name item.
      */
@@ -51,7 +50,7 @@ public class Item {
 
     /**
      * setId - sets id for item.
-     * @param id - is.
+     * @param id - id item.
      */
     public void setId(String id) {
         this.id = id;

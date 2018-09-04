@@ -50,8 +50,8 @@ public class Comment {
 
 
     /**
-     *
-     * @param id - is.
+     * setId - sets id from comment.
+     * @param id - id comment.
      */
     public void setId(String id) {
         this.id = id;

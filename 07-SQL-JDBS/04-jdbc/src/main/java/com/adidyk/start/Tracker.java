@@ -100,7 +100,6 @@ class Tracker {
 		PreparedStatement st = this.connect.prepareStatement(GET_ALL_ITEM);
 		ResultSet rs = st.executeQuery();
 		while (rs.next()) {
-			//System.out.println(String.format("%s %s %s", rs.getInt("id"), rs.getString("name"), rs.getString("description")));
 			Item item = new Item(
 					rs.getString("name"),
 					rs.getString("description"),
@@ -119,7 +118,7 @@ class Tracker {
 	 * @throws SQLException - is SQL exception.
 	 */
 	void addCommentById(String id, Comment comment) throws SQLException {
-		PreparedStatement st = this.connect.prepareStatement("INSERT INTO comments(name, description, create_date, item_id) VALUES (?, ?, ?, ?)");
+		PreparedStatement st = this.connect.prepareStatement(ADD_COMMENT_BY_ID);
 		st.setString(1, comment.getName());
 		st.setString(2, comment.getDescription());
 		st.setTimestamp(3, new Timestamp(comment.getCreate()));
@@ -135,7 +134,7 @@ class Tracker {
 	 */
 	ArrayList<Comment> searchCommentByItemId(String id) throws SQLException {
 		ArrayList<Comment> comments = new ArrayList<>();
-		PreparedStatement st = this.connect.prepareStatement("SELECT * FROM comments WHERE item_id IN(?)");
+		PreparedStatement st = this.connect.prepareStatement(SEARCH_COMMENT_BY_ITEM_ID);
 		st.setInt(1, Integer.parseInt(id));
 		ResultSet rs = st.executeQuery();
 		while (rs.next()) {
