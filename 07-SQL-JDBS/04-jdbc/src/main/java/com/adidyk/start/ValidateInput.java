@@ -1,9 +1,21 @@
 package com.adidyk.start;
 
+/**
+ * Class ValidateInput contains method for entering data from console.
+ * @author Didyk Andrey (androsdav@bigmir.net).
+ * @since 06.08.2018.
+ * @version 1.0.
+ */
 public class ValidateInput extends ConsoleInput {
 
-
-
+    /**
+     * ask - returns the inputted of data from the console if the data is integer, and if inputted
+     * of data is entered in the range.
+     * @param question - question.
+     * @param range - range of menu numbers.
+     * @return - returns the inputted of data from the console if the data is integer, and if inputted
+     * of data is entered in the range.
+     */
     public int ask(String question, int[] range) {
         boolean invalid = true;
         int value = -1;
@@ -12,14 +24,19 @@ public class ValidateInput extends ConsoleInput {
                 value = super.ask(question, range);
                 invalid = false;
             } catch(MenuOutException moe) {
-                System.out.println(" Please select key from menu. ");
+                System.out.println(" [info] please select key from menu ... ");
             } catch (NumberFormatException nfe) {
-                System.out.println(" Please enter validate data again. ");
+                System.out.println(" [info] please enter validate data again ... ");
             }
         } while (invalid);
         return value;
     }
 
+    /**
+     * askInt - returns the inputted of data from the console if the data is integer.
+     * @param question - question.
+     * @return - returns the inputted of data from the console if the data is integer.
+     */
     public String askInt(String question) {
         boolean invalid = true;
         int value = -1;
@@ -28,14 +45,12 @@ public class ValidateInput extends ConsoleInput {
                 value = Integer.valueOf(super.ask(question));
                 invalid = false;
             } catch(MenuOutException moe) {
-                System.out.println(" Please select key from menu. ");
+                System.out.println(" [info] please select key from menu... ");
             } catch (NumberFormatException nfe) {
-                System.out.println(" Please enter validate data again. ");
+                System.out.println(" [info] please enter validate data again... ");
             }
         } while (invalid);
         return String.valueOf(value);
     }
-
-
 
 }

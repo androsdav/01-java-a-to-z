@@ -99,6 +99,15 @@ public class Constant {
      */
     static String ITEM;
 
+    /**
+     * @param DAT_NAME - column name (datname) in table pg_postgres.
+     */
+    static String DAT_NAME;
+
+    /**
+     * @param TABLE_NAME - name of table where the user tables are located.
+     */
+    static String TABLE_NAME;
 
     /**
      * Constant - constructor (reads all parameters from file app.properties).
@@ -123,6 +132,8 @@ public class Constant {
         CREATE_TABLE_ITEM = set.getValue("app.createTableItem");
         CREATE_TABLE_COMMENTS = set.getValue("app.createTableComments");
         ITEM = set.getValue("app.item");
+        DAT_NAME = set.getValue("app.dataName");
+        TABLE_NAME = set.getValue("app.tableName");
     }
 
     /**

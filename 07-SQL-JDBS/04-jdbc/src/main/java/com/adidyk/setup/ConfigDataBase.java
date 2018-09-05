@@ -24,7 +24,7 @@ public class ConfigDataBase {
         Statement st = connect.createStatement();
         ResultSet rs = st.executeQuery(SEARCH_DATA_BASE);
         while (rs.next()) {
-            if (NAME_DATA_BASE.equals(rs.getString("datname"))) {
+            if (NAME_DATA_BASE.equals(rs.getString(DAT_NAME))) {
                 result = true;
             }
         }
@@ -46,7 +46,7 @@ public class ConfigDataBase {
         Statement st = connect.createStatement();
         ResultSet rs = st.executeQuery(SEARCH_TABLE);
         while (rs.next()) {
-            if (ITEM.equals(rs.getString("table_name"))) {
+            if (ITEM.equals(rs.getString(TABLE_NAME))) {
                 result = true;
                 break;
             }
