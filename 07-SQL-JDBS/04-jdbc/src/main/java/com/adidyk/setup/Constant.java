@@ -95,6 +95,12 @@ public class Constant {
     static String CREATE_TABLE_COMMENTS;
 
     /**
+     * @param ITEM - name main table in database -> base_tracker (from app.properties).
+     */
+    static String ITEM;
+
+
+    /**
      * Constant - constructor (reads all parameters from file app.properties).
      * @param set - link to object of class Setting.
      */
@@ -116,6 +122,7 @@ public class Constant {
         CREATE_DATA_BASE = set.getValue("app.createDataBase");
         CREATE_TABLE_ITEM = set.getValue("app.createTableItem");
         CREATE_TABLE_COMMENTS = set.getValue("app.createTableComments");
+        ITEM = set.getValue("app.item");
     }
 
     /**

@@ -26,4 +26,8 @@ public class ConsoleInput implements Input {
         }
     }
 
+    public String askInt(String question) {
+        return this.ask(question);
+    }
+
 }

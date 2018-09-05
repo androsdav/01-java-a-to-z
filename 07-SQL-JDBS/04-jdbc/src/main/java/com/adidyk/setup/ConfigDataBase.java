@@ -4,7 +4,7 @@ import java.sql.*;
 import static com.adidyk.setup.Constant.*;
 
 /**
- * Class StartUi for create jar file and connect to data base..
+ * Class ConfigDataBase is used to check the availability of the database and its structure.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 06.08.2018.
  * @version 1.0.
@@ -46,7 +46,7 @@ public class ConfigDataBase {
         Statement st = connect.createStatement();
         ResultSet rs = st.executeQuery(SEARCH_TABLE);
         while (rs.next()) {
-            if ("item".equals(rs.getString("table_name"))) {
+            if (ITEM.equals(rs.getString("table_name"))) {
                 result = true;
                 break;
             }
@@ -55,8 +55,8 @@ public class ConfigDataBase {
     }
 
     /**
-     *
-     * @throws SQLException - is exception.
+     * createDataBase - connects to database postgres and creates database base_tracker.
+     * @throws SQLException - sql exception.
      */
     public void createDataBase() throws SQLException {
         Connection connect = DriverManager.getConnection(URL_BASE_POSTGRES, NAME, PASSWORD);
@@ -65,7 +65,7 @@ public class ConfigDataBase {
     }
 
     /**
-     * createTableItem - creates table item.
+     * createTableItem - connect to database base_tracker and creates table item.
      * @throws SQLException - is sql exception.
      */
     public void createTableItem() throws SQLException {
@@ -75,7 +75,7 @@ public class ConfigDataBase {
     }
 
     /**
-     * createTableItem - creates table item.
+     * createTableComments - connect to database base_tracker and crates table comments.
      * @throws SQLException - is sql exception.
      */
     public void createTableComments() throws SQLException {

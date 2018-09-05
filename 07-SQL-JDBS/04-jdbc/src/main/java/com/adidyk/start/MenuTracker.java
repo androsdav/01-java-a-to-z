@@ -2,11 +2,9 @@ package com.adidyk.start;
 
 import com.adidyk.models.Comment;
 import com.adidyk.models.Item;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
-
 import static com.adidyk.setup.Constant.*;
 
 class MenuTracker {
@@ -178,7 +176,7 @@ class MenuTracker {
         }
         // execute - search item by id, key = 3
         public void execute(Input input, Tracker tracker) throws SQLException {
-            String id = input.ask(" [action] input id: ");
+            String id = input.askInt(" [action] input id: ");
             Item item = tracker.searchItemById(id);
             if (item != null) {
                 itemTable();
@@ -258,7 +256,7 @@ class MenuTracker {
         }
         // execute - remove item by id, key = 6
         public void execute(Input input, Tracker tracker) throws SQLException {
-            String id = input.ask(" Input id: ");
+            String id = input.askInt(" Input id: ");
             if (tracker.searchItemById(id) != null) {
                 tracker.removeItemById(id);
             } else {
@@ -278,7 +276,7 @@ class MenuTracker {
         }
         // execute - update item by id, key = 7
         public void execute(Input input, Tracker track) throws SQLException {
-            String id = input.ask(" Input id: ");
+            String id = input.askInt(" Input id: ");
             if (track.searchItemById(id) != null) {
                 String name = input.ask(" Input new name item: ");
                 String description = input.ask(" Input new description: ");
