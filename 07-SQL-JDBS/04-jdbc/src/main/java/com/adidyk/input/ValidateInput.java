@@ -1,4 +1,4 @@
-package com.adidyk.start;
+package com.adidyk.input;
 
 /**
  * Class ValidateInput contains method for entering data from console.
@@ -44,10 +44,8 @@ public class ValidateInput extends ConsoleInput {
             try {
                 value = Integer.valueOf(super.ask(question));
                 invalid = false;
-            } catch(MenuOutException moe) {
-                System.out.println(" [info] please select key from menu... ");
             } catch (NumberFormatException nfe) {
-                System.out.println(" [info] please enter validate data again... ");
+                System.out.println(" [inform] please enter validate data again ... ");
             }
         } while (invalid);
         return String.valueOf(value);

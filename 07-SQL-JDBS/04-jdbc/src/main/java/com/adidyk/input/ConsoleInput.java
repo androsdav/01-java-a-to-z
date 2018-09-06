@@ -1,4 +1,4 @@
-package com.adidyk.start;
+package com.adidyk.input;
 
 import java.util.Scanner;
 
@@ -45,7 +45,7 @@ public class ConsoleInput implements Input {
         if (exist) {
             return key;
         } else {
-            throw new MenuOutException(" [info] out of menu range. ");
+            throw new MenuOutException(" [inform] out of menu range ... ");
         }
     }
 

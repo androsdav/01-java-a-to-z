@@ -1,4 +1,4 @@
-package com.adidyk.start;
+package com.adidyk.input;
 
 /**
  * Interface Input contains method for entering data from console.
