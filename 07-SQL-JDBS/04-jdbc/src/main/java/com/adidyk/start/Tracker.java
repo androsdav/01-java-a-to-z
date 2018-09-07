@@ -31,8 +31,8 @@ class Tracker {
 	 * addItem - adds new item to item table in database base_tracker
 	 * (used query sql -> ADD_ITEM).
 	 * @param item - link variable to object of class Item.
-	 * @return - returns link variable to added object of class Item.
 	 * @throws SQLException - is SQL exception.
+	 * @return - returns link variable to added object of class Item.
 	 */
 	Item addItem(Item item) throws SQLException {
 		PreparedStatement st = this.connect.prepareStatement(ADD_ITEM);
@@ -133,8 +133,9 @@ class Tracker {
 
 	/**
 	 * searchCommentByItemId - searches all comments in comments table in database base_tracker (used query ->
-	 * SEARCH_COMMENT_BY_ITEM_ID) for item by id.
-	 * @param id - id.
+	 * SEARCH_COMMENT_BY_ITEM_ID) for item by id and returns all comments for item by id (ArrayList).
+	 * @param id - id item.
+	 * @throws SQLException - sql exception.
 	 * @return - list comment.
 	 */
 	ArrayList<Comment> searchCommentByItemId(String id) throws SQLException {

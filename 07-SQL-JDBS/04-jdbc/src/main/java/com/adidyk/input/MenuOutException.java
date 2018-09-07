@@ -10,9 +10,10 @@ class MenuOutException extends RuntimeException {
 
     /**
      * MenuOutException - constructor.
-     * @param msg - message exception.
+     * @param msg - message menu out exception.
      */
     MenuOutException(String msg) {
         super(msg);
     }
+
 }

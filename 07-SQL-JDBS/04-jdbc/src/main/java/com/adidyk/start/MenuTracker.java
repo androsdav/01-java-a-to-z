@@ -8,18 +8,43 @@ import java.util.ArrayList;
 import java.util.Date;
 import static com.adidyk.setup.Constant.*;
 
+/**
+ * Class MenuTracker used for creates index menu and for work with database base_tracker.
+ * @author Didyk Andrey (androsdav@bigmir.net).
+ * @since 06.08.2018.
+ * @version 1.0.
+ */
 class MenuTracker {
 
+    /**
+     * @param input - link variable to object of class ValidateInput.
+     */
     private Input input;
+
+    /**
+     * @param tracker - link variable to object of class Tracker.
+     */
     private Tracker tracker;
+
+    /**
+     * @param action - link variable to ArrayList<UserAction>.
+     */
     private ArrayList<UserAction> actions = new ArrayList<>();
 
+    /**
+     * MenuTracker - constructor.
+     * @param input - link variable to object of class ValidateInput.
+     * @param tracker - link variable to object of class Tracker.
+     */
     MenuTracker(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;
     }
 
-    // fillAction - array action
+    /**
+     * fillAction - adds to array list (menu) objects of class ShowAllItem, ShowAllItemWithComments, AddItem,
+     * SearchItemById, SearchItemByName, SearchItemByDescription, RemoveItemById, UpdateItemById, AddCommentById, Exit.
+     */
     void fillAction() {
         this.actions.add(0, new ShowAllItem());
         this.actions.add(1, new ShowAllItemWithComments());
@@ -33,12 +58,18 @@ class MenuTracker {
         this.actions.add(9, new Exit());
     }
 
-    // select - select action
+    /**
+     * select - selects action (мфдгу) by key.
+     * @param key - key of index menu.
+     * @throws SQLException - sql exception.
+     */
     void select(int key) throws SQLException {
         this.actions.get(key - 1).execute(this.input, this.tracker);
     }
 
-    // show - show all menu
+    /**
+     * show - show all information about method of execute and number of index menu.
+     */
     void show() {
         menuTable();
         for (UserAction action: this.actions) {
@@ -47,7 +78,10 @@ class MenuTracker {
         menuSeparator();
     }
 
-    // getIndexActions - get all index ranges key
+    /**
+     * getIndexActions - returns array of all numbers of index menu.
+     * @return - returns array of all numbers of index menu.
+     */
     int[] getIndexActions() {
         int [] range = new int[this.actions.size()];
         for (int index = 0; index < this.actions.size(); index++) {
@@ -56,10 +90,13 @@ class MenuTracker {
         return range;
     }
 
-
     /**
-     * @param tracker  - is tracker.
-     * @throws SQLException - is exception.
+     * outputAllItem - shows all items with comments if getComments = true or without comments
+     * if getComments = false.
+     * @param tracker - link variable to object of class Tracker.
+     * @param getComments - if getComments = true comments are showed,
+     * if getComments = false comments are not showed.
+     * @throws SQLException - sql exception.
      */
     private void outputAllItem(Tracker tracker, boolean getComments) throws SQLException {
         itemTable();
@@ -74,6 +111,12 @@ class MenuTracker {
         }
     }
 
+    /**
+     * outputAllComments - shows all comments for item by id.
+     * @param tracker - link variable to object of class Tracker.
+     * @param item - link variable to object of class Item.
+     * @throws SQLException - sql exception.
+     */
     private void outputAllComments(Tracker tracker, Item item) throws SQLException {
         commentTable();
         for (Comment comment : tracker.searchCommentByItemId(item.getId())) {
@@ -83,99 +126,151 @@ class MenuTracker {
         System.out.println();
     }
 
-     /**
-     * Class ShowAllItem.
+    /**
+     * Class ShowAllItem shows all items without comments.
+     * @author Didyk Andrey (androsdav@bigmir.net).
+     * @since 06.08.2018.
+     * @version 1.0.
      */
     private class  ShowAllItem extends BaseAction {
+
         /**
-         * Constructor.
+         * ShowAllItem - constructor.
          */
         private ShowAllItem() {
             super(" Show all item.");
         }
+
         /**
-         * key - returns key.
-         * @return - returns key.
+         * key - returns number of index of menu (1).
+         * @return - returns number of index of menu (1).
          */
+        @Override
+
         public int key() {
             return 1;
         }
+
         /**
-         * execute - return all item, show all item.
-         * @param input - is input.
-         * @param tracker - is track.
-         * @throws SQLException - is exception.
+         * execute - shows all items without comments.
+         * @param input - link variable to object of class ValidateInput.
+         * @param tracker - link variable to object of class Tracker.
+         * @throws SQLException - sql exception.
          */
+        @Override
         public void execute(Input input, Tracker tracker) throws SQLException {
             outputAllItem(tracker, false);
         }
+
     }
 
     /**
-     * Class ShowAllItem.
+     * Class ShowAllItemWithComments shows all item with comments.
+     * @author Didyk Andrey (androsdav@bigmir.net).
+     * @since 06.08.2018.
+     * @version 1.0.
      */
     private class ShowAllItemWithComments extends BaseAction {
+
         /**
-         * Constructor.
+         * ShowAllItemWithComments - constructor.
          */
         private ShowAllItemWithComments() {
             super(" Show all item with comments.");
         }
+
         /**
-         * key - returns key.
-         * @return - returns key.
+         * key - returns number of index of menu (2).
+         * @return - returns number of index of menu (2).
          */
+        @Override
         public int key() {
             return 2;
         }
+
         /**
-         * execute - return all item, show all item.
-         * @param input - is input.
-         * @param tracker - is track.
-         * @throws SQLException - is exception.
+         * execute - shows all items with comments.
+         * @param input - link variable to object of class ValidateInput.
+         * @param tracker - link variable to object of class Tracker.
+         * @throws SQLException - sql exception.
          */
+        @Override
         public void execute(Input input, Tracker tracker) throws SQLException {
             outputAllItem(tracker, true);
         }
+
     }
 
     /**
-     * AddItem.
+     * Class AddItem adds new item.
+     * @author Didyk Andrey (androsdav@bigmir.net).
+     * @since 06.08.2018.
+     * @version 1.0.
      */
     private class AddItem extends BaseAction {
+
+        /**
+         * AddItem - constructor.
+         */
         AddItem() {
             super(" Add new item.");
         }
+
         /**
-         * key - is key.
-         * @return key.
+         * key - returns number of index of menu (3).
+         * @return - returns number of index of menu (3).
          */
+        @Override
         public int key() {
             return 3;
         }
+
         /**
-         * execute - execute.
-         * @param input - is input.
-         * @param tracker - is tracker.
-         * @throws SQLException - is exception.
+         * execute - adds new item.
+         * @param input - link variable to object of class ValidateInput.
+         * @param tracker - link variable to object of class Tracker.
+         * @throws SQLException - sql exception.
          */
+        @Override
         public void execute(Input input, Tracker tracker) throws SQLException {
             String name = input.ask(" [action] input name item: ");
             String desc = input.ask(" [action] input desc item: ");
             tracker.addItem(new Item(name, desc,  new Date().getTime()));
         }
+
     }
 
-    // class SearchItemById, key = 3
+    /**
+     * SearchItemById shows search result - search item by id.
+     * @author Didyk Andrey (androsdav@bigmir.net).
+     * @since 06.08.2018.
+     * @version 1.0.
+     */
     private class SearchItemById extends BaseAction {
+
+        /**
+         * SearchItemById - constructor.
+         */
         SearchItemById() {
             super(" Search item by id.");
         }
-        // key = 3
+
+        /**
+         * key - returns number of index of menu (4).
+         * @return - returns number of index of menu (4).
+         */
+        @Override
         public int key() {
             return 4;
         }
-        // execute - search item by id, key = 3
+
+        /**
+         * execute - shows search result - search item by id.
+         * @param input - link variable to object of class ValidateInput.
+         * @param tracker - link variable to object of class Tracker.
+         * @throws SQLException - sql exception.
+         */
+        @Override
         public void execute(Input input, Tracker tracker) throws SQLException {
             String id = input.askInt(" [action] input id: ");
             Item item = tracker.searchItemById(id);
@@ -190,148 +285,273 @@ class MenuTracker {
                 System.out.println(" [info] there isn`t result for entered id ...");
             }
         }
+
     }
 
-    // class SearchItemByName, key = 4
+    /**
+     * Class SearchItemByName shows all items for set name.
+     * @author Didyk Andrey (androsdav@bigmir.net).
+     * @since 06.08.2018.
+     * @version 1.0.
+     */
     private class SearchItemByName extends BaseAction {
         SearchItemByName() {
             super(" Search item by name.");
         }
-        // key = 4
+
+        /**
+         * key - returns number of index of menu (5).
+         * @return - returns number of index of menu (5).
+         */
+        @Override
         public int key() {
             return 5;
         }
-        // execute - search item by name, key = 4
-        public void execute(Input input, Tracker track) throws SQLException {
+
+        /**
+         * execute -  shows all items for set name.
+         * @param input - link variable to object of class ValidateInput.
+         * @param tracker - link variable to object of class Tracker.
+         * @throws SQLException - sql exception.
+         */
+        @Override
+        public void execute(Input input, Tracker tracker) throws SQLException {
             String name = input.ask(" [action] input name item: ");
             boolean search = false;
-            for (Item item : track.getAllItem()) {
-                if (item.getName().equals(name)) {
-                    search = true;
-                    itemTable();
+            for (Item item : tracker.getAllItem()) {
+                if (name.equals(item.getName())) {
+                    if (!search) {
+                        itemTable();
+                    }
                     System.out.println(item);
                     itemSeparator();
+                    search = true;
                 }
             }
             if(!search) {
                 System.out.println(" [info] not result by name ...");
             }
         }
+
     }
 
-    // class SearchItemByDescription, key = 5
+    /**
+     * Class SearchItemByDescription shows all items for set description item (sets substring description).
+     * @author Didyk Andrey (androsdav@bigmir.net).
+     * @since 06.08.2018.
+     * @version 1.0.
+     */
     private class SearchItemByDescription extends BaseAction {
+
+        /**
+         * SearchItemByDescription - constructor.
+         */
         SearchItemByDescription() {
             super(" Search item by description.");
         }
-        // key = 5
+
+        /**
+         * key - returns number of index of menu (6).
+         * @return - returns number of index of menu (6).
+         */
+        @Override
         public int key() {
             return 6;
         }
-        // execute - search item by description, key = 5
-        public void execute(Input input, Tracker track) throws SQLException {
+
+        /**
+         * execute - shows all items for set description.
+         * @param input - link variable to object of class ValidateInput.
+         * @param tracker - link variable to object of class Tracker.
+         * @throws SQLException - sql exception.
+         */
+        @Override
+        public void execute(Input input, Tracker tracker) throws SQLException {
             String desc = input.ask(" [action] input desc item: ");
             boolean search = false;
-            for (Item item : track.getAllItem()) {
+            for (Item item : tracker.getAllItem()) {
                 if (item.getDescription().contains(desc)) {
-                    search = true;
-                    itemTable();
+                    if (!search) {
+                        itemTable();
+                    }
                     System.out.println(item);
+                    itemSeparator();
+                    search = true;
                 }
-                itemSeparator();
             }
             if (!search) {
-                System.out.println(" [info] Not result by description");
+                System.out.println(" [info] not result by description ... ");
             }
         }
+
     }
 
-    // class RemoveItemById, key = 6
+    /**
+     * Class RemoveItemById removes item by id.
+     * @author Didyk Andrey (androsdav@bigmir.net).
+     * @since 06.08.2018.
+     * @version 1.0.
+     */
     private class RemoveItemById extends BaseAction {
+
+        /**
+         * RemoveItemById - constructor.
+         */
         RemoveItemById() {
             super(" Remove item by id.");
         }
-        // key = 6
+
+        /**
+         * key - returns number of index of menu (7).
+         * @return - returns number of index of menu (7).
+         */
+        @Override
         public int key() {
             return 7;
         }
-        // execute - remove item by id, key = 6
+
+        /**
+         * execute - removes item by id.
+         * @param input - link variable to object of class ValidateInput.
+         * @param tracker - link variable to object of class Tracker.
+         * @throws SQLException - sql exception.
+         */
+        @Override
         public void execute(Input input, Tracker tracker) throws SQLException {
-            String id = input.askInt(" Input id: ");
+            String id = input.askInt(" [action] input id: ");
             if (tracker.searchItemById(id) != null) {
                 tracker.removeItemById(id);
             } else {
-                System.out.println(" Not result by id");
+                System.out.println(" [info] not result by id ... ");
             }
         }
+
     }
 
-    // class UpdateItemById, key = 7
+    /**
+     * Class UpdateItemById updates item by id.
+     * @author Didyk Andrey (androsdav@bigmir.net).
+     * @since 06.08.2018.
+     * @version 1.0.
+     */
     private class UpdateItemById extends BaseAction {
+
+        /**
+         * UpdateItemById - constructor.
+         */
         UpdateItemById() {
             super(" Update item by id.");
         }
-        // key = 7
+
+        /**
+         * key - returns number of index of menu (8).
+         * @return - returns number of index of menu (8).
+         */
+        @Override
         public int key() {
             return 8;
         }
-        // execute - update item by id, key = 7
-        public void execute(Input input, Tracker track) throws SQLException {
-            String id = input.askInt(" Input id: ");
-            if (track.searchItemById(id) != null) {
-                String name = input.ask(" Input new name item: ");
-                String description = input.ask(" Input new description: ");
+
+        /**
+         * execute - update item by id.
+         * @param input - link variable to object of class ValidateInput.
+         * @param tracker - link variable to object of class Tracker.
+         * @throws SQLException - sql exception.
+         */
+        @Override
+        public void execute(Input input, Tracker tracker) throws SQLException {
+            String id = input.askInt(" [action] input id: ");
+            if (tracker.searchItemById(id) != null) {
+                String name = input.ask(" [action] input new name item: ");
+                String description = input.ask(" [action] input new description item: ");
                 long create = new Date().getTime();
                 Item item = new Item(name, description, create);
                 item.setId(id);
-                Item result = track.searchItemById(id);
-                track.updateItemById(item);
-                /*
-                ArrayList<Comment> comment = result.getAllComment();
-                for (Comment comm : comment) {
-                    track.addCommentById(id, comm);
-                }
-                */
+                tracker.updateItemById(item);
             } else {
-                System.out.println(" Not result by id");
+                System.out.println(" [info] not result by id ... ");
             }
         }
+
     }
 
-    // class AddCommentById, key = 8
+    /**
+     * Class AddCommentById adds comment by item id.
+     * @author Didyk Andrey (androsdav@bigmir.net).
+     * @since 06.08.2018.
+     * @version 1.0.
+     */
     private class AddCommentById extends BaseAction {
+
+        /**
+         * AddCommentById - constructor.
+         */
         AddCommentById() {
             super(" Add comment by id.");
         }
-        // key = 8
+
+        /**
+         * key - returns number of index of menu (9).
+         * @return - returns number of index of menu (9).
+         */
+        @Override
         public int key() {
             return 9;
         }
-        // execute - add comment by id, key = 8
+
+        /**
+         * execute - adds comment by item id..
+         * @param input - link variable to object of class ValidateInput.
+         * @param tracker - link variable to object of class Tracker.
+         * @throws SQLException - sql exception.
+         */
+        @Override
         public void execute(Input input, Tracker tracker) throws SQLException {
-            String id = input.ask(" Input id: ");
+            String id = input.askInt(" [action] input id: ");
             if (tracker.searchItemById(id) != null) {
                 String name = input.ask(" [action] input name comment: ");
                 String desc = input.ask(" [action] input desc comment: ");
                 tracker.addCommentById(id, new Comment(name, desc, new Date().getTime()));
             } else {
-                System.out.println(" Not result by id");
+                System.out.println(" [info] not result by id ... ");
             }
         }
+
     }
 
-    // class Exit, key = 9
+    /**
+     * Class Exit exits from program.
+     * @author Didyk Andrey (androsdav@bigmir.net).
+     * @since 06.08.2018.
+     * @version 1.0.
+     */
     private class Exit extends BaseAction {
+
+        /**
+         * Exit - constructor.
+         */
         Exit() {
             super(" Exit.");
         }
-        // key = 9
+
+        /**
+         * key - returns number of index of menu (10).
+         * @return - returns number of index of menu (10).
+         */
+        @Override
         public int key() {
             return 10;
         }
-        // execute - exit, key = 9
-        public void execute(Input input, Tracker track) {
+
+        /**
+         * execute - doing nothing.
+         * @param input - link variable to object of class ValidateInput.
+         * @param tracker - link variable to object of class Tracker.
+         */
+        @Override
+        public void execute(Input input, Tracker tracker) {
         }
+
     }
 
 }

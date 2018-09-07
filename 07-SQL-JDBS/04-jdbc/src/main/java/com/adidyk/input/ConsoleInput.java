@@ -20,6 +20,7 @@ public class ConsoleInput implements Input {
      * @param question - question.
      * @return - returns entering data from console.
      */
+    @Override
     public String ask(String question) {
         System.out.print(question);
         return this.scanner.nextLine();
@@ -33,6 +34,7 @@ public class ConsoleInput implements Input {
      * @return - returns the inputted of data from the console if the data is integer, and if inputted
      * of data is entered in the range.
      */
+    @Override
     public int ask(String question, int[] range) {
         int key = Integer.valueOf(this.ask(question));
         boolean exist = false;
@@ -54,6 +56,7 @@ public class ConsoleInput implements Input {
      * @param question - question.
      * @return - returns the inputted of data from the console if the data is integer.
      */
+    @Override
     public String askInt(String question) {
         return this.ask(question);
     }

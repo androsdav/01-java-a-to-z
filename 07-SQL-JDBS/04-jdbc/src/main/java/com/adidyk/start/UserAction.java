@@ -30,4 +30,5 @@ public interface UserAction {
      * @return - returns information about method of execute and number of index of menu.
      */
     String info();
+
 }

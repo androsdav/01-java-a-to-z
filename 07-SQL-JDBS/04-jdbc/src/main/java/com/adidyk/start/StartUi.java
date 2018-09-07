@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
 import com.adidyk.input.Input;
 import com.adidyk.input.ValidateInput;
 import com.adidyk.setup.*;
@@ -14,7 +13,7 @@ import static com.adidyk.setup.Constant.*;
 
 
 /**
- * Class StartUi for create jar file and connect to data base.
+ * Class StartUi for create jar file and start program.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 03.08.2018.
  * @version 1.0.
@@ -22,28 +21,24 @@ import static com.adidyk.setup.Constant.*;
 public class StartUi {
 
     /**
-     *
+     * @param input - link variable to object ValidateInput.
      */
     private Input input;
 
-    /**
-     *
-     */
-    private Tracker tracker;
 
     /**
-     *
+     * @param connect - link variable to object of class Connect.
      */
     private Connection connect = null;
 
     /**
-     *
+     * @param menu - link variable to object of class MenuTracker.
      */
     private MenuTracker menu;
 
     /**
      * StartUi - constructor.
-     * @param input - is input.
+     * @param input - link variable to object of class Connect.
      * @throws SQLException - is exception.
      */
     private StartUi(Input input) throws SQLException {
@@ -51,8 +46,10 @@ public class StartUi {
     }
 
     /**
-     * start  - is start.
-     * @throws SQLException - is exception.
+     * start - starts program.
+     * @throws SQLException - sql exception.
+     * @throws IOException - io exception.
+     * @throws ClassNotFoundException - class not found exception.
      */
     private void start() throws SQLException, IOException, ClassNotFoundException {
         this.loadSetting();
@@ -64,8 +61,8 @@ public class StartUi {
     }
 
     /**
-     * loadConfig - is config.
-     * @throws IOException - is io exception.
+     * loadSetting - loads params from file app.properties to class Constant.
+     * @throws IOException - io exception.
      */
     private void loadSetting() throws IOException {
         Settings setting = new Settings();
@@ -79,9 +76,9 @@ public class StartUi {
     }
 
     /**
-     *
-     * @throws SQLException - is.
-     * @throws ClassNotFoundException - is.
+     * configDataBase - checks if there is database and checks if there is table item.
+     * @throws SQLException - sql exception.
+     * @throws ClassNotFoundException - class not found exception.
      */
     private void configDataBase() throws SQLException, ClassNotFoundException {
         this.checkDataBase();
@@ -89,9 +86,9 @@ public class StartUi {
     }
 
     /**
-     *
-     * @throws SQLException - is.
-     * @throws ClassNotFoundException - is.
+     * checkDataBase - checks if there is database.
+     * @throws SQLException - sql exception.
+     * @throws ClassNotFoundException - class not found exception.
      */
     private void checkDataBase() throws SQLException, ClassNotFoundException {
         ConfigDataBase config = new ConfigDataBase();
@@ -101,8 +98,8 @@ public class StartUi {
     }
 
     /**
-     *
-     * @throws SQLException - is.
+     * checkTable - checks if there is table item.
+     * @throws SQLException - sql exception.
      */
     private void checkTables() throws SQLException {
         ConfigDataBase config = new ConfigDataBase();
@@ -113,7 +110,7 @@ public class StartUi {
     }
 
     /**
-     * connect - is connect.
+     * connect - connects to database base_tracker.
      */
      private void connect()  {
          try {
@@ -124,16 +121,16 @@ public class StartUi {
      }
 
     /**
-     * init - is init.
+     * init - initialization parameters tracker and menu.
      */
     private void init() {
-        this.tracker = new Tracker(this.connect);
-        this.menu = new MenuTracker(this.input, this.tracker);
+        Tracker tracker = new Tracker(this.connect);
+        this.menu = new MenuTracker(this.input, tracker);
     }
 
     /**
-     * work - is work.
-     * @throws SQLException - is exception.
+     * work - starts to works program.
+     * @throws SQLException - sql exception.
      */
     private void work() throws SQLException {
         this.menu.fillAction();
@@ -146,7 +143,7 @@ public class StartUi {
     }
 
     /**
-     * disconnect - is disconnect.
+     * disconnect - disconnect to database base_tracker.
      */
     private void disconnect() {
         if (this.connect != null) {
@@ -159,7 +156,7 @@ public class StartUi {
     }
 
     /**
-     * main - is for create jar file and run program.
+     * main - creates jar file and runs program.
      * @param arg - is nothing.
      */
     public static void main(String[] arg) throws SQLException, IOException, ClassNotFoundException {

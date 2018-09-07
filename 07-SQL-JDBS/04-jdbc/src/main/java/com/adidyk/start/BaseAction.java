@@ -28,6 +28,7 @@ public abstract class BaseAction implements UserAction {
      * key - returns number of index of menu.
      * @return - returns number of index of menu.
      */
+    @Override
     public abstract int key();
 
     /**
@@ -36,12 +37,14 @@ public abstract class BaseAction implements UserAction {
      * @param tracker - link variable to object of class Tracker.
      * @throws SQLException - sql exception.
      */
+    @Override
     public abstract void execute(Input input, Tracker tracker) throws SQLException;
 
     /**
      * info - returns information about method of execute and number of index of menu.
      * @return - returns information about method of execute and number of index of menu.
      */
+    @Override
     public String info() {
         return String.format(" %s%s%s", this.key(), ".", this.name);
     }

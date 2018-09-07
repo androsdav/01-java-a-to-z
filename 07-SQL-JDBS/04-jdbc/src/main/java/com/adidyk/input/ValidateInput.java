@@ -16,6 +16,7 @@ public class ValidateInput extends ConsoleInput {
      * @return - returns the inputted of data from the console if the data is integer, and if inputted
      * of data is entered in the range.
      */
+    @Override
     public int ask(String question, int[] range) {
         boolean invalid = true;
         int value = -1;
@@ -37,6 +38,7 @@ public class ValidateInput extends ConsoleInput {
      * @param question - question.
      * @return - returns the inputted of data from the console if the data is integer.
      */
+    @Override
     public String askInt(String question) {
         boolean invalid = true;
         int value = -1;
@@ -45,7 +47,7 @@ public class ValidateInput extends ConsoleInput {
                 value = Integer.valueOf(super.ask(question));
                 invalid = false;
             } catch (NumberFormatException nfe) {
-                System.out.println(" [inform] please enter validate data again ... ");
+                System.out.println(" [info] please enter validate data again ... ");
             }
         } while (invalid);
         return String.valueOf(value);

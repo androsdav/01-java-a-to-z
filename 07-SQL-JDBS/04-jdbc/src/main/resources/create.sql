@@ -1,4 +1,4 @@
--- create new database for item base_tracker
+-- create database  base_tracker
 CREATE DATABASE base_tracker;
 
 -- create table item
@@ -9,7 +9,7 @@ CREATE TABLE item (
   create_date DATE NOT NULL
 );
 
--- create table comments, don`t adds comments wait
+-- create table comments
 CREATE TABLE comments (
   id SERIAL PRIMARY KEY,
   name VARCHAR(2000) NOT NULL,
@@ -18,4 +18,3 @@ CREATE TABLE comments (
   item_id INT REFERENCES item(id) ON DELETE CASCADE
 );
 
-SELECT * FROM item;
