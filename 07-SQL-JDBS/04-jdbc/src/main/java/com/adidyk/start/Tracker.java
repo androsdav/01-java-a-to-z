@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import static com.adidyk.setup.Constant.*;
 
 /**
- * Class StartUi for create jar file and connect to data base..
+ * Class Tracker used for work with item table and comments table in database  base_tracker.
+ * For work with database base_tracker used query sql.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 06.08.2018.
  * @version 1.0.
@@ -14,22 +15,23 @@ import static com.adidyk.setup.Constant.*;
 class Tracker {
 
 	/**
-	 * @param connect - is connect.
+	 * @param connect - link variable to object of class Connect.
 	 */
 	private Connection connect;
 
 	/**
 	 * Tracker - constructor.
-	 * @param connect - is connect.
+	 * @param connect - link variable to object of class Connect.
 	 */
 	Tracker(Connection connect) {
 		this.connect = connect;
 	}
 
 	/**
-	 * addItem - is add item.
-	 * @param item - is item.
-	 * @return - is item.
+	 * addItem - adds new item to item table in database base_tracker
+	 * (used query sql -> ADD_ITEM).
+	 * @param item - link variable to object of class Item.
+	 * @return - returns link variable to added object of class Item.
 	 * @throws SQLException - is SQL exception.
 	 */
 	Item addItem(Item item) throws SQLException {
@@ -43,10 +45,11 @@ class Tracker {
 	}
 
 	/**
-	 * searchItemById - is searchItemById.
-	 * @param id - is id.
-	 * @return - is item.
+	 * searchItemById - searches item in item table in database base_tracker by id (used query sql -> SEARCH_ITEM_BY_ID)
+	 * and returns item if search result true and returns null if search result false.
+	 * @param id - id item.
 	 * @throws SQLException - is SQL exception.
+	 * @return - returns item if search result true and returns null if search result false.
 	 */
 	Item searchItemById(String id) throws SQLException {
 		Item item = null;
@@ -64,9 +67,9 @@ class Tracker {
 	}
 
 	/**
-	 * updateItemById - is updateItemById.
-	 * @param item - is item.
-	 * @throws SQLException - is SQL exception.
+	 * updateItemById - updates item in item table in database base_tracker by id (used query sql -> UPDATE_ITEM_BY_ID).
+	 * @param item - id item.
+	 * @throws SQLException - sql exception.
 	 */
 	void updateItemById(Item item) throws SQLException {
 		PreparedStatement st = this.connect.prepareStatement(UPDATE_ITEM_BY_ID);
@@ -79,9 +82,9 @@ class Tracker {
 	}
 
 	/**
-	 * removeItemById - is removeItemById.
-	 * @param id - is id.
-	 * @throws SQLException - is SQL exception.
+	 * removeItemById - removes item in item table in database base_tracker by id (used query sql -> REMOVE_ITEM_BY_ID).
+	 * @param id - id item.
+	 * @throws SQLException - sql exception.
 	 */
 	void removeItemById(String id) throws SQLException {
 		PreparedStatement st = this.connect.prepareStatement(REMOVE_ITEM_BY_ID);
@@ -91,9 +94,9 @@ class Tracker {
 	}
 
 	/**
-	 * getAllItem - is getAllItem
-	 * @throws SQLException - is SQL exception.
-	 * @return all item.
+	 * getAllItem - returns all items from item table from database base_tracker (used query sql -> GET_ALL_ITEM).
+	 * @throws SQLException - sql exception.
+	 * @return - returns all items (ArrayList) from item table from database base_tracker.
 	 */
 	ArrayList<Item> getAllItem() throws SQLException {
 		ArrayList<Item> items = new ArrayList<>();
@@ -114,8 +117,9 @@ class Tracker {
 	}
 
 	/**
-	 * addCommentById - is getAllItem
-	 * @throws SQLException - is SQL exception.
+	 * addCommentById - adds comment in comments table in database base_tracker (used query -> ADD_COMMENT_BY_ID) for
+	 * item by id (references item(id)).
+	 * @throws SQLException - sql exception.
 	 */
 	void addCommentById(String id, Comment comment) throws SQLException {
 		PreparedStatement st = this.connect.prepareStatement(ADD_COMMENT_BY_ID);
@@ -128,7 +132,8 @@ class Tracker {
 	}
 
 	/**
-	 *
+	 * searchCommentByItemId - searches all comments in comments table in database base_tracker (used query ->
+	 * SEARCH_COMMENT_BY_ITEM_ID) for item by id.
 	 * @param id - id.
 	 * @return - list comment.
 	 */

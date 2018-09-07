@@ -1,4 +1,4 @@
--- create new database for car
+-- create new database for item base_tracker
 CREATE DATABASE base_tracker;
 
 -- create table item
