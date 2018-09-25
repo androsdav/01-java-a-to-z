@@ -104,8 +104,8 @@ public class Comment {
             return false;
         }
         Comment comment = (Comment) obj;
-        return this.create == comment.create && this.name.equals(comment.name) &&
-                this.description.equals(comment.description) && this.id.equals(comment.id);
+        return this.create == comment.create && this.name.equals(comment.name)
+                && this.description.equals(comment.description) && this.id.equals(comment.id);
     }
 
     /**

@@ -23,8 +23,7 @@ public class Settings {
     public void load(InputStream io) {
         try {
             this.prs.load(io);
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }

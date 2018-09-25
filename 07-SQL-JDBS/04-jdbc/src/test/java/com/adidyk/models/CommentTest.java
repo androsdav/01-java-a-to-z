@@ -2,6 +2,7 @@ package com.adidyk.models;
 
 import org.junit.Before;
 import org.junit.Test;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
@@ -11,29 +12,28 @@ import static org.junit.Assert.*;
  * @since 25.09.2018.
  * @version 1.0.
  */
-public class ItemTest {
+public class CommentTest {
 
     /**
      * @param itemActual - link variable to object of class Item.
      */
-    private final Item itemActual = new Item("Work", "I search work", 100);
+    private final Comment commentActual = new Comment("Work", "I search work", 100);
 
     /**
      * init - method is run before each test.
      */
     @Before
     public void init() {
-        this.itemActual.setId("1");
+        this.commentActual.setId("1");
     }
-
     /**
      * itemTest - tests object item.
      */
     @Test
     public void itemTest() {
-        Item itemExpected = new Item("Work", "I search work", 100);
-        itemExpected.setId("1");
-        assertThat(this.itemActual, is(itemExpected));
+        Comment commentExpected = new Comment("Work", "I search work", 100);
+        commentExpected.setId("1");
+        assertThat(this.commentActual, is(commentExpected));
     }
 
     /**
@@ -41,8 +41,8 @@ public class ItemTest {
      */
     @Test
     public void setIdTest() {
-        this.itemActual.setId("2");
-        assertThat(this.itemActual.getId(), is("2"));
+        this.commentActual.setId("2");
+        assertThat(this.commentActual.getId(), is("2"));
     }
 
     /**
@@ -50,7 +50,7 @@ public class ItemTest {
      */
     @Test
     public void getNameTest() {
-        assertThat(this.itemActual.getName(), is("Work"));
+        assertThat(this.commentActual.getName(), is("Work"));
     }
 
     /**
@@ -58,7 +58,7 @@ public class ItemTest {
      */
     @Test
     public void getDescriptionTest() {
-        assertThat(this.itemActual.getDescription(), is("I search work"));
+        assertThat(this.commentActual.getDescription(), is("I search work"));
     }
 
     /**
@@ -66,7 +66,7 @@ public class ItemTest {
      */
     @Test
     public void getCreateTest() {
-        assertThat(this.itemActual.getCreate(), is(100L));
+        assertThat(this.commentActual.getCreate(), is(100L));
     }
 
 }

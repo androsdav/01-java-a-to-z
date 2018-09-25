@@ -32,16 +32,14 @@ class Tracker {
 	 * (used query sql -> ADD_ITEM).
 	 * @param item - link variable to object of class Item.
 	 * @throws SQLException - is SQL exception.
-	 * @return - returns link variable to added object of class Item.
 	 */
-	Item addItem(Item item) throws SQLException {
+	void addItem(Item item) throws SQLException {
 		PreparedStatement st = this.connect.prepareStatement(ADD_ITEM);
 		st.setString(1, item.getName());
 		st.setString(2, item.getDescription());
 		st.setTimestamp(3, new Timestamp(item.getCreate()));
 		st.executeUpdate();
 		st.close();
-		return item;
 	}
 
 	/**
@@ -119,6 +117,8 @@ class Tracker {
 	/**
 	 * addCommentById - adds comment in comments table in database base_tracker (used query -> ADD_COMMENT_BY_ID) for
 	 * item by id (references item(id)).
+	 * @param id - id item.
+	 * @param comment - comment fot item.
 	 * @throws SQLException - sql exception.
 	 */
 	void addCommentById(String id, Comment comment) throws SQLException {

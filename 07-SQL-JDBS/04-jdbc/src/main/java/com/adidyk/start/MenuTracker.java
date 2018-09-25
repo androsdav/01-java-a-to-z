@@ -83,7 +83,7 @@ class MenuTracker {
      * @return - returns array of all numbers of index menu.
      */
     int[] getIndexActions() {
-        int [] range = new int[this.actions.size()];
+        int[] range = new int[this.actions.size()];
         for (int index = 0; index < this.actions.size(); index++) {
             range[index] = index + 1;
         }
@@ -295,6 +295,10 @@ class MenuTracker {
      * @version 1.0.
      */
     private class SearchItemByName extends BaseAction {
+
+        /**
+         * SearchItemByName - constructor.
+         */
         SearchItemByName() {
             super(" Search item by name.");
         }
@@ -328,7 +332,7 @@ class MenuTracker {
                     search = true;
                 }
             }
-            if(!search) {
+            if (!search) {
                 System.out.println(" [info] not result by name ...");
             }
         }

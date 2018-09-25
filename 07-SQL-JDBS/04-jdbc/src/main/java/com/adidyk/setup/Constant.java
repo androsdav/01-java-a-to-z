@@ -156,8 +156,8 @@ public class Constant {
     public static void itemTable() {
         System.out.println(String.format("\n %s%6s%3s %12s%8s %32s%17s %13s%3s",
                 "|", "ID", "|", "ITEM", "|", "DESCRIPTION", "|", "DATA_CREATE", "|"));
-        System.out.println(" |--------|--------------------|-------------------------------------------------|" +
-                "----------------|");
+        System.out.println(" |--------|--------------------|-------------------------------------------------|"
+                + "----------------|");
     }
 
     /**
@@ -166,24 +166,24 @@ public class Constant {
     public static void commentTable() {
         System.out.println(String.format("\n %10s%6s%3s %12s%8s %26s%14s %13s%3s",
                 "|", "ID", "|", "COMMENT", "|", "DESCRIPTION", "|", "DATA_CREATE", "|"));
-        System.out.println("          |--------|--------------------|----------------------------------------|" +
-                "----------------|");
+        System.out.println("          |--------|--------------------|----------------------------------------|"
+                + "----------------|");
     }
 
     /**
      * itemSeparator - displays item separator.
      */
     public static void itemSeparator() {
-        System.out.println(" |--------|--------------------|-------------------------------------------------|" +
-                "----------------|");
+        System.out.println(" |--------|--------------------|-------------------------------------------------|"
+                + "----------------|");
     }
 
     /**
      * commentSeparator - displays comment separator.
      */
     public static void commentSeparator() {
-        System.out.println("          |--------|--------------------|----------------------------------------|" +
-                "----------------|");
+        System.out.println("          |--------|--------------------|----------------------------------------|"
+                + "----------------|");
     }
 
 }

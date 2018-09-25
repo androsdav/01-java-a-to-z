@@ -134,11 +134,13 @@ public class StartUi {
      */
     private void work() throws SQLException {
         this.menu.fillAction();
-        while(true) {
+        while (true) {
             this.menu.show();
             int key = this.input.ask(" Choose key: ", this.menu.getIndexActions());
             this.menu.select(key);
-            if (key == this.menu.getIndexActions().length) break;
+            if (key == this.menu.getIndexActions().length) {
+                break;
+            }
         }
     }
 
@@ -158,6 +160,9 @@ public class StartUi {
     /**
      * main - creates jar file and runs program.
      * @param arg - is nothing.
+     * @throws SQLException - sql exception.
+     * @throws IOException - io exception.
+     * @throws ClassNotFoundException - class not found exception.
      */
     public static void main(String[] arg) throws SQLException, IOException, ClassNotFoundException {
         Input input = new ValidateInput();
