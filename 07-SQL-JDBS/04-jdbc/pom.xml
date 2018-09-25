@@ -17,6 +17,7 @@
 
          <modules>
                   <module>01-tracker</module>
+                  <module>02-magnet</module>
          </modules>
 
 </project>
