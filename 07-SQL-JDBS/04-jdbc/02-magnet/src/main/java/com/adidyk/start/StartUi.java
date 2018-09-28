@@ -24,7 +24,6 @@ public class StartUi {
      */
     private Input input;
 
-
     /**
      * @param connect - link variable to object of class Connect.
      */
@@ -113,7 +112,7 @@ public class StartUi {
      */
      private void connect()  {
          try {
-             this.connect = DriverManager.getConnection("jdbc:sqlite:magnet.sqlite");
+             this.connect = DriverManager.getConnection("jdbc:sqlite:e:\\03-install\\08-sqlite\\andros.db");
              System.out.println("database connect ...");
          } catch (SQLException e) {
              e.printStackTrace();

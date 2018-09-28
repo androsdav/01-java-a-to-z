@@ -8,6 +8,7 @@ CREATE TABLE androsdav (
   name VARCHAR(100) NOT NULL
 );
 
+
 CREATE TABLE tableforsearches (
   name VARCHAR(100) NOT NULL
 );
@@ -25,4 +26,8 @@ INSERT INTO type(name) VALUES ('cheese');
 SELECT * FROM type;
 SELECT * FROM tableforsearches;
 DROP TABLE type;
+
 DELETE FROM type WHERE id = 1;
+
+
+CREATE DATABASE andros;
