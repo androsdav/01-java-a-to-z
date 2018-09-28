@@ -14,7 +14,7 @@ import static com.adidyk.setup.Constant.*;
 /**
  * Class StartUi for create jar file and start program.
  * @author Didyk Andrey (androsdav@bigmir.net).
- * @since 03.08.2018.
+ * @since 28.09.2018.
  * @version 1.0.
  */
 public class StartUi {
@@ -51,12 +51,12 @@ public class StartUi {
      * @throws ClassNotFoundException - class not found exception.
      */
     private void start() throws SQLException, IOException, ClassNotFoundException {
-        this.loadSetting();
-        this.configDataBase();
+        //this.loadSetting();
+        //this.configDataBase();
         this.connect();
-        this.init();
-        this.work();
-        this.disconnect();
+        //this.init();
+        //this.work();
+        //this.disconnect();
     }
 
     /**
@@ -113,7 +113,8 @@ public class StartUi {
      */
      private void connect()  {
          try {
-             this.connect = DriverManager.getConnection(URL_BASE_TRACKER, NAME, PASSWORD);
+             this.connect = DriverManager.getConnection("jdbc:sqlite:magnet.sqlite");
+             System.out.println("database connect ...");
          } catch (SQLException e) {
              e.printStackTrace();
          }
