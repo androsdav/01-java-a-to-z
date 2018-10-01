@@ -1,15 +1,21 @@
 package com.adidyk.start;
 
+import com.adidyk.input.Input;
+import com.adidyk.setup.ConfigDataBase;
+import com.adidyk.setup.Constant;
+import com.adidyk.setup.Settings;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import com.adidyk.input.Input;
-import com.adidyk.input.ValidateInput;
-import com.adidyk.setup.*;
-import static com.adidyk.setup.Constant.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class StartUi for create jar file and start program.
@@ -112,7 +118,7 @@ public class StartUi {
      */
      private void connect()  {
          try {
-             this.connect = DriverManager.getConnection("jdbc:sqlite:e:\\03-install\\08-sqlite\\andros.db");
+             this.connect = DriverManager.getConnection("jdbc:sqlite:magnet.db");
              System.out.println("database connect ...");
          } catch (SQLException e) {
              e.printStackTrace();
@@ -164,8 +170,65 @@ public class StartUi {
      * @throws ClassNotFoundException - class not found exception.
      */
     public static void main(String[] arg) throws SQLException, IOException, ClassNotFoundException {
-        Input input = new ValidateInput();
-        new StartUi(input).start();
+        //Input input = new ValidateInput();
+        //new StartUi(input).start();
+        List<Customer> customers = new ArrayList<>();
+        // customer
+        Customer artur = new Customer();
+        artur.setId(1);
+        artur.setName("artur");
+        artur.setAge(20);
+        Customer dilan = new Customer();
+        dilan.setId(2);
+        dilan.setName("dilan");
+        dilan.setAge(21);
+        Customer bob = new Customer();
+        bob.setId(3);
+        bob.setName("bob");
+        bob.setAge(22);
+        Customer bill = new Customer();
+        bill.setId(4);
+        bill.setName("bill");
+        bill.setAge(27);
+        Customer amanda = new Customer();
+        amanda.setId(5);
+        amanda.setName("amanda");
+        amanda.setAge(54);
+        Customer adolf = new Customer();
+        adolf.setId(6);
+        adolf.setName("adolf");
+        adolf.setAge(44);
+        // list customers
+        List<Customer> customers1 = new ArrayList<>();
+        customers1.add(artur);
+        customers1.add(dilan);
+        customers1.add(bob);
+        List<Customer> customers2 = new ArrayList<>();
+        customers2.add(bill);
+        customers2.add(amanda);
+        List<Customer> customers3 = new ArrayList<>();
+        customers3.add(adolf);
+        // group
+        Group first = new Group();
+        first.setName("first");
+        first.setCustomers(customers1);
+        Group second = new Group();
+        second.setName("second");
+        second.setCustomers(customers2);
+        Group third = new Group();
+        third.setName("third");
+        third.setCustomers(customers3);
+
+        try {
+            //File file = new File("file.xml");
+            JAXBContext jaxbContext = JAXBContext.newInstance(Customer.class);
+            Marshaller marshaller = jaxbContext.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            //jaxbMarshaller.marshal(first, file);
+            marshaller.marshal(artur, System.out);
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
     }
 
 }
