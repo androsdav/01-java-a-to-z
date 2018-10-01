@@ -1,6 +1,7 @@
 package com.adidyk.start;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.List;
  * @version 1.0.
  */
 @XmlRootElement
-@XmlType(propOrder = {"name"}, name = "group")
+@XmlType(propOrder = {"name", "customers"}, name = "group")
 public class Group {
 
     /**
@@ -39,7 +40,8 @@ public class Group {
      * seCustomers - sets customers.
      * @param customers - customers.
      */
-    //@XmlElement
+    @XmlElement
+    @XmlElementWrapper(name="ALL-Customers", nillable = true)
     void setCustomers(List<Customer> customers) {
         this.customers = customers;
     }

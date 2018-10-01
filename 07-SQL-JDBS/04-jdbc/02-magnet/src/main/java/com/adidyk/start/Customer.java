@@ -1,6 +1,7 @@
 package com.adidyk.start;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 /**
@@ -9,7 +10,9 @@ import javax.xml.bind.annotation.XmlType;
  * @since 28.09.2018.
  * @version 1.0.
  */
+
 @XmlType(propOrder = {"id", "name", "age"})
+@XmlRootElement
 public class Customer {
 
     /**

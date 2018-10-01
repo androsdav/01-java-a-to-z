@@ -221,11 +221,12 @@ public class StartUi {
 
         try {
             //File file = new File("file.xml");
-            JAXBContext jaxbContext = JAXBContext.newInstance(Customer.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(Customer.class, Group.class);
             Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             //jaxbMarshaller.marshal(first, file);
-            marshaller.marshal(artur, System.out);
+            marshaller.marshal(first, System.out);
+            //marshaller.marshal(artur, System.out);
         } catch (JAXBException e) {
             e.printStackTrace();
         }
