@@ -1,6 +1,3 @@
--- create database  base_tracker
-CREATE DATABASE base_tracker;
-
 -- create table item
 CREATE TABLE item (
   id SERIAL PRIMARY KEY,
@@ -18,3 +15,30 @@ CREATE TABLE comments (
   item_id INT REFERENCES item(id) ON DELETE CASCADE
 );
 
+
+CREATE TABLE entry (
+  field integer
+);
+CREATE TABLE entry1 (
+  field integer
+);
+CREATE TABLE entry2 (
+  field integer
+);
+
+INSERT INTO entry(field) VALUES (1);
+INSERT INTO entry(field) VALUES (2);
+INSERT INTO entry(field) VALUES (3);
+INSERT INTO entry(field) VALUES (4);
+
+SELECT * FROM entry;
+DELETE FROM entry;
+
+DROP TABLE entry;
+DROP TABLE entry1;
+DROP TABLE entry2;
+
+SELECT * FROM main.sqlite_master WHERE main.sqlite_master.tbl_name = 'entry';
+SELECT * FROM main.sqlite_master;
+
+SELECT * FROM main.sqlite_master WHERE table_schema NOT IN ('information_schema','pg_catalog');

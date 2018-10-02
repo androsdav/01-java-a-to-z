@@ -8,6 +8,7 @@ import com.adidyk.setup.Settings;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -220,16 +221,22 @@ public class StartUi {
         third.setCustomers(customers3);
 
         try {
-            //File file = new File("file.xml");
+            File file = new File("file.xml");
             JAXBContext jaxbContext = JAXBContext.newInstance(Customer.class, Group.class);
             Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            //jaxbMarshaller.marshal(first, file);
+            marshaller.marshal(first, file);
             marshaller.marshal(first, System.out);
             //marshaller.marshal(artur, System.out);
         } catch (JAXBException e) {
             e.printStackTrace();
         }
+        Config config = new Config();
+        StoreSQL store = new StoreSQL(config);
+        if (!store.searchTable()) {
+            store.createTable();
+        }
+        store.generate(100);
     }
 
 }
