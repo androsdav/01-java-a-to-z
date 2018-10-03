@@ -1,14 +1,6 @@
 package com.adidyk.start;
 
-import com.adidyk.models.Item;
-
 import java.sql.*;
-
-import static com.adidyk.setup.Constant.*;
-
-//import static com.adidyk.setup.Constant.*;
-//import static com.adidyk.setup.Constant.ITEM;
-//import static com.adidyk.setup.Constant.TABLE_NAME;
 
 /**
  * Class StoreSQL for create jar file and start program.
@@ -38,20 +30,20 @@ class StoreSQL {
      * @return - returns true if table item exists, false - does not exists..
      */
     boolean searchTable() throws SQLException {
-        boolean result = false;
+        boolean found = false;
         Connection connect = DriverManager.getConnection(this.config.getUrl());
-        Statement st = connect.createStatement();
-        ResultSet rs = st.executeQuery("SELECT * FROM main.sqlite_master WHERE main.sqlite_master.tbl_name = 'entry'");
-        while (rs.next()) {
-            if ("entry".equals(rs.getString("tbl_name"))) {
-                result = true;
+        Statement statement = connect.createStatement();
+        ResultSet result = statement.executeQuery("SELECT * FROM main.sqlite_master WHERE main.sqlite_master.tbl_name = 'entry'");
+        while (result.next()) {
+            if ("entry".equals(result.getString("tbl_name"))) {
+                found = true;
                 break;
             }
         }
-        rs.close();
-        st.close();
+        result.close();
+        statement.close();
         connect.close();
-        return result;
+        return found;
     }
 
     /**
@@ -70,9 +62,20 @@ class StoreSQL {
      * @throws SQLException - is SQL exception.
      */
     void generate(int quantity) throws SQLException {
-        for (int counter = 0; counter < quantity; counter ++) {
-            this.addField(counter);
+        Connection connect = DriverManager.getConnection(this.config.getUrl());
+        connect.setAutoCommit(false);
+        PreparedStatement statement = connect.prepareStatement("INSERT INTO entry(field) VALUES (?)");
+        try {
+            for (int counter = 0; counter < quantity; counter++) {
+                statement.setInt(1, counter);
+                statement.executeUpdate();
+            }
+            connect.commit();
+        } catch (SQLException ex) {
+            connect.rollback();
         }
+        statement.close();
+        connect.close();
     }
 
     /**
