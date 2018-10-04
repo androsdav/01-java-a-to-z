@@ -1,14 +1,20 @@
 package com.adidyk.start;
 
+import com.adidyk.input.Input;
+import com.adidyk.input.ValidateInput;
+import com.adidyk.setup.ConfigDataBase;
+import com.adidyk.setup.Constant;
+import com.adidyk.setup.Settings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import com.adidyk.input.Input;
-import com.adidyk.input.ValidateInput;
-import com.adidyk.setup.*;
+
 import static com.adidyk.setup.Constant.*;
 
 /**
@@ -34,6 +40,11 @@ public class StartUi {
      * @param menu - link variable to object of class MenuTracker.
      */
     private MenuTracker menu;
+
+    /**
+     * @param log - link variable to object of class Logger.
+     */
+    private static final Logger log = LoggerFactory.getLogger(StartUi.class);
 
     /**
      * StartUi - constructor.
@@ -114,8 +125,8 @@ public class StartUi {
      private void connect()  {
          try {
              this.connect = DriverManager.getConnection(URL_BASE_TRACKER, NAME, PASSWORD);
-         } catch (SQLException e) {
-             e.printStackTrace();
+         } catch (SQLException ex) {
+             log.error(ex.getMessage(), ex);
          }
      }
 
@@ -150,8 +161,8 @@ public class StartUi {
         if (this.connect != null) {
             try {
                 this.connect.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+            } catch (SQLException ex) {
+                log.error(ex.getMessage(), ex);
             }
         }
     }
