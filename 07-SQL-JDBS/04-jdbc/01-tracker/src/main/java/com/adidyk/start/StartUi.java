@@ -27,7 +27,6 @@ public class StartUi {
      */
     private Input input;
 
-
     /**
      * @param connect - link variable to object of class Connect.
      */
