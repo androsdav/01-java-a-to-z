@@ -32,6 +32,7 @@ INSERT INTO entry(field) VALUES (3);
 INSERT INTO entry(field) VALUES (4);
 
 SELECT * FROM entry;
+SELECT * FROM entry WHERE entry.field = 3;
 DELETE FROM entry;
 
 DROP TABLE entry;
