@@ -3,9 +3,11 @@ package com.adidyk.start;
 import com.adidyk.input.Input;
 import com.adidyk.models.Comment;
 import com.adidyk.models.Item;
+import org.slf4j.LoggerFactory;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+
 import static com.adidyk.setup.Constant.*;
 
 /**
@@ -30,6 +32,11 @@ class MenuTracker {
      * @param action - link variable to ArrayList<UserAction>.
      */
     private ArrayList<UserAction> actions = new ArrayList<>();
+
+    /**
+     * @param log - link variable to object of class Logger.
+     */
+    private static final org.slf4j.Logger log = LoggerFactory.getLogger(MenuTracker.class);
 
     /**
      * MenuTracker - constructor.
@@ -61,10 +68,13 @@ class MenuTracker {
     /**
      * select - selects action (мфдгу) by key.
      * @param key - key of index menu.
-     * @throws SQLException - sql exception.
      */
-    void select(int key) throws SQLException {
-        this.actions.get(key - 1).execute(this.input, this.tracker);
+    void select(int key) {
+        try {
+            this.actions.get(key - 1).execute(this.input, this.tracker);
+        } catch (SQLException ex) {
+            log.error(ex.getMessage(), ex);
+        }
     }
 
     /**
@@ -96,9 +106,8 @@ class MenuTracker {
      * @param tracker - link variable to object of class Tracker.
      * @param getComments - if getComments = true comments are showed,
      * if getComments = false comments are not showed.
-     * @throws SQLException - sql exception.
      */
-    private void outputAllItem(Tracker tracker, boolean getComments) throws SQLException {
+    private void outputAllItem(Tracker tracker, boolean getComments) {
         itemTable();
         for (Item item : tracker.getAllItem()) {
             System.out.println(item);
@@ -115,9 +124,8 @@ class MenuTracker {
      * outputAllComments - shows all comments for item by id.
      * @param tracker - link variable to object of class Tracker.
      * @param item - link variable to object of class Item.
-     * @throws SQLException - sql exception.
      */
-    private void outputAllComments(Tracker tracker, Item item) throws SQLException {
+    private void outputAllComments(Tracker tracker, Item item) {
         commentTable();
         for (Comment comment : tracker.searchCommentByItemId(item.getId())) {
             System.out.println(comment);
@@ -146,7 +154,6 @@ class MenuTracker {
          * @return - returns number of index of menu (1).
          */
         @Override
-
         public int key() {
             return 1;
         }
@@ -155,10 +162,9 @@ class MenuTracker {
          * execute - shows all items without comments.
          * @param input - link variable to object of class ValidateInput.
          * @param tracker - link variable to object of class Tracker.
-         * @throws SQLException - sql exception.
          */
         @Override
-        public void execute(Input input, Tracker tracker) throws SQLException {
+        public void execute(Input input, Tracker tracker) {
             outputAllItem(tracker, false);
         }
 
@@ -192,10 +198,9 @@ class MenuTracker {
          * execute - shows all items with comments.
          * @param input - link variable to object of class ValidateInput.
          * @param tracker - link variable to object of class Tracker.
-         * @throws SQLException - sql exception.
          */
         @Override
-        public void execute(Input input, Tracker tracker) throws SQLException {
+        public void execute(Input input, Tracker tracker) {
             outputAllItem(tracker, true);
         }
 
@@ -229,10 +234,9 @@ class MenuTracker {
          * execute - adds new item.
          * @param input - link variable to object of class ValidateInput.
          * @param tracker - link variable to object of class Tracker.
-         * @throws SQLException - sql exception.
          */
         @Override
-        public void execute(Input input, Tracker tracker) throws SQLException {
+        public void execute(Input input, Tracker tracker) {
             String name = input.ask(" [action] input name item: ");
             String desc = input.ask(" [action] input desc item: ");
             tracker.addItem(new Item(name, desc,  new Date().getTime()));
@@ -268,10 +272,9 @@ class MenuTracker {
          * execute - shows search result - search item by id.
          * @param input - link variable to object of class ValidateInput.
          * @param tracker - link variable to object of class Tracker.
-         * @throws SQLException - sql exception.
          */
         @Override
-        public void execute(Input input, Tracker tracker) throws SQLException {
+        public void execute(Input input, Tracker tracker) {
             String id = input.askInt(" [action] input id: ");
             Item item = tracker.searchItemById(id);
             if (item != null) {
@@ -313,13 +316,12 @@ class MenuTracker {
         }
 
         /**
-         * execute -  shows all items for set name.
+         * execute - shows all items for set name.
          * @param input - link variable to object of class ValidateInput.
          * @param tracker - link variable to object of class Tracker.
-         * @throws SQLException - sql exception.
          */
         @Override
-        public void execute(Input input, Tracker tracker) throws SQLException {
+        public void execute(Input input, Tracker tracker) {
             String name = input.ask(" [action] input name item: ");
             boolean search = false;
             for (Item item : tracker.getAllItem()) {
@@ -367,10 +369,9 @@ class MenuTracker {
          * execute - shows all items for set description.
          * @param input - link variable to object of class ValidateInput.
          * @param tracker - link variable to object of class Tracker.
-         * @throws SQLException - sql exception.
          */
         @Override
-        public void execute(Input input, Tracker tracker) throws SQLException {
+        public void execute(Input input, Tracker tracker) {
             String desc = input.ask(" [action] input desc item: ");
             boolean search = false;
             for (Item item : tracker.getAllItem()) {
@@ -418,10 +419,9 @@ class MenuTracker {
          * execute - removes item by id.
          * @param input - link variable to object of class ValidateInput.
          * @param tracker - link variable to object of class Tracker.
-         * @throws SQLException - sql exception.
          */
         @Override
-        public void execute(Input input, Tracker tracker) throws SQLException {
+        public void execute(Input input, Tracker tracker) {
             String id = input.askInt(" [action] input id: ");
             if (tracker.searchItemById(id) != null) {
                 tracker.removeItemById(id);
@@ -460,10 +460,9 @@ class MenuTracker {
          * execute - update item by id.
          * @param input - link variable to object of class ValidateInput.
          * @param tracker - link variable to object of class Tracker.
-         * @throws SQLException - sql exception.
          */
         @Override
-        public void execute(Input input, Tracker tracker) throws SQLException {
+        public void execute(Input input, Tracker tracker) {
             String id = input.askInt(" [action] input id: ");
             if (tracker.searchItemById(id) != null) {
                 String name = input.ask(" [action] input new name item: ");
@@ -507,10 +506,9 @@ class MenuTracker {
          * execute - adds comment by item id..
          * @param input - link variable to object of class ValidateInput.
          * @param tracker - link variable to object of class Tracker.
-         * @throws SQLException - sql exception.
          */
         @Override
-        public void execute(Input input, Tracker tracker) throws SQLException {
+        public void execute(Input input, Tracker tracker) {
             String id = input.askInt(" [action] input id: ");
             if (tracker.searchItemById(id) != null) {
                 String name = input.ask(" [action] input name comment: ");

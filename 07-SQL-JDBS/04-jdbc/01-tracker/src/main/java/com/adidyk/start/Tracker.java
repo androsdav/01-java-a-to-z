@@ -60,7 +60,7 @@ class Tracker {
 	 * @param id - id item.
 	 * @return - returns item if search result true and returns null if search result false.
 	 */
-	Item searchItemById(String id){
+	Item searchItemById(String id) {
 		Item item = null;
 		PreparedStatement statement;
 		try {

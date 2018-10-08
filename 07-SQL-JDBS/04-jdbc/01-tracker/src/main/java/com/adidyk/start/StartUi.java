@@ -7,14 +7,11 @@ import com.adidyk.setup.Constant;
 import com.adidyk.setup.Settings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
 import static com.adidyk.setup.Constant.*;
 
 /**
@@ -49,19 +46,15 @@ public class StartUi {
     /**
      * StartUi - constructor.
      * @param input - link variable to object of class Connect.
-     * @throws SQLException - is exception.
      */
-    private StartUi(Input input) throws SQLException {
+    private StartUi(Input input) {
         this.input = input;
     }
 
     /**
      * start - starts program.
-     * @throws SQLException - sql exception.
-     * @throws IOException - io exception.
-     * @throws ClassNotFoundException - class not found exception.
      */
-    private void start() throws SQLException, IOException, ClassNotFoundException {
+    private void start() {
         this.loadSetting();
         this.configDataBase();
         this.connect();
@@ -72,35 +65,30 @@ public class StartUi {
 
     /**
      * loadSetting - loads params from file app.properties to class Constant.
-     * @throws IOException - io exception.
      */
-    private void loadSetting() throws IOException {
+    private void loadSetting() {
         Settings setting = new Settings();
         ClassLoader loader = Settings.class.getClassLoader();
         try (InputStream is = loader.getResourceAsStream("app.properties")) {
             setting.load(is);
             new Constant(setting);
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
+        } catch (IOException ex) {
+            log.error(ex.getMessage(), ex);
         }
     }
 
     /**
      * configDataBase - checks if there is database and checks if there is table item.
-     * @throws SQLException - sql exception.
-     * @throws ClassNotFoundException - class not found exception.
      */
-    private void configDataBase() throws SQLException, ClassNotFoundException {
+    private void configDataBase() {
         this.checkDataBase();
         this.checkTables();
     }
 
     /**
      * checkDataBase - checks if there is database.
-     * @throws SQLException - sql exception.
-     * @throws ClassNotFoundException - class not found exception.
      */
-    private void checkDataBase() throws SQLException, ClassNotFoundException {
+    private void checkDataBase() {
         ConfigDataBase config = new ConfigDataBase();
         if (!config.searchDataBase()) {
             config.createDataBase();
@@ -109,9 +97,8 @@ public class StartUi {
 
     /**
      * checkTable - checks if there is table item.
-     * @throws SQLException - sql exception.
      */
-    private void checkTables() throws SQLException {
+    private void checkTables() {
         ConfigDataBase config = new ConfigDataBase();
         if (!config.searchTables()) {
             config.createTableItem();
@@ -140,9 +127,8 @@ public class StartUi {
 
     /**
      * work - starts to works program.
-     * @throws SQLException - sql exception.
      */
-    private void work() throws SQLException {
+    private void work() {
         this.menu.fillAction();
         while (true) {
             this.menu.show();
@@ -170,11 +156,8 @@ public class StartUi {
     /**
      * main - creates jar file and runs program.
      * @param arg - is nothing.
-     * @throws SQLException - sql exception.
-     * @throws IOException - io exception.
-     * @throws ClassNotFoundException - class not found exception.
      */
-    public static void main(String[] arg) throws SQLException, IOException, ClassNotFoundException {
+    public static void main(String[] arg) {
         Input input = new ValidateInput();
         new StartUi(input).start();
     }

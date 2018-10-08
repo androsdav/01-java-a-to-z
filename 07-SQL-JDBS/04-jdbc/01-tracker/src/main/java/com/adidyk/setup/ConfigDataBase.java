@@ -2,9 +2,7 @@ package com.adidyk.setup;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.sql.*;
-
 import static com.adidyk.setup.Constant.*;
 
 /**
@@ -115,7 +113,7 @@ public class ConfigDataBase {
             connect = DriverManager.getConnection(URL_BASE_TRACKER, NAME, PASSWORD);
             connect.createStatement().executeUpdate(CREATE_TABLE_ITEM);
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            log.error(ex.getMessage(), ex);
         } finally {
             if (connect != null) {
                 try {
@@ -136,7 +134,7 @@ public class ConfigDataBase {
             connect = DriverManager.getConnection(URL_BASE_TRACKER, NAME, PASSWORD);
             connect.createStatement().executeUpdate(CREATE_TABLE_COMMENTS);
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            log.error(ex.getMessage(), ex);
         }
         finally {
             if (connect != null) {
