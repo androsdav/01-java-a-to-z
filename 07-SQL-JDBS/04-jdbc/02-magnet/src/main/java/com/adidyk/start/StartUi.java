@@ -236,7 +236,7 @@ public class StartUi {
         if (!store.searchTable()) {
             store.createTable();
         }
-        store.generate(17);
+        store.generate(11);
     }
 
 }
