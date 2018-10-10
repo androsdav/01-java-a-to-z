@@ -111,7 +111,7 @@ class StoreSQL {
     }
 
     /**
-     *
+     * clearTable - clears table.
      */
     private void clearTable() throws SQLException {
         Connection connect = DriverManager.getConnection(this.config.getUrl());

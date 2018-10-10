@@ -3,6 +3,7 @@ package com.adidyk.start;
 import com.adidyk.input.Input;
 import com.adidyk.setup.ConfigDataBase;
 import com.adidyk.setup.Constant;
+import com.adidyk.setup.Entry;
 import com.adidyk.setup.Settings;
 
 import javax.xml.bind.JAXBContext;
@@ -237,6 +238,26 @@ public class StartUi {
             store.createTable();
         }
         store.generate(11);
+
+        //----------------------
+        System.out.println();
+        Field field = new Field(1);
+        //field.setField(1);
+        Field field1 = new Field(2);
+        //field1.setField(2);
+        Entry entry = new Entry();
+        //entry.setEntries(new ArrayList<Field>(field, field1));
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(Field.class);
+            Marshaller marshaller = jaxbContext.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            marshaller.marshal(field, System.out);
+
+        } catch (JAXBException ex) {
+            ex.printStackTrace();
+        }
     }
+
+
 
 }
