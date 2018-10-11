@@ -1,9 +1,10 @@
 package com.adidyk.start;
 
 import com.adidyk.input.Input;
+import com.adidyk.models.Field;
 import com.adidyk.setup.ConfigDataBase;
 import com.adidyk.setup.Constant;
-import com.adidyk.setup.Entry;
+import com.adidyk.models.Entry;
 import com.adidyk.setup.Settings;
 
 import javax.xml.bind.JAXBContext;
@@ -222,11 +223,11 @@ public class StartUi {
         third.setCustomers(customers3);
 
         try {
-            File file = new File("file.xml");
+            //File file = new File("file.xml");
             JAXBContext jaxbContext = JAXBContext.newInstance(Customer.class, Group.class);
             Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            marshaller.marshal(first, file);
+            //marshaller.marshal(first, file);
             marshaller.marshal(first, System.out);
             //marshaller.marshal(artur, System.out);
         } catch (JAXBException e) {
@@ -237,16 +238,43 @@ public class StartUi {
         if (!store.searchTable()) {
             store.createTable();
         }
-        store.generate(11);
+        store.generate(15);
+        StoreXML storeXML = new StoreXML(new File("target.xml"));
+        storeXML.getAllField();
+        storeXML.save();
 
         //----------------------
+
+        /*
+        Field field1 = new Field();
+        field1.setField(1);
+        Field field2 = new Field();
+        field2.setField(2);
+        Entry entry1 = new Entry();
+        List<Field> list1 = new ArrayList<>();
+        list1.add(field1);
+        list1.add(field2);
+        entry1.setList(list1);
+
+        Field field3 = new Field();
+        field3.setField(3);
+        Field field4 = new Field();
+        field4.setField(4);
+        Entry entry2 = new Entry();
+        List<Field> list2 = new ArrayList<>();
+        list2.add(field3);
+        list2.add(field1);
+        entry2.setList(list2);
+
+        List<Entry> test = new ArrayList<>();
+        test.add(entry1);
+        test.add(entry2);
+
+        StoreXML storeXML = new StoreXML(new File("target.xml"));
+      //  storeXML.save(test);
+
+        /*
         System.out.println();
-        Field field = new Field(1);
-        //field.setField(1);
-        Field field1 = new Field(2);
-        //field1.setField(2);
-        Entry entry = new Entry();
-        //entry.setEntries(new ArrayList<Field>(field, field1));
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(Field.class);
             Marshaller marshaller = jaxbContext.createMarshaller();
@@ -256,6 +284,23 @@ public class StartUi {
         } catch (JAXBException ex) {
             ex.printStackTrace();
         }
+
+        System.out.println();
+
+        /*
+        File file = new File("file.xml");
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(Entry.class);
+            Marshaller marshaller = jaxbContext.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            marshaller.marshal(entry34, System.out);
+            marshaller.marshal(entry34, file);
+
+        } catch (JAXBException ex) {
+            ex.printStackTrace();
+        }
+        */
+
     }
 
 
