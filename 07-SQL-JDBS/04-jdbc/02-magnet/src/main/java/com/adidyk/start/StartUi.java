@@ -10,6 +10,7 @@ import com.adidyk.setup.Settings;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.transform.TransformerException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -172,7 +173,7 @@ public class StartUi {
      * @throws IOException - io exception.
      * @throws ClassNotFoundException - class not found exception.
      */
-    public static void main(String[] arg) throws SQLException, IOException, ClassNotFoundException {
+    public static void main(String[] arg) throws SQLException, IOException, ClassNotFoundException, TransformerException {
         //Input input = new ValidateInput();
         //new StartUi(input).start();
         List<Customer> customers = new ArrayList<>();
@@ -242,6 +243,8 @@ public class StartUi {
         StoreXML storeXML = new StoreXML(new File("target.xml"));
         storeXML.getAllField();
         storeXML.save();
+        ConvertXSQT convert = new ConvertXSQT();
+        convert.convert(new File("target.xml"), new File("dest.xml"), new File("scheme.xsl"));
 
         //----------------------
 
