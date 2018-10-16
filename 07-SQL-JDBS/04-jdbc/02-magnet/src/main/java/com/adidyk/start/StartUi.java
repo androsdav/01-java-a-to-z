@@ -239,7 +239,7 @@ public class StartUi {
         if (!store.searchTable()) {
             store.createTable();
         }
-        store.generate(15);
+        store.generate(20);
         StoreXML storeXML = new StoreXML(new File("target.xml"));
         storeXML.getAllField();
         storeXML.save();
