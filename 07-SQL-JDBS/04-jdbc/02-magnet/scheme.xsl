@@ -6,7 +6,7 @@
             <xsl:for-each select="entries/entry">
             <entry>
                 <xsl:attribute name="href">
-                    <xsl:value-of select="field"/><br />
+                    <xsl:value-of select="field"/>
                 </xsl:attribute>
              </entry>
             </xsl:for-each>
