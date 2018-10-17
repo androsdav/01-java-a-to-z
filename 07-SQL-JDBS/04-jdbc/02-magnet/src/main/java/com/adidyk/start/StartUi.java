@@ -1,5 +1,6 @@
 package com.adidyk.start;
 
+//import com.adidyk.PurserSAX;
 import com.adidyk.input.Input;
 import com.adidyk.models.Field;
 import com.adidyk.setup.ConfigDataBase;
@@ -239,12 +240,15 @@ public class StartUi {
         if (!store.searchTable()) {
             store.createTable();
         }
-        store.generate(20);
+        store.generate(4);
         StoreXML storeXML = new StoreXML(new File("target.xml"));
         storeXML.getAllField();
         storeXML.save();
         ConvertXSQT convert = new ConvertXSQT();
         convert.convert(new File("target.xml"), new File("dest.xml"), new File("scheme.xsl"));
+        PurserSAX purser = new PurserSAX(new File("dest.xml"));
+        purser.purserSAX();
+        purser.print();
 
         //----------------------
 

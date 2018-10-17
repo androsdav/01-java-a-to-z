@@ -97,7 +97,7 @@ class StoreSQL {
         connect.setAutoCommit(false);
         PreparedStatement statement = connect.prepareStatement("INSERT INTO entry(field) VALUES (?)");
         try {
-            for (int counter = 1; counter < quantity; counter++) {
+            for (int counter = 1; counter <= quantity; counter++) {
                 statement.setInt(1, counter);
                 statement.executeUpdate();
             }
