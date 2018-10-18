@@ -6,7 +6,7 @@ import java.sql.*;
 import static com.adidyk.setup.Constant.*;
 
 /**
- * Class StoreSQL for create jar file and start program.
+ * Class StoreSQL used for check structure database.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 02.10.2018.
  * @version 1.0.
@@ -19,9 +19,9 @@ class StoreSQL {
     private static final Logger log = LoggerFactory.getLogger(StoreSQL.class);
 
     /**
-     * searchTable - searches table (query sql) ITEM (item). If table item exists then method returns true,
+     * searchTable - searches table (query sql) ENTRY (entry). If table item exists then method returns true,
      * if table item does not exists then method returns false.
-     * @return - returns true if table item exists, false - does not exists..
+     * @return - returns true if table item exists, false - does not exists.
      */
     boolean searchTable() {
         boolean found = false;
@@ -31,7 +31,7 @@ class StoreSQL {
             Statement statement = connect.createStatement();
             ResultSet result = statement.executeQuery(SEARCH_TABLE_ENTRY);
             while (result.next()) {
-                if (ENTRY.equals(result.getString("tbl_name"))) {
+                if (ENTRY.equals(result.getString(TABLE_NAME))) {
                     found = true;
                     break;
                 }
@@ -53,7 +53,7 @@ class StoreSQL {
     }
 
     /**
-     * createTableItem - connect to database base_tracker and creates table item.
+     * createTableItem - connect to database magnet.sqlite and creates table entry.
      */
     void createTable() {
         Connection connect = null;
@@ -74,11 +74,10 @@ class StoreSQL {
     }
 
     /**
-     * generate - generate.
-     * @param quantity   -  is quantity.
-     * @throws SQLException - is SQL exception.
+     * generate - generates number of fields in table entry.
+     * @param quantity - number of fields in entry.
      */
-    void generate(int quantity) throws SQLException {
+    void generate(int quantity) {
         this.clearTable();
         Connection connect = null;
         try {
@@ -93,7 +92,11 @@ class StoreSQL {
             statement.close();
         } catch (SQLException ex) {
             if (connect != null) {
-                connect.rollback();
+                try {
+                    connect.rollback();
+                } catch (SQLException e) {
+                    log.error(ex.getMessage(), ex);
+                }
             }
         } finally {
             if (connect != null) {
@@ -107,7 +110,7 @@ class StoreSQL {
     }
 
     /**
-     * clearTable - clears table.
+     * clearTable - clears all fields in table entry.
      */
     private void clearTable() {
         Connection connect = null;
