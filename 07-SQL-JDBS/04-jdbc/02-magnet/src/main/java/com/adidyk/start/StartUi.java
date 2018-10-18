@@ -1,26 +1,17 @@
 package com.adidyk.start;
 
-//import com.adidyk.PurserSAX;
-import com.adidyk.input.Input;
-import com.adidyk.models.Field;
-import com.adidyk.setup.ConfigDataBase;
 import com.adidyk.setup.Constant;
-import com.adidyk.models.Entry;
 import com.adidyk.setup.Settings;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
 import javax.xml.transform.TransformerException;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+
+import static com.adidyk.setup.Constant.QUANTITY;
 
 /**
  * Class StartUi for create jar file and start program.
@@ -31,11 +22,6 @@ import java.util.List;
 public class StartUi {
 
     /**
-     * @param input - link variable to object ValidateInput.
-     */
-    private Input input;
-
-    /**
      * @param connect - link variable to object of class Connect.
      */
     private Connection connect = null;
@@ -43,16 +29,16 @@ public class StartUi {
     /**
      * @param menu - link variable to object of class MenuTracker.
      */
-    private MenuTracker menu;
 
     /**
      * StartUi - constructor.
-     * @param input - link variable to object of class Connect.
      * @throws SQLException - is exception.
      */
-    private StartUi(Input input) throws SQLException {
-        this.input = input;
-    }
+
+    /**
+     *
+     */
+    private final StoreSQL storeSQL = new StoreSQL();
 
     /**
      * start - starts program.
@@ -61,9 +47,9 @@ public class StartUi {
      * @throws ClassNotFoundException - class not found exception.
      */
     private void start() throws SQLException, IOException, ClassNotFoundException {
-        //this.loadSetting();
-        //this.configDataBase();
-        this.connect();
+        this.loadSetting();
+        this.configDataBase();
+        //this.connect();
         //this.init();
         //this.work();
         //this.disconnect();
@@ -90,33 +76,15 @@ public class StartUi {
      * @throws ClassNotFoundException - class not found exception.
      */
     private void configDataBase() throws SQLException, ClassNotFoundException {
-        this.checkDataBase();
-        this.checkTables();
+        if (!this.storeSQL.searchTable()) {
+            this.storeSQL.createTable();
+        }
+        this.storeSQL.generate(QUANTITY);
     }
 
-    /**
-     * checkDataBase - checks if there is database.
-     * @throws SQLException - sql exception.
-     * @throws ClassNotFoundException - class not found exception.
-     */
-    private void checkDataBase() throws SQLException, ClassNotFoundException {
-        ConfigDataBase config = new ConfigDataBase();
-        if (!config.searchDataBase()) {
-            config.createDataBase();
-        }
-    }
 
-    /**
-     * checkTable - checks if there is table item.
-     * @throws SQLException - sql exception.
-     */
-    private void checkTables() throws SQLException {
-        ConfigDataBase config = new ConfigDataBase();
-        if (!config.searchTables()) {
-            config.createTableItem();
-            config.createTableComments();
-        }
-    }
+
+
 
     /**
      * connect - connects to database base_tracker.
@@ -134,8 +102,6 @@ public class StartUi {
      * init - initialization parameters tracker and menu.
      */
     private void init() {
-        Tracker tracker = new Tracker(this.connect);
-        this.menu = new MenuTracker(this.input, tracker);
     }
 
     /**
@@ -143,15 +109,6 @@ public class StartUi {
      * @throws SQLException - sql exception.
      */
     private void work() throws SQLException {
-        this.menu.fillAction();
-        while (true) {
-            this.menu.show();
-            int key = this.input.ask(" Choose key: ", this.menu.getIndexActions());
-            this.menu.select(key);
-            if (key == this.menu.getIndexActions().length) {
-                break;
-            }
-        }
     }
 
     /**
@@ -176,7 +133,8 @@ public class StartUi {
      */
     public static void main(String[] arg) throws SQLException, IOException, ClassNotFoundException, TransformerException {
         //Input input = new ValidateInput();
-        //new StartUi(input).start();
+        new StartUi().start();
+        /*
         List<Customer> customers = new ArrayList<>();
         // customer
         Customer artur = new Customer();
@@ -235,8 +193,7 @@ public class StartUi {
         } catch (JAXBException e) {
             e.printStackTrace();
         }
-        Config config = new Config();
-        StoreSQL store = new StoreSQL(config);
+        StoreSQL store = new StoreSQL();
         if (!store.searchTable()) {
             store.createTable();
         }

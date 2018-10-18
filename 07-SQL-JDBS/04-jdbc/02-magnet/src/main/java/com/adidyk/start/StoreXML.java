@@ -10,6 +10,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.adidyk.setup.Constant.URL;
+
 /**
  * Class StoreSQL for create jar file and start program.
  * @author Didyk Andrey (androsdav@bigmir.net).
@@ -28,8 +30,6 @@ public class StoreXML {
       */
     private Entry entry = new Entry();
 
-    private Config config = new Config();
-
     /**
      *
      * @param target - is file.
@@ -44,7 +44,7 @@ public class StoreXML {
     public void getAllField() throws SQLException {
         Connection connect;
         List<Field> fields = new ArrayList<>();
-        connect = DriverManager.getConnection(this.config.getUrl());
+        connect = DriverManager.getConnection(URL);
         PreparedStatement statement = connect.prepareStatement("SELECT * FROM entry");
         ResultSet result = statement.executeQuery();
         while (result.next()) {

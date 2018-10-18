@@ -75,11 +75,6 @@ public class Constant {
     static String SEARCH_DATA_BASE;
 
     /**
-     * @param SEARCH_TABLE - query sql: search table -> item (from app.properties).
-     */
-    static String SEARCH_TABLE;
-
-    /**
      * @param CREATE_DATA_BASE - query sql: create database -> base_tracker (from app.properties).
      */
     static String CREATE_DATA_BASE;
@@ -109,11 +104,54 @@ public class Constant {
      */
     static String TABLE_NAME;
 
+    /**************************************************
+     * @param URl - url.
+     */
+    public static String URL;
+
+    /**
+     *
+     */
+    public static int QUANTITY;
+
+    /**
+     * @param SEARCH_TABLE - query sql: search table -> item (from app.properties).
+     */
+    public static String SEARCH_TABLE_ENTRY;
+
+    /**
+     *
+     */
+    public static String CREATE_TABLE_ENTRY;
+
+    /**
+     *
+     */
+    public static String ADD_FIELD;
+
+    /**
+     *
+     */
+    public static String CLEAR_TABLE_ENTRY;
+
+    /**
+     *
+     */
+    public static String ENTRY;
+
     /**
      * Constant - constructor (reads all parameters from file app.properties).
      * @param set - link to object of class Setting.
      */
     public Constant(Settings set) {
+        URL = set.getValue("app.url");
+        QUANTITY = Integer.parseInt(set.getValue("app.quantity"));
+        SEARCH_TABLE_ENTRY = set.getValue("app.searchTableEntry");
+        CREATE_TABLE_ENTRY = set.getValue("app.createTableEntry");
+        ADD_FIELD = set.getValue("app.addField");
+        CLEAR_TABLE_ENTRY = set.getValue("app.clearTableEntry");
+        ENTRY = set.getValue("app.entry");
+
         URL_BASE_TRACKER = set.getValue("app.urlBaseTracker");
         URL_BASE_POSTGRES = set.getValue("app.urlBasePostgres");
         NAME = set.getValue("app.name");
@@ -127,7 +165,7 @@ public class Constant {
         ADD_COMMENT_BY_ID = set.getValue("app.addCommentById");
         SEARCH_COMMENT_BY_ITEM_ID = set.getValue("app.searchCommentByItemId");
         SEARCH_DATA_BASE = set.getValue("app.searchDataBase");
-        SEARCH_TABLE = set.getValue("app.searchTable");
+        //SEARCH_TABLE = set.getValue("app.searchTable");
         CREATE_DATA_BASE = set.getValue("app.createDataBase");
         CREATE_TABLE_ITEM = set.getValue("app.createTableItem");
         CREATE_TABLE_COMMENTS = set.getValue("app.createTableComments");

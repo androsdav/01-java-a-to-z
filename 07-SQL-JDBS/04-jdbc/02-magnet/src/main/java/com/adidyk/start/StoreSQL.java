@@ -1,9 +1,9 @@
 package com.adidyk.start;
 
-import com.adidyk.setup.ConfigDataBase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.sql.*;
+import static com.adidyk.setup.Constant.*;
 
 /**
  * Class StoreSQL for create jar file and start program.
@@ -14,22 +14,9 @@ import java.sql.*;
 class StoreSQL {
 
     /**
-     * @param config - link variable to object of class Config.
-     */
-    private Config config;
-
-    /**
      * @param log - link variable to object of class Logger.
      */
-    private static final Logger log = LoggerFactory.getLogger(ConfigDataBase.class);
-
-    /**
-     * StoreSqQL - constructor.
-     * @param config - link variable to object of class config.
-     */
-    StoreSQL(Config config) {
-        this.config = config;
-    }
+    private static final Logger log = LoggerFactory.getLogger(StoreSQL.class);
 
     /**
      * searchTable - searches table (query sql) ITEM (item). If table item exists then method returns true,
@@ -40,11 +27,11 @@ class StoreSQL {
         boolean found = false;
         Connection connect = null;
         try {
-            connect = DriverManager.getConnection(this.config.getUrl());
+            connect = DriverManager.getConnection(URL);
             Statement statement = connect.createStatement();
-            ResultSet result = statement.executeQuery("SELECT * FROM main.sqlite_master WHERE main.sqlite_master.tbl_name = 'entry'");
+            ResultSet result = statement.executeQuery(SEARCH_TABLE_ENTRY);
             while (result.next()) {
-                if ("entry".equals(result.getString("tbl_name"))) {
+                if (ENTRY.equals(result.getString("tbl_name"))) {
                     found = true;
                     break;
                 }
@@ -71,10 +58,10 @@ class StoreSQL {
     void createTable() {
         Connection connect = null;
         try {
-            connect = DriverManager.getConnection(this.config.getUrl());
-            connect.createStatement().executeUpdate("CREATE TABLE entry (field integer)");
-        } catch (SQLException e) {
-            e.printStackTrace();
+            connect = DriverManager.getConnection(URL);
+            connect.createStatement().executeUpdate(CREATE_TABLE_ENTRY);
+        } catch (SQLException ex) {
+            log.error(ex.getMessage(), ex);
         } finally {
             if (connect != null) {
                 try {
@@ -93,47 +80,51 @@ class StoreSQL {
      */
     void generate(int quantity) throws SQLException {
         this.clearTable();
-        Connection connect = DriverManager.getConnection(this.config.getUrl());
-        connect.setAutoCommit(false);
-        PreparedStatement statement = connect.prepareStatement("INSERT INTO entry(field) VALUES (?)");
+        Connection connect = null;
         try {
+            connect = DriverManager.getConnection(URL);
+            connect.setAutoCommit(false);
+            PreparedStatement statement = connect.prepareStatement(ADD_FIELD);
             for (int counter = 1; counter <= quantity; counter++) {
                 statement.setInt(1, counter);
                 statement.executeUpdate();
             }
             connect.commit();
+            statement.close();
         } catch (SQLException ex) {
-            connect.rollback();
+            if (connect != null) {
+                connect.rollback();
+            }
+        } finally {
+            if (connect != null) {
+                try {
+                    connect.close();
+                } catch (SQLException ex) {
+                    log.error(ex.getMessage(), ex);
+                }
+            }
         }
-        statement.close();
-        connect.close();
     }
 
     /**
      * clearTable - clears table.
      */
-    private void clearTable() throws SQLException {
-        Connection connect = DriverManager.getConnection(this.config.getUrl());
-        connect.createStatement().executeUpdate("DELETE FROM entry");
-        connect.close();
+    private void clearTable() {
+        Connection connect = null;
+        try {
+            connect = DriverManager.getConnection(URL);
+            connect.createStatement().executeUpdate(CLEAR_TABLE_ENTRY);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (connect != null) {
+                try {
+                    connect.close();
+                } catch (SQLException ex) {
+                    log.error(ex.getMessage(), ex);
+                }
+            }
+        }
     }
-
-    /*
-    /**
-     * addItem - adds new item to item table in database base_tracker
-     * (used query sql -> ADD_ITEM).
-     * @param counter - link variable to object of class Item.
-     * @throws SQLException - is SQL exception.
-     */
-    /*
-    void addField(int counter) throws SQLException {
-        Connection connect = DriverManager.getConnection(this.config.getUrl());
-        PreparedStatement st = connect.prepareStatement("INSERT INTO entry(field) VALUES (?)");
-        st.setInt(1, counter);
-        st.executeUpdate();
-        st.close();
-        connect.close();
-    }
-    */
 
 }
