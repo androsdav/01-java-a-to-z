@@ -63,10 +63,22 @@ public class StartUi {
         System.out.println("hello world !!!");
         Connection connection = Jsoup.connect("http://www.sql.ru/forum/job-offers");
         Document document = connection.get();
-        Elements elements = document.getElementsByAttributeValue("class", "postslisttopic");
-        for (Element theme : elements) {
-            System.out.println(theme.child(0).text());
-            Element author = doc
+        Elements forumTable = document.getElementsByAttributeValue("class", "forumTable");
+        Elements topic = document.getElementsByAttributeValue("class", "postslisttopic");
+        Elements author = document.getElementsByAttributeValue("class", "altCol");
+
+        System.out.println(topic.size());
+        for
+
+        //for (int index = 0; index < topic.size(); index++) {
+            //System.out.println(topic.text());
+            //System.out.println();
+            //System.out.println(author.text());
+            //System.out.println(author.next().text());
+        //}
+
+            //System.out.println(topic.child(0).text());
+            //Element author = doc
 
 
             //System.out.println(element.before("td"));
@@ -81,6 +93,5 @@ public class StartUi {
         //System.out.println(document.title());
         //System.out.println(document.head());
         //new StartUi().start();
-    }
-
 }
+
