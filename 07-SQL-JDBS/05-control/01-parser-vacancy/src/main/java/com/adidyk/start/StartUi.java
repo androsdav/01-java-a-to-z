@@ -16,6 +16,8 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Class StartUi for create jar file and start program.
@@ -63,20 +65,37 @@ public class StartUi {
      */
     public static void main(String[] arg) throws IOException {
         System.out.println("hello world !!!");
+
+        /*
+        String string = "zczczxc java dasdkjavadsd JaVaScript aaaaaa aajava JAVAa dsJAVAJAVA JAVA JavaScript jAVa";
+        Pattern pattern = Pattern.compile("(?i)(\\bjava\\b)");
+        Matcher matcher = pattern.matcher(string);
+        /*
+        while (matcher.find()) {
+            System.out.println(matcher.group());
+        }
+        if (matcher.find()) {
+            System.out.println("Is good");
+        } else {
+            System.out.println("Is bad");
+        }
+    }
+    */
+
+        Pattern pattern = Pattern.compile("(?i)\\bjava\\b");
         Connection connection = Jsoup.connect("http://www.sql.ru/forum/job-offers");
         Document document = connection.get();
-        //
         Elements posts = document.getElementsByAttributeValue("class", "postslisttopic");
         for (Element post : posts) {
-            if (post.child(0).text().contains("java")) {
+            if (pattern.matcher(post.child(0).text()).find()) {
                 System.out.println(post.child(0).text());
                 System.out.println(post.nextElementSibling().text());
                 System.out.println(post.nextElementSibling().nextElementSibling().text());
                 System.out.println(post.nextElementSibling().nextElementSibling().nextElementSibling().text());
                 System.out.println(post.nextElementSibling().nextElementSibling().nextElementSibling().nextElementSibling().text());
-                System.out.println(post.nextElementSibling().nextElementSibling().nextElementSibling().nextElementSibling().nextElementSibling().text());
                 System.out.println();
             }
+            //}
         }
 
     }
