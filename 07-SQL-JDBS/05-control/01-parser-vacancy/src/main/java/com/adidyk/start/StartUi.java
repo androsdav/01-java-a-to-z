@@ -95,7 +95,6 @@ public class StartUi {
                 System.out.println(post.nextElementSibling().nextElementSibling().nextElementSibling().nextElementSibling().text());
                 System.out.println();
             }
-            //}
         }
 
     }
