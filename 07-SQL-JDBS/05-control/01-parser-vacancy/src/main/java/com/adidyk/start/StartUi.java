@@ -8,12 +8,14 @@ import com.adidyk.setup.Constant;
 import com.adidyk.setup.Settings;
 
 import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * Class StartUi for create jar file and start program.
@@ -63,12 +65,41 @@ public class StartUi {
         System.out.println("hello world !!!");
         Connection connection = Jsoup.connect("http://www.sql.ru/forum/job-offers");
         Document document = connection.get();
+        //
+        Elements posts = document.getElementsByAttributeValue("class", "postslisttopic");
+        for (Element post : posts) {
+            System.out.println(post.child(0).text());
+            System.out.println(post.nextElementSibling().text());
+            System.out.println(post.nextElementSibling().nextElementSibling().text());
+            System.out.println(post.nextElementSibling().nextElementSibling().nextElementSibling().text());
+            System.out.println(post.nextElementSibling().nextElementSibling().nextElementSibling().nextElementSibling().text());
+            System.out.println(post.nextElementSibling().nextElementSibling().nextElementSibling().nextElementSibling().nextElementSibling().text());
+            System.out.println();
+        }
+
+    }
+
+        /*
+        List<Element> elements = document.select("tr");
+        for (Element element : elements) {
+            //System.out.println(element.child(0).text());
+            System.out.println(element.select("td.postslisttopic").select("a[href]").text());
+            //System.out.println();
+        }
+    }
+
+        /*
         Elements forumTable = document.getElementsByAttributeValue("class", "forumTable");
         Elements topic = document.getElementsByAttributeValue("class", "postslisttopic");
         Elements author = document.getElementsByAttributeValue("class", "altCol");
 
         System.out.println(topic.size());
-        for
+        for (Element element : topic) {
+            System.out.println(element.child(0).text());
+            System.out.println(element.child(1).text());
+            System.out.println(element.child(2).text());
+            System.out.println();
+        }
 
         //for (int index = 0; index < topic.size(); index++) {
             //System.out.println(topic.text());
