@@ -68,13 +68,15 @@ public class StartUi {
         //
         Elements posts = document.getElementsByAttributeValue("class", "postslisttopic");
         for (Element post : posts) {
-            System.out.println(post.child(0).text());
-            System.out.println(post.nextElementSibling().text());
-            System.out.println(post.nextElementSibling().nextElementSibling().text());
-            System.out.println(post.nextElementSibling().nextElementSibling().nextElementSibling().text());
-            System.out.println(post.nextElementSibling().nextElementSibling().nextElementSibling().nextElementSibling().text());
-            System.out.println(post.nextElementSibling().nextElementSibling().nextElementSibling().nextElementSibling().nextElementSibling().text());
-            System.out.println();
+            if (post.child(0).text().contains("java")) {
+                System.out.println(post.child(0).text());
+                System.out.println(post.nextElementSibling().text());
+                System.out.println(post.nextElementSibling().nextElementSibling().text());
+                System.out.println(post.nextElementSibling().nextElementSibling().nextElementSibling().text());
+                System.out.println(post.nextElementSibling().nextElementSibling().nextElementSibling().nextElementSibling().text());
+                System.out.println(post.nextElementSibling().nextElementSibling().nextElementSibling().nextElementSibling().nextElementSibling().text());
+                System.out.println();
+            }
         }
 
     }
