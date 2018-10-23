@@ -1,5 +1,7 @@
 package com.adidyk.start;
 
+import com.adidyk.models.Vacancy;
+import com.adidyk.setup.ConfigDataBase;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -37,6 +39,7 @@ public class StartUi {
      */
     private void start() {
         this.loadSetting();
+        this.configDataBase();
     }
 
     /**
@@ -54,9 +57,23 @@ public class StartUi {
     }
 
     /**
-     * configDataBase - checks if there is table entry and generates number of fields in table entry.
+     * configDataBase - checks if there is database and checks if there is table item.
      */
     private void configDataBase() {
+        this.checkDataBase();
+    }
+
+    /**
+     * checkDataBase - checks if there is database.
+     */
+    private void checkDataBase() {
+        ConfigDataBase config = new ConfigDataBase();
+        if (!config.searchDataBase()) {
+            System.out.println("false");
+            config.createDataBase();
+        } else {
+            System.out.println("true");
+        }
     }
 
     /**
@@ -65,6 +82,19 @@ public class StartUi {
      */
     public static void main(String[] arg) throws IOException {
         System.out.println("hello world !!!");
+        new StartUi().start();
+
+        /*
+        String url  = "http://www.sql.ru/forum/job-offers/2";
+        Test test = new Test();
+        test.parserJsoup(url);
+        for (Vacancy item : test.getList()) {
+            System.out.println(item);
+
+        }
+        */
+    }
+}
 
         /*
         String string = "zczczxc java dasdkjavadsd JaVaScript aaaaaa aajava JAVAa dsJAVAJAVA JAVA JavaScript jAVa";
@@ -80,8 +110,8 @@ public class StartUi {
             System.out.println("Is bad");
         }
     }
-    */
 
+        /*
         Pattern pattern = Pattern.compile("(?i)\\bjava\\b");
         Connection connection = Jsoup.connect("http://www.sql.ru/forum/job-offers");
         Document document = connection.get();
@@ -144,5 +174,3 @@ public class StartUi {
         //System.out.println(document.title());
         //System.out.println(document.head());
         //new StartUi().start();
-}
-
