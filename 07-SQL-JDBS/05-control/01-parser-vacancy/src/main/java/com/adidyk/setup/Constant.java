@@ -55,11 +55,6 @@ public class Constant {
     public static String ENTRY;
 
     /**
-     * @param TABLE_NAME - name of table where the user tables are located (from app.properties).
-     */
-    public static String TABLE_NAME;
-
-    /**
      * @param SOURCE - name file where saves all fields from database.
      */
     public static String SOURCE;
@@ -122,6 +117,31 @@ public class Constant {
     public static String URL_BASE_VACANCY;
 
     /**
+     * @param SEARCH_TABLE - query sql.
+     */
+    public static String SEARCH_TABLE_VACANCY;
+
+    /**
+     * @param VACANCY - vacancy.
+     */
+    public static String VACANCY;
+
+    /**
+     * @param CREATE_TABLE_VACANCY - is.
+     */
+    public static String CREATE_TABLE_VACANCY;
+
+    /**
+     * @param TABLE_NAME - name of table where the user tables are located (from app.properties).
+     */
+    public static String TABLE_NAME;
+
+    /**
+     *
+     */
+    public static String ADD_VACANCY;
+
+    /**
      * Constant - constructor (reads all parameters from file app.properties).
      * @param set - link to object of class Setting.
      */
@@ -129,31 +149,6 @@ public class Constant {
         this.setJDBC(set);
         this.setQuerySQL(set);
         this.setOtherName(set);
-
-        //*********************************************************
-        //URL_BASE_POSTGRES = set.getValue("jdbc.urlBasePostgres");
-        //USER_NAME = set.getValue("jdbc.userName");
-        //PASSWORD = set.getValue("jdbc.password");
-        //NAME_DATA_BASE = set.getValue("app.nameDataBase");
-        //DAT_NAME = set.getValue("app.datName");
-
-        //SEARCH_DATA_BASE = set.getValue("sql.searchDataBase");
-        //CREATE_DATA_BASE = set.getValue("sql.createDataBase");
-        //*********************************************************
-        URL = set.getValue("app.url");
-        QUANTITY = Integer.parseInt(set.getValue("app.quantity"));
-        SEARCH_TABLE_ENTRY = set.getValue("app.searchTableEntry");
-        CREATE_TABLE_ENTRY = set.getValue("app.createTableEntry");
-        ADD_FIELD = set.getValue("app.addField");
-        CLEAR_TABLE_ENTRY = set.getValue("app.clearTableEntry");
-        GET_ALL_FIELD = set.getValue("app.getAllField");
-        FIELD = set.getValue("app.field");
-        ENTRY = set.getValue("app.entry");
-        TABLE_NAME = set.getValue("app.tableName");
-        SOURCE = set.getValue("app.source");
-        DEST = set.getValue("app.dest");
-        SCHEME = set.getValue("app.scheme");
-        HREF = set.getValue("app.href");
     }
 
     /**
@@ -164,7 +159,6 @@ public class Constant {
         URL_BASE_VACANCY = set.getValue("jdbc.urlBaseVacancy");
         USER_NAME = set.getValue("jdbc.userName");
         PASSWORD = set.getValue("jdbc.password");
-
     }
 
     /**
@@ -173,6 +167,9 @@ public class Constant {
     private void setQuerySQL(Settings set) {
         SEARCH_DATA_BASE = set.getValue("sql.searchDataBase");
         CREATE_DATA_BASE = set.getValue("sql.createDataBase");
+        SEARCH_TABLE_VACANCY = set.getValue("sql.searchTableVacancy");
+        CREATE_TABLE_VACANCY = set.getValue("sql.createTableVacancy");
+        ADD_VACANCY = set.getValue("sql.addVacancy");
     }
 
     /**
@@ -182,6 +179,8 @@ public class Constant {
     private void setOtherName(Settings set) {
         NAME_DATA_BASE = set.getValue("app.nameDataBase");
         DAT_NAME = set.getValue("app.datName");
+        VACANCY = set.getValue("app.vacancy");
+        TABLE_NAME = set.getValue("app.tableName");
     }
 
 }

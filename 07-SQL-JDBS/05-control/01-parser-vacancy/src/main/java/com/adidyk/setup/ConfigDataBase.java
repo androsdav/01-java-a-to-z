@@ -25,134 +25,64 @@ public class ConfigDataBase {
      */
     public boolean searchDataBase()  {
         boolean found = false;
-        Connection connect = null;
-        try {
-            connect = DriverManager.getConnection(URL_BASE_POSTGRES, USER_NAME, PASSWORD);
-            Statement statement = connect.createStatement();
-            ResultSet result = statement.executeQuery(SEARCH_DATA_BASE);
+        try (Connection connect = DriverManager.getConnection(URL_BASE_POSTGRES, USER_NAME, PASSWORD);
+             Statement statement = connect.createStatement();
+             ResultSet result = statement.executeQuery(SEARCH_DATA_BASE)) {
             while (result.next()) {
                 if (NAME_DATA_BASE.equals(result.getString(DAT_NAME))) {
                     found = true;
                 }
             }
-            result.close();
-            statement.close();
         } catch (SQLException ex) {
             log.error(ex.getMessage(), ex);
-        } finally {
-            if (connect != null) {
-                try {
-                    connect.close();
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                    log.error(ex.getMessage(), ex);
-                }
-            }
         }
         return found;
     }
 
-    /*
     /**
      * searchTable - searches table (query sql) ITEM (item). If table item exists then method returns true,
      * if table item does not exists then method returns false.
      * @return - returns true if table item exists, false - does not exists.
      */
-    /*
-    public boolean searchTables() {
+    public boolean searchTable() {
         boolean found = false;
-        Connection connect = null;
-        try {
-            connect = DriverManager.getConnection(URL_BASE_TRACKER, NAME, PASSWORD);
-            Statement statement = connect.createStatement();
-            ResultSet result = statement.executeQuery(SEARCH_TABLE);
+        try (Connection connect = DriverManager.getConnection(URL_BASE_VACANCY, USER_NAME, PASSWORD);
+             Statement statement = connect.createStatement();
+             ResultSet result = statement.executeQuery(SEARCH_TABLE_VACANCY)) {
             while (result.next()) {
-                if (ITEM.equals(result.getString(TABLE_NAME))) {
+                if (VACANCY.equals(result.getString(TABLE_NAME))) {
                     found = true;
                     break;
                 }
             }
         } catch (SQLException ex) {
-            log.error(ex.getMessage(), ex);
-        } finally {
-            if (connect != null) {
-                try {
-                    connect.close();
-                } catch (SQLException ex) {
-                    log.error(ex.getMessage(), ex);
-                }
-            }
+            ex.printStackTrace();
+            //log.error(ex.getMessage(), ex);
         }
         return found;
-    //}
-    */
+    }
 
     /**
      * createDataBase - connects to database postgres and creates database base_tracker.
      */
     public void createDataBase() {
-        Connection connect = null;
-        try {
-            connect = DriverManager.getConnection(URL_BASE_POSTGRES, USER_NAME, PASSWORD);
+        try (Connection connect = DriverManager.getConnection(URL_BASE_POSTGRES, USER_NAME, PASSWORD)) {
             connect.createStatement().executeUpdate(CREATE_DATA_BASE);
         } catch (SQLException ex) {
-            log.error(ex.getMessage(), ex);
-        } finally {
-            if (connect != null) {
-                try {
-                    connect.close();
-                } catch (SQLException ex) {
-                    log.error(ex.getMessage(), ex);
-                }
-            }
+            ex.printStackTrace();
+            //log.error(ex.getMessage(), ex);
         }
     }
 
-    /*
     /**
      * createTableItem - connect to database base_tracker and creates table item.
      */
-    /*
-    public void createTableItem() {
-        Connection connect = null;
-        try {
-            connect = DriverManager.getConnection(URL_BASE_TRACKER, NAME, PASSWORD);
-            connect.createStatement().executeUpdate(CREATE_TABLE_ITEM);
-        } catch (SQLException ex) {
-            log.error(ex.getMessage(), ex);
-        } finally {
-            if (connect != null) {
-                try {
-                    connect.close();
-                } catch (SQLException ex) {
-                    log.error(ex.getMessage(), ex);
-                }
-            }
-        }
-    }
-
-    /**
-     * createTableComments - connect to database base_tracker and crates table comments.
-     */
-    /*
-    public void createTableComments() {
-        Connection connect = null;
-        try {
-            connect = DriverManager.getConnection(URL_BASE_TRACKER, NAME, PASSWORD);
-            connect.createStatement().executeUpdate(CREATE_TABLE_COMMENTS);
+    public void createTableVacancy() {
+        try (Connection connect = DriverManager.getConnection(URL_BASE_VACANCY, USER_NAME, PASSWORD)) {
+            connect.createStatement().executeUpdate(CREATE_TABLE_VACANCY);
         } catch (SQLException ex) {
             log.error(ex.getMessage(), ex);
         }
-        finally {
-            if (connect != null) {
-                try {
-                    connect.close();
-                } catch (SQLException ex) {
-                    log.error(ex.getMessage(), ex);
-                }
-            }
-        }
     }
-    */
 
 }

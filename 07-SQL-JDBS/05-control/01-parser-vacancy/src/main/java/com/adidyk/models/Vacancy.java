@@ -49,6 +49,46 @@ public class Vacancy {
         this.date = date;
     }
 
+    public String getTheme() {
+        return theme;
+    }
+
+    public void setTheme(String theme) {
+        this.theme = theme;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public int getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(int answers) {
+        this.answers = answers;
+    }
+
+    public int getViewers() {
+        return viewers;
+    }
+
+    public void setViewers(int viewers) {
+        this.viewers = viewers;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     /**
      *
      * @param obj - obj.

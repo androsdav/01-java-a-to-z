@@ -37,9 +37,10 @@ public class StartUi {
     /**
      * start - starts program.
      */
-    private void start() {
+    private void start() throws IOException {
         this.loadSetting();
         this.configDataBase();
+        this.parser();
     }
 
     /**
@@ -61,6 +62,7 @@ public class StartUi {
      */
     private void configDataBase() {
         this.checkDataBase();
+        this.checkTables();
     }
 
     /**
@@ -73,6 +75,31 @@ public class StartUi {
             config.createDataBase();
         } else {
             System.out.println("true");
+        }
+    }
+
+    /**
+     * checkTable - is.
+     */
+    private void checkTables() {
+        ConfigDataBase config = new ConfigDataBase();
+        if (!config.searchTable()) {
+            System.out.println("false");
+            config.createTableVacancy();
+        } else {
+            System.out.println("true");
+        }
+    }
+
+    /**
+     *
+     */
+    private void parser() throws IOException {
+        Test test = new Test();
+        test.parserJsoup("http://www.sql.ru/forum/job-offers/4");
+        test.addVacancy();
+        for (Vacancy vacancy : test.getList()) {
+            System.out.println(vacancy);
         }
     }
 

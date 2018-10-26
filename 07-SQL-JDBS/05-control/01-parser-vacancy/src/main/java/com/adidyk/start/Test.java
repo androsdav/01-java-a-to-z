@@ -8,8 +8,13 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
+
+import static com.adidyk.setup.Constant.*;
 
 /**
  * Class StartUi for create jar file and start program.
@@ -50,11 +55,32 @@ public class Test {
     }
 
     /**
+     *
+     */
+    void addVacancy() {
+        try (java.sql.Connection connect = DriverManager.getConnection(URL_BASE_VACANCY, USER_NAME, PASSWORD);
+             PreparedStatement statement = connect.prepareStatement(ADD_VACANCY)) {
+            connect.setAutoCommit(false);
+            for (Vacancy vacancy : this.list) {
+                statement.setString(1, vacancy.getTheme());
+                statement.setString(2, vacancy.getAuthor());
+                statement.setInt(3, vacancy.getAnswers());
+                statement.setInt(4, vacancy.getViewers());
+                statement.setString(5, vacancy.getDate());
+                statement.executeUpdate();
+            }
+            connect.commit();
+        } catch (SQLException ex) {
+            //ex.printStackTrace();
+            System.out.println("dublicate");
+        }
+    }
+
+    /**
      * getList - get list.
      */
     ArrayList<Vacancy> getList() {
         return this.list;
     }
-
 
 }
