@@ -72,7 +72,7 @@ public class Test {
             connect.commit();
         } catch (SQLException ex) {
             //ex.printStackTrace();
-            System.out.println("dublicate");
+//            System.out.println("dublicate");
         }
     }
 
