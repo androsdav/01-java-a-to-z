@@ -17,7 +17,12 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -41,6 +46,7 @@ public class StartUi {
         this.loadSetting();
         this.configDataBase();
         this.parser();
+        this.dateParser();
     }
 
     /**
@@ -102,6 +108,40 @@ public class StartUi {
             System.out.println(vacancy);
         }
     }
+
+    /**
+     *
+     */
+    private void dateParser() {
+        System.out.println();
+        String string = "24 jun 18, 13:28";
+        DateFormat format = new SimpleDateFormat("d MMM yy, HH:mm");
+        Date date = null;
+        try {
+            date = format.parse(string);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        System.out.println(date);
+
+    }
+/*
+
+    public class GetLocalInformation {
+
+        private static String getSymbols(Locale locale){
+            DateFormatSymbols symbols = new DateFormatSymbols(locale);
+            return Arrays.toString(symbols.getMonths());
+        }
+
+        public static void main(String[] args) {
+            System.out.println(getSymbols( new Locale("RU","ru")));
+            System.out.println(getSymbols( new Locale("EN","en")));
+            System.out.println(getSymbols( Locale.GERMANY ));
+            System.out.println(getSymbols( Locale.CHINA ));
+        } http://www.sbp-program.ru/java/sbp-datetime.htm
+        http://www.seostella.com/ru/article/2012/02/05/formatirovanie-daty-v-java.html
+        */
 
     /**
      * main - creates jar file and runs program.
