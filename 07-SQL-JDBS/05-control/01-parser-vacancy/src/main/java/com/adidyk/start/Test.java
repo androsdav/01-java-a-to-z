@@ -57,10 +57,46 @@ public class Test {
     /**
      *
      */
-    void addVacancy() {
-        try (java.sql.Connection connect = DriverManager.getConnection(URL_BASE_VACANCY, USER_NAME, PASSWORD);
+    void addVacancy() throws SQLException {
+
+        java.sql.Connection connect = null;
+
+        try {
+            connect = DriverManager.getConnection(URL_BASE_VACANCY, USER_NAME, PASSWORD);
+            //connect.setAutoCommit(false);  ON CONFLICT DO NOTHING
+
+            for (Vacancy vacancy : this.list) {
+                PreparedStatement statement = connect.prepareStatement(ADD_VACANCY);
+                statement.setString(1, vacancy.getTheme());
+                statement.setString(2, vacancy.getAuthor());
+                statement.setInt(3, vacancy.getAnswers());
+                statement.setInt(4, vacancy.getViewers());
+                statement.setString(5, vacancy.getDate());
+                statement.executeUpdate();
+                statement.close();
+            }
+            //connect.commit();
+            //statement.close();
+        } catch (SQLException ex) {
+            //ex.printStackTrace();
+            System.out.println("duplicate");
+        } finally {
+            if (connect != null) {
+                try {
+                    connect.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+
+
+
+
+        /*
+        try (Connection connect = DriverManager.getConnection(URL_BASE_VACANCY, USER_NAME, PASSWORD);
              PreparedStatement statement = connect.prepareStatement(ADD_VACANCY)) {
-            connect.setAutoCommit(false);
+            //connect.setAutoCommit(false);
             for (Vacancy vacancy : this.list) {
                 statement.setString(1, vacancy.getTheme());
                 statement.setString(2, vacancy.getAuthor());
@@ -69,11 +105,12 @@ public class Test {
                 statement.setString(5, vacancy.getDate());
                 statement.executeUpdate();
             }
-            connect.commit();
+            //connect.commit();
         } catch (SQLException ex) {
             //ex.printStackTrace();
 //            System.out.println("dublicate");
         }
+        */
     }
 
     /**

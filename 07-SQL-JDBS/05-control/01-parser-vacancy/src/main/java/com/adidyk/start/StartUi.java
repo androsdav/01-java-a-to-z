@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -42,7 +43,7 @@ public class StartUi {
     /**
      * start - starts program.
      */
-    private void start() throws IOException {
+    private void start() throws IOException, SQLException {
         this.loadSetting();
         this.configDataBase();
         this.parser();
@@ -100,13 +101,15 @@ public class StartUi {
     /**
      *
      */
-    private void parser() throws IOException {
+    private void parser() throws IOException, SQLException {
         Test test = new Test();
         test.parserJsoup("http://www.sql.ru/forum/job-offers/4");
         test.addVacancy();
+        /*
         for (Vacancy vacancy : test.getList()) {
             System.out.println(vacancy);
         }
+        */
     }
 
     /**
@@ -147,7 +150,7 @@ public class StartUi {
      * main - creates jar file and runs program.
      * @param arg - is nothing.
      */
-    public static void main(String[] arg) throws IOException {
+    public static void main(String[] arg) throws IOException, SQLException {
         System.out.println("hello world !!!");
         new StartUi().start();
 
