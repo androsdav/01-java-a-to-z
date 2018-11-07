@@ -103,7 +103,7 @@ public class StartUi {
      */
     private void parser() throws IOException, SQLException {
         Test test = new Test();
-        test.parserJsoup("http://www.sql.ru/forum/job-offers/4");
+        test.parserJsoup("http://www.sql.ru/forum/job-offers/9");
         test.addVacancy();
         /*
         for (Vacancy vacancy : test.getList()) {
@@ -116,9 +116,12 @@ public class StartUi {
      *
      */
     private void dateParser() {
+        //***************** parser string to date
         System.out.println();
-        String string = "24 jun 18, 13:28";
-        DateFormat format = new SimpleDateFormat("d MMM yy, HH:mm");
+        String string = "24 янв 18, 13:28";
+        Locale locale = new Locale("ru", "RU");
+        //DateFormat format = new SimpleDateFormat("d MMM yy, HH:mm", locale);
+        DateFormat format = new SimpleDateFormat("dd MMM yy, HH:mm", locale);
         Date date = null;
         try {
             date = format.parse(string);
@@ -126,6 +129,25 @@ public class StartUi {
             e.printStackTrace();
         }
         System.out.println(date);
+        //***************** may format date
+        System.out.println();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        System.out.println(sdf.format(date));
+        //***************** search substring in string use RU
+        String string1 = "24 сегодня 18, 13:28";
+        Pattern today = Pattern.compile("(?i)\\bсегодня\\b");
+        Matcher matcher = today.matcher(string1);
+        //Pattern yesterday = Pattern.compile("вчера");
+        /*
+        if (today.matcher(string).find()) {
+            System.out.println("вывод русс");
+        }
+        */
+        System.out.println(matcher.find());
+
+
+
+
 
     }
 /*
