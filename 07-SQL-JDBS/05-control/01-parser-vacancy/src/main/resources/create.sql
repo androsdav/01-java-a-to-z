@@ -20,7 +20,7 @@ CREATE TABLE vacancy (
   author VARCHAR(50) UNIQUE NOT NULL,
   answers INT NOT NULL,
   viewers INT NOT NULL,
-  date VARCHAR(100) NOT NULL
+  date DATE NOT NULL
 );
 
 CREATE TABLE vacancy1 (

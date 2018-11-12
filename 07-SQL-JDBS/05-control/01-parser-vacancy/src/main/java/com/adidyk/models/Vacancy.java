@@ -1,5 +1,7 @@
 package com.adidyk.models;
 
+import java.util.Date;
+
 /**
  * Class StartUi for create jar file and start program.
  * @author Didyk Andrey (androsdav@bigmir.net).
@@ -31,7 +33,7 @@ public class Vacancy {
     /**
      * @param date - date.
      */
-    private String date;
+    private Date date;
 
     /**
      * Vacancy - constructor.
@@ -41,7 +43,7 @@ public class Vacancy {
      * @param viewers - viewers.
      * @param date - date for create theme.
      */
-    public Vacancy(String theme, String author, int answers, int viewers, String date) {
+    public Vacancy(String theme, String author, int answers, int viewers, Date date) {
         this.theme = theme;
         this.author = author;
         this.answers = answers;
@@ -81,11 +83,11 @@ public class Vacancy {
         this.viewers = viewers;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

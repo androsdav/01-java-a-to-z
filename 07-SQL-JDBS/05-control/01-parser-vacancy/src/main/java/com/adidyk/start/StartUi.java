@@ -103,7 +103,7 @@ public class StartUi {
      */
     private void parser() throws IOException, SQLException {
         Test test = new Test();
-        test.parserJsoup("http://www.sql.ru/forum/job-offers/9");
+        test.parserJsoup("http://www.sql.ru/forum/job-offers/1");
         test.addVacancy();
         /*
         for (Vacancy vacancy : test.getList()) {
@@ -116,6 +116,11 @@ public class StartUi {
      *
      */
     private void dateParser() {
+        ParserDate parserDate = new ParserDate();
+        Date date = parserDate.parseDate("10 ноя 09, 23:12");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        System.out.println(sdf.format(date));
+        /*
         //***************** parser string to date
         System.out.println();
         String string = "24 янв 18, 13:28";
@@ -143,7 +148,10 @@ public class StartUi {
             System.out.println("вывод русс");
         }
         */
+        /*
         System.out.println(matcher.find());
+        System.out.println(matcher.group());
+        */
 
 
 

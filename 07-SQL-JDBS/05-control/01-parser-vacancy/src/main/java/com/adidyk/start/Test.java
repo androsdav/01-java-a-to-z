@@ -11,7 +11,9 @@ import java.io.IOException;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.regex.Pattern;
 
 import static com.adidyk.setup.Constant.*;
@@ -34,6 +36,8 @@ public class Test {
      */
     private final Pattern pattern = Pattern.compile("(?i)\\bjava\\b");
 
+    private ParserDate parserDate = new ParserDate();
+
     /**
      * parserJsoup - parser jsoup.
      */
@@ -47,7 +51,7 @@ public class Test {
                 String author = post.nextElementSibling().text();
                 int answers = Integer.parseInt(post.nextElementSibling().nextElementSibling().text());
                 int viewers = Integer.parseInt(post.nextElementSibling().nextElementSibling().nextElementSibling().text());
-                String date = post.nextElementSibling().nextElementSibling().nextElementSibling().nextElementSibling().text();
+                Date date = this.parserDate.parseDate(post.nextElementSibling().nextElementSibling().nextElementSibling().nextElementSibling().text());
                 Vacancy vacancy = new Vacancy(theme, author, answers, viewers, date);
                 this.list.add(vacancy);
             }
@@ -66,7 +70,7 @@ public class Test {
                     statement.setString(2, vacancy.getAuthor());
                     statement.setInt(3, vacancy.getAnswers());
                     statement.setInt(4, vacancy.getViewers());
-                    statement.setString(5, vacancy.getDate());
+                    statement.setTimestamp(5, new Timestamp(vacancy.getDate().getTime()));
                     statement.executeUpdate();
                 }
             } catch (SQLException ex) {
