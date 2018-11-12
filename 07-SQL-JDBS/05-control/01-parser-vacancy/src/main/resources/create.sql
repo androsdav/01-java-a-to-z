@@ -32,6 +32,16 @@ CREATE TABLE vacancy1 (
   date VARCHAR(100) NOT NULL
 );
 
+  CREATE TABLE vacancy (
+    id SERIAL PRIMARY KEY,
+    theme VARCHAR(300) UNIQUE NOT NULL,
+    author VARCHAR(50),
+    answers INT NOT NULL,
+    viewers INT NOT NULL,
+    date DATE NOT NULL
+  )
+
+
 INSERT INTO vacancy (theme, author, answers, viewers, date) VALUES (
     'Java professor',
     'admin',

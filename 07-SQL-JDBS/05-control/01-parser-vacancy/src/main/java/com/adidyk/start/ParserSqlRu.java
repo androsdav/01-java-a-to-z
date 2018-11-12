@@ -6,7 +6,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
 import java.io.IOException;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -24,7 +23,7 @@ import static com.adidyk.setup.Constant.*;
  * @since 23.10.2018.
  * @version 1.0.
  */
-public class Test {
+public class ParserSqlRu {
 
     /**
      * @param list - list vacancy.
@@ -38,10 +37,27 @@ public class Test {
 
     private ParserDate parserDate = new ParserDate();
 
+    public boolean checkFirstStart() throws SQLException {
+        java.sql.Connection connect = DriverManager.getConnection(URL_BASE_VACANCY, USER_NAME, PASSWORD);
+        PreparedStatement statement = connect.prepareStatement();
+
+        return true;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int searchPageNumber () {
+       return -1;
+    }
+
+
+
     /**
      * parserJsoup - parser jsoup.
      */
-    void parserJsoup(String url) throws IOException {
+    void parse(String url) throws IOException {
         Connection connection = Jsoup.connect(url);
         Document document = connection.get();
         Elements posts = document.getElementsByAttributeValue("class", "postslisttopic");
@@ -51,7 +67,7 @@ public class Test {
                 String author = post.nextElementSibling().text();
                 int answers = Integer.parseInt(post.nextElementSibling().nextElementSibling().text());
                 int viewers = Integer.parseInt(post.nextElementSibling().nextElementSibling().nextElementSibling().text());
-                Date date = this.parserDate.parseDate(post.nextElementSibling().nextElementSibling().nextElementSibling().nextElementSibling().text());
+                Date date = this.parserDate.parse(post.nextElementSibling().nextElementSibling().nextElementSibling().nextElementSibling().text());
                 Vacancy vacancy = new Vacancy(theme, author, answers, viewers, date);
                 this.list.add(vacancy);
             }

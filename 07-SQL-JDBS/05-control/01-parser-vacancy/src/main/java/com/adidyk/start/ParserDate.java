@@ -42,7 +42,7 @@ public class ParserDate {
      *
      * @return date.
      */
-    public Date parseDate(String string) {
+    Date parse(String string) {
         Date date = null;
         if (this.patternToday.matcher(string).find()) {
             date = this.getTodayDate();

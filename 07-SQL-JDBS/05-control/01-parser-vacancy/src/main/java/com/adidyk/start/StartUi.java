@@ -41,20 +41,30 @@ public class StartUi {
     private static final Logger log = LoggerFactory.getLogger(StartUi.class);
 
     /**
+     *
+     */
+    private final ConfigDataBase config = new ConfigDataBase();
+
+    /**
+     *
+     */
+    private String url = "http://www.sql.ru/forum/job-offers/1";
+
+    /**
      * start - starts program.
      */
     private void start() throws IOException, SQLException {
         this.loadSetting();
         this.configDataBase();
         this.parser();
-        this.dateParser();
+        //this.dateParser();
     }
 
     /**
      * loadSetting - loads params from file app.properties to class Constant.
      */
     private void loadSetting() {
-        Settings setting = new Settings();
+        final Settings setting = new Settings();
         ClassLoader loader = Settings.class.getClassLoader();
         try (InputStream is = loader.getResourceAsStream("app.properties")) {
             setting.load(is);
@@ -69,45 +79,46 @@ public class StartUi {
      */
     private void configDataBase() {
         this.checkDataBase();
-        this.checkTables();
+        this.checkTable();
     }
 
     /**
      * checkDataBase - checks if there is database.
      */
     private void checkDataBase() {
-        ConfigDataBase config = new ConfigDataBase();
-        if (!config.searchDataBase()) {
-            System.out.println("false");
-            config.createDataBase();
-        } else {
-            System.out.println("true");
-        }
+        //final ConfigDataBase config = new ConfigDataBase();
+        if (!this.config.searchDataBase()) {
+            //System.out.println("false");
+            this.config.createDataBase();
+        } //else {
+        //    System.out.println("true");
+        //}
     }
 
     /**
      * checkTable - is.
      */
-    private void checkTables() {
-        ConfigDataBase config = new ConfigDataBase();
-        if (!config.searchTable()) {
-            System.out.println("false");
-            config.createTableVacancy();
-        } else {
-            System.out.println("true");
-        }
+    private void checkTable() {
+        //final ConfigDataBase config = new ConfigDataBase();
+        if (!this.config.searchTable()) {
+            //System.out.println("false");
+            this.config.createTableVacancy();
+        } //else {
+          //  System.out.println("true");
+        //}
     }
 
     /**
      *
      */
     private void parser() throws IOException, SQLException {
-        Test test = new Test();
-        test.parserJsoup("http://www.sql.ru/forum/job-offers/1");
-        test.addVacancy();
+        ParserSqlRu purserSqlRu = new ParserSqlRu();
+        purserSqlRu.parse(url);
+        purserSqlRu.addVacancy();
         /*
         for (Vacancy vacancy : test.getList()) {
-            System.out.println(vacancy);
+            System.out.println(vacancy); http://wiki.postgresql.org/wiki/Slow_Counting
+            SELECT t.*, CTID FROM pg_catalog.pg_constraint t LIMIT 501
         }
         */
     }
@@ -117,7 +128,7 @@ public class StartUi {
      */
     private void dateParser() {
         ParserDate parserDate = new ParserDate();
-        Date date = parserDate.parseDate("10 ноя 09, 23:12");
+        Date date = parserDate.parse("10 ноя 09, 23:12");
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         System.out.println(sdf.format(date));
         /*
@@ -140,7 +151,8 @@ public class StartUi {
         System.out.println(sdf.format(date));
         //***************** search substring in string use RU
         String string1 = "24 сегодня 18, 13:28";
-        Pattern today = Pattern.compile("(?i)\\bсегодня\\b");
+        Pattern today = Pattern.compile("(?i
+        )\\bсегодня\\b");
         Matcher matcher = today.matcher(string1);
         //Pattern yesterday = Pattern.compile("вчера");
         /*
