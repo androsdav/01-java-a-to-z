@@ -7,10 +7,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import java.io.IOException;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.regex.Pattern;
@@ -38,9 +35,22 @@ public class ParserSqlRu {
     private ParserDate parserDate = new ParserDate();
 
     public boolean checkFirstStart() throws SQLException {
+        boolean tabeIsEmpty = true;
         java.sql.Connection connect = DriverManager.getConnection(URL_BASE_VACANCY, USER_NAME, PASSWORD);
-        PreparedStatement statement = connect.prepareStatement();
+        Statement statement = connect.createStatement();
+        ResultSet result = statement.executeQuery("SELECT COUNT(*) FROM vacancy");
+        while (result.next()) {
+            if (result.getInt(1) > 0) {
+                table
+                System.out.println("table is not empty");
+                System.out.println(result.getInt(1));
+            } else {
+                System.out.println("table is empty");
+                System.out.println(result.getInt(1));
+            }
 
+            //System.out.println(result.getInt(1));
+        }
         return true;
     }
 

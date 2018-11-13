@@ -115,6 +115,7 @@ public class StartUi {
         ParserSqlRu purserSqlRu = new ParserSqlRu();
         purserSqlRu.parse(url);
         purserSqlRu.addVacancy();
+        purserSqlRu.checkFirstStart();
         /*
         for (Vacancy vacancy : test.getList()) {
             System.out.println(vacancy); http://wiki.postgresql.org/wiki/Slow_Counting
