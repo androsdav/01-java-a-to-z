@@ -48,8 +48,7 @@ public class ParserDate {
             date = this.getTodayDate();
         } else if (this.patternYesterday.matcher(string).find()) {
             date = this.getYesterdayDate();
-        }
-         else {
+        } else {
             try {
                 date = this.format.parse(string);
             } catch (ParseException e) {

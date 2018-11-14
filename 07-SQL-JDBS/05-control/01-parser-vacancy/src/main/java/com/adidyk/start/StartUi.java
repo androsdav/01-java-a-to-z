@@ -112,13 +112,21 @@ public class StartUi {
      *
      */
     private void parser() throws IOException, SQLException {
+        int number = 1;
         ParserSqlRu purserSqlRu = new ParserSqlRu();
-        purserSqlRu.parse(url);
-        purserSqlRu.addVacancy();
-        purserSqlRu.checkFirstStart();
+        if (purserSqlRu.checkFirstStart()) {
+            System.out.println(purserSqlRu.checkFirstStart());
+            number = purserSqlRu.searchPage();
+            System.out.println("number: " + number);
+        }
+        for (int index = 1; index <= number; index++) {
+            purserSqlRu.parse(url + index);
+            purserSqlRu.addVacancy();
+        }
         /*
         for (Vacancy vacancy : test.getList()) {
             System.out.println(vacancy); http://wiki.postgresql.org/wiki/Slow_Counting
+
             SELECT t.*, CTID FROM pg_catalog.pg_constraint t LIMIT 501
         }
         */
