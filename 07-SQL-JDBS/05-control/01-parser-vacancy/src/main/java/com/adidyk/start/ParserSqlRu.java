@@ -37,6 +37,7 @@ public class ParserSqlRu {
 
     private final String stringTarget = "31 дек 17, 13:28";
     private final Date dateTarget = this.parserDate.parse(stringTarget);
+    private final int ZERRO = 0;
 
     public boolean checkFirstStart() throws SQLException {
         boolean tableIsEmpty = false;
@@ -44,7 +45,7 @@ public class ParserSqlRu {
         Statement statement = connect.createStatement();
         ResultSet result = statement.executeQuery("SELECT COUNT(*) FROM vacancy LIMIT 1");
         while (result.next()) {
-            if (result.getInt(1) > 0) {
+            if (result.getInt(1) == 0) {
                 System.out.println("count: " + result.getInt(1));
                 tableIsEmpty = true;
             }
@@ -76,7 +77,7 @@ public class ParserSqlRu {
                     nextElementSibling().nextElementSibling().text());
             System.out.println(date);
             if (number > 3) {
-                if (this.compareDate(date) >= 0) {
+                if (this.compareDate(date) >= ZERRO) {
                     searchResult = true;
                     break;
                 }

@@ -48,7 +48,7 @@ public class StartUi {
     /**
      *
      */
-    private String url = "http://www.sql.ru/forum/job-offers/1";
+    private String url = "http://www.sql.ru/forum/job-offers/";
 
     /**
      * start - starts program.
@@ -121,6 +121,7 @@ public class StartUi {
         }
         for (int index = 1; index <= number; index++) {
             purserSqlRu.parse(url + index);
+            System.out.println("page: " + url + index);
             purserSqlRu.addVacancy();
         }
         /*
