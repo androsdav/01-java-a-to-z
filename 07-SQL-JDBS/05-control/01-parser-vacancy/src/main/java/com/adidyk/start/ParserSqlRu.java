@@ -8,11 +8,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.regex.Pattern;
-
 import static com.adidyk.setup.Constant.*;
 
 /**
@@ -21,7 +19,7 @@ import static com.adidyk.setup.Constant.*;
  * @since 23.10.2018.
  * @version 1.0.
  */
-public class ParserSqlRu {
+class ParserSqlRu {
 
     /**
      * @param list - list vacancy.
@@ -33,114 +31,100 @@ public class ParserSqlRu {
      */
     private final Pattern pattern = Pattern.compile("(?i)\\bjava\\b");
 
-    private ParserDate parserDate = new ParserDate();
+    /**
+     * parserDate - parserDate.
+     */
+    private ParserDate parserDate;
 
-    private final String stringTarget = "31 дек 17, 13:28";
-    private final Date dateTarget = this.parserDate.parse(stringTarget);
-    private final int ZERRO = 0;
+    //private final Date dateTarget = this.parserDate.parse("31 дек 17, 13:28");
+    private static int ZERO = 0;
+    private final static String COUNT = "SELECT COUNT(*) FROM vacancy LIMIT 1";
+    private static String URL_SQL_RU = "http://www.sql.ru/forum/job-offers/";
+    private static String CLASS = "class";
+    private static String POSTS_LIST_TOPIC = "postslisttopic";
+    private static int SKIP_ROW = 3;
 
-    public boolean checkFirstStart() throws SQLException {
+    /**
+     * ParserDate - constructor.
+     * @param parserDate - link variable to object of class ParserDate.
+     */
+    ParserSqlRu(ParserDate parserDate) {
+        this.parserDate = parserDate;
+    }
+
+    /**
+     * checkTableIsEmpty - checks table (query sql) vacancy is empty (first start program).
+     * If table vacancy is empty returns true or returns false if table vacancy is not empty.
+     * @return - returns true if table vacancy is empty, returns false if table vacancy is not empty.
+     */
+    boolean checkTableIsEmpty() {
         boolean tableIsEmpty = false;
-        java.sql.Connection connect = DriverManager.getConnection(URL_BASE_VACANCY, USER_NAME, PASSWORD);
-        Statement statement = connect.createStatement();
-        ResultSet result = statement.executeQuery("SELECT COUNT(*) FROM vacancy LIMIT 1");
-        while (result.next()) {
-            if (result.getInt(1) == 0) {
-                System.out.println("count: " + result.getInt(1));
-                tableIsEmpty = true;
+        try (java.sql.Connection connect = DriverManager.getConnection(URL_BASE_VACANCY, USER_NAME, PASSWORD);
+             Statement statement = connect.createStatement();
+             ResultSet result = statement.executeQuery(COUNT)) {
+            while (result.next()) {
+                if (result.getInt(1) == ZERO) {
+                    tableIsEmpty = true;
+                }
             }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
         return tableIsEmpty;
     }
 
-    public int searchPage() throws IOException {
+    /**
+     * searchPageByDate - is.
+     * @param dateTarget - is.
+     * @return - is.
+     * @throws IOException - is.
+     */
+    int searchPageByDate(Date dateTarget) throws IOException {
         int page = 1;
-        boolean andros = true;
-        String url = "http://www.sql.ru/forum/job-offers/";
-        while (andros) {
-            Connection connection = Jsoup.connect(url + page);
+        boolean search = true;
+        while (search) {
+            Connection connection = Jsoup.connect(URL_SQL_RU + page);
             Document document = connection.get();
-            Elements posts = document.getElementsByAttributeValue("class", "postslisttopic");
-            andros = this.searchInPage(posts);
+            Elements posts = document.getElementsByAttributeValue(CLASS, POSTS_LIST_TOPIC);
+            search = this.searchDateInPage(posts, dateTarget);
             page++;
-            System.out.println();
         }
-        page--;
-        return page;
+        return --page;
     }
 
-    public boolean searchInPage(Elements posts) {
+    /**
+     * searchDateInPage - search date in page.
+     * @param posts - is posts.
+     * @param dateTarget - date target.
+     * @return - returns date target.
+     */
+    private boolean searchDateInPage(Elements posts, Date dateTarget) {
         boolean searchResult = false;
-        int number = 1;
+        int row = 1;
         for (Element post : posts) {
-            Date date = this.parserDate.parse(post.nextElementSibling().nextElementSibling().
+            Date currentDate = this.parserDate.parse(post.nextElementSibling().nextElementSibling().
                     nextElementSibling().nextElementSibling().text());
-            System.out.println(date);
-            if (number > 3) {
-                if (this.compareDate(date) >= ZERRO) {
+            if (row > SKIP_ROW) {
+                System.out.println(currentDate);
+                if (this.compareDate(currentDate, dateTarget) >= ZERO) {
                     searchResult = true;
                     break;
                 }
             }
-            number++;
+            row++;
         }
         return !searchResult;
     }
 
     /**
-     *
-     * @param date - date.
+     * compareDate - compare date.
+     * @param currentDate - is date.
+     * @param targetDate - is date.
+     * @return - is.
      */
-    public int compareDate(Date date) {
-        return this.dateTarget.compareTo(date);
+    private int compareDate(Date currentDate, Date targetDate) {
+        return targetDate.compareTo(currentDate);
     }
-
-
-    /*
-    public void test() throws IOException {
-        String stringTarget = "31 дек 17, 13:28";
-        String string1 = "30 дек 17, 13:28";
-        Date dateTarget = this.parserDate.parse(stringTarget);
-        Date date1 = this.parserDate.parse(string1);
-        System.out.println(dateTarget);
-        System.out.println(date1);
-        System.out.println(dateTarget.compareTo(date1));
-*/
-
-        //Date dateToday = new Date();
-        //System.out.println(dateToday);
-        //Date dateOther = new Date();
-
-        //Timestamp timestamp = new Timestamp(1502041448453l);
-// System.out.println(timestamp); выведет "2017-08-06 20:44:08.453"
-        //LocalDate localDateTime = timestamp.toLocalDateTime().toLocalDate();
-
-        //LocalDate now = LocalDate.now();
-// System.out.println(now); выведет "2017-08-06"
-
-// Выведет 0;
-        //S/ystem.out.println("test");
-        //System.out.println(now.compareTo(localDateTime));
-        ///поделитьсяулучшить этот ответ
-
-
-        /*
-        Connection connect = Jsoup.connect(url);
-        Document document = connect.get();T
-        Elements posts = document.getElementsByAttributeValue("class", "postslisttopic");
-        */
-
-    //}
-
-    /**
-     *
-     * @return
-     */
-    public int searchPageNumber () {
-       return -1;
-    }
-
-
 
     /**
      * parserJsoup - parser jsoup.
@@ -154,8 +138,10 @@ public class ParserSqlRu {
                 String theme  = post.child(0).text();
                 String author = post.nextElementSibling().text();
                 int answers = Integer.parseInt(post.nextElementSibling().nextElementSibling().text());
-                int viewers = Integer.parseInt(post.nextElementSibling().nextElementSibling().nextElementSibling().text());
-                Date date = this.parserDate.parse(post.nextElementSibling().nextElementSibling().nextElementSibling().nextElementSibling().text());
+                int viewers = Integer.parseInt(post.nextElementSibling().nextElementSibling().
+                        nextElementSibling().text());
+                Date date = this.parserDate.parse(post.nextElementSibling().nextElementSibling().
+                        nextElementSibling().nextElementSibling().text());
                 Vacancy vacancy = new Vacancy(theme, author, answers, viewers, date);
                 this.list.add(vacancy);
             }

@@ -45,6 +45,8 @@ public class StartUi {
      */
     private final ConfigDataBase config = new ConfigDataBase();
 
+    private ParserDate parserDate = new ParserDate();
+
     /**
      *
      */
@@ -113,10 +115,10 @@ public class StartUi {
      */
     private void parser() throws IOException, SQLException {
         int number = 1;
-        ParserSqlRu purserSqlRu = new ParserSqlRu();
-        if (purserSqlRu.checkFirstStart()) {
-            System.out.println(purserSqlRu.checkFirstStart());
-            number = purserSqlRu.searchPage();
+        ParserSqlRu purserSqlRu = new ParserSqlRu(this.parserDate);
+        if (purserSqlRu.checkTableIsEmpty()) {
+            System.out.println(purserSqlRu.checkTableIsEmpty());
+            number = purserSqlRu.searchPageByDate(this.parserDate.parse("12 ноя 18, 13:28"));
             System.out.println("number: " + number);
         }
         for (int index = 1; index <= number; index++) {
