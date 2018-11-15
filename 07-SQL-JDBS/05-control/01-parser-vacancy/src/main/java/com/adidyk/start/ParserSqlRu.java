@@ -132,7 +132,7 @@ class ParserSqlRu {
     void parse(String url) throws IOException {
         Connection connection = Jsoup.connect(url);
         Document document = connection.get();
-        Elements posts = document.getElementsByAttributeValue("class", "postslisttopic");
+        Elements posts = document.getElementsByAttributeValue(CLASS, POSTS_LIST_TOPIC);
         for (Element post : posts) {
             if (this.pattern.matcher(post.child(0).text()).find()) {
                 String theme  = post.child(0).text();
