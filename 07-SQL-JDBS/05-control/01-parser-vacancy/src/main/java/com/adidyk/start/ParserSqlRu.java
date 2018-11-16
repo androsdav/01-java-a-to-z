@@ -77,7 +77,6 @@ class ParserSqlRu {
      * searchPageByDate - is.
      * @param dateTarget - is.
      * @return - is.
-     * @throws IOException - is.
      */
     int searchPageByDate(Date dateTarget) throws IOException {
         int page = 1;

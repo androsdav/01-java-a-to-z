@@ -118,7 +118,7 @@ public class StartUi {
         ParserSqlRu purserSqlRu = new ParserSqlRu(this.parserDate);
         if (purserSqlRu.checkTableIsEmpty()) {
             System.out.println(purserSqlRu.checkTableIsEmpty());
-            number = purserSqlRu.searchPageByDate(this.parserDate.parse("12 ноя 18, 13:28"));
+            number = purserSqlRu.searchPageByDate(this.parserDate.parse("31 дек 17, 13:28"));
             System.out.println("number: " + number);
         }
         for (int index = 1; index <= number; index++) {
