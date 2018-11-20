@@ -25,29 +25,17 @@ class StoreSQL {
      */
     boolean searchTable() {
         boolean found = false;
-        Connection connect = null;
-        try {
-            connect = DriverManager.getConnection(URL);
-            Statement statement = connect.createStatement();
-            ResultSet result = statement.executeQuery(SEARCH_TABLE_ENTRY);
+        try (Connection connect = DriverManager.getConnection(URL);
+             Statement statement = connect.createStatement();
+             ResultSet result = statement.executeQuery(SEARCH_TABLE_ENTRY)) {
             while (result.next()) {
                 if (ENTRY.equals(result.getString(TABLE_NAME))) {
                     found = true;
                     break;
                 }
             }
-            result.close();
-            statement.close();
         } catch (SQLException ex) {
             log.error(ex.getMessage(), ex);
-        } finally {
-            if (connect != null) {
-                try {
-                    connect.close();
-                } catch (SQLException ex) {
-                    log.error(ex.getMessage(), ex);
-                }
-            }
         }
         return found;
     }
@@ -56,20 +44,10 @@ class StoreSQL {
      * createTableItem - connect to database magnet.sqlite and creates table entry.
      */
     void createTable() {
-        Connection connect = null;
-        try {
-            connect = DriverManager.getConnection(URL);
+        try (Connection connect = DriverManager.getConnection(URL)) {
             connect.createStatement().executeUpdate(CREATE_TABLE_ENTRY);
         } catch (SQLException ex) {
             log.error(ex.getMessage(), ex);
-        } finally {
-            if (connect != null) {
-                try {
-                    connect.close();
-                } catch (SQLException ex) {
-                    log.error(ex.getMessage(), ex);
-                }
-            }
         }
     }
 
@@ -79,33 +57,19 @@ class StoreSQL {
      */
     void generate(int quantity) {
         this.clearTable();
-        Connection connect = null;
-        try {
-            connect = DriverManager.getConnection(URL);
+        try (Connection connect = DriverManager.getConnection(URL)) {
             connect.setAutoCommit(false);
-            PreparedStatement statement = connect.prepareStatement(ADD_FIELD);
-            for (int counter = 1; counter <= quantity; counter++) {
-                statement.setInt(1, counter);
-                statement.executeUpdate();
+            try (PreparedStatement statement = connect.prepareStatement(ADD_FIELD)) {
+                for (int counter = 1; counter <= quantity; counter++) {
+                    statement.setInt(1, counter);
+                    statement.executeUpdate();
+                }
+            } catch (SQLException ex) {
+                connect.rollback();
             }
             connect.commit();
-            statement.close();
         } catch (SQLException ex) {
-            if (connect != null) {
-                try {
-                    connect.rollback();
-                } catch (SQLException e) {
-                    log.error(ex.getMessage(), ex);
-                }
-            }
-        } finally {
-            if (connect != null) {
-                try {
-                    connect.close();
-                } catch (SQLException ex) {
-                    log.error(ex.getMessage(), ex);
-                }
-            }
+            log.error(ex.getMessage(), ex);
         }
     }
 
@@ -113,20 +77,10 @@ class StoreSQL {
      * clearTable - clears all fields in table entry.
      */
     private void clearTable() {
-        Connection connect = null;
-        try {
-            connect = DriverManager.getConnection(URL);
+        try (Connection connect = DriverManager.getConnection(URL)) {
             connect.createStatement().executeUpdate(CLEAR_TABLE_ENTRY);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (connect != null) {
-                try {
-                    connect.close();
-                } catch (SQLException ex) {
-                    log.error(ex.getMessage(), ex);
-                }
-            }
+        } catch (SQLException ex) {
+            log.error(ex.getMessage(), ex);
         }
     }
 

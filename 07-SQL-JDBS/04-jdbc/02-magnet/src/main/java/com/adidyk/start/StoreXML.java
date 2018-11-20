@@ -51,25 +51,14 @@ class StoreXML {
      * (used query sql -> GET_ALL_FIELD).
      */
     void getAllField() {
-        Connection connect = null;
         List<Field> list = new ArrayList<>();
-        try {
-            connect = DriverManager.getConnection(URL);
-            PreparedStatement statement = connect.prepareStatement(GET_ALL_FIELD);
-            ResultSet result = statement.executeQuery();
+        try (Connection connect = DriverManager.getConnection(URL);
+             PreparedStatement statement = connect.prepareStatement(GET_ALL_FIELD);
+             ResultSet result = statement.executeQuery()) {
             while (result.next()) {
                 Field field = new Field();
                 field.setField(result.getInt(FIELD));
                 list.add(field);
-            }
-            result.close();
-            statement.close();
-        } catch (SQLException ex) {
-            log.error(ex.getMessage(), ex);
-        }
-        try {
-            if (connect != null) {
-                connect.close();
             }
         } catch (SQLException ex) {
             log.error(ex.getMessage(), ex);
@@ -87,7 +76,7 @@ class StoreXML {
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             marshaller.marshal(this.entry, this.source);
         } catch (JAXBException ex) {
-            ex.printStackTrace();
+            log.error(ex.getMessage(), ex);
         }
     }
 
