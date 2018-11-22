@@ -47,7 +47,7 @@ public class ParserDate {
         if (this.patternToday.matcher(string).find()) {
             date = this.getTodayDate();
         } else if (this.patternYesterday.matcher(string).find()) {
-            date = this.getYesterdayDate();
+            date = this.getYesterdayDate(new Date());
         } else {
             try {
                 date = this.format.parse(string);
@@ -70,8 +70,9 @@ public class ParserDate {
      *
      * @return yesterday.
      */
-    private Date getYesterdayDate() {
+    Date getYesterdayDate(Date date) {
         final Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
         calendar.add(Calendar.DATE, -1);
         return calendar.getTime();
     }

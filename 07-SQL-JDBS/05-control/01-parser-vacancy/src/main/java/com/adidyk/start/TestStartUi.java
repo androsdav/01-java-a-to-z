@@ -18,7 +18,7 @@ public class TestStartUi {
         //        .build();
         Trigger trigger = newTrigger()
                 .withIdentity("CronTrigger")
-                .withSchedule(cronSchedule("1 * * * * ?"))
+                .withSchedule(cronSchedule("1/3 * * * * ?"))
                 .build();
         // scheduler
         Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();

@@ -43,6 +43,7 @@ class ParserSqlRu {
     private static String CLASS = "class";
     private static String POSTS_LIST_TOPIC = "postslisttopic";
     private static int SKIP_ROW = 3;
+    private static String MAX_DATE = "SELECT vacancy.date FROM vacancy WHERE vacancy.date IN (SELECT MAX(vacancy.date) FROM vacancy)";
 
     /**
      * ParserDate - constructor.
@@ -51,6 +52,29 @@ class ParserSqlRu {
     ParserSqlRu(ParserDate parserDate) {
         this.parserDate = parserDate;
     }
+
+
+
+    /**
+     *
+     * @return - true.
+     */
+    Date getLastDate() {
+        Date lastDate = null;
+        try (java.sql.Connection connect = DriverManager.getConnection(URL_BASE_VACANCY, USER_NAME, PASSWORD);
+             Statement statement = connect.createStatement();
+             ResultSet result = statement.executeQuery(MAX_DATE)) {
+            while (result.next()) {
+                lastDate = result.getDate("date");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return this.parserDate.getYesterdayDate(lastDate);
+    }
+
+//    SELECT vacancy.date FROM vacancy WHERE vacancy.date IN (SELECT MAX(vacancy.date) FROM vacancy);
+
 
     /**
      * checkTableIsEmpty - checks table (query sql) vacancy is empty (first start program).
@@ -101,8 +125,8 @@ class ParserSqlRu {
         boolean searchResult = false;
         int row = 1;
         for (Element post : posts) {
-            Date currentDate = this.parserDate.parse(post.nextElementSibling().nextElementSibling().
-                    nextElementSibling().nextElementSibling().text());
+            Date currentDate = this.parserDate.parse(post.nextElementSibling().nextElementSibling().nextElementSibling()
+                    .nextElementSibling().text());
             if (row > SKIP_ROW) {
                 System.out.println(currentDate);
                 if (this.compareDate(currentDate, dateTarget) >= ZERO) {
@@ -137,8 +161,7 @@ class ParserSqlRu {
                 String theme  = post.child(0).text();
                 String author = post.nextElementSibling().text();
                 int answers = Integer.parseInt(post.nextElementSibling().nextElementSibling().text());
-                int viewers = Integer.parseInt(post.nextElementSibling().nextElementSibling().
-                        nextElementSibling().text());
+                int viewers = Integer.parseInt(post.nextElementSibling().nextElementSibling().nextElementSibling().text());
                 Date date = this.parserDate.parse(post.nextElementSibling().nextElementSibling().
                         nextElementSibling().nextElementSibling().text());
                 Vacancy vacancy = new Vacancy(theme, author, answers, viewers, date);

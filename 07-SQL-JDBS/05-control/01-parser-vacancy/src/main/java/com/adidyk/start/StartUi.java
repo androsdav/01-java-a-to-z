@@ -12,6 +12,9 @@ import com.adidyk.setup.Settings;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
+import org.quartz.Job;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,7 +36,7 @@ import java.util.regex.Pattern;
  * @since 19.10.2018.
  * @version 1.0.
  */
-public class StartUi {
+public class StartUi implements Job {
 
     /**
      * @param log - link variable to object of class Logger.
@@ -114,6 +117,10 @@ public class StartUi {
      *
      */
     private void parser() throws IOException, SQLException {
+        ParserSqlRuJob parserSqlRuJob = new ParserSqlRuJob(new ParserSqlRu(this.parserDate), this.parserDate);
+        parserSqlRuJob.parser(parserSqlRuJob.checkFirstStart());
+        //parserSqlRuJob.execute();
+        /*
         int number = 1;
         ParserSqlRu purserSqlRu = new ParserSqlRu(this.parserDate);
         if (purserSqlRu.checkTableIsEmpty()) {
@@ -126,6 +133,8 @@ public class StartUi {
             System.out.println("page: " + url + index);
             purserSqlRu.addVacancy();
         }
+        purserSqlRu.getLastDate();
+        */
         /*
         for (Vacancy vacancy : test.getList()) {
             System.out.println(vacancy); http://wiki.postgresql.org/wiki/Slow_Counting
@@ -218,6 +227,13 @@ public class StartUi {
         }
         */
     }
+
+    @Override
+    public void execute(JobExecutionContext context) throws JobExecutionException {
+
+
+    }
+
 }
 
         /*
