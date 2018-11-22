@@ -26,16 +26,6 @@ public class SimpleExample {
                 .withIdentity("trigger1", "group1")
                 .startAt(runTime)
                 .build();
-
-        riggerBuilder.newTrigger()
-        34
-                .withSchedule(SimpleScheduleBuilder.simpleSchedule()
-                        35
-                                .withIntervalInSeconds(30)
-                        36
-                                .repeatForever()
-
-
         //
         scheduler.scheduleJob(job, trigger);
         scheduler.start();
