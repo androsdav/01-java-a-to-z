@@ -53,8 +53,6 @@ class ParserSqlRu {
         this.parserDate = parserDate;
     }
 
-
-
     /**
      *
      * @return - true.

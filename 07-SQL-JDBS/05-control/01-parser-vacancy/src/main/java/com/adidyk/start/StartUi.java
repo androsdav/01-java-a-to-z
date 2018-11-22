@@ -15,6 +15,7 @@ import org.jsoup.select.Elements;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
+import org.quartz.SchedulerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,7 +37,7 @@ import java.util.regex.Pattern;
  * @since 19.10.2018.
  * @version 1.0.
  */
-public class StartUi implements Job {
+public class StartUi {
 
     /**
      * @param log - link variable to object of class Logger.
@@ -58,7 +59,7 @@ public class StartUi implements Job {
     /**
      * start - starts program.
      */
-    private void start() throws IOException, SQLException {
+    private void start() throws IOException, SQLException, SchedulerException, InterruptedException {
         this.loadSetting();
         this.configDataBase();
         this.parser();
@@ -116,9 +117,17 @@ public class StartUi implements Job {
     /**
      *
      */
-    private void parser() throws IOException, SQLException {
-        ParserSqlRuJob parserSqlRuJob = new ParserSqlRuJob(new ParserSqlRu(this.parserDate), this.parserDate);
-        parserSqlRuJob.parser(parserSqlRuJob.checkFirstStart());
+    private void parser() throws IOException, SQLException, SchedulerException, InterruptedException {
+        ParserSqlRuJob parserSqlRuJob = new ParserSqlRuJob();
+        parserSqlRuJob.initialization(new ParserSqlRu(this.parserDate), this.parserDate);
+        //ParserSqlRuJob parserSqlRuJob = new ParserSqlRuJob(new ParserSqlRu(this.parserDate), this.parserDate);
+        parserSqlRuJob.parserAllPage(parserSqlRuJob.checkFirstStart());
+        HelloJob helloJob = new HelloJob();
+        helloJob.sayHello();
+        CronTriggerRunner cronTriggerRunner = new CronTriggerRunner();
+        cronTriggerRunner.runner();
+        System.out.println("end programm");
+        //Thread.sleep(100000);
         //parserSqlRuJob.execute();
         /*
         int number = 1;
@@ -213,7 +222,7 @@ public class StartUi implements Job {
      * main - creates jar file and runs program.
      * @param arg - is nothing.
      */
-    public static void main(String[] arg) throws IOException, SQLException {
+    public static void main(String[] arg) throws IOException, SQLException, SchedulerException, InterruptedException {
         System.out.println("hello world !!!");
         new StartUi().start();
 
@@ -228,11 +237,6 @@ public class StartUi implements Job {
         */
     }
 
-    @Override
-    public void execute(JobExecutionContext context) throws JobExecutionException {
-
-
-    }
 
 }
 

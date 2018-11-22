@@ -2,15 +2,23 @@ package com.adidyk.start;
 
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
-
 import static org.quartz.CronScheduleBuilder.cronSchedule;
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.TriggerBuilder.newTrigger;
 
-public class TestStartUi {
+/**
+ *
+ */
+public class CronTriggerRunner {
 
-    public static void main(String[] args) throws InterruptedException, SchedulerException {
-        JobDetail job = newJob(HelloJob.class).build();
+    /**
+     *
+     * @throws SchedulerException - is.
+     */
+    public void runner() throws SchedulerException {
+        //SchedulerFactory factory = new StdSchedulerFactory();
+        //Scheduler scheduler = factory.getScheduler();
+        JobDetail job = newJob(ParserSqlRuJob.class).build();
         Trigger trigger = newTrigger()
                 .withIdentity("CronTrigger")
                 .withSchedule(cronSchedule("0/20 * * * * ?"))
@@ -19,15 +27,5 @@ public class TestStartUi {
         Scheduler scheduler = schedulerFactory.getScheduler();
         scheduler.start();
         scheduler.scheduleJob(job, trigger);
-
-
-        //Thread.sleep(1000);
-        //scheduler.shutdown();
-        //Scheduler scheduler = new StdSchedulerFactory().getScheduler();
-
-        //SimpleExample simpleExample = new SimpleExample();
-
-       // simpleExample.task();
     }
-
 }
