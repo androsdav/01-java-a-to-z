@@ -3,7 +3,6 @@ package com.adidyk.start;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-
 import java.io.IOException;
 import java.util.Date;
 
