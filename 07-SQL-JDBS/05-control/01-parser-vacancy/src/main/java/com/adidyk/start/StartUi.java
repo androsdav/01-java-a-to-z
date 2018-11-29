@@ -12,10 +12,8 @@ import com.adidyk.setup.Settings;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
-import org.quartz.Job;
-import org.quartz.JobExecutionContext;
-import org.quartz.JobExecutionException;
-import org.quartz.SchedulerException;
+import org.quartz.*;
+import org.quartz.impl.StdSchedulerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,11 +23,13 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static org.quartz.CronScheduleBuilder.cronSchedule;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.TriggerBuilder.newTrigger;
 
 /**
  * Class StartUi for create jar file and start program.
@@ -37,7 +37,7 @@ import java.util.regex.Pattern;
  * @since 19.10.2018.
  * @version 1.0.
  */
-public class StartUi {
+public class StartUi implements Job {
 
     /**
      * @param log - link variable to object of class Logger.
@@ -49,21 +49,32 @@ public class StartUi {
      */
     private final ConfigDataBase config = new ConfigDataBase();
 
+    /**
+     *
+     */
     private ParserDate parserDate = new ParserDate();
+
+    /**
+     *
+     */
+    private ParserSqlRu parserSqlRu = new ParserSqlRu(this.parserDate);
 
     /**
      *
      */
     private String url = "http://www.sql.ru/forum/job-offers/";
 
+    private String lastYear = "31 дек 17, 00:00";
+
+    private String cronTime = "/5 * * * * ?";
+
     /**
      * start - starts program.
      */
-    private void start() throws IOException, SQLException, SchedulerException, InterruptedException {
+    private synchronized void start() throws IOException, SQLException, SchedulerException, InterruptedException {
         this.loadSetting();
         this.configDataBase();
-        this.parser();
-        //this.dateParser();
+        this.parser(this.searchLastPageUpdate());
     }
 
     /**
@@ -92,229 +103,96 @@ public class StartUi {
      * checkDataBase - checks if there is database.
      */
     private void checkDataBase() {
-        //final ConfigDataBase config = new ConfigDataBase();
         if (!this.config.searchDataBase()) {
-            //System.out.println("false");
             this.config.createDataBase();
-        } //else {
-        //    System.out.println("true");
-        //}
+        }
     }
 
     /**
      * checkTable - is.
      */
     private void checkTable() {
-        //final ConfigDataBase config = new ConfigDataBase();
         if (!this.config.searchTable()) {
-            //System.out.println("false");
             this.config.createTableVacancy();
-        } //else {
-          //  System.out.println("true");
-        //}
+        }
+    }
+
+    /**
+     *
+     * @return - is.
+     * @throws IOException - is.
+     */
+    private int searchLastPageUpdate() throws IOException {
+        int page;
+        if (this.parserSqlRu.checkTableIsEmpty()) {
+            System.out.println(this.parserSqlRu.checkTableIsEmpty());
+            page = this.parserSqlRu.searchPageByDate(this.parserDate.parse(lastYear));
+            System.out.println(" [info]: " + " first start number page " + page);
+        } else {
+            Date date = this.parserSqlRu.getLastDate();
+            page = this.parserSqlRu.searchPageByDate(date);
+            System.out.println(" [info]: " + "last update number page " + page);
+        }
+        return page;
     }
 
     /**
      *
      */
-    private void parser() throws IOException, SQLException, SchedulerException, InterruptedException {
-        ParserSqlRuJob parserSqlRuJob = new ParserSqlRuJob();
-        parserSqlRuJob.initialization(new ParserSqlRu(this.parserDate), this.parserDate);
-        //ParserSqlRuJob parserSqlRuJob = new ParserSqlRuJob(new ParserSqlRu(this.parserDate), this.parserDate);
-        parserSqlRuJob.parserAllPage(parserSqlRuJob.checkFirstStart());
-        HelloJob helloJob = new HelloJob();
-        helloJob.sayHello();
-        CronTriggerRunner cronTriggerRunner = new CronTriggerRunner();
-        cronTriggerRunner.runner();
-        System.out.println("end programm");
-        //Thread.sleep(100000);
-        //parserSqlRuJob.execute();
-        /*
-        int number = 1;
-        ParserSqlRu purserSqlRu = new ParserSqlRu(this.parserDate);
-        if (purserSqlRu.checkTableIsEmpty()) {
-            System.out.println(purserSqlRu.checkTableIsEmpty());
-            number = purserSqlRu.searchPageByDate(this.parserDate.parse("31 дек 17, 13:28"));
-            System.out.println("number: " + number);
+    private void parser(int page) throws IOException {
+        System.out.println(" [info]: run cron  ....");
+        for (int index = 1; index <= page; index++) {
+            this.parserSqlRu.parse(url + index);
+            System.out.println(" [info] url: " + url + index);
+            this.parserSqlRu.addVacancy();
         }
-        for (int index = 1; index <= number; index++) {
-            purserSqlRu.parse(url + index);
-            System.out.println("page: " + url + index);
-            purserSqlRu.addVacancy();
-        }
-        purserSqlRu.getLastDate();
-        */
-        /*
-        for (Vacancy vacancy : test.getList()) {
-            System.out.println(vacancy); http://wiki.postgresql.org/wiki/Slow_Counting
-
-            SELECT t.*, CTID FROM pg_catalog.pg_constraint t LIMIT 501
-        }
-        */
     }
 
     /**
      *
+     * @throws SchedulerException - is.
      */
-    private void dateParser() {
-        ParserDate parserDate = new ParserDate();
-        Date date = parserDate.parse("10 ноя 09, 23:12");
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-        System.out.println(sdf.format(date));
-        /*
-        //***************** parser string to date
-        System.out.println();
-        String string = "24 янв 18, 13:28";
-        Locale locale = new Locale("ru", "RU");
-        //DateFormat format = new SimpleDateFormat("d MMM yy, HH:mm", locale);
-        DateFormat format = new SimpleDateFormat("dd MMM yy, HH:mm", locale);
-        Date date = null;
+    private void runner() throws SchedulerException {
+        Set<Trigger> triggers = new HashSet<>();
+        //System.out.println("hello world !!!");
+        JobDetail job = newJob(StartUi.class).build();
+        Trigger triggerStartNow = newTrigger()
+                .withIdentity("TriggerStartNow")
+                .startNow()
+                .build();
+        Trigger cronTrigger = newTrigger()
+                .withIdentity("CronTrigger")
+                .withSchedule(cronSchedule(cronTime))
+                .build();
+        triggers.add(triggerStartNow);
+        triggers.add(cronTrigger);
+        SchedulerFactory schedulerFactory = new StdSchedulerFactory();
+        Scheduler scheduler = schedulerFactory.getScheduler();
+        scheduler.start();
+        scheduler.scheduleJob(job, triggers, false);
+    }
+
+    /**
+     *
+     * @param context - is.
+     * @throws JobExecutionException - is.
+     */
+    @Override
+    public void execute(JobExecutionContext context) throws JobExecutionException {
+        System.out.println(" [info]: START EXECUTE " + new Date());
         try {
-            date = format.parse(string);
-        } catch (ParseException e) {
+            this.start();
+        } catch (IOException | SQLException | SchedulerException | InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println(date);
-        //***************** may format date
-        System.out.println();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-        System.out.println(sdf.format(date));
-        //***************** search substring in string use RU
-        String string1 = "24 сегодня 18, 13:28";
-        Pattern today = Pattern.compile("(?i
-        )\\bсегодня\\b");
-        Matcher matcher = today.matcher(string1);
-        //Pattern yesterday = Pattern.compile("вчера");
-        /*
-        if (today.matcher(string).find()) {
-            System.out.println("вывод русс");
-        }
-        */
-        /*
-        System.out.println(matcher.find());
-        System.out.println(matcher.group());
-        */
-
-
-
-
-
     }
-/*
-
-    public class GetLocalInformation {
-
-        private static String getSymbols(Locale locale){
-            DateFormatSymbols symbols = new DateFormatSymbols(locale);
-            return Arrays.toString(symbols.getMonths());
-        }
-
-        public static void main(String[] args) {
-            System.out.println(getSymbols( new Locale("RU","ru")));
-            System.out.println(getSymbols( new Locale("EN","en")));
-            System.out.println(getSymbols( Locale.GERMANY ));
-            System.out.println(getSymbols( Locale.CHINA ));
-        } http://www.sbp-program.ru/java/sbp-datetime.htm
-        http://www.seostella.com/ru/article/2012/02/05/formatirovanie-daty-v-java.html
-        */
 
     /**
      * main - creates jar file and runs program.
      * @param arg - is nothing.
      */
     public static void main(String[] arg) throws IOException, SQLException, SchedulerException, InterruptedException {
-        System.out.println("hello world !!!");
-        new StartUi().start();
-
-        /*
-        String url  = "http://www.sql.ru/forum/job-offers/2";
-        Test test = new Test();
-        test.parserJsoup(url);
-        for (Vacancy item : test.getList()) {
-            System.out.println(item);
-
-        }
-        */
+        new StartUi().runner();
     }
-
 
 }
-
-        /*
-        String string = "zczczxc java dasdkjavadsd JaVaScript aaaaaa aajava JAVAa dsJAVAJAVA JAVA JavaScript jAVa";
-        Pattern pattern = Pattern.compile("(?i)(\\bjava\\b)");
-        Matcher matcher = pattern.matcher(string);
-        /*
-        while (matcher.find()) {
-            System.out.println(matcher.group());
-        }
-        if (matcher.find()) {
-            System.out.println("Is good");
-        } else {
-            System.out.println("Is bad");
-        }
-    }
-
-        /*
-        Pattern pattern = Pattern.compile("(?i)\\bjava\\b");
-        Connection connection = Jsoup.connect("http://www.sql.ru/forum/job-offers");
-        Document document = connection.get();
-        Elements posts = document.getElementsByAttributeValue("class", "postslisttopic");
-        for (Element post : posts) {
-            if (pattern.matcher(post.child(0).text()).find()) {
-                System.out.println(post.child(0).text());
-                System.out.println(post.nextElementSibling().text());
-                System.out.println(post.nextElementSibling().nextElementSibling().text());
-                System.out.println(post.nextElementSibling().nextElementSibling().nextElementSibling().text());
-                System.out.println(post.nextElementSibling().nextElementSibling().nextElementSibling().nextElementSibling().text());
-                System.out.println();
-            }
-        }
-
-    }
-
-        /*
-        List<Element> elements = document.select("tr");
-        for (Element element : elements) {
-            //System.out.println(element.child(0).text());
-            System.out.println(element.select("td.postslisttopic").select("a[href]").text());
-            //System.out.println();
-        }
-    }
-
-        /*
-        Elements forumTable = document.getElementsByAttributeValue("class", "forumTable");
-        Elements topic = document.getElementsByAttributeValue("class", "postslisttopic");
-        Elements author = document.getElementsByAttributeValue("class", "altCol");
-
-        System.out.println(topic.size());
-        for (Element element : topic) {
-            System.out.println(element.child(0).text());
-            System.out.println(element.child(1).text());
-            System.out.println(element.child(2).text());
-            System.out.println();
-        }
-
-        //for (int index = 0; index < topic.size(); index++) {
-            //System.out.println(topic.text());
-            //System.out.println();
-            //System.out.println(author.text());
-            //System.out.println(author.next().text());
-        //}
-
-            //System.out.println(topic.child(0).text());
-            //Element author = doc
-
-
-            //System.out.println(element.before("td"));
-            //System.out.println();
-        }
-        /*
-        elements.forEach(element -> {
-            System.out.println(element.attributes());
-        });
-        */
-
-        //System.out.println(document.title());
-        //System.out.println(document.head());
-        //new StartUi().start();

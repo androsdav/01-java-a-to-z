@@ -64,14 +64,16 @@ public class ParserSqlRuJob implements Job {
         }
     }
 
+    /*
     /**
      *
      */
+    /*
     private void test() throws IOException {
         System.out.println("[test] run ....");
 
        Date date = this.parserSqlRu.getLastDate();
-       System.out.println("[date]: " + this.parserDate.formatDate(date));
+       System.out.println("[get lst date]: " + this.parserDate.formatDate(date));
        int page = this.parserSqlRu.searchPageByDate(date);
         System.out.println("[page]: " + page);
        for (int index = 1; index <= page; index++) {
@@ -80,16 +82,14 @@ public class ParserSqlRuJob implements Job {
            this.parserSqlRu.addVacancy();
        }
     }
+    */
 
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
         System.out.println("Hello word");
         System.out.println(new Date());
-        try {
-            this.test();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        //this.test();
+        System.out.println();
 
 
     }

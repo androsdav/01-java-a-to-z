@@ -36,8 +36,6 @@ public class ParserDate {
      */
     private Pattern patternYesterday = Pattern.compile("(?i)\\bвчера\\b");
 
-
-
     /**
      *
      * @return date.
