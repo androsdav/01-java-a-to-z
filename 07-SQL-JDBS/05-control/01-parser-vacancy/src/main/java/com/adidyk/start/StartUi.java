@@ -66,12 +66,12 @@ public class StartUi implements Job {
 
     private String lastYear = "31 дек 17, 00:00";
 
-    private String cronTime = "/5 * * * * ?";
+    private String cronTime = "10 58 21 * * ?";
 
     /**
      * start - starts program.
      */
-    private synchronized void start() throws IOException, SQLException, SchedulerException, InterruptedException {
+    private synchronized void start() throws IOException {
         this.loadSetting();
         this.configDataBase();
         this.parser(this.searchLastPageUpdate());
@@ -153,6 +153,7 @@ public class StartUi implements Job {
      * @throws SchedulerException - is.
      */
     private void runner() throws SchedulerException {
+
         Set<Trigger> triggers = new HashSet<>();
         //System.out.println("hello world !!!");
         JobDetail job = newJob(StartUi.class).build();
@@ -179,10 +180,10 @@ public class StartUi implements Job {
      */
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
-        System.out.println(" [info]: START EXECUTE " + new Date());
+        System.out.println(" [info]: START EXECUTE " + new Date() + "  " + context.getTrigger().getKey());
         try {
             this.start();
-        } catch (IOException | SQLException | SchedulerException | InterruptedException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

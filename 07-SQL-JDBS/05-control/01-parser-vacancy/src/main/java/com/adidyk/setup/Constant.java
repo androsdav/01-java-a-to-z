@@ -142,6 +142,21 @@ public class Constant {
     public static String ADD_VACANCY;
 
     /**
+     *
+     */
+    public static String COUNT;
+
+    /**
+     *
+     */
+    public static String MAX_DATE;
+
+    /**
+     *
+     */
+    public static String URL_SQL_RU;
+
+    /**
      * Constant - constructor (reads all parameters from file app.properties).
      * @param set - link to object of class Setting.
      */
@@ -170,6 +185,8 @@ public class Constant {
         SEARCH_TABLE_VACANCY = set.getValue("sql.searchTableVacancy");
         CREATE_TABLE_VACANCY = set.getValue("sql.createTableVacancy");
         ADD_VACANCY = set.getValue("sql.addVacancy");
+        COUNT = set.getValue("sql.count");
+        MAX_DATE = set.getValue("sql.maxDate");
     }
 
     /**
@@ -181,6 +198,7 @@ public class Constant {
         DAT_NAME = set.getValue("app.datName");
         VACANCY = set.getValue("app.vacancy");
         TABLE_NAME = set.getValue("app.tableName");
+        URL_SQL_RU = set.getValue("app.urlSqlRu");
     }
 
 }

@@ -38,12 +38,12 @@ class ParserSqlRu {
 
     //private final Date dateTarget = this.parserDate.parse("31 дек 17, 13:28");
     private static int ZERO = 0;
-    private final static String COUNT = "SELECT COUNT(*) FROM vacancy LIMIT 1";
-    private static String URL_SQL_RU = "http://www.sql.ru/forum/job-offers/";
+    //private final static String COUNT = "SELECT COUNT(*) FROM vacancy LIMIT 1";
+    //private static String URL_SQL_RU = "http://www.sql.ru/forum/job-offers/";
     private static String CLASS = "class";
     private static String POSTS_LIST_TOPIC = "postslisttopic";
     private static int SKIP_ROW = 3;
-    private static String MAX_DATE = "SELECT vacancy.date FROM vacancy WHERE vacancy.date IN (SELECT MAX(vacancy.date) FROM vacancy)";
+    //private static String MAX_DATE = "SELECT vacancy.date FROM vacancy WHERE vacancy.date IN (SELECT MAX(vacancy.date) FROM vacancy)";
 
     /**
      * ParserDate - constructor.
