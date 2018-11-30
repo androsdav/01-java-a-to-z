@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.regex.Pattern;
 import static com.adidyk.setup.Constant.*;
 
 /**
@@ -27,23 +26,9 @@ class ParserSqlRu {
     private ArrayList<Vacancy> list = new ArrayList<>();
 
     /**
-     * @param pattern - pattern.
-     */
-    private final Pattern pattern = Pattern.compile("(?i)\\bjava\\b");
-
-    /**
      * parserDate - parserDate.
      */
     private ParserDate parserDate;
-
-    //private final Date dateTarget = this.parserDate.parse("31 дек 17, 13:28");
-    private static int ZERO = 0;
-    //private final static String COUNT = "SELECT COUNT(*) FROM vacancy LIMIT 1";
-    //private static String URL_SQL_RU = "http://www.sql.ru/forum/job-offers/";
-    private static String CLASS = "class";
-    private static String POSTS_LIST_TOPIC = "postslisttopic";
-    private static int SKIP_ROW = 3;
-    //private static String MAX_DATE = "SELECT vacancy.date FROM vacancy WHERE vacancy.date IN (SELECT MAX(vacancy.date) FROM vacancy)";
 
     /**
      * ParserDate - constructor.
@@ -70,9 +55,6 @@ class ParserSqlRu {
         }
         return this.parserDate.getYesterdayDate(lastDate);
     }
-
-//    SELECT vacancy.date FROM vacancy WHERE vacancy.date IN (SELECT MAX(vacancy.date) FROM vacancy);
-
 
     /**
      * checkTableIsEmpty - checks table (query sql) vacancy is empty (first start program).
@@ -155,7 +137,7 @@ class ParserSqlRu {
         Document document = connection.get();
         Elements posts = document.getElementsByAttributeValue(CLASS, POSTS_LIST_TOPIC);
         for (Element post : posts) {
-            if (this.pattern.matcher(post.child(0).text()).find()) {
+            if (PATTERN_JAVA.matcher(post.child(0).text()).find()) {
                 String theme  = post.child(0).text();
                 String author = post.nextElementSibling().text();
                 int answers = Integer.parseInt(post.nextElementSibling().nextElementSibling().text());
@@ -169,7 +151,7 @@ class ParserSqlRu {
     }
 
     /**
-     *
+     * addVacancy - add vacancy to data base base_vacancy.
      */
     void addVacancy() {
         try (java.sql.Connection connect = DriverManager.getConnection(URL_BASE_VACANCY, USER_NAME, PASSWORD)) {
@@ -191,13 +173,6 @@ class ParserSqlRu {
             ex.printStackTrace();
         }
         this.list.clear();
-    }
-
-    /**
-     * getList - get list.
-     */
-    ArrayList<Vacancy> getList() {
-        return this.list;
     }
 
 }

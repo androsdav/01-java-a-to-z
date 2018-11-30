@@ -1,5 +1,7 @@
 package com.adidyk.setup;
 
+import java.util.regex.Pattern;
+
 /**
  * Class Constant for create all constants.
  * All constants are created when reading from the configuration file app.properties.
@@ -9,73 +11,6 @@ package com.adidyk.setup;
  */
 public class Constant {
 
-    /**
-     * @param URl - url database -> magnet.sqlite (from app.properties).
-     */
-    public static String URL;
-
-    /**
-     * @param QUANTITY - number of fields in table entry (from app.properties).
-     */
-    public static int QUANTITY;
-
-    /**
-     * @param SEARCH_TABLE - query sql: search table -> entry (from app.properties).
-     */
-    public static String SEARCH_TABLE_ENTRY;
-
-    /**
-     * @param CREATE_TABLE_ENTRY - query sql: create table entry (from app.properties).
-     */
-    public static String CREATE_TABLE_ENTRY;
-
-    /**
-     * @param ADD_FIELD - query sql: insert into field to entry (from app.properties).
-     */
-    public static String ADD_FIELD;
-
-    /**
-     * @param CLEAR_TABLE_ENTRY - query sql: clear table entry (from app.properties).
-     */
-    public static String CLEAR_TABLE_ENTRY;
-
-    /**
-     * @param GET_ALL_FIELD - query sql: selects all field from table entry (from app. properties)
-     */
-    public static String GET_ALL_FIELD;
-
-    /**
-     * @param FIELD - field (from app.properties)
-     */
-    public static String FIELD;
-
-    /**
-     * @param ENTRY - entry (from app.properties).
-     */
-    public static String ENTRY;
-
-    /**
-     * @param SOURCE - name file where saves all fields from database.
-     */
-    public static String SOURCE;
-
-    /**
-     * @param DEST - name file where saves all data from source.xml (from app.properties).
-     */
-    public static String DEST;
-
-    /**
-     * @param SCHEME - scheme XSLT (from app.properties).
-     */
-    public static String SCHEME;
-
-    /**
-     * @param HREF - attribute entry.
-     */
-    public static String HREF;
-
-
-    //*********************************************************
     /**
      * @param URL_BASE_POSTGRES - url database -> postgres (from app.properties).
      */
@@ -119,22 +54,22 @@ public class Constant {
     /**
      * @param SEARCH_TABLE - query sql.
      */
-    public static String SEARCH_TABLE_VACANCY;
+    static String SEARCH_TABLE_VACANCY;
 
     /**
      * @param VACANCY - vacancy.
      */
-    public static String VACANCY;
+    static String VACANCY;
 
     /**
      * @param CREATE_TABLE_VACANCY - is.
      */
-    public static String CREATE_TABLE_VACANCY;
+    static String CREATE_TABLE_VACANCY;
 
     /**
      * @param TABLE_NAME - name of table where the user tables are located (from app.properties).
      */
-    public static String TABLE_NAME;
+    static String TABLE_NAME;
 
     /**
      *
@@ -155,6 +90,52 @@ public class Constant {
      *
      */
     public static String URL_SQL_RU;
+
+    /**
+     *
+     */
+    public static int ZERO;
+
+    /**
+     *
+     */
+    public static int SKIP_ROW;
+
+    /**
+     *
+     */
+    public static String CLASS;
+
+    /**
+     *
+     */
+    public static String POSTS_LIST_TOPIC;
+
+    /**
+     *
+     */
+    public static String LAST_YEAR = "31 дек 17, 00:00";
+
+    /**
+     *
+     */
+    public static String CRON_TIME = "1 45 17 * * ?";
+
+    /**
+     *
+     */
+    public static Pattern PATTERN_TODAY = Pattern.compile("(?i)\\bсегодня\\b");
+
+    /**
+     *
+     */
+    public static Pattern PATTERN_YESTERDAY = Pattern.compile("(?i)\\bвчера\\b");
+
+    /**
+     *
+     */
+    public static Pattern PATTERN_JAVA = Pattern.compile("(?i)\\bjava\\b");
+
 
     /**
      * Constant - constructor (reads all parameters from file app.properties).
@@ -199,6 +180,10 @@ public class Constant {
         VACANCY = set.getValue("app.vacancy");
         TABLE_NAME = set.getValue("app.tableName");
         URL_SQL_RU = set.getValue("app.urlSqlRu");
+        ZERO = Integer.parseInt(set.getValue("app.zero"));
+        SKIP_ROW = Integer.parseInt(set.getValue("app.skipRow"));
+        CLASS = set.getValue("app.class");
+        POSTS_LIST_TOPIC = set.getValue("app.postsListTopic");
     }
 
 }

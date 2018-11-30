@@ -27,6 +27,9 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.adidyk.setup.Constant.CRON_TIME;
+import static com.adidyk.setup.Constant.LAST_YEAR;
+import static com.adidyk.setup.Constant.URL_SQL_RU;
 import static org.quartz.CronScheduleBuilder.cronSchedule;
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.TriggerBuilder.newTrigger;
@@ -59,14 +62,11 @@ public class StartUi implements Job {
      */
     private ParserSqlRu parserSqlRu = new ParserSqlRu(this.parserDate);
 
-    /**
-     *
-     */
-    private String url = "http://www.sql.ru/forum/job-offers/";
 
-    private String lastYear = "31 дек 17, 00:00";
 
-    private String cronTime = "10 58 21 * * ?";
+    //private String LAST_YEAR = "31 дек 17, 00:00";
+
+   // private String CRON_TIME = "10 33 16 * * ?";
 
     /**
      * start - starts program.
@@ -125,13 +125,12 @@ public class StartUi implements Job {
     private int searchLastPageUpdate() throws IOException {
         int page;
         if (this.parserSqlRu.checkTableIsEmpty()) {
-            System.out.println(this.parserSqlRu.checkTableIsEmpty());
-            page = this.parserSqlRu.searchPageByDate(this.parserDate.parse(lastYear));
-            System.out.println(" [info]: " + " first start number page " + page);
+            //System.out.println(this.parserSqlRu.checkTableIsEmpty());
+            page = this.parserSqlRu.searchPageByDate(this.parserDate.parse(LAST_YEAR));
+            //System.out.println(" [info]: " + " first start number page " + page);
         } else {
-            Date date = this.parserSqlRu.getLastDate();
-            page = this.parserSqlRu.searchPageByDate(date);
-            System.out.println(" [info]: " + "last update number page " + page);
+            page = this.parserSqlRu.searchPageByDate(this.parserSqlRu.getLastDate());
+            //System.out.println(" [info]: " + "last update number page " + page);
         }
         return page;
     }
@@ -142,8 +141,8 @@ public class StartUi implements Job {
     private void parser(int page) throws IOException {
         System.out.println(" [info]: run cron  ....");
         for (int index = 1; index <= page; index++) {
-            this.parserSqlRu.parse(url + index);
-            System.out.println(" [info] url: " + url + index);
+            this.parserSqlRu.parse(URL_SQL_RU + index);
+            System.out.println(" [info] url: " + URL_SQL_RU + index);
             this.parserSqlRu.addVacancy();
         }
     }
@@ -153,9 +152,7 @@ public class StartUi implements Job {
      * @throws SchedulerException - is.
      */
     private void runner() throws SchedulerException {
-
         Set<Trigger> triggers = new HashSet<>();
-        //System.out.println("hello world !!!");
         JobDetail job = newJob(StartUi.class).build();
         Trigger triggerStartNow = newTrigger()
                 .withIdentity("TriggerStartNow")
@@ -163,7 +160,7 @@ public class StartUi implements Job {
                 .build();
         Trigger cronTrigger = newTrigger()
                 .withIdentity("CronTrigger")
-                .withSchedule(cronSchedule(cronTime))
+                .withSchedule(cronSchedule(CRON_TIME))
                 .build();
         triggers.add(triggerStartNow);
         triggers.add(cronTrigger);
