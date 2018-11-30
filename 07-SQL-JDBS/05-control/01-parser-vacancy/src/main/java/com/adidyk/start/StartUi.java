@@ -152,6 +152,7 @@ public class StartUi implements Job {
      * @throws SchedulerException - is.
      */
     private void runner() throws SchedulerException {
+        System.out.println("------------------------------RUN----------------------------------------");
         Set<Trigger> triggers = new HashSet<>();
         JobDetail job = newJob(StartUi.class).build();
         Trigger triggerStartNow = newTrigger()

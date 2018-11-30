@@ -119,7 +119,7 @@ public class Constant {
     /**
      *
      */
-    public static String CRON_TIME = "1 45 17 * * ?";
+    public static String CRON_TIME = "1 19 22 * * ?";
 
     /**
      *

@@ -3,7 +3,7 @@ package com.adidyk.models;
 import java.util.Date;
 
 /**
- * Class StartUi for create jar file and start program.
+ * Class Vacancy for create object vacancy with param: theme, author, answers, viewers, date.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 23.10.2018.
  * @version 1.0.
