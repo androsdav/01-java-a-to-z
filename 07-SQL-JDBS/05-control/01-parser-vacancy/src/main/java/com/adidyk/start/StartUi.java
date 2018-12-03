@@ -1,35 +1,17 @@
 package com.adidyk.start;
 
-import com.adidyk.models.Vacancy;
 import com.adidyk.setup.ConfigDataBase;
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-
 import com.adidyk.setup.Constant;
 import com.adidyk.setup.Settings;
-
-import org.jsoup.nodes.Element;
-import org.jsoup.nodes.Node;
-import org.jsoup.select.Elements;
+import org.apache.log4j.Logger;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import static com.adidyk.setup.Constant.CRON_TIME;
-import static com.adidyk.setup.Constant.LAST_YEAR;
-import static com.adidyk.setup.Constant.URL_SQL_RU;
+import static com.adidyk.setup.Constant.*;
 import static org.quartz.CronScheduleBuilder.cronSchedule;
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.TriggerBuilder.newTrigger;
@@ -45,7 +27,8 @@ public class StartUi implements Job {
     /**
      * @param log - link variable to object of class Logger.
      */
-    private static final Logger log = LoggerFactory.getLogger(StartUi.class);
+    private static final Logger logger = Logger.getLogger(StartUi.class);
+
 
     /**
      *
@@ -61,12 +44,6 @@ public class StartUi implements Job {
      *
      */
     private ParserSqlRu parserSqlRu = new ParserSqlRu(this.parserDate);
-
-
-
-    //private String LAST_YEAR = "31 дек 17, 00:00";
-
-   // private String CRON_TIME = "10 33 16 * * ?";
 
     /**
      * start - starts program.
@@ -87,7 +64,7 @@ public class StartUi implements Job {
             setting.load(is);
             new Constant(setting);
         } catch (IOException ex) {
-            log.error(ex.getMessage(), ex);
+            logger.error(ex.getMessage(), ex);
         }
     }
 
@@ -152,7 +129,7 @@ public class StartUi implements Job {
      * @throws SchedulerException - is.
      */
     private void runner() throws SchedulerException {
-        System.out.println("------------------------------RUN----------------------------------------");
+        logger.debug("start program...........");
         this.loadSetting();
         Set<Trigger> triggers = new HashSet<>();
         JobDetail job = newJob(StartUi.class).build();

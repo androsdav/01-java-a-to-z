@@ -1,15 +1,40 @@
 package com.adidyk.start;
 
-import org.quartz.*;
-import org.quartz.impl.StdSchedulerFactory;
-
-import static org.quartz.CronScheduleBuilder.cronSchedule;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.TriggerBuilder.newTrigger;
+import org.apache.log4j.Logger;
 
 public class TestStartUi {
 
-    public static void main(String[] args) throws InterruptedException, SchedulerException {
+    //private static final Logger logger = Logger.getLogger(TestStartUi.class);
+
+    public static void main(String[] args) {
+        /*
+        logger.debug("debug");
+        logger.info("info");
+        logger.warn("warn");
+        logger.error("error");
+        logger.fatal("fatal");
+        try {
+            throw new Exception("test exception");
+        } catch (Exception ex) {
+            logger.error("exception", ex);
+        }
+
+        /*
+        System.out.println("LOG4J");
+        log.debug("start processing");
+        //
+        int result = 0;
+        for (int index = 0; index < 10; index++) {
+            result = result + index;
+        }
+        log.debug("end processing " + result);
+        //
+        if (log.isDebugEnabled()) {
+            log.debug("Result: " + result);
+        }
+        log.
+
+        /*
         JobDetail job = newJob(HelloJob.class).build();
         Trigger trigger = newTrigger()
                 .withIdentity("CronTrigger")
@@ -19,6 +44,7 @@ public class TestStartUi {
         Scheduler scheduler = schedulerFactory.getScheduler();
         scheduler.start();
         scheduler.scheduleJob(job, trigger);
+        */
 
 
         //Thread.sleep(1000);

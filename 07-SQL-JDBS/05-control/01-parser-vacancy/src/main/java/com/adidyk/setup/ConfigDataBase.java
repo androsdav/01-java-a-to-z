@@ -1,7 +1,7 @@
 package com.adidyk.setup;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
+
 import java.sql.*;
 import static com.adidyk.setup.Constant.*;
 
@@ -16,7 +16,7 @@ public class ConfigDataBase {
     /**
      * @param log - link variable to object of class Logger.
      */
-    private static final Logger log = LoggerFactory.getLogger(ConfigDataBase.class);
+    private static final Logger logger = Logger.getLogger(ConfigDataBase.class);
 
     /**
      * searchDataBase - searches database (query sql) NAME_DATA_BASE (base_tracker). If database base_tracker exists
@@ -34,7 +34,7 @@ public class ConfigDataBase {
                 }
             }
         } catch (SQLException ex) {
-            log.error(ex.getMessage(), ex);
+            logger.error(ex.getMessage(), ex);
         }
         return found;
     }
@@ -81,7 +81,7 @@ public class ConfigDataBase {
         try (Connection connect = DriverManager.getConnection(URL_BASE_VACANCY, USER_NAME, PASSWORD)) {
             connect.createStatement().executeUpdate(CREATE_TABLE_VACANCY);
         } catch (SQLException ex) {
-            log.error(ex.getMessage(), ex);
+            logger.error(ex.getMessage(), ex);
         }
     }
 
