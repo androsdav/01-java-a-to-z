@@ -153,18 +153,19 @@ public class StartUi implements Job {
      */
     private void runner() throws SchedulerException {
         System.out.println("------------------------------RUN----------------------------------------");
+        this.loadSetting();
         Set<Trigger> triggers = new HashSet<>();
         JobDetail job = newJob(StartUi.class).build();
         Trigger triggerStartNow = newTrigger()
                 .withIdentity("TriggerStartNow")
                 .startNow()
                 .build();
-        Trigger cronTrigger = newTrigger()
+        Trigger triggerCron = newTrigger()
                 .withIdentity("CronTrigger")
                 .withSchedule(cronSchedule(CRON_TIME))
                 .build();
         triggers.add(triggerStartNow);
-        triggers.add(cronTrigger);
+        triggers.add(triggerCron);
         SchedulerFactory schedulerFactory = new StdSchedulerFactory();
         Scheduler scheduler = schedulerFactory.getScheduler();
         scheduler.start();

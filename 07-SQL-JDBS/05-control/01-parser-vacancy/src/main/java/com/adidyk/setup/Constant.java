@@ -114,27 +114,27 @@ public class Constant {
     /**
      *
      */
-    public static String LAST_YEAR = "31 дек 17, 00:00";
+    public static String LAST_YEAR;
 
     /**
      *
      */
-    public static String CRON_TIME = "1 19 22 * * ?";
+    public static String CRON_TIME;
 
     /**
      *
      */
-    public static Pattern PATTERN_TODAY = Pattern.compile("(?i)\\bсегодня\\b");
+    public static Pattern PATTERN_TODAY;
 
     /**
      *
      */
-    public static Pattern PATTERN_YESTERDAY = Pattern.compile("(?i)\\bвчера\\b");
+    public static Pattern PATTERN_YESTERDAY;
 
     /**
      *
      */
-    public static Pattern PATTERN_JAVA = Pattern.compile("(?i)\\bjava\\b");
+    public static Pattern PATTERN_JAVA;
 
 
     /**
@@ -144,6 +144,8 @@ public class Constant {
     public Constant(Settings set) {
         this.setJDBC(set);
         this.setQuerySQL(set);
+        this.setPattern(set);
+        this.setCronTime(set);
         this.setOtherName(set);
     }
 
@@ -170,6 +172,16 @@ public class Constant {
         MAX_DATE = set.getValue("sql.maxDate");
     }
 
+    private void setPattern(Settings set) {
+        PATTERN_JAVA = Pattern.compile(set.getValue("pattern.java"));
+        PATTERN_TODAY = Pattern.compile(set.getValue("pattern.today"));
+        PATTERN_YESTERDAY = Pattern.compile(set.getValue("pattern.yesterday"));
+    }
+
+    private void setCronTime(Settings set) {
+        CRON_TIME = set.getValue("cron.time");
+    }
+
     /**
      *
      * @param set - set.
@@ -184,6 +196,7 @@ public class Constant {
         SKIP_ROW = Integer.parseInt(set.getValue("app.skipRow"));
         CLASS = set.getValue("app.class");
         POSTS_LIST_TOPIC = set.getValue("app.postsListTopic");
+        LAST_YEAR = set.getValue("app.lastYear");
     }
 
 }
