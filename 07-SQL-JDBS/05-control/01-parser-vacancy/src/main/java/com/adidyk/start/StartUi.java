@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.*;
-
 import static com.adidyk.setup.Constant.*;
 import static org.quartz.CronScheduleBuilder.cronSchedule;
 import static org.quartz.JobBuilder.newJob;
@@ -28,7 +27,6 @@ public class StartUi implements Job {
      * @param log - link variable to object of class Logger.
      */
     private static final Logger logger = Logger.getLogger(StartUi.class);
-
 
     /**
      *
