@@ -1,4 +1,4 @@
--- sql: search data base base_vacancy
+-- search data base base_vacancy
 SELECT datname FROM pg_database WHERE datname = 'base_vacancy';
 
 -- create data base base_vacancy
@@ -18,8 +18,7 @@ CREATE TABLE vacancy (
 );
 
 -- add vacancy
-INSERT INTO vacancy (theme, author, answers, viewers, date) VALUES
-  (?, ?, ?, ?, ?) ON CONFLICT DO NOTHING;
+INSERT INTO vacancy (theme, author, answers, viewers, date) VALUES (?, ?, ?, ?, ?) ON CONFLICT DO NOTHING;
 
 -- counts all number of vacancy
 SELECT COUNT(*) FROM vacancy LIMIT 1;

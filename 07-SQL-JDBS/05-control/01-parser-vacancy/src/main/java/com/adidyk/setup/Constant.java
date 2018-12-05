@@ -17,132 +17,133 @@ public class Constant {
     static String URL_BASE_POSTGRES;
 
     /**
-     * @param NAME - name user (from app.properties).
-     */
-    public static String USER_NAME;
-
-    /**
-     * @param PASSWORD - password user-postgres (from app.properties).
-     */
-    public static String PASSWORD;
-
-    /**
-     * @param NAME_DATA_BASE - name database -> base_tracker (from app.properties).
-     */
-    static String NAME_DATA_BASE;
-
-    /**
-     * @param SEARCH_DATA_BASE - query sql: search database -> base_tracker (from app.properties).
-     */
-    static String SEARCH_DATA_BASE;
-
-    /**
-     * @param DAT_NAME - column name (datname) in table pg_postgres.
-     */
-    static String DAT_NAME;
-
-    /**
-     * @param CREATE_DATA_BASE - query sql: create database -> base_tracker (from app.properties).
-     */
-    static String CREATE_DATA_BASE;
-
-    /**
-     * @param URL_BASE_TRACKER - url database -> base_tracker (from app.properties).
+     * @param URL_BASE_VACANCY - url database -> base_vacancy (from app.properties).
      */
     public static String URL_BASE_VACANCY;
 
     /**
-     * @param SEARCH_TABLE - query sql.
+     * @param USER_NAME - name user -> postgres (from app.properties).
+     */
+    public static String USER_NAME;
+
+    /**
+     * @param PASSWORD - password user-postgres -> admin (from app.properties).
+     */
+    public static String PASSWORD;
+
+    /**
+     * @param SEARCH_DATA_BASE - query sql: search database base_vacancy (from app.properties).
+     */
+    static String SEARCH_DATA_BASE;
+
+    /**
+     * @param CREATE_DATA_BASE - query sql: create database base_vacancy (from app.properties).
+     */
+    static String CREATE_DATA_BASE;
+
+    /**
+     * @param SEARCH_TABLE_VACANCY - query sql: search table vacancy (from app.properties).
      */
     static String SEARCH_TABLE_VACANCY;
 
     /**
-     * @param VACANCY - vacancy.
-     */
-    static String VACANCY;
-
-    /**
-     * @param CREATE_TABLE_VACANCY - is.
+     * @param CREATE_TABLE_VACANCY - query sql: create table vacancy (from app.properties).
      */
     static String CREATE_TABLE_VACANCY;
+
+    /**
+     * @param ADD_VACANCY - query sql: add vacancy to table vacancy to base_vacancy (from app.properties).
+     */
+    public static String ADD_VACANCY;
+
+    /**
+     * @param COUNT - query sql: counts number of row in table vacancy (from app.properties).
+     */
+    public static String COUNT;
+
+    /**
+     * @param MAX_DATE - query sql: searches vacancy with last date in table vacancy (from app.properties).
+     */
+    public static String MAX_DATE;
+
+    /**
+     * @param PATTERN_JAVA - pattern for searches only word java (fromm app.properties).
+     */
+    public static Pattern PATTERN_JAVA;
+
+    /**
+     * @param PATTERN_TODAY - pattern for searches only word today in russian (from app.properties).
+     */
+    public static Pattern PATTERN_TODAY;
+
+    /**
+     * @param PATTERN_YESTERDAY - pattern for searches only word yesterday in russian (from app.properties).
+     */
+    public static Pattern PATTERN_YESTERDAY;
+
+    /**
+     * @param CRON_TIME - Cron-Expressions are used to configure instances of CronTrigger (from app.properties).
+     */
+    public static String CRON_TIME;
+
+    /**
+     * @param NAME_DATA_BASE - name database -> base_vacancy (from app.properties).
+     */
+    static String NAME_DATA_BASE;
+
+    /**
+     * @param DAT_NAME - column name (datname) in table pg_postgres (from app.properties).
+     */
+    static String DAT_NAME;
+
+    /**
+     * @param VACANCY - vacancy (from app.properties).
+     */
+    static String VACANCY;
 
     /**
      * @param TABLE_NAME - name of table where the user tables are located (from app.properties).
      */
     static String TABLE_NAME;
 
-    /**
-     *
-     */
-    public static String ADD_VACANCY;
 
     /**
-     *
-     */
-    public static String COUNT;
-
-    /**
-     *
-     */
-    public static String MAX_DATE;
-
-    /**
-     *
+     * @param URL_SQL_RU - website sql.ru section job-offers http://www.sql.ru/forum/job-offers/.
      */
     public static String URL_SQL_RU;
 
     /**
-     *
+     * @param ZERO - just zero.
      */
     public static int ZERO;
 
     /**
-     *
+     * @param SKIP_ROW - number of skip rows at beginning table vacancy when searching for the
+     * date on the page sql.ru section job-offers.
      */
     public static int SKIP_ROW;
 
     /**
-     *
+     * @param CLASS - just class.
      */
     public static String CLASS;
 
     /**
-     *
+     * @param POST_LIST_TOPIC - cell class name where located theme of vacancy in html page.
      */
     public static String POSTS_LIST_TOPIC;
 
     /**
-     *
+     * @param LAST_YEAR - date format last year.
      */
     public static String LAST_YEAR;
-
-    /**
-     *
-     */
-    public static String CRON_TIME;
-
-    /**
-     *
-     */
-    public static Pattern PATTERN_TODAY;
-
-    /**
-     *
-     */
-    public static Pattern PATTERN_YESTERDAY;
-
-    /**
-     *
-     */
-    public static Pattern PATTERN_JAVA;
-
 
     /**
      * Constant - constructor (reads all parameters from file app.properties).
      * @param set - link to object of class Setting.
      */
     public Constant(Settings set) {
-        this.setJDBC(set);
+        this.setDataBase(set);
         this.setQuerySQL(set);
         this.setPattern(set);
         this.setCronTime(set);
@@ -150,9 +151,10 @@ public class Constant {
     }
 
     /**
-     * @param set - set.
+     * setJDBS - sets params for connect database.
+     * @param set - link variable to object of class Setting.
      */
-    private void setJDBC(Settings set) {
+    private void setDataBase(Settings set) {
         URL_BASE_POSTGRES = set.getValue("jdbc.urlBasePostgres");
         URL_BASE_VACANCY = set.getValue("jdbc.urlBaseVacancy");
         USER_NAME = set.getValue("jdbc.userName");

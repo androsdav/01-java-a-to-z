@@ -11,27 +11,27 @@ import java.util.Date;
 public class Vacancy {
 
     /**
-     * @param theme - theme.
+     * @param theme - theme vacancy.
      */
     private String theme;
 
     /**
-     * @param author - author.
+     * @param author - author vacancy.
      */
     private String author;
 
     /**
-     * @param answers - answers.
+     * @param answers - number of answers to vacancy.
      */
     private int answers;
 
     /**
-     * @param viewers - viewers.
+     * @param viewers - number of viewers to vacancy.
      */
     private int viewers;
 
     /**
-     * @param date - date.
+     * @param date - date create vacancy.
      */
     private Date date;
 
@@ -39,9 +39,9 @@ public class Vacancy {
      * Vacancy - constructor.
      * @param theme - theme vacancy.
      * @param author - author vacancy.
-     * @param answers - number of answers for vacancy.
-     * @param viewers - viewers.
-     * @param date - date for create theme.
+     * @param answers - number of answers to vacancy.
+     * @param viewers - number of viewers to vacancy.
+     * @param date - date create vacancy.
      */
     public Vacancy(String theme, String author, int answers, int viewers, Date date) {
         this.theme = theme;
@@ -51,50 +51,91 @@ public class Vacancy {
         this.date = date;
     }
 
-    public String getTheme() {
-        return theme;
-    }
-
+    /**
+     * setTheme - sets theme vacancy.
+     * @param theme - theme vacancy.
+     */
     public void setTheme(String theme) {
         this.theme = theme;
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
+    /**
+     * setAuthor - sets author vacancy.
+     * @param author - author vacancy.
+     */
     public void setAuthor(String author) {
         this.author = author;
     }
 
-    public int getAnswers() {
-        return answers;
-    }
-
+    /**
+     * setAnswers - sets number of answers to vacancy.
+     * @param answers - number of answers to vacancy.
+     */
     public void setAnswers(int answers) {
         this.answers = answers;
     }
 
-    public int getViewers() {
-        return viewers;
-    }
-
+    /**
+     * setViewers - sets number of viewers to vacancy.
+     * @param viewers - number of viewers to vacancy.
+     */
     public void setViewers(int viewers) {
         this.viewers = viewers;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
+    /**
+     * setDate - sets date create vacancy.
+     * @param date - date create vacancy.
+     */
     public void setDate(Date date) {
         this.date = date;
     }
 
     /**
-     *
-     * @param obj - obj.
-     * @return - return true or false.
+     * getTheme - returns theme vacancy.
+     * @return - returns theme vacancy.
+     */
+    public String getTheme() {
+        return theme;
+    }
+
+    /**
+     * getAuthor - returns author vacancy.
+     * @return - returns author vacancy.
+     */
+    public String getAuthor() {
+        return author;
+    }
+
+    /**
+     * getAnswers - returns number of answers to vacancy.
+     * @return - returns number of answers to vacancy.
+     */
+    public int getAnswers() {
+        return answers;
+    }
+
+    /**
+     * getViewers - returns number of viewers to vacancy.
+     * @return - returns number of viewers to vacancy.
+     */
+    public int getViewers() {
+        return viewers;
+    }
+
+    /**
+     * getDate - returns date create vacancy.
+     * @return - returns date create vacancy.
+     */
+    public Date getDate() {
+        return date;
+    }
+
+    /**
+     * equals - returns boolean result.
+     * @param obj - object of class Vacancy.
+     * @return - returns boolean result "true" if answers, viewers, theme, author, date of vacancy is same,
+     * and returns "false" - isn`t same.
      */
     @Override
     public boolean equals(Object obj) {
@@ -121,8 +162,8 @@ public class Vacancy {
     }
 
     /**
-     * hashCode - hashCode.
-     * @return - returns ?.
+     * hashCode - returns hashCode for vacancy.
+     * @return - returns hashCode for vacancy.
      */
     @Override
     public int hashCode() {
@@ -135,17 +176,14 @@ public class Vacancy {
     }
 
     /**
-     * toString - to string.
-     * @return - string format.
+     * toString - returns string format.
+     * @return - returns all information for vacancy.
      */
     @Override
     public String toString() {
-        return "Vacancy{" +
-                "theme='" + this.theme + '\'' +
-                ", author='" + this.author + '\'' +
-                ", answers=" + this.answers +
-                ", viewers=" + this.viewers +
-                ", date='" + this.date + '\'' +
-                '}';
+        return String.format("%s%s%s%s%s%s%s%s%s%s%s%s",
+                "Vacancy{", "theme=", this.theme, ", author=", this.author,
+                ", answers=", this.answers, ", viewers=", this.viewers, ", date=", this.date, '}');
     }
+
 }

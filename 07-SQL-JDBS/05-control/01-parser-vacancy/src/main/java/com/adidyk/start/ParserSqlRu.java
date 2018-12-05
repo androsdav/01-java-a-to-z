@@ -137,8 +137,8 @@ class ParserSqlRu {
         Document document = connection.get();
         Elements posts = document.getElementsByAttributeValue(CLASS, POSTS_LIST_TOPIC);
         for (Element post : posts) {
-            if (PATTERN_JAVA.matcher(post.child(0).text()).find()) {
-                String theme  = post.child(0).text();
+            if (PATTERN_JAVA.matcher(post.child(ZERO).text()).find()) {
+                String theme  = post.child(ZERO).text();
                 String author = post.nextElementSibling().text();
                 int answers = Integer.parseInt(post.nextElementSibling().nextElementSibling().text());
                 int viewers = Integer.parseInt(post.nextElementSibling().nextElementSibling().nextElementSibling().text());

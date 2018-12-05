@@ -1,5 +1,6 @@
 package com.adidyk.start;
 
+import com.adidyk.models.Vacancy;
 import com.adidyk.setup.ConfigDataBase;
 import com.adidyk.setup.Constant;
 import com.adidyk.setup.Settings;
@@ -154,7 +155,7 @@ public class StartUi implements Job {
      */
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
-        System.out.println(" [info]: START EXECUTE " + new Date() + "  " + context.getTrigger().getKey());
+        logger.info(new Date() + "  " + context.getTrigger().getKey());
         try {
             this.start();
         } catch (IOException e) {
@@ -173,7 +174,8 @@ public class StartUi implements Job {
         logger.error("ERROR");
         logger.fatal("FATAL");
         System.out.println("INFORM TEXT");
-
+        Vacancy vacancy = new Vacancy("java developer", "andros", 120, 10, new Date());
+        System.out.println(vacancy);
         new StartUi().runner();
     }
 
