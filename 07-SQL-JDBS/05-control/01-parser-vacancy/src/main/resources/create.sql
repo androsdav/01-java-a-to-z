@@ -1,63 +1,28 @@
--- create table entry
-CREATE TABLE entry (
-  field integer
-);
+-- sql: search data base base_vacancy
+SELECT datname FROM pg_database WHERE datname = 'base_vacancy';
 
--- select from entry
-SELECT * FROM entry;
+-- create data base base_vacancy
+CREATE DATABASE base_vacancy;
 
--- drop table entry
-DROP TABLE entry;
-
--- check table entry
-SELECT * FROM main.sqlite_master WHERE main.sqlite_master.tbl_name = 'entry';
-
+-- search table vacancy
 SELECT table_name FROM information_schema.tables WHERE table_schema NOT IN ('information_schema','pg_catalog');
 
+-- create table vacancy
 CREATE TABLE vacancy (
   id SERIAL PRIMARY KEY,
   theme VARCHAR(300) UNIQUE NOT NULL,
-  author VARCHAR(50) UNIQUE NOT NULL,
+  author VARCHAR(50),
   answers INT NOT NULL,
   viewers INT NOT NULL,
   date DATE NOT NULL
 );
 
-CREATE TABLE vacancy1 (
-  id SERIAL PRIMARY KEY,
-  theme VARCHAR(300) UNIQUE NOT NULL,
-  author VARCHAR(50) UNIQUE NOT NULL,
-  answers INT NOT NULL,
-  viewers INT NOT NULL,
-  date VARCHAR(100) NOT NULL
-);
+-- add vacancy
+INSERT INTO vacancy (theme, author, answers, viewers, date) VALUES
+  (?, ?, ?, ?, ?) ON CONFLICT DO NOTHING;
 
-  CREATE TABLE vacancy (
-    id SERIAL PRIMARY KEY,
-    theme VARCHAR(300) UNIQUE NOT NULL,
-    author VARCHAR(50),
-    answers INT NOT NULL,
-    viewers INT NOT NULL,
-    date DATE NOT NULL
-  );
+-- counts all number of vacancy
+SELECT COUNT(*) FROM vacancy LIMIT 1;
 
-
-INSERT INTO vacancy (theme, author, answers, viewers, date) VALUES (
-    'Java professor',
-    'admin',
-    '100',
-    '10',
-    '10.10.2018'
-);
-
-INSERT INTO vacancy (theme, author, answers, viewers, date) VALUES (
-  'Java professor',
-  'admin',
-  '100',
-  '10',
-  '10.10.2018'
-);
-
-SELECT *FROM vacancy;
-
-SELECT table_name FROM information_schema.tables WHERE table_schema NOT IN ('information_schema','pg_catalog');
+-- searches vacancy with last date
+SELECT vacancy.date FROM vacancy WHERE vacancy.date IN (SELECT MAX(vacancy.date) FROM vacancy);

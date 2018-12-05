@@ -167,6 +167,13 @@ public class StartUi implements Job {
      * @param arg - is nothing.
      */
     public static void main(String[] arg) throws IOException, SQLException, SchedulerException, InterruptedException {
+        logger.debug("DEBUG");
+        logger.info("INFO");
+        logger.warn("WARN");
+        logger.error("ERROR");
+        logger.fatal("FATAL");
+        System.out.println("INFORM TEXT");
+
         new StartUi().runner();
     }
 
