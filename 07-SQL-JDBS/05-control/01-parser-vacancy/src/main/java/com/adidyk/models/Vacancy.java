@@ -55,7 +55,7 @@ public class Vacancy {
      * setTheme - sets theme vacancy.
      * @param theme - theme vacancy.
      */
-    public void setTheme(String theme) {
+    void setTheme(String theme) {
         this.theme = theme;
     }
 
@@ -63,7 +63,7 @@ public class Vacancy {
      * setAuthor - sets author vacancy.
      * @param author - author vacancy.
      */
-    public void setAuthor(String author) {
+    void setAuthor(String author) {
         this.author = author;
     }
 
@@ -71,7 +71,7 @@ public class Vacancy {
      * setAnswers - sets number of answers to vacancy.
      * @param answers - number of answers to vacancy.
      */
-    public void setAnswers(int answers) {
+    void setAnswers(int answers) {
         this.answers = answers;
     }
 
@@ -79,7 +79,7 @@ public class Vacancy {
      * setViewers - sets number of viewers to vacancy.
      * @param viewers - number of viewers to vacancy.
      */
-    public void setViewers(int viewers) {
+    void setViewers(int viewers) {
         this.viewers = viewers;
     }
 
@@ -87,7 +87,7 @@ public class Vacancy {
      * setDate - sets date create vacancy.
      * @param date - date create vacancy.
      */
-    public void setDate(Date date) {
+    void setDate(Date date) {
         this.date = date;
     }
 

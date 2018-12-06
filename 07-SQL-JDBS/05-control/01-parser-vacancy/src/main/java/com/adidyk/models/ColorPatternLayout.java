@@ -48,7 +48,7 @@ public class ColorPatternLayout extends PatternLayout {
     /**
      * @param DEFAULT_COLOR_ - default color message.
      */
-    private static final String DEFAULT_COLOR = "\u001B[1;37m";
+    private static final String DEFAULT_COLOR = "\u001B[0;37m";
 
     /**
      * format - produces a formatted string as specified by the conversion pattern.

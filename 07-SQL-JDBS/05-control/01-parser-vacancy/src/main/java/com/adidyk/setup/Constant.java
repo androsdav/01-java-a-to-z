@@ -147,11 +147,11 @@ public class Constant {
         this.setQuerySQL(set);
         this.setPattern(set);
         this.setCronTime(set);
-        this.setOtherName(set);
+        this.setOtherParam(set);
     }
 
     /**
-     * setJDBS - sets params for connect database.
+     * setDataBase - sets params for connect database.
      * @param set - link variable to object of class Setting.
      */
     private void setDataBase(Settings set) {
@@ -162,7 +162,8 @@ public class Constant {
     }
 
     /**
-     * @param set - set.
+     * setQuerySQL - sets query sql.
+     * @param set - link variable to object of class Setting.
      */
     private void setQuerySQL(Settings set) {
         SEARCH_DATA_BASE = set.getValue("sql.searchDataBase");
@@ -174,26 +175,34 @@ public class Constant {
         MAX_DATE = set.getValue("sql.maxDate");
     }
 
+    /**
+     * setPattern - sets all patterns.
+     * @param set - link variable to object of class Setting.
+     */
     private void setPattern(Settings set) {
         PATTERN_JAVA = Pattern.compile(set.getValue("pattern.java"));
         PATTERN_TODAY = Pattern.compile(set.getValue("pattern.today"));
         PATTERN_YESTERDAY = Pattern.compile(set.getValue("pattern.yesterday"));
     }
 
+    /**
+     * setCronTime - sets Cron-Expressions for to configure instances of CronTrigger.
+     * @param set - link variable to object of class Setting.
+     */
     private void setCronTime(Settings set) {
         CRON_TIME = set.getValue("cron.time");
     }
 
     /**
-     *
-     * @param set - set.
+     * setOtherParam - sets other params.
+     * @param set - link variable to object of class Setting.
      */
-    private void setOtherName(Settings set) {
+    private void setOtherParam(Settings set) {
+        URL_SQL_RU = set.getValue("app.urlSqlRu");
         NAME_DATA_BASE = set.getValue("app.nameDataBase");
         DAT_NAME = set.getValue("app.datName");
         VACANCY = set.getValue("app.vacancy");
         TABLE_NAME = set.getValue("app.tableName");
-        URL_SQL_RU = set.getValue("app.urlSqlRu");
         ZERO = Integer.parseInt(set.getValue("app.zero"));
         SKIP_ROW = Integer.parseInt(set.getValue("app.skipRow"));
         CLASS = set.getValue("app.class");

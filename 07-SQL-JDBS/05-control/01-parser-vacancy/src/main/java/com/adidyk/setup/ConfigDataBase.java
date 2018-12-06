@@ -1,7 +1,6 @@
 package com.adidyk.setup;
 
 import org.apache.log4j.Logger;
-
 import java.sql.*;
 import static com.adidyk.setup.Constant.*;
 
@@ -14,14 +13,14 @@ import static com.adidyk.setup.Constant.*;
 public class ConfigDataBase {
 
     /**
-     * @param log - link variable to object of class Logger.
+     * @param logger - link variable to object of class Logger.
      */
     private static final Logger logger = Logger.getLogger(ConfigDataBase.class);
 
     /**
-     * searchDataBase - searches database (query sql) NAME_DATA_BASE (base_tracker). If database base_tracker exists
-     * then method returns true, if database base_tracker does not exists then method returns false.
-     * @return - returns true if database base_tracker exists, false - does not exists.
+     * searchDataBase - searches database (query sql) NAME_DATA_BASE (base_vacancy). If database base_vacancy exists
+     * then method returns true, if database base_vacancy does not exists then method returns false.
+     * @return - returns true if database base_vacancy exists, false - does not exists.
      */
     public boolean searchDataBase()  {
         boolean found = false;
@@ -40,9 +39,9 @@ public class ConfigDataBase {
     }
 
     /**
-     * searchTable - searches table (query sql) ITEM (item). If table item exists then method returns true,
-     * if table item does not exists then method returns false.
-     * @return - returns true if table item exists, false - does not exists.
+     * searchTable - searches table (query sql) vacancy. If table vacancy exists then method returns true,
+     * if table vacancy does not exists then method returns false.
+     * @return - returns true if table vacancy exists, false - does not exists.
      */
     public boolean searchTable() {
         boolean found = false;
@@ -56,26 +55,24 @@ public class ConfigDataBase {
                 }
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
-            //log.error(ex.getMessage(), ex);
+            logger.error(ex.getMessage(), ex);
         }
         return found;
     }
 
     /**
-     * createDataBase - connects to database postgres and creates database base_tracker.
+     * createDataBase - connects to database postgres and creates database base_vacancy.
      */
     public void createDataBase() {
         try (Connection connect = DriverManager.getConnection(URL_BASE_POSTGRES, USER_NAME, PASSWORD)) {
             connect.createStatement().executeUpdate(CREATE_DATA_BASE);
         } catch (SQLException ex) {
-            ex.printStackTrace();
-            //log.error(ex.getMessage(), ex);
+            logger.error(ex.getMessage(), ex);
         }
     }
 
     /**
-     * createTableItem - connect to database base_tracker and creates table item.
+     * createTableVacancy - connect to database base_vacancy and creates table vacancy.
      */
     public void createTableVacancy() {
         try (Connection connect = DriverManager.getConnection(URL_BASE_VACANCY, USER_NAME, PASSWORD)) {

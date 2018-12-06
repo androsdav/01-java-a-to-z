@@ -25,22 +25,22 @@ import static org.quartz.TriggerBuilder.newTrigger;
 public class StartUi implements Job {
 
     /**
-     * @param log - link variable to object of class Logger.
+     * @param logger - link variable to object of class Logger.
      */
     private static final Logger logger = Logger.getLogger(StartUi.class);
 
     /**
-     *
+     * @param config - link variable to object of class ConfigDataBase.
      */
     private final ConfigDataBase config = new ConfigDataBase();
 
     /**
-     *
+     * @param - link variable to object of class ParserDate.
      */
     private ParserDate parserDate = new ParserDate();
 
     /**
-     *
+     * @param parserSqlRu - link variable to object of class ParserSqlRu.
      */
     private ParserSqlRu parserSqlRu = new ParserSqlRu(this.parserDate);
 
@@ -68,7 +68,7 @@ public class StartUi implements Job {
     }
 
     /**
-     * configDataBase - checks if there is database and checks if there is table item.
+     * configDataBase - checks if there is database base_vacancy and checks if there is table vacancy.
      */
     private void configDataBase() {
         this.checkDataBase();
@@ -76,7 +76,7 @@ public class StartUi implements Job {
     }
 
     /**
-     * checkDataBase - checks if there is database.
+     * checkDataBase - checks if there is database base_vacancy.
      */
     private void checkDataBase() {
         if (!this.config.searchDataBase()) {
@@ -85,7 +85,7 @@ public class StartUi implements Job {
     }
 
     /**
-     * checkTable - is.
+     * checkTable - checks if there is table vacancy.
      */
     private void checkTable() {
         if (!this.config.searchTable()) {
@@ -95,8 +95,8 @@ public class StartUi implements Job {
 
     /**
      *
-     * @return - is.
-     * @throws IOException - is.
+     * @return - searches last page update vacancy java.
+     * @throws IOException - io exception.
      */
     private int searchLastPageUpdate() throws IOException {
         int page;
