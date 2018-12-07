@@ -91,15 +91,19 @@ class ParserSqlRu {
      * @param targetDate - target date.
      * @return - returns number of page by input date.
      */
-    int searchPageByDate(Date targetDate) throws IOException {
+    int searchPageByDate(Date targetDate)  {
         int page = 1;
         boolean search = true;
-        while (search) {
-            Connection connection = Jsoup.connect(URL_SQL_RU + page);
-            Document document = connection.get();
-            Elements posts = document.getElementsByAttributeValue(CLASS, POSTS_LIST_TOPIC);
-            search = this.searchDateInPage(posts, targetDate);
-            page++;
+        try {
+            while (search) {
+                Connection connection = Jsoup.connect(URL_SQL_RU + page);
+                Document document = connection.get();
+                Elements posts = document.getElementsByAttributeValue(CLASS, POSTS_LIST_TOPIC);
+                search = this.searchDateInPage(posts, targetDate);
+                page++;
+            }
+        } catch (Exception ex) {
+            logger.error(ex.getMessage(), ex);
         }
         return --page;
     }
@@ -118,7 +122,6 @@ class ParserSqlRu {
             Date currentDate = this.parserDate.parse(post.nextElementSibling().nextElementSibling().nextElementSibling()
                     .nextElementSibling().text());
             if (row > SKIP_ROW) {
-                System.out.println(currentDate);
                 if (this.compareDate(currentDate, targetDate) >= ZERO) {
                     searchResult = true;
                     break;
@@ -143,21 +146,26 @@ class ParserSqlRu {
      * parse - parses html page used Jsoup (section job-offers website sql.ru), searches all
      * vacancies by pattern java and adds vacancies to list.
      */
-    void parse(String url) throws IOException {
+    void parse(String url)  {
         Connection connection = Jsoup.connect(url);
-        Document document = connection.get();
-        Elements posts = document.getElementsByAttributeValue(CLASS, POSTS_LIST_TOPIC);
-        for (Element post : posts) {
-            if (PATTERN_JAVA.matcher(post.child(ZERO).text()).find()) {
-                String theme  = post.child(ZERO).text();
-                String author = post.nextElementSibling().text();
-                int answers = Integer.parseInt(post.nextElementSibling().nextElementSibling().text());
-                int viewers = Integer.parseInt(post.nextElementSibling().nextElementSibling().nextElementSibling().text());
-                Date date = this.parserDate.parse(post.nextElementSibling().nextElementSibling().
-                        nextElementSibling().nextElementSibling().text());
-                Vacancy vacancy = new Vacancy(theme, author, answers, viewers, date);
-                this.list.add(vacancy);
+        Document document;
+        try {
+            document = connection.get();
+            Elements posts = document.getElementsByAttributeValue(CLASS, POSTS_LIST_TOPIC);
+            for (Element post : posts) {
+                if (PATTERN_JAVA.matcher(post.child(ZERO).text()).find()) {
+                    String theme  = post.child(ZERO).text();
+                    String author = post.nextElementSibling().text();
+                    int answers = Integer.parseInt(post.nextElementSibling().nextElementSibling().text());
+                    int viewers = Integer.parseInt(post.nextElementSibling().nextElementSibling().nextElementSibling().text());
+                    Date date = this.parserDate.parse(post.nextElementSibling().nextElementSibling().
+                            nextElementSibling().nextElementSibling().text());
+                    Vacancy vacancy = new Vacancy(theme, author, answers, viewers, date);
+                    this.list.add(vacancy);
+                }
             }
+        } catch (IOException ex) {
+            logger.error(ex.getMessage(), ex);
         }
     }
 

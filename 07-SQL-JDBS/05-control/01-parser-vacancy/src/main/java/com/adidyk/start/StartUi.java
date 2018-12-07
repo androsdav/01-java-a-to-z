@@ -1,6 +1,5 @@
 package com.adidyk.start;
 
-import com.adidyk.models.Vacancy;
 import com.adidyk.setup.ConfigDataBase;
 import com.adidyk.setup.Constant;
 import com.adidyk.setup.Settings;
@@ -9,7 +8,6 @@ import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.SQLException;
 import java.util.*;
 import static com.adidyk.setup.Constant.*;
 import static org.quartz.CronScheduleBuilder.cronSchedule;
@@ -47,10 +45,10 @@ public class StartUi implements Job {
     /**
      * start - starts program.
      */
-    private synchronized void start() throws IOException {
+    private synchronized void start()  {
         this.loadSetting();
         this.configDataBase();
-        this.parser(this.searchLastPageUpdate());
+        this.parser(this.searchLastPageParse());
     }
 
     /**
@@ -80,7 +78,12 @@ public class StartUi implements Job {
      */
     private void checkDataBase() {
         if (!this.config.searchDataBase()) {
+            logger.warn("database base_vacancy does not exist ...");
+            logger.debug("creates database base_vacancy now ...");
             this.config.createDataBase();
+            logger.info("database base_vacancy created ...");
+        } else {
+            logger.info("database base_vacancy already exists ...");
         }
     }
 
@@ -89,93 +92,87 @@ public class StartUi implements Job {
      */
     private void checkTable() {
         if (!this.config.searchTable()) {
+            logger.warn("table vacancy does not exist ...");
+            logger.debug("creates table vacancy ...");
             this.config.createTableVacancy();
+            logger.info("table vacancy created ...");
+        } else {
+            logger.info("table vacancy already exists ...");
         }
     }
 
     /**
-     *
-     * @return - searches last page update vacancy java.
-     * @throws IOException - io exception.
+     * searchLastPageParse - searches last page parsing in section job-offers in website sql.ru.
+     * If table vacancy is empty then method searches number of page from beginning year.
+     * If table vacancy isn`t empty then method searches number of page by last date from
+     * table vacancy from database base_vacancy. Also method returns page number found.
+     * @return - method returns page number found.
      */
-    private int searchLastPageUpdate() throws IOException {
+    private int searchLastPageParse() {
+        logger.debug("search last page parsing ...");
         int page;
         if (this.parserSqlRu.checkTableIsEmpty()) {
-            //System.out.println(this.parserSqlRu.checkTableIsEmpty());
             page = this.parserSqlRu.searchPageByDate(this.parserDate.parse(LAST_YEAR));
-            //System.out.println(" [info]: " + " first start number page " + page);
+            logger.warn("table vacancy is empty or first program start, page = " + page);
         } else {
             page = this.parserSqlRu.searchPageByDate(this.parserSqlRu.getLastDate());
-            //System.out.println(" [info]: " + "last update number page " + page);
+            logger.warn("table vacancy isn`t empty, last page parsing, page = " + page);
         }
         return page;
     }
 
     /**
-     *
+     * parser - parses all page from section job-offers from website sql.ru beginning from first page to input page.
+     * Also method adds all found vacancies to table vacancy to database base_vacancy.
+     * @param page - page number.
      */
-    private void parser(int page) throws IOException {
-        System.out.println(" [info]: run cron  ....");
+    private void parser(int page) {
         for (int index = 1; index <= page; index++) {
             this.parserSqlRu.parse(URL_SQL_RU + index);
-            System.out.println(" [info] url: " + URL_SQL_RU + index);
+            logger.info("page parsing, url = " + URL_SQL_RU + index);
             this.parserSqlRu.addVacancy();
+            logger.info("add all found vacancies to table vacancy ...");
         }
     }
 
     /**
-     *
-     * @throws SchedulerException - is.
+     * runner - creates job, creates two triggers and starts to works triggers: triggerStartNow, triggerCron.
      */
-    private void runner() throws SchedulerException {
-        logger.debug("start program...........");
+    private void runner() {
         this.loadSetting();
-        Set<Trigger> triggers = new HashSet<>();
+        final Set<Trigger> triggers = new HashSet<>();
         JobDetail job = newJob(StartUi.class).build();
-        Trigger triggerStartNow = newTrigger()
-                .withIdentity("TriggerStartNow")
-                .startNow()
-                .build();
-        Trigger triggerCron = newTrigger()
-                .withIdentity("CronTrigger")
-                .withSchedule(cronSchedule(CRON_TIME))
-                .build();
+        Trigger triggerStartNow = newTrigger().withIdentity("TriggerStartNow").startNow().build();
+        Trigger triggerCron = newTrigger().withIdentity("CronTrigger").withSchedule(cronSchedule(CRON_TIME)).build();
         triggers.add(triggerStartNow);
         triggers.add(triggerCron);
         SchedulerFactory schedulerFactory = new StdSchedulerFactory();
-        Scheduler scheduler = schedulerFactory.getScheduler();
-        scheduler.start();
-        scheduler.scheduleJob(job, triggers, false);
+        Scheduler scheduler;
+        try {
+            scheduler = schedulerFactory.getScheduler();
+            scheduler.scheduleJob(job, triggers, false);
+            scheduler.start();
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
-     *
-     * @param context - is.
-     * @throws JobExecutionException - is.
+     * execute - overrides method execute of class Job.
+     * @param context - link variable to object of class JobExecutionContext.
      */
     @Override
-    public void execute(JobExecutionContext context) throws JobExecutionException {
-        logger.info(new Date() + "  " + context.getTrigger().getKey());
-        try {
-            this.start();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void execute(JobExecutionContext context)  {
+        logger.warn(context.getTrigger().getKey().getName());
+        this.start();
     }
 
     /**
      * main - creates jar file and runs program.
      * @param arg - is nothing.
      */
-    public static void main(String[] arg) throws IOException, SQLException, SchedulerException, InterruptedException {
-        logger.debug("DEBUG");
-        logger.info("INFO");
-        logger.warn("WARN");
-        logger.error("ERROR");
-        logger.fatal("FATAL");
-        System.out.println("INFORM TEXT");
-        Vacancy vacancy = new Vacancy("java developer", "andros", 120, 10, new Date());
-        System.out.println(vacancy);
+    public static void main(String[] arg) {
+        logger.info(" start program parser sql.ru");
         new StartUi().runner();
     }
 
