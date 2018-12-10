@@ -28,11 +28,6 @@ public class StartUi implements Job {
     private static final Logger logger = Logger.getLogger(StartUi.class);
 
     /**
-     * @param config - link variable to object of class ConfigDataBase.
-     */
-    private final ConfigDataBase config = new ConfigDataBase();
-
-    /**
      * @param - link variable to object of class ParserDate.
      */
     private ParserDate parserDate = new ParserDate();
@@ -69,18 +64,24 @@ public class StartUi implements Job {
      * configDataBase - checks if there is database base_vacancy and checks if there is table vacancy.
      */
     private void configDataBase() {
-        this.checkDataBase();
-        this.checkTable();
+        try (ConfigDataBase config = new ConfigDataBase()) {
+            logger.info("config connect stat ...");
+            this.checkDataBase(config);
+            this.checkTable(config);
+        } catch (Exception ex) {
+            logger.error(ex.getMessage(), ex);
+        }
     }
 
     /**
      * checkDataBase - checks if there is database base_vacancy.
+     * @param config - link variable to object of class ConfigDataBase.
      */
-    private void checkDataBase() {
-        if (!this.config.searchDataBase()) {
+    private void checkDataBase(ConfigDataBase config) {
+        if (!config.searchDataBase()) {
             logger.warn("database base_vacancy does not exist ...");
             logger.debug("creates database base_vacancy now ...");
-            this.config.createDataBase();
+            config.createDataBase();
             logger.info("database base_vacancy created ...");
         } else {
             logger.info("database base_vacancy already exists ...");
@@ -89,12 +90,13 @@ public class StartUi implements Job {
 
     /**
      * checkTable - checks if there is table vacancy.
+     * @param config - link variable to object of class ConfigDataBase.
      */
-    private void checkTable() {
-        if (!this.config.searchTable()) {
+    private void checkTable(ConfigDataBase config) {
+        if (!config.searchTable()) {
             logger.warn("table vacancy does not exist ...");
             logger.debug("creates table vacancy ...");
-            this.config.createTableVacancy();
+            config.createTableVacancy();
             logger.info("table vacancy created ...");
         } else {
             logger.info("table vacancy already exists ...");
