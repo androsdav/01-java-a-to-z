@@ -65,7 +65,7 @@ public class StartUi implements Job {
      */
     private void configDataBase() {
         try (ConfigDataBase config = new ConfigDataBase()) {
-            logger.info("config connect stat ...");
+            logger.info("config connect start ...");
             this.checkDataBase(config);
             this.checkTable(config);
         } catch (Exception ex) {
