@@ -17,6 +17,7 @@
                   <module>05-Collections-Pro</module>
                   <module>06-Multithreading</module>
                   <module>07-SQL-JDBS</module>
+                  <module>08-Servlet-JSP</module>
          </modules>
 
 </project>
