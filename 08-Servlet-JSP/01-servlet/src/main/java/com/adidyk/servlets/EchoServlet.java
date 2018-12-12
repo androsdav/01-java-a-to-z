@@ -24,5 +24,8 @@ public class EchoServlet extends HttpServlet {
         PrintWriter writer = new PrintWriter(res.getOutputStream());
         writer.append("<b>hello world</b>").append("</br>").append("<b>").append(String.valueOf(new Date())).append("</b>");
         writer.flush();
+        // https://proselyte.net/tutorials/servlets/filters/
+        //https://www.tutorialspoint.com/servlets/index.htm
     }
+
 }
