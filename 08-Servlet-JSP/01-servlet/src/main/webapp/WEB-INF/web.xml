@@ -4,13 +4,26 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
          http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
          version="2.4">
+
     <servlet>
         <servlet-name>EchoServlet</servlet-name>
         <servlet-class>com.adidyk.servlets.EchoServlet</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>EchoServlet</servlet-name>
         <url-pattern>/echo</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DoPostServlet</servlet-name>
+        <servlet-class>com.adidyk.servlets.DoPostServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DoPostServlet</servlet-name>
+        <url-pattern>/DoPostServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>
 

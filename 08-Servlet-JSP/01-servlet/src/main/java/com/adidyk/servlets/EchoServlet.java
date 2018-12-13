@@ -14,15 +14,16 @@ public class EchoServlet extends HttpServlet {
 
     /**
      *
-     * @param req - is req.
-     * @param res - is res.
+     * @param request - is req.
+     * @param response - is res.
      * @throws IOException - io exception.
      */
     @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        res.setContentType("text/html");
-        PrintWriter writer = new PrintWriter(res.getOutputStream());
-        writer.append("<b>hello world</b>").append("</br>").append("<b>").append(String.valueOf(new Date())).append("</b>");
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("text/html");
+        PrintWriter writer = new PrintWriter(response.getOutputStream());
+        writer.append("<b>it is first program servlet</b>").append("</br>").append("<b>").append(String.valueOf(new Date())).append("</b></b>");
+
         writer.flush();
         // https://proselyte.net/tutorials/servlets/filters/
         //https://www.tutorialspoint.com/servlets/index.htm
