@@ -22,7 +22,7 @@
 
     <servlet-mapping>
         <servlet-name>DoPostServlet</servlet-name>
-        <url-pattern>/DoPostServlet</url-pattern>
+        <url-pattern>/servlet</url-pattern>
     </servlet-mapping>
 
 </web-app>

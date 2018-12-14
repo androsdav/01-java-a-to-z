@@ -22,7 +22,7 @@ public class EchoServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
         PrintWriter writer = new PrintWriter(response.getOutputStream());
-        writer.append("<b>it is first program servlet</b>").append("</br>").append("<b>").append(String.valueOf(new Date())).append("</b></b>");
+        writer.append("<b>andros andros andros</b>").append("</br>").append("<b>").append(String.valueOf(new Date())).append("</b></b>");
 
         writer.flush();
         // https://proselyte.net/tutorials/servlets/filters/
