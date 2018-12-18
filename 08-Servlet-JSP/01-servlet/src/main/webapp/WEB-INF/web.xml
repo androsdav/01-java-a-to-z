@@ -6,23 +6,23 @@
          version="2.4">
 
     <servlet>
-        <servlet-name>EchoServlet</servlet-name>
-        <servlet-class>com.adidyk.servlets.EchoServlet</servlet-class>
+        <servlet-name>GetServlet</servlet-name>
+        <servlet-class>com.adidyk.servlets.GetServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>EchoServlet</servlet-name>
-        <url-pattern>/echo</url-pattern>
+        <servlet-name>GetServlet</servlet-name>
+        <url-pattern>/get_servlet</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>DoPostServlet</servlet-name>
-        <servlet-class>com.adidyk.servlets.DoPostServlet</servlet-class>
+        <servlet-name>GetFormServlet</servlet-name>
+        <servlet-class>com.adidyk.servlets.GetFormServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>DoPostServlet</servlet-name>
-        <url-pattern>/servlet</url-pattern>
+        <servlet-name>GetFormServlet</servlet-name>
+        <url-pattern>/get_form_servlet</url-pattern>
     </servlet-mapping>
 
 </web-app>
