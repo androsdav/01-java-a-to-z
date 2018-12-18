@@ -56,11 +56,11 @@ public class GetFormServlet extends HttpServlet {
                 "<tr>" +
                 "<td>1</td>" +
                 "<td>GetFormServlet</td>" +
-                    "<td style=\"width: auto\">Uses form and method GET for gets data</td>" +
+                    "<td style=\"width: auto\">Uses form and method GET to enter name and surname and returns entered name and surname</td>" +
                     "<td><a href=\"index.html\">back</a></td>" +
                     "<td>" +
-                        "first name: " + request.getParameter("firstName") + "</br>" +
-                        "second name: " + request.getParameter("secondName") +
+                        "name:" + request.getParameter("name") + "</br>" +
+                        "surname:" + request.getParameter("surname") +
                     "</td>" +
                 "</tr>" +
                 "</table>" +
