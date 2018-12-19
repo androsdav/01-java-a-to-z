@@ -25,5 +25,14 @@
         <url-pattern>/get_form_servlet</url-pattern>
     </servlet-mapping>
 
-</web-app>
+    <servlet>
+        <servlet-name>PostFormServlet</servlet-name>
+        <servlet-class>com.adidyk.servlets.PostFormServlet</servlet-class>
+    </servlet>
 
+    <servlet-mapping>
+        <servlet-name>PostFormServlet</servlet-name>
+        <url-pattern>/post_form_servlet</url-pattern>
+    </servlet-mapping>
+
+</web-app>
