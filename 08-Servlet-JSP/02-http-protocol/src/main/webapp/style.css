@@ -1,0 +1,17 @@
+.table_style {
+    margin: 50px;
+    border-collapse: collapse;
+    background: beige;
+    color: black;
+}
+TD, TH {
+    padding: 6px;
+    border: 2px solid #000000;
+    text-align: center;
+}
+TH {
+    background: darkorange;
+}
+.td_form_style {
+    text-align: right;
+}

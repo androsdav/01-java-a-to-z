@@ -17,6 +17,7 @@
 
          <modules>
                   <module>01-client-server</module>
+                  <module>02-http-protocol</module>
          </modules>
 
 </project>
