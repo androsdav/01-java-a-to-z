@@ -16,7 +16,7 @@
          </properties>
 
          <modules>
-                  <module>01-servlet</module>
+                  <module>01-client-server</module>
          </modules>
 
 </project>
