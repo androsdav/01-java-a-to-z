@@ -6,33 +6,13 @@
          version="2.4">
 
     <servlet>
-        <servlet-name>GetServlet</servlet-name>
-        <servlet-class>com.adidyk.servlets.GetServlet</servlet-class>
+        <servlet-name>UserServlet</servlet-name>
+        <servlet-class>com.adidyk.servlets.UserServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>GetServlet</servlet-name>
-        <url-pattern>/get_servlet</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>GetFormServlet</servlet-name>
-        <servlet-class>com.adidyk.servlets.GetFormServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>GetFormServlet</servlet-name>
-        <url-pattern>/get_form_servlet</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>PostFormServlet</servlet-name>
-        <servlet-class>com.adidyk.servlets.PostFormServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>PostFormServlet</servlet-name>
-        <url-pattern>/post_form_servlet</url-pattern>
+        <servlet-name>UserServlet</servlet-name>
+        <url-pattern>/user_servlet</url-pattern>
     </servlet-mapping>
 
 </web-app>
