@@ -31,13 +31,13 @@ public class GetServlet extends HttpServlet {
                     "<head>" +
                         "<link rel=\"stylesheet\" href=\"style.css\">" +
                         "<meta charset=\"UTF-8\">" +
-                        "<title>01-servlet</title>" +
+                        "<title>01-client-server</title>" +
                     "</head>" +
                     "<body>" +
                         "<table class =\"table_style\">" +
                             "<tr>" +
                                 "<th>#</th>" +
-                                "<th>servlets</th>" +
+                                "<th>servlet</th>" +
                                 "<th>description</th>" +
                                 "<th>link</th>"+
                                 "<th>response</th>"+
