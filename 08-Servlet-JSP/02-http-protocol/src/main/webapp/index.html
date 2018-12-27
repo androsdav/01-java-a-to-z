@@ -4,16 +4,91 @@
         <link rel="stylesheet" href="style.css">
         <meta charset="UTF-8">
         <title>01-servlet</title>
+        <!-- script -->
+
+
+
+
+
+
+        <p><input onclick="disableSelect(this)" name="radiotype" type="radio" value="radionews" checked>Это общаяя запись.</p>
+        <p><input onclick="disableSelect(this)" name="radiotype" type="radio" value="radiocountry">Эта запись про страну:
+            <select id="select" name="menu" size="1"><option selected="selected" value="0">Выберете страну</option></select></p>
+        <!-- В конце разметки вставьте-->
+        <script type="text/javascript">
+            document.getElementById('select').disabled = true;
+
+            function disableSelect(currentRadio){
+                if(currentRadio.value === 'radionews')
+                    document.getElementById('select').disabled = true;
+                else
+                    document.getElementById('select').disabled = false;
+            }
+        </script>
+
+
+
     </head>
     <body>
-    <table class ="table_style">
-        <tr>
-            <th>id</th>
-            <th>name</th>
-            <th>login</th>
-            <th>email</th>
-            <th>createDate</th>
-        </tr>
-    </table>
+    <div id="main">
+        <div id="list">
+            <table class="table_user">
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>login</th>
+                    <th>email</th>
+                    <th>createDate</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Bill</td>
+                    <td>billy</td>
+                    <td>billy@gmail.com</td>
+                    <td>10.10.2018</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Ben</td>
+                    <td>benito</td>
+                    <td>brnito@gmail.com</td>
+                    <td>10.11.2018</td>
+                </tr>
+            </table>
+        </div>
+        <div id="action">
+            <form action="get_form_servlet" method="POST">
+                <!-- add user -->
+                <hr><p><b>ADD USER</b></p>
+                action: <label><input type="radio" name="action" value="add" onclick="agreeForm(this.form)"></label> add user<br/>
+                name: <label><input type="text" name="name"></label>
+                <br/>
+                login: <label><input type="text" name="login"/></label>
+                <br/>
+                email: <label><input type="text" name="email"/></label>
+                <br/>
+                <!-- update user -->
+                <hr><p><b>UPDATE USER</b></p>
+                action: <label><input type="radio" name="action" value="update" onclick="agreeForm(this.form)"></label> update user<br/>
+                id: <label><input type="text" name="id"/></label>
+                <br/>
+                name: <label><input type="text" name="name"></label>
+                <br/>
+                login: <label><input type="text" name="login"/></label>
+                <br/>
+                email: <label><input type="text" name="email"/></label>
+                <br/>
+                <!-- delete user -->
+                <hr><p><b>DELETE USER</b></p>
+                action: <label><input type="radio" name="action" value="delete" onclick="agreeForm(this.form)"></label> delete user<br/>
+                id: <label><input type="text" name="id"/></label>
+                <br/>
+                <!-- submit -->
+                <hr>
+                <input type="submit" value="Submit" disabled/>
+                <br/>
+            </form>
+        </div>
+    </div>
     </body>
 </html>
