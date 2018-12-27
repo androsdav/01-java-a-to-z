@@ -6,23 +6,35 @@
         <title>01-servlet</title>
         <!-- script -->
 
+        <script type="text/javascript">
+        function agreeForm(f){
+        alert(f.date.disabled);
+        if (f.date.disabled){f.date.disabled="";}
+        else{f.date.disabled="disabled";};
+        alert(f.date.disabled);
+        }
+        </script>
+
+        <form> <input onclick="agreeForm(this.form)" type="radio" name="agree"> Кук жив
+            <input onclick="agreeForm(this.form)" type="radio" name="agree">съели кука
+            <input autocomplete="off" disabled="disabled" required="required" type="date" name="date"> выберете дату смерти Кука
+            <input type="submit" name="submit" value="Далее"> </form>
 
 
 
 
-
-        <p><input onclick="disableSelect(this)" name="radiotype" type="radio" value="radionews" checked>Это общаяя запись.</p>
-        <p><input onclick="disableSelect(this)" name="radiotype" type="radio" value="radiocountry">Эта запись про страну:
-            <select id="select" name="menu" size="1"><option selected="selected" value="0">Выберете страну</option></select></p>
+        <p><input onclick="disableSelect(this)" name="action" type="radio" value="add" checked>Это общаяя запись.</p>
+        <p><input onclick="disableSelect(this)" name="action" type="radio" value="radiocountry">Эта запись про страну:
+            <select name="menu" size="1"><option selected="selected" value="0">Выберете страну</option></select></p>
         <!-- В конце разметки вставьте-->
         <script type="text/javascript">
-            document.getElementById('select').disabled = true;
+            document.getElementById("select").disabled = true;
 
             function disableSelect(currentRadio){
-                if(currentRadio.value === 'radionews')
-                    document.getElementById('select').disabled = true;
+                if(currentRadio.value === "add")
+                    document.getElementById("select").disabled = true;
                 else
-                    document.getElementById('select').disabled = false;
+                    document.getElementById("select").disabled = false;
             }
         </script>
 
@@ -58,10 +70,11 @@
         </div>
         <div id="action">
             <form action="get_form_servlet" method="POST">
+                <fieldset>
                 <!-- add user -->
                 <hr><p><b>ADD USER</b></p>
-                action: <label><input type="radio" name="action" value="add" onclick="agreeForm(this.form)"></label> add user<br/>
-                name: <label><input type="text" name="name"></label>
+                action: <label><input type="radio" name="action" value="add" onclick="disableSelect(this)"></label> add user<br/>
+                name: <label><input type="text" name="name" id="select"></label>
                 <br/>
                 login: <label><input type="text" name="login"/></label>
                 <br/>
@@ -69,7 +82,7 @@
                 <br/>
                 <!-- update user -->
                 <hr><p><b>UPDATE USER</b></p>
-                action: <label><input type="radio" name="action" value="update" onclick="agreeForm(this.form)"></label> update user<br/>
+                action: <label><input type="radio" name="action" value="update"></label> update user<br/>
                 id: <label><input type="text" name="id"/></label>
                 <br/>
                 name: <label><input type="text" name="name"></label>
@@ -80,13 +93,14 @@
                 <br/>
                 <!-- delete user -->
                 <hr><p><b>DELETE USER</b></p>
-                action: <label><input type="radio" name="action" value="delete" onclick="agreeForm(this.form)"></label> delete user<br/>
+                action: <label><input type="radio" name="action" value="delete"></label> delete user<br/>
                 id: <label><input type="text" name="id"/></label>
                 <br/>
                 <!-- submit -->
                 <hr>
                 <input type="submit" value="Submit" disabled/>
                 <br/>
+                </fieldset>
             </form>
         </div>
     </div>
