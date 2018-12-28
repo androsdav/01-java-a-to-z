@@ -3,43 +3,26 @@
     <head>
         <link rel="stylesheet" href="style.css">
         <meta charset="UTF-8">
-        <title>01-servlet</title>
-        <!-- script -->
-
+        <title>02-http-protocol</title>
         <script type="text/javascript">
-        function agreeForm(f){
-        alert(f.date.disabled);
-        if (f.date.disabled){f.date.disabled="";}
-        else{f.date.disabled="disabled";};
-        alert(f.date.disabled);
-        }
-        </script>
+            function enableSelect(currentRadio){
+                if(currentRadio.value === "add") {
+                    document.getElementById("add_user").disabled = false;
+                    document.getElementById("update_user").disabled = true;
+                    document.getElementById("delete_user").disabled = true;
+                } else if (currentRadio.value === "update") {
+                    document.getElementById("add_user").disabled = true;
+                    document.getElementById("update_user").disabled = false;
+                    document.getElementById("delete_user").disabled = true;
 
-        <form> <input onclick="agreeForm(this.form)" type="radio" name="agree"> Кук жив
-            <input onclick="agreeForm(this.form)" type="radio" name="agree">съели кука
-            <input autocomplete="off" disabled="disabled" required="required" type="date" name="date"> выберете дату смерти Кука
-            <input type="submit" name="submit" value="Далее"> </form>
+                } else {
+                    document.getElementById("add_user").disabled = true;
+                    document.getElementById("update_user").disabled = true;
+                    document.getElementById("delete_user").disabled = false;
 
-
-
-
-        <p><input onclick="disableSelect(this)" name="action" type="radio" value="add" checked>Это общаяя запись.</p>
-        <p><input onclick="disableSelect(this)" name="action" type="radio" value="radiocountry">Эта запись про страну:
-            <select name="menu" size="1"><option selected="selected" value="0">Выберете страну</option></select></p>
-        <!-- В конце разметки вставьте-->
-        <script type="text/javascript">
-            document.getElementById("select").disabled = true;
-
-            function disableSelect(currentRadio){
-                if(currentRadio.value === "add")
-                    document.getElementById("select").disabled = true;
-                else
-                    document.getElementById("select").disabled = false;
+                }
             }
         </script>
-
-
-
     </head>
     <body>
     <div id="main">
@@ -62,44 +45,44 @@
                 <tr>
                     <td>2</td>
                     <td>Ben</td>
-                    <td>benito</td>
+                    <td>benito dasd as da as as asas dam masm kamsk klaskl maskm aksldm</td>
                     <td>brnito@gmail.com</td>
                     <td>10.11.2018</td>
                 </tr>
             </table>
         </div>
         <div id="action">
-            <form action="get_form_servlet" method="POST">
+            <form action="action_user_servlet" method="POST">
                 <fieldset>
-                <!-- add user -->
-                <hr><p><b>ADD USER</b></p>
-                action: <label><input type="radio" name="action" value="add" onclick="disableSelect(this)"></label> add user<br/>
-                name: <label><input type="text" name="name" id="select"></label>
-                <br/>
-                login: <label><input type="text" name="login"/></label>
-                <br/>
-                email: <label><input type="text" name="email"/></label>
-                <br/>
-                <!-- update user -->
-                <hr><p><b>UPDATE USER</b></p>
-                action: <label><input type="radio" name="action" value="update"></label> update user<br/>
-                id: <label><input type="text" name="id"/></label>
-                <br/>
-                name: <label><input type="text" name="name"></label>
-                <br/>
-                login: <label><input type="text" name="login"/></label>
-                <br/>
-                email: <label><input type="text" name="email"/></label>
-                <br/>
-                <!-- delete user -->
-                <hr><p><b>DELETE USER</b></p>
-                action: <label><input type="radio" name="action" value="delete"></label> delete user<br/>
-                id: <label><input type="text" name="id"/></label>
-                <br/>
-                <!-- submit -->
-                <hr>
-                <input type="submit" value="Submit" disabled/>
-                <br/>
+                    <legend><b>CHOOSE ACTION</b></legend>
+                    <!-- add user -->
+                    <b>ADD USER</b><br/><hr>
+                    action: <label><input onclick="enableSelect(this)" type="radio" name="action" value="add" checked></label> add user<br/>
+                    <fieldset class="fieldset_style" id="add_user">
+                        name: <label><input type="text" name="name" required></label><br/>
+                        login: <label><input type="text" name="login" required/></label><br/>
+                        email: <label><input type="text" name="email" required/></label><br/>
+                    </fieldset>
+                    <!-- update user -->
+                    <b>UPDATE USER</b><br/><hr>
+                    action: <label><input onclick="enableSelect(this)" type="radio" name="action" value="update"></label> update user<br/>
+                    <fieldset class="fieldset_style" id="update_user" disabled>
+                        id: <label><input type="text" name="id" required/></label><br/>
+                        name: <label><input type="text" name="name" required></label><br/>
+                        login: <label><input type="text" name="login" required/></label><br/>
+                        email: <label><input type="text" name="email" required/></label><br/>
+                    </fieldset>
+                    <!-- delete user -->
+                    <b>DELETE USER</b><br/><hr>
+                    action: <label><input onclick="enableSelect(this)" type="radio" name="action" value="delete"></label> delete user<br/>
+                    <fieldset class="fieldset_style" id="delete_user" disabled>
+                        id: <label><input type="text" name="id" required/></label><br/>
+                    </fieldset>
+                    <!-- submit -->
+                    <hr>
+                    <fieldset style="border:0 none">
+                        <input type="submit" value="Submit"/><br/>
+                    </fieldset>
                 </fieldset>
             </form>
         </div>
