@@ -4,31 +4,31 @@ body {
 }
 
 div {
-    border: 0px solid;
+    border: 0 solid;
 }
 
 hr {
-    border: none; /* Убираем границу */
-    background-color: darkgray; /* Цвет линии */
-    color: darkgray; /* Цвет линии для IE6-7 */
-    height: 2px; /* Толщина линии */
+    border: none;
+    background-color: darkgray;
+    color: darkgray;
+    height: 2px;
 }
 
-#main {
+#div_main {
     width: max-content;
     margin: 10px;
     color: crimson;
     display: inline-block;
 }
 
-#list {
+#div_list {
     margin: 3px;
     padding: 10px;
     color: darkgoldenrod;
     display: inline-block;
 }
 
-#action {
+#div_action {
     margin: 3px;
     padding-right: 10px;
     padding-left: 10px;
@@ -39,34 +39,25 @@ hr {
 }
 
 .fieldset_style {
-    border:0 none;
+    border: 0 none;
 }
 
-
-.table_main {
-    margin: 0px;
-    border-collapse: collapse;
-    border: 0px;
-    background: beige;
-    color: black;
-}
 .table_user {
-    margin: 10px;
+    margin: 0;
     border-collapse: collapse;
-    background: #FFFFFF;
+    background: #FFFFFA;
     color: black;
     padding: 6px;
     border: 2px solid darkgray;
     text-align: center;
 }
+
 TD, TH {
     padding: 6px;
     border: 2px solid darkgray;
     text-align: center;
 }
+
 TH {
     background: aliceblue;
-}
-.td_form_style {
-    text-align: right;
 }
