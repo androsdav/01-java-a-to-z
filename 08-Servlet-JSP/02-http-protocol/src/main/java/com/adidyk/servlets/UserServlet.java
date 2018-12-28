@@ -34,7 +34,7 @@ public class UserServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
         PrintWriter writer = new PrintWriter(response.getOutputStream());
-        User user = new User(1, "vova", "andros", "andros@bigmir.net", new Date());
+        User user = new User("vova", "andros", "andros@bigmir.net", new Date());
         String string = "test";
         for (int index = 0; index < 10; index++) {
             writer.append(String.valueOf(user.getId())).append(user.getName()).append(user.getLogin()).append(formatter.format(user.getCreateDate())).append("</br>");
