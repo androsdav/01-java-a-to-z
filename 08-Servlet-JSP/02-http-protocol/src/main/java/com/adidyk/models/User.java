@@ -11,8 +11,7 @@ public class User {
     private String email;
     private Date createDate;
 
-    public User(int id, String name, String login, String email, Date createDate) {
-        this.id = id;
+    public User(String name, String login, String email, Date createDate) {
         this.name = name;
         this.login = login;
         this.email = email;

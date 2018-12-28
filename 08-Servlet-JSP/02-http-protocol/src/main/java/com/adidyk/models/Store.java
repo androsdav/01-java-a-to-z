@@ -8,12 +8,22 @@ package com.adidyk.models;
  */
 public interface Store {
 
-
+    /**
+     * add - adds user.
+     * @param user - user.
+     */
     void add(User user);
 
+    /**
+     * update - update user by id.
+     * @param user - user.
+     */
     void update(User user);
 
-    void delete
-
+    /**
+     * delete - delete user by id.
+     * @param id - user id.
+     */
+    void delete(String id);
 
 }

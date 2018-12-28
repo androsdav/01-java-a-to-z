@@ -12,7 +12,7 @@
 
     <servlet-mapping>
         <servlet-name>UserServlet</servlet-name>
-        <url-pattern>/user_servlet</url-pattern>
+        <url-pattern>/action_user_servlet</url-pattern>
     </servlet-mapping>
 
 </web-app>
