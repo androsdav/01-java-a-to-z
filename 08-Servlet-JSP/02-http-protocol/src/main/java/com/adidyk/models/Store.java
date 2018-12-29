@@ -1,5 +1,7 @@
 package com.adidyk.models;
 
+import java.util.List;
+
 /**
  * Class PostFormServlet uses form and method POST to enter name and surname and returns entered name and surname.
  * @author Didyk Andrey (androsdav@bigmir.net).
@@ -12,7 +14,7 @@ public interface Store {
      * add - adds user.
      * @param user - user.
      */
-    void add(User user);
+    User add(User user);
 
     /**
      * update - update user by id.
@@ -24,6 +26,20 @@ public interface Store {
      * delete - delete user by id.
      * @param id - user id.
      */
-    void delete(String id);
+    String delete(String id);
+
+    /**
+     * findById - finds user by id.
+     * @param id - user id.
+     * @return - returns user id.
+     */
+    User findById(String id);
+
+
+    /**
+     *
+     * @return - returns all user.
+     */
+    List<User> findAll();
 
 }

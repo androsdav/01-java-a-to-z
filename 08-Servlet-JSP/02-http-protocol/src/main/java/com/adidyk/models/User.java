@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class User {
 
-    private int id;
+    private String id;
     private String name;
     private String login;
     private String email;
@@ -18,7 +18,7 @@ public class User {
         this.createDate = createDate;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -38,7 +38,7 @@ public class User {
         this.createDate = createDate;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
