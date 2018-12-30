@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Class PostFormServlet uses form and method POST to enter name and surname and returns entered name and surname.
+ * Class MemoryStore uses form and method POST to enter name and surname and returns entered name and surname.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 28.12.2018.
  * @version 1.0.
