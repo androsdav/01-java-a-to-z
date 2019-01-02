@@ -39,21 +39,27 @@ public class MemoryStore implements Store {
      */
     @Override
     public void update(User user) {
-        User result = this.users.stream().
-                filter(item -> item.getId().equals(user.getId())).
-                findFirst().get();
-        result =
-
-
-        /*
-        for (User item : this.users) {
-            if (item.getId() == user.getId()) {
-                item = user;
+        for (int index = 0; index < this.users.size(); index++) {
+            if (user.getId().equals(this.users.get(index).getId())) {
+                this.users.set(index, user);
+                break;
             }
-
         }
-        */
+    }
 
+    /**
+     * delete - delete user by id.
+     * @param id - user id.
+     */
+    @Override
+    public String delete(String id) {
+        for (int index = 0; index < this.users.size(); index++) {
+            if (id.equals(this.users.get(index).getId())) {
+                this.users.remove(index);
+                break;
+            }
+        }
+        return id;
     }
 
     /**
@@ -66,12 +72,11 @@ public class MemoryStore implements Store {
     }
 
     /**
-     * delete - delete user by id.
-     * @param id - user id.
+     *
+     * @return - is.
      */
-    @Override
-    public void delete(String id) {
-
+    public List<User> findAll() {
+        return this.users;
     }
 
     /**
@@ -80,6 +85,6 @@ public class MemoryStore implements Store {
      */
     private String generateId() {
         return String.valueOf(this.id++);
-
     }
+
 }

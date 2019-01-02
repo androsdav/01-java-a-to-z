@@ -35,7 +35,6 @@ public interface Store {
      */
     User findById(String id);
 
-
     /**
      *
      * @return - returns all user.
