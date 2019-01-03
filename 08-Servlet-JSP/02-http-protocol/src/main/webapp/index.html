@@ -57,24 +57,24 @@
                     <b>ADD USER</b><br/><hr>
                     action: <label><input onclick="enableSelect(this)" type="radio" name="action" value="add" checked></label> add user<br/>
                     <fieldset class="fieldset_style" id="add_user">
-                        name: <label><input type="text" name="name" style="width: 137px" required></label><br/>
-                        login: <label><input type="text" name="login" style="width: 137px" required/></label><br/>
-                        email: <label><input type="text" name="email" style="width: 137px" required/></label><br/>
+                        name: <label><input type="text" name="name" class="input_style" required></label><br/>
+                        login: <label><input type="text" name="login" class="input_style" required/></label><br/>
+                        email: <label><input type="text" name="email" class="input_style" required/></label><br/>
                     </fieldset>
                     <!-- update user -->
                     <b>UPDATE USER</b><br/><hr>
                     action: <label><input onclick="enableSelect(this)" type="radio" name="action" value="update"></label> update user<br/>
                     <fieldset class="fieldset_style" id="update_user" disabled>
-                        id: <label><input type="text" name="id" style="width: 137px" required/></label><br/>
-                        name: <label><input type="text" name="name" style="width: 137px" required></label><br/>
-                        login: <label><input type="text" name="login" style="width: 137px" required/></label><br/>
-                        email: <label><input type="text" name="email" style="width: 137px" required/></label><br/>
+                        id: <label><input type="text" name="id" class="input_style" required/></label><br/>
+                        name: <label><input type="text" name="name" class="input_style" required></label><br/>
+                        login: <label><input type="text" name="login" class="input_style" required/></label><br/>
+                        email: <label><input type="text" name="email" class="input_style" required/></label><br/>
                     </fieldset>
                     <!-- delete user -->
                     <b>DELETE USER</b><br/><hr>
                     action: <label><input onclick="enableSelect(this)" type="radio" name="action" value="delete"></label> delete user<br/>
                     <fieldset class="fieldset_style" id="delete_user" disabled>
-                        id: <label><input type="text" name="id" style="width: 137px" required/></label><br/>
+                        id: <label><input type="text" name="id" class="input_style" required/></label><br/>
                     </fieldset>
                     <!-- submit -->
                     <hr>
@@ -87,6 +87,3 @@
     </div>
     </body>
 </html>
-<!--
-background: aliceblue;
--->

@@ -42,6 +42,11 @@ hr {
     border: 0 none;
 }
 
+.input_style {
+    width: 137px;
+
+}
+
 .table_user {
     margin: 0;
     border-collapse: collapse;
