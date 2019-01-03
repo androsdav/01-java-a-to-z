@@ -72,7 +72,7 @@ public class UserServlet extends HttpServlet {
     }
 
     /**
-     *
+     * test1 - is test1.
      * @param writer - writer.
      */
     private static void test1(PrintWriter writer) {
