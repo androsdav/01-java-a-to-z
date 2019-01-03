@@ -156,6 +156,7 @@ public class UserServlet extends HttpServlet {
     @Override
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        /*
         User bob = new User("bob", "bobby", "bob@bigmir.net", new Date());
         User bill = new User("bill", "bill", "bill@bigmir.net", new Date());
         User adam = new User("adam", "ad", "ad@bigmir.net", new Date());
@@ -163,9 +164,33 @@ public class UserServlet extends HttpServlet {
         this.logic.add(bob);
         this.logic.add(bill);
         this.logic.add(adam);
-        this.logic.add(albert);
+        this.logic.add(albert);8*/
+        //this.doGet(request, response);
+        String result = request.getParameter("action");
+        System.out.println();
+        System.out.println(result);
+        if ("add".equals(result)) {
+            //String id = request.getParameter("id");
+            String name = request.getParameter("name");
+            String login = request.getParameter("login");
+            String email = request.getParameter("email");
+            Date createDate = new Date();
+            User user = new User(name, login, email, createDate);
+            this.logic.add(user);
+        } else if ("update".equals(result)) {
+            String id = request.getParameter("id");
+            String name = request.getParameter("name");
+            String login = request.getParameter("login");
+            String email = request.getParameter("email");
+            Date createDate = new Date();
+            User user = new User(name, login, email, createDate);
+            user.setId(id);
+            this.logic.update(user);
+        } else if ("delete".equals(result)) {
+            String id = request.getParameter("id");
+            this.logic.delete(id);
+        }
         this.doGet(request, response);
     }
-
 
 }
