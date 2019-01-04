@@ -12,6 +12,8 @@ import java.io.PrintWriter;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.function.Function;
 
 /**
  * Class PostFormServlet uses form and method POST to enter name and surname and returns entered name and surname.
@@ -191,6 +193,7 @@ public class UserServlet extends HttpServlet {
             this.logic.delete(id);
         }
         this.doGet(request, response);
+
     }
 
 }
