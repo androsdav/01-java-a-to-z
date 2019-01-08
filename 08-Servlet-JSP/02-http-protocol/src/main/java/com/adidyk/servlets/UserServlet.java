@@ -168,6 +168,7 @@ public class UserServlet extends HttpServlet {
         this.logic.add(adam);
         this.logic.add(albert);8*/
         //this.doGet(request, response);
+        // I have a lot of plans for this years.
         String result = request.getParameter("action");
         System.out.println();
         System.out.println(result);
