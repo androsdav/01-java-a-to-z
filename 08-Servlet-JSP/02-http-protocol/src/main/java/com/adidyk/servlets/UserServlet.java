@@ -126,7 +126,7 @@ public class UserServlet extends HttpServlet {
      * doGet - uses form and method POST to enter name and surname and returns entered name and surname.
      * @param request - request.
      * @param response - response.
-     * @throws IOException - io exception. I will do it tomorrow -)))).
+     * @throws IOException - io exception. I will do it tomorrow -)))) Today I do not nothing.
      */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
