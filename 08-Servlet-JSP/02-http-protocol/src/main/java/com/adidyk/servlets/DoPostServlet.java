@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 public class DoPostServlet extends HttpServlet {
 
     /**
-     *
+     * time X
      * @param request - is req.
      * @param response - is res.
      * @throws IOException - io exception.
