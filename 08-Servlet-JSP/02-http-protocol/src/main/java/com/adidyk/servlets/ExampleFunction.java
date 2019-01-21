@@ -1,7 +1,6 @@
 package com.adidyk.servlets;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -51,9 +50,6 @@ public class ExampleFunction {
         System.out.println(example.sent("delete"));
         System.out.println(example.sent("update"));
         System.out.println(example.sent("addd"));
-        //System.out.println("test");
-
     }
-
 
 }

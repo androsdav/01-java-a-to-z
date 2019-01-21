@@ -1,9 +1,7 @@
 package com.adidyk.logic;
 
 import com.adidyk.models.MemoryStore;
-import com.adidyk.models.Store;
 import com.adidyk.models.User;
-
 import java.util.List;
 
 /**
@@ -18,7 +16,6 @@ public class ValidateService implements Validate {
      *
      */
     private final MemoryStore logic = new MemoryStore();
-
 
     /**
      *
@@ -38,7 +35,6 @@ public class ValidateService implements Validate {
     @Override
     public void update(User user) {
         this.logic.update(user);
-
     }
 
     /**

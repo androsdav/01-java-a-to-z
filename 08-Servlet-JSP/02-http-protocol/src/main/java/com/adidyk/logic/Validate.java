@@ -37,7 +37,6 @@ public interface Validate {
      */
     User findById(String id);
 
-
     /**
      *
      * @return - returns all user.

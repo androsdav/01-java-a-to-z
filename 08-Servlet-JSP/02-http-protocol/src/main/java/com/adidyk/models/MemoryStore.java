@@ -2,7 +2,6 @@ package com.adidyk.models;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Class MemoryStore uses form and method POST to enter name and surname and returns entered name and surname.

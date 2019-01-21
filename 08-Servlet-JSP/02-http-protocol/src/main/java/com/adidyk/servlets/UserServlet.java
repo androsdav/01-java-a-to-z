@@ -1,9 +1,7 @@
 package com.adidyk.servlets;
 
-import com.adidyk.logic.Validate;
 import com.adidyk.logic.ValidateService;
 import com.adidyk.models.User;
-
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,8 +10,6 @@ import java.io.PrintWriter;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.function.Function;
 
 /**
  * Class PostFormServlet uses form and method POST to enter name and surname and returns entered name and surname.
@@ -126,7 +122,7 @@ public class UserServlet extends HttpServlet {
      * doGet - uses form and method POST to enter name and surname and returns entered name and surname.
      * @param request - request.
      * @param response - response.
-     * @throws IOException - io exception. I will do it tomorrow -)))) Today I do not nothing. vxcvxcv
+     * @throws IOException - io exception.
      */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -148,7 +144,6 @@ public class UserServlet extends HttpServlet {
         writer.flush();
     }
 
-
     /**
      * doPost - returns entered name and surname.
      * @param request - request.
@@ -158,17 +153,6 @@ public class UserServlet extends HttpServlet {
     @Override
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        /*
-        User bob = new User("bob", "bobby", "bob@bigmir.net", new Date());
-        User bill = new User("bill", "bill", "bill@bigmir.net", new Date());
-        User adam = new User("adam", "ad", "ad@bigmir.net", new Date());
-        User albert = new User("albert", "albert007", "albert@bigmir.net", new Date());
-        this.logic.add(bob);
-        this.logic.add(bill);
-        this.logic.add(adam);
-        this.logic.add(albert);8*/
-        //this.doGet(request, response);
-        // I have a lot of plans for this years.
         String result = request.getParameter("action");
         System.out.println();
         System.out.println(result);
