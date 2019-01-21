@@ -6,6 +6,9 @@ import java.util.function.Function;
 
 public class ExampleFunction {
 
+    /**
+     * @param - dispatch.
+     */
     private final Map<String, Function<String, Boolean>> dispatch = new HashMap<>();
 
     public Function<String, Boolean> add() {
