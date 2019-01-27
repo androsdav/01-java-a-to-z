@@ -1,5 +1,6 @@
 package com.adidyk.servlets;
 
+import com.adidyk.logic.Validate;
 import com.adidyk.logic.ValidateService;
 import com.adidyk.models.User;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +25,10 @@ public class UserServlet extends HttpServlet {
      */
     private Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    private final ValidateService logic = new ValidateService();
+    /**
+     * @param logic - link variable to object of class MemoryStore (singleton).
+     */
+    private final Validate logic = ValidateService.getInstance();
 
     /**
      *

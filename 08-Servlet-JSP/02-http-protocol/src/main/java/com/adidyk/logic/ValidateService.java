@@ -1,26 +1,63 @@
 package com.adidyk.logic;
 
 import com.adidyk.models.MemoryStore;
+import com.adidyk.models.Store;
 import com.adidyk.models.User;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 
 /**
- * Class PostFormServlet uses form and method POST to enter name and surname and returns entered name and surname.
+ * Class ValidateService consists next method for container of users: add, update, delete, findById, findAll.
  * @author Didyk Andrey (androsdav@bigmir.net).
- * @since 26.12.2018.
+ * @since 27.01.2019.
  * @version 1.0.
  */
 public class ValidateService implements Validate {
 
     /**
-     *
+     * @param instance - link variable to object of class ValidateService (singleton).
      */
-    private final MemoryStore logic = new MemoryStore();
+    private static final Validate instance = new ValidateService();
 
     /**
-     *
-     * @param user - user.
-     * @return - is.
+     * @param logic - link variable to object of class MemoryStore (singleton).
+     */
+    private final Store logic = MemoryStore.getInstance();
+
+    /**
+     * @param - dispatch.
+     */
+    private final Map<String, Function<String, Boolean>> dispatch = new HashMap<>();
+
+    /**
+     * ValidateService - private constructor.
+     */
+    private ValidateService() {
+
+    }
+
+    /**
+     * getInstance - returns link variable to object of class MemoryStore (singleton).
+     * @return - returns link variable to object of class MemoryStore (singleton).
+     */
+    public static Validate getInstance() {
+        return instance;
+    }
+
+
+
+
+
+
+
+
+
+    /**
+     * add - adds user to container.
+     * @param user - user (link variable to object of class User).
      */
     @Override
     public User add(User user) {
@@ -29,8 +66,8 @@ public class ValidateService implements Validate {
     }
 
     /**
-     *
-     * @param user - user.
+     * update - updates user by id in container.
+     * @param user - user (link variable to object of class User).
      */
     @Override
     public void update(User user) {
@@ -38,9 +75,9 @@ public class ValidateService implements Validate {
     }
 
     /**
-     *
+     * delete - deletes user by id from container.
      * @param id - user id.
-     * @return - is.
+     * @return - returns id.
      */
     @Override
     public String delete(String id) {
@@ -49,9 +86,9 @@ public class ValidateService implements Validate {
     }
 
     /**
-     *
+     * findById - finds user by id in container.
      * @param id - user id.
-     * @return - is.
+     * @return - returns user id.
      */
     @Override
     public User findById(String id) {
@@ -59,8 +96,8 @@ public class ValidateService implements Validate {
     }
 
     /**
-     *
-     * @return - is.
+     * findAll - returns all user from container.
+     * @return - returns all user.
      */
     @Override
     public List<User> findAll() {

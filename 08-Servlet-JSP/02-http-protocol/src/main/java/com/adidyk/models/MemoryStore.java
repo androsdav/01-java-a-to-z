@@ -1,20 +1,26 @@
 package com.adidyk.models;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.stream.IntStream;
 
 /**
- * Class MemoryStore uses form and method POST to enter name and surname and returns entered name and surname.
+ * Class MemoryStore consists next method for container of users: add, update, delete, findById, findAll.
  * @author Didyk Andrey (androsdav@bigmir.net).
- * @since 28.12.2018.
+ * @since 27.01.2019.
  * @version 1.0.
  */
 public class MemoryStore implements Store {
 
     /**
-     * @param users - link variable to object of class ArrayList.
+     * @param instance - link variable to object of class MemoryStore (singleton).
      */
-    private List<User> users = new ArrayList<>();
+    private static final Store instance = new MemoryStore();
+
+    /**
+     * @param users - container for users (link variable to object of class ArrayList).
+     */
+    private List<User> users = new CopyOnWriteArrayList<>();
 
     /**
      * @param id - user id.
@@ -22,8 +28,23 @@ public class MemoryStore implements Store {
     private int id = 1;
 
     /**
-     * add - adds user.
-     * @param user - user.
+     * MemoryStore - private constructor.
+     */
+    private MemoryStore() {
+
+    }
+
+    /**
+     * getInstance - returns link variable to object of class MemoryStore (singleton).
+     * @return - returns link variable to object of class MemoryStore (singleton).
+     */
+    public static Store getInstance() {
+        return instance;
+    }
+
+    /**
+     * add - adds user to container.
+     * @param user - user (link variable to object of class User).
      */
     @Override
     public User add(User user) {
@@ -33,36 +54,31 @@ public class MemoryStore implements Store {
     }
 
     /**
-     * update - update user by id.
-     * @param user - user.
+     * update - updates user by id in container.
+     * @param user - user (link variable to object of class User).
      */
     @Override
     public void update(User user) {
-        for (int index = 0; index < this.users.size(); index++) {
-            if (user.getId().equals(this.users.get(index).getId())) {
-                this.users.set(index, user);
-                break;
-            }
-        }
+        IntStream.range(0, this.users.size()).
+                filter(index -> user.getId().equals(this.users.get(index).getId())).
+                findFirst().ifPresent(index -> this.users.set(index, user));
     }
 
     /**
-     * delete - delete user by id.
+     * delete - deletes user by id from container.
      * @param id - user id.
+     * @return - returns id.
      */
     @Override
     public String delete(String id) {
-        for (int index = 0; index < this.users.size(); index++) {
-            if (id.equals(this.users.get(index).getId())) {
-                this.users.remove(index);
-                break;
-            }
-        }
+        IntStream.range(0, this.users.size()).
+                filter(index -> id.equals(this.users.get(index).getId())).
+                findFirst().ifPresent(index -> this.users.remove(index));
         return id;
     }
 
     /**
-     * findById - finds user by id.
+     * findById - finds user by id in container.
      * @param id - user id.
      * @return - returns user id.
      */
@@ -71,15 +87,15 @@ public class MemoryStore implements Store {
     }
 
     /**
-     *
-     * @return - is.
+     * findAll - returns all user from container.
+     * @return - returns all user.
      */
     public List<User> findAll() {
         return this.users;
     }
 
     /**
-     *
+     * generateId - generates id for user.
      * @return - returns user id.
      */
     private String generateId() {
