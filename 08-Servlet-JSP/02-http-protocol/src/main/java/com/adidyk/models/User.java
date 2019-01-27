@@ -72,7 +72,6 @@ public class User {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(id, name, login, email, createDate);
     }
 
@@ -86,4 +85,5 @@ public class User {
                 ", createDate=" + createDate +
                 '}';
     }
+
 }
