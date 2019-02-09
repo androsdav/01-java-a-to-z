@@ -18,6 +18,7 @@
                   <module>06-Multithreading</module>
                   <module>07-SQL-JDBS</module>
                   <module>08-Servlet-JSP</module>
+                  <module>10-Spring</module>
          </modules>
 
 </project>
