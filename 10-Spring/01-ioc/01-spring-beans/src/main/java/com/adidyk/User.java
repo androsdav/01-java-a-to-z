@@ -25,7 +25,7 @@ public class User {
      * @param name - user name.
      * @param login - user login.
      */
-    public User(String name, String login) {
+    User(String name, String login) {
         this.name = name;
         this.login = login;
     }
