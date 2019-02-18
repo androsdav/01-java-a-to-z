@@ -7,9 +7,16 @@
                             http://www.springframework.org/schema/context
                             http://www.springframework.org/schema/context/spring-contex.xsd">
 
+    <!--
     <bean id="memory" class="com.adidyk.MemoryStorage"/>
     <bean id="jdbc" class="com.adidyk.JdbcStorage"/>
-
+    <bean id="storage" class="com.adidyk.UserStorage">
+        <constructor-arg name="storage" ref="jdbc"/>
+    </bean>
+    <bean id="store" class="com.adidyk.UserStorage">
+        <constructor-arg name="store" ref="memory"/>
+    </bean>
+    -->
 
 
 </beans>

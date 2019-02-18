@@ -11,14 +11,14 @@ public class UserStorage {
     /**
      * @param storage - storage.
      */
-    private final Storage storage;
+    private final Storage storage1;
 
     /**
      * UserStorage - constructor.
      * @param storage - storage.
      */
     public UserStorage(Storage storage) {
-        this.storage = storage;
+        this.storage1 = storage;
     }
 
     /**
@@ -26,7 +26,7 @@ public class UserStorage {
      * @param user - user (link variable to object of class User).
      */
     public User add(User user) {
-        this.storage.add(user);
+        this.storage1.add(user);
         return user;
     }
 
