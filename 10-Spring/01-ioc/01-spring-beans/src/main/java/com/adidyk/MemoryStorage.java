@@ -1,5 +1,7 @@
 package com.adidyk;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Interface Storage defines next method for container of users: add, update, delete, findById, findAll.
  * @author Didyk Andrey (androsdav@bigmir.net).
