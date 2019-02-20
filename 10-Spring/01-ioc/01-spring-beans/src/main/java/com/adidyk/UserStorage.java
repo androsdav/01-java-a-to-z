@@ -1,11 +1,7 @@
 package com.adidyk;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
-
 /**
- * Interface Storage defines next method for container of users: add, update, delete, findById, findAll.
+ * Class UserStorage defines next method for container of users: add.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 09.02.2019.
  * @version 1.0.
@@ -13,13 +9,13 @@ import org.springframework.stereotype.Component;
 public class UserStorage {
 
     /**
-     * @param storage - storage.
+     * @param storage - storage (link variable to object of interface Storage).
      */
     private final Storage storage;
 
     /**
      * UserStorage - constructor.
-     * @param storage - storage.
+     * @param storage - storage (link variable to object of interface Storage).
      */
     public UserStorage(Storage storage) {
         this.storage = storage;

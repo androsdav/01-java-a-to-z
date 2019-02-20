@@ -39,7 +39,7 @@ public class User {
     }
 
     /**
-     * setLogin -sets user login.
+     * setLogin - sets user login.
      * @param login - user login.
      */
     public void setLogin(String login) {
@@ -47,7 +47,7 @@ public class User {
     }
 
     /**
-     * getName - returns usessr name.
+     * getName - returns user name.
      * @return - returns user name.
      */
     public String getName() {

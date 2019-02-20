@@ -6,22 +6,12 @@
                             http://www.springframework.org/schema/beans/spring-beans.xsd
                             http://www.springframework.org/schema/context
                             http://www.springframework.org/schema/context/spring-contex.xsd">
-
-
     <!--
     <context:component-scan base-package="com.adidyk"/>
     -->
-
     <bean id="memory" class="com.adidyk.MemoryStorage"/>
     <bean id="jdbc" class="com.adidyk.JdbcStorage"/>
     <bean id="storage" class="com.adidyk.UserStorage">
         <constructor-arg ref="jdbc"/>
     </bean>
-
-    <!--
-    <bean id="memoryStorage" class="com.adidyk.UserStorage">
-        <constructor-arg ref="memory"/>
-    </bean>
-    -->
-
 </beans>
