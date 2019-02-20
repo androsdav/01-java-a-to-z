@@ -16,7 +16,7 @@
          </properties>
 
          <modules>
-                  <module>01-spreng-beans</module>
+                  <module>01-spring-beans</module>
          </modules>
 
 </project>
