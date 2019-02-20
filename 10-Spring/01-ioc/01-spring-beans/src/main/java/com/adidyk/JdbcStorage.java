@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
  * @since 09.02.2019.
  * @version 1.0.
  */
-@Component
 public class JdbcStorage implements Storage {
 
     /**

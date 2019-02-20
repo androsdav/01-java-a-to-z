@@ -35,7 +35,7 @@ public class StartUi {
         */
 
         System.out.println("jdbc-storage spring");
-        JdbcStorage jdbc = context.getBean(JdbcStorage.class);
+        JdbcStorage jdbc = (JdbcStorage) context.getBean("jdbc");
         jdbc.add(new User("jbdc", "jdbc"));
 
         System.out.println("user-storage from jdbc-storage spring");
