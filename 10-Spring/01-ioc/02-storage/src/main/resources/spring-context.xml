@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://www.springframework.org/schema/context
+                            http://www.springframework.org/schema/context/spring-contex.xsd">
+
+    <!-- body -->
+    <bean id="coupe" class="com.adidyk.body.Coupe"/>
+    <bean id="sedan" class="com.adidyk.body.Sedan"/>
+    <!-- engine -->
+    <bean id="boxer" class="com.adidyk.engine.Boxer"/>
+    <bean id="inline" class="com.adidyk.engine.Inline"/>
+    <!-- transmission -->
+    <bean id="automatic" class="com.adidyk.transmission.Automatic"/>
+    <bean id="manual" class="com.adidyk.transmission.Manual"/>
+
+    <!-- mercedes -->
+    <!--
+    <bean id="mercedes" class="com.adidyk.car.Mercedes">
+        <constructor-arg index="0" ref="coupe"/>
+        <constructor-arg index="1" ref="boxer"/>
+        <constructor-arg index="2" ref="manual"/>
+        <property name="body" ref="sedan"/>
+        <property name="engine" ref="inline"/>
+        <property name="transmission" ref="automatic"/>
+    </bean>
+    -->
+    <bean id="mercedes" class="com.adidyk.car.Mercedes">
+        <constructor-arg index="0" ref="sedan"/>
+        <constructor-arg index="1" ref="inline"/>
+        <constructor-arg index="2" ref="automatic"/>
+        <constructor-arg index="3" value="red" type="java.lang.String"/>
+        <constructor-arg index="4" value="true" type="boolean"/>
+        <constructor-arg index="5" value="100000" type="int"/>
+    </bean>
+
+
+</beans>

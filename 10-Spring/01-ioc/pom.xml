@@ -17,6 +17,7 @@
 
          <modules>
                   <module>01-spring-beans</module>
+                  <module>02-storage</module>
          </modules>
 
 </project>
