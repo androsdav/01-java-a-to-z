@@ -20,6 +20,9 @@ public class StartUi {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");
         Mercedes mercedes = context.getBean(Mercedes.class);
         mercedes.showCar();
+        System.out.println(mercedes);
+        mercedes = context.getBean(Mercedes.class);
+        System.out.println(mercedes);
     }
 
 }

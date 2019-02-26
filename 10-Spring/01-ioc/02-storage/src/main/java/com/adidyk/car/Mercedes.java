@@ -96,4 +96,35 @@ public class Mercedes implements Car {
         return transmission;
     }
 
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public boolean isSound() {
+        return sound;
+    }
+
+    public void setSound(boolean sound) {
+        this.sound = sound;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void initObject() {
+        System.out.println("init");
+    }
+
+    public void destroyObject() {
+        System.out.println("destroy");
+    }
 }
