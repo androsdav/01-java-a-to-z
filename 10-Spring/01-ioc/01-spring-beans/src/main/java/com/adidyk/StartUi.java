@@ -1,6 +1,7 @@
 package com.adidyk;
 
 import com.adidyk.car.Mercedes;
+import com.adidyk.car.Volkswagen;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -20,17 +21,9 @@ public class StartUi {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");
         Mercedes mercedes = context.getBean(Mercedes.class);
         mercedes.showCar();
-        /*
-        MemoryStorage memory = context.getBean(MemoryStorage.class);
-        System.out.println("memory-storage spring");
-        memory.add(new User("memory", "memory"));
-        System.out.println("jdbc-storage spring");
-        JdbcStorage jdbc = (JdbcStorage) context.getBean("jdbc");
-        jdbc.add(new User("jbdc", "jdbc"));
-        System.out.println("user-storage from jdbc-storage spring");
-        UserStorage jdbcStorage = context.getBean(UserStorage.class);
-        jdbcStorage.add(new User("user-storage from jdbc-storage", "user-storage from jdbc-storage"));
-        */
+        Volkswagen volkswagen = context.getBean(Volkswagen.class);
+        System.out.println();
+        volkswagen.showCar();
     }
 
 }

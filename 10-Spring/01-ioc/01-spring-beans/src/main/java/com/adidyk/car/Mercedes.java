@@ -65,12 +65,15 @@ public class Mercedes implements Car {
 
     @Override
     public void showCar() {
+        System.out.println(this.getClass().getSimpleName());
+        System.out.println("--------------------");
         this.body.showBody();
         this.engine.showEngine();
         this.transmission.showTransmission();
         System.out.println("color-" + this.color);
         System.out.println("sound-" + this.sound);
         System.out.println("price-" + this.price);
+        System.out.println("--------------------");
     }
 
     public void setBody(Body body) {
