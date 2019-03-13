@@ -1,7 +1,7 @@
 package com.adidyk.engine;
 
 /**
- * Interface Storage defines next method for container of users: add.
+ * Interface Engine defines next method: showEngine.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 09.02.2019.
  * @version 1.0.
@@ -9,7 +9,7 @@ package com.adidyk.engine;
 public interface Engine {
 
     /**
-     * showCar - show car.
+     * showEngine - show engine.
      */
     void showEngine();
 

@@ -5,7 +5,7 @@ import com.adidyk.engine.Engine;
 import com.adidyk.transmission.Transmission;
 
 /**
- * Interface Storage defines next method for container of users: add.
+ * Class Volkswagen create car mercedes with param: body, engine, transmission, color, sound, price.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 09.02.2019.
  * @version 1.0.
@@ -13,47 +13,62 @@ import com.adidyk.transmission.Transmission;
 public class Volkswagen implements Car {
 
     /**
-     *
+     * @param body - link variable to object of interface Body.
      */
     private Body body;
 
     /**
-     *
+     * @param engine - link variable to object of interface Engine.
      */
     private Engine engine;
 
     /**
-     *
+     * @param transmission - link variable to object of interface Transmission.
      */
     private Transmission transmission;
 
     /**
-     *
+     * @param color - color car.
      */
     private String color;
 
     /**
-     *
+     * @param sound - sound in car.
      */
     private boolean sound;
 
     /**
-     *
+     * @param price - price car.
      */
     private int price;
 
     /**
-     *
+     * Volkswagen - constructor.
      */
     Volkswagen() {
     }
 
+    /**
+     * Volkswagen - constructor.
+     * @param body - body car.
+     * @param engine - engine car.
+     * @param transmission - transmission car.
+     */
     Volkswagen(Body body, Engine engine, Transmission transmission) {
         this.body = body;
         this.engine = engine;
         this.transmission = transmission;
     }
 
+    /**
+     * Volkswagen - constructor.
+     * @param body - body car.
+     * @param engine - engine car.
+     * @param transmission - transmission car.
+     * @param color - color car.
+     * @param sound - sound car.
+     * @param price - price car.
+     */
     public Volkswagen(Body body, Engine engine, Transmission transmission, String color, boolean sound, int price) {
         this.body = body;
         this.engine = engine;
@@ -63,6 +78,9 @@ public class Volkswagen implements Car {
         this.price = price;
     }
 
+    /**
+     * showCar - shows all information about car.
+     */
     @Override
     public void showCar() {
         System.out.println(this.getClass().getSimpleName());
@@ -76,61 +94,100 @@ public class Volkswagen implements Car {
         System.out.println("--------------------");
     }
 
+    /**
+     * setBody - sets body for car.
+     * @param body - body car.
+     */
     public void setBody(Body body) {
         this.body = body;
     }
 
+    /**
+     * setEngine - sets engine for car.
+     * @param engine - engine car.
+     */
     public void setEngine(Engine engine) {
         this.engine = engine;
     }
 
+    /**
+     * setTransmission - sets transmission for car.
+     * @param transmission - transmission car.
+     */
     public void setTransmission(Transmission transmission) {
         this.transmission = transmission;
     }
 
-    public Body getBody() {
-        return body;
-    }
-
-
-    public Engine getEngine() {
-        return engine;
-    }
-
-
-    public Transmission getTransmission() {
-        return transmission;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
+    /**
+     * setColor - sets color car.
+     * @param color - color car.
+     */
     public void setColor(String color) {
         this.color = color;
     }
 
-    public boolean isSound() {
-        return sound;
-    }
-
+    /**
+     * setSound - sets sound car.
+     * @param sound - sound car.
+     */
     public void setSound(boolean sound) {
         this.sound = sound;
     }
 
-    public int getPrice() {
-        return price;
-    }
-
+    /**
+     * setPrice - sets price car.
+     * @param price - price car.
+     */
     public void setPrice(int price) {
         this.price = price;
     }
 
-    public void initObject() {
-        System.out.println("init");
+    /**
+     * getBody - returns body car.
+     * @return - returns body car.
+     */
+    public Body getBody() {
+        return body;
     }
 
-    public void destroyObject() {
-        System.out.println("destroy");
+    /**
+     * getEngine - returns engine car.
+     * @return - returns engine car.
+     */
+    public Engine getEngine() {
+        return engine;
     }
+
+    /**
+     * getTransmission - returns transmission car.
+     * @return - returns transmission car.
+     */
+    public Transmission getTransmission() {
+        return transmission;
+    }
+
+    /**
+     * getColor - returns color car.
+     * @return - returns color car.
+     */
+    public String getColor() {
+        return color;
+    }
+
+    /**
+     * getSound - returns sound car.
+     * @return - returns sound car.
+     */
+    public boolean getSound() {
+        return sound;
+    }
+
+    /**
+     * getPrice - returns price car.
+     * @return - returns price car.
+     */
+    public int getPrice() {
+        return price;
+    }
+
 }

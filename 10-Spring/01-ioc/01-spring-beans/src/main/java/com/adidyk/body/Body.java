@@ -1,7 +1,7 @@
 package com.adidyk.body;
 
 /**
- * Interface Storage defines next method for container of users: add.
+ * Interface Body defines next method: showBody.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 09.02.2019.
  * @version 1.0.
@@ -9,7 +9,7 @@ package com.adidyk.body;
 public interface Body {
 
     /**
-     * showCar - show car.
+     * showBody - show body.
      */
     void showBody();
 
