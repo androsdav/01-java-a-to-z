@@ -21,6 +21,8 @@
     <bean id="automatic" class="com.adidyk.transmission.Automatic"/>
     <bean id="manual" class="com.adidyk.transmission.Manual"/>
 
+    <bean id="database" class="com.adidyk.DataBase"/>
+
     <!-- mercedes -->
     <!--
     <bean id="mercedes" class="com.adidyk.car.Mercedes">
@@ -33,12 +35,14 @@
     </bean>
     -->
     <bean id="mercedes" class="com.adidyk.car.Mercedes" scope="singleton"
-    p:color="green"
-    p:sound="true"
-    p:price="999"
-    p:body-ref="coupe"
-    init-method="initObject"
-    destroy-method="destroyObject">
+        p:color="green"
+        p:sound="true"
+        p:price="999"
+        p:body-ref="coupe"
+        init-method="initObject"
+        destroy-method="destroyObject"
+        depends-on="database"
+    >
         <constructor-arg index="0" ref="sedan"/>
         <constructor-arg index="1" ref="inline"/>
         <constructor-arg index="2" ref="automatic"/>
@@ -46,6 +50,7 @@
         <constructor-arg index="4" value="true" type="boolean"/>
         <constructor-arg index="5" value="100000" type="int"/>
     </bean>
+
 
 
 </beans>
