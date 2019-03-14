@@ -1,7 +1,7 @@
 package com.adidyk.engine;
 
 /**
- * Class Inline defines next method: show engine.
+ * Class Inline defines next method: showEngine.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 09.02.2019.
  * @version 1.0.

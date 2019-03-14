@@ -1,7 +1,7 @@
 package com.adidyk.transmission;
 
 /**
- * Interface Storage defines next method for container of users: add.
+ * Interface Transmission defines next method: showTransmission.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 09.02.2019.
  * @version 1.0.
@@ -9,7 +9,7 @@ package com.adidyk.transmission;
 public interface Transmission {
 
     /**
-     * showCar - show car.
+     * showTransmission - show transmission.
      */
     void showTransmission();
 
