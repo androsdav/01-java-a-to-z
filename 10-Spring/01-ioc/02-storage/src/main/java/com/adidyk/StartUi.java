@@ -27,6 +27,7 @@ public class StartUi {
         */
         User user = new User("andrey", "barmaley");
         System.out.println(user);
+        // may first day coding !!!!
     }
 
 }
