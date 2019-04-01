@@ -17,12 +17,16 @@ public class StartUi {
      * @param arg - is nothing.
      */
     public static void main(String[] arg) {
+        /*
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");
         Mercedes mercedes = context.getBean(Mercedes.class);
         mercedes.showCar();
         System.out.println(mercedes);
         mercedes = context.getBean(Mercedes.class);
         System.out.println(mercedes);
+        */
+        User user = new User("andrey", "barmaley");
+        System.out.println(user);
     }
 
 }
