@@ -11,13 +11,13 @@ public class UserStorage {
     /**
      * @param storage - storage (link variable to object of interface Storage).
      */
-    private final Storage storage;
+    private final StorageDAO storage;
 
     /**
      * UserStorage - constructor.
      * @param storage - storage (link variable to object of interface Storage).
      */
-    public UserStorage(Storage storage) {
+    public UserStorage(StorageDAO storage) {
         this.storage = storage;
     }
 

@@ -6,7 +6,7 @@ package com.adidyk;
  * @since 09.02.2019.
  * @version 1.0.
  */
-public interface Storage {
+public interface StorageDAO {
 
     /**
      * add - adds user to container.

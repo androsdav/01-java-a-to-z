@@ -6,7 +6,7 @@ package com.adidyk;
  * @since 09.02.2019.
  * @version 1.0.
  */
-public class MemoryStorage implements Storage {
+public class MemoryStorage implements StorageDAO {
 
     /**
      * add - adds user.

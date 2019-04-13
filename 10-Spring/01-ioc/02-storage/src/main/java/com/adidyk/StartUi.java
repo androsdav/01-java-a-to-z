@@ -29,6 +29,15 @@ public class StartUi {
         System.out.println(user);
         // may first day coding !!!!
         // craegy day
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");
+        Mercedes mercedes = context.getBean(Mercedes.class);
+        mercedes.showCar();
+        System.out.println(mercedes);
+        mercedes = context.getBean(Mercedes.class);
+        System.out.println(mercedes);
+        JdbcStorage store = context.getBean(JdbcStorage.class);
+        //store.setDataSource();
+        //store.add(new User("test_name", "test_login"));
     }
 
 }

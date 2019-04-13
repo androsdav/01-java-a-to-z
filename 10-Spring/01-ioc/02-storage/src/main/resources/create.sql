@@ -21,7 +21,10 @@ CREATE TABLE users (
 
 INSERT INTO users(login, name) VALUES('goad', 'dilan');
 INSERT INTO users(login, name) VALUES('queen', 'amanda');
+INSERT INTO users(login, name) VALUES('baron', 'bob');
 
 
 
 SELECT * FROM users;
+
+DROP TABLE users;
