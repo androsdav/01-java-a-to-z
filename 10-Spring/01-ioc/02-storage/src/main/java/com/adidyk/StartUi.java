@@ -37,7 +37,7 @@ public class StartUi {
         System.out.println(mercedes);
         JdbcStorage store = context.getBean(JdbcStorage.class);
         //store.setDataSource();
-        //store.add(new User("test_name", "test_login"));
+        store.add(new User("test_name", "test_login"));
     }
 
 }
