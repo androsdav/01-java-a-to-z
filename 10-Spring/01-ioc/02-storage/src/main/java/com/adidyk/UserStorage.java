@@ -25,9 +25,8 @@ public class UserStorage {
      * add - adds user to container.
      * @param user - user (link variable to object of class User).
      */
-    User add(User user) {
-        this.storage.add(user);
-        return user;
+    User addUser(User user) {
+        return this.storage.addUser(user);
     }
 
 }

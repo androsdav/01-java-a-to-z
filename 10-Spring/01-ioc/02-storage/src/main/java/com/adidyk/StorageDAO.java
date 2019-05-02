@@ -12,6 +12,6 @@ public interface StorageDAO {
      * add - adds user to container.
      * @param user - user (link variable to object of class User).
      */
-    User add(User user);
+    User addUser(User user);
 
 }

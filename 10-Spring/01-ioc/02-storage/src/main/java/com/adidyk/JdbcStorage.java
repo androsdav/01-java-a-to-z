@@ -33,14 +33,10 @@ public class JdbcStorage implements StorageDAO {
      * @param user - user (link variable to object of class User).
      * @return - returns user.
      */
-    public User add(User user) {
-        System.out.println("jdbcTemlate update");
-        String sql = "INSERT INTO users(login, name) VALUES('temp', 'temp')";
-        System.out.println("jdbcTemlate update");
-        this.jdbcTemplate.update(sql);
+    public User addUser(User user) {
+        String SQL = "INSERT INTO users(login, name) VALUES(?, ?)";
+        this.jdbcTemplate.update(SQL, user.getName(), user.getLogin());
         return user;
     }
-
-
 
 }

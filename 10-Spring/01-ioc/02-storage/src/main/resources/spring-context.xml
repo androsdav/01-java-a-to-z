@@ -60,10 +60,14 @@
         <property name="password" value="admin"/>
     </bean>
 
+    <!-- jdbc storage -->
     <bean id="jdbcStorage" class="com.adidyk.JdbcStorage">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-
+    <!-- user storage -->
+    <bean id="userStorage" class="com.adidyk.UserStorage">
+        <constructor-arg ref="jdbcStorage"/>
+    </bean>
 
 </beans>

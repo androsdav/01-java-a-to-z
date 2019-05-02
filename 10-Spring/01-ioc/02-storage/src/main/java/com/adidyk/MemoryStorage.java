@@ -14,7 +14,7 @@ public class MemoryStorage implements StorageDAO {
      * @return - returns user.
      */
     @Override
-    public User add(User user) {
+    public User addUser(User user) {
         System.out.println("memory storage");
         return null;
     }
