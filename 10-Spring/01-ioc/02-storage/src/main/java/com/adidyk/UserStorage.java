@@ -29,4 +29,21 @@ public class UserStorage {
         return this.storage.addUser(user);
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
+    User getUserById(String id) {
+        return this.storage.searchUserById(id);
+    }
+
+    /**
+     *
+     * @param id - id.
+     */
+    void removeUserById(String id) {
+        this.storage.removeUserById(id);
+    }
+
 }

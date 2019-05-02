@@ -32,6 +32,9 @@ public class StartUi {
         // user stirage
         UserStorage storage = context.getBean(UserStorage.class);
         storage.addUser(new User("alex", "babiny"));
+        //storage.removeUserById("10");
+        System.out.println(storage.getUserById("2"));
+
     }
 
 }

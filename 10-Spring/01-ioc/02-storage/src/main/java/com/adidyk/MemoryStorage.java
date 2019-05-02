@@ -19,4 +19,23 @@ public class MemoryStorage implements StorageDAO {
         return null;
     }
 
+    /**
+     *
+     * @param id - id user.
+     * @return
+     */
+    @Override
+    public User searchUserById(String id) {
+        return null;
+    }
+
+    /**
+     *
+     * @param id
+     */
+    @Override
+    public void removeUserById(String id) {
+
+    }
+
 }

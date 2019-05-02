@@ -9,9 +9,22 @@ package com.adidyk;
 public interface StorageDAO {
 
     /**
-     * add - adds user to container.
+     * addUser - adds user to container.
      * @param user - user (link variable to object of class User).
      */
     User addUser(User user);
+
+    /**
+     *
+     * @param id - id user.
+     * @return - returns user by id.
+     */
+    User searchUserById(String id);
+
+    /**
+     *
+     * @param id - id.
+     */
+    void removeUserById(String id);
 
 }
