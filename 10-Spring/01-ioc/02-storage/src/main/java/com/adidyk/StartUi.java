@@ -31,8 +31,9 @@ public class StartUi {
         //store.add(new User("test_name", "test_login"));
         // user stirage
         UserStorage storage = context.getBean(UserStorage.class);
-        storage.addUser(new User("alex", "babiny"));
+        //storage.addUser(new User("alex", "babiny"));
         //storage.removeUserById("10");
+        System.out.println("Result:" );
         System.out.println(storage.getUserById("2"));
 
     }

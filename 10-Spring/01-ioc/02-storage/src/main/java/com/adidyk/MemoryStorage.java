@@ -29,6 +29,11 @@ public class MemoryStorage implements StorageDAO {
         return null;
     }
 
+    @Override
+    public User updateUserById(String id) {
+        return null;
+    }
+
     /**
      *
      * @param id

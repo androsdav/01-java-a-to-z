@@ -24,6 +24,13 @@ public interface StorageDAO {
     /**
      *
      * @param id - id.
+     * @return - id.
+     */
+    User updateUserById(String id);
+
+    /**
+     *
+     * @param id - id.
      */
     void removeUserById(String id);
 

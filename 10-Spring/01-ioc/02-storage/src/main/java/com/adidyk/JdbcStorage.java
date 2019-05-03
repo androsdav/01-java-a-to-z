@@ -52,11 +52,18 @@ public class JdbcStorage implements StorageDAO {
     @Override
     public User searchUserById(String id) {
         String SQL = "SELECT * FROM users WHERE id=?";
-        //MapSqlParameterSource params = new MapSqlParameterSource();
-        //params.addValue("id", Integer.parseInt(id));
         return this.jdbcTemplate.queryForObject(SQL, new Object[] {Integer.parseInt(id)}, new UserRowMapper());
     }
 
+    @Override
+    public User updateUserById(String id) {
+        return null;
+    }
+
+    /**
+     *
+     * @param id - id.
+     */
     @Override
     public void removeUserById(String id) {
         String SQL = "DELETE FROM users WHERE id=?";
@@ -70,14 +77,14 @@ public class JdbcStorage implements StorageDAO {
 
         /**
          *
-         * @param resultSet
-         * @param i
+         * @param rs - rs.
+         * @param i - i.
          * @return
          * @throws SQLException
          */
         @Override
-        public User mapRow(ResultSet resultSet, int i) throws SQLException {
-            return new User(resultSet.getString("login"), resultSet.getString("name"));
+        public User mapRow(ResultSet rs, int i) throws SQLException {
+            return new User(rs.getString("login"), rs.getString("name"));
         }
     }
 
