@@ -1,5 +1,7 @@
 package com.adidyk;
 
+import java.util.List;
+
 /**
  * Interface Storage defines next method for container of users: add.
  * @author Didyk Andrey (androsdav@bigmir.net).
@@ -14,9 +16,8 @@ public class MemoryStorage implements StorageDAO {
      * @return - returns user.
      */
     @Override
-    public User addUser(User user) {
+    public void addUser(User user) {
         System.out.println("memory storage");
-        return null;
     }
 
     /**
@@ -29,9 +30,13 @@ public class MemoryStorage implements StorageDAO {
         return null;
     }
 
+    /**
+     *
+     * @param user - user.
+     * @return
+     */
     @Override
-    public User updateUserById(String id) {
-        return null;
+    public void updateUserById(User user) {
     }
 
     /**
@@ -41,6 +46,35 @@ public class MemoryStorage implements StorageDAO {
     @Override
     public void removeUserById(String id) {
 
+    }
+
+    @Override
+    public List getAllUser() {
+        return null;
+    }
+
+    @Override
+    public List<User> getAllUserByLogin(String login) {
+        return null;
+    }
+
+    /**
+     * @param name - name.
+     * @return - return list.
+     */
+    @Override
+    public List<User> getAllUserByName(String name) {
+        return null;
+    }
+
+    /**
+     * @param login - login.
+     * @param name  - name.
+     * @return - list.
+     */
+    @Override
+    public List<User> getAllUserByLoginByName(String login, String name) {
+        return null;
     }
 
 }

@@ -1,5 +1,7 @@
 package com.adidyk;
 
+import java.util.List;
+
 /**
  * Class UserStorage defines next method for container of users: add.
  * @author Didyk Andrey (androsdav@bigmir.net).
@@ -25,8 +27,8 @@ public class UserStorage {
      * add - adds user to container.
      * @param user - user (link variable to object of class User).
      */
-    User addUser(User user) {
-        return this.storage.addUser(user);
+    void addUser(User user) {
+        this.storage.addUser(user);
     }
 
     /**
@@ -40,10 +42,54 @@ public class UserStorage {
 
     /**
      *
+     * @param user - user.
+     */
+    void updateUserById(User user) {
+        this.storage.updateUserById(user);
+    }
+
+    /**
+     *
      * @param id - id.
      */
     void removeUserById(String id) {
         this.storage.removeUserById(id);
+    }
+
+    /**
+     *
+     * @return - return.
+     */
+    List<User> getAllUser() {
+        return this.storage.getAllUser();
+    }
+
+    /**
+     *
+     * @param login - login.
+     * @return - return - login.
+     */
+    List<User> getAllUserByLogin(String login) {
+        return this.storage.getAllUserByLogin(login);
+    }
+
+    /**
+     *
+     * @param name - name.
+     * @return - name.
+     */
+    List<User> getAllUserByName(String name) {
+        return this.storage.getAllUserByName(name);
+    }
+
+    /**
+     *
+     * @param login - login.
+     * @param name - name.
+     * @return - list.
+     */
+    public List<User> getAllUserByLoginByName(String login, String name) {
+        return this.storage.getAllUserByLoginByName(login, name);
     }
 
 }

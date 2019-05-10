@@ -35,6 +35,27 @@ public class StartUi {
         //storage.removeUserById("10");
         System.out.println("Result:" );
         System.out.println(storage.getUserById("2"));
+        System.out.println("Result update:" );
+        User newUser = new User("ne_alex", "ne_babiny");
+        newUser.setId("11");
+        storage.updateUserById(newUser);
+        for (User item : storage.getAllUser()) {
+            System.out.println(item);
+        }
+        System.out.println("Result login:");
+        for (User item : storage.getAllUserByLogin("alex")) {
+            System.out.println(item);
+        }
+
+        System.out.println("Result name:");
+        for (User item : storage.getAllUserByName("babiny")) {
+            System.out.println(item);
+        }
+
+        System.out.println("Result login and name:");
+        for (User item : storage.getAllUserByLoginByName("alex", "babiny")) {
+            System.out.println(item);
+        }
 
     }
 

@@ -1,17 +1,3 @@
-CREATE DATABASE store_temp;
-
-
-SELECT * FROM probe;
-
-INSERT INTO probe(name, login) VALUES('test', 'the best');
-
-
-
-SELECT * FROM probe;
-
-DROP TABLE probe;
-
-
 
 CREATE TABLE users (
   id serial PRIMARY KEY,

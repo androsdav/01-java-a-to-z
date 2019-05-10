@@ -11,6 +11,10 @@ import java.util.Objects;
 public class User {
 
     /**
+     * @param id - id user.
+     */
+    private String id;
+    /**
      * @param name - user name.
      */
     private String name;
@@ -25,9 +29,17 @@ public class User {
      * @param name - user name.
      * @param login - user login.
      */
-    User(String name, String login) {
-        this.name = name;
+    User(String login, String name) {
         this.login = login;
+        this.name = name;
+    }
+
+    /**
+     *
+     * @param id - id.
+     */
+    public void setId(String id) {
+        this.id = id;
     }
 
     /**
@@ -46,6 +58,13 @@ public class User {
         this.login = login;
     }
 
+    /**
+     *
+     * @return id.
+     */
+    public String getId() {
+        return this.id;
+    }
     /**
      * getName - returns user name.
      * @return - returns user name.
@@ -95,7 +114,7 @@ public class User {
      */
     @Override
     public String toString() {
-        return String.format("%s%s%s%s%s%s", "User{", "name=", this.name, ", login=", this.login, "}");
+        return String.format("%s%s%s%s%s%s%s%s", "User{", "id=", this.getId()," login=", this.getLogin(), ", name=", this.getName(), "}");
     }
 
 }
