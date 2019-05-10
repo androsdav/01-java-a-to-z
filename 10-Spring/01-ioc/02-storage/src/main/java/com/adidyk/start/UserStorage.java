@@ -1,4 +1,7 @@
-package com.adidyk;
+package com.adidyk.start;
+
+import com.adidyk.models.User;
+import com.adidyk.start.StorageDAO;
 
 import java.util.List;
 

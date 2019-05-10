@@ -1,6 +1,6 @@
-package com.adidyk;
+package com.adidyk.start;
 
-import com.adidyk.car.Mercedes;
+import com.adidyk.models.User;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -18,21 +18,8 @@ public class StartUi {
      */
     public static void main(String[] arg) {
 
-        User user = new User("andrey", "barmaley");
-        System.out.println(user);
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");
-        Mercedes mercedes = context.getBean(Mercedes.class);
-        mercedes.showCar();
-        System.out.println(mercedes);
-        mercedes = context.getBean(Mercedes.class);
-        System.out.println(mercedes);
-        //JdbcStorage store = context.getBean(JdbcStorage.class);
-        //store.setDataSource();
-        //store.add(new User("test_name", "test_login"));
-        // user stirage
         UserStorage storage = context.getBean(UserStorage.class);
-        //storage.addUser(new User("alex", "babiny"));
-        //storage.removeUserById("10");
         System.out.println("Result:" );
         System.out.println(storage.getUserById("2"));
         System.out.println("Result update:" );

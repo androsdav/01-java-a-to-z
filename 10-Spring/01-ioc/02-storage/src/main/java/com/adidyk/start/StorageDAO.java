@@ -1,7 +1,7 @@
-package com.adidyk;
+package com.adidyk.start;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+import com.adidyk.models.User;
+
 import java.util.List;
 
 /**

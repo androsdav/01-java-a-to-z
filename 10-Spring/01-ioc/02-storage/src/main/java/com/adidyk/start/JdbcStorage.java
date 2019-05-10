@@ -1,5 +1,6 @@
-package com.adidyk;
+package com.adidyk.start;
 
+import com.adidyk.models.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import javax.sql.DataSource;

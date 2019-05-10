@@ -1,4 +1,4 @@
-package com.adidyk;
+package com.adidyk.models;
 
 import java.util.Objects;
 
@@ -29,7 +29,7 @@ public class User {
      * @param name - user name.
      * @param login - user login.
      */
-    User(String login, String name) {
+    public User(String login, String name) {
         this.login = login;
         this.name = name;
     }

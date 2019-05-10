@@ -11,45 +11,6 @@
        default-destroy-method="destroyObject"
        default-lazy-init="true"
 >
-    <!-- body -->
-    <bean id="coupe" class="com.adidyk.body.Coupe"/>
-    <bean id="sedan" class="com.adidyk.body.Sedan"/>
-    <!-- engine -->
-    <bean id="boxer" class="com.adidyk.engine.Boxer"/>
-    <bean id="inline" class="com.adidyk.engine.Inline"/>
-    <!-- transmission -->
-    <bean id="automatic" class="com.adidyk.transmission.Automatic"/>
-    <bean id="manual" class="com.adidyk.transmission.Manual"/>
-
-    <bean id="database" class="com.adidyk.DataBase"/>
-
-    <!-- mercedes -->
-    <!--
-    <bean id="mercedes" class="com.adidyk.car.Mercedes">
-        <constructor-arg index="0" ref="coupe"/>
-        <constructor-arg index="1" ref="boxer"/>
-        <constructor-arg index="2" ref="manual"/>
-        <property name="body" ref="sedan"/>
-        <property name="engine" ref="inline"/>
-        <property name="transmission" ref="automatic"/>
-    </bean>
-    -->
-    <bean id="mercedes" class="com.adidyk.car.Mercedes" scope="singleton"
-        p:color="green"
-        p:sound="true"
-        p:price="999"
-        p:body-ref="coupe"
-        init-method="initObject"
-        destroy-method="destroyObject"
-        depends-on="database"
-    >
-        <constructor-arg index="0" ref="sedan"/>
-        <constructor-arg index="1" ref="inline"/>
-        <constructor-arg index="2" ref="automatic"/>
-        <constructor-arg index="3" value="red" type="java.lang.String"/>
-        <constructor-arg index="4" value="true" type="boolean"/>
-        <constructor-arg index="5" value="100000" type="int"/>
-    </bean>
 
     <!-- Data source initialization -->
     <bean id="dataSource"
@@ -61,12 +22,12 @@
     </bean>
 
     <!-- jdbc storage -->
-    <bean id="jdbcStorage" class="com.adidyk.JdbcStorage">
+    <bean id="jdbcStorage" class="com.adidyk.start.JdbcStorage">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
     <!-- user storage -->
-    <bean id="userStorage" class="com.adidyk.UserStorage">
+    <bean id="userStorage" class="com.adidyk.start.UserStorage">
         <constructor-arg ref="jdbcStorage"/>
     </bean>
 
