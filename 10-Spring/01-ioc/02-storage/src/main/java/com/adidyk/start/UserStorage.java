@@ -5,6 +5,9 @@ import com.adidyk.models.User;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import static com.adidyk.setup.Constant.menuSeparator;
+import static com.adidyk.setup.Constant.menuTable;
+
 /**
  * Class UserStorage defines next method for container of users: add.
  * @author Didyk Andrey (androsdav@bigmir.net).
@@ -44,8 +47,11 @@ public class UserStorage {
     void fillAction() {
         this.actions.add(0, new ShowAllUser());
         this.actions.add(1, new AddUser());
-        this.actions.add(2, new Exit());
-        this.actions.add(3, new SearchUserById());
+        this.actions.add(2, new SearchUserById());
+        this.actions.add(3, new SearchUserByName());
+        this.actions.add(4, new SearchUserByLogin());
+        this.actions.add(5, new Exit());
+
         /*this.actions.add(1, new ShowAllItemWithComments());
         this.actions.add(2, new AddItem());
         this.actions.add(3, new SearchItemById());
@@ -76,11 +82,11 @@ public class UserStorage {
      * show - show all information about method of execute and number of index menu.
      */
     void show() {
-        //menuTable();
+        menuTable();
         for (UserAction action: this.actions) {
             System.out.println(action.info());
         }
-        //menuSeparator();
+        menuSeparator();
     }
 
     /**
@@ -192,7 +198,7 @@ public class UserStorage {
          */
         @Override
         public int key() {
-            return 4;
+            return 3;
         }
 
         /**
@@ -203,17 +209,99 @@ public class UserStorage {
         @Override
         public void execute(Input input, StorageDAO storage) {
             String id = input.askInt(" [action] input id: ");
-            Item item = tracker.searchItemById(id);
-            if (item != null) {
-                itemTable();
-                System.out.println(item);
-                itemSeparator();
+            User user = storage.searchUserById(id);
+            if (user != null) {
+                //itemTable();
+                System.out.println(user);
+                //itemSeparator();
+                /*
                 if (tracker.searchCommentByItemId(item.getId()).size() != 0) {
                     outputAllComments(tracker, item);
-                }
+                }*/
             } else {
                 System.out.println(" [info] there isn`t result for entered id ...");
             }
+        }
+
+    }
+
+    /**
+     * Class SearchItemByName shows all items for set name.
+     * @author Didyk Andrey (androsdav@bigmir.net).
+     * @since 06.08.2018.
+     * @version 1.0.
+     */
+    private class SearchUserByName extends BaseAction {
+
+        /**
+         * SearchItemByName - constructor.
+         */
+        SearchUserByName() {
+            super(" Search item by name.");
+        }
+
+        /**
+         * key - returns number of index of menu (5).
+         * @return - returns number of index of menu (5).
+         */
+        @Override
+        public int key() {
+            return 4;
+        }
+
+        /**
+         * execute - shows all items for set name.
+         * @param input - link variable to object of class ValidateInput.
+         * @param storage - link variable to object of class Tracker.
+         */
+        @Override
+        public void execute(Input input, StorageDAO storage) {
+            String name = input.ask(" [action] input name user: ");
+            for (User user : storage.getAllUserByName(name)) {
+                System.out.println(user);
+            }
+
+        }
+
+    }
+
+
+    /**
+     * Class SearchItemByName shows all items for set name.
+     * @author Didyk Andrey (androsdav@bigmir.net).
+     * @since 06.08.2018.
+     * @version 1.0.
+     */
+    private class SearchUserByLogin extends BaseAction {
+
+        /**
+         * SearchItemByName - constructor.
+         */
+        SearchUserByLogin() {
+            super(" Search item by login.");
+        }
+
+        /**
+         * key - returns number of index of menu (5).
+         * @return - returns number of index of menu (5).
+         */
+        @Override
+        public int key() {
+            return 5;
+        }
+
+        /**
+         * execute - shows all items for set name.
+         * @param input - link variable to object of class ValidateInput.
+         * @param storage - link variable to object of class Tracker.
+         */
+        @Override
+        public void execute(Input input, StorageDAO storage) {
+            String name = input.ask(" [action] input login user: ");
+            for (User user : storage.getAllUserByLogin(name)) {
+                System.out.println(user);
+            }
+
         }
 
     }
@@ -242,7 +330,7 @@ public class UserStorage {
          */
         @Override
         public int key() {
-            return 3;
+            return 6;
         }
 
         /**
