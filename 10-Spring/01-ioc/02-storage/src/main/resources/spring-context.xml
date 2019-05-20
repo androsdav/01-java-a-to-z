@@ -26,9 +26,15 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <!-- user storage -->
-    <bean id="userStorage" class="com.adidyk.start.UserStorage">
+    <!-- bean validateInput -->
+    <bean id="validateInput" class="com.adidyk.input.ValidateInput">
+    </bean>
+
+    <!-- bean userStorage -->
+    <bean id="userStorage" class="com.adidyk.start.UserStorage"
+        init-method="fillAction">
         <constructor-arg ref="jdbcStorage"/>
+        <constructor-arg ref="validateInput"/>
     </bean>
 
 </beans>

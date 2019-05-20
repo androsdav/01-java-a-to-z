@@ -1,5 +1,7 @@
 package com.adidyk.start;
 
+import com.adidyk.input.Input;
+import com.adidyk.input.ValidateInput;
 import com.adidyk.models.User;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -20,6 +22,18 @@ public class StartUi {
 
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");
         UserStorage storage = context.getBean(UserStorage.class);
+        Input input = context.getBean(ValidateInput.class);
+        while (true) {
+            storage.show();
+            int key = input.ask(" Choose key: ", storage.getIndexActions());
+            storage.select(key);
+            if (key == storage.getIndexActions().length) {
+                break;
+            }
+        }
+
+        /*
+
         System.out.println("Result:" );
         System.out.println(storage.getUserById("2"));
         System.out.println("Result update:" );
@@ -43,6 +57,7 @@ public class StartUi {
         for (User item : storage.getAllUserByLoginByName("alex", "babiny")) {
             System.out.println(item);
         }
+        */
 
     }
 
