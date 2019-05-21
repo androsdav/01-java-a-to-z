@@ -2,7 +2,6 @@ package com.adidyk.start;
 
 import com.adidyk.input.Input;
 import com.adidyk.input.ValidateInput;
-import com.adidyk.models.User;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

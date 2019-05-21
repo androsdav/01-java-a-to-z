@@ -114,7 +114,8 @@ public class User {
      */
     @Override
     public String toString() {
-        return String.format("%s%s%s%s%s%s%s%s", "User{", "id=", this.getId()," login=", this.getLogin(), ", name=", this.getName(), "}");
+        return String.format(" %s%7s%2s %-28s%2s %-35s%2s", "|", this.getId(), "|", this.getLogin(), "|",this.getName(), "|");
     }
+
 
 }

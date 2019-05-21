@@ -2,11 +2,13 @@ package com.adidyk.start;
 
 import com.adidyk.input.Input;
 import com.adidyk.models.User;
+import org.apache.log4j.Logger;
+import org.springframework.dao.EmptyResultDataAccessException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
-import static com.adidyk.setup.Constant.menuSeparator;
-import static com.adidyk.setup.Constant.menuTable;
+import static com.adidyk.models.Constant.*;
 
 /**
  * Class UserStorage defines next method for container of users: add.
@@ -15,6 +17,11 @@ import static com.adidyk.setup.Constant.menuTable;
  * @version 1.0.
  */
 public class UserStorage {
+
+    /**
+     * @param logger - link variable to object of class Logger.
+     */
+    private static final Logger logger = Logger.getLogger(StartUi.class);
 
     /**
      * @param storage - storage (link variable to object of interface Storage).
@@ -50,18 +57,10 @@ public class UserStorage {
         this.actions.add(2, new SearchUserById());
         this.actions.add(3, new SearchUserByName());
         this.actions.add(4, new SearchUserByLogin());
-        this.actions.add(5, new Exit());
-
-        /*this.actions.add(1, new ShowAllItemWithComments());
-        this.actions.add(2, new AddItem());
-        this.actions.add(3, new SearchItemById());
-        this.actions.add(4, new SearchItemByName());
-        this.actions.add(5, new SearchItemByDescription());
-        this.actions.add(6, new RemoveItemById());
-        this.actions.add(7, new UpdateItemById());
-        this.actions.add(8, new AddCommentById());
-        this.actions.add(9, new Exit());
-        */
+        this.actions.add(5, new SearchUserByLoginByName());
+        this.actions.add(6, new UpdateUserById());
+        this.actions.add(7, new RemoveUserById());
+        this.actions.add(8, new Exit());
     }
 
     /**
@@ -72,9 +71,7 @@ public class UserStorage {
         try {
             this.actions.get(key - 1).execute(this.input, this.storage);
         } catch (SQLException ex) {
-
-
-            //log.error(ex.getMessage(), ex);
+            ex.printStackTrace();
         }
     }
 
@@ -113,7 +110,7 @@ public class UserStorage {
          * ShowAllItem - constructor.
          */
         private ShowAllUser() {
-            super(" Show all item.");
+            super(" Show all user.");
         }
 
         /**
@@ -132,9 +129,11 @@ public class UserStorage {
          */
         @Override
         public void execute(Input input, StorageDAO storage) {
+            userTable();
             for (User user : storage.getAllUser()) {
                 System.out.println(user);
             }
+            userSeparator();
         }
 
     }
@@ -151,7 +150,7 @@ public class UserStorage {
          * AddItem - constructor.
          */
         AddUser() {
-            super(" Add new item.");
+            super(" Add new user.");
         }
 
         /**
@@ -170,9 +169,14 @@ public class UserStorage {
          */
         @Override
         public void execute(Input input, StorageDAO storage) {
-            String login = input.ask(" [action] input login user: ");
-            String name = input.ask(" [action] input name item: ");
-            storage.addUser(new User(login, name));
+            final String login = input.ask(" [action] input login user: ");
+            final String name = input.ask(" [action] input name user: ");
+            final int result = storage.addUser(new User(login, name));
+            if (result == 1) {
+                logger.info("new user added to storage ...");
+            } else if (result == 0) {
+                logger.info("new user not added to storage ...");
+            }
         }
 
     }
@@ -189,7 +193,7 @@ public class UserStorage {
          * SearchItemById - constructor.
          */
         SearchUserById() {
-            super(" Search item by id.");
+            super(" Search user by id.");
         }
 
         /**
@@ -208,21 +212,16 @@ public class UserStorage {
          */
         @Override
         public void execute(Input input, StorageDAO storage) {
-            String id = input.askInt(" [action] input id: ");
-            User user = storage.searchUserById(id);
-            if (user != null) {
-                //itemTable();
+            final String id = input.askInt(" [action] input id: ");
+            try {
+                User user = storage.searchUserById(id);
+                userTable();
                 System.out.println(user);
-                //itemSeparator();
-                /*
-                if (tracker.searchCommentByItemId(item.getId()).size() != 0) {
-                    outputAllComments(tracker, item);
-                }*/
-            } else {
-                System.out.println(" [info] there isn`t result for entered id ...");
+                userSeparator();
+            } catch (EmptyResultDataAccessException ex) {
+                logger.info("there isn`t result for entered id ...");
             }
         }
-
     }
 
     /**
@@ -237,7 +236,7 @@ public class UserStorage {
          * SearchItemByName - constructor.
          */
         SearchUserByName() {
-            super(" Search item by name.");
+            super(" Search user by name.");
         }
 
         /**
@@ -256,15 +255,20 @@ public class UserStorage {
          */
         @Override
         public void execute(Input input, StorageDAO storage) {
-            String name = input.ask(" [action] input name user: ");
-            for (User user : storage.getAllUserByName(name)) {
-                System.out.println(user);
+            final String name = input.ask(" [action] input name user: ");
+            final List<User> result = storage.searchUserByName(new User(null, name));
+            if (!result.isEmpty()) {
+                userTable();
+                for (User user : result) {
+                    System.out.println(user);
+                }
+                userSeparator();
+            } else {
+                logger.info("there isn`t result by entered name ...");
             }
-
         }
 
     }
-
 
     /**
      * Class SearchItemByName shows all items for set name.
@@ -278,7 +282,7 @@ public class UserStorage {
          * SearchItemByName - constructor.
          */
         SearchUserByLogin() {
-            super(" Search item by login.");
+            super(" Search user by login.");
         }
 
         /**
@@ -297,17 +301,155 @@ public class UserStorage {
          */
         @Override
         public void execute(Input input, StorageDAO storage) {
-            String name = input.ask(" [action] input login user: ");
-            for (User user : storage.getAllUserByLogin(name)) {
-                System.out.println(user);
+            final String login = input.ask(" [action] input login user: ");
+            final List<User> result = storage.searchUserByLogin(new User(login, null));
+            if (!result.isEmpty()) {
+                userTable();
+                for (User user : result) {
+                    System.out.println(user);
+                }
+                userSeparator();
+            } else {
+                logger.info("there isn`t result by entered login ...");
             }
-
         }
 
     }
 
+    /**
+     * Class SearchItemByName shows all items for set name.
+     * @author Didyk Andrey (androsdav@bigmir.net).
+     * @since 06.08.2018.
+     * @version 1.0.
+     */
+    private class SearchUserByLoginByName extends BaseAction {
 
+        /**
+         * SearchItemByName - constructor.
+         */
+        SearchUserByLoginByName() {
+            super(" Search user by login and by name.");
+        }
 
+        /**
+         * key - returns number of index of menu (5).
+         * @return - returns number of index of menu (5).
+         */
+        @Override
+        public int key() {
+            return 6;
+        }
+
+        /**
+         * execute - shows all items for set name.
+         * @param input - link variable to object of class ValidateInput.
+         * @param storage - link variable to object of class Tracker.
+         */
+        @Override
+        public void execute(Input input, StorageDAO storage) {
+            final String login = input.ask(" [action] input login user: ");
+            final String name = input.ask(" [action] input name user: ");
+            final List<User> result = storage.searchUserByLoginByName(new User(login, name));
+            if (!result.isEmpty()) {
+                userTable();
+                for (User user : result) {
+                    System.out.println(user);
+                }
+                userSeparator();
+            } else {
+                logger.info("there isn`t result by login and by name ...");
+            }
+        }
+
+    }
+
+    /**
+     * Class SearchItemByName shows all items for set name.
+     * @author Didyk Andrey (androsdav@bigmir.net).
+     * @since 06.08.2018.
+     * @version 1.0.
+     */
+    private class UpdateUserById extends BaseAction {
+
+        /**
+         * SearchItemByName - constructor.
+         */
+        UpdateUserById() {
+            super(" Update user by id.");
+        }
+
+        /**
+         * key - returns number of index of menu (5).
+         * @return - returns number of index of menu (5).
+         */
+        @Override
+        public int key() {
+            return 7;
+        }
+
+        /**
+         * execute - shows all items for set name.
+         * @param input - link variable to object of class ValidateInput.
+         * @param storage - link variable to object of class Tracker.
+         */
+        @Override
+        public void execute(Input input, StorageDAO storage) {
+            final String id = input.ask("[action] input id: ");
+            final String login = input.ask("[action] input new login user: ");
+            final String name = input.ask("[action] input new name user: ");
+            final User user = new User(login, name);
+            user.setId(id);
+            final int result = storage.updateUserById(user);
+            if (result == 1) {
+                logger.info("user by id updated ...");
+            } else if (result == 0) {
+                logger.info("user by id not found ...");
+            }
+        }
+
+    }
+
+    /**
+     * Class AddItem adds new item.
+     * @author Didyk Andrey (androsdav@bigmir.net).
+     * @since 06.08.2018.
+     * @version 1.0.
+     */
+    private class RemoveUserById extends BaseAction {
+
+        /**
+         * AddItem - constructor.
+         */
+        RemoveUserById() {
+            super(" Remove user by id.");
+        }
+
+        /**
+         * key - returns number of index of menu (3).
+         * @return - returns number of index of menu (3).
+         */
+        @Override
+        public int key() {
+            return 8;
+        }
+
+        /**
+         * execute - adds new item.
+         * @param input - link variable to object of class ValidateInput.
+         * @param storage - link variable to object of class Tracker.
+         */
+        @Override
+        public void execute(Input input, StorageDAO storage) {
+            final String id = input.ask("[action] input id: ");
+            final int result = storage.removeUserById(id);
+            if (result == 1) {
+                logger.info("user by id deleted ...");
+            } else if (result == 0) {
+                logger.info("user by id not found ..");
+            }
+        }
+
+    }
 
     /**
      * Class Exit exits from program.
@@ -330,7 +472,7 @@ public class UserStorage {
          */
         @Override
         public int key() {
-            return 6;
+            return 9;
         }
 
         /**
@@ -343,86 +485,5 @@ public class UserStorage {
         }
 
     }
-
-/*
-
-    /**
-     * add - adds user to container.
-     * @param user - user (link variable to object of class User).
-     */
-    /*
-    void addUser(User user) {
-        this.storage.addUser(user);
-    }
-
-    /**
-     *
-     * @param id
-     * @return
-     */
-    /*
-    User getUserById(String id) {
-        return this.storage.searchUserById(id);
-    }
-
-    /**
-     *
-     * @param user - user.
-     */
-
-    /*
-    void updateUserById(User user) {
-        this.storage.updateUserById(user);
-    }
-
-    /**
-     *
-     * @param id - id.
-     */
-    /*
-    void removeUserById(String id) {
-        this.storage.removeUserById(id);
-    }
-
-    /**
-     *
-     * @return - return.
-     */
-    /*
-    List<User> getAllUser() {
-        return this.storage.getAllUser();
-    }
-
-    /**
-     *
-     * @param login - login.
-     * @return - return - login.
-     */
-    /*
-    List<User> getAllUserByLogin(String login) {
-        return this.storage.getAllUserByLogin(login);
-    }
-
-    /**
-     *
-     * @param name - name.
-     * @return - name.
-     */
-    /*
-    List<User> getAllUserByName(String name) {
-        return this.storage.getAllUserByName(name);
-    }
-
-    /**
-     *
-     * @param login - login.
-     * @param name - name.
-     * @return - list.
-     */
-    /*
-    public List<User> getAllUserByLoginByName(String login, String name) {
-        return this.storage.getAllUserByLoginByName(login, name);
-    }
-    */
 
 }

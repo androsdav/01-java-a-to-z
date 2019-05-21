@@ -1,6 +1,8 @@
 package com.adidyk.start;
 
 import com.adidyk.models.User;
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import javax.sql.DataSource;
@@ -32,9 +34,10 @@ public class JdbcStorage implements StorageDAO {
      * addUser - adds new user to users table in database base_storage.
      * @param user - user (link variable to object of class User).
      */
-    public void addUser(User user) {
+    public int addUser(User user) {
         String SQL = "INSERT INTO users(login, name) VALUES(?, ?)";
-        this.jdbcTemplate.update(SQL, user.getName(), user.getLogin());
+        return this.jdbcTemplate.update(SQL, user.getLogin(), user.getName());
+
     }
 
     /**
@@ -46,7 +49,38 @@ public class JdbcStorage implements StorageDAO {
     @Override
     public User searchUserById(String id) {
         String SQL = "SELECT * FROM users WHERE id=?";
-        return this.jdbcTemplate.queryForObject(SQL, new Object[] {Integer.parseInt(id)}, new UserRowMapper());
+        return this.jdbcTemplate.queryForObject(SQL, new Object[]{Integer.parseInt(id)}, new UserRowMapper());
+    }
+
+    /**
+     * @param user - name.
+     * @return - return list.
+     */
+    @Override
+    public List<User> searchUserByName(User user) {
+        String SQL = "SELECT * FROM users WHERE name=?";
+        return this.jdbcTemplate.query(SQL, new Object[] {user.getName()}, new UserRowMapper());
+    }
+
+    /**
+     *
+     * @param user - login.
+     * @return - return.
+     */
+    @Override
+    public List<User> searchUserByLogin(User user) {
+        String SQL = "SELECT * FROM users WHERE login=?";
+        return this.jdbcTemplate.query(SQL, new Object[] {user.getLogin()}, new UserRowMapper());
+    }
+
+    /**
+     * @param user - login.
+     * @return - list.
+     */
+    @Override
+    public List<User> searchUserByLoginByName(User user) {
+        String SQL = "SELECT * FROM users WHERE login=? AND name=?";
+        return this.jdbcTemplate.query(SQL, new Object[] {user.getLogin(), user.getName()}, new UserRowMapper());
     }
 
     /**
@@ -54,9 +88,9 @@ public class JdbcStorage implements StorageDAO {
      * @param user - user.
      */
     @Override
-    public void updateUserById(User user) {
+    public int updateUserById(User user) {
         String SQL = "UPDATE users SET login = ?, name = ? WHERE id = ?";
-        this.jdbcTemplate.update(SQL, user.getLogin(), user.getName(), Integer.parseInt(user.getId()));
+        return this.jdbcTemplate.update(SQL, user.getLogin(), user.getName(), Integer.parseInt(user.getId()));
     }
 
     /**
@@ -64,9 +98,9 @@ public class JdbcStorage implements StorageDAO {
      * @param id - id.
      */
     @Override
-    public void removeUserById(String id) {
+    public int removeUserById(String id) {
         String SQL = "DELETE FROM users WHERE id=?";
-        System.out.println(this.jdbcTemplate.update(SQL, Integer.parseInt(id)));
+        return this.jdbcTemplate.update(SQL, Integer.parseInt(id));
     }
 
     /**
@@ -79,37 +113,7 @@ public class JdbcStorage implements StorageDAO {
         return this.jdbcTemplate.query(SQL, new UserRowMapper());
     }
 
-    /**
-     *
-     * @param login - login.
-     * @return - return.
-     */
-    @Override
-    public List<User> getAllUserByLogin(String login) {
-        String SQL = "SELECT * FROM users WHERE login=?";
-        return this.jdbcTemplate.query(SQL, new Object[] {login}, new UserRowMapper());
-    }
 
-    /**
-     * @param name - name.
-     * @return - return list.
-     */
-    @Override
-    public List<User> getAllUserByName(String name) {
-        String SQL = "SELECT * FROM users WHERE name=?";
-        return this.jdbcTemplate.query(SQL, new Object[] {name}, new UserRowMapper());
-    }
-
-    /**
-     * @param login - login.
-     * @param name  - name.
-     * @return - list.
-     */
-    @Override
-    public List<User> getAllUserByLoginByName(String login, String name) {
-        String SQL = "SELECT * FROM users WHERE login=? AND name=?";
-        return this.jdbcTemplate.query(SQL, new Object[] {login, name}, new UserRowMapper());
-    }
 
     /**
      *

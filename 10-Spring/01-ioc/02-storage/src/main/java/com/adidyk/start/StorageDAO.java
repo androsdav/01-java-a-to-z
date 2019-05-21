@@ -16,7 +16,7 @@ public interface StorageDAO {
      * addUser - adds user to container.
      * @param user - user (link variable to object of class User).
      */
-    void addUser(User user);
+    int addUser(User user);
 
     /**
      *
@@ -27,15 +27,35 @@ public interface StorageDAO {
 
     /**
      *
+     * @param user - name.
+     * @return - return list.
+     */
+    List<User> searchUserByName(User user);
+
+    /**
+     *
+     * @return - list.
+     */
+    List<User> searchUserByLogin(User user);
+
+    /**
+     *
+     * @param user - login.
+     * @return - list.
+     */
+    List<User> searchUserByLoginByName(User user);
+
+    /**
+     *
      * @param user - user.
      */
-    void updateUserById(User user);
+    int updateUserById(User user);
 
     /**
      *
      * @param id - id.
      */
-    void removeUserById(String id);
+    int removeUserById(String id);
 
     /**
      * getAllUser - gets all users from users table.
@@ -43,25 +63,6 @@ public interface StorageDAO {
      */
     List<User> getAllUser();
 
-    /**
-     *
-     * @return - list.
-     */
-    List<User> getAllUserByLogin(String login);
 
-    /**
-     *
-     * @param name - name.
-     * @return - return list.
-     */
-    List<User> getAllUserByName(String name);
-
-    /**
-     *
-     * @param login - login.
-     * @param name - name.
-     * @return - list.
-     */
-    List<User> getAllUserByLoginByName(String login, String name);
 
 }

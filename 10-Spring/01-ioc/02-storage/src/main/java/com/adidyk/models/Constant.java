@@ -1,4 +1,4 @@
-package com.adidyk.setup;
+package com.adidyk.models;
 
 /**
  * Class Constant for create all constants.
@@ -149,43 +149,23 @@ public class Constant {
      * menuSeparator - displays menu separator.
      */
     public static void menuSeparator() {
-        System.out.println(" ------------------------------------");
+        System.out.println(" -----------------------------------------");
     }
 
     /**
      * itemTable - displays table item.
      */
-    public static void itemTable() {
-        System.out.println(String.format("\n %s%6s%3s %12s%8s %32s%17s %13s%3s",
-                "|", "ID", "|", "ITEM", "|", "DESCRIPTION", "|", "DATA_CREATE", "|"));
-        System.out.println(" |--------|--------------------|-------------------------------------------------|"
-                + "----------------|");
-    }
-
-    /**
-     * commentTable - displays table comment.
-     */
-    public static void commentTable() {
-        System.out.println(String.format("\n %10s%6s%3s %12s%8s %26s%14s %13s%3s",
-                "|", "ID", "|", "COMMENT", "|", "DESCRIPTION", "|", "DATA_CREATE", "|"));
-        System.out.println("          |--------|--------------------|----------------------------------------|"
-                + "----------------|");
+    public static void userTable() {
+        System.out.println(String.format("\n %s%6s%3s %18s%12s %20s%17s",
+                "|", "ID", "|", "LOGIN", "|", "NAME", "|"));
+        System.out.println(" |--------|------------------------------|-------------------------------------|");
     }
 
     /**
      * itemSeparator - displays item separator.
      */
-    public static void itemSeparator() {
-        System.out.println(" |--------|--------------------|-------------------------------------------------|"
-                + "----------------|");
-    }
-
-    /**
-     * commentSeparator - displays comment separator.
-     */
-    public static void commentSeparator() {
-        System.out.println("          |--------|--------------------|----------------------------------------|"
-                + "----------------|");
+    public static void userSeparator() {
+        System.out.println(" |--------|------------------------------|-------------------------------------|");
     }
 
 }
