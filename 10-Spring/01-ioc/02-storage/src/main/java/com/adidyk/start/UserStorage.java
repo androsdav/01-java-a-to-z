@@ -394,9 +394,9 @@ public class UserStorage {
          */
         @Override
         public void execute(Input input, StorageDAO storage) {
-            final String id = input.ask("[action] input id: ");
-            final String login = input.ask("[action] input new login user: ");
-            final String name = input.ask("[action] input new name user: ");
+            final String id = input.askInt(" [action] input id: ");
+            final String login = input.ask(" [action] input new login user: ");
+            final String name = input.ask(" [action] input new name user: ");
             final User user = new User(login, name);
             user.setId(id);
             final int result = storage.updateUserById(user);
@@ -440,12 +440,12 @@ public class UserStorage {
          */
         @Override
         public void execute(Input input, StorageDAO storage) {
-            final String id = input.ask("[action] input id: ");
+            final String id = input.askInt(" [action] input id: ");
             final int result = storage.removeUserById(id);
             if (result == 1) {
-                logger.info("user by id deleted ...");
+                logger.info("user by id removed ...");
             } else if (result == 0) {
-                logger.info("user by id not found ..");
+                logger.info("user by id not found ...");
             }
         }
 

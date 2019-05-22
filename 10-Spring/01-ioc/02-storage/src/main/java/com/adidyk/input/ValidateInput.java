@@ -1,5 +1,7 @@
 package com.adidyk.input;
 
+import org.apache.log4j.Logger;
+
 /**
  * Class ValidateInput contains method for entering data from console.
  * @author Didyk Andrey (androsdav@bigmir.net).
@@ -7,6 +9,11 @@ package com.adidyk.input;
  * @version 1.0.
  */
 public class ValidateInput extends ConsoleInput {
+
+    /**
+     * @param logger - link variable to object of class Logger.
+     */
+    private static final Logger logger = Logger.getLogger(ValidateInput.class);
 
     /**
      * ask - returns the inputted of data from the console if the data is integer, and if inputted
@@ -25,9 +32,9 @@ public class ValidateInput extends ConsoleInput {
                 value = super.ask(question, range);
                 invalid = false;
             } catch (MenuOutException moe) {
-                System.out.println(" [info] please select key from menu ... ");
+                logger.info("please select key from menu ... ");
             } catch (NumberFormatException nfe) {
-                System.out.println(" [info] please enter validate data again ... ");
+                logger.info(" [info] please enter validate data again ... ");
             }
         } while (invalid);
         return value;
@@ -47,7 +54,7 @@ public class ValidateInput extends ConsoleInput {
                 value = Integer.valueOf(super.ask(question));
                 invalid = false;
             } catch (NumberFormatException nfe) {
-                System.out.println(" [info] please enter validate data again ... ");
+                logger.info("please enter validate data again ... ");
             }
         } while (invalid);
         return String.valueOf(value);
