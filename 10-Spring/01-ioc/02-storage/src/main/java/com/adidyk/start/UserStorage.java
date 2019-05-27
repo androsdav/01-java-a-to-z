@@ -24,6 +24,11 @@ public class UserStorage {
     private static final Logger logger = Logger.getLogger(StartUi.class);
 
     /**
+     *
+     */
+    private Input input;
+
+    /**
      * @param storage - storage (link variable to object of interface Storage).
      */
     private final StorageDAO storage;
@@ -31,26 +36,24 @@ public class UserStorage {
     /**
      *
      */
-    private Input input;
-
-    /**
-     *
-     */
-    private ArrayList<UserAction> actions = new ArrayList<>();
+    private ArrayList<BaseAction> actions = new ArrayList<>();
 
     /**
      * UserStorage - constructor.
      * @param storage - storage (link variable to object of interface Storage).
      */
+    //public UserStorage(Input input, StorageDAO storage, ArrayList<BaseAction> actions) {
     public UserStorage(Input input, StorageDAO storage) {
         this.input = input;
         this.storage = storage;
+        //this.actions = actions;
     }
 
     /**
      * fillAction - adds to array list (menu) objects of class ShowAllItem, ShowAllItemWithComments, AddItem,
      * SearchItemById, SearchItemByName, SearchItemByDescription, RemoveItemById, UpdateItemById, AddCommentById, Exit.
      */
+
     void fillAction() {
         this.actions.add(0, new ShowAllUser());
         this.actions.add(1, new AddUser());
@@ -104,13 +107,14 @@ public class UserStorage {
      * @since 06.08.2018.
      * @version 1.0.
      */
-    private class  ShowAllUser extends BaseAction {
+    public class  ShowAllUser extends BaseAction {
 
         /**
          * ShowAllItem - constructor.
          */
-        private ShowAllUser() {
+        public ShowAllUser() {
             super(" Show all user.");
+            System.out.println("show all users");
         }
 
         /**
@@ -144,7 +148,7 @@ public class UserStorage {
      * @since 06.08.2018.
      * @version 1.0.
      */
-    private class AddUser extends BaseAction {
+    public class AddUser extends BaseAction {
 
         /**
          * AddItem - constructor.
@@ -187,7 +191,7 @@ public class UserStorage {
      * @since 06.08.2018.
      * @version 1.0.
      */
-    private class SearchUserById extends BaseAction {
+    public class SearchUserById extends BaseAction {
 
         /**
          * SearchItemById - constructor.
@@ -230,7 +234,7 @@ public class UserStorage {
      * @since 06.08.2018.
      * @version 1.0.
      */
-    private class SearchUserByName extends BaseAction {
+    public class SearchUserByName extends BaseAction {
 
         /**
          * SearchItemByName - constructor.
@@ -276,7 +280,7 @@ public class UserStorage {
      * @since 06.08.2018.
      * @version 1.0.
      */
-    private class SearchUserByLogin extends BaseAction {
+    public class SearchUserByLogin extends BaseAction {
 
         /**
          * SearchItemByName - constructor.
@@ -322,7 +326,7 @@ public class UserStorage {
      * @since 06.08.2018.
      * @version 1.0.
      */
-    private class SearchUserByLoginByName extends BaseAction {
+    public class SearchUserByLoginByName extends BaseAction {
 
         /**
          * SearchItemByName - constructor.
@@ -369,7 +373,7 @@ public class UserStorage {
      * @since 06.08.2018.
      * @version 1.0.
      */
-    private class UpdateUserById extends BaseAction {
+    public class UpdateUserById extends BaseAction {
 
         /**
          * SearchItemByName - constructor.
@@ -415,7 +419,7 @@ public class UserStorage {
      * @since 06.08.2018.
      * @version 1.0.
      */
-    private class RemoveUserById extends BaseAction {
+    public class RemoveUserById extends BaseAction {
 
         /**
          * AddItem - constructor.
@@ -457,7 +461,7 @@ public class UserStorage {
      * @since 06.08.2018.
      * @version 1.0.
      */
-    private class Exit extends BaseAction {
+    public class Exit extends BaseAction {
 
         /**
          * Exit - constructor.
