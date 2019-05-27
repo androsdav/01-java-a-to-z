@@ -12,7 +12,7 @@
        default-lazy-init="true"
 >
 
-    <!-- Data source initialization -->
+    <!-- dataSource -->
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver"/>
@@ -21,12 +21,16 @@
         <property name="password" value="admin"/>
     </bean>
 
-    <!-- jdbc storage -->
+    <!-- jdbcStorage -->
     <bean id="jdbcStorage" class="com.adidyk.start.JdbcStorage">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <!-- bean validateInput -->
+    <!-- consoleInput -->
+    <bean id="consoleInput" class="com.adidyk.input.ConsoleInput">
+
+    </bean>
+    <!-- validateInput -->
     <bean id="validateInput" class="com.adidyk.input.ValidateInput">
     </bean>
 
