@@ -68,7 +68,7 @@
 
     <!-- bean userStorage -->
     <bean id="userStorage" class="com.adidyk.start.UserStorage">
-        <!-- init-method="fillAction"> -->
+        <!-- init-method="fillAction" -->
         <constructor-arg ref="jdbcStorage"/>
         <constructor-arg ref="validateInput"/>
         <!--

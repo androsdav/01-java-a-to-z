@@ -19,8 +19,10 @@ public class StartUi {
      */
     public static void main(String[] arg) {
 
+
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");
         UserStorage storage = context.getBean(UserStorage.class);
+        /*
         Input input = context.getBean(ValidateInput.class);
         while (true) {
             storage.show();

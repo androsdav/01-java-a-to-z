@@ -46,6 +46,7 @@ public class UserStorage {
     public UserStorage(Input input, StorageDAO storage) {
         this.input = input;
         this.storage = storage;
+        System.out.println("test create bean userStorage");
         //this.actions = actions;
     }
 
