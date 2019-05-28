@@ -7,7 +7,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import static com.adidyk.models.Constant.*;
 
 /**
@@ -24,7 +23,7 @@ public class UserStorage {
     private static final Logger logger = Logger.getLogger(StartUi.class);
 
     /**
-     *
+     * @param input - input.
      */
     private Input input;
 
@@ -34,37 +33,18 @@ public class UserStorage {
     private final StorageDAO storage;
 
     /**
-     *
+     * @param actions - actions.
      */
-    private ArrayList<BaseAction> actions = new ArrayList<>();
+    private ArrayList<BaseAction> actions;
 
     /**
      * UserStorage - constructor.
      * @param storage - storage (link variable to object of interface Storage).
      */
-    //public UserStorage(Input input, StorageDAO storage, ArrayList<BaseAction> actions) {
-    public UserStorage(Input input, StorageDAO storage) {
+    public UserStorage(Input input, StorageDAO storage, List<BaseAction> actions) {
         this.input = input;
         this.storage = storage;
-        System.out.println("test create bean userStorage");
-        //this.actions = actions;
-    }
-
-    /**
-     * fillAction - adds to array list (menu) objects of class ShowAllItem, ShowAllItemWithComments, AddItem,
-     * SearchItemById, SearchItemByName, SearchItemByDescription, RemoveItemById, UpdateItemById, AddCommentById, Exit.
-     */
-
-    void fillAction() {
-        this.actions.add(0, new ShowAllUser());
-        this.actions.add(1, new AddUser());
-        this.actions.add(2, new SearchUserById());
-        this.actions.add(3, new SearchUserByName());
-        this.actions.add(4, new SearchUserByLogin());
-        this.actions.add(5, new SearchUserByLoginByName());
-        this.actions.add(6, new UpdateUserById());
-        this.actions.add(7, new RemoveUserById());
-        this.actions.add(8, new Exit());
+        this.actions = (ArrayList<BaseAction>) actions;
     }
 
     /**
@@ -108,14 +88,13 @@ public class UserStorage {
      * @since 06.08.2018.
      * @version 1.0.
      */
-    public class  ShowAllUser extends BaseAction {
+    public static class  ShowAllUser extends BaseAction {
 
         /**
          * ShowAllItem - constructor.
          */
         public ShowAllUser() {
             super(" Show all user.");
-            System.out.println("show all users");
         }
 
         /**
@@ -149,7 +128,7 @@ public class UserStorage {
      * @since 06.08.2018.
      * @version 1.0.
      */
-    public class AddUser extends BaseAction {
+    public static class AddUser extends BaseAction {
 
         /**
          * AddItem - constructor.
@@ -192,7 +171,7 @@ public class UserStorage {
      * @since 06.08.2018.
      * @version 1.0.
      */
-    public class SearchUserById extends BaseAction {
+    public static class SearchUserById extends BaseAction {
 
         /**
          * SearchItemById - constructor.
@@ -235,7 +214,7 @@ public class UserStorage {
      * @since 06.08.2018.
      * @version 1.0.
      */
-    public class SearchUserByName extends BaseAction {
+    public static class SearchUserByName extends BaseAction {
 
         /**
          * SearchItemByName - constructor.
@@ -281,7 +260,7 @@ public class UserStorage {
      * @since 06.08.2018.
      * @version 1.0.
      */
-    public class SearchUserByLogin extends BaseAction {
+    public static class SearchUserByLogin extends BaseAction {
 
         /**
          * SearchItemByName - constructor.
@@ -327,7 +306,7 @@ public class UserStorage {
      * @since 06.08.2018.
      * @version 1.0.
      */
-    public class SearchUserByLoginByName extends BaseAction {
+    public static class SearchUserByLoginByName extends BaseAction {
 
         /**
          * SearchItemByName - constructor.
@@ -374,7 +353,7 @@ public class UserStorage {
      * @since 06.08.2018.
      * @version 1.0.
      */
-    public class UpdateUserById extends BaseAction {
+    public static class UpdateUserById extends BaseAction {
 
         /**
          * SearchItemByName - constructor.
@@ -420,7 +399,7 @@ public class UserStorage {
      * @since 06.08.2018.
      * @version 1.0.
      */
-    public class RemoveUserById extends BaseAction {
+    public static class RemoveUserById extends BaseAction {
 
         /**
          * AddItem - constructor.
@@ -462,7 +441,7 @@ public class UserStorage {
      * @since 06.08.2018.
      * @version 1.0.
      */
-    public class Exit extends BaseAction {
+    public static class Exit extends BaseAction {
 
         /**
          * Exit - constructor.

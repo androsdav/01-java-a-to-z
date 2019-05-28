@@ -5,6 +5,8 @@ import com.adidyk.input.ValidateInput;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.sql.SQLException;
+
 /**
  * Class StartUi for create jar file and start program.
  * @author Didyk Andrey (androsdav@bigmir.net).
@@ -22,6 +24,24 @@ public class StartUi {
 
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");
         UserStorage storage = context.getBean(UserStorage.class);
+        Input input = context.getBean(ValidateInput.class);
+        while (true) {
+            storage.show();
+            int key = input.ask(" Choose key: ", storage.getIndexActions());
+            storage.select(key);
+            if (key == storage.getIndexActions().length) {
+                break;
+            }
+        }
+
+        //UserStorage.ShowAllUser showAllUser = new UserStorage.ShowAllUser();
+        //TestAction testAction = context.getBean(TestAction.class);
+        ///System.out.println(testAction.info());
+        //BaseAction action = context.getBean(BaseAction.class);
+        //TestAction testAction = new TestAction("test");
+        //System.out.println(testAction.info());
+
+        //UserStorage.ShowAllUser action = context.getBean(UserStorage.ShowAllUser.class);
         /*
         Input input = context.getBean(ValidateInput.class);
         while (true) {

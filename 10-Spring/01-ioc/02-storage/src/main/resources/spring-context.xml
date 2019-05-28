@@ -20,61 +20,39 @@
         <property name="username" value="postgres"/>
         <property name="password" value="admin"/>
     </bean>
-
     <!-- jdbcStorage -->
     <bean id="jdbcStorage" class="com.adidyk.start.JdbcStorage">
         <property name="dataSource" ref="dataSource"/>
     </bean>
-
     <!-- validateInput -->
     <bean id="validateInput" class="com.adidyk.input.ValidateInput">
     </bean>
-
-    <!-- showAllUser -->
+    <!-- actions -->
     <bean id="showAllUser" class="com.adidyk.start.UserStorage.ShowAllUser">
     </bean>
-
-    <!-- addUser -->
     <bean id="addUser" class="com.adidyk.start.UserStorage.AddUser">
     </bean>
-
-    <!-- searchUserById -->
     <bean id="searchUserById" class="com.adidyk.start.UserStorage.SearchUserById">
     </bean>
-
-    <!-- searchUserByName -->
     <bean id="searchUserByName" class="com.adidyk.start.UserStorage.SearchUserByName">
     </bean>
-
-    <!-- searchUserByLogin -->
     <bean id="searchUserByLogin" class="com.adidyk.start.UserStorage.SearchUserByLogin">
     </bean>
-
-    <!--searchUserByLoginByName -->
     <bean id="searchUserByLoginByName" class="com.adidyk.start.UserStorage.SearchUserByLoginByName">
     </bean>
-
-    <!-- updateUserById -->
     <bean id="updateUserById" class="com.adidyk.start.UserStorage.UpdateUserById">
     </bean>
-
-    <!-- removeUserById -->
     <bean id="removeUserById" class="com.adidyk.start.UserStorage.RemoveUserById">
     </bean>
-
-    <!-- exit -->
     <bean id="exit" class="com.adidyk.start.UserStorage.Exit">
     </bean>
-
     <!-- bean userStorage -->
     <bean id="userStorage" class="com.adidyk.start.UserStorage">
-        <!-- init-method="fillAction" -->
-        <constructor-arg ref="jdbcStorage"/>
         <constructor-arg ref="validateInput"/>
-        <!--
+        <constructor-arg ref="jdbcStorage"/>
         <constructor-arg name="actions">
-
             <list>
+                <ref bean="showAllUser"/>
                 <ref bean="addUser"/>
                 <ref bean="searchUserById"/>
                 <ref bean="searchUserByName"/>
@@ -84,7 +62,7 @@
                 <ref bean="removeUserById"/>
                 <ref bean="exit"/>
             </list>
-        </constructor-arg> -->
+        </constructor-arg>
     </bean>
 
 </beans>
