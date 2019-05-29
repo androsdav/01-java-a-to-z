@@ -1,14 +1,13 @@
 package com.adidyk.start;
 
 import com.adidyk.models.User;
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import static com.adidyk.constant.Constant.*;
 
 /**
  * Class JdbcStorage defines next method for container of users: add.
@@ -35,8 +34,7 @@ public class JdbcStorage implements StorageDAO {
      * @param user - user (link variable to object of class User).
      */
     public int addUser(User user) {
-        String SQL = "INSERT INTO users(login, name) VALUES(?, ?)";
-        return this.jdbcTemplate.update(SQL, user.getLogin(), user.getName());
+        return this.jdbcTemplate.update(ADD_USER, user.getLogin(), user.getName());
 
     }
 
@@ -48,8 +46,8 @@ public class JdbcStorage implements StorageDAO {
      */
     @Override
     public User searchUserById(String id) {
-        String SQL = "SELECT * FROM users WHERE id=?";
-        return this.jdbcTemplate.queryForObject(SQL, new Object[]{Integer.parseInt(id)}, new UserRowMapper());
+        return this.jdbcTemplate.queryForObject(SEARCH_USER_BY_ID, new Object[]{Integer.parseInt(id)},
+                new UserRowMapper());
     }
 
     /**
@@ -58,8 +56,7 @@ public class JdbcStorage implements StorageDAO {
      */
     @Override
     public List<User> searchUserByName(User user) {
-        String SQL = "SELECT * FROM users WHERE name=?";
-        return this.jdbcTemplate.query(SQL, new Object[] {user.getName()}, new UserRowMapper());
+        return this.jdbcTemplate.query(SEARCH_USER_BY_NAME, new Object[] {user.getName()}, new UserRowMapper());
     }
 
     /**
@@ -69,8 +66,7 @@ public class JdbcStorage implements StorageDAO {
      */
     @Override
     public List<User> searchUserByLogin(User user) {
-        String SQL = "SELECT * FROM users WHERE login=?";
-        return this.jdbcTemplate.query(SQL, new Object[] {user.getLogin()}, new UserRowMapper());
+        return this.jdbcTemplate.query(SEARCH_USER_BY_LOGIN, new Object[] {user.getLogin()}, new UserRowMapper());
     }
 
     /**
@@ -79,8 +75,7 @@ public class JdbcStorage implements StorageDAO {
      */
     @Override
     public List<User> searchUserByLoginByName(User user) {
-        String SQL = "SELECT * FROM users WHERE login=? AND name=?";
-        return this.jdbcTemplate.query(SQL, new Object[] {user.getLogin(), user.getName()}, new UserRowMapper());
+        return this.jdbcTemplate.query(SEARCH_USER_BY_LOGIN_BY_NAME, new Object[] {user.getLogin(), user.getName()}, new UserRowMapper());
     }
 
     /**
@@ -89,8 +84,7 @@ public class JdbcStorage implements StorageDAO {
      */
     @Override
     public int updateUserById(User user) {
-        String SQL = "UPDATE users SET login = ?, name = ? WHERE id = ?";
-        return this.jdbcTemplate.update(SQL, user.getLogin(), user.getName(), Integer.parseInt(user.getId()));
+        return this.jdbcTemplate.update(UPDATE_USER_BY_ID, user.getLogin(), user.getName(), Integer.parseInt(user.getId()));
     }
 
     /**
@@ -99,8 +93,7 @@ public class JdbcStorage implements StorageDAO {
      */
     @Override
     public int removeUserById(String id) {
-        String SQL = "DELETE FROM users WHERE id=?";
-        return this.jdbcTemplate.update(SQL, Integer.parseInt(id));
+        return this.jdbcTemplate.update(REMOVE_USER_BY_ID, Integer.parseInt(id));
     }
 
     /**
@@ -109,11 +102,8 @@ public class JdbcStorage implements StorageDAO {
      */
     @Override
     public List<User> getAllUser() {
-        String SQL = "SELECT * FROM users ORDER BY id";
-        return this.jdbcTemplate.query(SQL, new UserRowMapper());
+        return this.jdbcTemplate.query(GET_ALL_USER, new UserRowMapper());
     }
-
-
 
     /**
      *

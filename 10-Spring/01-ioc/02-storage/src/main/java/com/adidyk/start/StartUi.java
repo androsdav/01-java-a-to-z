@@ -1,11 +1,14 @@
 package com.adidyk.start;
 
+import com.adidyk.constant.Constant;
 import com.adidyk.input.Input;
 import com.adidyk.input.ValidateInput;
+import com.adidyk.setup.Setup;
+import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import java.sql.SQLException;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Class StartUi for create jar file and start program.
@@ -16,10 +19,17 @@ import java.sql.SQLException;
 public class StartUi {
 
     /**
+     * @param logger - link variable to object of class Logger.
+     */
+    private static final Logger logger = Logger.getLogger(StartUi.class);
+
+
+    /**
      * main - creates jar file and runs program.
      * @param arg - is nothing.
      */
     public static void main(String[] arg) {
+
 
 
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");

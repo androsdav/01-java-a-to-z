@@ -12,6 +12,14 @@
        default-lazy-init="true"
 >
 
+    <bean id="setup" class="com.adidyk.setup.Setup">
+    </bean>
+
+    <bean id="runSetup" class="com.adidyk.setup.RunSetup"
+    >
+        <constructor-arg ref="setup"/>
+    </bean>
+
     <!-- dataSource -->
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">

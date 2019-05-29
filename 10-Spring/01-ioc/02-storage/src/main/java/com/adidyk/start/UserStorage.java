@@ -7,7 +7,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import static com.adidyk.models.Constant.*;
+import static com.adidyk.constant.Constant.*;
 
 /**
  * Class UserStorage defines next method for container of users: add.
