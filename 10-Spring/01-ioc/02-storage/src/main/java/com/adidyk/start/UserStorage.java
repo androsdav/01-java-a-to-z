@@ -255,7 +255,7 @@ public class UserStorage {
     }
 
     /**
-     * Class SearchItemByName shows all items for set name.
+     * Class SearchItemByName shows all items for set name. good
      * @author Didyk Andrey (androsdav@bigmir.net).
      * @since 06.08.2018.
      * @version 1.0.
