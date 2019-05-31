@@ -16,21 +16,7 @@ public class RunSetup {
     /**
      *
      */
-    private Setup setup;
-
-    /**
-     *
-     * @param setup - setup.
-     */
-    RunSetup(Setup setup) {
-        this.setup = setup;
-    }
-
-    /**
-     *
-     */
-    public void load () {
-        Setup setup = new Setup();
+    public void setSetup (Setup setup) {
         ClassLoader loader = Setup.class.getClassLoader();
         try (
                 InputStream is = loader.getResourceAsStream("app.properties")) {

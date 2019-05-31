@@ -10,7 +10,9 @@ import java.util.List;
 import static com.adidyk.constant.Constant.*;
 
 /**
- * Class JdbcStorage defines next method for container of users: add.
+ * Class JdbcStorage defines next method for container of users:
+ * addUser, searchUserById,searchUserByName, searchUserByLogin, searchUserByLoginByName updateUserById removeUserById
+ * updateUserById, removeUserById, getAllUser.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 09.02.2019.
  * @version 1.0.
@@ -18,31 +20,30 @@ import static com.adidyk.constant.Constant.*;
 public class JdbcStorage implements StorageDAO {
 
     /**
-     * @param jdbcTemplate - jdbcTemplate.
+     * @param jdbcTemplate - jdbcTemplate (link variable to object of class JdbcTemplate).
      */
     private JdbcTemplate jdbcTemplate;
 
     /**
-     * @param dataSource - data source.
+     * @param dataSource - dataSource (link variable to object DataSource).
      */
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     /**
-     * addUser - adds new user to users table in database base_storage.
+     * addUser - adds new user to users table in database base_storage (used query sql -> ADD_USER).
      * @param user - user (link variable to object of class User).
      */
     public int addUser(User user) {
         return this.jdbcTemplate.update(ADD_USER, user.getLogin(), user.getName());
-
     }
 
     /**
-     * searchUserById - searches user in item table in database base_tracker by id (used query sql -> SEARCH_ITEM_BY_ID)
-     * and returns item if search result true and returns null if search result false.
-     * @param id - id item.
-     * @return - returns item if search result true and returns null if search result false.
+     * searchUserById - searches user in user table in database base_storage by id (used query sql -> SEARCH_USER_BY_ID)
+     * and returns user if search result true and returns EmptyResultDataAccessException if search result false.
+     * @param id - user id.
+     * @return - returns user if search result true and returns EmptyResultDataAccessException if search result false.
      */
     @Override
     public User searchUserById(String id) {
@@ -51,8 +52,10 @@ public class JdbcStorage implements StorageDAO {
     }
 
     /**
-     * @param user - name.
-     * @return - return list.
+     * searchUserByName - searches user in user table in database base_storage by name (used query sql ->
+     * SEARCH_USER_BY_NAME) and returns list user if search result true or returns null if search result false.
+     * @param user - user.
+     * @return - returns list user if search result true or returns null if search result false.
      */
     @Override
     public List<User> searchUserByName(User user) {
@@ -60,9 +63,10 @@ public class JdbcStorage implements StorageDAO {
     }
 
     /**
-     *
-     * @param user - login.
-     * @return - return.
+     * searchUserByLogin - searches user in user table in database base_storage by login (used query sql ->
+     * SEARCH_USER_BY_LOGIN) and returns list user if search result true or returns null if search result false.
+     * @param user - user.
+     * @return - returns list user if search result true or returns null if search result false.
      */
     @Override
     public List<User> searchUserByLogin(User user) {
@@ -70,8 +74,11 @@ public class JdbcStorage implements StorageDAO {
     }
 
     /**
-     * @param user - login.
-     * @return - list.
+     * searchUserByLoginByName - searches user in user table in database base_storage by login and by name
+     * (used query sql -> SEARCH_USER_BY_LOGIN_BY_NAME) and returns list user if search result true or
+     * returns null if search result false.
+     * @param user - user.
+     * @return - returns list user if search result true or returns null if search result false.
      */
     @Override
     public List<User> searchUserByLoginByName(User user) {
@@ -79,8 +86,10 @@ public class JdbcStorage implements StorageDAO {
     }
 
     /**
-     *
+     * updateUserById - updates user in user table in database base_storage by id (used query sql -> UPDATE_USER_BY_ID)
+     * and returns "1" if update is true or returns "0" if update is false.
      * @param user - user.
+     * @return - returns "1" if update is true or returns "0" if update is false.
      */
     @Override
     public int updateUserById(User user) {
@@ -88,8 +97,10 @@ public class JdbcStorage implements StorageDAO {
     }
 
     /**
-     *
-     * @param id - id.
+     * removeUserById - removes user in user table in database base_storage by id (used query sql -> REMOVE_USER_BY_ID)
+     * and returns "1" if remove true or returns "0" if remove is false.
+     * @param id - user id.
+     * @return - returns "1" if remove true or returns "0" if remove is false.
      */
     @Override
     public int removeUserById(String id) {
@@ -97,8 +108,8 @@ public class JdbcStorage implements StorageDAO {
     }
 
     /**
-     *
-     * @return
+     * getAllUser - returns all user from user table from database base_storage (query sql -> GET_ALL_USER).
+     * @return - returns all user from user table from database base_storage.
      */
     @Override
     public List<User> getAllUser() {
@@ -106,16 +117,16 @@ public class JdbcStorage implements StorageDAO {
     }
 
     /**
-     *
+     * Class UserRowMapper.
      */
     private static final class UserRowMapper implements RowMapper<User> {
 
         /**
          *
-         * @param rs - rs.
-         * @param rowNum - i.
-         * @return
-         * @throws SQLException
+         * @param rs - rs (link variable to object to class ResultSet).
+         * @param rowNum - row number.
+         * @return - returns user by query sql.
+         * @throws SQLException - SQLException.
          */
         @Override
         public User mapRow(ResultSet rs, int rowNum) throws SQLException {

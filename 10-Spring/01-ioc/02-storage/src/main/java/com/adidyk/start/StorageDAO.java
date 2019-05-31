@@ -1,7 +1,6 @@
 package com.adidyk.start;
 
 import com.adidyk.models.User;
-
 import java.util.List;
 
 /**
@@ -13,15 +12,16 @@ import java.util.List;
 public interface StorageDAO {
 
     /**
-     * addUser - adds user to container.
+     * addUser - adds new user to users table in database base_storage.
      * @param user - user (link variable to object of class User).
      */
     int addUser(User user);
 
     /**
-     *
-     * @param id - id user.
-     * @return - returns user by id.
+     * searchUserById - searches user in user by id.
+     * and returns user if search result true and returns EmptyResultDataAccessException if search result false.
+     * @param id - user id.
+     * @return - returns user if search result true and returns EmptyResultDataAccessException if search result false.
      */
     User searchUserById(String id);
 

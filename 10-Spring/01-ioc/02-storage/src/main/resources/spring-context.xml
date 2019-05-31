@@ -17,7 +17,7 @@
 
     <bean id="runSetup" class="com.adidyk.setup.RunSetup"
     >
-        <constructor-arg ref="setup"/>
+        <property name="setup" ref="setup"/>
     </bean>
 
     <!-- dataSource -->

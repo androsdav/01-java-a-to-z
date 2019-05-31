@@ -10,7 +10,7 @@ import java.util.List;
 import static com.adidyk.constant.Constant.*;
 
 /**
- * Class UserStorage defines next method for container of users: add.
+ * Class UserStorage used for creates index menu and for work with database base_storage.
  * @author Didyk Andrey (androsdav@bigmir.net).
  * @since 09.02.2019.
  * @version 1.0.
@@ -18,12 +18,12 @@ import static com.adidyk.constant.Constant.*;
 public class UserStorage {
 
     /**
-     * @param logger - link variable to object of class Logger.
+     * @param logger - logger (link variable to object of class Logger).
      */
     private static final Logger logger = Logger.getLogger(StartUi.class);
 
     /**
-     * @param input - input.
+     * @param input - input (link variable to object of interface Input).
      */
     private Input input;
 
@@ -33,13 +33,15 @@ public class UserStorage {
     private final StorageDAO storage;
 
     /**
-     * @param actions - actions.
+     * @param actions - actions (link variable to object of class ArrayList).
      */
     private ArrayList<BaseAction> actions;
 
     /**
      * UserStorage - constructor.
+     * @param input - input (link variable to object of interface Input).
      * @param storage - storage (link variable to object of interface Storage).
+     * @param actions - actions (link variable to object of class ArrayList).
      */
     public UserStorage(Input input, StorageDAO storage, List<BaseAction> actions) {
         this.input = input;
@@ -48,7 +50,7 @@ public class UserStorage {
     }
 
     /**
-     * select - selects action (мфдгу) by key.
+     * select - selects action by key.
      * @param key - key of index menu.
      */
     void select(int key) {
@@ -83,7 +85,7 @@ public class UserStorage {
     }
 
     /**
-     * Class ShowAllItem shows all items without comments.
+     * Class ShowAllUser shows all user.
      * @author Didyk Andrey (androsdav@bigmir.net).
      * @since 06.08.2018.
      * @version 1.0.
@@ -91,7 +93,7 @@ public class UserStorage {
     public static class  ShowAllUser extends BaseAction {
 
         /**
-         * ShowAllItem - constructor.
+         * ShowAllUser - constructor.
          */
         public ShowAllUser() {
             super(" Show all user.");
@@ -107,9 +109,9 @@ public class UserStorage {
         }
 
         /**
-         * execute - shows all items without comments.
-         * @param input - link variable to object of class ValidateInput.
-         * @param storage - link variable to object of class Tracker.
+         * execute - shows all user.
+         * @param input - input (link variable to object of interface Input (ValidateInput)).
+         * @param storage - storage (link variable to object of interface Storage (JdbcStorage)).
          */
         @Override
         public void execute(Input input, StorageDAO storage) {
@@ -123,7 +125,7 @@ public class UserStorage {
     }
 
     /**
-     * Class AddItem adds new item.
+     * Class AddUser adds new user.
      * @author Didyk Andrey (androsdav@bigmir.net).
      * @since 06.08.2018.
      * @version 1.0.
@@ -131,15 +133,15 @@ public class UserStorage {
     public static class AddUser extends BaseAction {
 
         /**
-         * AddItem - constructor.
+         * AddUser - constructor.
          */
         AddUser() {
             super(" Add new user.");
         }
 
         /**
-         * key - returns number of index of menu (3).
-         * @return - returns number of index of menu (3).
+         * key - returns number of index of menu (2).
+         * @return - returns number of index of menu (2).
          */
         @Override
         public int key() {
@@ -147,9 +149,9 @@ public class UserStorage {
         }
 
         /**
-         * execute - adds new item.
-         * @param input - link variable to object of class ValidateInput.
-         * @param storage - link variable to object of class Tracker.
+         * execute - adds new user.
+         * @param input - input (link variable to object of interface Input (ValidateInput)).
+         * @param storage - storage (link variable to object of interface Storage (JdbcStorage)).
          */
         @Override
         public void execute(Input input, StorageDAO storage) {
@@ -166,7 +168,7 @@ public class UserStorage {
     }
 
     /**
-     * SearchItemById shows search result - search item by id.dfsdfsdf
+     * SearchUserById shows search result - search user by id.
      * @author Didyk Andrey (androsdav@bigmir.net).
      * @since 06.08.2018.
      * @version 1.0.
@@ -174,15 +176,15 @@ public class UserStorage {
     public static class SearchUserById extends BaseAction {
 
         /**
-         * SearchItemById - constructor.
+         * SearchUserById - constructor.
          */
         SearchUserById() {
             super(" Search user by id.");
         }
 
         /**
-         * key - returns number of index of menu (4).
-         * @return - returns number of index of menu (4).
+         * key - returns number of index of menu (3).
+         * @return - returns number of index of menu (3).
          */
         @Override
         public int key() {
@@ -190,9 +192,9 @@ public class UserStorage {
         }
 
         /**
-         * execute - shows search result - search item by id.
-         * @param input - link variable to object of class ValidateInput.
-         * @param storage - link variable to object of class Tracker.
+         * execute - shows search result - search user by id.
+         * @param input - input (link variable to object of interface Input (ValidateInput)).
+         * @param storage - storage (link variable to object of interface Storage (JdbcStorage)).
          */
         @Override
         public void execute(Input input, StorageDAO storage) {
@@ -209,7 +211,7 @@ public class UserStorage {
     }
 
     /**
-     * Class SearchItemByName shows all items for set name.
+     * Class SearchUserByName shows all user by user name.
      * @author Didyk Andrey (androsdav@bigmir.net).
      * @since 06.08.2018.
      * @version 1.0.
@@ -217,15 +219,15 @@ public class UserStorage {
     public static class SearchUserByName extends BaseAction {
 
         /**
-         * SearchItemByName - constructor.
+         * SearchUserByName - constructor.
          */
         SearchUserByName() {
             super(" Search user by name.");
         }
 
         /**
-         * key - returns number of index of menu (5).
-         * @return - returns number of index of menu (5).
+         * key - returns number of index of menu (4).
+         * @return - returns number of index of menu (4).
          */
         @Override
         public int key() {
@@ -233,9 +235,9 @@ public class UserStorage {
         }
 
         /**
-         * execute - shows all items for set name.
-         * @param input - link variable to object of class ValidateInput.
-         * @param storage - link variable to object of class Tracker.
+         * execute - shows all user by user name.
+         * @param input - input (link variable to object of interface Input (ValidateInput)).
+         * @param storage - storage (link variable to object of interface Storage (JdbcStorage)).
          */
         @Override
         public void execute(Input input, StorageDAO storage) {
@@ -255,7 +257,7 @@ public class UserStorage {
     }
 
     /**
-     * Class SearchItemByName shows all items for set name. good
+     * Class SearchUserByLogin shows all user by user login.
      * @author Didyk Andrey (androsdav@bigmir.net).
      * @since 06.08.2018.
      * @version 1.0.
@@ -263,7 +265,7 @@ public class UserStorage {
     public static class SearchUserByLogin extends BaseAction {
 
         /**
-         * SearchItemByName - constructor.
+         * SearchUserByLogin - constructor.
          */
         SearchUserByLogin() {
             super(" Search user by login.");
@@ -279,9 +281,9 @@ public class UserStorage {
         }
 
         /**
-         * execute - shows all items for set name.
-         * @param input - link variable to object of class ValidateInput.
-         * @param storage - link variable to object of class Tracker.
+         * execute - shows all user by user login.
+         * @param input - input (link variable to object of interface Input (ValidateInput)).
+         * @param storage - storage (link variable to object of interface Storage (JdbcStorage)).
          */
         @Override
         public void execute(Input input, StorageDAO storage) {
@@ -301,7 +303,7 @@ public class UserStorage {
     }
 
     /**
-     * Class SearchItemByName shows all items for set name.
+     * Class SearchUserByLoginByName shows all user by login and by name.
      * @author Didyk Andrey (androsdav@bigmir.net).
      * @since 06.08.2018.
      * @version 1.0.
@@ -309,15 +311,15 @@ public class UserStorage {
     public static class SearchUserByLoginByName extends BaseAction {
 
         /**
-         * SearchItemByName - constructor.
+         * SearchUserByLoginByName - constructor.
          */
         SearchUserByLoginByName() {
             super(" Search user by login and by name.");
         }
 
         /**
-         * key - returns number of index of menu (5).
-         * @return - returns number of index of menu (5).
+         * key - returns number of index of menu (6).
+         * @return - returns number of index of menu (6).
          */
         @Override
         public int key() {
@@ -325,9 +327,9 @@ public class UserStorage {
         }
 
         /**
-         * execute - shows all items for set name.
-         * @param input - link variable to object of class ValidateInput.
-         * @param storage - link variable to object of class Tracker.
+         * execute - shows all user by login and by name.
+         * @param input - input - input (link variable to object of interface Input (ValidateInput)).
+         * @param storage - storage (link variable to object of interface Storage (JdbcStorage)).
          */
         @Override
         public void execute(Input input, StorageDAO storage) {
@@ -348,7 +350,7 @@ public class UserStorage {
     }
 
     /**
-     * Class SearchItemByName shows all items for set name.
+     * Class UpdateUserById update user by id.
      * @author Didyk Andrey (androsdav@bigmir.net).
      * @since 06.08.2018.
      * @version 1.0.
@@ -356,15 +358,15 @@ public class UserStorage {
     public static class UpdateUserById extends BaseAction {
 
         /**
-         * SearchItemByName - constructor.
+         * UpdateUserById - constructor.
          */
         UpdateUserById() {
             super(" Update user by id.");
         }
 
         /**
-         * key - returns number of index of menu (5).
-         * @return - returns number of index of menu (5).
+         * key - returns number of index of menu (7).
+         * @return - returns number of index of menu (7).
          */
         @Override
         public int key() {
@@ -372,9 +374,9 @@ public class UserStorage {
         }
 
         /**
-         * execute - shows all items for set name.
-         * @param input - link variable to object of class ValidateInput.
-         * @param storage - link variable to object of class Tracker.
+         * execute - update user by id.
+         * @param input - input (link variable to object of interface Input (ValidateInput)).
+         * @param storage - storage (link variable to object of interface Storage (JdbcStorage)).
          */
         @Override
         public void execute(Input input, StorageDAO storage) {
@@ -394,7 +396,7 @@ public class UserStorage {
     }
 
     /**
-     * Class AddItem adds new item.
+     * Class RemoveUserById remove user by id.
      * @author Didyk Andrey (androsdav@bigmir.net).
      * @since 06.08.2018.
      * @version 1.0.
@@ -402,7 +404,7 @@ public class UserStorage {
     public static class RemoveUserById extends BaseAction {
 
         /**
-         * AddItem - constructor.
+         * RemoveUserByID - constructor.
          */
         RemoveUserById() {
             super(" Remove user by id.");
@@ -418,9 +420,9 @@ public class UserStorage {
         }
 
         /**
-         * execute - adds new item.
-         * @param input - link variable to object of class ValidateInput.
-         * @param storage - link variable to object of class Tracker.
+         * execute - remove user by id.
+         * @param input - input (link variable to object of interface Input (ValidateInput)).
+         * @param storage - storage (link variable to object of interface Storage (JdbcStorage)).
          */
         @Override
         public void execute(Input input, StorageDAO storage) {
@@ -451,8 +453,8 @@ public class UserStorage {
         }
 
         /**
-         * key - returns number of index of menu (10).
-         * @return - returns number of index of menu (10).
+         * key - returns number of index of menu (9).
+         * @return - returns number of index of menu (9).
          */
         @Override
         public int key() {
@@ -461,8 +463,8 @@ public class UserStorage {
 
         /**
          * execute - doing nothing.
-         * @param input - link variable to object of class ValidateInput.
-         * @param storage - link variable to object of class Tracker.
+         * @param input - input (link variable to object of interface Input (ValidateInput)).
+         * @param storage - storage (link variable to object of interface Storage (JdbcStorage)).
          */
         @Override
         public void execute(Input input, StorageDAO storage) {
