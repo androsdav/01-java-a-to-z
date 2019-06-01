@@ -59,7 +59,8 @@ public class JdbcStorage implements StorageDAO {
      */
     @Override
     public List<User> searchUserByName(User user) {
-        return this.jdbcTemplate.query(SEARCH_USER_BY_NAME, new Object[] {user.getName()}, new UserRowMapper());
+        return this.jdbcTemplate.query(SEARCH_USER_BY_NAME, new Object[] {user.getName()},
+                new UserRowMapper());
     }
 
     /**
@@ -70,7 +71,8 @@ public class JdbcStorage implements StorageDAO {
      */
     @Override
     public List<User> searchUserByLogin(User user) {
-        return this.jdbcTemplate.query(SEARCH_USER_BY_LOGIN, new Object[] {user.getLogin()}, new UserRowMapper());
+        return this.jdbcTemplate.query(SEARCH_USER_BY_LOGIN, new Object[] {user.getLogin()},
+                new UserRowMapper());
     }
 
     /**
@@ -82,7 +84,8 @@ public class JdbcStorage implements StorageDAO {
      */
     @Override
     public List<User> searchUserByLoginByName(User user) {
-        return this.jdbcTemplate.query(SEARCH_USER_BY_LOGIN_BY_NAME, new Object[] {user.getLogin(), user.getName()}, new UserRowMapper());
+        return this.jdbcTemplate.query(SEARCH_USER_BY_LOGIN_BY_NAME, new Object[] {user.getLogin(), user.getName()},
+                new UserRowMapper());
     }
 
     /**

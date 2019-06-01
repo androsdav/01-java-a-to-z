@@ -35,7 +35,7 @@ public class User {
     }
 
     /**
-     *
+     * setId - sets id user.
      * @param id - id.
      */
     public void setId(String id) {
@@ -59,8 +59,8 @@ public class User {
     }
 
     /**
-     *
-     * @return id.
+     * getId - returns user id.
+     * @return - returns user id.
      */
     public String getId() {
         return this.id;
@@ -116,6 +116,5 @@ public class User {
     public String toString() {
         return String.format(" %s%7s%2s %-28s%2s %-35s%2s", "|", this.getId(), "|", this.getLogin(), "|",this.getName(), "|");
     }
-
 
 }

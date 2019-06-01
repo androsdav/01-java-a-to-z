@@ -20,7 +20,7 @@ public class Setup {
      * load - loads params from file app.properties.
      * @param io - link variable to object of class InputStream.
      */
-    public void load(InputStream io) {
+    void load(InputStream io) {
         try {
             this.prs.load(io);
         } catch (Exception ex) {
