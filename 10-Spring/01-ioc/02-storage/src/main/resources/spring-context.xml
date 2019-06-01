@@ -12,49 +12,42 @@
        default-lazy-init="true"
 >
 
-    <bean id="setup" class="com.adidyk.setup.Setup">
-    </bean>
+    <!-- setup -->
+    <bean id="setup" class="com.adidyk.setup.Setup"/>
 
-    <bean id="runSetup" class="com.adidyk.setup.RunSetup"
-    >
+    <!-- runSetup -->
+    <bean id="runSetup" class="com.adidyk.setup.RunSetup">
         <property name="setup" ref="setup"/>
     </bean>
 
     <!-- dataSource -->
-    <bean id="dataSource"
-          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver"/>
         <property name="url" value="jdbc:postgresql://localhost:5432/base_storage"/>
         <property name="username" value="postgres"/>
         <property name="password" value="admin"/>
     </bean>
+
     <!-- jdbcStorage -->
     <bean id="jdbcStorage" class="com.adidyk.start.JdbcStorage">
         <property name="dataSource" ref="dataSource"/>
     </bean>
+
     <!-- validateInput -->
-    <bean id="validateInput" class="com.adidyk.input.ValidateInput">
-    </bean>
+    <bean id="validateInput" class="com.adidyk.input.ValidateInput"/>
+
     <!-- actions -->
-    <bean id="showAllUser" class="com.adidyk.start.UserStorage.ShowAllUser">
-    </bean>
-    <bean id="addUser" class="com.adidyk.start.UserStorage.AddUser">
-    </bean>
-    <bean id="searchUserById" class="com.adidyk.start.UserStorage.SearchUserById">
-    </bean>
-    <bean id="searchUserByName" class="com.adidyk.start.UserStorage.SearchUserByName">
-    </bean>
-    <bean id="searchUserByLogin" class="com.adidyk.start.UserStorage.SearchUserByLogin">
-    </bean>
-    <bean id="searchUserByLoginByName" class="com.adidyk.start.UserStorage.SearchUserByLoginByName">
-    </bean>
-    <bean id="updateUserById" class="com.adidyk.start.UserStorage.UpdateUserById">
-    </bean>
-    <bean id="removeUserById" class="com.adidyk.start.UserStorage.RemoveUserById">
-    </bean>
-    <bean id="exit" class="com.adidyk.start.UserStorage.Exit">
-    </bean>
-    <!-- bean userStorage -->
+    <bean id="showAllUser" class="com.adidyk.start.UserStorage.ShowAllUser"/>
+    <bean id="addUser" class="com.adidyk.start.UserStorage.AddUser"/>
+    <bean id="searchUserById" class="com.adidyk.start.UserStorage.SearchUserById"/>
+    <bean id="searchUserByName" class="com.adidyk.start.UserStorage.SearchUserByName"/>
+    <bean id="searchUserByLogin" class="com.adidyk.start.UserStorage.SearchUserByLogin"/>
+    <bean id="searchUserByLoginByName" class="com.adidyk.start.UserStorage.SearchUserByLoginByName"/>
+    <bean id="updateUserById" class="com.adidyk.start.UserStorage.UpdateUserById"/>
+    <bean id="removeUserById" class="com.adidyk.start.UserStorage.RemoveUserById"/>
+    <bean id="exit" class="com.adidyk.start.UserStorage.Exit"/>
+
+    <!-- userStorage -->
     <bean id="userStorage" class="com.adidyk.start.UserStorage">
         <constructor-arg ref="validateInput"/>
         <constructor-arg ref="jdbcStorage"/>
